@@ -30,6 +30,7 @@ jobs:
         ref: refs/pull/${{ github.event.pull_request.number }}/merge
     - name: Checking EditorConfig
       run: |
+        tree -a
         cat "$HOME/changed_files" | xargs -r editorconfig-checker -disable-indent-size
     - if: ${{ failure() }}
       run: |
