@@ -8,13 +8,13 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
 
 jobs:
   build-linux:
     name: Linux
     runs-on: ubuntu-latest
     env:
+      REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
       IMAGE: ${{ env.REPO }}/build-linux:latest
     strategy:
       matrix:
@@ -60,9 +60,8 @@ jobs:
     name: Windows
     runs-on: windows-latest
     env:
-      REGISTRY: ghcr.io
+      REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
       IMAGE: ${{ env.REPO }}/build-windows:latest
-      MAKE_FLAGS: ${{ matrix.make_flags }}
     strategy:
       matrix:
         make_flags: ["GENERATE_MAP=1", "NON_MATCHING=1"]

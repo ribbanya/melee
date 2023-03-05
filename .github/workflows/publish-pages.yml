@@ -8,7 +8,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
 
 jobs:
   # Single deploy job since we're just deploying
@@ -16,6 +15,7 @@ jobs:
     name: Generate pages
     runs-on: ubuntu-latest
     env:
+      REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
       IMAGE: ${{ env.REPO }}/gen-pages:latest
     steps:
       - name: Checkout Melee repository
