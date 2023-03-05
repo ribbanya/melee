@@ -6,14 +6,17 @@ on:
     paths: [ "**" ]
   pull_request:
 
+env:
+  REGISTRY: ghcr.io
+  REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
+
 jobs:
   # Single deploy job since we're just deploying
   gen-pages:
     name: Generate pages
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io
-      IMAGE: ${{ github.repository }}/gen-pages:latest
+      IMAGE: ${{ env.REPO }}/gen-pages:latest
     steps:
       - name: Checkout Melee repository
         uses: actions/checkout@v3

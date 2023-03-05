@@ -6,13 +6,16 @@ on:
     paths: [ "**" ]
   pull_request:
 
+env:
+  REGISTRY: ghcr.io
+  REPO: ${{ if eq(github.event_name, 'pull_request') }}${{ github.event.pull_request.base.repo.name }}${{ else }}${{ github.repository }}${{ endif }}
+
 jobs:
   build-linux:
     name: Linux
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io
-      IMAGE: ${{ github.repository }}/build-linux:latest
+      IMAGE: ${{ env.REPO }}/build-linux:latest
     strategy:
       matrix:
         make_flags: ["GENERATE_MAP=1", "NON_MATCHING=1"]
@@ -58,7 +61,7 @@ jobs:
     runs-on: windows-latest
     env:
       REGISTRY: ghcr.io
-      IMAGE: ${{ github.repository }}/build-windows:latest
+      IMAGE: ${{ env.REPO }}/build-windows:latest
       MAKE_FLAGS: ${{ matrix.make_flags }}
     strategy:
       matrix:
