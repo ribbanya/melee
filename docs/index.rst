@@ -11,8 +11,8 @@ Welcome to Melee's documentation!
    :caption: Contents:
 
 
-.. autodoxygenindex::
-   :project: auto
+.. .. autodoxygenindex::
+..    :project: auto
 
 
 Indices and tables

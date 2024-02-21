@@ -14,13 +14,14 @@ author = "doldecomp"  # TODO remove properly
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "breathe",
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
-    "sphinx.ext.mathjax",
-    "sphinx.ext.viewcode",
     "sphinx.ext.imgmath",
+    "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    "breathe",
+    "sphinx.ext.viewcode",
+    "sphinx_rtd_theme",
 ]
 
 breathe_default_project = "Melee"
@@ -33,5 +34,5 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "classic"
+html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
