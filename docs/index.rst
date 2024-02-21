@@ -13,7 +13,12 @@ Welcome to Melee's documentation!
 
 .. .. autodoxygenindex::
 ..    :project: auto
-
+.. doxygenindex::
+.. doxygenfunction::
+.. doxygenstruct::
+.. doxygenenum::
+.. doxygentypedef::
+.. doxygenclass::
 
 Indices and tables
 ==================
