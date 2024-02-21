@@ -13,7 +13,16 @@ author = "doldecomp"  # TODO remove properly
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["breathe"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.imgmath",
+    "sphinx.ext.todo",
+    "breathe",
+]
+
 breathe_default_project = "Melee"
 breathe_projects = {"Melee": "../build/doxygen/xml"}
 
