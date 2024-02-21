@@ -13,7 +13,9 @@ author = "doldecomp"  # TODO remove properly
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = ["breathe"]
+breathe_default_project = "Melee"
+breathe_projects = {"Melee": "../build/doxygen/xml"}
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
