@@ -10,6 +10,7 @@ Welcome to Melee's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+
 .. autodoxygenindex::
    :project: auto
 
