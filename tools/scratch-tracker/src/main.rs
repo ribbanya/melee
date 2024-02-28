@@ -14,10 +14,11 @@ use env_logger;
 use nom::AsChar;
 use rayon::prelude::*;
 use scratch::try_parse_addr;
+use serde::Deserialize;
 use std::{
     fs::{self, File},
     io::{BufWriter, Write},
-    path::PathBuf,
+    path::{Path, PathBuf},
     process,
 };
 use tabled::{
@@ -58,6 +59,9 @@ enum Commands {
         #[arg(required = true)]
         paths: Vec<PathBuf>,
     },
+    Report {
+        json_path: PathBuf,
+    },
 }
 
 fn try_main(args: ProgramArgs) -> Result<()> {
@@ -74,8 +78,22 @@ fn try_main(args: ProgramArgs) -> Result<()> {
         Seed { from } => seed(from)?,
         Update => update()?,
         Resolve { paths } => resolve(paths)?,
+        Report { json_path } => report(json_path)?,
     }
     Result::Ok(())
+}
+#[derive(Deserialize)]
+struct Unit {
+
+}
+
+#[derive(Deserialize)]
+struct Report {
+    fuzzy_match_percent: f32,
+    total_size: u32,
+    matched_size: u32,
+    matched_size_percent: f32,
+    units: Vec<Unit>,
 }
 
 fn refresh() -> Result<()> {
@@ -247,6 +265,10 @@ fn resolve_in_str<W: Write>(w: &mut W, s: &str) -> Result<()> {
     }
 
     Ok(())
+}
+
+fn report<P: AsRef<Path>>(json_path: P) -> Result<()> {
+    todo!()
 }
 
 fn main() {
