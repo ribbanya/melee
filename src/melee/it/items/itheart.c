@@ -25,11 +25,11 @@
 /* 284160 */ static bool it_80284160(Item_GObj* gobj);
 
 ItemStateTable it_803F56C8[] = {
-    { 0xFFFFFFFF, it_80283CD4, it_80283DA4, it_80283DA8 },
-    { 0xFFFFFFFF, it_80283DFC, it_80283ECC, it_80283EFC },
-    { 0xFFFFFFFF, it_80284020, it_80284028, NULL },
-    { 0xFFFFFFFF, it_80283DFC, it_80283ECC, it_80283EFC },
-    { 0xFFFFFFFF, it_80284154, it_8028415C, it_80284160 },
+    { -1, it_80283CD4, it_80283DA4, it_80283DA8 },
+    { -1, it_80283DFC, it_80283ECC, it_80283EFC },
+    { -1, it_80284020, it_80284028, NULL },
+    { -1, it_80283DFC, it_80283ECC, it_80283EFC },
+    { -1, it_80284154, it_8028415C, it_80284160 },
 };
 
 Item_GObj* it_80283AE4(Item_GObj* gobj, Vec3* pos, s32 arg2)
@@ -55,7 +55,7 @@ Item_GObj* it_80283AE4(Item_GObj* gobj, Vec3* pos, s32 arg2)
     if (item_gobj != NULL) {
         Item* ip = GET_ITEM(item_gobj);
         ip->xDD4_itemVar.HeartContainer.xDD8.bits.b0 = true;
-        ip->xDD4_itemVar.HeartContainer.xDDC = arg2;
+        ip->xDD4_itemVar.HeartContainer.xDDC.flags = arg2;
         Item_80267454(item_gobj);
     }
     return item_gobj;
@@ -79,7 +79,7 @@ void it_80283BEC(Item_GObj* gobj)
     ip->x40_vel.z = 0.0F;
     ip->xDD4_itemVar.HeartContainer.xDD4_heal = vars->xDD4_heal;
     ip->xDD4_itemVar.HeartContainer.xDD8.bits.b0 = false;
-    ip->xDD4_itemVar.HeartContainer.xDDC = 0;
+    ip->xDD4_itemVar.HeartContainer.xDDC.flags = 0;
     it_80283DD4(gobj);
 }
 
@@ -87,11 +87,11 @@ void it_80283C48(Item_GObj* gobj)
 {
     Item* ip = GET_ITEM(gobj);
 
-    if ((s8) ((((*(s8*) &ip->xDD4_itemVar.HeartContainer.xDD8.flags) & 0xC0)
-               << 24) >>
-              31))
-    {
-        ((s8*) &gm_80473A18 + ip->xDD4_itemVar.HeartContainer.xDDC)[0x90] = 0;
+    if ((ip->xDD4_itemVar.HeartContainer.xDD8.b)) {
+        asm { nop }
+        ;
+        // ((s8*) &gm_80473A18 + ip->xDD4_itemVar.HeartContainer.xDDC)[0x90] =
+        // 0;
     }
 }
 

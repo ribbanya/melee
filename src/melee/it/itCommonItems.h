@@ -72,8 +72,18 @@ typedef struct HeartContainerVars {
             u8 b7 : 1;
         } bits;
         u32 flags;
+        struct {
+            u32 c : 6;
+            u32 b : 6;
+            // u32 a : 24;
+        };
     } xDD8;
-    s32 xDDC;
+    union {
+        u32 flags;
+        struct {
+            u8 x : 2;
+        };
+    } xDDC;
     u8 xDE0_filler[8];
     f32 xDE8_float;
     f32 xDEC;
