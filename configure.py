@@ -70,9 +70,9 @@ parser.add_argument(
     help="generate map file(s)",
 )
 parser.add_argument(
-    "--no-asm",
-    action="store_true",
-    default=True,
+    "--use-asm",
+    dest="no_asm",
+    action="store_false",
     help="don't incorporate .s files from asm directory",
 )
 parser.add_argument(
