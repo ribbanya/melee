@@ -810,7 +810,7 @@ TEXT_O_FILES +=\
     $(BUILD_DIR)/asm/MetroTRK/dispatch.s.o\
     $(BUILD_DIR)/asm/MetroTRK/msghndlr.s.o\
     $(BUILD_DIR)/asm/MetroTRK/flush_cache.s.o\
-    $(BUILD_DIR)/asm/MetroTRK/mem_TRK.s.o\
+    $(BUILD_DIR)/asm/MetroTRK/mem_TRK_text.s.o\
     $(BUILD_DIR)/asm/MetroTRK/targimpl.s.o\
     $(BUILD_DIR)/asm/MetroTRK/dolphin_trk.s.o\
     $(BUILD_DIR)/asm/MetroTRK/mpc_7xx_603e.s.o\
