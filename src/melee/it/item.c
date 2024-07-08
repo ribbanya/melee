@@ -1,3 +1,4 @@
+#include "ft/forward.h"
 #include "lb/forward.h"
 
 #include "item.h"
@@ -2031,14 +2032,14 @@ void Item_8026A8EC(Item_GObj* gobj)
     HSD_GObjPLink_80390228(gobj);
 }
 
-void Item_8026AB54(HSD_GObj* gobj, HSD_GObj* pickup_gfx, u8 pickup_sfx)
+void Item_8026AB54(HSD_GObj* gobj, HSD_GObj* pickup_gfx, Fighter_Part part)
 {
     u8 _[16];
 
     Item* item_data = (Item*) HSD_GObjGetUserData(gobj);
 
     it_80273168(gobj);
-    it_802742F4(gobj, pickup_gfx, pickup_sfx);
+    it_802742F4(gobj, pickup_gfx, part);
     RunCallback(gobj, item_data->xB8_itemLogicTable->picked_up);
     Item_8026B074(item_data);
 }

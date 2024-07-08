@@ -158,7 +158,6 @@
 /* 2C7A84 */ void it_802C7A84(Item_GObj*);
 /* 2C7AD0 */ void it_802C7AD0(Item_GObj*);
 /* 2C7AF0 */ void it_802C7AF0(Item_GObj*);
-/* 2C7D60 */ HSD_GObj* it_802C7D60(Item_GObj*, Vec3*, s32, float);
 /* 2C7E94 */ void it_802C7E94(Item_GObj*);
 /* 2C7EE0 */ void it_802C7EE0(Item_GObj*);
 /* 2C7F00 */ void it_802C7F00(Item_GObj*);

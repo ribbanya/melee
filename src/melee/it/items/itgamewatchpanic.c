@@ -1,8 +1,10 @@
+#include "ft/forward.h"
+
 #include "itgamewatchpanic.h"
 
 #include "db/db_2253.h"
 #include "ft/chara/ftGameWatch/ftGw_SpecialLw.h"
-#include "ft/ftLib.h"
+#include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -10,7 +12,7 @@
 
 /* 2C7FAC */ static bool it_802C7FAC(Item_GObj*);
 
-HSD_GObj* it_802C7D60(Item_GObj* parent, Vec3* pos, u8 arg2, f32 dir)
+HSD_GObj* it_802C7D60(Item_GObj* parent, Vec3* pos, Fighter_Part arg2, f32 dir)
 {
     SpawnItem spawn_item;
     HSD_GObj* item_gobj;

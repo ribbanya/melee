@@ -16,6 +16,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "it/items/it_27CF.h"
+#include "it/items/itgamewatchpanic.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>
