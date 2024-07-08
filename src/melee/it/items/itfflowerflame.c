@@ -1,9 +1,9 @@
 #include "itfflowerflame.h"
 
 #include "it/inlines.h"
+#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/it_266F.h"
 #include "it/item.h"
 
 /* 29AA1C */ static void it_8029AA1C(HSD_GObj*);
@@ -23,7 +23,7 @@
 /* 29B074 */ static int it_8029B074(Item_GObj*);
 
 ItemStateTable it_803F66C8[] = {
-    { 0, it_8029AA6C, it_8029AB60, it_8029AB64 },
+    { 1, it_8029AA6C, it_8029AB60, it_8029AB64 },
     { 0, it_8029ABCC, it_8029ACCC, it_8029ACFC },
     { 0, it_8029AD58, NULL, NULL },
     { 0, it_8029ADD0, it_8029AED0, it_8029AF00 },
@@ -217,25 +217,22 @@ void it_8029AF34(Item_GObj* arg0)
     it_8026B3A8(arg0);
 }
 
-int it_8029AF70(Item_GObj* arg0)
+bool it_8029AF70(Item_GObj* gobj)
 {
     HSD_JObj* jobj;
-    Item* item = GET_ITEM((HSD_GObj*) arg0);
-    it_80272F7C(it_80272CC0(arg0, 1), item->xDD4_itemVar.fflowerflame.unk);
-    jobj = it_80272CC0(arg0, 2);
+    Item* item = GET_ITEM((HSD_GObj*) gobj);
+    it_80272F7C(it_80272CC0(gobj, 1), item->xDD4_itemVar.fflowerflame.unk);
+    jobj = it_80272CC0(gobj, 2);
     HSD_JObjSetTranslate(jobj, &item->xDD4_itemVar.fflowerflame.pos);
-    return it_80273130(arg0);
+    return it_80273130(gobj);
 }
 
-void it_8029B070(HSD_GObj* arg0)
-{
-    return;
-}
+void it_8029B070(HSD_GObj* arg0) {}
 
-int it_8029B074(Item_GObj* arg0)
+bool it_8029B074(Item_GObj* arg0)
 {
     it_8026E8C4(arg0, it_8029AA1C, it_8029AB90);
-    return 0;
+    return false;
 }
 
 void it_8029B0A8(Item_GObj* arg0, Item_GObj* arg1)
