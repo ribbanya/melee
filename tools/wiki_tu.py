@@ -6,7 +6,10 @@ import sys
 from pathlib import Path
 
 import humanfriendly
+import mistletoe
 
+with open('foo.md', 'r') as fin:
+    rendered = mistletoe.markdown(fin)
 
 def write(args):
     if args.report_path == "-":
