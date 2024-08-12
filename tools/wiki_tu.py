@@ -5,7 +5,7 @@ from io import TextIOWrapper
 import json
 import sys
 from pathlib import Path
-from typing import Dict, cast
+from typing import Dict, Optional, cast
 
 import humanfriendly
 import mistletoe
@@ -25,7 +25,6 @@ def read_wiki(lines) -> Dict[str, Dict[str, str]]:
     def read_text(token: Token) -> str:
         if isinstance(token, RawText):
             return re.sub(r"<!--.*?-->", "", cast(str, token.content)).strip()
-            # return str(token.content).replace("<!--.*?-->", "").strip()
 
         assert token.children is not None
         return read_text(next(c for c in token.children))
@@ -52,12 +51,6 @@ def read_wiki(lines) -> Dict[str, Dict[str, str]]:
 
     read_block(mistletoe.Document(lines))
     return assignees
-    # if args.wiki_path == "-":
-    #     data = json.load(sys.stdin)
-    # else:
-    #     path = Path(args.wiki_path)
-    #     read_block(data)
-    #     __import__("pprint").pprint(assignees)
 
 
 def read(args):
@@ -77,14 +70,17 @@ def write(args):
         path = Path(args.report_path)
         data = json.load(path.open("r"))
 
-    assignees = read_wiki(args.wiki_path.open("r")) if args.wiki_path else {}
-
-    __import__("pprint").pprint(assignees)
+    assignees = {}
+    if cast(Optional[Path], args.wiki_path):
+        md = args.wiki_path.read_text()
+        assignees = read_wiki(md)
 
     print(
         """# Translation Units
 
 Edit this page and fill in your own username to assign yourself to a file.
+
+Just write your username as plaintext and it will be formatted automatically later.
 
 File|Matched|Total|%|:grey_question:|Assignee<br>Discord|Assignee<br>GitHub
 -|-|-|-|-|-|-"""
@@ -105,8 +101,13 @@ File|Matched|Total|%|:grey_question:|Assignee<br>Discord|Assignee<br>GitHub
         total = f"{friendly_size('total_code')}"
         percent = f"`{humanfriendly.round_number(unit['fuzzy_match_percent'] or 0)}%`"
         linked = ":heavy_check_mark:" if unit["complete"] else ":x:"
-        discord = assignees.get(file, {}).get("discord", "<!-- Discord -->")
-        github = assignees.get(file, {}).get("github", "<!-- GitHub -->")
+
+        if assignee := assignees.get(file):
+            discord = f"`{assignee['discord']}`"
+            github = f"[{assignee['github']}](../commits?author={assignee['github']})"
+        else:
+            discord = "<!-- Discord -->"
+            github = "<!-- GitHub -->"
 
         print(f"{file_link}|{matched}|{total}|{percent}|{linked}|{discord}|{github}")
 
