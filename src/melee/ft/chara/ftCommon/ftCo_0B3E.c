@@ -125,6 +125,19 @@ void ftCo_800B463C(ftCo_Fighter* fp, int arg1)
 
 /// #ftCo_800B49F4
 
+void ftCo_800B49F4(Fighter* fp)
+{
+    struct Fighter_x1A88_t* data = &fp->x1A88;
+    if (fp->x1A88.x554.x0_u32 >= data->x554.x0_u32) {
+        OSReport("command script buffer over flow!\n");
+        __assert("ftcmdscript.c", 501, "0");
+    }
+    data->x554.x0_u32 = 0x7F;
+    data->x554.x0_u32 += 1;
+    data->x450 = &data->x454;
+    data->x44C = 1;
+}
+
 void ftCo_800B4A78(Fighter* fp)
 {
     struct Fighter_x1A88_t* data = &fp->x1A88;

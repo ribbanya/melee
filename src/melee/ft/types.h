@@ -1029,13 +1029,14 @@ struct Fighter_x1A88_t {
     /*  +FC */ struct Fighter_x1A88_xFC_t xFC;
     /* +444 */ struct Fighter_x1A88_xFC_t* x444;
     /* +448 */ struct Fighter_x1A88_xFC_t* x448;
-    /* +44C */ UNK_T x44C;
+    /* +44C */ int x44C;
     /* +450 */ UNK_T x450;
     /* +454 */ uint x454;
     /* +458 */ u8 x458[0x554 - 0x458];
     /* +554 */ union Fighter_x1A88_x544_t {
         struct {
             u8 x0_u8;
+            u32 x4_b8_b32 : 24;
         };
         uint x0_u32;
         void* x0_p;
