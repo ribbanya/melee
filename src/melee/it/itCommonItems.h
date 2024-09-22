@@ -144,7 +144,7 @@ typedef struct ItLGunBeamVars {
     /* +24 ip+DF8 */ f32 angle0;
     /* +28 ip+DFC */ f32 angle1;
     /* +2C ip+E00 */ f32 lifetime;
-    /* +30 ip+E04 */ f32 xE04;
+    /* +30 ip+E04 */ int xE04;
 } ItLGunBeamVars;
 
 typedef struct ItLGunRayAttr {

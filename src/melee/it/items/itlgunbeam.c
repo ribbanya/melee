@@ -1,8 +1,11 @@
+#include "it/forward.h"
+
 #include "itlgunbeam.h"
 
 #include "db/db_2253.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
+#include "it/inlines.h"
 #include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
@@ -50,15 +53,15 @@ void it_802993E0(Item_GObj* item_gobj, s32 arg1)
     // sp18 = 0.0f;
     // sp1C = 0.0f;
 loop_2:
-    if (item->xDD4_itemVar.lgunbeam.angle0 < -3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 < -M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 + 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 + 2 * M_PI;
         goto loop_2;
     }
 loop_5:
-    if (item->xDD4_itemVar.lgunbeam.angle0 > 3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 > M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 - 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 - 2 * M_PI;
         goto loop_5;
     }
 #if 0
@@ -133,168 +136,113 @@ loop_5:
 #endif
 }
 
-void it_80299528(Item_GObj* item_gobj, s32 arg1)
+void it_80299528(Item_GObj* gobj, s32 arg1)
 {
-    Item* item;
-    f32 temp_f1;
-    f32 temp_f31;
-    f32 var_f0;
-    f32 var_f1;
-    f32 var_f2;
-    f32 var_f2_2;
-    f32 var_f31;
-    f32 var_f3;
-    f32 var_f3_2;
+    Item* ip = GET_ITEM(gobj);
 
-    item = item_gobj->user_data;
     if (arg1 != 0) {
-        temp_f31 = atan2f(item->xDD4_itemVar.lgunbeam.position1.x,
-                          item->xDD4_itemVar.lgunbeam.position1.y);
-        var_f31 = atan2f(item->xDD4_itemVar.lgunbeam.position2.x,
-                         item->xDD4_itemVar.lgunbeam.position2.y) -
-                  temp_f31;
-    loop_3:
-        if (var_f31 > 3.141592653589793) {
-            var_f31 = var_f31 - 6.283185307179586;
-            goto loop_3;
+        float angle1 = atan2f(ip->xDD4_itemVar.lgunbeam.position1.x,
+                              ip->xDD4_itemVar.lgunbeam.position1.y);
+        float angle2 = atan2f(ip->xDD4_itemVar.lgunbeam.position2.x,
+                              ip->xDD4_itemVar.lgunbeam.position2.y) -
+                       angle1;
+        while (angle2 > M_PI) {
+            angle2 -= 2 * M_PI;
         }
-    loop_6:
-        if (var_f31 < -3.141592653589793) {
-            var_f31 = var_f31 + 6.283185307179586;
-            goto loop_6;
+        while (angle2 < -M_PI) {
+            angle2 += 2 * M_PI;
         }
-        if (var_f31 == 0.0f) {
-            var_f1 = 0.0f;
-        } else {
-            temp_f1 = lbVector_Angle(&item->xDD4_itemVar.lgunbeam.position1,
-                                     &item->xDD4_itemVar.lgunbeam.position2);
-            if (var_f31 < 0.0f) {
-                var_f2 = -var_f31;
+        {
+            float var_f1;
+            if (angle2 == 0.0f) {
+                var_f1 = 0.0f;
             } else {
-                var_f2 = var_f31;
-            }
-            if (var_f2 < 1.5707963267948966) {
-                if (var_f31 < 0.0f) {
-                    var_f3 = -var_f31;
-                } else {
-                    var_f3 = var_f31;
+                float temp_f1 =
+                    lbVector_Angle(&ip->xDD4_itemVar.lgunbeam.position1,
+                                   &ip->xDD4_itemVar.lgunbeam.position2);
+                {
+                    float var_f2_2;
+                    if (ABS(angle2) < M_PI_2) {
+                        var_f2_2 = 0.02f * (ABS(angle2) / M_PI);
+                    } else {
+                        var_f2_2 = 0.5 * (ABS(angle2) / M_PI);
+                    }
+                    {
+                        float var_f0;
+                        if (angle2 < 0.0f) {
+                            var_f0 = -var_f2_2;
+                        } else {
+                            var_f0 = var_f2_2;
+                        }
+                        var_f1 = temp_f1 * var_f0;
+                    }
                 }
-                var_f2_2 =
-                    (0.019999999552965164 * (var_f3 / 3.141592653589793));
-            } else {
-                if (var_f31 < 0.0f) {
-                    var_f3_2 = -var_f31;
-                } else {
-                    var_f3_2 = var_f31;
-                }
-                var_f2_2 = (0.5 * (var_f3_2 / 3.141592653589793));
             }
-            if (var_f31 < 0.0f) {
-                var_f0 = -var_f2_2;
-            } else {
-                var_f0 = var_f2_2;
-            }
-            var_f1 = temp_f1 * var_f0;
+            ip->xDD4_itemVar.lgunbeam.angle0 -= var_f1;
         }
-        item->xDD4_itemVar.lgunbeam.angle0 -= var_f1;
-    loop_27:
-        if (item->xDD4_itemVar.lgunbeam.angle0 < -3.141592653589793) {
-            item->xDD4_itemVar.lgunbeam.angle0 =
-                item->xDD4_itemVar.lgunbeam.angle0 + 6.283185307179586;
-            goto loop_27;
+        while (ip->xDD4_itemVar.lgunbeam.angle0 < -M_PI) {
+            ip->xDD4_itemVar.lgunbeam.angle0 += 2 * M_PI;
         }
-    loop_30:
-        if (item->xDD4_itemVar.lgunbeam.angle0 > 3.141592653589793) {
-            item->xDD4_itemVar.lgunbeam.angle0 =
-                item->xDD4_itemVar.lgunbeam.angle0 - 6.283185307179586;
-            goto loop_30;
+        while (ip->xDD4_itemVar.lgunbeam.angle0 > +M_PI) {
+            ip->xDD4_itemVar.lgunbeam.angle0 -= 2 * M_PI;
         }
     }
 }
 
-void it_802996D0(HSD_GObj* owner_gobj, Vec3* pos, u32 arg2, f32 dir)
+void it_802996D0(HSD_GObj* owner_gobj, Vec3* pos, u32 arg2, f32 facing_dir)
 {
-    // u8 sp64;
-    // u32 sp60;
-    // s16 sp5C;
-    // f32 sp58;
-    // f32 sp54;
-    // f32 sp50;
-    // f32 sp4C;
-    // f32 sp48;
-    // s32 sp44;
-    // s32 sp40;
-    // Vec3 sp34;
-    // s32 sp28;
-    // HSD_GObj* sp24;
-    // HSD_GObj* sp20;
-    Item* item;
-    Item_GObj* item_gobj;
     SpawnItem spawn;
-    f32 unused1;
-    f32 unused2;
-    // f32 temp_f2_2;
-    f32 var_f0;
-    ItLGunBeamAttr* item_spec_attr;
+    PAD_STACK(4);
 
-    spawn.kind = 0x27;
+    spawn.kind = It_Kind_L_Gun_Beam;
     spawn.prev_pos = *pos;
-    // spawn.prev_pos.x = pos->x;
-    // spawn.prev_pos.y = pos->y;
-    // spawn.prev_pos.z = pos->z;
     spawn.prev_pos.z = 0.0f;
-    it_8026BB68((Item_GObj*) owner_gobj, &spawn.pos);
-    spawn.facing_dir = dir;
+    it_8026BB68(owner_gobj, &spawn.pos);
+    spawn.facing_dir = facing_dir;
     spawn.x3C_damage = 0;
-    spawn.vel.z = 0.0f;
-    spawn.vel.y = 0.0f;
-    spawn.vel.x = 0.0f;
+    spawn.vel.x = spawn.vel.y = spawn.vel.z = 0.0f;
     spawn.x0_parent_gobj = owner_gobj;
     spawn.x4_parent_gobj2 = spawn.x0_parent_gobj;
     spawn.x44_flag.bits.b0 = true;
-    // sp64 |= 0x80;
     spawn.x40 = arg2;
-    item_gobj = Item_80268B18(&spawn);
-    if (item_gobj != NULL) {
-        item = item_gobj->user_data;
-        item_spec_attr = item->xC4_article_data->x4_specialAttributes;
-        item->xDB8_itcmd_var3 = 0;
-        item->xDB4_itcmd_var2 = 0;
-        item->xDB0_itcmd_var1 = 0;
-        item->xDAC_itcmd_var0 = 0;
-        item->xDD4_itemVar.lgunbeam.lifetime = item_spec_attr->x0;
-        it_80275158((HSD_GObj*) item_gobj, item_spec_attr->x0);
-        item->xDD4_itemVar.lgunbeam.position0 = *pos;
-        item->xDD4_itemVar.lgunbeam.angle1 =
-            ((item_spec_attr->x8 - item_spec_attr->x4) * HSD_Randf()) +
-            item_spec_attr->x4;
-        item->xDD4_itemVar.lgunbeam.angle0 =
-            ((item_spec_attr->x10 - item_spec_attr->xC) * HSD_Randf()) +
-            item_spec_attr->xC;
-        // var_f0 = item->xDD4_itemVar.lgunbeam.xDF8;
-        if (item->facing_dir == 1.0f) {
-            var_f0 = item->xDD4_itemVar.lgunbeam.angle0;
-        } else {
-            var_f0 = -item->xDD4_itemVar.lgunbeam.angle0;
-        }
-        item->xDD4_itemVar.lgunbeam.angle0 = var_f0;
-    loop_6:
-        if (item->xDD4_itemVar.lgunbeam.angle0 < -3.141592653589793) {
-            item->xDD4_itemVar.lgunbeam.angle0 =
-                item->xDD4_itemVar.lgunbeam.angle0 + 6.283185307179586;
-            goto loop_6;
-        }
-    loop_9:
-        if (item->xDD4_itemVar.lgunbeam.angle0 > 3.141592653589793) {
-            item->xDD4_itemVar.lgunbeam.angle0 =
-                item->xDD4_itemVar.lgunbeam.angle0 - 6.283185307179586;
-            goto loop_9;
-        }
-        item->xDD4_itemVar.lgunbeam.xE04 = 0.0f;
-        // item->xDCC_flag = (u8) (item->xDCC_flag & ~0x10);
-        item->xDCC_flag.b1 = 1;
 
-        it_802998A0(item_gobj, owner_gobj, HSD_Randi(4));
+    {
+        Item_GObj* gobj = Item_80268B18(&spawn);
+        if (gobj != NULL) {
+            Item* item = GET_ITEM(gobj);
+            ItLGunBeamAttr* item_spec_attr =
+                item->xC4_article_data->x4_specialAttributes;
+            item->xDAC_itcmd_var0 = item->xDB0_itcmd_var1 =
+                item->xDB4_itcmd_var2 = item->xDB8_itcmd_var3 = 0;
+            item->xDD4_itemVar.lgunbeam.lifetime = item_spec_attr->x0;
+            it_80275158(gobj, item_spec_attr->x0);
+            item->xDD4_itemVar.lgunbeam.position0 = *pos;
+            item->xDD4_itemVar.lgunbeam.angle1 =
+                ((item_spec_attr->x8 - item_spec_attr->x4) * HSD_Randf()) +
+                item_spec_attr->x4;
+            item->xDD4_itemVar.lgunbeam.angle0 =
+                (item_spec_attr->x10 - item_spec_attr->xC) * HSD_Randf() +
+                item_spec_attr->xC;
+            {
+                f32 angle;
+                if (item->facing_dir == +1) {
+                    angle = +item->xDD4_itemVar.lgunbeam.angle0;
+                } else {
+                    angle = -item->xDD4_itemVar.lgunbeam.angle0;
+                }
+                item->xDD4_itemVar.lgunbeam.angle0 = angle;
+            }
+            while (item->xDD4_itemVar.lgunbeam.angle0 < -M_PI) {
+                item->xDD4_itemVar.lgunbeam.angle0 += 2 * M_PI;
+            }
+            while (item->xDD4_itemVar.lgunbeam.angle0 > M_PI) {
+                item->xDD4_itemVar.lgunbeam.angle0 -= 2 * M_PI;
+            }
+            item->xDD4_itemVar.lgunbeam.xE04 = 0.0f;
+            item->xDCC_flag.b3 = false;
+
+            it_802998A0(gobj, owner_gobj, HSD_Randi(4));
+        }
     }
 }
 
@@ -381,15 +329,15 @@ int it_80299A68(HSD_GObj* item_gobj)
 
     item = item_gobj->user_data;
 loop_2:
-    if (item->xDD4_itemVar.lgunbeam.angle0 < -3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 < -M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 + 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 + 2 * M_PI;
         goto loop_2;
     }
 loop_5:
-    if (item->xDD4_itemVar.lgunbeam.angle0 > 3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 > M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 - 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 - 2 * M_PI;
         goto loop_5;
     }
     var_r31 = 0;
@@ -433,17 +381,17 @@ int it_80299B74(Item_GObj* item_gobj)
 
     item = item_gobj->user_data;
     item->xDD4_itemVar.lgunbeam.angle0 =
-        item->xDD4_itemVar.lgunbeam.angle0 + 3.141592653589793;
+        item->xDD4_itemVar.lgunbeam.angle0 + M_PI;
 loop_2:
-    if (item->xDD4_itemVar.lgunbeam.angle0 < -3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 < -M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 + 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 + 2 * M_PI;
         goto loop_2;
     }
 loop_5:
-    if (item->xDD4_itemVar.lgunbeam.angle0 > 3.141592653589793) {
+    if (item->xDD4_itemVar.lgunbeam.angle0 > M_PI) {
         item->xDD4_itemVar.lgunbeam.angle0 =
-            item->xDD4_itemVar.lgunbeam.angle0 - 6.283185307179586;
+            item->xDD4_itemVar.lgunbeam.angle0 - 2 * M_PI;
         goto loop_5;
     }
     item->facing_dir = -item->facing_dir;
