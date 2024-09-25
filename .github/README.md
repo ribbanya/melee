@@ -1,11 +1,11 @@
 Super Smash Bros Melee
+=============
 
 [![Build Status]][actions]
 [![Code Progress]][progress]
 [![Data Progress]][progress]
 [![Linked Progress]][progress]
 [![Discord Badge]][discord]
-=============
 
 [Build Status]: https://github.com/doldecomp/melee/actions/workflows/build.yml/badge.svg
 [Packages Status]: https://github.com/doldecomp/melee/actions/workflows/build.yml/badge.svg
