@@ -2387,8 +2387,8 @@ melee/it/items/itbat.c:
 melee/it/items/itsword.c:
 	.text       start:0x80284D54 end:0x80286088
 	.data       start:0x803F5800 end:0x803F5850
-	.sdata      start:0x804D5220 end:0x804D5230
-	.sdata2     start:0x804DC8D0 end:0x804DC900
+	.sdata      start:0x804D5220 end:0x804D522D
+	.sdata2     start:0x804DC8D0 end:0x804DC8FC
 
 melee/it/items/itbox.c:
 	.text       start:0x80286088 end:0x80287458
