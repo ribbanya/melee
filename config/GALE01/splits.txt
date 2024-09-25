@@ -3255,9 +3255,9 @@ melee/it/items/itcrazyhandbomb.c:
 
 melee/it/items/itcoin.c:
 	.text       start:0x802F13B4 end:0x802F23AC
-	.data       start:0x803F93C8 end:0x803F9450
-	.sdata      start:0x804D5758 end:0x804D5768
-	.sdata2     start:0x804DD9B8 end:0x804DD9D8
+	.data       start:0x803F93C8 end:0x803F944D
+	.sdata      start:0x804D5758 end:0x804D5765
+	.sdata2     start:0x804DD9B8 end:0x804DD9D4
 
 melee/it/items/itkirby_2F23.c:
 	.text       start:0x802F23AC end:0x802F28C8
