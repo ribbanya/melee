@@ -2694,7 +2694,7 @@ melee/it/items/itfoxblaster.c:
 melee/it/items/itlinkbow.c:
 	.text       start:0x802AF1A4 end:0x802AF940
 	.data       start:0x803F6E98 end:0x803F6F40
-	.sdata      start:0x804D5438 end:0x804D5448
+	.sdata      start:0x804D5438 end:0x804D5445
 	.sdata2     start:0x804DCF40 end:0x804DCF48
 
 melee/it/items/itnesspkflushexplode.c:
