@@ -3111,7 +3111,7 @@ melee/it/items/itheiho.c:
 	.text       start:0x802D8618 end:0x802D9A2C
 	.data       start:0x803F83F0 end:0x803F8465
 	.sdata      start:0x804D5640 end:0x804D564D
-	.sdata2     start:0x804DD5B8 end:0x804DD600
+	.sdata2     start:0x804DD5B8 end:0x804DD5FC
 
 melee/it/items/itlikelike.c:
 	.text       start:0x802D9A2C end:0x802DC69C
