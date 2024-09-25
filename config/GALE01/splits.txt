@@ -177,7 +177,7 @@ melee/pl/player.c:
 
 melee/pl/plstale.c:
 	.text       start:0x8003715C end:0x80037590
-	.sbss       start:0x804D6478 end:0x804D6480
+	.sbss       start:0x804D6478 end:0x804D647A
 
 melee/pl/plattack.c:
 	.text       start:0x80037590 end:0x80037B2C
