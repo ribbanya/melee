@@ -2575,9 +2575,9 @@ melee/it/items/itlipstickspore.c:
 
 melee/it/items/itfflowerflame.c:
 	.text       start:0x8029A748 end:0x8029B0C8
-	.data       start:0x803F66C8 end:0x803F6728
-	.sdata      start:0x804D5340 end:0x804D5350
-	.sdata2     start:0x804DCC80 end:0x804DCC88
+	.data       start:0x803F66C8 end:0x803F6722
+	.sdata      start:0x804D5340 end:0x804D534D
+	.sdata2     start:0x804DCC80 end:0x804DCC84
 
 melee/it/items/itevyoshiegg.c:
 	.text       start:0x8029B0C8 end:0x8029B6F8
@@ -3109,8 +3109,8 @@ melee/it/items/itmato.c:
 
 melee/it/items/itheiho.c:
 	.text       start:0x802D8618 end:0x802D9A2C
-	.data       start:0x803F83F0 end:0x803F8468
-	.sdata      start:0x804D5640 end:0x804D5650
+	.data       start:0x803F83F0 end:0x803F8465
+	.sdata      start:0x804D5640 end:0x804D564D
 	.sdata2     start:0x804DD5B8 end:0x804DD600
 
 melee/it/items/itlikelike.c:
