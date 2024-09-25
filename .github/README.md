@@ -7,7 +7,6 @@ Super Smash Bros Melee \
 =============
 
 [Build Status]: https://github.com/doldecomp/melee/actions/workflows/build.yml/badge.svg
-[Packages Status]: https://github.com/doldecomp/melee/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/doldecomp/melee/actions/workflows/build.yml
 [Code Progress]: https://decomp.dev/doldecomp/melee.svg?mode=shield&measure=code&label=Code&category=all
 [Data Progress]: https://decomp.dev/doldecomp/melee.svg?mode=shield&measure=data&label=Data&category=all
