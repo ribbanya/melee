@@ -1,4 +1,4 @@
-Super Smash Bros Melee
+Super Smash Bros Melee \
 [![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![Linked Progress]][progress] [![Discord Badge]][discord]
 =============
 
