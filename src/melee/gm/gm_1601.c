@@ -226,9 +226,15 @@ float fn_8016419C(u8 arg0)
     return lbl_803B7930[arg0 - 1].x;
 }
 
-/// #fn_801641B4
+float fn_801641B4(u8 arg0)
+{
+    return lbl_803B7930[arg0 - 1].y;
+}
 
-/// #gm_801641CC
+u16 gm_801641CC(u8 arg0)
+{
+    return lbl_803B7808[arg0];
+}
 
 /// #gm_801641E4
 
