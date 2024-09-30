@@ -5177,15 +5177,30 @@ f32 ftKb_SpecialNYs_801092CC(ftKb_GObj* gobj)
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x3C0);
 }
 
-/// #ftKb_SpecialNYs_801092DC
+f32 ftKb_SpecialNYs_801092DC(ftKb_GObj* gobj)
+{
+    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3C4);
+}
 
-/// #ftKb_SpecialNYs_801092F4
+f32 ftKb_SpecialNYs_801092F4(ftKb_GObj* gobj)
+{
+    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3C8);
+}
 
-/// #ftKb_SpecialNYs_8010930C
+f32 ftKb_SpecialNYs_8010930C(ftKb_GObj* gobj)
+{
+    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3CC);
+}
 
-/// #ftKb_SpecialNYs_80109324
+f32 ftKb_SpecialNYs_80109324(ftKb_GObj* gobj)
+{
+    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3D0);
+}
 
-/// #ftKb_SpecialNYs_8010933C
+f32 ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj)
+{
+    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3D4);
+}
 
 /// #ftKb_SpecialNYs_80109354
 

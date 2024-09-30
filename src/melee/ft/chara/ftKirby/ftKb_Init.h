@@ -750,11 +750,11 @@
 /* 1092AC */ float ftKb_SpecialNYs_801092AC(ftKb_GObj* gobj);
 /* 1092BC */ float ftKb_SpecialNYs_801092BC(ftKb_GObj* gobj);
 /* 1092CC */ float ftKb_SpecialNYs_801092CC(ftKb_GObj* gobj);
-/* 1092DC */ UNK_RET ftKb_SpecialNYs_801092DC(ftKb_GObj* gobj);
-/* 1092F4 */ void ftKb_SpecialNYs_801092F4(ftKb_GObj* gobj);
-/* 10930C */ void ftKb_SpecialNYs_8010930C(ftKb_GObj* gobj);
-/* 109324 */ void ftKb_SpecialNYs_80109324(ftKb_GObj* gobj);
-/* 10933C */ void ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj);
+/* 1092DC */ f32 ftKb_SpecialNYs_801092DC(ftKb_GObj* gobj);
+/* 1092F4 */ float ftKb_SpecialNYs_801092F4(ftKb_GObj* gobj);
+/* 10930C */ float ftKb_SpecialNYs_8010930C(ftKb_GObj* gobj);
+/* 109324 */ float ftKb_SpecialNYs_80109324(ftKb_GObj* gobj);
+/* 10933C */ float ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj);
 /* 109354 */ void ftKb_SpecialNYs_80109354(ftKb_GObj* gobj);
 /* 109380 */ void ftKb_SpecialNYs_80109380(ftKb_GObj* gobj);
 /* 1093A0 */ ftDynamics* ftKb_SpecialNYs_801093A0(ftKb_GObj* gobj);
