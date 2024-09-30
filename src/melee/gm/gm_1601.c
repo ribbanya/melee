@@ -207,15 +207,24 @@ int gm_80160968(u8 arg0)
 
 /// #fn_80163FA4
 
-/// #gm_8016400C
+u8 gm_8016400C(u8 arg0)
+{
+    return lbl_803B7888[arg0];
+}
 
-/// #gm_80164024
+u8 gm_80164024(u8 arg0)
+{
+    return lbl_803B78A4[arg0];
+}
 
 /// #gm_8016403C
 
 /// #fn_801640B0
 
-/// #fn_8016419C
+float fn_8016419C(u8 arg0)
+{
+    return lbl_803B7930[arg0 - 1].x;
+}
 
 /// #fn_801641B4
 

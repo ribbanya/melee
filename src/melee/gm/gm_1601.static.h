@@ -74,6 +74,9 @@ struct lbl_803D9D20_t {
     0x991A1AFF, 0x333380FF, 0x806600FF, 0x1A661AFF, 0x666666FF,
     0x664D4DFF, 0x4D4D66FF, 0x665933FF, 0x4D664DFF,
 };
+/* 3B7888 */ static u8 lbl_803B7888[0x1C];
+/* 3B78A4 */ static u8 lbl_803B78A4[0x24];
+/* 3B7930 */ static Vec2 const lbl_803B7930[0x114 / sizeof(Vec2)];
 /* 3D9D20 */ static struct lbl_803D9D20_t lbl_803D9D20;
 /* 46B488 */ static struct lbl_8046B488_t lbl_8046B488;
 /* 46B668 */ static UNK_T lbl_8046B668[14];
