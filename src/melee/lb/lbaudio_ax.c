@@ -110,9 +110,17 @@ int lbAudioAx_80024B94(int arg0, int arg1)
 
 /// #lbAudioAx_80024F6C
 
-/// #lbAudioAx_80024FDC
+void lbAudioAx_80024FDC(void)
+{
+    lbl_804D6430 = 0x1FE;
+    lbl_804D6420 += 1;
+}
 
-/// #lbAudioAx_80024FF4
+void lbAudioAx_80024FF4(void)
+{
+    lbl_804D6434 = 0x1E0;
+    lbl_804D6424 += 1;
+}
 
 /// #lbAudioAx_8002500C
 
