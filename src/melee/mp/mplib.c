@@ -335,7 +335,12 @@ void mpLib_800580C8(int arg0, Ground* arg1, void (*arg2)(void*, int))
 
 /// #mpLib_8005811C
 
-/// #mpLib_800581A4
+void mpLib_800581A4(int arg0, int arg1, int arg2)
+{
+    mpLib_804D64C0_t* temp_r3 = &mpLib_804D64C0[arg0];
+    temp_r3->unk_2C = arg2;
+    temp_r3->unk_30 = arg1;
+}
 
 /// #mpLib_800581BC
 
