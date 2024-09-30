@@ -1146,10 +1146,19 @@ struct Fighter {
     /*  fp+5CC */ u8 filler_x5CC[0x5E8 - 0x5CC];
     /*  fp+5E8 */ FighterBone* parts;
     /*  fp+5EC */ DObjList dobj_list;
-    /*  fp+5F4 */ s8 x5F4;
-    /*  fp+5F5 */ s8 x5F5;
-    /*  fp+5F6 */ s8 x5F6;
-    /*  fp+5F7 */ s8 x5F7;
+    union {
+        struct {
+            s8 x0, x1;
+        }
+        /// @todo This is nonsense. Used by #ftParts_80074A74.
+        x5F4_arr[2];
+        struct {
+            /*  fp+5F4 */ s8 x5F4;
+            /*  fp+5F5 */ s8 x5F5;
+            /*  fp+5F6 */ s8 x5F6;
+            /*  fp+5F7 */ s8 x5F7;
+        };
+    };
     /*  fp+5F8 */ s8 x5F8;
     /*  fp+5FC */ u8 filler_x5FC[0x60C - 0x5F9];
     /*  fp+60C */ void* x60C;
