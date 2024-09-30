@@ -594,7 +594,11 @@ void gm_8016A424(s8 arg0)
 
 /// #fn_8016A4C8
 
-/// #gm_8016A92C
+void gm_8016A92C(void* arg0)
+{
+    M2C_FIELD(&lbl_8046B668, s8*, 0x1C) = -2;
+    M2C_FIELD(arg0, M2C_UNK**, 0x58) = &lbl_8046B668;
+}
 
 /// #gm_8016A944
 

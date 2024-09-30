@@ -80,8 +80,7 @@ struct lbl_803D9D20_t {
 /* 3B78A4 */ static u8 lbl_803B78A4[0x24];
 /* 3B7930 */ static Vec2 const lbl_803B7930[0x114 / sizeof(Vec2)];
 /* 3D9D20 */ static struct lbl_803D9D20_t lbl_803D9D20;
-/* 46B488 */ static struct lbl_8046B488_t lbl_8046B488;
-/* 46B668 */ static UNK_T lbl_8046B668[14];
+/* 46B668 */ static struct lbl_8046B668_t lbl_8046B668[14];
 /* 46B6A0 */ static lbl_8046B6A0_t lbl_8046B6A0;
 /* 46DBD8 */ static UNK_T lbl_8046DBD8[4];
 /* 46DBE8 */ static struct lbl_8046DBE8_t lbl_8046DBE8;
