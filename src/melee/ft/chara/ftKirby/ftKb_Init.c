@@ -1,5 +1,7 @@
 #include <placeholder.h>
 
+#include "ft/forward.h"
+
 #include "ftKb_Init.static.h"
 
 #include "types.h"
@@ -3187,17 +3189,7 @@ void ftKb_Init_UnkDemoCallbacks0(int arg0, int* arg1, int* arg2)
 
 /// #ftKb_UnkMtxFunc0
 
-HSD_JObj* ftKb_Init_UnkMotionStates6(HSD_GObj* gobj)
-{
-    Fighter* fp = GET_FIGHTER(gobj);
-
-    if (fp->fv.pr.x223C) {
-        return fp->fv.pr.x223C;
-    }
-
-    /// @todo What???
-    return (HSD_JObj*) gobj;
-}
+/// #ftKb_Init_UnkMotionStates6
 
 /// #ftKb_SpecialN_800EF040
 
@@ -3738,27 +3730,17 @@ f32 ftKb_SpecialN_800F5A60(ftKb_GObj* gobj)
     return -M2C_FIELD(gobj->user_data, f32*, 0x2C);
 }
 
-extern M2C_UNK gFtDataList;
-
-f32 ftKb_SpecialN_800F5A70(void)
-{
-    return M2C_FIELD(
-        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
-        0x44);
-}
+/// #ftKb_SpecialN_800F5A70
 
 f32 ftKb_SpecialN_800F5A88(ftKb_GObj* gobj)
 {
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x68);
 }
 
-extern M2C_UNK gFtDataList;
-
 f32 ftKb_SpecialN_800F5A98(void)
 {
-    return M2C_FIELD(
-        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
-        0x70);
+    ftKb_DatAttrs* ea = gFtDataList[FTKIND_KIRBY]->ext_attr;
+    return ea->specialn_spit_spin;
 }
 
 f32 ftKb_SpecialN_800F5AB0(ftKb_GObj* gobj)
@@ -3766,23 +3748,9 @@ f32 ftKb_SpecialN_800F5AB0(ftKb_GObj* gobj)
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x6C);
 }
 
-extern M2C_UNK gFtDataList;
+/// #ftKb_SpecialN_800F5AC0
 
-f32 ftKb_SpecialN_800F5AC0(void)
-{
-    return M2C_FIELD(
-        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
-        0x64);
-}
-
-extern M2C_UNK gFtDataList;
-
-f32 ftKb_SpecialN_800F5AD8(void)
-{
-    return M2C_FIELD(
-        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
-        0x60);
-}
+/// #ftKb_SpecialN_800F5AD8
 
 f32 ftKb_SpecialN_800F5AF0(ftKb_GObj* gobj)
 {
@@ -5184,25 +5152,15 @@ f32 ftKb_SpecialNYs_801092CC(ftKb_GObj* gobj)
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x3C0);
 }
 
-extern M2C_UNK gFtDataList;
+/// #ftKb_SpecialNYs_801092DC
 
-void ftKb_SpecialNYs_801092DC(ftKb_GObj* gobj) {}
+/// #ftKb_SpecialNYs_801092F4
 
-extern M2C_UNK gFtDataList;
+/// #ftKb_SpecialNYs_8010930C
 
-void ftKb_SpecialNYs_801092F4(ftKb_GObj* gobj) {}
+/// #ftKb_SpecialNYs_80109324
 
-extern M2C_UNK gFtDataList;
-
-void ftKb_SpecialNYs_8010930C(ftKb_GObj* gobj) {}
-
-extern M2C_UNK gFtDataList;
-
-void ftKb_SpecialNYs_80109324(ftKb_GObj* gobj) {}
-
-extern M2C_UNK gFtDataList;
-
-void ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj) {}
+/// #ftKb_SpecialNYs_8010933C
 
 /// #ftKb_SpecialNYs_80109354
 
