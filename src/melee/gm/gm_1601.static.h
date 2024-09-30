@@ -70,7 +70,11 @@ struct lbl_803D9D20_t {
 /* 174274 */ static int fn_80174274(void);
 /* 17F294 */ static int fn_8017F294(void);
 /* 3B75F8 */ static struct gmMainLib_8015ED8C_arg0_t lbl_803B75F8 = { 0 };
-/* 3B7864 */ static s32 lbl_803B7864[9];
+/* 3B7864 */ static s32 lbl_803B7864[9] = {
+    0x991A1AFF, 0x333380FF, 0x806600FF, 0x1A661AFF, 0x666666FF,
+    0x664D4DFF, 0x4D4D66FF, 0x665933FF, 0x4D664DFF,
+}; /* const */
+;
 /* 3D9D20 */ static struct lbl_803D9D20_t lbl_803D9D20;
 /* 46B488 */ static struct lbl_8046B488_t lbl_8046B488;
 /* 46B668 */ static UNK_T lbl_8046B668[14];
