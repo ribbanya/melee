@@ -60,7 +60,7 @@ u8 fn_80160840(u8 arg0)
 
 int gm_80160968(int arg0)
 {
-    return *(&lbl_803B7864 + ((arg0 * 4) & 0x3FC));
+    return lbl_803B7864[arg0] & 0x3FC;
 }
 
 /// #gm_80160980
