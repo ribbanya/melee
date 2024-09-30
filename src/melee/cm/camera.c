@@ -685,8 +685,7 @@ HSD_GObj* Camera_80030A50(void)
 
 void Camera_80030A60(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0x10) | ((arg0 << 4) & 0x10);
+    cm_80452C68.unk_399_b3 = arg0;
 }
 
 bool Camera_80030A78(void)
@@ -696,8 +695,7 @@ bool Camera_80030A78(void)
 
 void Camera_80030A8C(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~8) | ((arg0 << 3) & 8);
+    cm_80452C68.unk_399_b4 = arg0;
 }
 
 /// #Camera_80030AA4
@@ -706,8 +704,7 @@ void Camera_80030A8C(bool arg0)
 
 void Camera_80030AE0(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0x20) | ((arg0 << 5) & 0x20);
+    cm_80452C68.unk_399_b2 = arg0;
 }
 
 bool Camera_80030AF8(void)
@@ -717,8 +714,7 @@ bool Camera_80030AF8(void)
 
 void Camera_80030B0C(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~1) | (arg0 & 1);
+    cm_80452C68.unk_399_b7 = arg0;
 }
 
 bool Camera_80030B24(void)
@@ -728,8 +724,7 @@ bool Camera_80030B24(void)
 
 void Camera_80030B38(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x80) | ((arg0 << 7) & 0x80);
+    cm_80452C68.unk_39A_b0 = arg0;
 }
 
 bool Camera_80030B50(void)
@@ -739,8 +734,7 @@ bool Camera_80030B50(void)
 
 void Camera_80030B64(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x40) | ((arg0 << 6) & 0x40);
+    cm_80452C68.unk_39A_b1 = arg0;
 }
 
 bool Camera_80030B7C(void)
@@ -750,8 +744,7 @@ bool Camera_80030B7C(void)
 
 void Camera_80030B90(bool arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x20) | ((arg0 << 5) & 0x20);
+    cm_80452C68.unk_39A_b2 = arg0;
 }
 
 bool Camera_80030BA8(void)
@@ -794,8 +787,7 @@ enum_t Camera_80031060(void)
 
 void Camera_80031074(u8 arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x398) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x398) & ~3) | (arg0 & 3);
+    cm_80452C68.unk_398_b6_b7 = arg0;
 }
 
 enum_t Camera_8003108C(void)
@@ -805,8 +797,7 @@ enum_t Camera_8003108C(void)
 
 void Camera_800310A0(u8 arg0)
 {
-    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
-        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0xC0) | ((arg0 << 6) & 0xC0);
+    cm_80452C68.unk_399_b0_b1 = arg0;
 }
 
 /// #Camera_800310B8
