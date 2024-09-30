@@ -1,21 +1,15 @@
-#include "mplib.h"
+#include "mplib.static.h"
 
 #include "mp/types.h"
 
 #include <dolphin/mtx/types.h>
-
-/* 4D64B0 */ static int mpLib_804D64B0;
-/* 4D64B4 */ static int mpLib_804D64B4;
-/* 4D64B8 */ static int mpLib_804D64B8;
-/* 4D64BC */ static mp_UnkStruct2* mpLib_804D64BC;
-/* 4D64C0 */ static int mpLib_804D64C0;
 
 int mpLib_8004D164(void)
 {
     return mpLib_804D64B4;
 }
 
-int mpLib_8004D16C(void)
+mpLib_804D64B8_t* mpLib_8004D16C(void)
 {
     return mpLib_804D64B8;
 }
@@ -277,7 +271,14 @@ bool mpLib_80054ED8(int line)
 
 /// #mpLib_800566D8
 
-/// #mpLib_800566F8
+void mpLib_800566F8(s32 arg0, f32 arg1, f32 arg2)
+{
+    mpLib_804D64B8_t* temp_r3;
+
+    temp_r3 = &mpLib_804D64B8[arg0];
+    temp_r3->unk_8 = arg1;
+    temp_r3->unk_C = arg2;
+}
 
 /// #mpLib_80056710
 

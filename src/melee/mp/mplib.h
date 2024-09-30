@@ -12,7 +12,7 @@
 #include <common_structs.h>
 
 /* 04D164 */ int mpLib_8004D164(void);
-/* 04D16C */ int mpLib_8004D16C(void);
+/* 04D16C */ mpLib_804D64B8_t* mpLib_8004D16C(void);
 /* 04D174 */ mp_UnkStruct2* mpLib_8004D174(void);
 /* 04D17C */ int mpLib_8004D17C(void);
 /* 04D184 */ UNK_RET mpLib_8004D184(UNK_PARAMS);
@@ -93,7 +93,7 @@
 /* 0565DC */ UNK_RET mpLib_800565DC(UNK_PARAMS);
 /* 05667C */ void mpLib_8005667C(s16);
 /* 0566D8 */ UNK_RET mpLib_800566D8(UNK_PARAMS);
-/* 0566F8 */ UNK_RET mpLib_800566F8(UNK_PARAMS);
+/* 0566F8 */ void mpLib_800566F8(ssize_t, f32, f32);
 /* 056710 */ UNK_RET mpLib_80056710(UNK_PARAMS);
 /* 056758 */ UNK_RET mpLib_80056758(UNK_PARAMS);
 /* 0567C0 */ bool mpLib_800567C0(s32 wall_id, Vec3* ecb_side_vtx,
