@@ -663,7 +663,12 @@ void Camera_80030730(f32 arg8)
     cm_803BCCA0.x40 = arg8;
 }
 
-/// #Camera_80030740
+void Camera_80030740(u8 r, u8 g, u8 b)
+{
+    cm_80452C68.background_r = r;
+    cm_80452C68.background_g = g;
+    cm_80452C68.background_b = b;
+}
 
 /// #Camera_80030758
 
@@ -678,48 +683,76 @@ HSD_GObj* Camera_80030A50(void)
     return cm_80452C68.gobj;
 }
 
-/// #Camera_80030A60
+void Camera_80030A60(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0x10) | ((arg0 << 4) & 0x10);
+}
 
 bool Camera_80030A78(void)
 {
     return cm_80452C68.unk_399_b3;
 }
 
-/// #Camera_80030A8C
+void Camera_80030A8C(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~8) | ((arg0 << 3) & 8);
+}
 
 /// #Camera_80030AA4
 
 /// #Camera_80030AC4
 
-/// #Camera_80030AE0
+void Camera_80030AE0(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0x20) | ((arg0 << 5) & 0x20);
+}
 
 bool Camera_80030AF8(void)
 {
     return cm_80452C68.unk_399_b2;
 }
 
-/// #Camera_80030B0C
+void Camera_80030B0C(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~1) | (arg0 & 1);
+}
 
 bool Camera_80030B24(void)
 {
     return cm_80452C68.unk_399_b7;
 }
 
-/// #Camera_80030B38
+void Camera_80030B38(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x80) | ((arg0 << 7) & 0x80);
+}
 
 bool Camera_80030B50(void)
 {
     return cm_80452C68.unk_39A_b0;
 }
 
-/// #Camera_80030B64
+void Camera_80030B64(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x40) | ((arg0 << 6) & 0x40);
+}
 
 bool Camera_80030B7C(void)
 {
     return cm_80452C68.unk_39A_b1;
 }
 
-/// #Camera_80030B90
+void Camera_80030B90(bool arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x39A) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x39A) & ~0x20) | ((arg0 << 5) & 0x20);
+}
 
 bool Camera_80030BA8(void)
 {
@@ -759,14 +792,22 @@ enum_t Camera_80031060(void)
     return cm_80452C68.unk_398_b6_b7;
 }
 
-/// #Camera_80031074
+void Camera_80031074(u8 arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x398) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x398) & ~3) | (arg0 & 3);
+}
 
 enum_t Camera_8003108C(void)
 {
     return cm_80452C68.unk_399_b0_b1;
 }
 
-/// #Camera_800310A0
+void Camera_800310A0(u8 arg0)
+{
+    M2C_FIELD(&cm_80452C68, u8*, 0x399) =
+        (M2C_FIELD(&cm_80452C68, u8*, 0x399) & ~0xC0) | ((arg0 << 6) & 0xC0);
+}
 
 /// #Camera_800310B8
 
