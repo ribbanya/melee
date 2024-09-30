@@ -5197,9 +5197,9 @@ f32 ftKb_SpecialNYs_80109324(ftKb_GObj* gobj)
     return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3D0);
 }
 
-f32 ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj)
+int ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj)
 {
-    return M2C_FIELD(gFtDataList[4]->ext_attr, f32*, 0x3D4);
+    return M2C_FIELD(gFtDataList[4]->ext_attr, int*, 0x3D4);
 }
 
 /// #ftKb_SpecialNYs_80109354
