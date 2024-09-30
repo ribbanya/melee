@@ -531,8 +531,8 @@ HSD_JObj* ftPr_Init_UnkMotionStates6(HSD_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);
 
-    if (fp->fv.kb.hat.jobj) {
-        return fp->fv.kb.hat.jobj;
+    if (fp->fv.pr.x223C) {
+        return fp->fv.pr.x223C;
     }
 
     /// @todo What???
