@@ -44,7 +44,7 @@ def fix_primitives(content: str) -> str:
             case "u8":
                 return "char"
             case "s16":
-                return "signed short"
+                return "short"
             case "u16":
                 return "unsigned short"
             case "s32":
@@ -59,7 +59,7 @@ def fix_primitives(content: str) -> str:
                 assert False, f'Unknown regex match "{s}"'
 
     return re.sub(
-        r"(?<!\S)(?:[fsu](?:16|32|64))(?=[;)\s])",
+            r"(?<![^\s();])[fsu](?:16|32|64)(?![^;)\s])",
         replace,
         content,
     )

@@ -271,7 +271,7 @@ bool mpLib_80054ED8(int line)
 
 /// #mpLib_800566D8
 
-void mpLib_800566F8(s32 arg0, f32 arg1, f32 arg2)
+void mpLib_800566F8(int arg0, float arg1, float arg2)
 {
     mpLib_804D64B8_t* temp_r3;
 
