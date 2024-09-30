@@ -34,7 +34,7 @@
 /* 0EEEC4 */ void ftKb_SpecialN_800EEEC4(ftKb_GObj* gobj,
                                          FighterKind victim_kind);
 /* 0EEF04 */ void ftKb_UnkMtxFunc0(ftKb_GObj* gobj, int, Mtx);
-/* 0EF028 */ UNK_T ftKb_Init_UnkMotionStates6(ftKb_GObj* gobj);
+/* 0EF028 */ ftKb_GObj* ftKb_Init_UnkMotionStates6(ftKb_GObj* gobj);
 /* 0EF040 */ UNK_RET ftKb_SpecialN_800EF040(UNK_PARAMS);
 /* 0EF0E4 */ UNK_RET ftKb_SpecialN_800EF0E4(UNK_PARAMS);
 /* 0EF35C */ UNK_RET ftKb_SpecialN_800EF35C(UNK_PARAMS);

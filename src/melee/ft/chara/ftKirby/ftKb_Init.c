@@ -3187,7 +3187,16 @@ void ftKb_Init_UnkDemoCallbacks0(int arg0, int* arg1, int* arg2)
 
 /// #ftKb_UnkMtxFunc0
 
-/// #ftKb_Init_UnkMotionStates6
+ftKb_GObj* ftKb_Init_UnkMotionStates6(ftKb_GObj* gobj)
+{
+    ftKb_GObj* temp_r0;
+
+    temp_r0 = M2C_FIELD(gobj->user_data, ftKb_GObj**, 0x223C);
+    if (temp_r0 != NULL) {
+        return temp_r0;
+    }
+    return gobj;
+}
 
 /// #ftKb_SpecialN_800EF040
 
@@ -3728,23 +3737,51 @@ f32 ftKb_SpecialN_800F5A60(ftKb_GObj* gobj)
     return -M2C_FIELD(gobj->user_data, f32*, 0x2C);
 }
 
-/// #ftKb_SpecialN_800F5A70
+extern M2C_UNK gFtDataList;
+
+f32 ftKb_SpecialN_800F5A70(void)
+{
+    return M2C_FIELD(
+        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
+        0x44);
+}
 
 f32 ftKb_SpecialN_800F5A88(ftKb_GObj* gobj)
 {
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x68);
 }
 
-/// #ftKb_SpecialN_800F5A98
+extern M2C_UNK gFtDataList;
+
+f32 ftKb_SpecialN_800F5A98(void)
+{
+    return M2C_FIELD(
+        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
+        0x70);
+}
 
 f32 ftKb_SpecialN_800F5AB0(ftKb_GObj* gobj)
 {
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x6C);
 }
 
-/// #ftKb_SpecialN_800F5AC0
+extern M2C_UNK gFtDataList;
 
-/// #ftKb_SpecialN_800F5AD8
+f32 ftKb_SpecialN_800F5AC0(void)
+{
+    return M2C_FIELD(
+        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
+        0x64);
+}
+
+extern M2C_UNK gFtDataList;
+
+f32 ftKb_SpecialN_800F5AD8(void)
+{
+    return M2C_FIELD(
+        M2C_FIELD(M2C_FIELD(&gFtDataList, void**, 0x10), void**, 4), f32*,
+        0x60);
+}
 
 f32 ftKb_SpecialN_800F5AF0(ftKb_GObj* gobj)
 {
@@ -5146,15 +5183,25 @@ f32 ftKb_SpecialNYs_801092CC(ftKb_GObj* gobj)
     return M2C_FIELD(M2C_FIELD(gobj->user_data, void**, 0x2D4), f32*, 0x3C0);
 }
 
-/// #ftKb_SpecialNYs_801092DC
+extern M2C_UNK gFtDataList;
 
-/// #ftKb_SpecialNYs_801092F4
+void ftKb_SpecialNYs_801092DC(ftKb_GObj* gobj) {}
 
-/// #ftKb_SpecialNYs_8010930C
+extern M2C_UNK gFtDataList;
 
-/// #ftKb_SpecialNYs_80109324
+void ftKb_SpecialNYs_801092F4(ftKb_GObj* gobj) {}
 
-/// #ftKb_SpecialNYs_8010933C
+extern M2C_UNK gFtDataList;
+
+void ftKb_SpecialNYs_8010930C(ftKb_GObj* gobj) {}
+
+extern M2C_UNK gFtDataList;
+
+void ftKb_SpecialNYs_80109324(ftKb_GObj* gobj) {}
+
+extern M2C_UNK gFtDataList;
+
+void ftKb_SpecialNYs_8010933C(ftKb_GObj* gobj) {}
 
 /// #ftKb_SpecialNYs_80109354
 
