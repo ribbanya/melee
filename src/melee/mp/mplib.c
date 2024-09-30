@@ -19,7 +19,7 @@ mp_UnkStruct2* mpLib_8004D174(void)
     return mpLib_804D64BC;
 }
 
-int mpLib_8004D17C(void)
+mpLib_804D64C0_t* mpLib_8004D17C(void)
 {
     return mpLib_804D64C0;
 }
@@ -322,7 +322,12 @@ void mpLib_800566F8(int arg0, float arg1, float arg2)
 
 /// #mpLib_800580AC
 
-/// #mpLib_800580C8
+void mpLib_800580C8(int arg0, Ground* arg1, void (*arg2)(void*, int))
+{
+    mpLib_804D64C0_t* temp_r3 = &mpLib_804D64C0[arg0];
+    temp_r3->x24 = arg2;
+    temp_r3->x28 = arg1;
+}
 
 /// #mpLib_800580E0
 

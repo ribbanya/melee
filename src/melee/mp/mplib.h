@@ -14,7 +14,7 @@
 /* 04D164 */ int mpLib_8004D164(void);
 /* 04D16C */ mpLib_804D64B8_t* mpLib_8004D16C(void);
 /* 04D174 */ mp_UnkStruct2* mpLib_8004D174(void);
-/* 04D17C */ int mpLib_8004D17C(void);
+/* 04D17C */ mpLib_804D64C0_t* mpLib_8004D17C(void);
 /* 04D184 */ UNK_RET mpLib_8004D184(UNK_PARAMS);
 /* 04D288 */ void mpLib_8004D288(UNK_T);
 /* 04DB78 */ s32 mpLib_8004DB78(s32 gr_idx);
@@ -117,7 +117,7 @@
 /* 057FDC */ UNK_RET mpLib_80057FDC(UNK_PARAMS);
 /* 058044 */ UNK_RET mpLib_80058044(UNK_PARAMS);
 /* 0580AC */ void mpLib_800580AC(s32);
-/* 0580C8 */ void mpLib_800580C8(s32, Ground*, void (*)(void*, s32));
+/* 0580C8 */ void mpLib_800580C8(int, Ground*, void (*)(void*, int));
 /* 0580E0 */ void mpLib_800580E0(s32);
 /* 0580FC */ void mpLib_800580FC(int, mpLib_Callback*, UNK_T);
 /* 05811C */ void mpLib_8005811C(CollData*, s32 ledge_id);

@@ -11,6 +11,6 @@
 /* 4D64B4 */ static int mpLib_804D64B4;
 /* 4D64B8 */ static mpLib_804D64B8_t* mpLib_804D64B8;
 /* 4D64BC */ static mp_UnkStruct2* mpLib_804D64BC;
-/* 4D64C0 */ static int mpLib_804D64C0;
+/* 4D64C0 */ static mpLib_804D64C0_t* mpLib_804D64C0;
 
 #endif
