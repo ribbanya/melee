@@ -11,7 +11,7 @@
 struct ftPurin_FighterVars {
     /* 0x222C */ u32 x222C;
     /* 0x2230 */ Vec3 x2230;
-    /* 0x223C */ HSD_JObj* x223C;
+    /* 0x223C */ void* x223C;
     /* 0x2240 */ u32 x2240;
     /* 0x2244 */ void* x2244;
     /* 0x2248 */ u32 x2248;

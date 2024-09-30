@@ -3187,15 +3187,16 @@ void ftKb_Init_UnkDemoCallbacks0(int arg0, int* arg1, int* arg2)
 
 /// #ftKb_UnkMtxFunc0
 
-ftKb_GObj* ftKb_Init_UnkMotionStates6(ftKb_GObj* gobj)
+HSD_JObj* ftKb_Init_UnkMotionStates6(HSD_GObj* gobj)
 {
-    ftKb_GObj* temp_r0;
+    Fighter* fp = GET_FIGHTER(gobj);
 
-    temp_r0 = M2C_FIELD(gobj->user_data, ftKb_GObj**, 0x223C);
-    if (temp_r0 != NULL) {
-        return temp_r0;
+    if (fp->fv.pr.x223C) {
+        return fp->fv.pr.x223C;
     }
-    return gobj;
+
+    /// @todo What???
+    return (HSD_JObj*) gobj;
 }
 
 /// #ftKb_SpecialN_800EF040

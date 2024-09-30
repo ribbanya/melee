@@ -1844,7 +1844,7 @@ struct FtCmdState {
 
 typedef struct ftData_UnkModelStruct {
     Fighter_ModelEvent model_events[FTKIND_MAX];
-    UNK_T (*getter[FTKIND_MAX])(HSD_GObj*);
+    HSD_JObj* (*getter[FTKIND_MAX])(HSD_GObj*);
 } ftData_UnkModelStruct;
 
 struct ftData_80085FD4_ret {
