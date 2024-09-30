@@ -891,7 +891,8 @@ f32 ftCo_80094098(HSD_GObj* gobj, f32* arg1)
     NOT_IMPLEMENTED;
 }
 
-void ftCo_80094138(ftCo_Fighter* fp)
+void ftCo_80094138(Fighter* fp)
 {
-    NOT_IMPLEMENTED;
+    fp->mv.co.walk.fast_anim_rate = p_ftCommonData->x2B8;
+    fp->mv.co.walk.fast_anim_frame = 0.0f;
 }
