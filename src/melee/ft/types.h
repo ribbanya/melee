@@ -222,7 +222,7 @@ struct ftCommonData {
     /* +2AC */ float x2AC;
     /* +2B0 */ float x2B0;
     /* +2B4 */ float x2B4;
-    /* +2B8 */ float x2B8;
+    /* +2B8 */ int x2B8;
     /* +2BC */ float x2BC;
     /* +2C0 */ UNK_T x2C0;
     /* +2C4 */ UNK_T x2C4;
