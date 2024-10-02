@@ -594,10 +594,10 @@ void gm_8016A424(s8 arg0)
 
 /// #fn_8016A4C8
 
-void gm_8016A92C(void* arg0)
+void gm_8016A92C(gm_8016A92C_arg0_t* arg0)
 {
-    M2C_FIELD(&lbl_8046B668, s8*, 0x1C) = -2;
-    M2C_FIELD(arg0, M2C_UNK**, 0x58) = &lbl_8046B668;
+    lbl_8046B668.unk_1C = -2;
+    arg0->x58 = &lbl_8046B668;
 }
 
 /// #gm_8016A944

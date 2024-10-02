@@ -302,4 +302,9 @@ struct gmMainLib_8046B0F0_t {
     int x4, x8, xC, x10, x14;
 };
 
+struct gm_8016A92C_arg0_t {
+    char pad_0[0x58];
+    struct lbl_8046B668_t* x58;
+};
+
 #endif
