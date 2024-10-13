@@ -1515,18 +1515,15 @@ config.libs = [
 ]
 
 # Extra categories for progress tracking
-config.progress_categories = (
-    [
-        ProgressCategory("game", "Game Code"),
-        ProgressCategory("hsd", "HSD Code"),
-        ProgressCategory("sdk", "Dolphin SDK Code"),
-        ProgressCategory("runtime", "Gekko Runtime Code"),
-    ]
-    if args.verbose
-    else []
-)
+config.progress_categories = [
+    ProgressCategory("game", "Game Code"),
+    ProgressCategory("hsd", "HSD Code"),
+    ProgressCategory("sdk", "Dolphin SDK Code"),
+    ProgressCategory("runtime", "Gekko Runtime Code"),
+]
 config.progress_all = False
 config.progress_each_module = args.verbose
+config.print_progress_categories = args.verbose
 
 if args.mode == "configure":
     # Write build.ninja and objdiff.json
