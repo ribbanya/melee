@@ -713,4 +713,9 @@ typedef struct it_2E6A_ItemVars_2 {
     /* +1C ip+DF0 */ void* x1C;
 } it_2E6A_ItemVars_2;
 
+typedef struct itWhiteBea_ItemVars {
+    /*  +0 ip+DD4 */ char pad_0[0x20];
+    /* +20 ip+DF4 */ UNK_T x20;
+} itWhiteBea_ItemVars;
+
 #endif
