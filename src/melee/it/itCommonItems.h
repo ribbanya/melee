@@ -723,4 +723,8 @@ typedef struct itOctarock_ItemVars {
     /* +20 ip+DF4 */ Vec3 x20;
 } itOctarock_ItemVars;
 
+typedef struct itMasterHandLaser_ItemVars {
+    /*  +0 ip+DD4 */ bool x0;
+} itMasterHandLaser_ItemVars;
+
 #endif
