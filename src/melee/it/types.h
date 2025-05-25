@@ -578,6 +578,7 @@ struct Item {
         itLinkHookshot_ItemVars linkhookshot;
         itMato_ItemVars mato;
         itNokoNoko_ItemVars nokonoko;
+        itOctarock_ItemVars octarock;
         itPikachutJoltGround_ItemVars pikachujoltground;
         itPKFlush_ItemVars pkflush;
         itPKFlushExplode_ItemVars pkflushexplode;

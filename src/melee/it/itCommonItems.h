@@ -718,4 +718,9 @@ typedef struct itWhiteBea_ItemVars {
     /* +20 ip+DF4 */ UNK_T x20;
 } itWhiteBea_ItemVars;
 
+typedef struct itOctarock_ItemVars {
+    /*  +0 ip+DD4 */ char pad_0[0x20];
+    /* +20 ip+DF4 */ Vec3 x20;
+} itOctarock_ItemVars;
+
 #endif
