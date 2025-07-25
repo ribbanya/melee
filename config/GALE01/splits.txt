@@ -1078,11 +1078,26 @@ melee/ft/chara/ftLink/ftLk_SpecialN.c:
 	.sdata2     start:0x804D9340 end:0x804D9350
 
 melee/ft/chara/ftKirby/ftKb_Init.c:
-	.text       start:0x800EE528 end:0x8010D740
+	.text       start:0x800EE528 end:0x800F1FDC
 	.rodata     start:0x803B7548 end:0x803B7588
 	.data       start:0x803C8368 end:0x803CB838
 	.sdata      start:0x804D3D98 end:0x804D3E10
-	.sdata2     start:0x804D9350 end:0x804D95B0
+	.sdata2     start:0x804D9350 end:0x804D9364
+
+melee/ft/chara/ftKirby/ftKb_Unk01.c:
+	.text       start:0x800F1FDC end:0x8010D740
+	.sdata2     start:0x804D9368 end:0x804D9370
+
+melee/ft/chara/ftKirby/ftKb_Unk02.c:
+	.sdata2     start:0x804D9370 end:0x804D9388
+
+melee/ft/chara/ftKirby/ftKb_Unk03.c:
+	.sdata2     start:0x804D9388 end:0x804D93A8
+
+melee/ft/chara/ftKirby/ftKb_Unk04.c:
+	.sdata2     start:0x804D93A8 end:0x804D93AC
+	.sdata2     start:0x804D93AC end:0x804D93B4
+	.sdata2     start:0x804D93B8 end:0x804D95B0
 
 melee/ft/chara/ftDonkey/ftDk_Init.c:
 	.text       start:0x8010D740 end:0x8010DC80
