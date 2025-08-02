@@ -5,7 +5,15 @@
 
 #include <baselib/gobj.h>
 
+#ifdef M2CTX
+#define GET_ITEM(gobj) ((Item*) HSD_ItemGObjGetUserData(gobj))
+static inline void* HSD_ItemGObjGetUserData(Item_GObj* gobj)
+{
+    return gobj->user_data;
+}
+#else
 #define GET_ITEM(gobj) ((Item*) HSD_GObjGetUserData(gobj))
+#endif
 
 static inline Item* GetItemData(HSD_GObj* gobj)
 {

@@ -9,7 +9,15 @@
 
 #include <baselib/gobj.h>
 
+#ifdef M2CTX
+#define GET_GROUND(gobj) ((Ground*) HSD_GroundGObjGetUserData(gobj))
+static inline void* HSD_GroundGObjGetUserData(Ground_GObj* gobj)
+{
+    return gobj->user_data;
+}
+#else
 #define GET_GROUND(gobj) ((Ground*) HSD_GObjGetUserData(gobj))
+#endif
 
 static inline void Ground_JObjInline1(HSD_GObj* gobj)
 {

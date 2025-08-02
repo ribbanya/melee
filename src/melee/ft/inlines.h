@@ -38,7 +38,11 @@
     *sA2 = *ext_attr;
 
 #ifdef M2CTX
-#define GET_FIGHTER(gobj) ((Fighter*) HSD_GObjGetUserData((HSD_GObj*) gobj))
+#define GET_FIGHTER(gobj) ((Fighter*) HSD_FighterGObjGetUserData(gobj))
+static inline void* HSD_FighterGObjGetUserData(Fighter_GObj* gobj)
+{
+    return gobj->user_data;
+}
 #else
 #define GET_FIGHTER(gobj) ((Fighter*) HSD_GObjGetUserData(gobj))
 #endif
@@ -93,7 +97,8 @@ static inline CollData* getFtColl(Fighter* fp)
     return &fp->coll_data;
 }
 
-static inline Fighter_GObj* getFtVictim(Fighter* fp) {
+static inline Fighter_GObj* getFtVictim(Fighter* fp)
+{
     return fp->victim_gobj;
 }
 
