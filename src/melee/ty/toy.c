@@ -103,14 +103,14 @@ float un_80305DB0(void)
 HSD_GObjProc* un_80306B18(HSD_GObj* gobj, s32 anim_frame, s32 val1, s32 val2)
 {
     HSD_GObjProc* proc = NULL;
-    Toy* user_data = (Toy*) gobj->user_data;
+    Toy* tp = (Toy*) gobj->user_data;
 
-    if (user_data != NULL) {
+    if (tp != NULL) {
         HSD_JObjClearFlagsAll(gobj->hsd_obj, JOBJ_HIDDEN);
         HSD_JObjReqAnimAll(gobj->hsd_obj, anim_frame);
 
-        user_data->x8 = val1;
-        user_data->x4 = val2;
+        tp->x8 = val1;
+        tp->x4 = val2;
 
         proc = HSD_GObjProc_8038FD54(gobj, un_80306BB8, 0);
         HSD_GObj_80390CD4(gobj);
@@ -234,6 +234,24 @@ void un_803102C4(s8 arg0)
 
 /// #un_80312050
 
-/// #un_803122D0_OnInit
+void un_803122D0_OnInit(void)
+{
+    Toy* userData = &un_804A26B8;
+    void* targetPtr;
+
+    memzero(&userData->unk194, 0x25a);
+
+    un_804D6EA1 = 0;
+
+    if (gm_8016B498() != 0 || (gm_801A4310()) == 0xc) {
+        targetPtr = &userData->unk19A;
+    } else {
+        targetPtr = gmMainLib_8015CC84();
+    }
+
+    *(u16*) targetPtr |= 4;
+
+    *(u8*) &userData->unk194 = 1;
+}
 
 /// #un_8031234C
