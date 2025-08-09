@@ -1,14 +1,18 @@
 #include "toy.h"
 
-#include "inlines.h"
-
-#include "un/un_2FC9.h"
-
+#include "baselib/controller.h"
+#include "baselib/gobj.h"
+#include "baselib/gobjproc.h"
+#include "baselib/jobj.h"
+#include "gm/gm_1601.h" // for gm_801677E8
+#include "lb/lb_00B0.h"
 #include "mn/mnsoundtest.h"
 
-#include "baselib/controller.h"
+#include "ty/forward.h"
 
-#include "gm/gm_1601.h" // for gm_801677E8
+#include "ty/types.h"
+#include "un/un_2FC9.h"
+
 #include <MSL/math.h> // for ABS
 
 /// #un_80305058
@@ -19,7 +23,8 @@
 
 /// #un_80305918
 
-s32 un_80305B88(void) {
+s32 un_80305B88(void)
+{
     int i;
     u32 button;
     PAD_STACK(4);
@@ -33,7 +38,8 @@ s32 un_80305B88(void) {
     return button;
 }
 
-s32 un_80305C44(void) {
+s32 un_80305C44(void)
+{
     int i = 0;
     u32 button;
     PAD_STACK(4);
@@ -49,7 +55,8 @@ s32 un_80305C44(void) {
 
 /// #un_80305D00
 
-float un_80305DB0(void) {
+float un_80305DB0(void)
+{
     float ret = 0.0F;
     int i;
 
@@ -95,7 +102,30 @@ float un_80305DB0(void) {
 
 /// #un_80306B18
 
-/// #un_80306BB8
+void un_80306BB8(HSD_GObj* gobj)
+{
+    Toy* tp = HSD_GObjGetUserData(gobj);
+    HSD_JObj* jobj = gobj->hsd_obj;
+
+    if (tp != NULL) {
+        if (tp->x8--) {
+            HSD_JObjAnimAll(jobj);
+        } else {
+            tp->x8 = 0;
+
+            if (tp->x4 != 0) {
+                HSD_JObjClearFlagsAll(gobj->hsd_obj, JOBJ_HIDDEN);
+            }
+
+            HSD_GObjProc_8038FE24(HSD_GObj_804D7838);
+        }
+    } else {
+        if (!lb_8000B09C(jobj)) {
+            HSD_JObjReqAnimAll(jobj, 0.0f);
+        }
+        HSD_JObjAnimAll(jobj);
+    }
+}
 
 /// #un_80306C5C
 
