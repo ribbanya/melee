@@ -5,6 +5,9 @@
 #include "baselib/gobjproc.h"
 #include "baselib/jobj.h"
 #include "gm/gm_1601.h" // for gm_801677E8
+#include "gm/gm_16AE.h"
+#include "gm/gm_1A3F.h"
+#include "gm/gmmain_lib.h"
 #include "lb/lb_00B0.h"
 #include "mn/mnsoundtest.h"
 
@@ -12,8 +15,12 @@
 
 #include "ty/types.h"
 #include "un/un_2FC9.h"
+#include "un/un_3028.h"
 
+#include <melee/un/un_3028.h>
 #include <MSL/math.h> // for ABS
+
+static u8 un_804D6EA1;
 
 /// #un_80305058
 
@@ -236,22 +243,22 @@ void un_803102C4(s8 arg0)
 
 void un_803122D0_OnInit(void)
 {
-    Toy* userData = &un_804A26B8;
+    Toy* userData = (Toy*) &un_804A26B8;
     void* targetPtr;
 
-    memzero(&userData->unk194, 0x25a);
+    memzero(&userData->x194, 0x25A);
 
     un_804D6EA1 = 0;
 
-    if (gm_8016B498() != 0 || (gm_801A4310()) == 0xc) {
-        targetPtr = &userData->unk19A;
+    if (gm_8016B498() || gm_801A4310() == 12) {
+        targetPtr = &userData->x19A;
     } else {
         targetPtr = gmMainLib_8015CC84();
     }
 
     *(u16*) targetPtr |= 4;
 
-    *(u8*) &userData->unk194 = 1;
+    *(u8*) &userData->x194 = 1;
 }
 
 /// #un_8031234C
