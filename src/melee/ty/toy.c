@@ -100,7 +100,23 @@ float un_80305DB0(void)
 
 /// #un_80306A48
 
-/// #un_80306B18
+HSD_GObjProc* un_80306B18(HSD_GObj* gobj, s32 anim_frame, s32 val1, s32 val2)
+{
+    HSD_GObjProc* proc = NULL;
+    Toy* user_data = (Toy*) gobj->user_data;
+
+    if (user_data != NULL) {
+        HSD_JObjClearFlagsAll(gobj->hsd_obj, JOBJ_HIDDEN);
+        HSD_JObjReqAnimAll(gobj->hsd_obj, anim_frame);
+
+        user_data->x8 = val1;
+        user_data->x4 = val2;
+
+        proc = HSD_GObjProc_8038FD54(gobj, un_80306BB8, 0);
+        HSD_GObj_80390CD4(gobj);
+    }
+    return proc;
+}
 
 void un_80306BB8(HSD_GObj* gobj)
 {
