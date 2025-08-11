@@ -15,7 +15,12 @@
 #include <baselib/tobj.h>
 #include <Runtime/Gecko_setjmp.h>
 
+/* 1C6620 */ static void grAnime_801C6620(HSD_PObj* arg0, HSD_ShapeAnim* arg1);
+/* 1C6710 */ static void grAnime_801C6710(HSD_TObj* tobj,
+                                          HSD_TexAnim* texanim);
 /* 1C67A8 */ static void grAnime_801C67A8(HSD_MObj*, HSD_MatAnim*);
+/* 1C683C */ static void grAnime_801C683C(HSD_DObj* arg0, HSD_MatAnim* arg1,
+                                          HSD_ShapeAnimDObj* arg2);
 /* 4D6958 */ static float grAnime_804D6958;
 /* 4D695C */ static float grAnime_804D695C;
 
