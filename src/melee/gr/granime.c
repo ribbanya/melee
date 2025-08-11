@@ -1,26 +1,23 @@
-#include <platform.h>
-
 #include "gr/granime.h"
+
+#include <platform.h>
 
 #include "gr/grmaterial.h"
 #include "gr/ground.h"
 #include "gr/inlines.h"
-#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lbheap.h"
-
-#include <Runtime/Gecko_setjmp.h>
 
 #include <baselib/dobj.h>
 #include <baselib/mobj.h>
 #include <baselib/robj.h>
 #include <baselib/tobj.h>
+#include <Runtime/Gecko_setjmp.h>
 
 /* 1C67A8 */ static void grAnime_801C67A8(HSD_MObj*, HSD_MatAnim*);
-
-float grAnime_804D6958;
-float grAnime_804D695C;
+/* 4D6958 */ static float grAnime_804D6958;
+/* 4D695C */ static float grAnime_804D695C;
 
 void grAnime_801C65B0(UnkArchiveStruct* arg0)
 {
@@ -650,7 +647,8 @@ void grAnime_801C7FF8(Ground_GObj* gobj, int arg1, int arg2, int arg3,
         if (temp_r3 != NULL) {
             HSD_JObj* jobj = grMaterial_801C8B28(temp_r3);
             grMaterial_801C8B68(jobj, 0);
-            grAnime_801C7C1C(temp_r3, gr->map_id, arg1, arg2, arg3, 1, arg4, arg5);
+            grAnime_801C7C1C(temp_r3, gr->map_id, arg1, arg2, arg3, 1, arg4,
+                             arg5);
         }
     }
 }
@@ -664,7 +662,8 @@ void grAnime_801C8098(Ground_GObj* gobj, int arg1, int arg2, int arg3,
         if (temp_r3 != NULL) {
             HSD_JObj* jobj = grMaterial_801C8B28(temp_r3);
             grMaterial_801C8B68(jobj, 0);
-            grAnime_801C7C1C(temp_r3, gr->map_id, arg1, arg2, arg3, 0, arg4, arg5);
+            grAnime_801C7C1C(temp_r3, gr->map_id, arg1, arg2, arg3, 0, arg4,
+                             arg5);
         }
     }
 }
@@ -698,7 +697,8 @@ HSD_AObj* grAnime_801C8318(HSD_GObj* gobj, int arg1, u32 arg2)
         var_r30 |= 0x100;
     }
     if (__setjmp(&grAnime_8049EE40) == 0) {
-        HSD_ForeachAnim(jobj, JOBJ_TYPE, var_r30, fn_801C82E8, AOBJ_ARG_AV, &sp14);
+        HSD_ForeachAnim(jobj, JOBJ_TYPE, var_r30, fn_801C82E8, AOBJ_ARG_AV,
+                        &sp14);
     }
     return sp14;
 }
