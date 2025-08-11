@@ -5,6 +5,8 @@
 
 #include "it/forward.h"
 
+/* 2C23D4 */ static bool itClimbersblizzard_UnkMotion0_Coll(Item_GObj* gobj);
+
 /// #it_802C1590
 
 /// #it_802C16F8
