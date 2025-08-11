@@ -1,3 +1,5 @@
+#include "mnname.h"
+
 /// #mnName_8023749C
 
 /// #GetNameText
