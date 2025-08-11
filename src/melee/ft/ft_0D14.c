@@ -53,6 +53,7 @@
 /* 0D8BFC */ static void fn_800D8BFC(Fighter_GObj* arg0);
 /* 0D9CE8 */ static void fn_800D9CE8(Fighter_GObj* arg0);
 /* 0DAADC */ static void fn_800DAADC(Fighter_GObj* arg0, Fighter_GObj* arg1);
+/* 105FEC */ static void fn_80105FEC(void);
 
 bool Fighter_SuperMushroomApply(Fighter_GObj* gobj)
 {
