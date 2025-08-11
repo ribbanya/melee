@@ -1,5 +1,3 @@
-#include <melee/ft/chara/ftFox/forward.h>
-
 #include "itfoxblaster.h"
 
 #include "ef/eflib.h"
@@ -19,29 +17,40 @@
 #include <melee/it/item.h>
 #include <melee/lb/lbrefract.h>
 
-void it_802ADF10(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion8_Anim(HSD_GObj* item_gobj);
-void itFoxblaster_UnkMotion8_Phys(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion8_Coll(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion9_Anim(HSD_GObj* item_gobj);
-void itFoxblaster_UnkMotion9_Phys(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion9_Coll(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion10_Anim(HSD_GObj* item_gobj);
-void itFoxblaster_UnkMotion10_Phys(HSD_GObj* item_gobj);
-bool itFoxblaster_UnkMotion10_Coll(HSD_GObj* item_gobj);
+/* 2ADF10 */ static void it_802ADF10(HSD_GObj* item_gobj);
+/* 2AEBCC */ static bool itFoxblaster_UnkMotion8_Anim(HSD_GObj* item_gobj);
+/* 2AEED4 */ static void itFoxblaster_UnkMotion8_Phys(HSD_GObj* item_gobj);
+/* 2AEF08 */ static bool itFoxblaster_UnkMotion8_Coll(HSD_GObj* item_gobj);
+/* 2AEF10 */ static bool itFoxblaster_UnkMotion9_Anim(HSD_GObj* item_gobj);
+/* 2AEFB8 */ static void itFoxblaster_UnkMotion9_Phys(HSD_GObj* item_gobj);
+/* 2AEFBC */ static bool itFoxblaster_UnkMotion9_Coll(HSD_GObj* item_gobj);
+/* 2AF064 */ static bool itFoxblaster_UnkMotion10_Anim(HSD_GObj* item_gobj);
+/* 2AF178 */ static void itFoxblaster_UnkMotion10_Phys(HSD_GObj* item_gobj);
+/* 2AF17C */ static bool itFoxblaster_UnkMotion10_Coll(HSD_GObj* item_gobj);
 
 ItemStateTable it_803F6CA8[11] = {
-    { 0, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 1, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 2, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 3, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 4, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 5, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 6, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 7, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { 8, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys, itFoxblaster_UnkMotion8_Coll },
-    { -1, itFoxblaster_UnkMotion9_Anim, itFoxblaster_UnkMotion9_Phys, itFoxblaster_UnkMotion9_Coll },
-    { -1, itFoxblaster_UnkMotion10_Anim, itFoxblaster_UnkMotion10_Phys, itFoxblaster_UnkMotion10_Coll }
+    { 0, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 1, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 2, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 3, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 4, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 5, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 6, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 7, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { 8, itFoxblaster_UnkMotion8_Anim, itFoxblaster_UnkMotion8_Phys,
+      itFoxblaster_UnkMotion8_Coll },
+    { -1, itFoxblaster_UnkMotion9_Anim, itFoxblaster_UnkMotion9_Phys,
+      itFoxblaster_UnkMotion9_Coll },
+    { -1, itFoxblaster_UnkMotion10_Anim, itFoxblaster_UnkMotion10_Phys,
+      itFoxblaster_UnkMotion10_Coll }
 };
 // Used for jobj->translate.z calc for xDD4
 f32 it_803F6D58[14] = { 0.0F,    -0.51F,  -1.02F,  -1.53F,  -1.39F,
