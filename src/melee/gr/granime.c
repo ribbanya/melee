@@ -21,6 +21,37 @@
 /* 1C67A8 */ static void grAnime_801C67A8(HSD_MObj*, HSD_MatAnim*);
 /* 1C683C */ static void grAnime_801C683C(HSD_DObj* arg0, HSD_MatAnim* arg1,
                                           HSD_ShapeAnimDObj* arg2);
+/* 1C68F4 */ static void grAnime_801C68F4(HSD_RObj* robj,
+                                          HSD_RObjAnimJoint* robjanimjoint);
+/* 1C6960 */ static void grAnime_801C6960(HSD_RObj* robj,
+                                          HSD_RObjAnimJoint* arg1);
+/* 1C69FC */ static HSD_AObj* grAnime_801C69FC(HSD_AObj* aobj);
+/* 1C6A54 */ static void grAnime_801C6A54(HSD_JObj* jobj,
+                                          HSD_AnimJoint* animjoint,
+                                          HSD_MatAnimJoint* matanimjoint,
+                                          HSD_ShapeAnimJoint* shapeanimjoint);
+/* 1C6C0C */ static void grAnime_801C6C0C(HSD_JObj* jobj,
+                                          HSD_AnimJoint* animjoint,
+                                          HSD_MatAnimJoint* matanimjoint,
+                                          HSD_ShapeAnimJoint* shapeanimjoint);
+/* 1C6EE4 */ static void fn_801C6EE4(HSD_AObj* aobj);
+/* 1C6F2C */ static void fn_801C6F2C(HSD_AObj* aobj);
+/* 1C6F50 */ static void grAnime_801C6F50(HSD_AObj* aobj, void* obj, u32 flags,
+                                          void* func, u32 type, void* param);
+/* 1C706C */ static void grAnime_801C706C(HSD_TObj* tobj, s32 flags,
+                                          void* func, u32 type, void* param);
+/* 1C70E0 */ static void grAnime_801C70E0(HSD_DObj* dobj, int flags,
+                                          void* function, u32 arg3,
+                                          void* arg4);
+/* 1C7228 */ static void grAnime_801C7228(HSD_JObj* obj, int flags, void* func,
+                                          u32 type, void* param, int arg5);
+/* 1C775C */ static void grAnime_801C775C(HSD_GObj* gobj, int arg1, u32 arg2,
+                                          f32 arg8, f32 arg9);
+/* 1C7B24 */ static void grAnime_801C7B24(HSD_GObj* gobj, int arg1, u32 arg2,
+                                          f32 arg8);
+/* 1C7BA0 */ static void grAnime_801C7BA0(HSD_GObj* gobj, int arg1, u32 arg2,
+                                          f32 arg8);
+/* 1C82E8 */ static void fn_801C82E8(int arg0, int* arg1);
 /* 4D6958 */ static float grAnime_804D6958;
 /* 4D695C */ static float grAnime_804D695C;
 
