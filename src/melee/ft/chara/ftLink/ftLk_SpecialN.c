@@ -293,16 +293,14 @@ static inline bool inlineA1(Fighter_GObj* gobj)
 //     }
 // }
 
-Vec3 const zero_a = { 0 };
-Vec3 const zero_b = { 0 };
 Vec3 const zero_c = { 0 };
+Vec3 const zero_b = { 0 };
+Vec3 const zero_a = { 0 };
 
 void ftLk_SpecialNLoop_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    Vec3 a = zero_a;
-    Vec3 b = zero_b;
-    Vec3 c = zero_c;
+    Vec3 a = zero_c, b = zero_b, c = zero_a;
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
                 NULL, &c);
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
