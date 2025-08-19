@@ -26,9 +26,9 @@
 #include "it/items/itlinkarrow.h"
 #include "it/items/itlinkbow.h"
 #include "lb/lb_00B0.h"
-#include "lb/lbrefract.h"
 
 #include <common_structs.h>
+#include <trigf.h>
 #include <dolphin/mtx.h>
 
 static float const ftLk_Init_804D9340 = 0.0;
@@ -41,6 +41,8 @@ typedef enum cmd_var_idx {
     cmd_unk2,
     cmd_unk3,
 } cmd_var_idx;
+
+/* 3B7520 */ ftLk_SpecialN_Vec3Group const ftLk_Init_Vec3Group = { 0 };
 
 ftLk_SpecialNIndex ftLk_SpecialN_GetIndex(ftLk_GObj* gobj)
 {
@@ -216,7 +218,20 @@ void ftLk_SpecialAirN_Enter(ftLk_GObj* gobj)
     }
 }
 
-static inline bool foo(ftLk_GObj* gobj)
+MotionFlags const mf = Ft_MF_SkipModel | Ft_MF_SkipItemVis;
+
+static inline void inlineA0(ftLk_GObj* gobj)
+{
+    ftLk_Fighter* fp = GET_FIGHTER(gobj);
+    ftLk_DatAttrs* da = fp->dat_attrs;
+    if (fp->cmd_vars[cmd_unk2] && fp->mv.lk.specialn.x0.x == 0) {
+        fp->mv.lk.specialn.x0.x = 1;
+        fp->cmd_vars[cmd_unk2] = 0;
+    }
+    ftAnim_SetAnimRate(gobj, da->specialn_anim_rate);
+}
+
+static inline bool inlineA1(ftLk_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -243,9 +258,7 @@ static inline bool foo(ftLk_GObj* gobj)
     return false;
 }
 
-MotionFlags const mf = Ft_MF_SkipModel | Ft_MF_SkipItemVis;
-
-static inline void bar(ftLk_GObj* gobj)
+static inline void inlineA2(ftLk_GObj* gobj)
 {
     u8 _[0x20] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -270,22 +283,11 @@ static inline void bar(ftLk_GObj* gobj)
     }
 }
 
-static inline void baz(ftLk_GObj* gobj)
-{
-    ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    ftLk_DatAttrs* da = fp->dat_attrs;
-    if (fp->cmd_vars[cmd_unk2] && fp->mv.lk.specialn.x0.x == 0) {
-        fp->mv.lk.specialn.x0.x = 1;
-        fp->cmd_vars[cmd_unk2] = 0;
-    }
-    ftAnim_SetAnimRate(gobj, da->specialn_anim_rate);
-}
-
 void ftLk_SpecialNStart_Anim(ftLk_GObj* gobj)
 {
-    baz(gobj);
-    if (!foo(gobj)) {
-        bar(gobj);
+    inlineA0(gobj);
+    if (!inlineA1(gobj)) {
+        inlineA2(gobj);
     } else {
         ftLk_SpecialN_UnsetArrow(gobj);
         ftLk_SpecialN_UnsetFv14(gobj);

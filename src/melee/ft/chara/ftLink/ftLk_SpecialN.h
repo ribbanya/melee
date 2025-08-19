@@ -38,5 +38,6 @@
 /* 0EE2E0 */ void ftLk_SpecialAirNStart_Coll(ftLk_GObj* gobj);
 /* 0EE368 */ void ftLk_SpecialAirNLoop_Coll(ftLk_GObj* gobj);
 /* 0EE3F0 */ void ftLk_SpecialAirNEnd_Coll(ftLk_GObj* gobj);
+/* 3B7520 */ extern ftLk_SpecialN_Vec3Group const ftLk_Init_Vec3Group;
 
 #endif
