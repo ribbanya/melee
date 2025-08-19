@@ -307,7 +307,7 @@ Fighter_CostumeStrings ftCl_Init_CostumeStrings[] = {
     { ftCl_Init_803D1380, ftCl_Init_803D138C, ftCl_Init_803D13A8 },
 };
 
-void ftCl_Init_OnDeath(ftLk_GObj* gobj)
+void ftCl_Init_OnDeath(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftParts_80074A4C(gobj, 0, 0);

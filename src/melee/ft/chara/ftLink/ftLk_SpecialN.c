@@ -44,7 +44,7 @@ typedef enum cmd_var_idx {
 
 /* 3B7520 */ ftLk_SpecialN_Vec3Group const ftLk_Init_Vec3Group = { 0 };
 
-ftLk_SpecialNIndex ftLk_SpecialN_GetIndex(ftLk_GObj* gobj)
+ftLk_SpecialNIndex ftLk_SpecialN_GetIndex(Fighter_GObj* gobj)
 {
     ftLk_SpecialNIndex result = ftLk_SpecialNIndex_None;
     if (gobj != NULL) {
@@ -65,7 +65,7 @@ ftLk_SpecialNIndex ftLk_SpecialN_GetIndex(ftLk_GObj* gobj)
     return result;
 }
 
-void ftLk_SpecialN_UnsetArrow(ftLk_GObj* gobj)
+void ftLk_SpecialN_UnsetArrow(Fighter_GObj* gobj)
 {
     if (gobj != NULL) {
         ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -80,7 +80,7 @@ void ftLk_SpecialN_UnsetArrow(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialN_UnsetFv14(ftLk_GObj* gobj)
+void ftLk_SpecialN_UnsetFv14(Fighter_GObj* gobj)
 {
     if (gobj != NULL) {
         ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -97,7 +97,7 @@ void ftLk_SpecialN_UnsetFv14(ftLk_GObj* gobj)
     }
 }
 
-bool ftLk_SpecialN_IsActiveAnd2071b6(ftLk_GObj* gobj)
+bool ftLk_SpecialN_IsActiveAnd2071b6(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     switch (fp->motion_id) {
@@ -116,7 +116,7 @@ bool ftLk_SpecialN_IsActiveAnd2071b6(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialN_ProcessFv10(ftLk_GObj* gobj)
+void ftLk_SpecialN_ProcessFv10(Fighter_GObj* gobj)
 {
     u8 _[8];
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -127,7 +127,7 @@ void ftLk_SpecialN_ProcessFv10(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialN_ProcessFv14(ftLk_GObj* gobj)
+void ftLk_SpecialN_ProcessFv14(Fighter_GObj* gobj)
 {
     u8 _[8];
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -138,14 +138,14 @@ void ftLk_SpecialN_ProcessFv14(ftLk_GObj* gobj)
     }
 }
 
-static inline void setCallbacks(ftLk_GObj* gobj)
+static inline void setCallbacks(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     fp->take_dmg_cb = ftLk_800EAF58;
     fp->death2_cb = ftLk_800EAF58;
 }
 
-static inline bool unkCondition(ftLk_GObj* gobj)
+static inline bool unkCondition(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -171,7 +171,7 @@ static inline bool unkCondition(ftLk_GObj* gobj)
     return false;
 }
 
-void ftLk_SpecialN_Enter(ftLk_GObj* gobj)
+void ftLk_SpecialN_Enter(Fighter_GObj* gobj)
 {
     /// @todo #GET_FIGHTER
     ftLk_Fighter* fp = gobj->user_data;
@@ -194,7 +194,7 @@ void ftLk_SpecialN_Enter(ftLk_GObj* gobj)
 }
 
 /// @todo Share more code with #ftLk_SpecialN_Enter.
-void ftLk_SpecialAirN_Enter(ftLk_GObj* gobj)
+void ftLk_SpecialAirN_Enter(Fighter_GObj* gobj)
 {
     /// @todo #GET_FIGHTER
     ftLk_Fighter* fp = gobj->user_data;
@@ -220,7 +220,7 @@ void ftLk_SpecialAirN_Enter(ftLk_GObj* gobj)
 
 MotionFlags const mf = Ft_MF_SkipModel | Ft_MF_SkipItemVis;
 
-static inline void inlineA0(ftLk_GObj* gobj)
+static inline void inlineA0(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -231,7 +231,7 @@ static inline void inlineA0(ftLk_GObj* gobj)
     ftAnim_SetAnimRate(gobj, da->specialn_anim_rate);
 }
 
-static inline bool inlineA1(ftLk_GObj* gobj)
+static inline bool inlineA1(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -258,7 +258,7 @@ static inline bool inlineA1(ftLk_GObj* gobj)
     return false;
 }
 
-static inline void inlineA2(ftLk_GObj* gobj)
+static inline void inlineA2(Fighter_GObj* gobj)
 {
     u8 _[0x20] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -283,7 +283,7 @@ static inline void inlineA2(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialNStart_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialNStart_Anim(Fighter_GObj* gobj)
 {
     inlineA0(gobj);
     if (!inlineA1(gobj)) {
@@ -295,7 +295,7 @@ void ftLk_SpecialNStart_Anim(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialNLoop_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialNLoop_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
@@ -313,13 +313,13 @@ void ftLk_SpecialNLoop_Anim(ftLk_GObj* gobj)
     }
 }
 
-static void setupParts(ftLk_GObj* gobj, bool arg1)
+static void setupParts(Fighter_GObj* gobj, bool arg1)
 {
     ftParts_80074A4C(gobj, 2, arg1);
     ftParts_80074B0C(gobj, 2, arg1);
 }
 
-static void updateParts(ftLk_GObj* gobj)
+static void updateParts(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     if (fp->x221E_b3 == true && fp->mv.lk.specialn.unk_timer == 0) {
@@ -332,7 +332,7 @@ static void updateParts(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialNEnd_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialNEnd_Anim(Fighter_GObj* gobj)
 {
     u8 _[8];
     if (!ftAnim_IsFramesRemaining(gobj)) {
@@ -344,7 +344,7 @@ void ftLk_SpecialNEnd_Anim(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialAirNStart_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialAirNStart_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -384,7 +384,7 @@ void ftLk_SpecialAirNStart_Anim(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialAirNLoop_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialAirNLoop_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
@@ -401,7 +401,7 @@ void ftLk_SpecialAirNLoop_Anim(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialAirNEnd_Anim(ftLk_GObj* gobj)
+void ftLk_SpecialAirNEnd_Anim(Fighter_GObj* gobj)
 {
     u8 _[16];
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -420,7 +420,7 @@ void ftLk_SpecialAirNEnd_Anim(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialNStart_IASA(ftLk_GObj* gobj)
+void ftLk_SpecialNStart_IASA(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -438,7 +438,7 @@ void ftLk_SpecialNStart_IASA(ftLk_GObj* gobj)
     }
 }
 
-static void doLoopIASA(ftLk_GObj* gobj, FtMotionId msid)
+static void doLoopIASA(Fighter_GObj* gobj, FtMotionId msid)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
@@ -449,15 +449,15 @@ static void doLoopIASA(ftLk_GObj* gobj, FtMotionId msid)
     }
 }
 
-void ftLk_SpecialNLoop_IASA(ftLk_GObj* gobj)
+void ftLk_SpecialNLoop_IASA(Fighter_GObj* gobj)
 {
     u8 _[8];
     doLoopIASA(gobj, ftLk_MS_SpecialNEnd);
 }
 
-void ftLk_SpecialNEnd_IASA(ftLk_GObj* gobj) {}
+void ftLk_SpecialNEnd_IASA(Fighter_GObj* gobj) {}
 
-void ftLk_SpecialAirNStart_IASA(ftLk_GObj* gobj)
+void ftLk_SpecialAirNStart_IASA(Fighter_GObj* gobj)
 {
     /// @todo Same as #ftLk_SpecialNStart_IASA with different MSID
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -475,39 +475,39 @@ void ftLk_SpecialAirNStart_IASA(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialAirNLoop_IASA(ftLk_GObj* gobj)
+void ftLk_SpecialAirNLoop_IASA(Fighter_GObj* gobj)
 {
     doLoopIASA(gobj, ftLk_MS_SpecialAirNLoop);
 }
 
-void ftLk_SpecialAirNEnd_IASA(ftLk_GObj* gobj) {}
+void ftLk_SpecialAirNEnd_IASA(Fighter_GObj* gobj) {}
 
-void ftLk_SpecialNStart_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialNStart_Phys(Fighter_GObj* gobj)
 {
     ft_80084F3C(gobj);
 }
 
-void ftLk_SpecialNLoop_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialNLoop_Phys(Fighter_GObj* gobj)
 {
     ft_80084F3C(gobj);
 }
 
-void ftLk_SpecialNEnd_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialNEnd_Phys(Fighter_GObj* gobj)
 {
     ft_80084F3C(gobj);
 }
 
-void ftLk_SpecialAirNStart_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialAirNStart_Phys(Fighter_GObj* gobj)
 {
     ft_80084EEC(gobj);
 }
 
-void ftLk_SpecialAirNLoop_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialAirNLoop_Phys(Fighter_GObj* gobj)
 {
     ft_80084EEC(gobj);
 }
 
-void ftLk_SpecialAirNEnd_Phys(ftLk_GObj* gobj)
+void ftLk_SpecialAirNEnd_Phys(Fighter_GObj* gobj)
 {
     ft_80084EEC(gobj);
 }
@@ -517,7 +517,7 @@ static MotionFlags const coll_mf =
     Ft_MF_SkipItemVis | Ft_MF_Unk19 | Ft_MF_SkipModelPartVis |
     Ft_MF_SkipModelFlags | Ft_MF_Unk27;
 
-static void doColl(ftLk_GObj* gobj, FtMotionId msid)
+static void doColl(Fighter_GObj* gobj, FtMotionId msid)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     if (!ft_80082708(gobj)) {
@@ -529,17 +529,17 @@ static void doColl(ftLk_GObj* gobj, FtMotionId msid)
     }
 }
 
-void ftLk_SpecialNStart_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialNStart_Coll(Fighter_GObj* gobj)
 {
     doColl(gobj, ftLk_MS_SpecialAirNStart);
 }
 
-void ftLk_SpecialNLoop_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialNLoop_Coll(Fighter_GObj* gobj)
 {
     doColl(gobj, ftLk_MS_SpecialAirNLoop);
 }
 
-static inline void doEndColl(ftLk_GObj* gobj)
+static inline void doEndColl(Fighter_GObj* gobj)
 {
     u8 _[12] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
@@ -566,7 +566,7 @@ static inline void doEndColl(ftLk_GObj* gobj)
     }
 }
 
-void ftLk_SpecialNEnd_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialNEnd_Coll(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     doEndColl(gobj);
@@ -579,7 +579,7 @@ void ftLk_SpecialNEnd_Coll(ftLk_GObj* gobj)
     }
 }
 
-static void doAirColl(ftLk_GObj* gobj, FtMotionId msid)
+static void doAirColl(Fighter_GObj* gobj, FtMotionId msid)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     if (ft_80081D0C(gobj) == GA_Air) {
@@ -591,18 +591,18 @@ static void doAirColl(ftLk_GObj* gobj, FtMotionId msid)
     }
 }
 
-void ftLk_SpecialAirNStart_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialAirNStart_Coll(Fighter_GObj* gobj)
 {
     doAirColl(gobj, ftLk_MS_SpecialNStart);
 }
 
-void ftLk_SpecialAirNLoop_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialAirNLoop_Coll(Fighter_GObj* gobj)
 {
     doAirColl(gobj, ftLk_MS_SpecialNLoop);
 }
 
 /// @todo Combine with #ftLk_SpecialNEnd_Coll.
-void ftLk_SpecialAirNEnd_Coll(ftLk_GObj* gobj)
+void ftLk_SpecialAirNEnd_Coll(Fighter_GObj* gobj)
 {
     u8 _[8] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);

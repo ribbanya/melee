@@ -5,7 +5,6 @@
 #include "ftCommon/forward.h"
 
 typedef Fighter ftLk_Fighter;
-typedef HSD_GObj ftLk_GObj;
 typedef struct ftLk_DatAttrs ftLk_DatAttrs;
 typedef struct ftLk_FighterVars ftLk_FighterVars;
 typedef union ftLk_MotionVars ftLk_MotionVars;
