@@ -7,7 +7,6 @@
 
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
 #include "ftYoshi/forward.h"
 #include <baselib/forward.h>
 
@@ -33,5 +32,6 @@
 /* 12BE3C */ void ftYs_Init_8012BE3C(HSD_GObj* gobj);
 /* 12BECC */ void ftYs_Init_8012BECC(Fighter_GObj* gobj);
 /* 3CE6D0 */ extern MotionState ftYs_Init_MotionStateTable[ftYs_MS_SelfCount];
+/* 3B75C0 */ extern Vec3 const ftYs_Unk1_803B75C0;
 
 #endif
