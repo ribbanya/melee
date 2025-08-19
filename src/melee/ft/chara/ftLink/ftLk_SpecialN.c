@@ -298,18 +298,20 @@ void ftLk_SpecialNStart_Anim(Fighter_GObj* gobj)
 void ftLk_SpecialNLoop_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
+    Vec3 a = { 0 };
+    Vec3 b = { 0 };
+    Vec3 c = { 0 };
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
-                NULL, &vecs.a);
+                NULL, &a);
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
-                NULL, &vecs.b);
-    lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
-    fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
-    fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
-    fp->mv.lk.specialn.x8.z = 0;
-    fp->mv.lk.specialn.x8.x = atan2f(vecs.b.y - vecs.a.y, vecs.b.x - vecs.a.x);
+                NULL, &b);
+    lb_8000B1CC(fp->parts->joint, NULL, &c);
+    fp->mv.lk.specialn.x8.x = b.x - c.x;
+    fp->mv.lk.specialn.x8.y = b.y - c.y;
+    fp->mv.lk.specialn.x8.z = 0.0f;
+    fp->mv.lk.specialn.x8.x = atan2f(b.y - a.y, b.x - a.x);
     if (fp->fv.lk.arrow_gobj != NULL) {
-        it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
+        it_802A8398(fp->fv.lk.arrow_gobj, &b, &a);
     }
 }
 
