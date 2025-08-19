@@ -42,8 +42,6 @@ typedef enum cmd_var_idx {
     cmd_unk3,
 } cmd_var_idx;
 
-/* 3B7520 */ ftLk_SpecialN_Vec3Group const ftLk_Init_Vec3Group = { 0 };
-
 ftLk_SpecialNIndex ftLk_SpecialN_GetIndex(Fighter_GObj* gobj)
 {
     ftLk_SpecialNIndex result = ftLk_SpecialNIndex_None;
@@ -150,7 +148,7 @@ static inline bool unkCondition(Fighter_GObj* gobj)
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
     if (fp->fv.lk.x14 == NULL) {
-        u8 _[36] = { 0 };
+        // u8 _[36] = { 0 };
         Vec3 pos;
         lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
                     NULL, &pos);
@@ -258,60 +256,64 @@ static inline bool inlineA1(Fighter_GObj* gobj)
     return false;
 }
 
-static inline void inlineA2(Fighter_GObj* gobj)
-{
-    u8 _[0x20] = { 0 };
-    ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
-    lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
-                NULL, &vecs.a);
-    lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
-                NULL, &vecs.b);
-    lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
-    fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
-    fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
-    fp->mv.lk.specialn.x8.z = 0;
-    fp->mv.lk.specialn.x8.x = atan2f(vecs.b.y - vecs.a.y, vecs.b.x - vecs.a.x);
-    if (fp->fv.lk.arrow_gobj != NULL) {
-        it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
-    }
-    if (ftAnim_IsFramesRemaining(gobj)) {
-        Fighter_ChangeMotionState(gobj, ftLk_MS_SpecialNLoop, mf, 0, 1, 0,
-                                  NULL);
-        setCallbacks(gobj);
-        ftAnim_8006EBA4(gobj);
-    }
-}
+// static inline void inlineA2(Fighter_GObj* gobj)
+// {
+// u8 _[0x20] = { 0 };
+//     ftLk_Fighter* fp = GET_FIGHTER(gobj);
+//     ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
+//     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
+//                 NULL, &vecs.a);
+//     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
+//                 NULL, &vecs.b);
+//     lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
+//     fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
+//     fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
+//     fp->mv.lk.specialn.x8.z = 0;
+//     fp->mv.lk.specialn.x8.x = atan2f(vecs.b.y - vecs.a.y, vecs.b.x -
+//     vecs.a.x); if (fp->fv.lk.arrow_gobj != NULL) {
+//         it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
+//     }
+//     if (ftAnim_IsFramesRemaining(gobj)) {
+//         Fighter_ChangeMotionState(gobj, ftLk_MS_SpecialNLoop, mf, 0, 1, 0,
+//                                   NULL);
+//         setCallbacks(gobj);
+//         ftAnim_8006EBA4(gobj);
+//     }
+// }
 
-void ftLk_SpecialNStart_Anim(Fighter_GObj* gobj)
-{
-    inlineA0(gobj);
-    if (!inlineA1(gobj)) {
-        inlineA2(gobj);
-    } else {
-        ftLk_SpecialN_UnsetArrow(gobj);
-        ftLk_SpecialN_UnsetFv14(gobj);
-        ft_8008A2BC(gobj);
-    }
-}
+// void ftLk_SpecialNStart_Anim(Fighter_GObj* gobj)
+// {
+//     inlineA0(gobj);
+//     if (!inlineA1(gobj)) {
+//         inlineA2(gobj);
+//     } else {
+//         ftLk_SpecialN_UnsetArrow(gobj);
+//         ftLk_SpecialN_UnsetFv14(gobj);
+//         ft_8008A2BC(gobj);
+//     }
+// }
+
+Vec3 const zero_a = { 0 };
+Vec3 const zero_b = { 0 };
+Vec3 const zero_c = { 0 };
 
 void ftLk_SpecialNLoop_Anim(Fighter_GObj* gobj)
 {
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    Vec3 a = { 0 };
-    Vec3 b = { 0 };
-    Vec3 c = { 0 };
+    Vec3 a = zero_a;
+    Vec3 b = zero_b;
+    Vec3 c = zero_c;
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
-                NULL, &a);
+                NULL, &c);
     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
                 NULL, &b);
-    lb_8000B1CC(fp->parts->joint, NULL, &c);
-    fp->mv.lk.specialn.x8.x = b.x - c.x;
-    fp->mv.lk.specialn.x8.y = b.y - c.y;
-    fp->mv.lk.specialn.x8.z = 0.0f;
-    fp->mv.lk.specialn.x8.x = atan2f(b.y - a.y, b.x - a.x);
+    lb_8000B1CC(fp->parts->joint, NULL, &a);
+    fp->mv.lk.specialn.x8.y = b.x - a.x;
+    fp->mv.lk.specialn.x8.z = b.y - a.y;
+    fp->mv.lk.specialn.x14 = 0.0f;
+    fp->mv.lk.specialn.x8.x = atan2f(b.y - c.y, b.x - c.x);
     if (fp->fv.lk.arrow_gobj != NULL) {
-        it_802A8398(fp->fv.lk.arrow_gobj, &b, &a);
+        it_802A8398(fp->fv.lk.arrow_gobj, &b, &c);
     }
 }
 
@@ -346,62 +348,65 @@ void ftLk_SpecialNEnd_Anim(Fighter_GObj* gobj)
     }
 }
 
-void ftLk_SpecialAirNStart_Anim(Fighter_GObj* gobj)
-{
-    ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    ftLk_DatAttrs* da = fp->dat_attrs;
-    if (fp->cmd_vars[cmd_unk1_bool] && fp->mv.lk.specialn.x0.x == 0) {
-        fp->mv.lk.specialn.x0.x = 0;
-        fp->cmd_vars[cmd_unk1_bool] = false;
-    }
-    if (!unkCondition(gobj)) {
-        ftLk_Fighter* fp = GET_FIGHTER(gobj);
-        ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
-        lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
-                    NULL, &vecs.a);
-        lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
-                    NULL, &vecs.b);
-        lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
-        fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
-        fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
-        fp->mv.lk.specialn.x8.x =
-            atan2f(vecs.b.y - vecs.a.y, vecs.b.x - vecs.a.x);
-        if (fp->fv.lk.arrow_gobj != NULL) {
-            it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
-        }
-        if (!ftAnim_IsFramesRemaining(gobj)) {
-            Fighter_ChangeMotionState(gobj, ftLk_MS_SpecialAirNLoop, mf, 0, 1,
-                                      0, NULL);
-            setCallbacks(gobj);
-            ftAnim_8006EBA4(gobj);
-        }
-    } else {
-        ftLk_SpecialN_UnsetArrow(gobj);
-        ftLk_SpecialN_UnsetFv14(gobj);
-        if (da->x8 == 0) {
-            ftCo_Fall_Enter(gobj);
-        } else {
-            ftCo_80096900(gobj, 1, 0, 1, 1, da->x8);
-        }
-    }
-}
+// void ftLk_SpecialAirNStart_Anim(Fighter_GObj* gobj)
+// {
+//     ftLk_Fighter* fp = GET_FIGHTER(gobj);
+//     ftLk_DatAttrs* da = fp->dat_attrs;
+//     if (fp->cmd_vars[cmd_unk1_bool] && fp->mv.lk.specialn.x0.x == 0) {
+//         fp->mv.lk.specialn.x0.x = 0;
+//         fp->cmd_vars[cmd_unk1_bool] = false;
+//     }
+//     if (!unkCondition(gobj)) {
+//         ftLk_Fighter* fp = GET_FIGHTER(gobj);
+//         ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
+//         lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp,
+//         FtPart_LThumbNb)].joint,
+//                     NULL, &vecs.a);
+//         lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp,
+//         FtPart_RThumbNb)].joint,
+//                     NULL, &vecs.b);
+//         lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
+//         fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
+//         fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
+//         fp->mv.lk.specialn.x8.x =
+//             atan2f(vecs.b.y - vecs.a.y, vecs.b.x - vecs.a.x);
+//         if (fp->fv.lk.arrow_gobj != NULL) {
+//             it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
+//         }
+//         if (!ftAnim_IsFramesRemaining(gobj)) {
+//             Fighter_ChangeMotionState(gobj, ftLk_MS_SpecialAirNLoop, mf, 0,
+//             1,
+//                                       0, NULL);
+//             setCallbacks(gobj);
+//             ftAnim_8006EBA4(gobj);
+//         }
+//     } else {
+//         ftLk_SpecialN_UnsetArrow(gobj);
+//         ftLk_SpecialN_UnsetFv14(gobj);
+//         if (da->x8 == 0) {
+//             ftCo_Fall_Enter(gobj);
+//         } else {
+//             ftCo_80096900(gobj, 1, 0, 1, 1, da->x8);
+//         }
+//     }
+// }
 
-void ftLk_SpecialAirNLoop_Anim(Fighter_GObj* gobj)
-{
-    ftLk_Fighter* fp = GET_FIGHTER(gobj);
-    ftLk_SpecialN_Vec3Group vecs = ftLk_Init_Vec3Group;
-    lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
-                NULL, &vecs.a);
-    lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
-                NULL, &vecs.b);
-    lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
-    fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
-    fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
-    fp->mv.lk.specialn.x8.x = atan2f(vecs.b.y - vecs.a.y, vecs.b.x - vecs.a.x);
-    if (fp->fv.lk.arrow_gobj != NULL) {
-        it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
-    }
-}
+// void ftLk_SpecialAirNLoop_Anim(Fighter_GObj* gobj)
+// {
+//     ftLk_Fighter* fp = GET_FIGHTER(gobj);
+//     ftLk_SpecialN_Vec3Group vecs = { 0 };
+//     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_LThumbNb)].joint,
+//                 NULL, &vecs.a);
+//     lb_8000B1CC(fp->parts[ftParts_GetBoneIndex(fp, FtPart_RThumbNb)].joint,
+//                 NULL, &vecs.b);
+//     lb_8000B1CC(fp->parts->joint, NULL, &vecs.c);
+//     fp->mv.lk.specialn.x8.x = vecs.b.x - vecs.c.x;
+//     fp->mv.lk.specialn.x8.y = vecs.b.y - vecs.c.y;
+//     fp->mv.lk.specialn.x8.x = atan2f(vecs.b.y - vecs.a.y, vecs.b.x -
+//     vecs.a.x); if (fp->fv.lk.arrow_gobj != NULL) {
+//         it_802A8398(fp->fv.lk.arrow_gobj, &vecs.b, &vecs.a);
+//     }
+// }
 
 void ftLk_SpecialAirNEnd_Anim(Fighter_GObj* gobj)
 {
@@ -543,7 +548,7 @@ void ftLk_SpecialNLoop_Coll(Fighter_GObj* gobj)
 
 static inline void doEndColl(Fighter_GObj* gobj)
 {
-    u8 _[12] = { 0 };
+    // u8 _[12] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     ftLk_DatAttrs* da = fp->dat_attrs;
     Item_GObj* item_gobj;
@@ -606,7 +611,7 @@ void ftLk_SpecialAirNLoop_Coll(Fighter_GObj* gobj)
 /// @todo Combine with #ftLk_SpecialNEnd_Coll.
 void ftLk_SpecialAirNEnd_Coll(Fighter_GObj* gobj)
 {
-    u8 _[8] = { 0 };
+    // u8 _[8] = { 0 };
     ftLk_Fighter* fp = GET_FIGHTER(gobj);
     doEndColl(gobj);
     if (ft_80081D0C(gobj) == GA_Air) {
