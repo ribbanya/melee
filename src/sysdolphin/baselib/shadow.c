@@ -278,7 +278,7 @@ void HSD_ShadowEndRender(HSD_Shadow* shadow)
     makeMatrix(shadow);
 }
 
-void HSD_ShadowSetActive(HSD_Shadow* shadow, int active)
+void HSD_ShadowSetActive(HSD_Shadow* shadow, bool active)
 {
     HSD_ImageDesc* idesc;
 
