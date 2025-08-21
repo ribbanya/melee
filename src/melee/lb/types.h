@@ -554,4 +554,16 @@ struct lb_804D63A8_t {
 };
 STATIC_ASSERT(sizeof(struct lb_804D63A8_t) == 0x1C0);
 
+struct lbShadowContainer {
+    /* +0:0 */ u8 x0_b0 : 1;
+    /* +1:0 */ u8 x0_b1 : 1;
+    /* +2:0 */ u8 x0_b2 : 1;
+    /* +3:0 */ u8 x0_b3 : 1;
+    /* +4:0 */ u8 x0_b4 : 1;
+    /* +5:0 */ u8 x0_b5 : 1;
+    /* +6:0 */ u8 x0_b6 : 1;
+    /* +7:0 */ u8 x0_b7 : 1;
+    /* +4 */ HSD_Shadow* shadow;
+};
+
 #endif

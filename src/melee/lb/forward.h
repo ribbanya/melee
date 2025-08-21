@@ -4,6 +4,7 @@
 #include <platform.h>
 
 struct lb_80011A50_t;
+struct lbShadowContainer;
 
 typedef struct AbsorbDesc AbsorbDesc;
 typedef struct CollData CollData;

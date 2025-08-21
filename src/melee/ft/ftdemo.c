@@ -110,7 +110,7 @@ Fighter_GObj* ftDemo_CreateFighter(plAllocInfo2* alloc_info)
         }
         ftColl_8007B320(gobj);
         fp->x890_cameraBox = Camera_80029020();
-        lbShadow_8000ED54(&fp->x20A4, gobj->hsd_obj);
+        lbShadow_8000ED54(&fp->lbshadow, gobj->hsd_obj);
     }
     HSD_GObjProc_8038FD54(gobj, Fighter_8006A360, 1);
     HSD_GObjProc_8038FD54(gobj, Fighter_procUpdate, 4);

@@ -809,10 +809,10 @@ FighterKind ftLib_800872A4(HSD_GObj* gobj)
     return fp->kind;
 }
 
-void* ftLib_800872B0(HSD_GObj* gobj)
+struct lbShadowContainer* ftLib_800872B0(Fighter_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);
-    return &fp->x20A4;
+    return &fp->lbshadow;
 }
 
 bool ftLib_800872BC(HSD_GObj* gobj)

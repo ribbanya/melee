@@ -894,7 +894,7 @@ Fighter_GObj* Fighter_Create(struct S_TEMP1* input)
     fp->x890_cameraBox = Camera_80029020();
 
     jobj = GET_JOBJ(gobj);
-    lbShadow_8000ED54(&fp->x20A4, jobj);
+    lbShadow_8000ED54(&fp->lbshadow, jobj);
     HSD_GObjProc_8038FD54(gobj, &Fighter_8006A1BC, 0);
     HSD_GObjProc_8038FD54(gobj, &Fighter_8006A360, 1);
     HSD_GObjProc_8038FD54(gobj, &Fighter_8006ABA0, 2);
@@ -3089,7 +3089,7 @@ void Fighter_Unload_8006DABC(void* user_data)
     ftCo_UnloadDynamicBones(fp);
     ftColl_800765AC(fp->gobj);
     ft_80088C5C(fp->gobj);
-    lbShadow_8000EE8C(&fp->x20A4);
+    lbShadow_8000EE8C(&fp->lbshadow);
 
     if (fp->x20A0_accessory) {
         HSD_JObjRemoveAll(fp->x20A0_accessory);
