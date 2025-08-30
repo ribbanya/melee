@@ -1492,53 +1492,59 @@ void gm_801B4860(MinorScene* scene)
     gm_801B4860_inline1(scene);
 }
 
-void gm_801B4974(MinorScene* arg0)
+static inline s8 inline0(UnkAdventureData* temp_r3)
 {
-    MinorScene* temp_r27;
-    UnkAdventureData* temp_r29;
-    UnkAdventureData* temp_r3;
-    struct gm_803DE650_t* temp_r25_2;
-    struct gm_803DE650_t* temp_r30;
-    struct gmm_x0_528_t* temp_r24;
-    u8 temp_r3_2;
-    s8 var_r4;
-    u8* temp_r24_2;
-    CutsceneData* temp_r25;
-    CutsceneData* temp_r28;
-    u8* temp_r31;
-
-    temp_r28 = gm_801A427C(arg0);
-    temp_r29 = gm_8017E424();
-    temp_r25 = gm_801A427C(arg0);
-    temp_r24 = gmMainLib_8015CDD4();
-    temp_r3 = gm_8017E424();
-    var_r4 = temp_r3->x0.x0;
-    if (var_r4 == 0x12 && temp_r3->x0.xC.x12 != 0) {
-        var_r4 = 0x13;
+    s8 ret = temp_r3->x0.x0;
+    if (ret == 18 && temp_r3->x0.xC.x12 != 0) {
+        ret = 19;
     }
-    temp_r25->x0 = var_r4;
-    temp_r25->x1 = temp_r24->color;
-    temp_r30 = gm_8017E4C4(arg0->idx);
-    temp_r24_2 = gm_80169520();
-    temp_r31 = gm_80169540();
-    temp_r27 = gm_8017E48C(arg0);
-    temp_r25_2 = gm_8017E4C4(arg0->idx);
-    gm_8016A22C(temp_r25_2->xA[0], temp_r25_2->xA[1], temp_r25_2->xA[2],
-                temp_r25_2->xD, temp_r25_2->xE, temp_r25_2->xF, 1, 0, 1,
-                temp_r29->x0.x0, temp_r29->x0.x1,
-                temp_r29->x4C(temp_r27, temp_r29->x0.x2, 0), temp_r25_2->x4,
-                gm_8017BE8C(temp_r25_2->xA), 1, 0, 1,
-                temp_r29->x64(temp_r27, temp_r29->x0.x2),
-                temp_r29->x68(temp_r27, temp_r29->x0.x2));
-
-    temp_r29->x0.xC.x11 = 1;
-    temp_r28->x3 = *temp_r24_2;
-    temp_r28->x4 = temp_r31[temp_r30->x4 - 2];
-    temp_r28->x5 = temp_r31[temp_r30->x4 - 1];
-    temp_r28->x6 = temp_r31[temp_r30->x4 - 3];
+    return ret;
 }
 
-static inline void inline0(MinorScene* scene)
+void gm_801B4974(MinorScene* arg0)
+{
+    UnkAdventureData* temp_r3;
+    struct gm_803DE650_t* temp_r30;
+    struct gmm_x0_528_t* temp_r24;
+    s8 var_r4;
+    u8* temp_r24_2;
+    u8* temp_r31;
+
+    {
+        CutsceneData* temp_r28 = gm_801A427C(arg0);
+        UnkAdventureData* temp_r29 = gm_8017E424();
+        CutsceneData* temp_r25 = gm_801A427C(arg0);
+        temp_r24 = gmMainLib_8015CDD4();
+        temp_r3 = gm_8017E424();
+        temp_r25->x0 = inline0(temp_r3);
+        temp_r25->x1 = temp_r24->color;
+        temp_r30 = gm_8017E4C4(arg0->idx);
+        temp_r24_2 = gm_80169520();
+        temp_r31 = gm_80169540();
+        {
+            MinorScene* temp_r27;
+            struct gm_803DE650_t* temp_r25_2;
+            temp_r27 = gm_8017E48C(arg0);
+            temp_r25_2 = gm_8017E4C4(arg0->idx);
+            gm_8016A22C(temp_r25_2->xA[0], temp_r25_2->xA[1],
+                        temp_r25_2->xA[2], temp_r25_2->xD, temp_r25_2->xE,
+                        temp_r25_2->xF, 1, 0, 1, temp_r29->x0.x0,
+                        temp_r29->x0.x1,
+                        temp_r29->x4C(temp_r27, temp_r29->x0.x2, 0),
+                        temp_r25_2->x4, gm_8017BE8C(temp_r25_2->xA), 1, 0, 1,
+                        temp_r29->x64(temp_r27, temp_r29->x0.x2),
+                        temp_r29->x68(temp_r27, temp_r29->x0.x2));
+        }
+
+        temp_r29->x0.xC.x11 = 1;
+        temp_r28->x3 = *temp_r24_2;
+        temp_r28->x4 = temp_r31[temp_r30->x4 - 2];
+        temp_r28->x5 = temp_r31[temp_r30->x4 - 1];
+        temp_r28->x6 = temp_r31[temp_r30->x4 - 3];
+    }
+}
+
+static inline void gm_801B4B28_inline0(MinorScene* scene)
 {
     UnkAdventureData* adv_data = gm_8017E424();
     if (adv_data->x0.xC.x11 != 1) {
@@ -1559,7 +1565,7 @@ static inline void inline0(MinorScene* scene)
 
 void gm_801B4B28(MinorScene* scene)
 {
-    inline0(scene);
+    gm_801B4B28_inline0(scene);
     gm_801B4064(scene);
 }
 
