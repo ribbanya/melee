@@ -2144,16 +2144,17 @@ void ftCo_AppealS_Coll(Fighter_GObj* gobj)
     ft_80084104(gobj);
 }
 
-void ftCo_800DEE84(Fighter_GObj* gobj, int arg1, char* arg2, u32 arg3, f32 arg4, f32 arg5)
+void ftCo_800DEE84(Fighter_GObj* gobj, int x2128, float hold_frame,
+                   float damage_mul)
 {
     Fighter* fp = GET_FIGHTER(gobj);
     SmashAttr* attr = &fp->smash_attrs;
 
     attr->state = SmashState_PreCharge;
     attr->x2118_frames = 0.0F;
-    attr->x211C_holdFrame = arg4;
-    attr->x2120_damageMul = arg5;
-    attr->x2128 = arg1;
+    attr->x211C_holdFrame = hold_frame;
+    attr->x2120_damageMul = damage_mul;
+    attr->x2128 = x2128;
 }
 
 void ftCo_800DEEA8(Fighter_GObj* gobj)
@@ -2275,7 +2276,9 @@ static inline bool canUseCstick(Fighter* fp)
 
 bool ftCo_800DF1C8(Fighter* fp)
 {
-    if (ABS(fp->input.cstick1.x) < p_ftCommonData->x3C && ABS(fp->input.cstick.x) >= p_ftCommonData->x3C) {
+    if (ABS(fp->input.cstick1.x) < p_ftCommonData->x3C &&
+        ABS(fp->input.cstick.x) >= p_ftCommonData->x3C)
+    {
         return true;
     }
     return false;

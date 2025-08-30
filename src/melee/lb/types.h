@@ -814,6 +814,14 @@ struct CommandInfo {
                 u32 code : 6;
                 u32 unk0 : 1;
             } unk34; ///< #ftAction_80072CD8
+            struct {
+                u32 code : 6;
+                u32 unk0 : 10;
+            } unk35; ///< #ftAction_80073008 command 0
+            struct {
+                u32 unk0 : 16;
+                u32 unk1 : 16;
+            } unk36; ///< #ftAction_80073008 command 1
         }* u;
     };
     u32 loop_count; // 0x0C

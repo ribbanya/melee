@@ -353,7 +353,8 @@
 /* 0DED30 */ void ftCo_AppealS_IASA(Fighter_GObj* gobj);
 /* 0DEE44 */ void ftCo_AppealS_Phys(Fighter_GObj* gobj);
 /* 0DEE64 */ void ftCo_AppealS_Coll(Fighter_GObj* gobj);
-/* 0DEE84 */ void ftCo_800DEE84(Fighter_GObj* gobj, int, char*, u32, float, float);
+/* 0DEE84 */ void ftCo_800DEE84(Fighter_GObj* gobj, int x2128,
+                                float hold_frame, float damage_mul);
 /* 0DEEA8 */ void ftCo_800DEEA8(Fighter_GObj* gobj);
 /* 0DEEB8 */ float ftCo_800DEEB8(Fighter* fp, float);
 /* 0DEEE8 */ Vec2* ftCo_800DEEE8(Fighter* fp, Vec2* shift);
