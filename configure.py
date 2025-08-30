@@ -236,7 +236,7 @@ cflags_base = [
     "-fp_contract on",
     "-O4,p",
     "-multibyte",
-    "-enum int",
+    "-enum min",
     "-nodefaults",
     "-inline auto",
     '-pragma "cats off"',

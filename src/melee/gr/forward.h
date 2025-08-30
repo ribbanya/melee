@@ -143,6 +143,8 @@ typedef enum InternalStageId {
 
     /// Home run contest
     HOMERUN = 0x43,
+
+    InternalStageId_PAD = S32_MAX,
 } InternalStageId;
 
 typedef struct unkCastle unkCastle;

@@ -43,6 +43,7 @@ enum EntityKind {
     EntityKind_None,
     EntityKind_Fighter,
     EntityKind_Item,
+    EntityKind_PAD = S32_MAX,
 };
 
 typedef struct DmgLogEntry {
