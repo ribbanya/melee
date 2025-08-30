@@ -102,10 +102,7 @@ parser.add_argument(
     help="path to sjiswrap.exe (optional)",
 )
 parser.add_argument(
-    "--ninja",
-    metavar="BINARY",
-    type=Path,
-    help="path to ninja binary (optional)"
+    "--ninja", metavar="BINARY", type=Path, help="path to ninja binary (optional)"
 )
 parser.add_argument(
     "--verbose",
@@ -236,7 +233,6 @@ cflags_base = [
     "-fp_contract on",
     "-O4,p",
     "-multibyte",
-    "-enum min",
     "-nodefaults",
     "-inline auto",
     '-pragma "cats off"',
@@ -303,9 +299,9 @@ includes_base = [
     "extern/dolphin/include",
 ]
 
-cflags_melee = [
-    *cflags_base,
-]
+cflags_melee = [*cflags_base, "-enum min"]
+
+cflags_base = [*cflags_base, "-enum int"]
 
 config.linker_version = "GC/1.3.2"
 
@@ -346,9 +342,7 @@ def Lib(
     return lib
 
 
-def DolphinLib(
-    lib_name: str, objects: Objects, fix_epilogue=False
-) -> Library:
+def DolphinLib(lib_name: str, objects: Objects, fix_epilogue=False) -> Library:
     cflags = cflags_base + [
         "-requireprotos",
         "-fp_contract off",
@@ -376,6 +370,7 @@ def SysdolphinLib(lib_name: str, objects: Objects) -> Library:
     return Lib(
         lib_name,
         objects,
+        cflags=cflags_melee,
         includes=[
             *includes_base,
             "src/sysdolphin",
@@ -388,6 +383,7 @@ def MeleeLib(lib_name: str, objects: Objects) -> Library:
     return Lib(
         lib_name,
         objects,
+        cflags=cflags_melee,
         includes=[
             *includes_base,
             "src/melee",
@@ -1614,7 +1610,11 @@ config.libs = [
             Object(NonMatching, "sysdolphin/baselib/gobjinit.c"),
             Object(NonMatching, "sysdolphin/baselib/particle.c"),
             Object(NonMatching, "sysdolphin/baselib/psdisp.c"),
-            Object(Matching, "sysdolphin/baselib/psdisptev.c", extra_cflags=["-Cpp_exceptions on"]),
+            Object(
+                Matching,
+                "sysdolphin/baselib/psdisptev.c",
+                extra_cflags=["-Cpp_exceptions on"],
+            ),
             Object(NonMatching, "sysdolphin/baselib/psappsrt.c"),
             Object(NonMatching, "sysdolphin/baselib/sobjlib.c"),
             Object(NonMatching, "sysdolphin/baselib/sislib.c"),
@@ -1624,7 +1624,11 @@ config.libs = [
             Object(NonMatching, "sysdolphin/baselib/hsd_3B27.c"),
             Object(NonMatching, "sysdolphin/baselib/hsd_3B2B.c"),
             Object(NonMatching, "sysdolphin/baselib/hsd_3B2E.c"),
-            Object(Matching, "sysdolphin/baselib/hsd_3B33.c", extra_cflags=["-Cpp_exceptions on"]),
+            Object(
+                Matching,
+                "sysdolphin/baselib/hsd_3B33.c",
+                extra_cflags=["-Cpp_exceptions on"],
+            ),
             Object(NonMatching, "sysdolphin/baselib/hsd_3B34.c"),
         ],
     ),
