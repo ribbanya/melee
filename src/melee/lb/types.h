@@ -810,6 +810,10 @@ struct CommandInfo {
                 u16 rangeY : 16;
                 u16 rangeX : 16;
             } test5;
+            struct {
+                u32 code : 6;
+                u32 unk0 : 1;
+            } unk34; ///< #ftAction_80072CD8
         }* u;
     };
     u32 loop_count; // 0x0C
