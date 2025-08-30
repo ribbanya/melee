@@ -43,7 +43,7 @@ typedef struct _StaticPlayer {
         Vec3 byIndex[4];
     } player_poses;
 
-    /*0x40*/ f32 facing_direction;
+    /*0x40*/ float facing_direction;
 
     /*0x44*/ u8 costume_id; // 00 = normal, 01 = red, 02 = blue, 03 = green
                             // (reflected in icon immediately)
@@ -56,16 +56,16 @@ typedef struct _StaticPlayer {
     /*0x4B*/ u8 handicap;
 
     /*0x4C*/ s8 unk4C;
-    /*0x4D*/ s8 unk4D;
+    /*0x4D*/ u8 unk4D;
     /*0x4E*/ s8 unk4E;
     /*0x4F*/ s8 unk4F;
 
-    /*0x50*/ f32 unk50;
+    /*0x50*/ float unk50;
 
-    /*0x54*/ f32 attack_ratio;
-    /*0x58*/ f32 defense_ratio;
+    /*0x54*/ float attack_ratio;
+    /*0x58*/ float defense_ratio;
 
-    /*0x5C*/ f32 model_scale;
+    /*0x5C*/ float model_scale;
 
     union {
         struct {
@@ -177,18 +177,18 @@ void Player_80032768(int slot, Vec3* arg_vec);
 void Player_80032828(int slot, int index, Vec3* arg_vec);
 void Player_800328D4(int slot, Vec3* arg_vec);
 void Player_80032A04(int slot, Vec3* arg_vec);
-void Player_SetPlayerAndEntityFacingDirection(int slot, f32 direction);
-f32 Player_80032BB0(int slot);
-void Player_SetScale(int slot, f32 scale);
+void Player_SetPlayerAndEntityFacingDirection(int slot, float direction);
+float Player_80032BB0(int slot);
+void Player_SetScale(int slot, float scale);
 void Player_GetSpawnPlatformPos(int slot, Vec3* arg_vec);
 void Player_SetSpawnPlatformPos(int slot, Vec3* arg_vec);
 void Player_GetSomePos(int slot, Vec3* arg_vec);
 void Player_SetSomePos(int slot, Vec3* arg_vec);
 int Player_80032F30(int slot);
 void Player_80032FA4(int slot, int arg);
-f32 Player_GetFacingDirection(int slot);
-void Player_SetFacingDirection(int slot, f32 direction);
-void Player_SetFacingDirectionConditional(int slot, bool b, f32 direction);
+float Player_GetFacingDirection(int slot);
+void Player_SetFacingDirection(int slot, float direction);
+void Player_SetFacingDirectionConditional(int slot, bool b, float direction);
 u32 Player_GetCostumeId(int slot);
 void Player_SetCostumeId(int slot, int costume_id);
 u8 Player_GetControllerIndex(int slot);
@@ -203,13 +203,13 @@ int Player_GetCpuType(int slot);
 void Player_SetPlayerAndEntityCpuType(int slot, int cpu_type);
 int Player_GetHandicap(int slot);
 void Player_SetHandicap(int slot, s8 handicap);
-f32 Player_GetUnk50(int slot);
-f32 Player_GetAttackRatio(int slot);
-void Player_SetAttackRatio(int slot, f32 attack_ratio);
-f32 Player_GetDefenseRatio(int slot);
-void Player_SetDefenseRatio(int slot, f32 defense_ratio);
-f32 Player_GetModelScale(int slot);
-void Player_SetModelScale(int slot, f32 model_scale);
+float Player_GetUnk50(int slot);
+float Player_GetAttackRatio(int slot);
+void Player_SetAttackRatio(int slot, float attack_ratio);
+float Player_GetDefenseRatio(int slot);
+void Player_SetDefenseRatio(int slot, float defense_ratio);
+float Player_GetModelScale(int slot);
+void Player_SetModelScale(int slot, float model_scale);
 int Player_GetStocks(int slot);
 int Player_GetP1Stock(void);
 void Player_SetStocks(int slot, int stocks);
@@ -262,25 +262,25 @@ int Player_GetFlagsBit1(int slot);
 void Player_SetFlagsBit1(int slot);
 void Player_UnsetFlagsBit1(int slot);
 int Player_GetFlagsBit3(int slot);
-void Player_SetFlagsBit3(int slot, u8 bit3);
+void Player_SetFlagsBit3(int slot, bool bit3);
 int Player_GetFlagsBit4(int slot);
-u8 Player_GetFlagsBit5(int slot);                ///< player is metal
-void Player_SetFlagsBit5(int slot, u8 is_metal); ///< player is metal
+u8 Player_GetFlagsBit5(int slot);                  ///< player is metal
+void Player_SetFlagsBit5(int slot, bool is_metal); ///< player is metal
 u8 Player_GetFlagsBit6(int slot);
-void Player_SetFlagsBit6(int slot, u8 bit6);
+void Player_SetFlagsBit6(int slot, bool bit6);
 u8 Player_GetFlagsBit7(int slot);
-void Player_SetFlagsBit7(int slot, u8 bit7);
+void Player_SetFlagsBit7(int slot, bool bit7);
 bool Player_GetMoreFlagsBit0(int slot);
 bool Player_GetMoreFlagsBit1(int slot);
-void Player_SetMoreFlagsBit1(int slot, u8 bit1);
+void Player_SetMoreFlagsBit1(int slot, bool bit1);
 int Player_GetUnk4D(int slot);
-void Player_SetUnk4D(int slot, s8 unk4D);
+void Player_SetUnk4D(int slot, bool unk4D);
 u8 Player_GetFlagsAEBit1(int slot);
 
 #ifdef BUGFIX
-void Player_SetFlagsAEBit1(int slot, u8 bit1);
+void Player_SetFlagsAEBit1(int slot, bool bit1);
 #else
-u8 Player_SetFlagsAEBit1(int slot, u8 bit1);
+bool Player_SetFlagsAEBit1(int slot, bool bit1);
 #endif
 
 u8 Player_GetUnk4C(int slot);
@@ -299,7 +299,7 @@ u8 Player_GetUnk45(int slot);
 void Player_UpdateJoystickCountByIndex(int slot, int index);
 int Player_GetJoystickCountByIndex(int slot, int index);
 void Player_800366DC(int slot, int arg1);
-void Player_80036790(int slot, f32 arg1);
+void Player_80036790(int slot, float arg1);
 void Player_80036844(int slot, int arg1);
 bool Player_800368F8(int slot);
 void Player_80036978(int slot, int arg1);
@@ -314,7 +314,7 @@ int Player_80036EA0(int slot);
 void Player_80036F34(int slot, int arg1);
 void Player_80037054(int slot, int arg1);
 void Player_SetOtherStamina(int slot, int stamina);
-void Player_SetFlagsAEBit0(int slot, u8 bit0);
+void Player_SetFlagsAEBit0(int slot, bool bit0);
 int Player_80033BB8(int slot);
 /* 4D6470 */ extern pl_804D6470_t* pl_804D6470;
 

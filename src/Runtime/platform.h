@@ -8,6 +8,8 @@
 /// The underlying type of an @c enum, used as a placeholder
 typedef int enum_t;
 
+typedef unsigned int uint;
+
 /// A @c void callback with no arguments.
 typedef void (*Event)(void);
 

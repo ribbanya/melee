@@ -1267,7 +1267,7 @@ int Player_GetFlagsAEBit0(int slot)
     return bit0;
 }
 
-void Player_SetFlagsAEBit0(int slot, u8 bit0)
+void Player_SetFlagsAEBit0(int slot, bool bit0)
 {
     StaticPlayer* player;
 
@@ -1550,7 +1550,7 @@ int Player_GetFlagsBit3(int slot)
     return bit3;
 }
 
-void Player_SetFlagsBit3(int slot, u8 bit3)
+void Player_SetFlagsBit3(int slot, bool bit3)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1578,7 +1578,7 @@ u8 Player_GetFlagsBit5(int slot)
     return is_metal;
 }
 
-void Player_SetFlagsBit5(int slot, u8 is_metal)
+void Player_SetFlagsBit5(int slot, bool is_metal)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1596,7 +1596,7 @@ u8 Player_GetFlagsBit6(int slot)
     return bit6;
 }
 
-void Player_SetFlagsBit6(int slot, u8 bit6)
+void Player_SetFlagsBit6(int slot, bool bit6)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1614,7 +1614,7 @@ u8 Player_GetFlagsBit7(int slot)
     return bit7;
 }
 
-void Player_SetFlagsBit7(int slot, u8 bit7)
+void Player_SetFlagsBit7(int slot, bool bit7)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1642,7 +1642,7 @@ bool Player_GetMoreFlagsBit1(int slot)
     return bit1;
 }
 
-void Player_SetMoreFlagsBit1(int slot, u8 bit1)
+void Player_SetMoreFlagsBit1(int slot, bool bit1)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1660,7 +1660,7 @@ int Player_GetUnk4D(int slot)
     return unk4D;
 }
 
-void Player_SetUnk4D(int slot, s8 unk4D)
+void Player_SetUnk4D(int slot, bool unk4D)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1681,7 +1681,7 @@ u8 Player_GetFlagsAEBit1(int slot)
 #ifdef BUGFIX
 void Player_SetFlagsAEBit1(int slot, u8 bit1)
 #else
-u8 Player_SetFlagsAEBit1(int slot, u8 bit1)
+bool Player_SetFlagsAEBit1(int slot, bool bit1)
 #endif
 {
     StaticPlayer* player;
