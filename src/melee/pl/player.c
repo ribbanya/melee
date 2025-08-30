@@ -35,7 +35,7 @@ typedef struct _ftMapping {
 } ftMapping;
 
 struct plAllocInfo {
-    s32 internal_id;
+    int internal_id;
     u8 slot;
     s8 unk8;
     struct {
@@ -152,7 +152,7 @@ static void func_8008688C_wrapper(StaticPlayer* player)
     if ((player->slot_type == Gm_PKind_Human) ||
         (player->slot_type == Gm_PKind_Cpu))
     {
-        s32 i;
+        int i;
         for (i = 0; i < 2; i++) {
             if ((player->player_entity[player->transformed[i]])) {
                 ftLib_8008688C(player->player_entity[player->transformed[i]]);
@@ -203,8 +203,8 @@ bool Player_800319C4(int slot, bool arg1)
 void Player_80031AD0(int slot)
 {
     struct plAllocInfo first_struct;
-    s32 internal_id;
-    s32 has_transformation;
+    int internal_id;
+    int has_transformation;
     s8 byte_check;
     s8* offset_arr;
 
@@ -293,12 +293,12 @@ void Player_80031D2C(enum_t id, int slot)
     }
 }
 
-void Player_80031DA8(s32 param_1, s32 param_2)
+void Player_80031DA8(int param_1, int param_2)
 {
     ftKb_SpecialN_800EED50(param_1, param_2);
 }
 
-void Player_80031DC8(void func_arg(s32, s32))
+void Player_80031DC8(void func_arg(int, int))
 {
     int slot;
     for (slot = 0; slot < 6; slot++) {
@@ -321,7 +321,7 @@ void Player_80031DC8(void func_arg(s32, s32))
 
 void Player_80031EBC(int slot)
 {
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
 
     for (i = 0; i < 2; i++) {
@@ -338,7 +338,7 @@ void Player_80031EBC(int slot)
     }
 }
 
-void Player_80031FB0(int slot, s32 entity_index)
+void Player_80031FB0(int slot, int entity_index)
 {
     u8 _[4];
 
@@ -406,9 +406,9 @@ bool Player_8003221C(int slot)
     return false;
 }
 
-s32 Player_GetPlayerState(s32 slot)
+int Player_GetPlayerState(int slot)
 {
-    s32 state;
+    int state;
     StaticPlayer* player;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -426,7 +426,7 @@ CharacterKind Player_GetPlayerCharacter(int slot)
     return player->player_character;
 }
 
-void Player_SetPlayerCharacter(s32 slot, CharacterKind value)
+void Player_SetPlayerCharacter(int slot, CharacterKind value)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -434,7 +434,7 @@ void Player_SetPlayerCharacter(s32 slot, CharacterKind value)
     player->player_character = value;
 }
 
-Gm_PKind Player_GetPlayerSlotType(s32 slot)
+Gm_PKind Player_GetPlayerSlotType(int slot)
 {
     Gm_PKind slot_type;
     StaticPlayer* player;
@@ -444,7 +444,7 @@ Gm_PKind Player_GetPlayerSlotType(s32 slot)
     return slot_type;
 }
 
-Gm_PKind Player_8003248C(s32 slot, bool arg1)
+Gm_PKind Player_8003248C(int slot, bool arg1)
 {
     Gm_PKind slot_type;
     struct Unk_Struct_w_Array* unk_struct =
@@ -469,7 +469,7 @@ Gm_PKind Player_8003248C(s32 slot, bool arg1)
     return slot_type;
 }
 
-void Player_SetSlottype(s32 slot, Gm_PKind value)
+void Player_SetSlottype(int slot, Gm_PKind value)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -477,7 +477,7 @@ void Player_SetSlottype(s32 slot, Gm_PKind value)
     player->slot_type = value;
 }
 
-s8 Player_800325C8(s32 slot, bool b)
+s8 Player_800325C8(int slot, bool b)
 {
     if (!b) {
         return ftMapping_list[slot].internal_id;
@@ -488,13 +488,13 @@ s8 Player_800325C8(s32 slot, bool b)
     return -1;
 }
 
-s8 Player_80032610(s32 slot, bool arg1)
+s8 Player_80032610(int slot, bool arg1)
 { //// decomp.me/scratch/pHTx2
 
     struct Unk_Struct_w_Array* some_struct =
         (struct Unk_Struct_w_Array*) &str_PdPmdat_start_of_data;
     StaticPlayer* player;
-    s32 error_value = -1;
+    int error_value = -1;
 
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -509,7 +509,7 @@ s8 Player_80032610(s32 slot, bool arg1)
     return error_value;
 }
 
-void Player_LoadPlayerCoords(s32 slot, Vec3* arg_vec)
+void Player_LoadPlayerCoords(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Vec3* player_vecs;
@@ -521,7 +521,7 @@ void Player_LoadPlayerCoords(s32 slot, Vec3* arg_vec)
     *arg_vec = player_vecs[player->transformed[0]];
 }
 
-void Player_80032768(s32 slot, Vec3* arg_vec)
+void Player_80032768(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Vec3* player_vecs;
@@ -542,7 +542,7 @@ void Player_80032768(s32 slot, Vec3* arg_vec)
     *dst_vec2 = *arg_vec;
 }
 
-void Player_80032828(s32 slot, s32 index, Vec3* arg_vec)
+void Player_80032828(int slot, int index, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Vec3* player_vecs;
@@ -605,7 +605,7 @@ void Player_80032A04(int slot, Vec3* arg_vec)
     }
 }
 
-void Player_SetPlayerAndEntityFacingDirection(s32 slot, f32 facing_dir)
+void Player_SetPlayerAndEntityFacingDirection(int slot, f32 facing_dir)
 {
     StaticPlayer* player;
     int i;
@@ -623,7 +623,7 @@ void Player_SetPlayerAndEntityFacingDirection(s32 slot, f32 facing_dir)
     }
 }
 
-f32 Player_80032BB0(s32 slot)
+f32 Player_80032BB0(int slot)
 {
     StaticPlayer* player;
     f32 temp;
@@ -633,10 +633,10 @@ f32 Player_80032BB0(s32 slot)
     return temp / player->model_scale;
 }
 
-void Player_SetScale(s32 slot, f32 scale)
+void Player_SetScale(int slot, f32 scale)
 {
     StaticPlayer* player;
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     player->model_scale = scale;
@@ -648,7 +648,7 @@ void Player_SetScale(s32 slot, f32 scale)
     }
 }
 
-void Player_GetSpawnPlatformPos(s32 slot, Vec3* arg_vec)
+void Player_GetSpawnPlatformPos(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -656,7 +656,7 @@ void Player_GetSpawnPlatformPos(s32 slot, Vec3* arg_vec)
     *arg_vec = player->player_poses.byVecName.spawn_platform_final_pos;
 }
 
-void Player_SetSpawnPlatformPos(s32 slot, Vec3* arg_vec)
+void Player_SetSpawnPlatformPos(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -664,7 +664,7 @@ void Player_SetSpawnPlatformPos(s32 slot, Vec3* arg_vec)
     player->player_poses.byVecName.spawn_platform_final_pos = *arg_vec;
 }
 
-void Player_GetSomePos(s32 slot, Vec3* arg_vec)
+void Player_GetSomePos(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -672,7 +672,7 @@ void Player_GetSomePos(s32 slot, Vec3* arg_vec)
     *arg_vec = player->player_poses.byVecName.some_other_player_pos;
 }
 
-void Player_SetSomePos(s32 slot, Vec3* arg_vec)
+void Player_SetSomePos(int slot, Vec3* arg_vec)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -680,17 +680,17 @@ void Player_SetSomePos(s32 slot, Vec3* arg_vec)
     player->player_poses.byVecName.some_other_player_pos = *arg_vec;
 }
 
-s32 Player_80032F30(s32 slot)
+int Player_80032F30(int slot)
 {
     StaticPlayer* player;
-    s32 value;
+    int value;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     value = player->unk4E;
     return value;
 }
 
-void Player_80032FA4(s32 slot, s32 arg)
+void Player_80032FA4(int slot, int arg)
 {
     StaticPlayer* player;
 
@@ -701,7 +701,7 @@ void Player_80032FA4(s32 slot, s32 arg)
     player->unk4E = arg;
 }
 
-f32 Player_GetFacingDirection(s32 slot)
+f32 Player_GetFacingDirection(int slot)
 {
     u8 _[4];
     StaticPlayer* player;
@@ -710,7 +710,7 @@ f32 Player_GetFacingDirection(s32 slot)
     return player->facing_direction;
 }
 
-void Player_SetFacingDirection(s32 slot, f32 direction)
+void Player_SetFacingDirection(int slot, f32 direction)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -718,7 +718,7 @@ void Player_SetFacingDirection(s32 slot, f32 direction)
     player->facing_direction = direction;
 }
 
-void Player_SetFacingDirectionConditional(s32 slot, bool b, f32 direction)
+void Player_SetFacingDirectionConditional(int slot, bool b, f32 direction)
 {
     u8 _[4];
 
@@ -936,12 +936,12 @@ void Player_SetModelScale(int slot, f32 model_scale)
     player->model_scale = model_scale;
 }
 
-s32 Player_80033BB8(int slot)
+int Player_80033BB8(int slot)
 {
     return gm_8016C5C0(slot);
 }
 
-s32 Player_GetStocks(int slot)
+int Player_GetStocks(int slot)
 {
     s8 stocks;
     StaticPlayer* player;
@@ -1011,9 +1011,9 @@ void Player_SetTotalCoins(int slot, int coins)
     player->total_coins = coins;
 }
 
-s32 Player_GetUnk98(s32 slot)
+int Player_GetUnk98(int slot)
 {
-    s32 unk98;
+    int unk98;
     StaticPlayer* player;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -1021,7 +1021,7 @@ s32 Player_GetUnk98(s32 slot)
     return unk98;
 }
 
-void Player_SetUnk98(s32 slot, s32 unk98)
+void Player_SetUnk98(int slot, int unk98)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1029,9 +1029,9 @@ void Player_SetUnk98(s32 slot, s32 unk98)
     player->unk98 = unk98;
 }
 
-s32 Player_GetUnk9C(s32 slot)
+int Player_GetUnk9C(int slot)
 {
-    s32 unk9C;
+    int unk9C;
     StaticPlayer* player;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -1039,7 +1039,7 @@ s32 Player_GetUnk9C(s32 slot)
     return unk9C;
 }
 
-void Player_SetUnk9C(s32 slot, s32 unk9C)
+void Player_SetUnk9C(int slot, int unk9C)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1047,7 +1047,7 @@ void Player_SetUnk9C(s32 slot, s32 unk9C)
     player->unk9C = unk9C;
 }
 
-HSD_GObj* Player_GetEntity(s32 slot)
+HSD_GObj* Player_GetEntity(int slot)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1067,7 +1067,7 @@ HSD_GObj* Player_GetEntityAtIndex(int slot, int index)
     return player->player_entity[entity_index];
 }
 
-void Player_SwapTransformedStates(s32 slot, s32 arg1, s32 arg2)
+void Player_SwapTransformedStates(int slot, int arg1, int arg2)
 {
     u8 temp_r5;
     StaticPlayer* player;
@@ -1079,7 +1079,7 @@ void Player_SwapTransformedStates(s32 slot, s32 arg1, s32 arg2)
     player->transformed[arg2] = temp_r5;
 }
 
-s32 Player_GetDamage(s32 slot)
+int Player_GetDamage(int slot)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1087,10 +1087,10 @@ s32 Player_GetDamage(s32 slot)
     return player->staminas.byIndex[player->transformed[0]];
 }
 
-void Player_SetHUDDamage(s32 slot, s32 arg1)
+void Player_SetHUDDamage(int slot, int arg1)
 {
     StaticPlayer* player;
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
 
     for (i = 0; i < 2; i++) {
@@ -1103,7 +1103,7 @@ void Player_SetHUDDamage(s32 slot, s32 arg1)
     }
 }
 
-void Player_SetHPByIndex(s32 slot, s32 arg1, s32 arg2)
+void Player_SetHPByIndex(int slot, int arg1, int arg2)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1112,7 +1112,7 @@ void Player_SetHPByIndex(s32 slot, s32 arg1, s32 arg2)
     player->staminas.byIndex[player->transformed[arg1]] = arg2;
 }
 
-int Player_GetOtherStamina(s32 slot)
+int Player_GetOtherStamina(int slot)
 {
     s16 stamina;
     StaticPlayer* player;
@@ -1122,7 +1122,7 @@ int Player_GetOtherStamina(s32 slot)
     return stamina;
 }
 
-void Player_SetOtherStamina(s32 slot, s32 stamina)
+void Player_SetOtherStamina(int slot, int stamina)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1130,10 +1130,10 @@ void Player_SetOtherStamina(s32 slot, s32 stamina)
     player->staminas.byName.stamina = stamina;
 }
 
-int Player_GetRemainingHP(s32 slot)
+int Player_GetRemainingHP(int slot)
 {
     StaticPlayer* player;
-    s32 result;
+    int result;
     u32 result2;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -1146,7 +1146,7 @@ int Player_GetRemainingHP(s32 slot)
     return result2;
 }
 
-bool Player_GetMoreFlagsBit2(s32 slot)
+bool Player_GetMoreFlagsBit2(int slot)
 {
     StaticPlayer* player;
     u8 bit2;
@@ -1157,7 +1157,7 @@ bool Player_GetMoreFlagsBit2(s32 slot)
     return bit2;
 }
 
-void Player_SetMoreFlagsBit2(s32 slot, u8 bit2)
+void Player_SetMoreFlagsBit2(int slot, u8 bit2)
 {
     StaticPlayer* player;
 
@@ -1167,10 +1167,10 @@ void Player_SetMoreFlagsBit2(s32 slot, u8 bit2)
     player->more_flags.b2 = bit2;
 }
 
-bool Player_GetMoreFlagsBit3(s32 slot)
+bool Player_GetMoreFlagsBit3(int slot)
 {
     StaticPlayer* player;
-    s32 bit3;
+    int bit3;
 
     Player_CheckSlot(slot);
     player = &player_slots[slot];
@@ -1179,7 +1179,7 @@ bool Player_GetMoreFlagsBit3(s32 slot)
     return bit3;
 }
 
-void Player_SetMoreFlagsBit3(s32 slot, u8 bit3)
+void Player_SetMoreFlagsBit3(int slot, u8 bit3)
 {
     StaticPlayer* player;
 
@@ -1189,7 +1189,7 @@ void Player_SetMoreFlagsBit3(s32 slot, u8 bit3)
     player->more_flags.b3 = bit3;
 }
 
-void Player_SetMoreFlagsBit4(s32 slot, u8 bit4)
+void Player_SetMoreFlagsBit4(int slot, u8 bit4)
 {
     StaticPlayer* player;
 
@@ -1199,7 +1199,7 @@ void Player_SetMoreFlagsBit4(s32 slot, u8 bit4)
     player->more_flags.b4 = bit4;
 }
 
-bool Player_GetMoreFlagsBit4(s32 slot)
+bool Player_GetMoreFlagsBit4(int slot)
 {
     StaticPlayer* player;
     u8 bit4;
@@ -1211,7 +1211,7 @@ bool Player_GetMoreFlagsBit4(s32 slot)
     return bit4;
 }
 
-bool Player_GetMoreFlagsBit5(s32 slot)
+bool Player_GetMoreFlagsBit5(int slot)
 {
     StaticPlayer* player;
     u8 bit5;
@@ -1223,7 +1223,7 @@ bool Player_GetMoreFlagsBit5(s32 slot)
     return bit5;
 }
 
-void Player_SetMoreFlagsBit5(s32 slot, u8 bit5)
+void Player_SetMoreFlagsBit5(int slot, u8 bit5)
 {
     StaticPlayer* player;
 
@@ -1233,7 +1233,7 @@ void Player_SetMoreFlagsBit5(s32 slot, u8 bit5)
     player->more_flags.b5 = bit5;
 }
 
-bool Player_GetMoreFlagsBit6(s32 slot)
+bool Player_GetMoreFlagsBit6(int slot)
 {
     StaticPlayer* player;
     u8 bit6;
@@ -1245,7 +1245,7 @@ bool Player_GetMoreFlagsBit6(s32 slot)
     return bit6;
 }
 
-void Player_SetMoreFlagsBit6(s32 slot, u8 bit6)
+void Player_SetMoreFlagsBit6(int slot, u8 bit6)
 {
     StaticPlayer* player;
 
@@ -1267,7 +1267,7 @@ int Player_GetFlagsAEBit0(int slot)
     return bit0;
 }
 
-void Player_SetFlagsAEBit0(s32 slot, u8 bit0)
+void Player_SetFlagsAEBit0(int slot, u8 bit0)
 {
     StaticPlayer* player;
 
@@ -1277,12 +1277,12 @@ void Player_SetFlagsAEBit0(s32 slot, u8 bit0)
     player->flagsAE.b0 = bit0;
 }
 
-s32 Player_GetRemainingHPByIndex(s32 slot, s32 index)
+int Player_GetRemainingHPByIndex(int slot, int index)
 {
     StaticPlayer* player;
     u32 stamina;
-    s32 result;
-    s32 result2;
+    int result;
+    int result2;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     stamina = player->staminas.byName.stamina;
@@ -1294,7 +1294,7 @@ s32 Player_GetRemainingHPByIndex(s32 slot, s32 index)
     return result2;
 }
 
-s32 Player_GetFalls(s32 slot)
+int Player_GetFalls(int slot)
 { /// decomp.me/scratch/8ijor
     StaticPlayer* player;
     struct Unk_Struct_w_Array* unkStruct =
@@ -1312,17 +1312,17 @@ s32 Player_GetFalls(s32 slot)
     return player->falls[player->transformed[0]];
 }
 
-s32 Player_GetFallsByIndex(s32 slot, s32 arg1)
+int Player_GetFallsByIndex(int slot, int arg1)
 {
     StaticPlayer* player;
-    s32 falls;
+    int falls;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     falls = player->falls[player->transformed[arg1]];
     return falls;
 }
 
-void Player_SetFalls(int slot, s32 falls)
+void Player_SetFalls(int slot, int falls)
 {
     u8 _[4];
 
@@ -1332,7 +1332,7 @@ void Player_SetFalls(int slot, s32 falls)
     player->falls[player->transformed[0]] = falls;
 }
 
-void Player_SetFallsByIndex(int slot, enum_t index, s32 falls)
+void Player_SetFallsByIndex(int slot, enum_t index, int falls)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1340,7 +1340,7 @@ void Player_SetFallsByIndex(int slot, enum_t index, s32 falls)
     player->falls[player->transformed[index]] = falls;
 }
 
-s32 Player_GetKOsByPlayerIndex(int slot, int idx)
+int Player_GetKOsByPlayerIndex(int slot, int idx)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1423,11 +1423,11 @@ u32 Player_GetSuicideCount(int slot)
     return count;
 }
 
-void Player_SetSuicideCount(s32 slot, u32 suicide_count)
+void Player_SetSuicideCount(int slot, u32 suicide_count)
 {
     StaticPlayer* player;
 
-    if (suicide_count > 0xffff || 0 > (s32) suicide_count) {
+    if (suicide_count > 0xffff || 0 > (int) suicide_count) {
         return;
     }
 
@@ -1436,7 +1436,7 @@ void Player_SetSuicideCount(s32 slot, u32 suicide_count)
     player->suicide_count = suicide_count;
 }
 
-void Player_IncSuicideCount(s32 slot, s32 condition)
+void Player_IncSuicideCount(int slot, int condition)
 {
     StaticPlayer* player;
     u16 suicide_count;
@@ -1453,7 +1453,7 @@ void Player_IncSuicideCount(s32 slot, s32 condition)
     }
 }
 
-bool Player_800353BC(s32 slot)
+bool Player_800353BC(int slot)
 {
     StaticPlayer* player;
 
@@ -1467,7 +1467,7 @@ bool Player_800353BC(s32 slot)
     return 0;
 }
 
-bool Player_8003544C(s32 slot, bool condition)
+bool Player_8003544C(int slot, bool condition)
 {
     u8 _[4];
 
@@ -1511,7 +1511,7 @@ void Player_SetNametagSlotID(int slot, int nametag_slot_id)
     player->nametag_slot_id = nametag_slot_id;
 }
 
-s32 Player_GetFlagsBit1(s32 slot)
+int Player_GetFlagsBit1(int slot)
 {
     StaticPlayer* player;
     u8 bit1;
@@ -1521,7 +1521,7 @@ s32 Player_GetFlagsBit1(s32 slot)
     return bit1;
 }
 
-void Player_SetFlagsBit1(s32 slot)
+void Player_SetFlagsBit1(int slot)
 {
     StaticPlayer* player;
     s8 one = 1;
@@ -1540,7 +1540,7 @@ void Player_UnsetFlagsBit1(int slot)
     player->flags.b1 = false;
 }
 
-s32 Player_GetFlagsBit3(s32 slot)
+int Player_GetFlagsBit3(int slot)
 {
     StaticPlayer* player;
     u8 bit3;
@@ -1550,7 +1550,7 @@ s32 Player_GetFlagsBit3(s32 slot)
     return bit3;
 }
 
-void Player_SetFlagsBit3(s32 slot, u8 bit3)
+void Player_SetFlagsBit3(int slot, u8 bit3)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1568,7 +1568,7 @@ int Player_GetFlagsBit4(int slot)
     return bit4;
 }
 
-u8 Player_GetFlagsBit5(s32 slot)
+u8 Player_GetFlagsBit5(int slot)
 {
     StaticPlayer* player;
     u8 is_metal;
@@ -1578,7 +1578,7 @@ u8 Player_GetFlagsBit5(s32 slot)
     return is_metal;
 }
 
-void Player_SetFlagsBit5(s32 slot, u8 is_metal)
+void Player_SetFlagsBit5(int slot, u8 is_metal)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1586,7 +1586,7 @@ void Player_SetFlagsBit5(s32 slot, u8 is_metal)
     player->flags.is_metal = is_metal;
 }
 
-u8 Player_GetFlagsBit6(s32 slot)
+u8 Player_GetFlagsBit6(int slot)
 {
     StaticPlayer* player;
     u8 bit6;
@@ -1596,7 +1596,7 @@ u8 Player_GetFlagsBit6(s32 slot)
     return bit6;
 }
 
-void Player_SetFlagsBit6(s32 slot, u8 bit6)
+void Player_SetFlagsBit6(int slot, u8 bit6)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1604,7 +1604,7 @@ void Player_SetFlagsBit6(s32 slot, u8 bit6)
     player->flags.b6 = bit6;
 }
 
-u8 Player_GetFlagsBit7(s32 slot)
+u8 Player_GetFlagsBit7(int slot)
 {
     StaticPlayer* player;
     u8 bit7;
@@ -1614,7 +1614,7 @@ u8 Player_GetFlagsBit7(s32 slot)
     return bit7;
 }
 
-void Player_SetFlagsBit7(s32 slot, u8 bit7)
+void Player_SetFlagsBit7(int slot, u8 bit7)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1622,7 +1622,7 @@ void Player_SetFlagsBit7(s32 slot, u8 bit7)
     player->flags.b7 = bit7;
 }
 
-bool Player_GetMoreFlagsBit0(s32 slot)
+bool Player_GetMoreFlagsBit0(int slot)
 {
     StaticPlayer* player;
     u8 bit0;
@@ -1632,7 +1632,7 @@ bool Player_GetMoreFlagsBit0(s32 slot)
     return bit0;
 }
 
-bool Player_GetMoreFlagsBit1(s32 slot)
+bool Player_GetMoreFlagsBit1(int slot)
 {
     StaticPlayer* player;
     u8 bit1;
@@ -1642,7 +1642,7 @@ bool Player_GetMoreFlagsBit1(s32 slot)
     return bit1;
 }
 
-void Player_SetMoreFlagsBit1(s32 slot, u8 bit1)
+void Player_SetMoreFlagsBit1(int slot, u8 bit1)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1650,7 +1650,7 @@ void Player_SetMoreFlagsBit1(s32 slot, u8 bit1)
     player->more_flags.b1 = bit1;
 }
 
-s32 Player_GetUnk4D(s32 slot)
+int Player_GetUnk4D(int slot)
 {
     StaticPlayer* player;
     u8 unk4D;
@@ -1660,7 +1660,7 @@ s32 Player_GetUnk4D(s32 slot)
     return unk4D;
 }
 
-void Player_SetUnk4D(s32 slot, s8 unk4D)
+void Player_SetUnk4D(int slot, s8 unk4D)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1668,7 +1668,7 @@ void Player_SetUnk4D(s32 slot, s8 unk4D)
     player->unk4D = unk4D;
 }
 
-u8 Player_GetFlagsAEBit1(s32 slot)
+u8 Player_GetFlagsAEBit1(int slot)
 {
     StaticPlayer* player;
     u8 bit1;
@@ -1690,7 +1690,7 @@ u8 Player_SetFlagsAEBit1(int slot, u8 bit1)
     player->flagsAE.b1 = bit1;
 }
 
-u8 Player_GetUnk4C(s32 slot)
+u8 Player_GetUnk4C(int slot)
 {
     StaticPlayer* player;
     u8 unk4C;
@@ -1700,7 +1700,7 @@ u8 Player_GetUnk4C(s32 slot)
     return unk4C;
 }
 
-void Player_SetUnk4C(s32 slot, u8 unk4C)
+void Player_SetUnk4C(int slot, u8 unk4C)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1708,7 +1708,7 @@ void Player_SetUnk4C(s32 slot, u8 unk4C)
     player->unk4C = unk4C;
 }
 
-bool Player_80036058(s32 slot)
+bool Player_80036058(int slot)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1716,7 +1716,7 @@ bool Player_80036058(s32 slot)
     return ftLib_80086F4C(player->player_entity[player->transformed[0]]);
 }
 
-float Player_800360D8(s32 slot)
+float Player_800360D8(int slot)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1724,7 +1724,7 @@ float Player_800360D8(s32 slot)
     return ftLib_80086F80(player->player_entity[player->transformed[0]]);
 }
 
-void Player_SetStructFunc(s32 slot, void* arg_func)
+void Player_SetStructFunc(int slot, void* arg_func)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1742,7 +1742,7 @@ pl_800386D8_t* Player_GetTotalAttackCountPtr(int slot)
     return attack_count;
 }
 
-StaleMoveTable* Player_GetStaleMoveTableIndexPtr(s32 slot)
+StaleMoveTable* Player_GetStaleMoveTableIndexPtr(int slot)
 {
     StaticPlayer* player;
     StaleMoveTable* stale_move_table;
@@ -1762,7 +1762,7 @@ int* Player_GetUnk6A8Ptr(int slot)
     return unk6A8;
 }
 
-pl_StaleMoveTableExt_t* Player_GetStaleMoveTableIndexPtr2(s32 slot)
+pl_StaleMoveTableExt_t* Player_GetStaleMoveTableIndexPtr2(int slot)
 {
     StaticPlayer* player;
     pl_StaleMoveTableExt_t* stale_move_table;
@@ -1772,7 +1772,7 @@ pl_StaleMoveTableExt_t* Player_GetStaleMoveTableIndexPtr2(s32 slot)
     return stale_move_table;
 }
 
-s32 Player_80036394(s32 slot)
+int Player_80036394(int slot)
 {
     StaticPlayer* player;
     HSD_GObj* entity;
@@ -1787,7 +1787,7 @@ s32 Player_80036394(s32 slot)
     return -1;
 }
 
-s32 Player_80036428(s32 slot)
+int Player_80036428(int slot)
 {
     StaticPlayer* player;
     HSD_GObj* entity;
@@ -1802,7 +1802,7 @@ s32 Player_80036428(s32 slot)
     return 6;
 }
 
-void Player_SetUnk45(s32 slot, int unk45)
+void Player_SetUnk45(int slot, int unk45)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1810,7 +1810,7 @@ void Player_SetUnk45(s32 slot, int unk45)
     player->unk45 = unk45;
 }
 
-u8 Player_GetUnk45(s32 slot)
+u8 Player_GetUnk45(int slot)
 {
     StaticPlayer* player;
     Player_CheckSlot(slot);
@@ -1822,30 +1822,30 @@ u8 Player_GetUnk45(s32 slot)
     return 4;
 }
 
-void Player_UpdateJoystickCountByIndex(s32 slot, s32 index)
+void Player_UpdateJoystickCountByIndex(int slot, int index)
 {
     StaticPlayer* player;
-    s32 transformed;
+    int transformed;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     transformed = player->transformed[index];
     player->joystick_direction_input_count[transformed]++;
 }
 
-s32 Player_GetJoystickCountByIndex(s32 slot, s32 index)
+int Player_GetJoystickCountByIndex(int slot, int index)
 {
     StaticPlayer* player;
-    s32 transformed;
+    int transformed;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
     transformed = player->transformed[index];
     return player->joystick_direction_input_count[transformed];
 }
 
-void Player_800366DC(s32 slot, s32 arg1)
+void Player_800366DC(int slot, int arg1)
 {
     StaticPlayer* player;
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
 
@@ -1856,10 +1856,10 @@ void Player_800366DC(s32 slot, s32 arg1)
     }
 }
 
-void Player_80036790(s32 slot, f32 arg1)
+void Player_80036790(int slot, f32 arg1)
 {
     StaticPlayer* player;
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
 
@@ -1871,10 +1871,10 @@ void Player_80036790(s32 slot, f32 arg1)
     }
 }
 
-void Player_80036844(s32 slot, s32 arg1)
+void Player_80036844(int slot, int arg1)
 {
     StaticPlayer* player;
-    s32 i;
+    int i;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
 
@@ -1893,7 +1893,7 @@ bool Player_800368F8(int slot)
     return ftLib_80086BB4(player->player_entity[player->transformed[0]]);
 }
 
-void Player_80036978(s32 slot, s32 arg1)
+void Player_80036978(int slot, int arg1)
 {
     StaticPlayer* player;
 
@@ -1907,7 +1907,7 @@ void Player_80036978(s32 slot, s32 arg1)
                    (Vec3*) arg1);
 }
 
-void Player_InitOrResetPlayer(s32 slot)
+void Player_InitOrResetPlayer(int slot)
 {
     StaticPlayer* player;
     u8* transformed0;
@@ -2019,13 +2019,13 @@ void Player_InitOrResetPlayer(s32 slot)
     player->struct_func = 0;
 }
 
-void Player_80036CF0(s32 slot)
+void Player_80036CF0(int slot)
 {
     Player_InitOrResetPlayer(slot);
     pl_8003891C(slot);
 }
 
-void Player_80036D24(s32 slot)
+void Player_80036D24(int slot)
 {
     Player_InitOrResetPlayer(slot);
     pl_80038F10(slot);
@@ -2058,7 +2058,7 @@ void Player_80036DD8(void)
     pl_804D6470 = *sp8;
 }
 
-void Player_80036E20(CharacterKind ckind, HSD_Archive* archive, s32 arg2)
+void Player_80036E20(CharacterKind ckind, HSD_Archive* archive, int arg2)
 {
     struct Unk_Struct_w_Array* unkStruct =
         (struct Unk_Struct_w_Array*) &str_PdPmdat_start_of_data;
@@ -2070,7 +2070,7 @@ void Player_80036E20(CharacterKind ckind, HSD_Archive* archive, s32 arg2)
     }
 }
 
-s32 Player_80036EA0(s32 slot)
+int Player_80036EA0(int slot)
 {
     StaticPlayer* player;
     HSD_GObj* entity;
@@ -2081,13 +2081,13 @@ s32 Player_80036EA0(s32 slot)
 
     if (entity) {
         /// @todo Eliminate cast.
-        return (s32) ftLib_800865F0(entity);
+        return (int) ftLib_800865F0(entity);
     }
 
     return 0;
 }
 
-void Player_80036F34(s32 slot, s32 arg1)
+void Player_80036F34(int slot, int arg1)
 {
     struct plAllocInfo2 some_struct;
     u8 _;
@@ -2114,7 +2114,7 @@ void Player_80036F34(s32 slot, s32 arg1)
     }
 }
 
-void Player_80037054(s32 slot, s32 arg1)
+void Player_80037054(int slot, int arg1)
 {
     struct plAllocInfo2 some_struct;
     u8 _;
