@@ -1142,47 +1142,59 @@ void ftAction_80072CB0(Fighter_GObj* gobj, CommandInfo* cmd)
     NEXT_CMD(cmd);
 }
 
-void ftAction_80072CD8(Fighter_GObj* gobj, CommandInfo* cmd)
+void ftAction_80072CD8(Fighter_GObj* arg0, CommandInfo* arg1)
 {
-    // IntVec3 ivec1;
-    // int* sp40;
-    // UNK_T sp38;
-    // IntVec3 ivec0;
-    // Vec3 vec1;
-    // Vec3 vec0;
+    // s32 sp64;
+    // s32 sp60;
+    // s32 sp5C;
+    // CommandInfo sp38;
+    // s32 sp34;
+    // s32 sp30;
+    // u32 sp2C;
+    // f32 sp28;
+    // f32 sp24;
+    // f32 sp20;
+    // f32 sp1C;
+    // f32 sp18;
+    // f32 sp14;
+    // Fighter* temp_r29;
     // u8 var_r5;
-    // Fighter* fp = gobj->user_data;
-    // ivec1.y = 1;
-    // if (ft_80084BFC(gobj, &ivec1.z, &ivec1.y) != 0) {
-    //     if (ivec1.z != -1) {
-    //         sp40 = &ivec0.x;
-    //         ivec0.x = M2C_FIELD(cmd->x8, int*, 0);
-    //         ivec0.y = ivec1.z;
-    //         ivec0.z = M2C_FIELD(cmd->x8, int*, 8);
-    //         ftAction_80071B50(gobj, (CommandInfo*) &sp38);
+
+    // temp_r29 = arg0->user_data;
+    // sp60 = 1;
+    // if (ft_80084BFC(arg0, (int*) &sp64, (int*) &sp60) != 0) {
+    //     if (sp64 != -1) {
+    //         sp38.ptr[0] = &sp2C;
+    //         sp2C = M2C_FIELD(arg1->ptr[0], u32*, 0);
+    //         sp30 = sp64;
+    //         sp34 = M2C_FIELD(arg1->ptr[0], s32*, 8);
+    //         ftAction_80071B50(arg0, &sp38);
     //     }
-    //     if (ivec1.x != -1) {
-    //         vec1.z = 0.0f;
-    //         vec0.z = 0.0f;
-    //         vec1.y = 0.0f;
-    //         vec0.y = 0.0f;
-    //         vec1.x = 0.0f;
-    //         vec0.x = 0.0f;
-    //         if (!(((u8) M2C_FIELD(cmd->x8, u8*, 1) >> 1U) & 1)) {
-    //             var_r5 = fp->ft_data->x8->x13;
+    //     if (sp5C != -1) {
+    //         sp28 = 0.0f;
+    //         sp1C = 0.0f;
+    //         sp24 = 0.0f;
+    //         sp18 = 0.0f;
+    //         sp20 = 0.0f;
+    //         sp14 = 0.0f;
+    //         if (!((M2C_FIELD(arg1->ptr[0], u8*, 1) >> 1) & 1)) {
+    //             var_r5 = temp_r29->ft_data->x8->x13;
     //         } else {
-    //             var_r5 = fp->ft_data->x8->x14;
+    //             var_r5 = temp_r29->ft_data->x8->x14;
     //         }
-    //         ftCo_8009F834(gobj, (int) ivec1.x, var_r5, 0, 0, &vec1, &vec0,
-    //                       0.0f);
+    //         ftCo_8009F834(arg0, sp5C, var_r5, 0, 0, (Vec3*) &sp20,
+    //                       (Vec3*) &sp14, 0.0f);
     //     }
     // }
-    // if (ivec1.y != 0) {
-    //     ftAction_80071B50(gobj, cmd);
+    // if (sp60 != 0) {
+    //     ftAction_80071B50(arg0, arg1);
     //     return;
     // }
-    // SKIP_CMD(cmd, 3);
+    // arg1->ptr[0] += 4;
+    // arg1->ptr[0] += 4;
+    // arg1->ptr[0] += 4;
 }
+/* Warning: struct DmgLogEntry is not defined (only forward-declared) */
 
 void ftAction_80072E24(Fighter_GObj* gobj, CommandInfo* cmd)
 {

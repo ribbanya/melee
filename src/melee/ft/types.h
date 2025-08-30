@@ -1330,7 +1330,7 @@ struct Fighter {
         /* fp+1864 */ int x1864;
         /* fp+1868 */ HSD_GObj* x1868_source;
         /* fp+186C */ int x186c;
-        /* fp+1870 */ struct DmgLogEntry* x1870;
+        /* fp+1870 */ DmgLogEntry* x1870;
         /* fp+1874 */ int x1874;
         /* fp+1878 */ int x1878;
         /* fp+187C */ float x187c;
@@ -1874,5 +1874,32 @@ struct ft_80459B88_t {
     /* +4 */ KirbyHatStruct* hats[FTKIND_MAX];
 };
 STATIC_ASSERT(sizeof(struct ft_80459B88_t) == 0x88);
+
+struct DmgLogEntry {
+    /*  +0 */ enum EntityKind x0;
+    /*  +4 */ FighterKind kind;
+    /*  +8 */ HSD_GObj* gobj;
+    /// @todo Might be a fake union
+    /*  +C */ union {
+        HitCapsule* hit0;
+        DynamicsDesc* unk_anim0;
+    };
+    /// @todo Might be a fake union
+    /* +10 */ union {
+        HitCapsule* hit1;
+        FighterHurtCapsule* hurt1;
+    };
+    /* +14 */ Vec3 pos;
+    /* +20 */ int x20;
+    /* +24 */ size_t size_of_xC;
+};
+STATIC_ASSERT(sizeof(struct DmgLogEntry) == 0x28);
+
+struct ft_80084A80_arg2_t {
+    int x0;
+    int x4;
+    int x8;
+    int xC;
+};
 
 #endif

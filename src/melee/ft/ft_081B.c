@@ -727,7 +727,11 @@ float ft_GetGroundFrictionMultiplier(Fighter* fp)
 
 /// #ft_80084A80
 
-/// #ft_80084BFC
+bool ft_80084BFC(Fighter_GObj* arg0, struct ft_80084A80_arg2_t* arg1,
+                 int* arg2, int* arg3)
+{
+    return ft_80084A80(0, arg0, arg1, arg2, arg3);
+}
 
 /// #ft_80084C38
 

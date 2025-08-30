@@ -12,15 +12,15 @@
 #define FIGHTERVARS_SIZE 0xF8
 
 typedef enum_t FtMotionId;
+typedef struct DmgLogEntry DmgLogEntry;
 typedef struct DObjList DObjList;
 typedef struct Fighter Fighter;
 typedef struct Fighter_804D653C_t Fighter_804D653C_t;
-typedef struct Fighter_x1670_t Fighter_x1670_t;
 typedef struct Fighter_CostumeStrings Fighter_CostumeStrings;
 typedef struct Fighter_DemoStrings Fighter_DemoStrings;
+typedef struct Fighter_x1670_t Fighter_x1670_t;
 typedef struct FighterBone FighterBone;
 typedef struct FighterPartsTable FighterPartsTable;
-typedef struct UnkPlBonusBits UnkPlBonusBits;
 typedef struct ft_800898B4_t ft_800898B4_t;
 typedef struct ftCo_DatAttrs_xBC_t ftCo_DatAttrs_xBC_t;
 typedef struct ftCommonData ftCommonData;
@@ -33,6 +33,7 @@ typedef struct ftSubactionList ftSubactionList;
 typedef struct gmScriptEventDefault gmScriptEventDefault;
 typedef struct MotionState MotionState;
 typedef struct UnkFloat6_Camera UnkFloat6_Camera;
+typedef struct UnkPlBonusBits UnkPlBonusBits;
 typedef u32 MotionFlags;
 
 #ifdef M2CTX
@@ -410,6 +411,12 @@ typedef enum ftCommon_BuryType {
 
 enum {
     Ft_Dynamics_NumMax = 10,
+};
+
+enum EntityKind {
+    EntityKind_None,
+    EntityKind_Fighter,
+    EntityKind_Item,
 };
 
 #endif
