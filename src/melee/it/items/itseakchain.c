@@ -266,9 +266,9 @@ enum_t it_802BBD64(ItemLink* link, Vec3* arg1, f32 (*arg2)[4])
     PAD_STACK(4 * 4);
     {
         Vec3 vec;
-
         ItemLink* cur = link;
         ItemLink* prev = link->next;
+
         it_802A4420(link);
         {
             int temp_r29 = it_802BB938(cur, 1, arg2[0][1]) & 0xFFF;
