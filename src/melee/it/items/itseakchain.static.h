@@ -3,9 +3,8 @@
 
 #include "platform.h"
 
-#include "it/forward.h"
-
 #include "it/itCharItems.h"
+#include "it/types.h"
 
 #include <dolphin/mtx.h>
 
@@ -70,6 +69,13 @@ struct _m2c_stack_it_802BCFC4 {
     /* 0x60 */ char pad_60[0x20];
 }; /* size = 0x80 */
 STATIC_ASSERT(sizeof(struct _m2c_stack_it_802BCFC4) == 0x80);
+
+struct _m2c_stack_it_802BB290 {
+    /* 0x00 */ char pad_0[0x40];
+    /* 0x40 */ SpawnItem spawn;
+    char pad[0xA8 - 0x8C];
+}; /* size = 0xA8 */
+STATIC_ASSERT(sizeof(struct _m2c_stack_it_802BB290) == 0xA8);
 
 Vec3 it_803B868C = { 0 };
 
