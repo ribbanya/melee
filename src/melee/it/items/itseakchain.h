@@ -27,7 +27,7 @@
                              float scale);
 /* 2BBC38 */ int it_802BBC38(ItemLink*, Vec3*, Mtx, float);
 /* 2BBD64 */ enum_t it_802BBD64(ItemLink*, Vec3*, Mtx);
-/* 2BBED0 */ enum_t it_802BBED0(ItemLink*, Vec3*, itSeakChain_Attrs*);
+/* 2BBED0 */ enum_t it_802BBED0(ItemLink*, Vec3*, Mtx);
 /* 2BC94C */ bool it_802BC94C(ItemLink*, Vec3*, Mtx, float);
 /* 2BCA30 */ void it_802BCA30(Item* ip);
 /* 2BCE94 */ void it_2725_Logic54_PickedUp(Item_GObj* gobj);
