@@ -261,51 +261,50 @@ int it_802BBC38(ItemLink* link, Vec3* offset, Mtx arg2, f32 scale)
     return ret;
 }
 
-enum_t it_802BBD64(ItemLink* arg0, Point3d* arg1, f32 (*arg2)[4])
+enum_t it_802BBD64(ItemLink* link, Vec3* arg1, f32 (*arg2)[4])
 {
-    Point3d vec;
-
-    ItemLink* cur = arg0;
-    ItemLink* prev = arg0->next;
-    it_802A4420(arg0);
+    PAD_STACK(4 * 4);
     {
-        s32 temp_r29 = it_802BB938(cur, 1, arg2[0][1]) & 0xFFF;
-        goto loop_11;
-    block_1:
-        if (prev->x2C_b0) {
-            if ((it_802A3C98(&prev->pos, &cur->pos, &vec) > arg2[0][1])) {
-                prev->pos.x = (vec.x * arg2[0][1]) + cur->pos.x;
-                prev->pos.y = (vec.y * arg2[0][1]) + cur->pos.y;
-                prev->pos.z = (vec.z * arg2[0][1]) + cur->pos.z;
-            }
-            it_802A43EC(prev);
-            goto block_10;
-        }
+        Vec3 vec;
+
+        ItemLink* cur = link;
+        ItemLink* prev = link->next;
+        it_802A4420(link);
         {
-            if (it_802A3C98(arg1, &cur->pos, &vec) > arg2[0][1]) {
-                prev->pos.x = (vec.x * arg2[0][1]) + cur->pos.x;
-                prev->pos.y = (vec.y * arg2[0][1]) + cur->pos.y;
-                prev->pos.z = (vec.z * arg2[0][1]) + cur->pos.z;
-                prev->x2C_b0 = true;
-                it_802A43B8(prev);
-                goto block_10;
+            int temp_r29 = it_802BB938(cur, 1, arg2[0][1]) & 0xFFF;
+            goto loop;
+        loop_body: {
+            if (prev->x2C_b0) {
+                if (it_802A3C98(&prev->pos, &cur->pos, &vec) > arg2[0][1]) {
+                    prev->pos.x = vec.x * arg2[0][1] + cur->pos.x;
+                    prev->pos.y = vec.y * arg2[0][1] + cur->pos.y;
+                    prev->pos.z = vec.z * arg2[0][1] + cur->pos.z;
+                }
+                it_802A43EC(prev);
+            } else {
+                if (it_802A3C98(arg1, &cur->pos, &vec) > arg2[0][1]) {
+                    prev->pos.x = vec.x * arg2[0][1] + cur->pos.x;
+                    prev->pos.y = vec.y * arg2[0][1] + cur->pos.y;
+                    prev->pos.z = vec.z * arg2[0][1] + cur->pos.z;
+                    prev->x2C_b0 = true;
+                    it_802A43B8(prev);
+                } else {
+                    if (temp_r29 != 0) {
+                        return 1;
+                    }
+                    return 0;
+                }
             }
+            cur = prev;
+            prev = prev->next;
         }
-    block_7: {
-        if (temp_r29 != 0) {
-            return 1;
+        loop:
+            if (prev != NULL) {
+                goto loop_body;
+            }
+            it_802BBB0C(cur, arg1, arg2, arg2[0][1]);
+            return 2;
         }
-        return 0;
-    }
-    block_10:
-        cur = prev;
-        prev = prev->next;
-    loop_11:
-        if (prev != NULL) {
-            goto block_1;
-        }
-        it_802BBB0C(cur, arg1, arg2, arg2[0][1]);
-        return 2;
     }
 }
 
