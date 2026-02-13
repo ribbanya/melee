@@ -89,7 +89,7 @@ void fn_802BB44C(Item_GObj* gobj)
     vec.x = mtx[0][3];
     vec.y = mtx[1][3];
     vec.z = mtx[2][3];
-    switch (it_802BBD64(link, &vec, sa)) {
+    switch (it_802BBD64(link, &vec, mtx)) {
     case 1:
         link->vel.x *= -sa->x58;
         it_802BCF2C(gobj);
@@ -241,9 +241,9 @@ int it_802BBC38(ItemLink* link, Vec3* offset, Mtx arg2, f32 scale)
     ItemLink* cur = link->prev;
     ItemLink* prev = link;
     int ret = it_802A3C98(&prev->pos, offset, &origin);
-    prev->pos.x = (origin.x * scale) + offset->x;
-    prev->pos.y = (origin.y * scale) + offset->y;
-    prev->pos.z = (origin.z * scale) + offset->z;
+    prev->pos.x = origin.x * scale + offset->x;
+    prev->pos.y = origin.y * scale + offset->y;
+    prev->pos.z = origin.z * scale + offset->z;
     for (; cur != NULL; prev = cur, cur = cur->prev) {
         float temp_ret;
         cur->vel.y -= arg2[1][2];
@@ -261,7 +261,53 @@ int it_802BBC38(ItemLink* link, Vec3* offset, Mtx arg2, f32 scale)
     return ret;
 }
 
-/// #it_802BBD64
+enum_t it_802BBD64(ItemLink* arg0, Point3d* arg1, f32 (*arg2)[4])
+{
+    Point3d vec;
+
+    ItemLink* cur = arg0;
+    ItemLink* prev = arg0->next;
+    it_802A4420(arg0);
+    {
+        s32 temp_r29 = it_802BB938(cur, 1, arg2[0][1]) & 0xFFF;
+        goto loop_11;
+    block_1:
+        if (prev->x2C_b0) {
+            if ((it_802A3C98(&prev->pos, &cur->pos, &vec) > arg2[0][1])) {
+                prev->pos.x = (vec.x * arg2[0][1]) + cur->pos.x;
+                prev->pos.y = (vec.y * arg2[0][1]) + cur->pos.y;
+                prev->pos.z = (vec.z * arg2[0][1]) + cur->pos.z;
+            }
+            it_802A43EC(prev);
+            goto block_10;
+        }
+        {
+            if (it_802A3C98(arg1, &cur->pos, &vec) > arg2[0][1]) {
+                prev->pos.x = (vec.x * arg2[0][1]) + cur->pos.x;
+                prev->pos.y = (vec.y * arg2[0][1]) + cur->pos.y;
+                prev->pos.z = (vec.z * arg2[0][1]) + cur->pos.z;
+                prev->x2C_b0 = true;
+                it_802A43B8(prev);
+                goto block_10;
+            }
+        }
+    block_7: {
+        if (temp_r29 != 0) {
+            return 1;
+        }
+        return 0;
+    }
+    block_10:
+        cur = prev;
+        prev = prev->next;
+    loop_11:
+        if (prev != NULL) {
+            goto block_1;
+        }
+        it_802BBB0C(cur, arg1, arg2, arg2[0][1]);
+        return 2;
+    }
+}
 
 /// #it_802BBED0
 
