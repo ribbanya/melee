@@ -87,7 +87,7 @@
 /* 26C1D4 */ u32 it_8026C1D4(void);
 /* 26C1E8 */ bool it_8026C1E8(Item_GObj* gobj);
 /* 26C220 */ void it_8026C220(Item_GObj* gobj, HSD_GObj* arg1);
-/* 26C258 */ HSD_GObj* it_8026C258(Vec3* vector, float facingDir);
+/* 26C258 */ Item_GObj* it_8026C258(Vec3* pos, float facing_dir);
 /* 26C334 */ void it_8026C334(Item_GObj* gobj, Vec3* pos);
 /* 26C368 */ void it_8026C368(Item_GObj* gobj);
 /* 26C3FC */ void it_8026C3FC(void);

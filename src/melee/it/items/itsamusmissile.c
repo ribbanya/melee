@@ -110,16 +110,14 @@ Item_GObj* it_802B62D0(Item_GObj* gobj, Vec3* pos, int arg2, f32 facing_dir)
     return NULL;
 }
 
-Item_GObj* it_802B64FC(Item_GObj* gobj)
+Fighter_GObj* it_802B64FC(Item_GObj* gobj)
 {
     Vec3 vec3;
     Vec3 vec2;
     Vec3 vec1;
     Vec3 vec0;
     HSD_GObj* temp_r3;
-    HSD_GObj* temp_ret;
     Item* ip;
-    f32 temp_f2;
     f32 var_f0;
     f32 var_f1;
     itSamusMissileAttributes* sa;
@@ -127,16 +125,15 @@ Item_GObj* it_802B64FC(Item_GObj* gobj)
     ip = GET_ITEM(gobj);
     sa = ip->xC4_article_data->x4_specialAttributes;
     vec3.x = vec3.y = vec3.z = 0.0f;
-    if (it_8026B634(&ip->pos, &vec3, ip->owner, ip->facing_dir) != NULL) {
-        goto block_4;
+    if (it_8026B634(&ip->pos, &vec3, ip->owner, ip->facing_dir) == NULL) {
+        temp_r3 = it_8026C258(&ip->pos, ip->facing_dir);
+        // var_f1 = M2C_BITWISE(f32, temp_ret);
+        if (temp_r3 == NULL) {
+            // goto block_18;
+            return NULL;
+        }
+        it_8026BB88(temp_r3, &vec3);
     }
-    temp_ret = it_8026C258(&ip->pos, ip->facing_dir);
-    // var_f1 = M2C_BITWISE(f32, temp_ret);
-    temp_r3 = temp_ret;
-    if (temp_r3 == NULL) {
-        goto block_18;
-    }
-    it_8026BB88(temp_r3, &vec3);
 block_4:
     var_f1 = 0.0f;
     if (vec3.x != 0.0f) {
@@ -162,36 +159,19 @@ block_6:
     vec0.y = vec1.y;
     vec0.z = vec1.z;
     lbVector_Sub(&vec0, &vec2);
-    if ((vec0.y > 0.001f)) {
-        ip->xDD4_itemVar.samusmissile.x8 -= M2C_FIELD(sa, f32*, 0x18);
-        goto block_11;
+    if (vec0.y > 0.001f) {
+        ip->xDD4_itemVar.samusmissile.x8 -= sa->x18;
+    } else if (vec0.y < 0.001f) {
+        ip->xDD4_itemVar.samusmissile.x8 += sa->x18;
     }
-    if (!(vec0.y < 0.001f)) {
-        goto block_11;
+    if (ABS(ip->xDD4_itemVar.samusmissile.x8) > sa->x1C) {
+        if (var_f1 > 0.0f) {
+            ip->xDD4_itemVar.samusmissile.x8 = +sa->x1C;
+            return NULL;
+            // return M2C_BITWISE(Item_GObj*, var_f1);
+        }
+        ip->xDD4_itemVar.samusmissile.x8 = -sa->x1C;
     }
-    ip->xDD4_itemVar.samusmissile.x8 += sa->x18;
-block_11:
-    var_f1 = ip->xDD4_itemVar.samusmissile.x8;
-    if (!(var_f1 < 0.0f)) {
-        goto block_13;
-    }
-    var_f0 = -var_f1;
-    goto block_14;
-block_13:
-    var_f0 = var_f1;
-block_14:
-    temp_f2 = M2C_FIELD(sa, f32*, 0x1C);
-    if (!(var_f0 > temp_f2)) {
-        goto block_18;
-    }
-    if (!(var_f1 > 0.0f)) {
-        goto block_17;
-    }
-    ip->xDD4_itemVar.samusmissile.x8 = temp_f2;
-    return NULL;
-    // return M2C_BITWISE(Item_GObj*, var_f1);
-block_17:
-    ip->xDD4_itemVar.samusmissile.x8 = -temp_f2;
 block_18:
     return NULL;
     // return M2C_BITWISE(Item_GObj*, var_f1);

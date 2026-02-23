@@ -1101,30 +1101,30 @@ void it_8026C220(HSD_GObj* gobj, HSD_GObj* fighter_gobj)
 
 /// Find the closest item to the given position?
 /// @remarks Used by Samus's Homing Missile to lock onto certain items.
-/// @returns The nearest #HSD_GObj to @p pos that fits the criteria.
-HSD_GObj* it_8026C258(Vec3* pos, f32 facing_dir)
+/// @returns The nearest #Item_GObj to @p pos that fits the criteria.
+Item_GObj* it_8026C258(Vec3* pos, float facing_dir)
 {
-    f32 min_sq_dist = F32_MAX;
-    HSD_GObj *cur, *result = NULL;
-    for (cur = HSD_GObj_Entities->items; cur != NULL; cur = cur->next) {
+    float min_sq_dist = F32_MAX;
+    Item_GObj *cur, *result;
+    for (cur = HSD_GObj_Entities->items, result = NULL; cur != NULL;
+         cur = cur->next)
+    {
         Item* ip = GET_ITEM(cur);
 
-        // Might not actually be (exclusively) hold kind in the end???
-        enum_t hold_kind = ip->hold_kind;
-
         // Decide lock-on type for Samus Missile?
-        if ((hold_kind == ITEM_UNK_MATO || hold_kind == ITEM_UNK_LOCKON ||
+        if ((ip->hold_kind == ITEM_UNK_MATO ||
+             ip->hold_kind == ITEM_UNK_LOCKON ||
              /// @todo Why is this cast to @c short necessary?
-             (short) (hold_kind == ITEM_UNK_ENEMY) ||
-             hold_kind == ITEM_UNK_7) &&
+             (short) (ip->hold_kind == ITEM_UNK_ENEMY) ||
+             ip->hold_kind == ITEM_UNK_7) &&
             ip->grab_victim == NULL &&
             (!ip->xDC8_word.flags.x13 || ip->owner == NULL) &&
             (facing_dir != -1 || !(ip->pos.x > pos->x)) &&
             (facing_dir != +1 || !(ip->pos.x < pos->x)))
         {
-            f32 dist_x = pos->x - ip->pos.x;
-            f32 dist_y = pos->y - ip->pos.y;
-            f32 sq_dist = dist_x * dist_x + dist_y * dist_y;
+            float dist_x = pos->x - ip->pos.x;
+            float dist_y = pos->y - ip->pos.y;
+            float sq_dist = SQ(dist_x) + SQ(dist_y);
 
             if (sq_dist < min_sq_dist) {
                 min_sq_dist = sq_dist;
