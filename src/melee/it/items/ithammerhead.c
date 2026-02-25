@@ -17,7 +17,7 @@ void itHammerHead_Logic40_Spawned(Item_GObj* gobj)
 {
     Item* ip = GET_ITEM(gobj);
     itHammerheadAttributes* attrs = ip->xC4_article_data->x4_specialAttributes;
-    it_80275158(gobj, attrs->x4);
+    it_2725_SetLifetime(gobj, attrs->x4);
 }
 
 /// #it_80299D7C
@@ -26,7 +26,7 @@ void itHammerHead_Logic40_PickedUp(Item_GObj* gobj)
 {
     Item* ip = GET_ITEM(gobj);
     itHammerheadAttributes* attrs = ip->xC4_article_data->x4_specialAttributes;
-    it_80275158(gobj, attrs->x4);
+    it_2725_SetLifetime(gobj, attrs->x4);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
 }
 

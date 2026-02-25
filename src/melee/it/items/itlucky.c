@@ -355,7 +355,7 @@ void itLucky_Logic44_Spawned(Item_GObj* gobj)
     Item* ip = GET_ITEM(gobj);
     itLuckyAttributes* attr = ip->xC4_article_data->x4_specialAttributes;
     PAD_STACK(4);
-    it_80275158(gobj, attr->x0);
+    it_2725_SetLifetime(gobj, attr->x0);
     ip->xDD4_itemVar.lucky.x60 = M2C_FIELD(attr, s32*, 4); ///< @todo
     it_802D58EC(gobj);
 }

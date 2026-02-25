@@ -165,9 +165,9 @@ void it_802A0534(Item_GObj* gobj, Vec3* arg1)
     attrs = ip->xC4_article_data->x4_specialAttributes;
     child = HSD_JObjGetChild(hobj);
     if (ftLk_SpecialHi_GetFv4(ip->xDD4_itemVar.linkboomerang.xF98) != 0) {
-        it_80275158(gobj, attrs->x4);
+        it_2725_SetLifetime(gobj, attrs->x4);
     } else {
-        it_80275158(gobj, attrs->x0);
+        it_2725_SetLifetime(gobj, attrs->x0);
     }
 
     angle = 0; ///< @todo

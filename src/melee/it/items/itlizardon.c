@@ -443,7 +443,7 @@ void it_802CC5D4(Item_GObj* gobj)
 {
     Item* ip = GET_ITEM(gobj);
     itLizardonAttributes* attrs = ip->xC4_article_data->x4_specialAttributes;
-    it_80275158(gobj, attrs->x0);
+    it_2725_SetLifetime(gobj, attrs->x0);
     it_80274740(gobj);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
     ip->entered_hitlag = efLib_PauseAll;

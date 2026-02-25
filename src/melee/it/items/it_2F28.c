@@ -72,7 +72,7 @@ float it_802F295C(HSD_GObj* owner_gobj, it_2F28_DatAttrs* attr)
     if (item_gobj != NULL) {
         item = item_gobj->user_data;
         item->xDD4_itemVar.it_2F28.x0 = attr->float2;
-        it_80275158((HSD_GObj*) item_gobj, attr->float1);
+        it_2725_SetLifetime((HSD_GObj*) item_gobj, attr->float1);
         it_802F2A58(item_gobj);
         var_f31 = it_802758D4(item_gobj);
     }

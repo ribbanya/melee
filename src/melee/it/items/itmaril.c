@@ -124,7 +124,7 @@ void itMaril_Logic28_Spawned(Item_GObj* gobj)
     ip->x5D0_animFrameSpeed = attr->x10;
     it_80279CDC(gobj, attr->x0);
     Item_8026AE84(ip, 0x273D, 0x7F, 0x40);
-    it_80275158(gobj, attr->x4);
+    it_2725_SetLifetime(gobj, attr->x4);
     it_802D68FC(gobj);
 }
 

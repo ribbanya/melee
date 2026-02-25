@@ -161,7 +161,7 @@ HSD_GObj* it_802A83E0(f32 facing_dir, Fighter_GObj* arg1, Vec3* arg2,
         item->xDB4_itcmd_var2 = 0;
         item->xDB0_itcmd_var1 = 0;
         item->xDAC_itcmd_var0 = 0;
-        it_80275158((HSD_GObj*) gobj, attr->x0);
+        it_2725_SetLifetime((HSD_GObj*) gobj, attr->x0);
         item->xDD4_itemVar.linkarrow.xA0 = 0;
         item->xDD4_itemVar.linkarrow.xB0 = 0;
         item->xDD4_itemVar.linkarrow.xB4[1] = NULL;
@@ -317,7 +317,7 @@ void it_802A850C(Item_GObj* gobj, Vec3* arg1, Vec3* arg2, f32 arg3, f32 arg4,
 
     attr = item->xC4_article_data->x4_specialAttributes;
     item->xDD4_itemVar.linkarrow.x94 = arg3;
-    it_80275158((HSD_GObj*) gobj, attr->x0 + attr->x18);
+    it_2725_SetLifetime((HSD_GObj*) gobj, attr->x0 + attr->x18);
     item->xDD4_itemVar.linkarrow.xAC = arg4;
     if ((item->xDD4_itemVar.linkarrow.xE0 != NULL) &&
         (item->owner == item->xDD4_itemVar.linkarrow.xE0))
@@ -471,7 +471,7 @@ void it_802A8C7C(HSD_GObj* gobj)
     itLinkArrowAttributes* attr;
     item = GET_ITEM(gobj);
     attr = item->xC4_article_data->x4_specialAttributes;
-    it_80275158(gobj, attr->x0);
+    it_2725_SetLifetime(gobj, attr->x0);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
 }
 
@@ -670,7 +670,7 @@ void it_802A9458(HSD_GObj* gobj)
     scale.x = temp_scale;
 
     HSD_JObjSetScale(jobj, &scale);
-    it_80275158(gobj, attr->x18);
+    it_2725_SetLifetime(gobj, attr->x18);
     item->xDD4_itemVar.linkarrow.x9C = HSD_Randi(4) + 3;
     item->xDD4_itemVar.linkarrow.xF0 = 0;
     Item_80268E5C(gobj, 4, ITEM_ANIM_UPDATE);
@@ -861,7 +861,7 @@ bool itLinkArrow_Logic98_HitShield(Item_GObj* gobj)
             scale.z = item->xDD4_itemVar.linkarrow.xC0;
             HSD_JObjSetScale(jobj, &scale);
 
-            it_80275158((HSD_GObj*) gobj, attr->x18);
+            it_2725_SetLifetime((HSD_GObj*) gobj, attr->x18);
             item->x40_vel.z = 0.0f;
             item->x40_vel.y = 0.0f;
             item->x40_vel.x = 0.0f;

@@ -63,7 +63,7 @@ void it_80298168(HSD_GObj* owner_gobj, Vec3* pos, f32 facing_dir)
 void it_802982AC(Item_GObj* gobj, Item_GObj* owner_gobj, Article* article)
 {
     ItLGunRayAttr* da = GET_ITEM(gobj)->xC4_article_data->x4_specialAttributes;
-    it_80275158(gobj, da->lifetime);
+    it_2725_SetLifetime(gobj, da->lifetime);
     it_8026B3A8(gobj);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
 }

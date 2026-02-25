@@ -69,11 +69,11 @@ void it_802989C8(Item_GObj* ig, Fighter_GObj* fg)
     Item_80268E5C(ig, 0, ITEM_ANIM_UPDATE);
     hit = &ip->x5D4_hitboxes[0].hit;
     if (ip->xDD4_itemVar.starrodstar.x0 != 0) {
-        it_80275158(ig, attrs->x10);
+        it_2725_SetLifetime(ig, attrs->x10);
         ip->x40_vel.x = ip->facing_dir * (attrs->x0 * attrs->x8);
         it_80272460(hit, attrs->x18, ig);
     } else {
-        it_80275158(ig, attrs->xC);
+        it_2725_SetLifetime(ig, attrs->xC);
         ip->x40_vel.x = ip->facing_dir * (attrs->x0 * attrs->x4);
         it_80272460(hit, attrs->x14, ig);
     }

@@ -58,7 +58,7 @@ void it_802C027C(Item_GObj* gobj)
     itUnkAttributes* attrs = ip->xC4_article_data->x4_specialAttributes;
     ip->x40_vel.x = attrs->x0_float * ip->facing_dir;
     ip->x40_vel.y = ip->x40_vel.z = 0;
-    it_80275158(gobj, attrs->x4_float);
+    it_2725_SetLifetime(gobj, attrs->x4_float);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
 }
 

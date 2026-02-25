@@ -55,7 +55,7 @@ void it_8029B7C0(Item_GObj* gobj)
     it->x40_vel.y = x0 * sinf(x4);
     it->x40_vel.z = 0.0f;
 
-    it_80275158(gobj, ap->x8);
+    it_2725_SetLifetime(gobj, ap->x8);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
 }
 

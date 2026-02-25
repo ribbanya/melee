@@ -24,7 +24,7 @@ void it_802B2B08(Item_GObj* item_gobj)
     Item* item = GET_ITEM((HSD_GObj*) item_gobj);
     f32* unkc4_unk4 = item->xC4_article_data->x4_specialAttributes;
     Item_80268E5C((HSD_GObj*) item_gobj, 1, ITEM_ANIM_UPDATE);
-    it_80275158(item_gobj, *unkc4_unk4);
+    it_2725_SetLifetime(item_gobj, *unkc4_unk4);
 }
 
 bool itYoshieggthrow_UnkMotion1_Coll(Item_GObj* gobj)

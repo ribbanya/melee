@@ -125,7 +125,7 @@ Item_GObj* it_802BD4AC(Item_GObj* item_gobj, Vec3* pos, Fighter_Part part,
         item = GET_ITEM(spawn_gobj);
         if (kind == It_Kind_Peach_Turnip) {
             attr = item->xC4_article_data->x4_specialAttributes;
-            it_80275158(spawn_gobj, attr->x0_lifetime);
+            it_2725_SetLifetime(spawn_gobj, attr->x0_lifetime);
             item->xDD4_itemVar.peachturnip.xDD8 = it_802BD32C(spawn_gobj);
             item->xDD4_itemVar.peachturnip.xDDC_damage =
                 attr->x8[item->xDD4_itemVar.peachturnip.xDD8].x4_damage;

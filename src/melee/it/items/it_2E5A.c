@@ -377,7 +377,7 @@ s32 it_802E6380(Item_GObj* item_gobj, it_802E5FXX_struct* arg1)
         arg1->x8 *= attr->x1C;
         it_802E628C(item_gobj, arg1->x4, arg1->x8);
     }
-    it_80275158(item_gobj, attr->x0);
+    it_2725_SetLifetime(item_gobj, attr->x0);
     // temp_r25 = var_r31 * 0x2C;
     item->xDD4_itemVar.it_2E5A.x10 = attr->x4;
     // temp_r5 = attr + temp_r26;

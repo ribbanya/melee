@@ -149,7 +149,7 @@ Item_GObj* itKoopaFlame_Spawn(Fighter_GObj* parent, Vec* pos, f32 facing_dir,
             it->xC4_article_data->x4_specialAttributes;
         it->xDAC_itcmd_var0 = it->xDB0_itcmd_var1 = it->xDB4_itcmd_var2 =
             it->xDB8_itcmd_var3 = 0;
-        it_80275158(gobj, (it->xDD4_itemVar.koopaflame.x2C_lifetime =
+        it_2725_SetLifetime(gobj, (it->xDD4_itemVar.koopaflame.x2C_lifetime =
                                attrs->x0_lifetime));
         it->xDD4_itemVar.koopaflame.x0_pos = *pos;
         it->xDD4_itemVar.koopaflame.x34_base_scale = 0.0f;

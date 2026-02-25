@@ -77,7 +77,7 @@ void it_8029C504(HSD_GObj* parent, Vec3* pos, enum_t msid, int kind, f32 angle,
         Item* item = GET_ITEM(item_gobj);
         FoxLaserAttr* attr = item->xC4_article_data->x4_specialAttributes;
         Item_80268E5C(item_gobj, msid, ITEM_ANIM_UPDATE);
-        it_80275158(item_gobj, attr->lifetime);
+        it_2725_SetLifetime(item_gobj, attr->lifetime);
         item->xDD4_itemVar.foxlaser.scale = 0.0F;
         item->xDD4_itemVar.foxlaser.angle = angle;
         item->xDD4_itemVar.foxlaser.speed = speed;
@@ -160,7 +160,7 @@ bool itFoxlaser_UnkMotion1_Coll(Item_GObj* item_gobj)
     Vec3 pos = item->pos;
     PAD_STACK(4);
     if (it_8029C4D4(item_gobj, NULL)) {
-        it_80275158(item_gobj, 1.0F);
+        it_2725_SetLifetime(item_gobj, 1.0F);
         item->pos = pos;
     }
     return false;

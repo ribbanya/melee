@@ -147,7 +147,7 @@ void it_802EE374(Item_GObj* gobj)
     f32 rand;
 
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
-    it_80275158(gobj, (f32) attrs->x8);
+    it_2725_SetLifetime(gobj, (f32) attrs->x8);
     ip->xDD4_itemVar.whispyapple.xDD4_heal = attrs->x4;
     rand = HSD_Randf();
     ip->x40_vel.x = 2.0f * attrs->x18 * rand - attrs->x18;
@@ -341,7 +341,7 @@ void it_802EED00(Item_GObj* gobj)
     it_8026B3A8(gobj);
     HSD_JObjSetFlagsAll(jobj, 0x10);
     it_8026BD24(gobj);
-    it_80275158(gobj, 20.0f);
+    it_2725_SetLifetime(gobj, 20.0f);
     it_8026BDB4(gobj);
     ip->x40_vel.z = 0.0f;
     ip->x40_vel.y = 0.0f;

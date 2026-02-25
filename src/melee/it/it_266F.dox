@@ -101,7 +101,7 @@
 /* 274F10 */ void it_80274F10(HSD_GObj* gobj);
 
 /// Set item lifetime
-/* 275158 */ void it_80275158(HSD_GObj* gobj, f32 lifetime);
+/* 275158 */ void it_2725_SetLifetime(HSD_GObj* gobj, f32 lifetime);
 
 /* 275390 */ void it_80275390(HSD_GObj*);
 /* 2753BC */ void it_802753BC(HSD_GObj*, s16);

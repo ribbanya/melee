@@ -53,7 +53,7 @@ void it_802B4BA0(Item_GObj* gobj)
     ip->x40_vel.y = ip->xCC_item_attr->x18;
     ip->xDB4_itcmd_var2 = 0;
     ip->xDD4_itemVar.samusbomb.owner = ip->owner;
-    it_80275158(gobj, attr->x0);
+    it_2725_SetLifetime(gobj, attr->x0);
     it_8026B3A8(gobj);
     Item_80268E5C((HSD_GObj*) gobj, 1, ITEM_ANIM_UPDATE);
 }

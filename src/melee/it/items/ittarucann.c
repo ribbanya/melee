@@ -124,7 +124,7 @@ void it_3F14_Logic5_Spawned(Item_GObj* gobj)
     ip->xDD4_itemVar.tarucann.x20 = 0;
     ip->xDD4_itemVar.tarucann.x24 = 0;
     ip->xDD4_itemVar.tarucann.x28 = 1.0f;
-    it_80275158(gobj, da->x24);
+    it_2725_SetLifetime(gobj, da->x24);
     it_80296694(gobj);
 }
 
@@ -330,7 +330,7 @@ void itTaruCann_Logic5_PickedUp(Item_GObj* gobj)
     itTaruCann_DatAttrs* attrs = ip->xC4_article_data->x4_specialAttributes;
     ip->xDB0_itcmd_var1 = 1;
     Item_80268E5C(gobj, 2, ITEM_ANIM_UPDATE);
-    it_80275158(gobj, attrs->x24);
+    it_2725_SetLifetime(gobj, attrs->x24);
 }
 
 bool itTarucann_UnkMotion2_Anim(Item_GObj* gobj)

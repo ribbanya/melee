@@ -100,7 +100,7 @@
 /* 275070 */ void it_80275070(Item_GObj*, s32);
 /* 2750E8 */ bool it_802750E8(Item_GObj*, s32);
 /* 2750F8 */ void it_802750F8(Item_GObj*);
-/* 275158 */ void it_80275158(Item_GObj*, f32);
+/* 275158 */ void it_2725_SetLifetime(Item_GObj*, f32);
 /* 275174 */ void it_80275174(Item_GObj*, f32);
 /* 27518C */ void it_8027518C(Item_GObj*);
 /* 2751D8 */ bool it_802751D8(Item_GObj*);

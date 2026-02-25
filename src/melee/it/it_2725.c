@@ -5127,8 +5127,8 @@ HSD_JObj* it_80272CC0(Item_GObj* item_gobj, enum_t idx)
 /// Check if the HSD_GObj* class is an item
 bool it_80272D1C(Item_GObj* item_gobj)
 {
-    if ((item_gobj != NULL) && (item_gobj->classifier == HSD_GOBJ_CLASS_ITEM))
-    { // ITEM_UNK_ENEMY?
+    if ((item_gobj != NULL) &&
+        (item_gobj->classifier == HSD_GOBJ_CLASS_ITEM)) { // ITEM_UNK_ENEMY?
         return true;
     }
     return false;
@@ -5141,8 +5141,8 @@ s32 it_80272D40(Item_GObj* item_gobj)
     if (ftLib_80086960((HSD_GObj*) item_gobj)) {
         return 0;
     }
-    if ((item_gobj != NULL) && (item_gobj->classifier == HSD_GOBJ_CLASS_ITEM))
-    { // ITEM_UNK_ENEMY?
+    if ((item_gobj != NULL) &&
+        (item_gobj->classifier == HSD_GOBJ_CLASS_ITEM)) { // ITEM_UNK_ENEMY?
         chk = true;
     } else {
         chk = false;
@@ -5784,7 +5784,7 @@ void it_802742F4(Item_GObj* item_gobj, HSD_GObj* gobj, Fighter_Part ftpart)
         it_80279BBC(item);
     }
     if (item->kind < It_Kind_L_Gun_Ray) { // If a common item
-        it_80275158(item_gobj, it_804D6D28->x30);
+        it_2725_SetLifetime(item_gobj, it_804D6D28->x30);
     }
     it_80274F48(item_gobj,
                 item->xC4_article_data->x10_modelDesc->x8_bone_attach_id, gobj,
@@ -6182,23 +6182,19 @@ bool it_802750E8(Item_GObj* item_gobj, s32 mask)
 
 void it_802750F8(Item_GObj* item_gobj)
 {
-    Item* item;
-
-    item = item_gobj->user_data;
-    item->xDCC_flag.b3 = 0;
-    Item_802697D4((HSD_GObj*) item_gobj);
-    Item_80269978((HSD_GObj*) item_gobj);
-    item->xDCC_flag.b3 = 1;
+    Item* item = GET_ITEM(item_gobj);
+    item->xDCC_flag.b3 = false;
+    Item_802697D4(item_gobj);
+    Item_80269978(item_gobj);
+    item->xDCC_flag.b3 = true;
 }
 
 /// Set both life timers on the item
-void it_80275158(Item_GObj* item_gobj, f32 lifetime)
+void it_2725_SetLifetime(Item_GObj* item_gobj, f32 lifetime)
 {
-    Item* item;
-
-    item = GET_ITEM((HSD_GObj*) item_gobj);
-    item->xD44_lifeTimer = lifetime;
-    item->xD48_halfLifeTimer = lifetime * it_804D6D28->x4C_float;
+    Item* ip = GET_ITEM(item_gobj);
+    ip->xD44_lifeTimer = lifetime;
+    ip->xD48_halfLifeTimer = lifetime * it_804D6D28->x4C_float;
 }
 
 void it_80275174(Item_GObj* item_gobj, f32 lifetime)
@@ -9918,8 +9914,8 @@ bool it_8027B798(Item_GObj* item_gobj, Vec3* arg1)
         sp14.x = -temp_f30 * item->facing_dir;
         sp14.y = temp_f2;
         sp14.z = 0.0f;
-        if (lbVector_Angle(temp_r31_2, &sp14) < 1.5708f)
-        { // Should this be M_PI_2?
+        if (lbVector_Angle(temp_r31_2, &sp14) <
+            1.5708f) { // Should this be M_PI_2?
             ret_chk = true;
             arg1->x = sp14.x;
             arg1->y = sp14.y;

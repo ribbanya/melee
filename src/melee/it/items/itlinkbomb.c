@@ -193,7 +193,7 @@ static inline void it_8029DD58_inline(Item* item, itLinkBombAttributes* attr,
                                       Item_GObj* temp_r3, u32 arg2)
 {
     f32 temp_f2;
-    it_80275158(temp_r3, attr->lifetime);
+    it_2725_SetLifetime(temp_r3, attr->lifetime);
     item->xDD4_itemVar.linkbomb.x0.b0 = false;
     item->xDD4_itemVar.linkbomb.x10 = fighter_gobj;
     item->xDD4_itemVar.linkbomb.x0.b2 = false;

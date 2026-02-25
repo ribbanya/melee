@@ -23,7 +23,7 @@ void it_802AA1D8(Item_GObj* item_gobj)
     itNessPKFirepillarAttributes* attrs =
         item->xC4_article_data->x4_specialAttributes;
     Item_80268E5C(item_gobj, 0, ITEM_ANIM_UPDATE);
-    it_80275158(item_gobj, attrs->x0);
+    it_2725_SetLifetime(item_gobj, attrs->x0);
 }
 
 bool itNesspkfire_UnkMotion0_Anim(Item_GObj* gobj)

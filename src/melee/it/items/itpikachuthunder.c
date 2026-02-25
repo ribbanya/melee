@@ -41,7 +41,7 @@ void it_802B2080(Item_GObj* gobj)
     itPikachuthunderAttributes* attrs =
         ip->xC4_article_data->x4_specialAttributes;
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
-    it_80275158(gobj, attrs->x0);
+    it_2725_SetLifetime(gobj, attrs->x0);
     it_8026BB44(gobj);
 }
 

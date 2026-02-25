@@ -48,7 +48,7 @@ void it_802F2F34(HSD_GObj* gobj, it_27CF_DatAttrs* attr)
         item = GET_ITEM((HSD_GObj*) item_gobj);
         item->xDD4_itemVar.it_27CF.x0 = attr->float3;
         item->xC98 = attr->x24;
-        it_80275158(item_gobj, attr->lifetime);
+        it_2725_SetLifetime(item_gobj, attr->lifetime);
         // it_802F3020(item_gobj);
         it_802F3020((HSD_GObj*) item_gobj);
     }

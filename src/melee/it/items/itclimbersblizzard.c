@@ -100,7 +100,7 @@ void itClimbersBlizzard_802C2248(Item_GObj* gobj)
     ip->x40_vel.x = attrs->x4 * cosf(var_f31);
     ip->x40_vel.y = attrs->x4 * sinf(var_f31);
     ip->x40_vel.z = 0.0f;
-    it_80275158(gobj, attrs->x0);
+    it_2725_SetLifetime(gobj, attrs->x0);
     ip->xDD4_itemVar.climbersblizzard.flag0 = 1;
     itClimbersBlizzard_802C2358(gobj);
 }

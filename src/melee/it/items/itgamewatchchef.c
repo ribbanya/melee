@@ -40,7 +40,7 @@ void it_802C875C(Item_GObj* gobj)
     PAD_STACK(8);
     ip->x40_vel.y = 0.0f;
     ip->x40_vel.x = 0.0f;
-    it_80275158(gobj, attrs->xC);
+    it_2725_SetLifetime(gobj, attrs->xC);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
 }
 
@@ -58,7 +58,7 @@ bool it_2725_Logic112_Clanked(Item_GObj* gobj)
     PAD_STACK(16);
     ip->x40_vel.y = 0.0f;
     ip->x40_vel.x = 0.0f;
-    it_80275158(gobj, attrs->xC);
+    it_2725_SetLifetime(gobj, attrs->xC);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
     return false;
 }
@@ -71,7 +71,7 @@ bool it_2725_Logic112_HitShield(Item_GObj* gobj)
     PAD_STACK(16);
     ip->x40_vel.y = 0.0f;
     ip->x40_vel.x = 0.0f;
-    it_80275158(gobj, attrs->xC);
+    it_2725_SetLifetime(gobj, attrs->xC);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
     return false;
 }

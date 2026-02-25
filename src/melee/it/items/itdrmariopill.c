@@ -225,7 +225,7 @@ void itDrMarioPill_802C0B5C(Item_GObj* gobj)
     ip->x40_vel.x = ip->facing_dir * (temp_f31 * cosf(temp_f30));
     ip->x40_vel.y = temp_f31 * sinf(temp_f30);
     ip->x40_vel.z = 0.0f;
-    it_80275158(gobj, attrs->x8);
+    it_2725_SetLifetime(gobj, attrs->x8);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
     it_8026B3A8(gobj);
 }
@@ -286,7 +286,7 @@ void itDrMarioPill_802C0DBC(Item_GObj* gobj)
 
 void itDrMarioPill_802C0DF8(Item_GObj* gobj)
 {
-    it_80275158(gobj, 1200.0f);
+    it_2725_SetLifetime(gobj, 1200.0f);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
     it_8026B3A8(gobj);
     it_8026B3A8(gobj);
@@ -386,7 +386,7 @@ void itDrMarioPill_802C1180(Item_GObj* gobj, enum_t msid)
 {
     Item* ip;
     ip = GET_ITEM(gobj);
-    it_80275158(gobj, GET_ATTRS(ip)->x8);
+    it_2725_SetLifetime(gobj, GET_ATTRS(ip)->x8);
     Item_80268E5C(gobj, msid + 4, ITEM_ANIM_UPDATE);
     it_8026B3A8(gobj);
 }
@@ -396,7 +396,7 @@ void itDrMarioPill_PickedUp(Item_GObj* gobj)
     itDrMarioPillAttributes* attrs;
     PAD_STACK(8);
     attrs = GET_ATTRS(GET_ITEM(gobj));
-    it_80275158(gobj, attrs->x8);
+    it_2725_SetLifetime(gobj, attrs->x8);
     Item_80268E5C(gobj, 6, ITEM_ANIM_UPDATE);
     it_8026B3A8(gobj);
 }

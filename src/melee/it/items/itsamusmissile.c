@@ -209,7 +209,7 @@ void* it_802B66A8(Item_GObj* gobj)
 
     ip->xDAC_itcmd_var0 = ip->xDB4_itcmd_var2 = ip->xDB8_itcmd_var3 = 0.0f;
 
-    it_80275158(gobj, attrs->x4);
+    it_2725_SetLifetime(gobj, attrs->x4);
 
     ip->xDD4_itemVar.samusmissile.x8 = 0;
 
@@ -288,7 +288,7 @@ void* it_802B6A60(Item_GObj* gobj)
 
     ip->xDB0_itcmd_var1 = ip->xDB4_itcmd_var2 = ip->xDB8_itcmd_var3 = 0;
 
-    it_80275158(gobj, attrs->x24);
+    it_2725_SetLifetime(gobj, attrs->x24);
     it_8026B3A8(gobj);
     Item_80268E5C(gobj, 1, ITEM_ANIM_UPDATE);
 

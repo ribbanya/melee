@@ -93,7 +93,7 @@ Item_GObj* it_802C3BAC(Item_GObj* gobj, Vec* vec, float facing_dir, float arg3)
             i->xC4_article_data->x4_specialAttributes;
         i->xDAC_itcmd_var0 = i->xDB0_itcmd_var1 = i->xDB4_itcmd_var2 =
             i->xDB8_itcmd_var3 = 0;
-        it_80275158(n, attrs->x0);
+        it_2725_SetLifetime(n, attrs->x0);
         i->xDD4_itemVar.zeldadinfire.xDD8 = 0.0f;
         i->xDD4_itemVar.zeldadinfire.xDDC = 0;
         i->xDD4_itemVar.zeldadinfire.xDE0 = gobj;
@@ -143,7 +143,7 @@ void it_802C3D74(Item_GObj* gobj)
     ip->xDC8_word.flags.x13 = 0;
     it_80272940(gobj);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
-    it_80275158(gobj, attrs->x0);
+    it_2725_SetLifetime(gobj, attrs->x0);
     ip->xDD4_itemVar.zeldadinfire.xDD8 = 0.0f;
     ip->xDD4_itemVar.zeldadinfire.xDDC = 0;
     ip->xDD4_itemVar.zeldadinfire.xDE8 = attrs->x10 * ip->facing_dir;

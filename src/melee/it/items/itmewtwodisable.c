@@ -79,7 +79,7 @@ void it_802C4B38(Item_GObj* item_gobj)
         attrs->x_vel * item->facing_dir * ftLib_80086A0C(fighter_gobj);
     item->x40_vel.y = item->x40_vel.z = 0.0f;
     // set mdisable lifetime timers
-    it_80275158(item_gobj, attrs->lifetime);
+    it_2725_SetLifetime(item_gobj, attrs->lifetime);
     it_802C4BB8(item_gobj);
 }
 

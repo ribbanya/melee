@@ -76,7 +76,7 @@ void it_802C46C4(Item_GObj* gobj, Item* arg1)
     ip->xDC8_word.flags.x13 = 0;
     it_80272940(gobj);
     Item_80268E5C(gobj, 0, ITEM_ANIM_UPDATE);
-    it_80275158(gobj, 60.0f);
+    it_2725_SetLifetime(gobj, 60.0f);
     ip->xDD4_itemVar.zeldadinfireexplode.xDD8 = 0.0f;
     efSync_Spawn(0x4FA, gobj, jobj);
     ip->xDD4_itemVar.zeldadinfireexplode.xDE0 = 1;
