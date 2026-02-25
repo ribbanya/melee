@@ -17,7 +17,7 @@ HSD_GObj* ftLib_80086198(HSD_GObj*);
 HSD_GObj* ftLib_8008627C(Vec3* pos, HSD_GObj*);
 HSD_GObj* ftLib_80086368(Vec3*, HSD_GObj*, float);
 float ftLib_800864A8(Vec3*, HSD_GObj*);
-float ftLib_800865C0(HSD_GObj*);
+float ftLib_GetFacingDir(HSD_GObj*);
 s32 ftLib_800865CC(HSD_GObj*);
 void ftLib_800865D8(HSD_GObj*, float*, float*);
 void* ftLib_800865F0(HSD_GObj*);

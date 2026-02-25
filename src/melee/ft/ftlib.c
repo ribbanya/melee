@@ -270,7 +270,7 @@ float ftLib_800864A8(Vec3* v, HSD_GObj* gobj)
     }
 }
 
-float ftLib_800865C0(HSD_GObj* gobj)
+float ftLib_GetFacingDir(Fighter_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);
     return fp->facing_dir;

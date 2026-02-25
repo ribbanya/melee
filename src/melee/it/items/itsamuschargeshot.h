@@ -19,7 +19,7 @@
 /* 2B5A98 */ bool itSamuschargeshot_UnkMotion0_Anim(Item_GObj* gobj);
 /* 2B5CB0 */ void itSamuschargeshot_UnkMotion0_Phys(Item_GObj* gobj);
 /* 2B5CB4 */ bool itSamuschargeshot_UnkMotion0_Coll(Item_GObj* gobj);
-/* 2B5CBC */ void it_802B5CBC(Item_GObj* gobj);
+/* 2B5CBC */ void it_802B5CBC(Item_GObj* gobj, Fighter_GObj* unused);
 /* 2B5D54 */ bool itSamuschargeshot_UnkMotion8_Anim(Item_GObj* gobj);
 /* 2B5E50 */ void itSamuschargeshot_UnkMotion8_Phys(Item_GObj* gobj);
 /* 2B5EA0 */ bool itSamuschargeshot_UnkMotion8_Coll(Item_GObj* gobj);

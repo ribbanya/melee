@@ -337,7 +337,7 @@ void it_802A850C(Item_GObj* gobj, Vec3* arg1, Vec3* arg2, f32 arg3, f32 arg4,
             (arg4 * ((attr->x8 - attr->x4) / arg5)) + attr->x4;
         item->xDD4_itemVar.linkarrow.xA4 =
             (arg4 * ((attr->x10 - attr->xC) / arg5)) + attr->xC;
-        item->facing_dir = ftLib_800865C0(item->xDD4_itemVar.linkarrow.xE0);
+        item->facing_dir = ftLib_GetFacingDir(item->xDD4_itemVar.linkarrow.xE0);
         HSD_JObjSetRotationY(jobj,
                              1.5707963267948966 * (f64) item->facing_dir);
         item->pos = *arg1;

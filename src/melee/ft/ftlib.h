@@ -14,7 +14,7 @@
 /* 08627C */ HSD_GObj* ftLib_8008627C(Vec3* pos, HSD_GObj*);
 /* 086368 */ Fighter_GObj* ftLib_80086368(Vec3*, Fighter_GObj*, float);
 /* 0864A8 */ float ftLib_800864A8(Vec3*, HSD_GObj*);
-/* 0865C0 */ float ftLib_800865C0(HSD_GObj*);
+/* 0865C0 */ float ftLib_GetFacingDir(HSD_GObj*);
 /* 0865CC */ s32 ftLib_800865CC(HSD_GObj*);
 /* 0865D8 */ void ftLib_800865D8(HSD_GObj*, float*, float*);
 /* 0865F0 */ HSD_JObj* ftLib_800865F0(HSD_GObj*);

@@ -109,7 +109,7 @@ void it_802B56E4(Item_GObj* gobj, Vec3* vec, f32 farg0, f32 farg1, f32 farg2)
         if (ip->xDD4_itemVar.samuschargeshot.xE00 != NULL &&
             ip->owner == ip->xDD4_itemVar.samuschargeshot.xE00)
         {
-            it_802B5CBC(gobj);
+            it_802B5CBC(gobj, ip->xDD4_itemVar.samuschargeshot.xE00);
             {
                 Vec3 sp2C;
                 Vec3 sp20;
@@ -137,7 +137,7 @@ void it_802B56E4(Item_GObj* gobj, Vec3* vec, f32 farg0, f32 farg1, f32 farg2)
                 attr->x18;
             ip->xDD4_itemVar.samuschargeshot.xDF4 = 0;
             ip->facing_dir =
-                ftLib_800865C0(ip->xDD4_itemVar.samuschargeshot.xE00);
+                ftLib_GetFacingDir(ip->xDD4_itemVar.samuschargeshot.xE00);
             ip->pos = *vec;
             ip->xDD4_itemVar.samuschargeshot.xDFC = 0;
             ip->x40_vel.x = ip->xDD4_itemVar.samuschargeshot.xDDC *
@@ -230,12 +230,11 @@ bool itSamuschargeshot_UnkMotion0_Coll(Item_GObj* gobj)
     return false;
 }
 
-void it_802B5CBC(Item_GObj* gobj)
+void it_802B5CBC(Item_GObj* gobj, Fighter_GObj* unused)
 {
     Item* ip = GET_ITEM(gobj);
     itSamusChargeShot_Attributes* attr =
         ip->xC4_article_data->x4_specialAttributes;
-    PAD_STACK(4);
 
     it_80275158(gobj, attr->lifetime);
     efLib_DestroyAll(gobj);

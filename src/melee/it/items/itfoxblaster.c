@@ -628,7 +628,7 @@ Item_GObj* it_802AE994(Fighter_GObj* owner_gobj, Fighter_Part ft_part,
         spawn.prev_pos.z = 0.0F;
         spawn.pos = spawn.prev_pos;
 
-        spawn.facing_dir = ftLib_800865C0(owner_gobj);
+        spawn.facing_dir = ftLib_GetFacingDir(owner_gobj);
         spawn.x3C_damage = 0;
         spawn.vel.x = spawn.vel.y = spawn.vel.z = 0.0F;
         spawn.x0_parent_gobj = owner_gobj;

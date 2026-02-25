@@ -51,7 +51,7 @@ void plBonusLib_8003D514(int arg0)
 
         temp_r31_2 = Player_GetStaleMoveTableIndexPtr2(var_r29);
         ftLib_80086644(temp_r30, &spC);
-        temp_f1 = ftLib_800865C0(temp_r30);
+        temp_f1 = ftLib_GetFacingDir(temp_r30);
         temp_r31_2->xDD1.bit6 = 1;
 
         if ((temp_f1 * sp18.x) > (temp_f1 * spC.x)) {
