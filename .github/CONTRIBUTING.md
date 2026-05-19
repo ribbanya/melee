@@ -138,7 +138,7 @@ If you just want to get started and match a function, you don't need to create a
 
 If you're familiar with git and want to make changes locally, you can also [fork the repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo) to your personal GitHub. When submitting code, try to group your changes into fewer but larger PRs, as it'a easier to review that way.
 
-## <a name="ai"></a>Using AI
+## <a name="ai"></a>AI Assistance
 
 Using AI to match functions is acceptable and frequently practiced. However, please adhere to the following guidelines:
 * Refrain from allowing AI to name fields in structs or other globally accessible identifiers
