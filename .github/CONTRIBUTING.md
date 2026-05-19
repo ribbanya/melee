@@ -141,6 +141,6 @@ If you're familiar with git and want to make changes locally, you can also [fork
 ## <a name="ai"></a>AI Assistance
 
 Using AI to match functions is acceptable and frequently practiced. However, please adhere to the following guidelines:
-* Refrain from allowing AI to name fields in structs or other globally accessible identifiers
-* It is recommended to discourage AI from attempting to match data sections and focus solely on code matches.
+* Refrain from allowing AI to name fields in structs or other globally accessible identifiers.
+* Discourage AI from attempting to match data sections, instead focusing solely on code matches.
 * When submitting pull requests or issues, avoid including AI output in the body or in comments, and do not submit automated code reviews. If an AI summary is both relevant and concise, you may include it as markdown comments (`>`) to differentiate it from human writing.
