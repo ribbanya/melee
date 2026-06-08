@@ -2910,23 +2910,6 @@ s8 ftKb_Init_803CB46C[FTKIND_MAX] = {
     37, 20, 21, 35, 32, 33, 36, -1, 47, 48, -1, -1, -1, -1, -1, -1,
 };
 
-bool ftKb_Init_803CB490[] = {
-    false, true,  false, false, false, false, true,  true,
-    false, false, false, true,  true,  true,  false, false,
-    true,  true,  true,  true,  false, true,  true,
-};
-
-struct ftKb_Init_803CB4EC {
-    int ints[6];
-    Vec3 vec;
-} ftKb_Init_803CB4EC = {
-    { 0, 2, 3, 4, 5, 6 },
-    { 0.0F, 1.0F, 0.0F },
-};
-
-char ftKb_Init_803CB510[] = "Other Dead_Proc Existence";
-char ftKb_Init_803CB52C[] = "ftkirbyspecials.c";
-
 enum_t ftKb_Init_803CB540[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
