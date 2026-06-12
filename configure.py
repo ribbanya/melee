@@ -133,12 +133,6 @@ parser.add_argument(
     help="warning level (default 'off')",
 )
 parser.add_argument(
-    "--no-warn-error",
-    action="store_false",
-    dest="warn_error",
-    help="compiler warnings are not considered errors",
-)
-parser.add_argument(
     "--require-protos",
     dest="require_protos",
     action="store_true",
@@ -240,7 +234,6 @@ cflags_base = [
     "-nodefaults",
     "-inline auto",
     '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
     "-RTTI off",
     "-str reuse",
     f"-DBUILD_VERSION={version_num}",
@@ -259,9 +252,6 @@ if args.max_errors == 0:
 cflags_base.append(f"-msgstyle {args.msg_style}")
 config.ldflags.append(f"-msgstyle {args.msg_style}")
 cflags_base.append(f"-warn {args.warn}")
-
-if args.warn_error:
-    cflags_base.append("-warn iserror")
 
 if args.require_protos:
     cflags_base.append("-requireprotos")
