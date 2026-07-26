@@ -1,20 +1,12 @@
 #include "grcastle.h"
 
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/archive.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <MetroTRK/intrinsics.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
-
 #include "placeholder.h"
 #include "types.h"
+
 #include "cm/camera.h"
+
+#include "cm/forward.h"
+
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gm/gm_16AE.h"
@@ -26,6 +18,9 @@
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/itdrop.h"
 #include "it/ithitbox.h"
@@ -33,10 +28,23 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "lb/types.h"
-#include "mp/mplib.h"
-#include "cm/forward.h"
-#include "it/forward.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <trigf.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/archive.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/psstructs.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
 
 struct unkCastle {
     /* 0x000 */ u8 _pad[0x10C];

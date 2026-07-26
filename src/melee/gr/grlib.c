@@ -1,31 +1,37 @@
 #include "grlib.h"
 
-#include <math.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/aobj.h>
-#include <baselib/debug.h>
-#include <baselib/generator.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-
 #include "grbigblue.h"
 #include "gricemt.h"
 #include "ground.h"
 #include "grrcruise.h"
+
 #include "baselib/psappsrt.h"
 #include "baselib/psstructs.h"
 #include "cm/camera.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
+
+#include "gr/forward.h"
+
 #include "gr/types.h"
+
+#include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h" // IWYU pragma: keep
-#include "gr/forward.h"
-#include "it/forward.h"
+#include "sc/types.h"
+
+#include <math.h>
+#include <baselib/aobj.h>
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 /* 1C9BC8 */ static void grLib_801C9BC8(HSD_GObj*);
 /* 1C9C40 */ static void grLib_801C9C40(HSD_GObj*);
