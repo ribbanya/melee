@@ -1,7 +1,6 @@
 #ifndef GALE01_014ABC
 #define GALE01_014ABC
 
-#include <placeholder.h>
 #include <platform.h>
 
 #include <dolphin/ar.h>
