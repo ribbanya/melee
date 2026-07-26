@@ -1,14 +1,17 @@
 #ifndef GALE01_2C248C
 #define GALE01_2C248C
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
+#include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/itCharItems.h"
 #include "it/items/types.h"
-#include "ft/forward.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2C248C */ static HSD_GObj* it_802C248C(Item* ip, HSD_JObj* jobj);
 /* 2C28DC */ static void fn_802C28DC(Item_GObj* gobj);

@@ -1,19 +1,22 @@
-#include <melee/if/textlib.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/lb/lblanguage.h>
-#include <melee/lb/lbtime.h>
-#include <melee/ty/toy.h>
-#include <platform.h>
-
 #include "gm_1601.h"
 #include "gm_16F1.h"
 #include "gm_1A3F.h"
 #include "gm_1BA8.h"
 #include "gmmain_lib.h"
 #include "gmregclear.h"
+
+#include <platform.h>
+
 #include "ft/forward.h"
+
 #include "gm/types.h"
 #include "mn/types.h"
+
+#include <melee/if/textlib.h>
+#include <melee/lb/lb_00B0.h>
+#include <melee/lb/lblanguage.h>
+#include <melee/lb/lbtime.h>
+#include <melee/ty/toy.h>
 
 static lbl_8046DBD8_t challenger_data;
 

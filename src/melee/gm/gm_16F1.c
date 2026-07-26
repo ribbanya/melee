@@ -1,5 +1,19 @@
 #include "gm_16F1.h"
 
+#include "gm_16F1.static.h"
+
+#include "gm_unsplit.h"
+
+#include "ft/forward.h"
+
+#include "gm/gm_1601.h"
+#include "gm/types.h"
+#include "mn/types.h"
+
+#include "pl/forward.h"
+#include <baselib/forward.h>
+
+#include <baselib/sislib.h>
 #include <melee/gm/gm_16AE.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/if/textlib.h>
@@ -11,16 +25,6 @@
 #include <melee/pl/plbonuslib.h>
 #include <melee/pl/types.h>
 #include <melee/ty/toy.h>
-#include <baselib/forward.h>
-#include <baselib/sislib.h>
-
-#include "gm_16F1.static.h"
-#include "gm_unsplit.h"
-#include "gm/gm_1601.h"
-#include "mn/types.h"
-#include "ft/forward.h"
-#include "gm/types.h"
-#include "pl/forward.h"
 
 struct lbl_804D65A8_t {
     /* 0x00 */ u8 x0;

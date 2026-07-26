@@ -3,15 +3,19 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <melee/sc/forward.h>
-#include <dolphin/mtx.h>
-#include <dolphin/gx/GXEnum.h>
 
 #include "dolphin/gx.h"
+
 #include "ft/forward.h"
 #include "lb/forward.h"
+
 #include "lb/types.h"
+
+#include <baselib/forward.h>
+#include <melee/sc/forward.h>
+
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
 
 struct Fighter_804D653C_t;
 struct lb_80011A50_t;

@@ -1,17 +1,18 @@
 #include "ftPk_Init.h"
 
-#include <platform.h>
-
 #include "ftPk_SpecialHi.h"
 #include "ftPk_SpecialLw.h"
 #include "ftPk_SpecialN.h"
 #include "ftPk_SpecialS.h"
+
+#include <platform.h>
+
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-#include "it/it_26B1.h"
 #include "ftPikachu/types.h"
+#include "it/it_26B1.h"
 
 MotionState ftPk_Init_MotionStateTable[ftPk_MS_SelfCount] = {
     {

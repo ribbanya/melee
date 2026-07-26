@@ -4,6 +4,7 @@
 #define GALE01_14CBF4
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 14CBF4 */ void ftGw_SpecialLw_ItemPanicSetup(HSD_GObj* gobj);

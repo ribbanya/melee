@@ -2,11 +2,12 @@
 #define MELEE_MN_EVENT_H
 
 #include <placeholder.h>
+
 #include <dolphin/mtx.h>
+#include <dolphin/types.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/sislib.h>
-#include <dolphin/types.h>
 
 typedef struct MnEventData {
     /* 0x00 */ u8 page;

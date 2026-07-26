@@ -4,6 +4,7 @@
 #define GALE01_14BDB0
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 14BDB0 */ void ftGw_Attack11_ItemGreenhouseSetup(HSD_GObj* gobj);

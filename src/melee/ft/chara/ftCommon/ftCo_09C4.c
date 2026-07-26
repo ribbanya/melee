@@ -1,10 +1,12 @@
 #include "ftCo_09C4.h"
 
-#include <platform.h>
-
 #include "ftCo_Pass.h"
 #include "ftCo_Shouldered.h"
+
+#include <platform.h>
+
 #include "ft/ftanim.h"
+
 #include "ftCommon/forward.h"
 
 /* 09C540 */ static void ftCo_8009C540(Fighter_GObj* gobj);

@@ -1,18 +1,23 @@
 #include "ftCo_Jump.h"
 
-#include <common_structs.h>
+#include "math.h"
+
 #include <platform.h>
 
-#include "math.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0DF1.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackAir.h"
@@ -26,9 +31,10 @@
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/ftCo_KneeBend.h"
 #include "ftCommon/ftCo_SpecialAir.h"
-#include "ftPeach/ftPe_Float.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
+#include "ftPeach/ftPe_Float.h"
+
+#include <common_structs.h>
 
 ftCo_JumpInput ftCo_Jump_GetInput(Fighter_GObj* gobj)
 {

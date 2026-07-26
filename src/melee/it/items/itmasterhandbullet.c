@@ -1,10 +1,6 @@
 #include "itmasterhandbullet.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 
 #include "db/db.h"
 #include "ef/efsync.h"
@@ -16,6 +12,11 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F9388[] = {
     { 0, itMasterhandbullet_UnkMotion1_Anim,

@@ -1,5 +1,28 @@
 #include "mnname.h"
 
+#include "inlines.h"
+#include "mnmainrule.h"
+
+#include "mnname.static.h"
+
+#include "mnnamenew.h"
+#include "placeholder.h"
+
+#include <platform.h>
+
+#include "dolphin/gx/GXStruct.h"
+#include "gm/types.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lblanguage.h"
+#include "lb/lbspdisplay.h"
+
+#include "mn/forward.h"
+
+#include "mn/mnmain.h"
+
+#include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -9,25 +32,8 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
-#include <melee/gm/gmmain_lib.h>
 #include <baselib/sislib.h>
-#include <dolphin/mtx.h>
-#include <platform.h>
-
-#include "inlines.h"
-#include "mnmainrule.h"
-#include "mnname.static.h"
-#include "mnnamenew.h"
-#include "placeholder.h"
-#include "dolphin/gx/GXStruct.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lblanguage.h"
-#include "lb/lbspdisplay.h"
-#include "gm/types.h"
-#include "mn/forward.h"
-#include "mn/mnmain.h"
+#include <melee/gm/gmmain_lib.h>
 
 extern char mnName_StringTerminator;
 extern char mnName_804D4BF0;

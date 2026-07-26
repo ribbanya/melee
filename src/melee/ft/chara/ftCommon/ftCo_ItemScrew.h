@@ -1,9 +1,9 @@
 #ifndef MELEE_FTCO_ITEMSCREW_H
 #define MELEE_FTCO_ITEMSCREW_H
 
-#include <dolphin/mtx.h>
-
 #include "ft/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 0D2D50 */ void ftCo_ItemScrew_Enter(Fighter_GObj*);
 /* 0D2DD0 */ void ftCo_ItemScrew_Anim(Fighter_GObj* gobj);

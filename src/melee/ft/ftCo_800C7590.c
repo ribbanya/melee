@@ -1,12 +1,11 @@
 #include "ftCo_800C7590.h"
 
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <platform.h>
-
 #include "ft_081B.h"
 #include "ftCo_800C78B0.h"
 #include "ftcommon.h"
+
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ft/fighter.h"
 #include "ft/types.h"
@@ -14,10 +13,15 @@
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
+#include "ftCommon/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itleadead.h"
 #include "pl/player.h"
-#include "ftCommon/types.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 /* 0C74CC */ void fn_800C74CC(Fighter_GObj* gobj);
 /* 0C7568 */ void fn_800C7568(Fighter_GObj* gobj);

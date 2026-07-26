@@ -2,12 +2,15 @@
 #define GALE01_29A114
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
-#include "it/forward.h"
-#include "it/items/types.h"
 #include "ft/forward.h"
+#include "it/forward.h"
+
+#include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 typedef struct itLipstickSporeAttributes {
     f32 x0;

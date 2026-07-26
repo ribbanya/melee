@@ -1,25 +1,26 @@
 #include "cobj.h"
 
-#include <placeholder.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/gx.h>
-#include <dolphin/gx/GXTransform.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
-#include <baselib/debug.h>
-#include <baselib/fobj.h>
-#include <baselib/object.h>
-#include <baselib/video.h>
-#include <dolphin/vi/vifuncs.h>
-#include <math.h>
-
 #include "aobj.h"
 #include "displayfunc.h"
 #include "initialize.h"
 #include "mtx.h"
 #include "util.h"
 #include "wobj.h"
+
+#include <placeholder.h>
+
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXTransform.h>
+#include <dolphin/mtx.h>
+#include <dolphin/vi/vifuncs.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/object.h>
+#include <baselib/video.h>
+#include <MetroTRK/intrinsics.h>
 
 static HSD_ClassInfo* default_class;
 static HSD_CObj* current;

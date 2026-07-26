@@ -1,11 +1,13 @@
 #include "itsscope.h"
 
+#include "inlines.h"
+#include "itsscopebeam.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "inlines.h"
-#include "itsscopebeam.h"
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"

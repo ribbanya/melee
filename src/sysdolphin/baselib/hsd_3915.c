@@ -1,20 +1,20 @@
 #include "hsd_3915.h"
 
+#include "hsd_3915.static.h"
+
 #include <math_ppc.h>
+#include <stdio.h>
+#include <string.h>
 #include <trigf.h>
 #include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/list.h>
 #include <baselib/memory.h>
 #include <baselib/perf.h>
-#include <baselib/state.h>
 #include <baselib/pobj.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/mtx.h>
-#include <stdio.h>
-#include <string.h>
-
-#include "hsd_3915.static.h"
+#include <baselib/state.h>
 
 /* 4CF810 */ extern struct ParticleScreenState hsd_804CF810;
 

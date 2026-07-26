@@ -1,17 +1,21 @@
 #include "itgamewatchmanhole.h"
 
-#include <baselib/jobj.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "inlines.h"
 #include "ft/chara/ftGameWatch/ftGw_AttackLw3.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+
+#include <baselib/jobj.h>
 
 bool itGamewatchmanhole_UnkMotion0_Anim(Item_GObj* gobj);
 

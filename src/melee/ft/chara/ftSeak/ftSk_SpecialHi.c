@@ -1,18 +1,15 @@
 #include "ftSk_SpecialHi.h"
 
 #include <placeholder.h>
-#include <math.h>
-#include <trigf.h>
-#include <MetroTRK/intrinsics.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
@@ -21,15 +18,23 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
+
 #include "ftSeak/forward.h"
+
+#include "ftSeak/types.h"
 #include "it/items/itseakvanish.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCommon/types.h"
-#include "ftSeak/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
 static MotionFlags const ftSk_MF_SpecialHi_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx | Ft_MF_KeepColAnimHitStatus |

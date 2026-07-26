@@ -1,16 +1,12 @@
 #include "it_2E5A.h"
 
-#include <math.h>
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "db/db.h"
 #include "gm/gm_unsplit.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -18,12 +14,21 @@
 #include "it/item.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 const Vec3 it_803B8718 = { 0.0f, 0.0f, 0.0f };
 const Vec3 it_803B8724 = { 0.0f, 0.0f, 0.0f };

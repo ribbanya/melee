@@ -1,13 +1,5 @@
 #include "vi/vi0402.h"
 
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <stddef.h>
-
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
@@ -17,6 +9,14 @@
 #include "pl/player.h"
 #include "sc/types.h"
 #include "vi/vi.h"
+
+#include <stddef.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 static SceneDesc* un_804D6F68;
 

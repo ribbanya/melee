@@ -1,12 +1,14 @@
 #include "ftCo_BarrelWait.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_Damage.h"
 #include "ftCo_Lift.h"
 #include "ftCo_Throw.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
+#include "cm/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcamera.h"
@@ -15,12 +17,15 @@
 #include "ft/ftdynamics.h"
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "gr/ground.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
-#include "cm/forward.h"
-#include "ftCommon/types.h"
+
+#include <common_structs.h>
 
 /* 09EC44 */ static void ftCo_8009EC44(Fighter_GObj* gobj);
 

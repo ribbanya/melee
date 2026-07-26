@@ -1,6 +1,15 @@
 #include "itfoxlaser.h"
 
 #include <placeholder.h>
+
+#include "it/inlines.h"
+#include "it/it_2725.h"
+#include "it/itCharItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <melee/db/db.h>
@@ -8,13 +17,6 @@
 #include <melee/it/item.h>
 #include <melee/it/items/inlines.h>
 #include <MSL/math.h>
-
-#include "it/inlines.h"
-#include "it/it_2725.h"
-#include "it/itCharItems.h"
-#include "it/types.h"
-#include "lb/forward.h"
-#include "it/itgroundcoll.h"
 
 ItemStateTable it_803F67D0[] = {
     { 0, itFoxlaser_UnkMotion1_Anim, itFoxlaser_UnkMotion1_Phys,

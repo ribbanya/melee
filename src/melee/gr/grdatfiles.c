@@ -1,15 +1,16 @@
 #include "grdatfiles.h"
 
+#include "ground.h"
+
+#include "gr/types.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbheap.h"
+
 #include <baselib/archive.h>
 #include <baselib/debug.h>
 #include <baselib/particle.h>
 #include <baselib/psstructs.h>
-
-#include "ground.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbheap.h"
-#include "gr/types.h"
 
 /// @todo Merge declaration and definition
 /* static */ extern GroundParam grDatFiles_803E0848;

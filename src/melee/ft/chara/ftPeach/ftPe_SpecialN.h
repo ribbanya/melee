@@ -2,6 +2,7 @@
 #define GALE01_11E3D0
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 11E2AC */ void ftPe_SpecialN_DoDeath2(HSD_GObj* gobj);

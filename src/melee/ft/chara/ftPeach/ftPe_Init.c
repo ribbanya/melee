@@ -1,8 +1,5 @@
 #include "ftPe_Init.h"
 
-#include <placeholder.h>
-#include <platform.h>
-
 #include "ftPe_AttackS4.h"
 #include "ftPe_Float.h"
 #include "ftPe_FloatAttack.h"
@@ -11,18 +8,26 @@
 #include "ftPe_SpecialLw.h"
 #include "ftPe_SpecialN.h"
 #include "ftPe_SpecialS.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/ftcamera.h"
 #include "ft/ftdata.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_ItemParasolFallSpecial.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
+#include "ftPeach/types.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "lb/lbanim.h"
-#include "ftPeach/types.h"
 
 MotionState ftPe_Init_MotionStateTable[ftPe_MS_SelfCount] = {
     {

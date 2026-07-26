@@ -1,17 +1,19 @@
 #include "ftCh_Wait1_0.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "ftCh_GrabUnk1_B174.h"
 #include "ftCh_TagCancel.h"
 #include "types.h"
+
+#include <platform.h>
+
 #include "baselib/controller.h"
+
 #include "baselib/forward.h"
+
 #include "baselib/random.h"
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_BackCrush.h"
@@ -33,9 +35,13 @@
 #include "ftMasterHand/types.h"
 #include "gr/stage.h"
 #include "mp/mplib.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 static void ftCh_Init_80156310(HSD_GObj* gobj);
 static void ftCh_Init_80156AD8(HSD_GObj* gobj);

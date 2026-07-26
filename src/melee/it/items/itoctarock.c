@@ -1,28 +1,29 @@
 #include "itoctarock.h"
 
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "inlines.h"
 #include "math.h"
 #include "placeholder.h"
+
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itoctarockstone.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "mp/mpcoll.h"
 #include "sysdolphin/baselib/random.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 ItemStateTable it_803F8B48[] = {
     {

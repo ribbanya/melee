@@ -2,12 +2,15 @@
 #define GALE01_ITMAPLIB
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
 #include "lb/forward.h"
+
 #include "lb/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2759DC */ void it_802759DC(Item_GObj*, Item_GObj*);
 /* 275BC8 */ void it_80275BC8(Item_GObj*, HSD_GObj*);

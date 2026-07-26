@@ -2,10 +2,12 @@
 #define GALE01_1A2224
 
 #include <placeholder.h>
-#include <stdbool.h>
 
 #include "baselib/forward.h"
+
 #include "dolphin/types.h"
+
+#include <stdbool.h>
 
 typedef struct _gmCameraUnkStruct4 {
     /*0x00*/ bool x0;

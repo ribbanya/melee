@@ -8,22 +8,13 @@
  */
 #include "eflib.h"
 
-#include <runtime.h>
-#include <trigf.h>
-#include <baselib/debug.h>
-#include <baselib/generator.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/mobj.h>
-#include <baselib/objalloc.h>
-#include <baselib/tobj.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-
 #include "efasync.h"
 #include "efdata.h"
 #include "inlines.h"
 #include "types.h"
+
+#include <placeholder.h>
+
 #include "baselib/displayfunc.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
@@ -37,12 +28,23 @@
 #include "baselib/state.h"
 #include "dolphin/mtx.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_Bury.h"
+#include "ftCommon/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "MSL/math.h"
-#include "ft/types.h"
-#include "ftCommon/types.h"
+
+#include <runtime.h>
+#include <trigf.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/mobj.h>
+#include <baselib/objalloc.h>
+#include <baselib/tobj.h>
 
 // externs
 extern u32* ptclref_804D0E5C[65];

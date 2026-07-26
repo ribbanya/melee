@@ -1,16 +1,17 @@
 #include "lb/lbfile.h"
 
-#include <string.h>
-#include <dolphin/dvd.h>
-#include <baselib/debug.h>
-#include <baselib/devcom.h>
-#include <dolphin/os.h>
 #include <placeholder.h>
 
 #include "lb/lb_0195.h"
 #include "lb/lbdvd.h"
 #include "lb/lbheap.h"
 #include "lb/lblanguage.h"
+
+#include <string.h>
+#include <dolphin/dvd.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/devcom.h>
 
 static char lbFile_803BA508[] = __FILE__;
 

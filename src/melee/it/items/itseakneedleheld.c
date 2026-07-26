@@ -1,20 +1,25 @@
 #include "itseakneedleheld.h"
 
-#include <baselib/jobj.h>
-#include <baselib/forward.h>
-#include <baselib/gobj.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "inlines.h"
 #include "ft/chara/ftKirby/ftkirbyspecialdonkey.h"
 #include "ft/chara/ftSeak/ftSk_SpecialS.h"
+
 #include "ft/forward.h"
+
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "it/types.h"
+
+#include <baselib/forward.h>
+
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F70A8[] = {
     {

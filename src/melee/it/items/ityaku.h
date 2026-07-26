@@ -2,12 +2,15 @@
 #define GALE01_2E6AEC
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/forward.h>
 
 #include "gr/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2E6AEC */ Item_GObj* it_802E6AEC(Ground*, int, int, HSD_JObj*, Vec3*, int,
                                     void (*)(Item_GObj*, Ground*),

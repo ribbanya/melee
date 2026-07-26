@@ -1,15 +1,16 @@
 #include "ftwaitanim.h"
 
-#include <baselib/debug.h>
-
 #include "ftdynamics.h"
+
 #include "baselib/random.h"
 #include "ft/ftanim.h"
 #include "ft/ftdata.h"
 #include "ft/inlines.h"
-#include "it/it_26B1.h"
 #include "ft/types.h"
+#include "it/it_26B1.h"
 #include "lb/types.h"
+
+#include <baselib/debug.h>
 
 bool ftCo_8008A698(Fighter* fp)
 {

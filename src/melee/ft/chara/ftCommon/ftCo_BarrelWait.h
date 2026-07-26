@@ -3,9 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 09EB18 */ void ftCo_8009EB18(Fighter_GObj* gobj);
 /* 09EC08 */ void ftCo_BarrelWait_Anim(Fighter_GObj* gobj);

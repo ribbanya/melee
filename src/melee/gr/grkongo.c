@@ -1,43 +1,54 @@
 #include "gr/grkongo.h"
 
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/spline.h>
-#include <baselib/debug.h>
-#include <baselib/gobjgxlink.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "grkongo.static.h"
+
 #include "grmaterial.h"
+
+#include <placeholder.h>
+
 #include "ef/efsync.h"
+
+#include "ft/forward.h"
+
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "ftCommon/ftCo_BarrelWait.h"
 #include "gm/gm_unsplit.h"
 #include "gr/granime.h"
+#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/stage.h"
+#include "gr/types.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/items/itbox.h"
 #include "it/items/itklap.h"
 #include "it/itspawn.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+
 #include "mp/forward.h"
+
 #include "mp/mplib.h"
 #include "MSL/math.h"
-#include "ft/forward.h"
-#include "gr/grdisplay.h"
-#include "gr/types.h"
-#include "it/forward.h"
-#include "lb/forward.h"
+
+#include <math_ppc.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/spline.h>
+#include <MetroTRK/intrinsics.h>
 
 GrJoint grKg_803E16E0[] = {
     { 2, 10, 19 }, { 3, 10, 22 }, { 5, 10, 43 },

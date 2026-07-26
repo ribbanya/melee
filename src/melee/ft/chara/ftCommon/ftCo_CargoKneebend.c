@@ -1,20 +1,23 @@
 #include "ftCo_CargoKneebend.h"
 
-#include <platform.h>
-
 #include "ftCo_CargoJump.h"
 #include "ftCo_CargoThrow.h"
 #include "ftCo_CargoWait.h"
 #include "ftCo_Shouldered.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
 #include "ftCaptain/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_KneeBend.h"
 #include "ftCommon/types.h"
 #include "ftDonkey/types.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
 
 void ftCo_8009B9C8(Fighter_GObj* gobj, int arg1)
 {

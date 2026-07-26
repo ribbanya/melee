@@ -1,10 +1,10 @@
 #ifndef GALE01_0984B0
 #define GALE01_0984B0
 
-#include <stdbool.h>
-
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
+
+#include <stdbool.h>
 
 /* 0984B0 */ bool ftCo_80098928(Fighter_GObj* gobj);
 /* 098628 */ void ftCo_PassiveStand_Anim(Fighter_GObj* gobj);

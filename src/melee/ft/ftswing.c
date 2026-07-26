@@ -1,8 +1,5 @@
 #include "ftswing.h"
 
-#include <baselib/debug.h>
-#include <dolphin/os.h>
-
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftpickupitem.h"
 #include "ft/fighter.h"
@@ -11,6 +8,9 @@
 #include "ft/ftlipstickswing.h"
 #include "ft/ftstarrodswing.h"
 #include "it/it_26B1.h"
+
+#include <dolphin/os.h>
+#include <baselib/debug.h>
 
 int lbl_803C6D70[6][5] = {
     { 120, 121, 122, -1, 123 }, { 124, 125, 126, -1, 127 },

@@ -1,8 +1,7 @@
 #include "itzeldadinfireexplode.h"
 
-#include <common_structs.h>
-
 #include "placeholder.h"
+
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
 #include "cm/camera.h"
@@ -16,7 +15,10 @@
 #include "it/itcoll.h"
 #include "it/item.h"
 #include "it/types.h"
+
 #include "lb/forward.h"
+
+#include <common_structs.h>
 
 /* 2C4998 */ bool itZeldadinfireexplode_UnkMotion0_Coll(Item_GObj* gobj);
 

@@ -1,9 +1,5 @@
 #include "itegg.h"
 
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -12,12 +8,17 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itanimlist.h"
-#include "it/item.h"
-#include "it/ithitbox.h"
 #include "it/itCommonItems.h"
 #include "it/itdrop.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/ithitbox.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 288DC4 */ static bool it_80288DC4(Item_GObj* gobj);
 /* 288E6C */ static void it_80288E6C(Item_GObj* gobj);

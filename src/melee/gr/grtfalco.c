@@ -1,21 +1,28 @@
 #include "grtfalco.h"
 
-#include <placeholder.h>
-#include <baselib/gobj.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <platform.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "lb/lbspdisplay.h"
-#include "mp/forward.h"
-#include "mp/mplib.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lbspdisplay.h"
+
+#include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 2207F0 */ static void grTFalco_802207F0(bool);
 /* 2207F4 */ static void grTFalco_802207F4(void);

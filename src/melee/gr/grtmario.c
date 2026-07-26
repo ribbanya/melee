@@ -1,19 +1,24 @@
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
 
 #include "baselib/psstructs.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+
+#include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbspdisplay.h"
-#include "gr/forward.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 /* 21F840 */ static void grTMario_8021F840(bool);
 /* 21F844 */ static void grTMario_8021F844(void);

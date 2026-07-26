@@ -1,32 +1,35 @@
 #include "itcoin.h"
 
-#include <baselib/gobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "cm/camera.h"
 #include "gm/gm_unsplit.h"
 #include "gr/grfigureget.h"
 #include "gr/ground.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itcoll.h"
 #include "it/itCommonItems.h"
+#include "it/itdraw.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
+#include "it/types.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "ty/tydisplay.h"
-#include "it/itdraw.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjobject.h>
+#include <baselib/jobj.h>
 
 /* 2F1588 */ static void it_802F1588(Item_GObj* gobj);
 /* 2F15B0 */ static bool itCoin_UnkMotion0_Anim(Item_GObj* gobj);

@@ -1,8 +1,5 @@
 #include "ftPopo/ftPp_SpecialLw.h"
 
-#include <trigf.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -11,20 +8,26 @@
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
+#include "ft/types.h"
 #include "ftCommon/inlines.h"
+
+#include "ftPopo/forward.h"
+
 #include "ftPopo/ftPp_Init.h"
 #include "ftPopo/ftPp_SpecialHi.h"
+#include "ftPopo/types.h"
 #include "it/items/itclimbersblizzard.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftPopo/forward.h"
-#include "ftPopo/types.h"
+
+#include <common_structs.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
 
 void ftPp_SpecialHi_80122898(Fighter_GObj* gobj)
 {

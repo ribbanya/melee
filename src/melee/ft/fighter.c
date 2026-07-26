@@ -1,23 +1,5 @@
 #include "fighter.h"
 
-#include <common_structs.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <baselib/controller.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/mtx.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
-
 #include "ft_07C1.h"
 #include "ft_07C6.h"
 #include "ft_0819.h"
@@ -48,10 +30,15 @@
 #include "ftmetal.h"
 #include "ftparts.h"
 #include "placeholder.h"
+
 #include "cm/camera.h"
 #include "db/db.h"
 #include "ef/efasync.h"
+#include "ft/dobjlist.h"
+#include "ft/ftanim.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_09F4.h"
 #include "ftCommon/ftCo_0A01.h"
 #include "ftCommon/ftCo_0C35.h"
@@ -75,9 +62,16 @@
 #include "ftMasterHand/ftMh_Wait1_0.h"
 #include "ftPeach/types.h"
 #include "gm/gm_unsplit.h"
+
+#include "gr/forward.h"
+
 #include "gr/ground.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "if/ifmagnify.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/it_279C.h"
 #include "it/item.h"
@@ -93,13 +87,26 @@
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 #include "pl/pltrick.h"
-#include "sfx/crowdsfx.h"
-#include "ft/dobjlist.h"
-#include "ft/ftanim.h"
-#include "gr/forward.h"
-#include "gr/types.h"
-#include "it/forward.h"
 #include "pl/types.h"
+#include "sfx/crowdsfx.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+#include <baselib/controller.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/mtx.h>
+#include <baselib/random.h>
+#include <MSL/math.h>
 
 extern struct UnkCostumeList CostumeListsForeachCharacter[FTKIND_MAX];
 

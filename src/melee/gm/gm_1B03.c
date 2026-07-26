@@ -1,6 +1,17 @@
 #include "gm_1B03.h"
 
+#include "gm_1B03.static.h"
+#include <platform.h>
+
+#include "if/soundtest.h"
+
+#include "mn/forward.h"
+
+#include "mn/inlines.h"
+
 #include <melee/pl/forward.h>
+
+#include <common_structs.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/random.h>
 #include <melee/db/db.h>
@@ -9,13 +20,6 @@
 #include <melee/gm/types.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbdvd.h>
-#include <common_structs.h>
-#include <platform.h>
-
-#include "gm_1B03.static.h"
-#include "if/soundtest.h"
-#include "mn/forward.h"
-#include "mn/inlines.h"
 
 /* 480F20 */ MatchExitInfo gm_80480F20;
 /* 48E5F8 */ UNK_T gm_8048E5F8[0x2288 / 4];

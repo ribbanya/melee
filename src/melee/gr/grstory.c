@@ -1,24 +1,31 @@
 #include "grstory.h"
 
-#include <baselib/random.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-#include <platform.h>
-
 #include "granime.h"
 #include "grlib.h"
 #include "grmaterial.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gr/forward.h"
+
+#include "gr/types.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/items/itheiho.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "gr/forward.h"
-#include "gr/types.h"
-#include "it/forward.h"
-#include "lb/forward.h"
+
+#include <dolphin/os.h>
+#include <baselib/random.h>
 
 struct grStory_YakumonoParam {
     float timer_min;

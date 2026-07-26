@@ -1,24 +1,30 @@
 #include "ftCo_Lift.h"
 
-#include <platform.h>
-#include <math.h>
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
-
 #include "ftCo_DamageFall.h"
 #include "ftCo_ItemThrow.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/item.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
+
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
 
 void ftCo_80096D9C(Fighter_GObj* gobj)
 {

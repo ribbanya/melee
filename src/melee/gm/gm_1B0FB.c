@@ -1,10 +1,11 @@
 #include "gm_1B0FB.h"
 
+#include "gm_1B03.h"
+
+#include "gm_1B03.static.h"
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gm_1B03.h"
-#include "gm_1B03.static.h"
 #include "gm/gm_1A3F.h"
 #include "if/soundtest.h"
 

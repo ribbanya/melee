@@ -1,6 +1,13 @@
 #include "gmstamina.h"
 
+#include "gm_unsplit.h"
+#include "gmvsdata.h"
+
 #include <placeholder.h>
+
+#include "pl/forward.h"
+
+#include <baselib/gobj.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>
@@ -9,11 +16,6 @@
 #include <melee/lb/lbdvd.h>
 #include <melee/mn/types.h>
 #include <melee/pl/player.h>
-#include <baselib/gobj.h>
-
-#include "gm_unsplit.h"
-#include "gmvsdata.h"
-#include "pl/forward.h"
 
 GameScene gm_803DF138_Scenes[] = {
     {

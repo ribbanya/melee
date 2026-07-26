@@ -2,11 +2,13 @@
 #define GALE01_2E8BCC
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 2E8BCC */ void it_802E8BCC(Item_GObj*);
 /* 2E8CD8 */ bool it_802E8CD8(Item_GObj*);

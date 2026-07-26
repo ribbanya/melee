@@ -1,15 +1,11 @@
 #include "ftZd_SpecialHi.h"
 
 #include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
 
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
@@ -22,11 +18,18 @@
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/inlines.h"
 #include "ftZelda/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "ft/ft_084E.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
 void ftZd_SpecialHi_801396AC(HSD_GObj* gobj)
 {

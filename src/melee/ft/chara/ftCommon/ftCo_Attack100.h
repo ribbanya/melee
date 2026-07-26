@@ -1,12 +1,14 @@
 #ifndef GALE01_0D67C4
 #define GALE01_0D67C4
 
-#include <melee/ft/forward.h>
-#include <melee/it/forward.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
+
+#include <baselib/forward.h>
+#include <melee/ft/forward.h>
+#include <melee/it/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 0D67C4 */ bool ftCo_800D67C4(Fighter*);
 /* 0D6824 */ bool ftCo_800D6824(Fighter_GObj*);

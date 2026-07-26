@@ -1,12 +1,12 @@
 #include "ftKp_Init.h"
 
-#include <placeholder.h>
-#include <baselib/forward.h>
-
 #include "ftKp_SpecialHi.h"
 #include "ftKp_SpecialLw.h"
 #include "ftKp_SpecialN.h"
 #include "ftKp_SpecialS.h"
+
+#include <placeholder.h>
+
 #include "ft/fighter.h"
 #include "ft/ftcamera.h"
 #include "ft/ftcommon.h"
@@ -15,8 +15,12 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/ftCo_Thrown.h"
 #include "ftKoopa/types.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
+
+#include <baselib/forward.h>
 
 MotionState ftKp_Init_MotionStateTable[ftKp_MS_SelfCount] = {
     {

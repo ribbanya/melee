@@ -1,10 +1,5 @@
 #include "itkirby_2F23.h"
 
-#include <MetroTRK/intrinsics.h>
-#include <MSL/math.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "ft/chara/ftKirby/ftkirby.h"
@@ -15,6 +10,12 @@
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <MetroTRK/intrinsics.h>
+#include <MSL/math.h>
 
 ItemStateTable it_803F9450[] = {
     { -1, itKirby_2F23_UnkMotion0_Anim, itKirby_2F23_UnkMotion0_Phys,

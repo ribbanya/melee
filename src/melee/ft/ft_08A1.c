@@ -1,27 +1,33 @@
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <platform.h>
-
 #include "ft_0892.h"
 #include "math.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdata.h"
 #include "ft/ftlib.h"
+#include "ft/ftwaitanim.h"
+#include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_DownSpot.h"
 #include "ftCommon/ftCo_HammerWait.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftLink/ftLk_AttackAir.h"
 #include "ftMasterHand/ftMh_Wait1_2.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/items/itpeachparasol.h"
-#include "ft/ftwaitanim.h"
-#include "ft/types.h"
-#include "ftCommon/forward.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
 
 bool ft_8008A1FC(Fighter_GObj* gobj)
 {

@@ -1,7 +1,15 @@
 #include "lbshadow.h"
 
+#include <placeholder.h>
+
+#include "ft/dobjlist.h"
+
+#include <common_structs.h>
 #include <math_ppc.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXVert.h>
+#include <baselib/cobj.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/initialize.h>
@@ -22,13 +30,6 @@
 #include <melee/lb/lbvector.h>
 #include <melee/lb/types.h>
 #include <MetroTRK/intrinsics.h>
-#include <baselib/cobj.h>
-#include <common_structs.h>
-#include <dolphin/gx.h>
-#include <dolphin/gx/GXEnum.h>
-#include <placeholder.h>
-
-#include "ft/dobjlist.h"
 
 void lbShadow_8000E9F0(Vec3* p, HSD_Spline* spline, f32 u)
 {

@@ -2,10 +2,12 @@
 #define GALE01_2AF940
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 2AF940 */ Item_GObj* it_802AF940(Item_GObj*, Item_GObj*, Vec3*, ItemKind,
                                     f32, f32);

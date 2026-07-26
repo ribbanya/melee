@@ -1,23 +1,27 @@
 #include "ftMh_FingerGun.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "ftMh_Wait1_2.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itmasterhandbullet.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
-#include "it/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
 
 void ftMh_FingerBeamEnd_Anim(HSD_GObj* gobj)
 {

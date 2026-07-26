@@ -1,16 +1,5 @@
 #include "pobj.h"
 
-#include <math.h> // IWYU pragma: keep
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <baselib/aobj.h>
-#include <baselib/class.h>
-#include <baselib/debug.h>
-#include <baselib/jobj.h>
-#include <baselib/list.h>
-#include <string.h>
-
 #include "displayfunc.h"
 #include "id.h"
 #include "memory.h"
@@ -19,6 +8,17 @@
 #include "state.h"
 #include "tobj.h"
 #include "util.h"
+
+#include <math.h> // IWYU pragma: keep
+#include <string.h>
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <baselib/list.h>
 
 /// @todo Several differently-signed comparisons appear in asserts, likely
 ///       indicating the sign of one of the variables is declared incorrectly

@@ -1,5 +1,14 @@
 #include "gm_1BA8.h"
 
+#include "gm_1BA8.static.h"
+
+#include "gm_unsplit.h"
+
+#include "ft/forward.h"
+#include "pl/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/random.h>
@@ -31,13 +40,6 @@
 #include <melee/vi/vi1101.h>
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
-#include <baselib/gobj.h>
-#include <dolphin/mtx.h>
-
-#include "gm_1BA8.static.h"
-#include "gm_unsplit.h"
-#include "ft/forward.h"
-#include "pl/forward.h"
 
 GameScene gm_803DF618_Scenes[] = {
     {

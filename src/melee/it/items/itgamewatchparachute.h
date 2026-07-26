@@ -1,12 +1,15 @@
 #ifndef GALE01_2C6C38
 #define GALE01_2C6C38
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2C6C38 */ HSD_GObj* it_802C6C38(Item_GObj*, Vec3*, enum_t part, float);
 /* 2C6D3C */ void itGameWatchParachute_Logic74_Destroyed(Item_GObj*);

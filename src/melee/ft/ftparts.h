@@ -2,10 +2,11 @@
 #define GALE01_0735BC
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 struct Fighter_804D6540_x0_t;
 struct DObjList;

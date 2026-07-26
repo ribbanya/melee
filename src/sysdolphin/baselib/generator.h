@@ -2,9 +2,11 @@
 #define SYSDOLPHIN_GENERATOR_H
 
 #include <placeholder.h>
+
 #include <sysdolphin/baselib/forward.h>
-#include <sysdolphin/baselib/objalloc.h>
+
 #include <dolphin/types.h>
+#include <sysdolphin/baselib/objalloc.h>
 
 struct hsd_804D0F60_t {
     HSD_ObjAllocData alloc_data;

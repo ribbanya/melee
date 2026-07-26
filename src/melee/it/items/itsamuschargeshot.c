@@ -1,10 +1,5 @@
 #include "itsamuschargeshot.h"
 
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <math.h>
 #include <placeholder.h>
 
 #include "baselib/mtx.h"
@@ -17,11 +12,17 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
-#include "lb/lbvector.h"
 #include "it/itCharItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "lb/lbvector.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F7288[] = {
     { 0, itSamuschargeshot_UnkMotion0_Anim, itSamuschargeshot_UnkMotion0_Phys,

@@ -1,9 +1,9 @@
 #ifndef MELEE_FTCO_ITEMPARASOLOPEN_H
 #define MELEE_FTCO_ITEMPARASOLOPEN_H
 
-#include <stdbool.h>
-
 #include "ft/forward.h"
+
+#include <stdbool.h>
 
 /* 0CEE70 */ bool ftCo_800CEE70(Fighter_GObj* gobj);
 /* 0CEF08 */ void ft_800CEF08(Fighter_GObj* gobj);

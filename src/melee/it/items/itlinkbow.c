@@ -1,18 +1,22 @@
 #include "it/items/itlinkbow.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "inlines.h"
+
 #include <platform.h>
 
-#include "inlines.h"
 #include "ft/chara/ftKirby/ftkirby.h"
 #include "ft/ftlib.h"
+
+#include "ftLink/forward.h"
+
+#include "ftLink/ftLk_SpecialN.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
-#include "ftLink/forward.h"
-#include "ftLink/ftLk_SpecialN.h"
 #include "it/types.h"
+
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 /* 2AF32C */ static void it_802AF32C(HSD_GObj*);
 /* 2AF64C */ static bool itLinkbow_UnkMotion5_Anim(Item_GObj* gobj);

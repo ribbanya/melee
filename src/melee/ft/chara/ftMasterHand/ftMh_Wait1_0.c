@@ -1,11 +1,5 @@
 #include "ftMh_Wait1_0.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/controller.h>
-#include <baselib/random.h>
-
 #include "ftMh_BackAirplane3.h"
 #include "ftMh_BackCrush_0.h"
 #include "ftMh_BackCrush_1.h"
@@ -25,7 +19,11 @@
 #include "ftMh_TagCrush.h"
 #include "ftMh_Wait1_2.h"
 #include "ftMh_Walk.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
@@ -33,7 +31,11 @@
 #include "gr/stage.h"
 #include "mp/mplib.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/controller.h>
+#include <baselib/random.h>
 
 static void ifStage251(HSD_GObj* gobj);
 

@@ -1,27 +1,36 @@
-#include <math.h>
-#include <trigf.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
 #include "baselib/controller.h"
 #include "cm/camera.h"
+
+#include "cm/forward.h"
+
 #include "db/db.h"
+
+#include "ft/forward.h"
+
 #include "ft/inlines.h"
+
+#include "gm/forward.h"
+
 #include "gm/gm_unsplit.h"
 #include "gr/ground.h"
+
+#include "if/forward.h"
+
 #include "if/textdraw.h"
 #include "if/textlib.h"
 #include "lb/lbshadow.h"
 #include "lb/lbvector.h"
-#include "cm/forward.h"
-#include "ft/forward.h"
-#include "gm/forward.h"
-#include "if/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
 
 /* 4A03C0 */ static char db_CameraInfoDisplay_buf[0xC0];
 

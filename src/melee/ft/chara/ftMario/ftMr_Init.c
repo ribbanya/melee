@@ -5,16 +5,21 @@
 #include "ftMr_SpecialN.h"
 #include "ftMr_SpecialS.h"
 #include "ftMr_Strings.h"
+
 #include "ft/ftcamera.h"
 #include "ft/ftCo_800C70D0.h"
 #include "ft/ftCo_800C7178.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
-#include "it/forward.h"
-#include "it/it_26B1.h"
+
 #include "ftMario/types.h"
+
+#include "it/forward.h"
+
+#include "it/it_26B1.h"
 
 MotionState ftMr_Init_MotionStateTable[ftMr_MS_SelfCount] = {
     {

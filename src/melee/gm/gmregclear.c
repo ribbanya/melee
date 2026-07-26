@@ -1,6 +1,22 @@
 #include "gmregclear.h"
 
+#include "platform.h"
+
+#include "dolphin/pad.h"
+
+#include "gr/forward.h"
+
+#include "mn/inlines.h"
+#include "mn/types.h"
+
+#include "pl/forward.h"
+
+#include <common_structs.h>
 #include <math_ppc.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/cobj.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/dobj.h>
@@ -51,18 +67,6 @@
 #include <melee/pl/player.h>
 #include <melee/sc/types.h>
 #include <melee/ty/toy.h>
-#include <baselib/cobj.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-
-#include "platform.h"
-#include "dolphin/pad.h"
-#include "mn/inlines.h"
-#include "gr/forward.h"
-#include "mn/types.h"
-#include "pl/forward.h"
 
 typedef struct lbl_804706D8_t {
     s16 x0;

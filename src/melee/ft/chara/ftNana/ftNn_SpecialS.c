@@ -1,9 +1,8 @@
-#include <platform.h>
-#include <MSL/math.h>
-#include <common_structs.h>
-#include <placeholder.h>
-
 #include "ftNn_Init.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
@@ -13,10 +12,15 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftPopo/ftPp_SpecialS.h"
 #include "ftPopo/types.h"
 #include "pl/player.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <MSL/math.h>
 
 /* 123B3C */ static void ftNn_Init_80123B3C(Fighter_GObj* nana_gobj);
 /* 123BF0 */ static void ftNn_Init_80123BF0(Fighter_GObj* gobj);

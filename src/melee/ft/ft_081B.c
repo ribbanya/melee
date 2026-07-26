@@ -2,8 +2,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
-#include <baselib/gobj.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_0819.h"
@@ -13,17 +11,22 @@
 #include "ft/ftcommon.h"
 #include "ft/ftwalljump.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_MissFoot.h"
 #include "ftCommon/ftCo_Ottotto.h"
 #include "ftCommon/ftCo_StopCeil.h"
 #include "ftCommon/ftCo_StopWall.h"
+#include "ftCommon/types.h"
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-#include "ftCommon/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
 
 void ft_80081B38(Fighter_GObj* gobj)
 {

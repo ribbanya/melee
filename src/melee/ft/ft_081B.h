@@ -3,13 +3,15 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <baselib/forward.h>
 // TODO transitive include hack, should be included directly by dependers
-#include <melee/ft/ft_084E.h>
-#include <common_structs.h>
-
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <melee/ft/ft_084E.h>
 
 /* 081B38 */ void ft_80081B38(Fighter_GObj* gobj);
 /* 081C88 */ void ft_80081C88(Fighter_GObj* dst_gobj, float scl_y);

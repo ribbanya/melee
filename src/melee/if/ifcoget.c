@@ -1,15 +1,5 @@
 #include "ifcoget.h"
 
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/sislib.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -22,6 +12,17 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"
 #include "sc/types.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/sislib.h>
 
 /* 4DDC28 */ extern float un_804DDC28;
 /* 4DDC2C */ extern float un_804DDC2C;

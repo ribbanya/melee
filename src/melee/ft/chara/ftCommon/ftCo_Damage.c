@@ -1,16 +1,5 @@
 #include "ftCo_Damage.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/mtx.h>
-#include <baselib/random.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "ftCo_0C35.h"
 #include "ftCo_Bury.h"
 #include "ftCo_DamageBind.h"
@@ -27,10 +16,15 @@
 #include "ftCo_PassiveStand.h"
 #include "ftCo_PassiveWall.h"
 #include "ftCo_Wait.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0C8C.h"
 #include "ft/ft_0DF1.h"
@@ -42,6 +36,9 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_DamageScrew.h"
 #include "ftCommon/ftCo_Fall.h"
@@ -59,8 +56,15 @@
 #include "lb/types.h"
 #include "pl/plbonuslib.h"
 #include "sfx/crowdsfx.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/mtx.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
 
 int ftCo_803C5520[2][12] = {
     { 81, 78, 75, 82, 79, 76, 83, 80, 77, 89, 88, 87 },

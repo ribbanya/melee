@@ -1,13 +1,14 @@
 #ifndef GALE01_1EFC68
 #define GALE01_1EFC68
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
 #include "sc/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 1EFC68 */ void grMuteCity_801EFC68(bool);
 /* 1EFC6C */ void grMuteCity_801EFC6C(void);

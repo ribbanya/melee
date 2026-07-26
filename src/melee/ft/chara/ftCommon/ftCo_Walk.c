@@ -8,7 +8,9 @@
 #include "ft/ftchangeparam.h"
 #include "ft/ftwalkcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack1.h"
 #include "ftCommon/ftCo_Attack100.h"

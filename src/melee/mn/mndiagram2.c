@@ -1,5 +1,14 @@
 #include "mndiagram2.h"
 
+#include "mndiagram2.static.h"
+#include <placeholder.h>
+
+#include "baselib/debug.h"
+#include "gm/types.h"
+#include "mn/inlines.h"
+#include "mn/types.h"
+
+#include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>
@@ -17,14 +26,6 @@
 #include <melee/mn/mndiagram.h>
 #include <melee/mn/mndiagram3.h>
 #include <melee/mn/mnmain.h>
-#include <dolphin/mtx.h>
-#include <placeholder.h>
-
-#include "mndiagram2.static.h"
-#include "baselib/debug.h"
-#include "mn/inlines.h"
-#include "mn/types.h"
-#include "gm/types.h"
 
 /* GetPersistentNameData and GetPersistentFighterData are in gm/gmmain_lib.h */
 

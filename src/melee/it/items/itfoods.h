@@ -1,12 +1,14 @@
 #ifndef GALE01_28F9D8
 #define GALE01_28F9D8
 
+#include "it/forward.h"
+
+#include "it/items/types.h"
+
 #include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
-
-#include "it/forward.h"
-#include "it/items/types.h"
 
 /* 28F9D8 */ void it_8028F9D8(Item_GObj* arg0, Vec3* arg1, f32 arg8);
 /* 28FAF4 */ HSD_GObj* it_8028FAF4(Item_GObj* arg0, Vec3* arg1);

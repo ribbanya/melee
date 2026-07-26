@@ -1,8 +1,5 @@
 #include "ftCo_Pass.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_0C60.h"
 #include "ftCo_AirCatch.h"
 #include "ftCo_AttackAir.h"
@@ -10,18 +7,27 @@
 #include "ftCo_HammerWait.h"
 #include "ftCo_ItemThrow.h"
 #include "ftCo_SpecialAir.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/types.h"
-#include "mp/mpcoll.h"
-#include "ftCommon/forward.h"
+
 #include "lb/forward.h"
+
+#include "mp/mpcoll.h"
+
+#include <common_structs.h>
 
 bool ftCo_80099F1C(Fighter_GObj* gobj)
 {

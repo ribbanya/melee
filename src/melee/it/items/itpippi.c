@@ -1,19 +1,20 @@
 #include "itpippi.h"
 
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
-#include "it/itmaplib.h"
-#include "it/types.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
+#include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
 
 ItemStateTable it_803F7FF8[] = {
     { 0, itPippi_UnkMotion0_Anim, itPippi_UnkMotion0_Phys,

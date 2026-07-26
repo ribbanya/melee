@@ -1,20 +1,26 @@
 #include "grtfox.h"
 
-#include <dolphin/mtx.h>
-#include <baselib/gobjproc.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-#include <platform.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lbspdisplay.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobjproc.h>
 
 struct grTFox_YakumonoParam {
     UNK_T unk0;

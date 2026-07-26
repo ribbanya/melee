@@ -1,17 +1,21 @@
 #include "it/itgroundcoll.h"
 
-#include <math.h>
-#include <baselib/random.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/item.h"
 #include "it/itmaplib.h"
+
+#include "lb/forward.h"
+
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-#include "lb/forward.h"
+
+#include <math.h>
+#include <baselib/random.h>
 
 bool it_8026D564(Item_GObj* item_gobj)
 {

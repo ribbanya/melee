@@ -1,11 +1,6 @@
 #include "ftCo_09F7.h"
 
 #include <placeholder.h>
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <melee/ft/ftcmdscript.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
 #include <platform.h>
 
 #include "baselib/random.h"
@@ -13,6 +8,12 @@
 #include "ft/fighter.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include <common_structs.h>
+#include <trigf.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <melee/ft/ftcmdscript.h>
 
 struct _m2c_stack_ftCo_8009F834 {
     /* 0x00 */ char pad_0[0x7C];

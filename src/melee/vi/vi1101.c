@@ -1,23 +1,22 @@
 #include "vi1101.h"
 
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/mtx.h>
-#include <dolphin/mtx.h>
+#include "vi.h"
+
 #include <platform.h>
 
-#include "vi.h"
 #include "cm/camera.h"
 #include "dolphin/gx/GXStruct.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
+
+#include "ft/forward.h"
+
 #include "ft/ftdemo.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_1A45.h"
+
+#include "gr/forward.h"
+
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -27,11 +26,20 @@
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
 #include "sc/types.h"
-#include "ft/forward.h"
-#include "gr/forward.h"
-#include "pl/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/mtx.h>
 
 u8 un_804D6FD8[8];
 GXColor un_804D5B08 = { 0, 0, 0, 0xff };

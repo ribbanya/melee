@@ -1,27 +1,33 @@
 #include "ftCo_FallSpecial.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <placeholder.h>
-
 #include "ftCo_DamageFall.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftchangeparam.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
+
+#include "mp/forward.h"
+
 #include "mp/mplib.h"
 #include "sfx/crowdsfx.h"
-#include "ftCommon/forward.h"
-#include "mp/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
 
 void ftCo_800968C8(Fighter_GObj* gobj)
 {

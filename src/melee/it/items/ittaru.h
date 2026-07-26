@@ -1,10 +1,11 @@
 #ifndef GALE01_287458
 #define GALE01_287458
 
-#include <stdbool.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <stdbool.h>
 
 /* 287458 */ void it_3F14_Logic2_Spawned(Item_GObj*);
 /* 2874F0 */ void it_802874F0(Item_GObj* gobj);

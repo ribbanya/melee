@@ -1,9 +1,9 @@
-#include <stddef.h>
-
 #include "buffer_io.h"
 #include "stdio.h"
 #include "string.h"
 #include "wchar.h"
+
+#include <stddef.h>
 
 extern void __stdio_atexit(void);
 

@@ -1,6 +1,5 @@
 #include "itkinoko.h"
 
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "it/inlines.h"
@@ -8,10 +7,13 @@
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
 #include "it/types.h"
+
 #include "lb/forward.h"
+
+#include <common_structs.h>
 
 ItemStateTable it_803F6110[] = {
     { 0, itKinoko_UnkMotion0_Anim, itKinoko_UnkMotion0_Phys,

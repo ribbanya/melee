@@ -1,6 +1,13 @@
 #include "itmewtwodisable.h"
 
 #include <platform.h>
+
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/ithitbox.h"
+#include "it/types.h"
+
+#include <common_structs.h>
 #include <melee/db/db.h>
 #include <melee/ft/chara/ftMewtwo/ftMt_SpecialLw.h>
 #include <melee/ft/ftlib.h>
@@ -9,12 +16,6 @@
 #include <melee/it/it_2725.h>
 #include <melee/it/item.h>
 #include <melee/it/itmaplib.h>
-#include <common_structs.h>
-
-#include "it/ithitbox.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
 
 ItemStateTable it_803F7750[1] = { 0, itMewtwodisable_UnkMotion0_Anim,
                                   itMewtwodisable_UnkMotion0_Phys,

@@ -1,3 +1,17 @@
+#include "placeholder.h"
+#include "platform.h"
+
+#include "baselib/jobj.h"
+#include "ft/ft_084E.h"
+#include "ftCommon/types.h"
+
+#include "lb/forward.h"
+
+#include "mp/types.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_CargoWait.h>
 #include <melee/ft/chara/ftCommon/ftCo_Damage.h>
 #include <melee/ft/chara/ftCommon/ftCo_Fall.h>
@@ -22,17 +36,6 @@
 #include <melee/mp/mplib.h>
 #include <melee/pl/player.h>
 #include <melee/pl/plbonuslib.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
-#include "placeholder.h"
-#include "platform.h"
-#include "baselib/jobj.h"
-#include "mp/types.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/types.h"
-#include "lb/forward.h"
 
 void fn_800DD568(Fighter_GObj* gobj);
 void fn_800DD5EC(Fighter_GObj* gobj);

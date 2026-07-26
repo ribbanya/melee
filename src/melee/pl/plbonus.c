@@ -1,26 +1,32 @@
 #include "plbonus.h"
 
-#include <sysdolphin/baselib/debug.h>
-#include <melee/cm/camera.h>
-#include <melee/ft/ft_0877.h>
-#include <melee/ft/ft_0892.h>
-#include <melee/ft/ftlib.h>
-#include <melee/gm/gm_unsplit.h>
-#include <baselib/forward.h>
-#include <placeholder.h>
-
 #include "inlines.h"
 #include "pl_040D.h"
 #include "plattack.h"
 #include "plbonuslib.h"
 #include "plstale.h"
 #include "pltrick.h"
+
+#include <placeholder.h>
+
 #include "ft/forward.h"
+
 #include "it/it_26B1.h"
+
 #include "pl/forward.h"
+
 #include "pl/player.h"
 #include "pl/plbonusinline.h"
 #include "pl/types.h"
+
+#include <baselib/forward.h>
+
+#include <sysdolphin/baselib/debug.h>
+#include <melee/cm/camera.h>
+#include <melee/ft/ft_0877.h>
+#include <melee/ft/ft_0892.h>
+#include <melee/ft/ftlib.h>
+#include <melee/gm/gm_unsplit.h>
 
 enum {
     Gm_Player_Other = 6,

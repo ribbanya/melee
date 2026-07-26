@@ -2,10 +2,11 @@
 #define GALE01_ITANIMLIST
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
 #include "lb/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 278F2C */ void it_80278F2C(Item_GObj*, CommandInfo*);
 /* 2790C0 */ void it_802790C0(Item_GObj*, CommandInfo*);

@@ -1,15 +1,18 @@
 #include "itgamewatchrescue.h"
 
+#include "inlines.h"
+
 #include <platform.h>
+
+#include "baselib/forward.h"
+
+#include "it/types.h"
+
 #include <melee/ft/chara/ftGameWatch/ftGw_SpecialHi.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>
 #include <melee/it/itzako.h>
-
-#include "inlines.h"
-#include "baselib/forward.h"
-#include "it/types.h"
 
 ItemStateTable it_803F79C0[] = { {
                                      0,

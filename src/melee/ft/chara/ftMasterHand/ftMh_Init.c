@@ -1,8 +1,5 @@
 #include "ftMh_Init.h"
 
-#include <placeholder.h>
-#include <platform.h>
-
 #include "ftMh_BackAirplane1.h"
 #include "ftMh_BackAirplane2.h"
 #include "ftMh_BackAirplane3.h"
@@ -31,13 +28,19 @@
 #include "ftMh_Wait1_0.h"
 #include "ftMh_Wait1_2.h"
 #include "ftMh_Walk.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/ftbosslib.h"
 #include "ft/ftcamera.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-#include "it/it_26B1.h"
 #include "ftMasterHand/types.h"
+
 #include "it/forward.h"
+
+#include "it/it_26B1.h"
 
 MotionState ftMh_Init_MotionStateTable[ftMh_MS_SelfCount] = {
     {

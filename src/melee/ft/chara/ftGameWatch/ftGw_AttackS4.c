@@ -1,11 +1,12 @@
 #include "ftGw_AttackS4.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "ftGw_Init.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
@@ -13,7 +14,8 @@
 #include "ftGameWatch/types.h"
 #include "it/items/itgamewatchfire.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 /// 0x8014A848
 /// https://decomp.me/scratch/hi2oZ // Spawn Fire Attack Torch and set up

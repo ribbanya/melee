@@ -2,10 +2,11 @@
 #define GALE01_1D5238
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "gr/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 1D5238 */ void grKongo_801D5238(bool);
 /* 1D523C */ void grKongo_801D523C(void);

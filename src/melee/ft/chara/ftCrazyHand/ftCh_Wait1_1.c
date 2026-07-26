@@ -1,18 +1,22 @@
 #include "ftCh_Wait1_1.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
 
 /// @todo Figure out how to use #GET_JOBJ instead.
 static inline HSD_JObj* get_jobj(HSD_GObj* gobj)

@@ -1,8 +1,9 @@
 #include "ftDk_SpecialHi.h"
 
+#include "ftDk_Init.h"
+
 #include <platform.h>
 
-#include "ftDk_Init.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
@@ -15,8 +16,10 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
-#include "ftDonkey/types.h"
+
 #include "ftDonkey/forward.h"
+
+#include "ftDonkey/types.h"
 
 static u32 const coll_mf = Ft_MF_SkipMatAnim | Ft_MF_SkipColAnim |
                            Ft_MF_UpdateCmd | Ft_MF_SkipItemVis | Ft_MF_Unk19 |

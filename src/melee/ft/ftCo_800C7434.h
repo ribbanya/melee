@@ -1,9 +1,9 @@
 #ifndef GALE01_800C7434
 #define GALE01_800C7434
 
-#include <stdbool.h>
-
 #include "ft/forward.h"
+
+#include <stdbool.h>
 
 /* 7434 */ void ftCo_800C7434(Fighter_GObj* gobj);
 /* 74AC */ void ftCo_800C74AC(Fighter_GObj* gobj);

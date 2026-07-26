@@ -1,8 +1,8 @@
 #ifndef GALE01_099D9C
 #define GALE01_099D9C
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 099D9C */ void ftCo_80099D9C(Fighter_GObj* gobj);
 /* 099E24 */ void ftCo_ReboundStop_Anim(Fighter_GObj* gobj);

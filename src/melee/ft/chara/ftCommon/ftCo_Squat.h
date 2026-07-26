@@ -1,9 +1,9 @@
 #ifndef MELEE_FTCO_SQUAT_H
 #define MELEE_FTCO_SQUAT_H
 
-#include <stdbool.h>
-
 #include "ft/forward.h"
+
+#include <stdbool.h>
 
 /* 0D5F58 */ bool ftCo_Squat_CheckInput(Fighter_GObj* gobj);
 /* 0D5F84 */ bool fn_800D5F84(Fighter_GObj* gobj);

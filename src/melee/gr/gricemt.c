@@ -1,23 +1,18 @@
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <math.h>
+#include "gr/gricemt.h"
+
+#include "gricemt.static.h"
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gricemt.static.h"
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
 #include "gm/gm_1601.h"
+
 #include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"
-#include "gr/gricemt.h"
 #include "gr/grlib.h"
 #include "gr/grmaterial.h"
 #include "gr/ground.h"
@@ -28,10 +23,23 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
+
 #include "mp/forward.h"
+
 #include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 struct grIceMt_YakumonoParam {
     float x0;

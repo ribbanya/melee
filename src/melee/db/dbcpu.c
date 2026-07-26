@@ -1,13 +1,17 @@
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
+#include "db.h"
+
 #include <platform.h>
 
-#include "db.h"
+#include "if/forward.h"
+
 #include "if/textdraw.h"
 #include "if/textlib.h"
 #include "pl/player.h"
-#include "if/forward.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
 
 static struct {
     DevText* text;

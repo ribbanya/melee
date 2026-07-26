@@ -1,12 +1,13 @@
 #ifndef GALE01_216E74
 #define GALE01_216E74
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 216E74 */ void grFlatzone_80216E74(bool);
 /* 216E78 */ void grFlatzone_80216E78(void);

@@ -1,19 +1,5 @@
 #include "grshrineroute.h"
 
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/random.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
-#include <math.h>
-#include <placeholder.h>
-
 #include "granime.h"
 #include "grdisplay.h"
 #include "grlib.h"
@@ -22,19 +8,39 @@
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
+
+#include <placeholder.h>
+
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gm/gm_1601.h"
+
+#include "gr/forward.h"
+
+#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
+
+#include "mp/forward.h"
+
 #include "mp/mplib.h"
 #include "pl/player.h"
-#include "gr/forward.h"
-#include "gr/types.h"
-#include "mp/forward.h"
+
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/random.h>
 
 struct grShrineRoute_YakumonoParam {
     int x0;

@@ -1,13 +1,5 @@
 #include "ftlib.h"
 
-#include <common_structs.h>
-#include <trigf.h>
-#include <baselib/cobj.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <baselib/rumble.h>
-
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
@@ -20,17 +12,29 @@
 #include "ft/ftdata.h"
 #include "ft/ftmetal.h"
 #include "ft/ftparts.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftGameWatch/ftGw_Init.h"
 #include "ftKirby/ftkirby.h"
 #include "gm/gm_unsplit.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mn/types.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
+
+#include <common_structs.h>
+#include <trigf.h>
+#include <baselib/cobj.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <baselib/rumble.h>
 
 s32 ftLib_800860C4(void)
 {

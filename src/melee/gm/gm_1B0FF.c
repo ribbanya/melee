@@ -1,6 +1,7 @@
-#include <sysdolphin/baselib/memory.h>
 #include <placeholder.h>
 #include <platform.h>
+
+#include "ft/forward.h"
 
 #include "gm/gm_1A3F.h"
 #include "melee/gm/gm_unsplit.h"
@@ -13,8 +14,10 @@
 #include "melee/mn/mngallery.h"
 #include "melee/mn/mnsnap.h"
 #include "melee/mn/types.h"
-#include "ft/forward.h"
+
 #include "pl/forward.h"
+
+#include <sysdolphin/baselib/memory.h>
 
 /* 1B0FF8 */ static void gm_801B0FF8(GameScene*);
 /* 1B138C */ static void gm_801B138C(GameScene*);

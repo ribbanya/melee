@@ -5,12 +5,14 @@
 #include "ft/chara/ftCommon/ftCo_Lift.h"
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
+#include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Attack100.h"
-#include "ft/ftanim.h"
 
 /* 4D95A0 */ extern f64 ftKb_Init_804D95A0;
 

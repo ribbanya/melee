@@ -1,17 +1,21 @@
 #include "ftCh_Squeezing_0.h"
 
+#include "types.h"
+
 #include <platform.h>
 
-#include "types.h"
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
 
 void ftCh_Init_8015A184(HSD_GObj* gobj)
 {

@@ -2,11 +2,14 @@
 #define GALE01_290938
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 typedef enum itFlipper_MotionState {
     FLIPPER_MS_RESTING,

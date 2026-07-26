@@ -1,12 +1,12 @@
 #include "strtoul.h"
 
-#include <stddef.h>
-
 #include "ctype.h"
 #include "errno.h"
 #include "limits.h"
 #include "stdio.h"
 #include "stdlib.h"
+
+#include <stddef.h>
 
 enum scan_states {
     start = 0x01,

@@ -1,8 +1,5 @@
 #include "itmetalb.h"
 
-#include <baselib/forward.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "ft/ftlib.h"
@@ -11,9 +8,14 @@
 #include "it/it_2725.h"
 #include "it/itcoll.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "pl/plbonuslib.h"
-#include "it/itgroundcoll.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F62C0[] = {
     { -1, itMetalb_UnkMotion0_Anim, itMetalb_UnkMotion0_Phys,

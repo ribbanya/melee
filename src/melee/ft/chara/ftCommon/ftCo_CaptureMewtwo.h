@@ -1,8 +1,8 @@
 #ifndef GALE01_0BCF18
 #define GALE01_0BCF18
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0BCF18 */ void ftCo_800BCF18(Fighter_GObj*, Fighter_GObj* gobj);
 /* 0BCF18 */ void ftCo_800BCF18(Fighter_GObj* gobj, Fighter_GObj* victim_gobj);

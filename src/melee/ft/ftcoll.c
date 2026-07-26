@@ -1,15 +1,5 @@
 #include "ftcoll.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-
 #include "fighter.h"
 #include "ft_081B.h"
 #include "ft_0877.h"
@@ -20,14 +10,22 @@
 #include "ftcommon.h"
 #include "ftdevice.h"
 #include "ftlib.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ef/efsync.h"
+
 #include "ft/forward.h"
+
 #include "ft/types.h"
 #include "ftCommon/ftCo_Bury.h"
 #include "ftCommon/ftCo_Guard.h"
 #include "gm/gm_unsplit.h"
+
 #include "gr/forward.h"
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -41,6 +39,14 @@
 #include "pl/plbonuslib.h"
 #include "pl/plstale.h"
 #include "pl/pltrick.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
 
 /// @todo .sdata2 order hack
 static void sdata2_order(void)

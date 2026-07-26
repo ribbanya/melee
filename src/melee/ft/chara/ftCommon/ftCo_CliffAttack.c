@@ -1,17 +1,20 @@
 #include "ftCo_CliffAttack.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_CliffClimb.h"
 #include "ftCo_CliffEscape.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
+#include <common_structs.h>
 
 /* 09AEA4 */ static void ftCo_8009AEA4(Fighter_GObj* gobj);
 

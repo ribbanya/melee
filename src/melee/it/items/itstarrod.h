@@ -2,10 +2,12 @@
 #define GALE01_292360
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 292360 */ void itStarRod_Logic22_Spawned(Item_GObj*);
 /* 292394 */ void it_80292394(Item_GObj*, Vec*);

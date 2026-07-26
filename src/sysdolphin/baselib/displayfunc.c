@@ -1,14 +1,5 @@
 #include "displayfunc.h"
 
-#include <math_ppc.h>
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <Runtime/__mem.h>
-#include <baselib/debug.h>
-#include <baselib/jobj.h>
-#include <baselib/list.h>
-#include <dolphin/gx/GXEnum.h>
-
 #include "baselib/cobj.h"
 #include "baselib/dobj.h"
 #include "baselib/lobj.h"
@@ -19,6 +10,15 @@
 #include "baselib/state.h"
 #include "baselib/tev.h"
 #include "baselib/util.h"
+
+#include <math_ppc.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <baselib/list.h>
+#include <Runtime/__mem.h>
 
 #define FLT_EPSILON 1.00000001335e-10F
 

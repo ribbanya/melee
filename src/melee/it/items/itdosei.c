@@ -1,9 +1,5 @@
 #include "itdosei.h"
 
-#include <math.h>
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
 #include <placeholder.h>
 
 #include "it/inlines.h"
@@ -12,8 +8,13 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
-#include "lb/lb_00B0.h"
 #include "it/types.h"
+#include "lb/lb_00B0.h"
+
+#include <math.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 static void sdata2_order(void)
 {

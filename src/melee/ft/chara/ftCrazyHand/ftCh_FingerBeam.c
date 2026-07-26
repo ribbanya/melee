@@ -1,13 +1,14 @@
 #include "ftCh_FingerBeam.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
@@ -17,9 +18,13 @@
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
 static inline float my_sqrtf(float x)
 {

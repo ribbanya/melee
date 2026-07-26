@@ -2,11 +2,13 @@
 #define GALE01_2EEFA8
 
 #include <placeholder.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 2EEFA8 */ Item_GObj* it_802EEFA8(Vec3*, s32, f32);
 /* 2EF074 */ bool itTools_Logic22_DmgDealt(Item_GObj*);

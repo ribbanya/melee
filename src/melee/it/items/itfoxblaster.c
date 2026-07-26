@@ -1,16 +1,10 @@
 #include "itfoxblaster.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <melee/ft/chara/ftFox/ftFx_SpecialN.h>
-#include <melee/ft/chara/ftKirby/ftkirby.h>
-#include <melee/it/item.h>
-#include <melee/lb/lbrefract.h>
-#include <common_structs.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "inlines.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/ft_0BF0.h"
@@ -18,6 +12,14 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <melee/ft/chara/ftFox/ftFx_SpecialN.h>
+#include <melee/ft/chara/ftKirby/ftkirby.h>
+#include <melee/it/item.h>
+#include <melee/lb/lbrefract.h>
 
 /* 2AE200 */ static void it_802AE200(Item_GObj* item_gobj);
 /* 2AE63C */ static void it_802AE63C(Item_GObj* item_gobj);

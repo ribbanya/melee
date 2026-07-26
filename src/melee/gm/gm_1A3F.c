@@ -1,20 +1,8 @@
 #include "gm_1A3F.h"
 
-#include <baselib/controller.h>
-#include <baselib/devcom.h>
-#include <baselib/sislib.h>
-#include <baselib/video.h>
-#include <melee/gm/types.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/lb/lbcardgame.h>
-#include <melee/lb/lbcardnew.h>
-#include <melee/ty/tydisplay.h>
-#include <dolphin/dvd.h>
-#include <dolphin/os/OSReset.h>
-#include <dolphin/os/OSRtc.h>
-
 #include "gm_1A45.h"
 #include "gmmain_lib.h"
+
 #include "db/db.h"
 #include "dolphin/vi/vifuncs.h"
 #include "gm/gmscdata.h"
@@ -25,6 +13,19 @@
 #include "lb/lbsnap.h"
 #include "lb/types.h"
 #include "ty/toy.h"
+
+#include <dolphin/dvd.h>
+#include <dolphin/os/OSReset.h>
+#include <dolphin/os/OSRtc.h>
+#include <baselib/controller.h>
+#include <baselib/devcom.h>
+#include <baselib/sislib.h>
+#include <baselib/video.h>
+#include <melee/gm/types.h>
+#include <melee/lb/lb_00B0.h>
+#include <melee/lb/lbcardgame.h>
+#include <melee/lb/lbcardnew.h>
+#include <melee/ty/tydisplay.h>
 
 static GameState gm_80479D30;
 

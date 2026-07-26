@@ -1,15 +1,15 @@
 
 #include "grtgamewatch.h"
 
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
-
+#include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
-#include "gr/granime.h"
+
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 StageCallbacks grTGw_StageCallbacks[] = {
     { grTGameWatch_8022429C, grTGameWatch_802242C8, grTGameWatch_802242D0,

@@ -1,14 +1,14 @@
 #include "ftCo_HammerWait.h"
 
-#include <common_structs.h>
-
 #include "ftCo_0C60.h"
 #include "ftCo_HammerFall.h"
 #include "ftCo_HammerJump.h"
 #include "ftCo_HammerTurn.h"
 #include "ftCo_HammerWalk.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
@@ -16,14 +16,17 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdevice.h"
+
+#include "ftCommon/forward.h"
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/it_279C.h"
 #include "it/item.h"
 #include "it/items/ithammer.h"
 #include "pl/plbonuslib.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
 
 /* 0C5408 */ static void ftCo_800C5408(Fighter* fp);
 /* 0C5588 */ static void ftCo_800C5588(Fighter* fp);

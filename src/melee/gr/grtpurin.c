@@ -1,16 +1,17 @@
 #include "grtpurin.h"
 
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
-
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
+
+#include "gr/granime.h"
+#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-#include "gr/granime.h"
-#include "gr/types.h"
+
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 StageCallbacks grTPr_StageCallbacks[] = {
     { grTPurin_802232F4, grTPurin_80223320, grTPurin_80223328,

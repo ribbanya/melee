@@ -1,12 +1,12 @@
 #include "ftCo_Thrown.h"
 
-#include <melee/ft/ftcamera.h>
-#include <melee/pl/plbonuslib.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
+#include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
@@ -14,10 +14,15 @@
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Damage.h"
-#include "lb/lb_00B0.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+
+#include <dolphin/mtx.h>
+#include <melee/ft/ftcamera.h>
+#include <melee/pl/plbonuslib.h>
 
 /* 0DE5A4 */ static void ftCo_800DE5A4(Fighter_GObj*);
 

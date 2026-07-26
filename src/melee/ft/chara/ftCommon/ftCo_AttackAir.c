@@ -1,27 +1,33 @@
 #include "ftCo_AttackAir.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_AirCatch.h"
 #include "ftCo_ItemThrow.h"
 #include "ftCo_LandingAir.h"
 #include "math.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ft_0CDD.h"
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftGameWatch/ftGw_AttackAir.h"
 #include "ftLink/ftLk_AttackAir.h"
 #include "it/it_26B1.h"
+
+#include <common_structs.h>
 
 /* 08CE0C */ static void decideFighter(Fighter_GObj* gobj);
 

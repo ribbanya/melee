@@ -1,13 +1,10 @@
 #include "ftYs_Guard.h"
 
-#include <placeholder.h>
-#include <baselib/forward.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "ftYs_Init.h"
 #include "ftYs_SpecialN.h"
+
+#include <placeholder.h>
+
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_0877.h"
@@ -16,15 +13,25 @@
 #include "ft/ftcoll.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Escape.h"
 #include "ftCommon/ftCo_Guard.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftCo_Pass.h"
-#include "ftYoshi/types.h"
+
 #include "ftYoshi/forward.h"
+
+#include "ftYoshi/types.h"
+
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
 
 char ftYs_Init_DatFilename[] = "PlYs.dat";
 char ftYs_Init_DataName[] = "ftDataYoshi";

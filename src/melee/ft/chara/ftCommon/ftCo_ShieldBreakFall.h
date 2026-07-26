@@ -1,8 +1,8 @@
 #ifndef GALE01_0988E4
 #define GALE01_0988E4
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0988E4 */ void ftCo_80098D90(Fighter_GObj* gobj);
 /* 098940 */ void ftCo_ShieldBreakFall_Anim(Fighter_GObj* gobj);

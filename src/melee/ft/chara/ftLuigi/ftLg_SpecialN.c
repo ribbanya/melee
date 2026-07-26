@@ -1,12 +1,14 @@
 #include "ftLg_SpecialN.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ef/efsync.h"
+
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
@@ -14,10 +16,13 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Wait.h"
 #include "ftCommon/inlines.h"
+
 #include "it/forward.h"
+
 #include "it/items/itluigifireball.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 /// 0x8014267C
 /// https://decomp.me/scratch/dB9mj // Luigi's grounded Fireball Motion State

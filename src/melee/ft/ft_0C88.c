@@ -1,15 +1,17 @@
 #include "ft/ft_0C88.h"
 
-#include <baselib/objalloc.h>
-
+#include "ft/dobjlist.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ftCo_800C7CA0.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftmetal.h"
 #include "ft/ftparts.h"
 #include "lb/lbrefract.h"
-#include "ft/dobjlist.h"
+
+#include <baselib/objalloc.h>
 
 void ftCo_800C884C(Fighter_GObj* gobj)
 {

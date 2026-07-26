@@ -1,11 +1,11 @@
 #include "ft/ft_0C8C.h"
 
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <platform.h>
 
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_0877.h"
 #include "ft/ft_0D4D.h"
 #include "ft/ftCo_800C7CA0.h"
@@ -22,6 +22,9 @@
 #include "gm/gm_unsplit.h"
 #include "lb/lbbgflash.h"
 #include "pl/player.h"
+
+#include <common_structs.h>
+#include <baselib/jobj.h>
 
 HSD_MObj* ft_804D6588;
 

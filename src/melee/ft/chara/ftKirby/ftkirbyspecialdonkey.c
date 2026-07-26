@@ -1,32 +1,43 @@
 #include "ftkirbyspecialdonkey.h"
 
-#include <placeholder.h>
-#include <common_structs.h>
-#include <trigf.h>
-
 #include "ftkirby.h"
+
+#include <placeholder.h>
+
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Escape.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+
 #include "ftDonkey/forward.h"
-#include "ftKirby/forward.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCommon/forward.h"
+
 #include "ftDonkey/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/types.h"
+
 #include "lb/forward.h"
+
+#include <common_structs.h>
+#include <trigf.h>
 
 /// @todo This is some kind of inline within #ftKb_DkSpecialN_Anim that's
 ///       shared by #ftKb_DkSpecialAirN_Anim

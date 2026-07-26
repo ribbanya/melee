@@ -1,5 +1,16 @@
 #include "ftmetal.h"
 
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft/dobjlist.h"
+
+#include <dolphin/os.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/dobj.h>
+#include <baselib/jobj.h>
+#include <baselib/mobj.h>
 #include <sysdolphin/baselib/id.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>
@@ -10,16 +21,6 @@
 #include <melee/ft/ftparts.h>
 #include <melee/ft/types.h>
 #include <melee/lb/lb_00B0.h>
-#include <baselib/class.h>
-#include <baselib/debug.h>
-#include <baselib/dobj.h>
-#include <baselib/jobj.h>
-#include <baselib/mobj.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "ft/dobjlist.h"
 
 void ft_800C8170(Fighter* fp)
 {

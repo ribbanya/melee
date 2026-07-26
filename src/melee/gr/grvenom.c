@@ -1,22 +1,12 @@
 #include "grvenom.h"
 
 #include <platform.h>
-#include <baselib/aobj.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/lobj.h>
-#include <baselib/random.h>
-#include <baselib/sislib.h>
-#include <baselib/jobj.h>
-#include <baselib/object.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
 
+#include "gr/granime.h"
 #include "gr/grcorneria.h"
 #include "gr/grdisplay.h"
 #include "gr/grmaterial.h"
+#include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/stage.h"
@@ -29,8 +19,19 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
 #include "pl/player.h"
-#include "gr/granime.h"
-#include "gr/ground.h"
+
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/object.h>
+#include <baselib/random.h>
+#include <baselib/sislib.h>
 
 typedef struct grVe_Data {
     /* +0 */ GrJoint joints[5];

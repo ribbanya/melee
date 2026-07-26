@@ -1,19 +1,17 @@
 #include "ftkirbyspecialhi.h"
 
-#include <placeholder.h>
-#include <common_structs.h>
-#include <stddef.h>
-#include <trigf.h>
-#include <MSL/math.h>
-#include <dolphin/mtx.h>
-#include <dolphin/types.h>
-
 #include "types.h"
+
+#include <placeholder.h>
+
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
@@ -22,11 +20,19 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+
 #include "ftKirby/forward.h"
+
 #include "ftKirby/inlines.h"
 #include "it/items/itkirbycutterbeam.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <stddef.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
+#include <MSL/math.h>
 
 static MotionFlags const ftKb_MF_SpecialHi_Coll =
     Ft_MF_KeepGfx | Ft_MF_SkipMatAnim | Ft_MF_SkipColAnim | Ft_MF_SkipItemVis |

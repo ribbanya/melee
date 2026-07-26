@@ -2,10 +2,12 @@
 #define GALE01_293660
 
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
 
 typedef struct KinokoAnim {
     HSD_AnimJoint* joint;

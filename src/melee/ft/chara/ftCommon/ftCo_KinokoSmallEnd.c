@@ -1,17 +1,20 @@
 #include "ftCo_KinokoSmallEnd.h"
 
-#include <common_structs.h>
-
 #include "platform.h"
 #include "stdbool.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0D27.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
+
+#include <common_structs.h>
 
 /* 0D2530 */ static void fn_800D2530(Fighter_GObj* gobj);
 

@@ -1,12 +1,13 @@
 #ifndef GALE01_201FA0
 #define GALE01_201FA0
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 201FA0 */ void grYorster_80201FA0(bool);
 /* 201FA4 */ void grYorster_80201FA4(void);

@@ -3,9 +3,10 @@
 
 #include <platform.h>
 
+#include "it/forward.h"
+
 #include "it/item.h"
 #include "it/items/types.h"
-#include "it/forward.h"
 
 void it_802CF3E0(Item_GObj*);
 void it_802CF44C(Item_GObj*);

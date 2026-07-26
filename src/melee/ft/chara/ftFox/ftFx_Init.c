@@ -1,19 +1,22 @@
 #include "ftFox/ftFx_Init.h"
 
-#include <platform.h>
-
 #include "ftFx_AppealS.h"
 #include "ftFx_SpecialHi.h"
 #include "ftFx_SpecialLw.h"
 #include "ftFx_SpecialN.h"
 #include "ftFx_SpecialS.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftFox/types.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 
 MotionState ftFx_Init_MotionStateTable[ftFx_MS_SelfCount] = {

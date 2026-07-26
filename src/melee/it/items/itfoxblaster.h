@@ -1,13 +1,15 @@
 #ifndef GALE01_2ADDD0
 #define GALE01_2ADDD0
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <dolphin/types.h>
-
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
 
 /* 2ADDD0 */ void it_802ADDD0(Item_GObj* item_gobj, s32 visibility);
 /* 2ADEF0 */ void it_802ADEF0(HSD_GObj* item_gobj);

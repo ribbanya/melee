@@ -1,5 +1,11 @@
 #include "mnstagesw.h"
 
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm/forward.h"
+#include "mn/forward.h"
+
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
@@ -19,11 +25,6 @@
 #include <melee/mn/mnmain.h>
 #include <melee/mn/mnruleplus.h>
 #include <melee/sc/types.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "gm/forward.h"
-#include "mn/forward.h"
 
 #define NUM_STAGES 29
 

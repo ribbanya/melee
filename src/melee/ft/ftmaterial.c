@@ -1,5 +1,20 @@
 #include "ftmaterial.h"
 
+#include "ft/fighter.h"
+
+#include "ft/forward.h"
+
+#include "ft/ft_0C8C.h"
+#include "ft/ftCo_800C7CA0.h"
+#include "ft/ftdevice.h"
+#include "ftCommon/ftCo_09F4.h"
+
+#include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+#include "lb/lbrefract.h"
+
+#include <dolphin/gx/GXEnum.h>
 #include <baselib/class.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
@@ -7,19 +22,8 @@
 #include <baselib/mobj.h>
 #include <baselib/state.h>
 #include <baselib/tev.h>
-#include <baselib/tobj.h>
 #include <baselib/texp.h>
-#include <dolphin/gx/GXEnum.h>
-
-#include "ft/fighter.h"
-#include "ft/forward.h"
-#include "ft/ft_0C8C.h"
-#include "ft/ftCo_800C7CA0.h"
-#include "ft/ftdevice.h"
-#include "ftCommon/ftCo_09F4.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbrefract.h"
-#include "lb/forward.h"
+#include <baselib/tobj.h>
 
 HSD_MObjInfo ftMObj = { ftMaterial_800BF260 };
 

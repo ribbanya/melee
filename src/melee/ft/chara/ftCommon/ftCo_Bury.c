@@ -1,13 +1,5 @@
 #include "ftCo_Bury.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-
 #include "ftCo_AirCatch.h"
 #include "ftCo_AttackAir.h"
 #include "ftCo_BarrelWait.h"
@@ -19,9 +11,15 @@
 #include "ftCo_Lift.h"
 #include "ftCo_SpecialAir.h"
 #include "ftCo_Throw.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ef/efsync.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -29,20 +27,32 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCaptain/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/types.h"
+
 #include "gr/forward.h"
+
 #include "gr/ground.h"
+#include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 #include "mp/mplib.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
-#include "gr/types.h"
+
+#include <common_structs.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 #pragma force_active on
 const double ftCo_804D8C28 = 4503599627370496.0;

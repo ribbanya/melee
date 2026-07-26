@@ -1,12 +1,15 @@
 #ifndef GALE01_2C7774
 #define GALE01_2C7774
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2C7A54 */ void itGameWatchJudge_Logic77_Destroyed(Item_GObj*);
 /* 2C7774 */ HSD_GObj* it_802C7774(float facing_dir, HSD_GObj* owner_gobj,

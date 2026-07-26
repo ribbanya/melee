@@ -1,18 +1,22 @@
 #include "iteffect.h"
 
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <placeholder.h>
-
 #include "it_2725.h"
 #include "it_3F14.h"
 #include "math.h"
+
+#include <placeholder.h>
+
 #include "ef/efasync.h"
 #include "ef/efsync.h"
+
 #include "it/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lblanguage.h"
+
+#include <baselib/gobj.h>
+#include <baselib/random.h>
 
 void it_8027870C(s32 arg0)
 {

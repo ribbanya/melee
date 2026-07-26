@@ -1,22 +1,24 @@
 #include "it_2F28.h"
 
-#include <math_ppc.h>
-#include <melee/it/item.h>
-#include <common_structs.h>
 #include <placeholder.h>
 #include <platform.h>
 
+#include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/items/types.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itzako.h"
 #include "it/types.h"
-#include "ft/forward.h"
-#include "it/itgroundcoll.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <melee/it/item.h>
 
 static void it_802F2A58(Item_GObj*);             /* static */
 static bool it_2F28_UnkMotion0_Anim(Item_GObj*); /* static */

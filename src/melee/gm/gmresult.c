@@ -1,5 +1,11 @@
 #include "gmresult.h"
 
+#include "gm/types.h"
+
+#include "pl/forward.h"
+
+#include <dolphin/gx/GXCull.h>
+#include <dolphin/os.h>
 #include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/debug.h>
@@ -7,11 +13,6 @@
 #include <baselib/object.h>
 #include <baselib/sislib.h>
 #include <baselib/tobj.h>
-#include <dolphin/gx/GXCull.h>
-#include <dolphin/os.h>
-
-#include "gm/types.h"
-#include "pl/forward.h"
 
 /// @todo .sdata order hack
 static void order_sdata(void)
@@ -36,6 +37,7 @@ extern HSD_Archive* lbl_804D65B8;
 
 #include "gm_unsplit.h"
 #include "gmresultplayer.h"
+
 #include "baselib/dobj.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"

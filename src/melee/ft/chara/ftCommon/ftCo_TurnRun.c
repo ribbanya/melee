@@ -1,21 +1,24 @@
 #include "ftCo_TurnRun.h"
 
 #include <placeholder.h>
-#include <common_structs.h>
 #include <platform.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/ftCo_Run.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
+
+#include <common_structs.h>
 
 bool fn_800C9CEC(Fighter_GObj* gobj)
 {

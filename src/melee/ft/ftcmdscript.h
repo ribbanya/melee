@@ -1,8 +1,9 @@
 #ifndef MELEE_FT_CMDSCRIPT_H
 #define MELEE_FT_CMDSCRIPT_H
 
-#include <melee/ft/forward.h>
 #include <platform.h>
+
+#include <melee/ft/forward.h>
 
 typedef enum CPUCommand {
     // These commands press or release buttons

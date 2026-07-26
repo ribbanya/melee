@@ -1,17 +1,22 @@
 #include "grtlink.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "lb/lbspdisplay.h"
+
+#include <platform.h>
+
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lbspdisplay.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 /* 22192C */ static void grTLink_8022192C(bool);
 /* 221930 */ static void grTLink_80221930(void);

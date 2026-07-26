@@ -1,28 +1,32 @@
 #include "ftCo_CaptureCut.h"
 
+#include "ftCo_Throw.h"
+#include "placeholder.h"
+#include "platform.h"
+
+#include "ft/fighter.h"
+
+#include "ft/forward.h"
+
+#include "ft/ft_081B.h"
+#include "ft/ftanim.h"
+#include "ft/ftcommon.h"
+#include "ft/types.h"
+
+#include "ftCommon/forward.h"
+#include "ftKirby/forward.h"
+#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_Damage.h>
 #include <melee/ft/ftcoll.h>
 #include <melee/ft/ftparts.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/mp/mpcoll.h>
 #include <melee/mp/mplib.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
-#include "ftCo_Throw.h"
-#include "placeholder.h"
-#include "platform.h"
-#include "ft/fighter.h"
-#include "ft/forward.h"
-#include "ft/ft_081B.h"
-#include "ft/ftcommon.h"
-#include "ft/types.h"
-#include "ftCommon/forward.h"
-#include "ft/ftanim.h"
-#include "ftKirby/forward.h"
-#include "lb/forward.h"
 
 void ftCo_CaptureCut_Enter(Fighter_GObj* gobj)
 {

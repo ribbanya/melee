@@ -4,6 +4,7 @@
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
@@ -13,7 +14,6 @@
 #include "ftNess/ftNs_Init.h"
 #include "ftNess/types.h"
 #include "it/items/itnessbat.h"
-#include "ft/ft_084E.h"
 
 /// 0x80114BF4
 void ftNs_AttackS4_OnReflect(

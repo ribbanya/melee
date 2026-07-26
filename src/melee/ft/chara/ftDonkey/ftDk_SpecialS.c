@@ -1,11 +1,14 @@
 #include "ftDonkey/ftDk_SpecialS.h"
 
+#include "ftDk_SpecialLw.h"
+
 #include <platform.h>
 
-#include "ftDk_SpecialLw.h"
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
@@ -13,7 +16,6 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftDonkey/types.h"
-#include "ft/ft_084E.h"
 
 static u32 const coll_mf =
     Ft_MF_KeepGfx | Ft_MF_SkipHit | Ft_MF_SkipMatAnim | Ft_MF_SkipColAnim |

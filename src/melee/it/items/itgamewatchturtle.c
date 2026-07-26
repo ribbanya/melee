@@ -1,14 +1,15 @@
 #include "itgamewatchturtle.h"
 
+#include "inlines.h"
+
+#include "ft/forward.h"
+#include "it/forward.h"
+
 #include <melee/ft/chara/ftGameWatch/ftGw_AttackAir.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>
 #include <melee/it/items/types.h>
-
-#include "inlines.h"
-#include "ft/forward.h"
-#include "it/forward.h"
 
 ItemStateTable it_803F7918[] = {
     {

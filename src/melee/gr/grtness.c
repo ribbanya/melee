@@ -1,16 +1,20 @@
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
+
+#include "gr/forward.h"
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbspdisplay.h"
-#include "gr/forward.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 2225D0 */ static void grTNess_802225D0(bool);
 /* 2225D4 */ static void grTNess_802225D4(void);

@@ -1,22 +1,28 @@
 #include "ftCh_Poke.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itmasterhandlaser.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
-#include "it/forward.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
 
 void fn_80158534(HSD_GObj* gobj);
 void ftCh_Init_8015868C(HSD_GObj* gobj);

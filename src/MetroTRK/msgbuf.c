@@ -1,10 +1,10 @@
 #include "msgbuf.h"
 
-#include <MetroTRK/dserror.h>
-#include <MetroTRK/mutex_TRK.h>
-
 #include "MetroTRK/mem_TRK.h"
 #include "MetroTRK/nubinit.h"
+
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/mutex_TRK.h>
 
 TRKMsgBufs gTRKMsgBufs;
 

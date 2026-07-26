@@ -1,6 +1,7 @@
 #include "ftMh_BackAirplane2.h"
 
 #include "types.h"
+
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"

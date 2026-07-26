@@ -5,9 +5,11 @@
 #include "ft/types.h"
 #include "it/inlines.h"
 #include "it/types.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
 #include "pl/types.h"
-#include "pl/forward.h"
 
 u16 staleAttackInstance;
 

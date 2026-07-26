@@ -1,13 +1,16 @@
 #include "ftPk_SpecialN.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "ef/efsync.h"
+
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
@@ -19,7 +22,8 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 #include "it/items/itpikachutjoltground.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 void ftPk_SpecialN_Enter(HSD_GObj* gobj)
 {

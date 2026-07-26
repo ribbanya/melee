@@ -1,10 +1,12 @@
 #include "ftCl_AppealS.h"
 
-#include <platform.h>
-
 #include "ftCl_Init.h"
 #include "inlines.h"
+
+#include <platform.h>
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
@@ -13,7 +15,6 @@
 #include "ftLink/ftLk_Init.h"
 #include "ftLink/types.h"
 #include "it/items/itclinkmilk.h"
-#include "ft/ft_084E.h"
 
 void ftCl_AppealS_Anim(HSD_GObj* gobj)
 {

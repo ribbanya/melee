@@ -1,5 +1,32 @@
 #include "ftCo_AppealS.h"
 
+#include "platform.h"
+
+#include "db/db.h"
+#include "ft/fighter.h"
+
+#include "ft/forward.h"
+
+#include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
+#include "ft/ft_0892.h"
+#include "ft/ftanim.h"
+#include "ft/ftdata.h"
+#include "ft/types.h"
+#include "ftCLink/ftCl_Init.h"
+
+#include "ftCommon/forward.h"
+
+#include "ftCommon/ftCo_Attack100.h"
+#include "ftDrMario/ftDr_Init.h"
+#include "ftKirby/ftkirby.h"
+#include "ftPeach/ftPe_Init.h"
+#include "ftZelda/ftZd_Init.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
 #include <melee/ft/chara/ftCommon/ftCo_AttackHi3.h>
 #include <melee/ft/chara/ftCommon/ftCo_AttackHi4.h>
@@ -11,28 +38,6 @@
 #include <melee/ft/chara/ftCommon/ftCo_Guard.h>
 #include <melee/ft/chara/ftCommon/ftCo_SpecialS.h>
 #include <melee/pl/plbonuslib.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
-#include "platform.h"
-#include "db/db.h"
-#include "ft/fighter.h"
-#include "ft/forward.h"
-#include "ft/ft_081B.h"
-#include "ft/ft_0892.h"
-#include "ft/ftdata.h"
-#include "ft/types.h"
-#include "ftCLink/ftCl_Init.h"
-#include "ftCommon/ftCo_Attack100.h"
-#include "ftDrMario/ftDr_Init.h"
-#include "ftKirby/ftkirby.h"
-#include "ftPeach/ftPe_Init.h"
-#include "ftZelda/ftZd_Init.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbspdisplay.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCommon/forward.h"
 
 bool ftCo_800DE9B8(Fighter_GObj* gobj)
 {

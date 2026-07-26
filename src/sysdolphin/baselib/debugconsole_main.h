@@ -2,7 +2,9 @@
 #define SYSDOLPHIN_DEBCONSOLE_MAIN_H
 
 #include <placeholder.h>
+
 #include <sysdolphin/baselib/forward.h>
+
 #include <dolphin/os/OSContext.h>
 #include <dolphin/types.h>
 

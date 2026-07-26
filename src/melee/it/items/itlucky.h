@@ -3,11 +3,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2D5050 */ void it_802D5050(Item_GObj*);
 /* 2D50F0 */ void it_802D50F0(Item_GObj*);

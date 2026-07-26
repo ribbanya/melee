@@ -1,5 +1,30 @@
 #include "ftCo_SquatWait.h"
 
+#include "platform.h"
+
+#include "ft/fighter.h"
+
+#include "ft/forward.h"
+
+#include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
+#include "ft/ftcoll.h"
+#include "ft/ftcommon.h"
+#include "ft/ftdata.h"
+#include "ft/ftwaitanim.h"
+#include "ft/types.h"
+#include "ftCLink/ftCl_Init.h"
+
+#include "ftCommon/forward.h"
+
+#include "ftCommon/ftCo_AppealS.h"
+#include "ftCommon/ftCo_Attack100.h"
+#include "ftCommon/ftCo_Dash.h"
+#include "ftCommon/ftCo_Jump.h"
+#include "ftCommon/ftCo_Pass.h"
+#include "ftCommon/ftCo_SquatRv.h"
+#include "ftLink/ftLk_AttackAir.h"
+
 #include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
 #include <melee/ft/chara/ftCommon/ftCo_AttackHi3.h>
 #include <melee/ft/chara/ftCommon/ftCo_AttackHi4.h>
@@ -8,26 +33,6 @@
 #include <melee/ft/chara/ftCommon/ftCo_AttackS3.h>
 #include <melee/ft/chara/ftCommon/ftCo_AttackS4.h>
 #include <melee/ft/chara/ftCommon/ftCo_Guard.h>
-
-#include "platform.h"
-#include "ft/fighter.h"
-#include "ft/forward.h"
-#include "ft/ft_081B.h"
-#include "ft/ftcoll.h"
-#include "ft/ftcommon.h"
-#include "ft/ftdata.h"
-#include "ft/ftwaitanim.h"
-#include "ft/types.h"
-#include "ftCLink/ftCl_Init.h"
-#include "ftCommon/forward.h"
-#include "ftCommon/ftCo_AppealS.h"
-#include "ftCommon/ftCo_Attack100.h"
-#include "ftCommon/ftCo_Dash.h"
-#include "ftCommon/ftCo_Jump.h"
-#include "ftCommon/ftCo_Pass.h"
-#include "ftCommon/ftCo_SquatRv.h"
-#include "ftLink/ftLk_AttackAir.h"
-#include "ft/ft_084E.h"
 
 /* 0D62C4 */ static void fn_800D62C4(Fighter_GObj* gobj);
 

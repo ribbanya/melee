@@ -1,14 +1,9 @@
 #include "gr/grflatzone.h"
 
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
 #include <placeholder.h>
 
 #include "cm/camera.h"
+#include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/grdynamicattr.h"
 #include "gr/grmaterial.h"
@@ -20,7 +15,13 @@
 #include "it/types.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-#include "gr/granime.h"
+
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 struct grFlatzone_YakumonoParam {
     s32 unk0;

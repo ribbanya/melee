@@ -1,16 +1,18 @@
 #include "itzrshell.h"
 
-#include <baselib/jobj.h>
-#include <placeholder.h>
-
 #include "itnokonoko.h"
 #include "itzgshell.h"
+
+#include <placeholder.h>
+
 #include "gr/grzakogenerator.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
 #include "it/types.h"
+
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F87F0[] = {
     { 0, itZrshell_UnkMotion0_Anim, itZrshell_UnkMotion0_Phys,

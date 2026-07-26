@@ -2,9 +2,10 @@
 #define ITPEACHEXPLODE_H
 
 #include <melee/it/forward.h>
-#include <melee/it/items/types.h>
-#include <dolphin/mtx.h>
+
 #include <stdbool.h>
+#include <dolphin/mtx.h>
+#include <melee/it/items/types.h>
 
 extern struct ItemStateTable it_803F7488[];
 

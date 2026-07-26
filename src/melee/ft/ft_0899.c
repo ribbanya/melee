@@ -1,23 +1,27 @@
 #include "ft_0899.h"
 
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "math.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <MetroTRK/intrinsics.h>
 
-#include "math.h"
 #include "db/dbsound.h"
 #include "ft/fighter.h"
 #include "ft/ftparts.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbbgflash.h"
 #include "lb/lbvector.h"
-#include "mp/mplib.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
+#include <MetroTRK/intrinsics.h>
 
 /* 08998C */ static bool fn_8008998C(Fighter* fp, IKState* ik, Vec3* normal);
 

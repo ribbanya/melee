@@ -1,10 +1,10 @@
 #ifndef MELEE_MN_SOUNDTEST_H
 #define MELEE_MN_SOUNDTEST_H
 
-#include <dolphin/types.h>
-
 #include "baselib/forward.h"
 #include "mn/forward.h"
+
+#include <dolphin/types.h>
 
 /* 24A790 */ void mnSoundTest_8024A790(mnSoundTest_GObj*);
 /* 24A958 */ void mnSoundTest_8024A958(mnSoundTest_GObj*);

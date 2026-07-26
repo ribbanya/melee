@@ -1,5 +1,19 @@
 #include "mnsound.h"
 
+#include <platform.h>
+
+#include "gm/gm_1601.h"
+#include "gm/gmmain_lib.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbcardgame.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "mn/types.h"
+#include "sc/types.h"
+
+#include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -9,21 +23,8 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
-#include <baselib/sislib.h>
 #include <baselib/object.h>
-#include <dolphin/mtx.h>
-#include <platform.h>
-
-#include "gm/gm_1601.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lbarchive.h"
-#include "lb/lbcardgame.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mn/types.h"
-#include "sc/types.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
+#include <baselib/sislib.h>
 
 /* 3EEED8 */ AnimLoopSettings mnSound_803EEED8[] = {
     { 0.0f, 199.0f, 0.0f },  { 0.0f, 29.0f, 0.0f }, { 30.0f, 59.0f, 30.0f },

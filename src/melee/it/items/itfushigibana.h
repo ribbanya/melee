@@ -1,10 +1,11 @@
 #ifndef GALE01_2D6FD0
 #define GALE01_2D6FD0
 
-#include <stdbool.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <stdbool.h>
 
 /* 2D6FD0 */ void itFushigibana_Logic29_Spawned(Item_GObj*);
 /* 2D705C */ void it_802D705C(Item_GObj*);

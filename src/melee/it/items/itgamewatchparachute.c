@@ -1,10 +1,13 @@
 #include "itgamewatchparachute.h"
 
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "ftGameWatch/ftGw_AttackAir.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"

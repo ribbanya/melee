@@ -2,8 +2,10 @@
 #define MELEE_GM_MULTIMAN_H
 
 #include <placeholder.h>
+
 #include <melee/gm/forward.h>
 #include <melee/mn/forward.h>
+
 #include <stdbool.h>
 
 /* 1B6320 */ UNK_T gm_801B6320(void);

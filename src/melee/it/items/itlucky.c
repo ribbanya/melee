@@ -2,10 +2,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
 
 #include "ef/eflib.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -13,13 +14,15 @@
 #include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itegg.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
-#include "lb/lb_00B0.h"
-#include "sysdolphin/baselib/random.h"
-#include "it/itgroundcoll.h"
 #include "it/itspawn.h"
 #include "it/types.h"
+#include "lb/lb_00B0.h"
+#include "sysdolphin/baselib/random.h"
+
+#include <common_structs.h>
 
 ItemStateTable it_803F8190[] = {
     {

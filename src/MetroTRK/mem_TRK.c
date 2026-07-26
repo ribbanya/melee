@@ -1,5 +1,6 @@
-#include <MetroTRK/mem_TRK.h>
 #include <platform.h>
+
+#include <MetroTRK/mem_TRK.h>
 
 void TRK_fill_mem(void* dest, int val, size_t count);
 

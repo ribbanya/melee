@@ -1,5 +1,43 @@
 #include "ftCommon/ftCo_Attack100.h"
 
+#include "placeholder.h"
+#include "platform.h"
+
+#include "ft/chara/ftCommon/ftCo_AirCatch.h"
+#include "ft/chara/ftCommon/ftCo_AttackAir.h"
+#include "ft/chara/ftCommon/ftCo_EscapeAir.h"
+#include "ft/chara/ftCommon/ftCo_SpecialAir.h"
+#include "ft/fighter.h"
+#include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
+#include "ft/ft_0892.h"
+#include "ft/ft_0D27.h"
+#include "ft/ftanim.h"
+#include "ft/ftcommon.h"
+#include "ft/types.h"
+#include "ftCaptain/types.h"
+#include "ftCommon/ftCo_CaptureCut.h"
+#include "ftCommon/ftCo_ItemScrew.h"
+#include "ftCommon/ftCo_ItemThrow.h"
+#include "ftCommon/ftCo_Throw.h"
+#include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
+#include "ftLink/types.h"
+#include "ftSamus/types.h"
+#include "ftYoshi/types.h"
+#include "it/inlines.h"
+#include "it/it_26B1.h"
+#include "it/itCharItems.h"
+#include "it/items/itlinkhookshot.h"
+#include "it/items/itsamusgrapple.h"
+#include "it/items/itsscope.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
+#include "mp/mplib.h"
+
+#include <common_structs.h>
 #include <math.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
@@ -25,41 +63,6 @@
 #include <melee/lb/lb_00B0.h>
 #include <melee/pl/player.h>
 #include <melee/pl/plbonuslib.h>
-#include <common_structs.h>
-
-#include "placeholder.h"
-#include "platform.h"
-#include "ft/chara/ftCommon/ftCo_AirCatch.h"
-#include "ft/chara/ftCommon/ftCo_AttackAir.h"
-#include "ft/chara/ftCommon/ftCo_EscapeAir.h"
-#include "ft/chara/ftCommon/ftCo_SpecialAir.h"
-#include "ft/fighter.h"
-#include "ft/ft_081B.h"
-#include "ft/ft_0892.h"
-#include "ft/ft_0D27.h"
-#include "ft/ftcommon.h"
-#include "ft/types.h"
-#include "ftCommon/ftCo_CaptureCut.h"
-#include "ftCommon/ftCo_ItemScrew.h"
-#include "ftCommon/ftCo_ItemThrow.h"
-#include "ftCommon/ftCo_Throw.h"
-#include "ftCommon/inlines.h"
-#include "ftCommon/types.h"
-#include "it/inlines.h"
-#include "it/items/itlinkhookshot.h"
-#include "it/items/itsamusgrapple.h"
-#include "it/items/itsscope.h"
-#include "mp/mplib.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCaptain/types.h"
-#include "ftLink/types.h"
-#include "ftSamus/types.h"
-#include "ftYoshi/types.h"
-#include "it/itCharItems.h"
-#include "it/it_26B1.h"
-#include "it/types.h"
-#include "lb/forward.h"
 
 /* 0D769C */ static FtMotionId fn_800D769C(Fighter* ft, FtMotionId msid);
 /* 0D84D4 */ static void fn_800D84D4(Fighter_GObj*, int);

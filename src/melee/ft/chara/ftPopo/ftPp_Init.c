@@ -1,19 +1,20 @@
 #include "ftPp_Init.h"
 
-#include <baselib/gobj.h>
-
 #include "ftPp_SpecialHi.h"
 #include "ftPp_SpecialLw.h"
 #include "ftPp_SpecialN.h"
 #include "ftPp_SpecialS.h"
+
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftNana/ftNn_Init.h"
+#include "ftPopo/types.h"
 #include "it/it_26B1.h"
 #include "it/items/itclimbersice.h"
-#include "ftPopo/types.h"
+
+#include <baselib/gobj.h>
 
 MotionState ftPp_Init_MotionStateTable[ftPp_MS_SelfCount] = {
     {

@@ -1,19 +1,14 @@
 #include "efasync.h"
 
-#include <baselib/archive.h>
-#include <baselib/debug.h>
-#include <baselib/generator.h>
-#include <baselib/jobj.h>
-#include <baselib/objalloc.h>
-#include <dolphin/mtx.h>
-#include <placeholder.h>
-#include <platform.h>
-
 #include "efdata.h"
 #include "eflib.h"
 #include "efsync.h"
 #include "math.h"
 #include "types.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "baselib/gobj.h"
 #include "baselib/gobjproc.h"
 #include "baselib/particle.h"
@@ -23,6 +18,13 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lbdvd.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/archive.h>
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
 
 /*
  * TODO: efAsync_Dispatch is the only function left to match, it

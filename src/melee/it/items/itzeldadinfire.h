@@ -2,12 +2,15 @@
 #define GALE01_2C3AF0
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
 #include "lb/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 2C3AF0 */ Fighter_GObj* itZeldaDinFire_GetOwner(Item_GObj* gobj);
 /* 2C3AFC */ bool it_802C3AFC(Item_GObj* gobj, CollData* cd);

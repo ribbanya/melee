@@ -2,9 +2,10 @@
 #define MELEE_GM_1A45_H
 
 #include <placeholder.h>
+#include <platform.h>
+
 #include <baselib/forward.h>
 #include <melee/gm/forward.h>
-#include <platform.h>
 
 struct GameSceneInfo;
 

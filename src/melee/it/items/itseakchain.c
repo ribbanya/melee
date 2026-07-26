@@ -1,39 +1,49 @@
 #include "itseakchain.h"
 
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/objalloc.h>
+#include "inlines.h"
+
+#include "it/items/itseakchain.static.h"
+
+#include "platform.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
-#include "it/items/itseakchain.static.h"
-#include "platform.h"
 #include "baselib/gobjplink.h"
 #include "baselib/jobj.h"
 #include "dolphin/mtx.h"
 #include "ft/ftcoll.h"
 #include "ft/ftlib.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
+
 #include "ftSeak/forward.h"
+
 #include "ftSeak/ftSk_SpecialS.h"
+#include "ftSeak/types.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
 #include "it/items/itlinkhookshot.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
-#include "ft/types.h"
-#include "ftCommon/types.h"
-#include "ftSeak/types.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/objalloc.h>
 
 ItemStateTable it_803F7438[] = {
     { -1, itSeakchain_UnkMotion4_Anim, NULL, NULL },

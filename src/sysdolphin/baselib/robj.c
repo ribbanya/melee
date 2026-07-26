@@ -1,5 +1,12 @@
 #include "robj.h"
 
+#include "aobj.h"
+#include "id.h"
+#include "jobj.h"
+#include "memory.h"
+#include "mtx.h"
+#include "util.h"
+
 #include <__mem.h>
 #include <math_ppc.h>
 #include <dolphin/mtx.h>
@@ -9,13 +16,6 @@
 #include <baselib/fobj.h>
 #include <baselib/list.h>
 #include <baselib/objalloc.h>
-
-#include "aobj.h"
-#include "id.h"
-#include "jobj.h"
-#include "memory.h"
-#include "mtx.h"
-#include "util.h"
 
 HSD_ObjAllocData robj_alloc_data;   // robj_alloc_data
 HSD_ObjAllocData rvalue_alloc_data; // rvalue_alloc_data

@@ -1,11 +1,13 @@
 #ifndef GALE01_2D251C
 #define GALE01_2D251C
 
-#include <baselib/forward.h>
-#include <stdbool.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <stdbool.h>
 
 /* 2D251C */ void it_2725_Logic18_Spawned(Item_GObj*);
 /* 2D25B8 */ void it_802D25B8(HSD_GObj* gobj);

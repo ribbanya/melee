@@ -1,23 +1,29 @@
 #include "ftCo_Shouldered.h"
 
+#include "ftCo_Damage.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 
-#include "ftCo_Damage.h"
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 #pragma force_active on
 

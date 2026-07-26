@@ -1,26 +1,28 @@
 #include "it/items/itheiho.h"
 
-#include <baselib/dobj.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <baselib/aobj.h>
-#include <baselib/jobj.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/item.h"
 #include "it/items/itfoods.h"
 #include "it/items/itfreeze.h"
 #include "it/items/types.h"
+#include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
-#include "MSL/math.h"
-#include "it/item.h"
-#include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "MSL/math.h"
+
+#include <baselib/aobj.h>
+#include <baselib/dobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 2D8894 */ static void it_802D8894(Item_GObj*);
 /* 2D88CC */ static bool itHeiho_UnkMotion0_Anim(Item_GObj* gobj);

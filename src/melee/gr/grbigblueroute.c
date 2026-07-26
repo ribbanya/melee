@@ -1,21 +1,13 @@
 #include "grbigblueroute.h"
 
 #include <platform.h>
-#include <trigf.h>
-#include <dolphin/os.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/spline.h>
-#include <common_structs.h>
 
 #include "baselib/debug.h"
 #include "baselib/memory.h"
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "gm/gm_16AE.h"
+#include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/grdisplay.h"
 #include "gr/grfzerocar.h"
@@ -25,12 +17,23 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "if/ifhazard.h"
+
+#include "it/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "gr/granime.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <trigf.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/spline.h>
 
 struct grBigBlueRoute_YakumonoParam {
     int x0;

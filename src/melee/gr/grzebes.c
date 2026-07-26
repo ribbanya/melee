@@ -1,22 +1,12 @@
 #include "grzebes.h"
 
-#include <platform.h>
-#include <math_ppc.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/random.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <dolphin/gx/GXStruct.h>
-#include <math.h>
 #include <placeholder.h>
+#include <platform.h>
 
 #include "cm/camera.h"
+
 #include "forward.h"
+
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gr/granime.h"
@@ -24,15 +14,30 @@
 #include "gr/grdisplay.h"
 #include "gr/grlib.h"
 #include "gr/grmaterial.h"
+#include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
+#include "gr/types.h"
+
+#include "it/forward.h"
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-#include "gr/ground.h"
-#include "gr/types.h"
-#include "it/forward.h"
-#include "lb/forward.h"
+
+#include <math.h>
+#include <math_ppc.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/random.h>
 
 /* 1D84A0 */ static void grZebes_801D84A0(bool arg);
 /* 1D8528 */ static void grZebes_801D8528(void);

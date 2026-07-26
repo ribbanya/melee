@@ -4,6 +4,7 @@
 #define GALE01_14DEF0
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 14DEF0 */ void ftGw_SpecialHi_ItemRescueSetup(HSD_GObj* gobj);

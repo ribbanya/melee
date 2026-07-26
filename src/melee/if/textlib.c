@@ -1,16 +1,7 @@
 #include "textlib.h"
 
-#include <printf.h>
-#include <stdarg.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/memory.h>
-#include <MSL/math.h>
-#include <MSL/string.h>
-#include <baselib/objalloc.h>
-#include <common_structs.h>
-
 #include "platform.h"
+
 #include "baselib/controller.h"
 #include "baselib/debug.h"
 #include "if/textdraw.h"
@@ -18,6 +9,16 @@
 #include "lb/lb_00B0.h"
 #include "mn/inlines.h"
 #include "ty/toy.h"
+
+#include <common_structs.h>
+#include <printf.h>
+#include <stdarg.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
+#include <baselib/memory.h>
+#include <baselib/objalloc.h>
+#include <MSL/math.h>
+#include <MSL/string.h>
 
 struct unk_series {
     s16 values[26];

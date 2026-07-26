@@ -1,30 +1,34 @@
 #include "grpushon.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <math_ppc.h>
-#include <baselib/random.h>
-#include <sysdolphin/baselib/lobj.h>
-#include <MSL/math.h>
-#include <baselib/aobj.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+#include "gr/types.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "mp/mplib.h"
-#include "gr/types.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <math_ppc.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <sysdolphin/baselib/lobj.h>
+#include <MSL/math.h>
 
 struct grPushOn_Entry {
     s32 x0;

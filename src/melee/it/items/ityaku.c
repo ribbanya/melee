@@ -1,12 +1,9 @@
 #include "ityaku.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
 #include <placeholder.h>
 
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_3F14.h"
@@ -17,6 +14,11 @@
 #include "it/itzako.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
+
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 static void it_2E6A_UnkMotion19_Phys(HSD_GObj* arg0);
 static bool it_802E7054(HSD_GObj* gobj);

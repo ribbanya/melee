@@ -1,8 +1,8 @@
 #include "gobjgxlink.h"
 
-#include <baselib/gobj.h>
-
 #include "debug.h"
+
+#include <baselib/gobj.h>
 
 #pragma push
 #pragma dont_inline on

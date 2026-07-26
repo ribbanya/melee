@@ -2,12 +2,15 @@
 #define GALE01_29FDBC
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 29FDBC */ bool it_8029FDBC(Item_GObj* gobj);
 /* 29FDDC */ void it_8029FDDC(Item_GObj*, int);

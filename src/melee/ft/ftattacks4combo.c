@@ -1,8 +1,6 @@
 
 #include "ft/ftattacks4combo.h"
 
-#include <baselib/debug.h>
-#include <common_structs.h>
 #include <platform.h>
 
 #include "ft/chara/ftCommon/ftCo_AttackS4.h"
@@ -10,7 +8,11 @@
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
+
 #include "ftLink/forward.h"
+
+#include <common_structs.h>
+#include <baselib/debug.h>
 
 bool ftCo_800CECE8(Fighter_GObj* gobj)
 {

@@ -1,8 +1,8 @@
 #ifndef GALE01_0BD17C
 #define GALE01_0BD17C
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0BD0E8 */ void ftCo_800BD0E8(Fighter_GObj* gobj, FtMotionId msid);
 /* 0BD17C */ void ftCo_ThrownMewtwo_Anim(Fighter_GObj* gobj);

@@ -1,13 +1,14 @@
 #include "gmsinglebutton.h"
 
+#include "gm_unsplit.h"
+#include "gmvsdata.h"
+
+#include <platform.h>
+
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 #include <melee/mn/types.h>
-#include <platform.h>
-
-#include "gm_unsplit.h"
-#include "gmvsdata.h"
 
 /* extern functions referenced in Scenes */
 extern void gm_801BFA6C(GameScene*);

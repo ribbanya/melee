@@ -1,11 +1,12 @@
 #ifndef GALE01_0892D4
 #define GALE01_0892D4
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "ft/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 0892D4 */ void ft_800892D4(Fighter*);
 /* 089460 */ void ft_80089460(Fighter*);

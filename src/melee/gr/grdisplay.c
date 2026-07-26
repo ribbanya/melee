@@ -1,25 +1,31 @@
 #include "grdisplay.h"
 
+#include "inlines.h"
+
+#include <platform.h>
+
+#include "cm/camera.h"
+#include "ft/ftlib.h"
+
+#include "gr/forward.h"
+
+#include "gr/ground.h"
+#include "gr/types.h"
+
+#include "lb/forward.h"
+
+#include "lb/lbshadow.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 #include <baselib/cobj.h>
+#include <baselib/debug.h>
 #include <baselib/displayfunc.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
 #include <baselib/state.h>
-#include <baselib/debug.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <platform.h>
-
-#include "inlines.h"
-#include "cm/camera.h"
-#include "ft/ftlib.h"
-#include "gr/ground.h"
-#include "lb/forward.h"
-#include "lb/lbshadow.h"
-#include "gr/forward.h"
-#include "gr/types.h"
 
 /* 1C5B90 */ static void grDisplay_801C5B90(HSD_JObj* jobj, Mtx vmtx, u32 arg2,
                                             u32 rendermode);

@@ -1,17 +1,9 @@
 #include "grgreatbay.h"
 
-#include <platform.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/debug.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
-#include <math.h>
-
 #include "placeholder.h"
+
+#include <platform.h>
+
 #include "baselib/psstructs.h"
 #include "ft/ft_0877.h"
 #include "ft/ftdevice.h"
@@ -23,15 +15,27 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "it/item.h"
 #include "it/items/ittincle.h"
 #include "it/itspawn.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
-#include "gr/types.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 1F5914 */ static void grGreatBay_801F5914(void* user_data, int joint_id,
                                              CollData* coll, int coll_x50,

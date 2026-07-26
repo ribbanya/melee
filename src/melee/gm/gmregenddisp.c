@@ -1,3 +1,21 @@
+#include "gm_1A7A.h"
+#include "gm_unsplit.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft/forward.h"
+
+#include "gm/gmregtyfall.h"
+#include "gm/inlines.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbspdisplay.h"
+#include "sc/types.h"
+#include "ty/toy.h"
+#include "ty/tydisplay.h"
+#include "ty/types.h"
+
 #include <baselib/archive.h>
 #include <baselib/cobj.h>
 #include <baselib/debug.h>
@@ -10,21 +28,6 @@
 #include <baselib/lobj.h>
 #include <baselib/random.h>
 #include <MSL/math.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "gm_1A7A.h"
-#include "gm_unsplit.h"
-#include "ft/forward.h"
-#include "gm/gmregtyfall.h"
-#include "gm/inlines.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "sc/types.h"
-#include "ty/toy.h"
-#include "ty/tydisplay.h"
-#include "ty/types.h"
 
 void fn_801A7FB4(HSD_GObj* gobj)
 {

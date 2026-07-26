@@ -2,9 +2,10 @@
 #define SYSDOLPHIN_BASELIB_DEBUG_H
 
 #include <platform.h>
+
+#include <stdio.h>
 #include <dolphin/os.h>
 #include <dolphin/os/OSContext.h>
-#include <stdio.h>
 
 typedef void (*ReportCallback)(const unsigned char*, size_t);
 typedef void (*PanicCallback)(OSContext*, ...);

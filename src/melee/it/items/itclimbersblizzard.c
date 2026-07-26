@@ -1,20 +1,23 @@
 #include "itclimbersblizzard.h"
 
 #include <platform.h>
-#include <math.h>
-#include <common_structs.h>
 
 #include "baselib/random.h"
 #include "db/db.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <math.h>
 
 #define M_TAU 6.283185307179586
 

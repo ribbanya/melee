@@ -1,15 +1,21 @@
 #include "ftCo_Run.h"
 
+#include "math.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "math.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackDash.h"
@@ -18,7 +24,6 @@
 #include "ftCommon/ftCo_RunBrake.h"
 #include "ftCommon/ftCo_SpecialS.h"
 #include "ftCommon/ftCo_TurnRun.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
 
 bool fn_800CA5F0(Fighter_GObj* gobj)

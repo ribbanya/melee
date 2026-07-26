@@ -1,14 +1,13 @@
 #include "ftPp_SpecialN.h"
 
+#include "ftPp_Init.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
-#include "ftPp_Init.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
@@ -17,10 +16,15 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftPopo/types.h"
+
 #include "it/forward.h"
+
 #include "it/items/itclimbersice.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 /* 11F500 */ static void ftPp_SpecialN_8011F500(Fighter_GObj* gobj);
 

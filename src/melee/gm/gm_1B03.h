@@ -2,10 +2,12 @@
 #define GALE01_1B0348
 
 #include <placeholder.h>
+
 #include <melee/mn/forward.h>
 #include <sysdolphin/baselib/forward.h>
-#include <melee/gm/types.h>
+
 #include <dolphin/types.h>
+#include <melee/gm/types.h>
 
 /* 1B0348 */ void gm_801B0348(StartMeleeData*); /// Character tints?
 /* 1B0474 */ void gm_801B0474(StartMeleeData*, MatchEnd*);

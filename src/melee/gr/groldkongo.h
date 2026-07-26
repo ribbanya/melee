@@ -1,9 +1,8 @@
 #ifndef GALE01_20F468
 #define GALE01_20F468
 
-#include <baselib/forward.h>
-
 #include "gr/forward.h"
+#include <baselib/forward.h>
 
 /* 2105AC */ void grOldKongo_802105AC(Ground_GObj*);
 /* 2105C8 */ void grOldKongo_802105C8(HSD_GObj*);

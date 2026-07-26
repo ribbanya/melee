@@ -1,6 +1,13 @@
 #include "gmhomerun.h"
 
+#include "gm_unsplit.h"
+#include "gmvsdata.h"
+
+#include <platform.h>
+
+#include "ft/forward.h"
 #include <melee/pl/forward.h>
+
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/types.h>
 #include <melee/lb/lbcardgame.h>
@@ -9,11 +16,6 @@
 #include <melee/lb/lbtime.h>
 #include <melee/lb/types.h>
 #include <melee/mn/types.h>
-#include <platform.h>
-
-#include "gm_unsplit.h"
-#include "gmvsdata.h"
-#include "ft/forward.h"
 
 GameScene gm_803DF198_Scenes[] = {
     {

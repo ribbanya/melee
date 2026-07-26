@@ -1,8 +1,5 @@
 #include "itkyasarinegg.h"
 
-#include <baselib/random.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -11,14 +8,19 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itanimlist.h"
-#include "it/item.h"
-#include "it/ithitbox.h"
-#include "it/itzako.h"
-#include "mp/mpcoll.h"
 #include "it/itCommonItems.h"
 #include "it/itdrop.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/ithitbox.h"
+#include "it/itzako.h"
 #include "it/types.h"
+#include "mp/mpcoll.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <baselib/random.h>
 
 ItemStateTable it_803F9328[] = {
     { 0, 0, 0, itKyasarinegg_UnkMotion0_Coll },

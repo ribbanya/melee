@@ -1,32 +1,40 @@
+#include "inlines.h"
+
 #include <placeholder.h>
-#include <common_structs.h>
-#include <stddef.h>
-#include <baselib/random.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
-#include "inlines.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
+
 #include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirbyspecialdonkey.h"
+#include "ftKirby/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itseakneedleheld.h"
 #include "it/items/itseakneedlethrown.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCommon/forward.h"
-#include "ftKirby/types.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <stddef.h>
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
 
 /* 106DB0 */ static void fn_80106DB0(Fighter_GObj*);
 /* 3CB770 */ static float ftKb_Init_803CB770[] = {

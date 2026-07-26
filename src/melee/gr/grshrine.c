@@ -1,19 +1,23 @@
 #include "grshrine.h"
 
-#include <platform.h>
-#include <math.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
+
+#include <platform.h>
+
+#include "gr/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "gr/types.h"
-#include "lb/forward.h"
+
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 static void grShrine_80201C60(bool);
 static void grShrine_80201C64(void);

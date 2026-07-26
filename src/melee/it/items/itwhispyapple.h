@@ -2,12 +2,15 @@
 #define GALE01_2EE200
 
 #include <placeholder.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2EE200 */ Item_GObj* it_802EE200(HSD_GObj* parent, Vec3* pos,
                                     f32 threshold1, f32 threshold2);

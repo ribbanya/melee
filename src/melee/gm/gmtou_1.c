@@ -1,6 +1,20 @@
 #include "gmtou_1.h"
 
+#include "gm_unsplit.h"
+
 #include <placeholder.h>
+#include <platform.h>
+
+#include "dolphin/pad.h"
+#include "gm/types.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbdvd.h"
+#include "lb/types.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "sc/types.h"
+
 #include <baselib/controller.h>
 #include <baselib/dobj.h>
 #include <baselib/fog.h>
@@ -11,18 +25,6 @@
 #include <baselib/mobj.h>
 #include <baselib/random.h>
 #include <baselib/sislib.h>
-#include <platform.h>
-
-#include "gm_unsplit.h"
-#include "dolphin/pad.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbdvd.h"
-#include "lb/types.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "sc/types.h"
-#include "gm/types.h"
 
 /** @todo .sdata2 literal-order anchor (same idiom as gmtou_0.c/gmtou_2.c):
  * retail keeps -19.5f/13.0f at the head of this TU's pool (0x804DA7E0/E4),

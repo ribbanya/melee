@@ -1,11 +1,9 @@
 #include "ittosakinto.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <dolphin/mtx.h>
+#include "platform.h"
+
 #include <placeholder.h>
 
-#include "platform.h"
 #include "baselib/random.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
@@ -14,10 +12,14 @@
 #include "it/it_279C.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
-#include "lb/lbaudio_ax.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
 #include "it/types.h"
+#include "lb/lbaudio_ax.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 #define GET_ATTRS(it)                                                         \
     ((itTosakinto_Attrs*) (it)->xC4_article_data->x4_specialAttributes)

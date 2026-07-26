@@ -2,11 +2,13 @@
 #define GALE01_0877F8
 
 #include <placeholder.h>
-#include <baselib/forward.h>
 #include <platform.h>
 
 #include "ft/forward.h"
+
 #include "ft/types.h"
+
+#include <baselib/forward.h>
 
 /* 0877F8 */ bool ft_800877F8(Fighter_GObj*, s32);
 /* 087818 */ bool ft_80087818(Fighter_GObj*, s32);

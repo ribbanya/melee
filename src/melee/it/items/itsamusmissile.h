@@ -2,10 +2,12 @@
 #define GALE01_2B62D0
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 struct _m2c_stack_it_802B64FC {
     /* 0x00 */ char pad_0[0x10];

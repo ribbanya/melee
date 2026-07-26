@@ -1,12 +1,13 @@
 #ifndef GALE01_800C7CA0
 #define GALE01_800C7CA0
 
-#include <baselib/dobj.h>
-#include <baselib/jobj.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "ft/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/dobj.h>
+#include <baselib/jobj.h>
 
 extern HSD_MObj* ft_804D6580;
 

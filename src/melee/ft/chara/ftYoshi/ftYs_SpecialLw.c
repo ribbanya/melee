@@ -1,25 +1,32 @@
 #include "ftYs_SpecialLw.h"
 
-#include <dolphin/mtx.h>
-#include <common_structs.h>
+#include "placeholder.h"
+
 #include <platform.h>
 
-#include "placeholder.h"
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
+
 #include "ftYoshi/forward.h"
+
 #include "ftYoshi/types.h"
 #include "it/items/ityoshistar.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 /* 12E644 */ static void fn_8012E644(Fighter_GObj*);
 /* 12EAD8 */ static void ftYs_SpecialS_8012EAD8(Fighter_GObj*);

@@ -1,14 +1,17 @@
 #include "ft_0DF1.h"
 
-#include <math.h>
-#include <melee/gm/gm_unsplit.h>
-
 #include "platform.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "it/it_26B1.h"
+
+#include <math.h>
+#include <melee/gm/gm_unsplit.h>
 
 bool ftCo_800DF1C8(Fighter* fp)
 {

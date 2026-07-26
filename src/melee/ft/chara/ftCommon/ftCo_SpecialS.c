@@ -1,14 +1,16 @@
 #include "ftCo_SpecialS.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "math.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdata.h"
 #include "ft/types.h"
+
+#include <common_structs.h>
 
 /* 0960CC */ static void doEnter(Fighter_GObj* gobj);
 

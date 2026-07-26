@@ -1,8 +1,35 @@
 #include "gmtoulib.h"
 
+#include "gm_1601.h"
+#include "gm_unsplit.h"
+#include "gmmain_lib.h"
+
+#include "gmtoulib.static.h"
 #include <placeholder.h>
+
+#include "ft/forward.h"
+
+#include "lb/lblanguage.h"
+#include "lb/lbspdisplay.h"
+
+#include "mn/forward.h"
+
+#include "mn/mnmain.h"
+#include "mn/mnname.h"
+#include "mn/mnstagesel.h"
+
+#include "pl/forward.h"
+
+#include "pl/player.h"
+#include "sc/types.h"
+
 #include <printf.h>
+#include <string.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
 #include <baselib/controller.h>
+#include <baselib/debug.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -13,26 +40,6 @@
 #include <baselib/jobj.h>
 #include <baselib/random.h>
 #include <baselib/sislib.h>
-#include <baselib/cobj.h>
-#include <baselib/debug.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
-#include <string.h>
-
-#include "gm_1601.h"
-#include "gm_unsplit.h"
-#include "gmmain_lib.h"
-#include "gmtoulib.static.h"
-#include "ft/forward.h"
-#include "lb/lblanguage.h"
-#include "lb/lbspdisplay.h"
-#include "mn/mnmain.h"
-#include "mn/mnname.h"
-#include "mn/mnstagesel.h"
-#include "pl/forward.h"
-#include "pl/player.h"
-#include "sc/types.h"
-#include "mn/forward.h"
 
 extern SceneDesc* lbl_804D666C;
 extern SceneDesc* lbl_804D6670;

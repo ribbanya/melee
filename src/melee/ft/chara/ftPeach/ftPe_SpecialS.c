@@ -1,11 +1,10 @@
 #include "ftPe_SpecialS.h"
 
 #include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
@@ -14,9 +13,13 @@
 #include "ftCommon/inlines.h"
 #include "ftPeach/types.h"
 #include "it/items/itpeachexplode.h"
-#include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
 #include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 /* 11C2F4 */ static void reset(HSD_GObj* gobj);
 /* 11C430 */ static void doAirEnd0(HSD_GObj* gobj);

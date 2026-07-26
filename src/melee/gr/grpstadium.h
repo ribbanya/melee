@@ -2,11 +2,13 @@
 #define MELEE_GR_STADIUM_H
 
 #include <placeholder.h>
+#include <platform.h>
+
 #include <melee/gr/forward.h>
 #include <melee/lb/forward.h>
 #include <sysdolphin/baselib/forward.h>
+
 #include <dolphin/mtx.h>
-#include <platform.h>
 
 /* 1D1018 */ void grStadium_OnDemoInit(int);
 /* 1D101C */ void grStadium_OnInit(void);

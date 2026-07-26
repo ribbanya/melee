@@ -1,10 +1,10 @@
 #ifndef GALE01_0968E0
 #define GALE01_0968E0
 
-#include <stdbool.h>
-
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
+
+#include <stdbool.h>
 
 /* 0968E0 */ void ftCo_LiftWait_Anim(Fighter_GObj* gobj);
 /* 0968E4 */ void ftCo_LiftWait_IASA(Fighter_GObj* gobj);

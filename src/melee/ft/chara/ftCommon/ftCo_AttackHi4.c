@@ -1,20 +1,25 @@
 #include "ftCo_AttackHi4.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-
 #include "ftCo_ItemThrow.h"
 #include "ftCo_Wait.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftNess/ftNs_AttackHi4.h"
-#include "ft/ft_084E.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
 
 /* 08CA38 */ void doEnter(Fighter_GObj* gobj);
 

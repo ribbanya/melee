@@ -1,24 +1,25 @@
 #include "tobj.h"
 
-#include <placeholder.h>
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
-#include <baselib/class.h>
-#include <baselib/debug.h>
-#include <baselib/fobj.h>
-#include <baselib/object.h>
-#include <baselib/state.h>
-#include <baselib/texp.h>
-#include <dolphin/os.h>
-#include <string.h>
-
 #include "aobj.h"
 #include "cobj.h"
 #include "lobj.h"
 #include "memory.h"
 #include "mtx.h"
 #include "tev.h"
+
+#include <placeholder.h>
+
+#include <string.h>
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/object.h>
+#include <baselib/state.h>
+#include <baselib/texp.h>
+#include <MetroTRK/intrinsics.h>
 
 #define FLT_EPSILON 1.00000001335e-10F
 

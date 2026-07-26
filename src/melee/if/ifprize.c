@@ -1,6 +1,24 @@
 #include "ifprize.h"
 
+#include "placeholder.h"
+
+#include <platform.h>
+
+#include "dolphin/pad.h"
+
+#include "gm/forward.h"
+
+#include "gm/gm_unsplit.h"
+#include "gm/gmmain_lib.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lblanguage.h"
+#include "lb/lbspdisplay.h"
+#include "sc/types.h"
+#include "ty/toy.h"
+
 #include <printf.h>
+#include <dolphin/gx/GXStruct.h>
 #include <baselib/cobj.h>
 #include <baselib/dobj.h>
 #include <baselib/gobj.h>
@@ -11,20 +29,6 @@
 #include <baselib/jobj.h>
 #include <baselib/random.h>
 #include <baselib/sislib.h>
-#include <dolphin/gx/GXStruct.h>
-#include <platform.h>
-
-#include "placeholder.h"
-#include "dolphin/pad.h"
-#include "gm/gm_unsplit.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lblanguage.h"
-#include "lb/lbspdisplay.h"
-#include "sc/types.h"
-#include "ty/toy.h"
-#include "gm/forward.h"
 
 /// .data
 /* 3F9A00 */ static int un_803F9A00[] = {

@@ -4,6 +4,7 @@
 #define GALE01_14AFC0
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 14AFC0 */ void ftGw_AttackAirN_ItemParachuteSetup(HSD_GObj* gobj);

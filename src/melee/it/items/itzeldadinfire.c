@@ -1,8 +1,5 @@
 #include "itzeldadinfire.h"
 
-#include <MSL/math.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "baselib/jobj.h"
@@ -11,7 +8,9 @@
 #include "ef/efsync.h"
 #include "ft/chara/ftZelda/ftZd_SpecialLw.h"
 #include "ft/ftlib.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -19,6 +18,10 @@
 #include "it/items/itzeldadinfireexplode.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <MSL/math.h>
 
 /* 2C4434 */ static bool itZeldadinfire_UnkMotion1_Coll(Item_GObj* gobj);
 

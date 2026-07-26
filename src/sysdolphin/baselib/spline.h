@@ -1,10 +1,10 @@
 #ifndef SYSDOLPHIN_BASELIB_SPLINE_H
 #define SYSDOLPHIN_BASELIB_SPLINE_H
 
+#include "forward.h"
+
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
-
-#include "forward.h"
 
 struct HSD_Spline {
     /*  +0 */ u8 type;

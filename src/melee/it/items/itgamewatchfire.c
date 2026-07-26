@@ -1,14 +1,16 @@
 #include "itgamewatchfire.h"
 
-#include <baselib/gobj.h>
+#include "inlines.h"
+
 #include <platform.h>
 
-#include "inlines.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "lb/lb_00B0.h"
+
+#include <baselib/gobj.h>
 
 /* 2C6B20 */ static bool itGamewatchFire_Motion0_Anim(Item_GObj* item_gobj);
 

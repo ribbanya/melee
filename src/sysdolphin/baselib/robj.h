@@ -2,11 +2,14 @@
 #define _robj_h_
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
+
 #include "baselib/objalloc.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 #define ROBJ_TYPE_MASK 0x70000000
 #define REFTYPE_EXP 0x00000000

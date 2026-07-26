@@ -2,7 +2,9 @@
 #define GALE01_014E24
 
 #include <platform.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/os/OSAlarm.h>
 #include <dolphin/os/OSContext.h>
 

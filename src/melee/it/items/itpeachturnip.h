@@ -2,12 +2,15 @@
 #define GALE01_2BD32C
 
 #include <platform.h>
-#include <dolphin/mtx.h>
+
+#include "ft/forward.h"
+#include "it/forward.h"
+
+#include "it/items/types.h"
+
 #include <baselib/forward.h>
 
-#include "it/forward.h"
-#include "it/items/types.h"
-#include "ft/forward.h"
+#include <dolphin/mtx.h>
 
 /* 2BD32C */ s32 it_802BD32C(Item_GObj*);
 /* 2BD45C */ void it_802BD45C(Item_GObj* gobj);

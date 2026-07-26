@@ -1,8 +1,5 @@
 #include "it/items/itnokonoko.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "cm/camera.h"
@@ -10,17 +7,21 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itzgshell.h"
 #include "it/items/itzrshell.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
-#include "mp/mpcoll.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
 #include "it/types.h"
 #include "lb/types.h"
+#include "mp/mpcoll.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F85F0[] = {
     { 0, NULL, NULL, NULL },

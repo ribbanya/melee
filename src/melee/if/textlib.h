@@ -3,10 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/gx.h>
 
 #include "baselib/forward.h"
 #include "if/forward.h"
+
+#include <dolphin/gx.h>
 
 struct un_80304138_objalloc_t;
 struct un_80304138_objalloc_t_x8;

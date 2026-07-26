@@ -2,19 +2,22 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 
 #include "db/db.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itnesspkfirepillar.h"
-#include "it/itCommonItems.h"
 #include "it/itgroundcoll.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F6B28[] = {
     { 0, itNesspkfire_UnkMotion0_Anim, NULL, itNesspkfire_UnkMotion0_Coll },

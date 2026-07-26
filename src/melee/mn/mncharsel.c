@@ -1,6 +1,22 @@
 #include "mncharsel.h"
 
+#include "inlines.h"
+
+#include "mncharsel.static.h"
+#include <placeholder.h>
+
+#include "ft/forward.h"
+
+#include "mn/types.h"
+
+#include "pl/forward.h"
+
+#include <common_structs.h>
 #include <trigf.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <baselib/archive.h>
+#include <baselib/object.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
@@ -34,18 +50,6 @@
 #include <melee/mn/mnmainrule.h>
 #include <melee/mn/mnname.h>
 #include <melee/mn/mnnamenew.h>
-#include <baselib/archive.h>
-#include <baselib/object.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
-#include <placeholder.h>
-
-#include "inlines.h"
-#include "mncharsel.static.h"
-#include "ft/forward.h"
-#include "mn/types.h"
-#include "pl/forward.h"
 
 typedef struct CSSAllData {
     u8 gnw_name[0x1C];

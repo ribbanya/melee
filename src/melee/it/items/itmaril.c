@@ -1,7 +1,5 @@
 #include "itmaril.h"
 
-#include <math.h>
-#include <baselib/jobj.h>
 #include <placeholder.h>
 
 #include "ef/eflib.h"
@@ -11,11 +9,14 @@
 #include "it/it_279C.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
-#include "lb/lbvector.h"
-#include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "lb/lbvector.h"
+
+#include <math.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F82B0[] = {
     {

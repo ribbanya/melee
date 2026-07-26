@@ -2,6 +2,7 @@
 #define GALE01_0DF938
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 0DF938 */ bool ftDk_MS_341_800DF938(HSD_GObj* gobj);

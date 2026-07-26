@@ -1,28 +1,31 @@
 #include "gryorster.h"
 
-#include <platform.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
 #include <placeholder.h>
+#include <platform.h>
 
 #include "ft/ftlib.h"
+#include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/grlib.h"
 #include "gr/grmaterial.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
+#include "gr/types.h"
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
-#include "gr/granime.h"
-#include "gr/types.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 /* 2024F0 */ static void grYorster_802024F0(void* user_data, int joint_id,
                                             CollData* coll, int coll_x50,

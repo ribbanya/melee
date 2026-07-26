@@ -3,8 +3,8 @@
 
 #include <platform.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 096FCC */ void ftCo_80097630(Fighter* fp, enum_t* sfx_ids, float threshold);
 /* 097570 */ bool ftCo_80097570(Fighter_GObj* gobj);

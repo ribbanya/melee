@@ -1,19 +1,22 @@
 #include "ftCo_DamageSong.h"
 
-#include <platform.h>
-
 #include "ftCo_0C35.h"
 #include "ftCo_Lift.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Throw.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
 
 /* 0C3390 */ static void ftCo_800C3390(Fighter_GObj* gobj);
 /* 0C3480 */ static void ftCo_800C3480(Fighter_GObj* gobj);

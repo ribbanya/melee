@@ -1,21 +1,16 @@
 #include "ftCo_Landing.h"
 
-#include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackHi3.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackHi4.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackLw3.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackLw4.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackS3.h>
-#include <melee/ft/chara/ftCommon/ftCo_AttackS4.h>
-#include <melee/ft/chara/ftCommon/ftCo_Guard.h>
-#include <melee/ft/chara/ftCommon/ftCo_SpecialS.h>
-
 #include "placeholder.h"
 #include "platform.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_AppealS.h"
@@ -27,17 +22,25 @@
 #include "ftCommon/ftCo_SquatWait.h"
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/ftCo_Walk.h"
-#include "ftPeach/ftPe_SpecialHi.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
 #include "ftGameWatch/types.h"
 #include "ftKirby/types.h"
 #include "ftMario/types.h"
 #include "ftMars/types.h"
 #include "ftMewtwo/types.h"
+#include "ftPeach/ftPe_SpecialHi.h"
 #include "ftPeach/types.h"
 #include "ftPopo/types.h"
+
+#include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackHi3.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackHi4.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackLw3.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackLw4.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackS3.h>
+#include <melee/ft/chara/ftCommon/ftCo_AttackS4.h>
+#include <melee/ft/chara/ftCommon/ftCo_Guard.h>
+#include <melee/ft/chara/ftCommon/ftCo_SpecialS.h>
 
 void ftCo_Landing_Enter(Fighter_GObj* gobj, FtMotionId msid,
                         bool allow_interrupt, MotionFlags flags,

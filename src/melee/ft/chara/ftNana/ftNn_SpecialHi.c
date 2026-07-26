@@ -1,26 +1,32 @@
-#include <platform.h>
-#include <dolphin/mtx.h>
-#include <MSL/math.h>
-#include <common_structs.h>
-#include <placeholder.h>
-
 #include "ftNn_Init.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
+
 #include "ftPopo/forward.h"
+
 #include "ftPopo/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <MSL/math.h>
 
 /* 1230D0 */ static bool ftNn_Init_801230D0(Fighter_GObj* nana_gobj);
 /* 123218 */ static void fn_80123218(Fighter_GObj* nana_gobj);

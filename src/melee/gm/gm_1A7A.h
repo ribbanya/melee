@@ -2,7 +2,9 @@
 #define MELEE_GM_1A50_H
 
 #include <placeholder.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/types.h>
 
 /* 1A7A44 */ void fn_801A7A44(HSD_GObj*);

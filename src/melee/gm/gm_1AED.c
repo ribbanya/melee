@@ -1,5 +1,6 @@
 #include "gm_1AED.h"
 
+#include <common_structs.h>
 #include <sysdolphin/baselib/controller.h>
 #include <melee/db/db.h>
 #include <melee/gm/gm_unsplit.h>
@@ -9,7 +10,6 @@
 #include <melee/lb/lbcardnew.h>
 #include <melee/lb/lblanguage.h>
 #include <melee/mn/inlines.h>
-#include <common_structs.h>
 
 static u8 gm_804D6870;
 static u16 gm_804D6872;

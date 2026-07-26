@@ -1,5 +1,18 @@
 #include "ftKp_SpecialLw.h"
 
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/ftCo_Fall.h"
+
+#include "ftKoopa/forward.h"
+
+#include "ftKoopa/types.h"
+
+#include <common_structs.h>
 #include <trigf.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
@@ -7,16 +20,6 @@
 #include <melee/ft/ft_0892.h>
 #include <melee/ft/ftcliffcommon.h>
 #include <melee/ft/ftcommon.h>
-#include <common_structs.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "ftCommon/ftCo_Fall.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftKoopa/forward.h"
-#include "ftKoopa/types.h"
 
 static void fn_80134518(Fighter_GObj* gobj)
 {

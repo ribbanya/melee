@@ -1,9 +1,5 @@
 #include "ittaru.h"
 
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -15,18 +11,25 @@
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/itcoll.h"
+#include "it/itCommonItems.h"
+#include "it/itdrop.h"
 #include "it/iteffect.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "it/itCommonItems.h"
-#include "it/itdrop.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
 
 ItemStateTable it_803F58E0[] = {
     { -1, itTaru_UnkMotion0_Anim, itTaru_UnkMotion0_Phys,

@@ -1,16 +1,17 @@
 #include "ftMh_Sweep.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 #include "mp/mplib.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 void ftMh_Damage_IASA(HSD_GObj* gobj)
 {

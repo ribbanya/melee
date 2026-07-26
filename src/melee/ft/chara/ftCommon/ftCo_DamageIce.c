@@ -1,14 +1,5 @@
 #include "ftCo_DamageIce.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-#include <math_ppc.h>
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
-#include <baselib/mtx.h>
-#include <baselib/random.h>
-
 #include "ftCo_DownAttack.h"
 #include "ftCo_DownBound.h"
 #include "ftCo_FallSpecial.h"
@@ -16,10 +7,15 @@
 #include "ftCo_HammerWait.h"
 #include "ftCo_Lift.h"
 #include "ftCo_PassiveStand.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ftcoll.h"
@@ -27,16 +23,26 @@
 #include "ft/ftdynamics.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
+
 #include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
+#include <baselib/mtx.h>
+#include <baselib/random.h>
 
 /* 0909D0 */ static void ftCo_800909D0(Fighter* fp);
 /* 090B48 */ static void ftCo_DamageIce_OnHit(Fighter_GObj* gobj);

@@ -1,10 +1,5 @@
 #include "itkirbycutterbeam.h"
 
-#include <math.h>
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "db/db.h"
@@ -15,8 +10,14 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
-#include "lb/lbvector.h"
 #include "it/types.h"
+#include "lb/lbvector.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F6798[] = {
     NULL,

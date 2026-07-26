@@ -7,7 +7,9 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
+
 #include "ftFox/forward.h"
+
 #include "ftFox/ftFx_AppealS.h"
 #include "ftFox/ftFx_Init.h"
 #include "ftFox/ftFx_SpecialHi.h"
@@ -15,8 +17,10 @@
 #include "ftFox/ftFx_SpecialN.h"
 #include "ftFox/ftFx_SpecialS.h"
 #include "ftFox/types.h"
-#include "it/it_26B1.h"
+
 #include "it/forward.h"
+
+#include "it/it_26B1.h"
 
 MotionState ftFc_Init_MotionStateTable[ftFx_MS_SelfCount] = {
     {

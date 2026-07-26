@@ -2,6 +2,7 @@
 #define GALE01_0E1248
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 0E1248 */ void ftMr_SpecialS_CreateCape(HSD_GObj* gobj);

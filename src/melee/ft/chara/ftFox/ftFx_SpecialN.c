@@ -1,15 +1,13 @@
 #include "ftFx_SpecialN.h"
 
-#include <common_structs.h>
-#include <baselib/debug.h>
-#include <melee/it/items/itfoxlaser.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-
 #include "ftFx_Init.h"
 #include "math.h"
+
+#include <placeholder.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
@@ -18,7 +16,9 @@
 #include "ft/ftlib.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftpickupitem.h"
@@ -28,7 +28,11 @@
 #include "it/items/itfoxblaster.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbrefract.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <melee/it/items/itfoxlaser.h>
 
 static inline void ftFox_SpecialN_GetHoldJoint(HSD_GObj* gobj, Vec3* pos,
                                                f32 z_offset)

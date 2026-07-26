@@ -1,12 +1,10 @@
 #include "itnessbat.h"
 
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/jobj.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
 
-#include "inlines.h"
 #include "ft/chara/ftNess/ftNs_AttackS4.h"
 #include "ft/ft_0BF0.h"
 #include "ft/ftlib.h"
@@ -15,6 +13,10 @@
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F6C68[] = {
     { 0, itNessbat_UnkMotion0_Anim, itNessbat_UnkMotion0_Phys,

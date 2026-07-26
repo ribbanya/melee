@@ -1,14 +1,17 @@
 #include "itkirbygamewatchchefpan.h"
 
+#include "inlines.h"
+
+#include <platform.h>
+
+#include "ftKirby/ftkirbyspecialgamewatch.h"
+
+#include "it/items/forward.h"
+
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>
 #include <melee/it/types.h>
-#include <platform.h>
-
-#include "inlines.h"
-#include "ftKirby/ftkirbyspecialgamewatch.h"
-#include "it/items/forward.h"
 
 ItemStateTable it_803F7958[] = {
     { -1, itKirbygamewatchchefpan_UnkMotion0_Anim, NULL, NULL },

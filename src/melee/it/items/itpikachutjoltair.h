@@ -2,12 +2,15 @@
 #define GALE01_2B3EFC
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2B3EFC */ Item_GObj* it_802B3EFC(Item_GObj* gobj);
 /* 2B3F20 */ void it_802B3F20(Item_GObj*, Vec3*);

@@ -1,5 +1,17 @@
 #include "if_2FC93.h"
 
+#include <placeholder.h>
+
+#include "gm/gm_unsplit.h"
+#include "if/ifall.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+
+#include "pl/forward.h"
+
+#include "pl/player.h"
+#include "sc/types.h"
+
 #include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -7,15 +19,6 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <placeholder.h>
-
-#include "gm/gm_unsplit.h"
-#include "if/ifall.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "pl/player.h"
-#include "sc/types.h"
-#include "pl/forward.h"
 
 /// .bss
 /* 4A1F10 */ static struct un_804A1F10_t {

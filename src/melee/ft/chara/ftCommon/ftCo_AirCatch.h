@@ -3,10 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/mtx.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 0C3A14 */ bool ftCo_800C3A14(Fighter_GObj* gobj);
 /* 0C3B10 */ bool ftCo_800C3B10(Fighter_GObj* gobj);

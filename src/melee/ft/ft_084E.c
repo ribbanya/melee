@@ -1,12 +1,13 @@
 #include "ft_084E.h"
 
-#include <math.h>
-#include <melee/ft/fighter.h>
-#include <melee/ft/ftcommon.h>
 #include <placeholder.h>
 #include <platform.h>
 
 #include "ft/types.h"
+
+#include <math.h>
+#include <melee/ft/fighter.h>
+#include <melee/ft/ftcommon.h>
 
 void ft_80084E1C(Fighter_GObj* gobj, float threshold, float drift_max,
                  float target_max)

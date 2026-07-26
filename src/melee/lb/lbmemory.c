@@ -1,12 +1,14 @@
 #include "lbmemory.h"
 
 #include <platform.h>
+
+#include <baselib/forward.h>
+
+#include <string.h>
 #include <dolphin/ar.h>
+#include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/devcom.h>
-#include <baselib/forward.h>
-#include <dolphin/os.h>
-#include <string.h>
 
 struct MemEntry {
     struct MemEntry* x0_next;

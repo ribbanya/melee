@@ -1,18 +1,11 @@
 #include "it/itcoll.h"
 
-#include <platform.h>
-#include <math.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/debug.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-
 #include "inlines.h"
 #include "it_279C.h"
 #include "placeholder.h"
+
+#include <platform.h>
+
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_0881.h"
@@ -20,18 +13,27 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_DownAttack.h"
 #include "gm/gm_unsplit.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/item.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbcollision.h"
 #include "lb/lbvector.h"
-#include "ft/types.h"
-#include "it/types.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 271830 */ static void it_80271830(Item* item, f32 arg_angle);
 /* 271B60 */ static void it_80271B60(Item_GObj* item_gobj);

@@ -1,13 +1,13 @@
 #include "printf.h"
 
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "ansi_fp.h"
 #include "limits.h"
 #include "stdlib.h"
 #include "wchar.h"
+
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
 
 enum justification_options {
     left_justification,

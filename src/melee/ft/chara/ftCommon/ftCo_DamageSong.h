@@ -1,10 +1,10 @@
 #ifndef GALE01_0C318C
 #define GALE01_0C318C
 
-#include <stdbool.h>
-
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
+
+#include <stdbool.h>
 
 /* 0C318C */ void ftCo_800C318C(Fighter_GObj* gobj, bool);
 /* 0C32AC */ void ftCo_DamageSong_Anim(Fighter_GObj* gobj);

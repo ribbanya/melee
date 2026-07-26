@@ -1,11 +1,9 @@
 #include "itentei.h"
 
-#include <baselib/random.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "cm/camera.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
@@ -13,10 +11,15 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
-#include "it/types.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/types.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <baselib/random.h>
 
 ItemStateTable it_803F7DC8[] = {
     { 0, itEntei_UnkMotion0_Anim, itEntei_UnkMotion0_Phys,

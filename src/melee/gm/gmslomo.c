@@ -1,14 +1,15 @@
 #include "gmslomo.h"
 
-#include <melee/gm/gmmain_lib.h>
-#include <melee/gm/gmvsmelee.h>
-#include <melee/gm/types.h>
-#include <stddef.h>
-
 #include "gm_unsplit.h"
 #include "gmmovieend.h"
 #include "gmvsdata.h"
+
 #include "mn/forward.h"
+
+#include <stddef.h>
+#include <melee/gm/gmmain_lib.h>
+#include <melee/gm/gmvsmelee.h>
+#include <melee/gm/types.h>
 
 GameScene gm_803DF468_Scenes[] = {
     {

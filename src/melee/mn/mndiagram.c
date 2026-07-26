@@ -1,15 +1,17 @@
-#include <baselib/object.h>
-#include <baselib/sislib.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
 #include <placeholder.h>
 #include <platform.h>
 
-#include "mn/types.h"
 #include "lb/lblanguage.h"
+#include "mn/types.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/object.h>
+#include <baselib/sislib.h>
 
 #define MNDIAGRAM_SOURCE
 #include "mndiagram.static.h"
+
 #include "baselib/debug.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"

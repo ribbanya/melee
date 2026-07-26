@@ -1,18 +1,21 @@
 #include "ftCo_CargoTurn.h"
 
-#include <platform.h>
-
 #include "ftCo_CargoJump.h"
 #include "ftCo_CargoThrow.h"
 #include "ftCo_CargoWait.h"
 #include "ftCo_Shouldered.h"
+
+#include <platform.h>
+
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/types.h"
 #include "ftDonkey/types.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
 
 bool ftCo_8009B818(Fighter_GObj* gobj)
 {

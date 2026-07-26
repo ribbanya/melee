@@ -2,6 +2,7 @@
 #define GALE01_128944
 
 #include <baselib/forward.h>
+
 #include <dolphin/types.h>
 
 /* 128C04 */ void ftSs_SpecialLw_Anim(HSD_GObj* gobj);

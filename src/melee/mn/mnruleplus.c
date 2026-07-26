@@ -1,5 +1,6 @@
 #include "placeholder.h"
 #include "platform.h"
+
 #include "baselib/debug.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
@@ -14,7 +15,9 @@
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
 #include "lb/lbspdisplay.h"
+
 #include "mn/forward.h"
+
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "mn/mnmainrule.h"

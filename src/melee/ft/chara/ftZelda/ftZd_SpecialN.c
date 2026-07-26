@@ -3,9 +3,12 @@
 #include <platform.h>
 
 #include "ef/efsync.h"
+
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -14,7 +17,6 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftZelda/types.h"
-#include "ft/ft_084E.h"
 
 void ftZd_SpecialN_8013A830(HSD_GObj* gobj)
 {

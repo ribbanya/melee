@@ -1,13 +1,15 @@
 #ifndef GALE01_2C65E4
 #define GALE01_2C65E4
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-
+#include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
 #include "it/types.h"
-#include "ft/forward.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2C65E4 */ HSD_GObj* it_802C65E4(Item_GObj* gobj, Vec* vec,
                                    enum Fighter_Part arg2, float arg3);

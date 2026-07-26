@@ -1,19 +1,20 @@
 #include "itgamewatchchef.h"
 
-#include <baselib/jobj.h>
-#include <common_structs.h>
-
 #include "inlines.h"
 #include "placeholder.h"
+
 #include "db/db.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
-#include "it/itzako.h"
 #include "it/itCharItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/itzako.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F79E0[] = {
     { 0, itGamewatchchef_UnkMotion0_Anim, itGamewatchchef_UnkMotion0_Phys,

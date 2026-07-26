@@ -4,9 +4,11 @@
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
-#include "ftCommon/forward.h"
-#include "ftCommon/ftCo_Fall.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
+#include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 
 void ftCo_FallAerial_Enter(Fighter_GObj* gobj)

@@ -1,21 +1,26 @@
 #include "ftCh_Damage_0.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "mp/mplib.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
 
 void fn_80157080(Fighter_GObj* gobj)
 {

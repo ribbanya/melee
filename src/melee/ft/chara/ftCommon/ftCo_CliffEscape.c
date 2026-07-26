@@ -1,13 +1,15 @@
 #include "ftCo_CliffEscape.h"
 
+#include "ftCo_CliffClimb.h"
+
 #include <platform.h>
 
-#include "ftCo_CliffClimb.h"
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
 
 /// @todo Shared code with #ftCo_8009AEA4.

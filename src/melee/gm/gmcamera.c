@@ -2,13 +2,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/aobj.h>
-#include <baselib/object.h>
-#include <baselib/rumble.h>
 
 #include "baselib/archive.h"
 #include "baselib/controller.h"
+
 #include "baselib/forward.h"
+
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
@@ -30,6 +29,10 @@
 #include "lb/lbspdisplay.h"
 #include "mn/inlines.h"
 #include "sc/types.h"
+
+#include <baselib/aobj.h>
+#include <baselib/object.h>
+#include <baselib/rumble.h>
 
 typedef struct _SisLibUnkStruct2 {
     /*0x00*/ u8 x0_padding[0x8 - 0x0];

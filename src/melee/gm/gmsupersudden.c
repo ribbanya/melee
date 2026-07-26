@@ -1,14 +1,14 @@
 #include "gmsupersudden.h"
 
+#include "gm_unsplit.h"
+#include "gmmovieend.h"
+#include "gmvsdata.h"
+
+#include <stddef.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 #include <melee/mn/types.h>
-#include <stddef.h>
-
-#include "gm_unsplit.h"
-#include "gmmovieend.h"
-#include "gmvsdata.h"
 
 GameScene gm_803DEEB0_Scenes[] = {
     {

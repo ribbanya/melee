@@ -1,11 +1,12 @@
 #include "itpeachparasol.h"
 
+#include "inlines.h"
+
+#include "it/inlines.h"
+
 #include <melee/ft/chara/ftPeach/ftPe_SpecialHi.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>
-
-#include "inlines.h"
-#include "it/inlines.h"
 
 ItemStateTable it_803F74F8[] = {
     {

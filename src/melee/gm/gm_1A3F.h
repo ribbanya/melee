@@ -2,8 +2,9 @@
 #define MELEE_GM_1A3F_H
 
 #include <placeholder.h>
-#include <melee/gm/forward.h>
 #include <platform.h>
+
+#include <melee/gm/forward.h>
 
 /* 1A3EF4 */ void gm_801A3EF4(void);
 /* 1A3F48 */ void gm_801A3F48(GameScene*);

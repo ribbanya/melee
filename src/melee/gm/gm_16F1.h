@@ -2,10 +2,11 @@
 #define MELEE_GM_16F1_H
 
 #include <placeholder.h>
+#include <platform.h>
+
 #include <melee/ft/forward.h>
 #include <melee/gm/forward.h>
 #include <sysdolphin/baselib/forward.h>
-#include <platform.h>
 
 struct lbl_8046B6A0_24C_t;
 

@@ -1,15 +1,18 @@
 #include "itrabbitc.h"
 
-#include <baselib/jobj.h>
-#include <melee/it/item.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/items/types.h"
 #include "it/itgroundcoll.h"
+
+#include <baselib/jobj.h>
+#include <melee/it/item.h>
 
 /* 295138 */ static void it_80295138(Item_GObj*);
 /* 295188 */ static bool itRabbitc_UnkMotion0_Anim(Item_GObj*);

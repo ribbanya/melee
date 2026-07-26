@@ -1,19 +1,22 @@
 #include "ftCo_CliffJump.h"
 
-#include <platform.h>
-
 #include "ftCo_CliffClimb.h"
 #include "ftCo_FallSpecial.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/types.h"
-#include "ftCommon/forward.h"
 
 /* 09B1B8 */ static void ftCo_8009B1B8(Fighter_GObj* gobj);
 /* 09B2F8 */ static void ftCo_8009B2F8(Fighter_GObj* gobj);

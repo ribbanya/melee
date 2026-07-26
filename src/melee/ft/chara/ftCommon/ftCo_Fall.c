@@ -1,14 +1,16 @@
 #include "ftCo_Fall.h"
 
+#include "math.h"
+
 #include <placeholder.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <platform.h>
 
-#include "math.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
@@ -24,11 +26,13 @@
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/ftCo_SpecialAir.h"
+#include "ftCommon/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/ftMh_Wait1_2.h"
 #include "ftPeach/ftPe_Float.h"
-#include "ft/ftanim.h"
-#include "ftCommon/types.h"
+
+#include <common_structs.h>
+#include <baselib/jobj.h>
 
 static inline bool ftCo_Fall_inline(Fighter_GObj* gobj)
 {

@@ -2,12 +2,15 @@
 #define GALE01_2A7D8C
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2A7D8C */ void it_802A7D8C(HSD_GObj*, int);
 /* 2A7E40 */ void it_802A7E40(Item_GObj*);

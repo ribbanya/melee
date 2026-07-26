@@ -1,12 +1,5 @@
 #include "if_2F72.h"
 
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 
 #include "gm/gm_1601.h"
@@ -19,7 +12,16 @@
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"
+
 #include "sc/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 /// Orphaned data strings from original ROM
 static char lbl_803F9780[] = "ScInfStc_scene_models";

@@ -1,11 +1,5 @@
 #include "itmewtwoshadowball.h"
 
-#include <trigf.h>
-#include <baselib/mtx.h>
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <math.h>
 #include <placeholder.h>
 
 #include "baselib/jobj.h"
@@ -17,12 +11,19 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/itgroundcoll.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-#include "it/itCommonItems.h"
-#include "it/types.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/mtx.h>
+#include <baselib/random.h>
 
 /* 2C5B18 */ static void it_802C5B18(Item_GObj*, Item_GObj*);
 

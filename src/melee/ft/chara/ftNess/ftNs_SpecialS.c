@@ -1,13 +1,10 @@
 #include "ftNess/ftNs_SpecialS.h"
 
 #include <platform.h>
-#include <common_structs.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <math.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
@@ -16,7 +13,11 @@
 #include "ftNess/types.h"
 #include "it/items/itnesspkfire.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
 
 /// https://decomp.me/scratch/apf7Y
 void ftNs_SpecialS_ItemPKFireSpawn(

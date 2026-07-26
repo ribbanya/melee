@@ -2,12 +2,14 @@
 #define GALE01_23749C
 
 #include <placeholder.h>
+
 #include <baselib/forward.h>
+
 #include <stdbool.h>
+#include <dolphin/types.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/sislib.h>
-#include <dolphin/types.h>
 
 typedef struct MnName_GObj {
     /* +00 */ HSD_GObj gobj;

@@ -2,10 +2,12 @@
 #define GALE01_29B0C8
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 29B0C8 */ void itEvYoshiEgg_Spawn(Vec3*);
 /* 29B188 */ void itEvYoshiEgg_Logic42_Destroyed(Item_GObj*);

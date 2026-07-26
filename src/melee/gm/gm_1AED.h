@@ -2,8 +2,9 @@
 #define MELEE_GM_1AED_H
 
 #include <placeholder.h>
-#include <melee/gm/forward.h>
 #include <platform.h>
+
+#include <melee/gm/forward.h>
 
 struct gm_80480DA8_0_t {
     int unk0;

@@ -1,22 +1,26 @@
 #include "ftCh_TagGrab.h"
 
+#include "types.h"
+
 #include <platform.h>
 
-#include "types.h"
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0D4D.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
 #include "ftMasterHand/types.h"
 #include "it/items/itmasterhandlaser.h"
 #include "lb/lbaudio_ax.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
 
 inline void func_8015ADD0_inline(HSD_GObj* gobj)
 {

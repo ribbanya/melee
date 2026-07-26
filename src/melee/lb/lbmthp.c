@@ -1,21 +1,21 @@
 #include "lbmthp.h"
 
-#include <dolphin/dvd.h>
-#include <dolphin/gx/GXTexture.h>
-#include <dolphin/os/OSCache.h>
-#include <sysdolphin/baselib/debug.h>
-#include <sysdolphin/baselib/devcom.h>
-#include <sysdolphin/baselib/sobjlib.h>
-#include <Runtime/runtime.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/os/OSContext.h>
-#include <stddef.h>
-
 #include "baselib/memory.h"
 #include "baselib/tobj.h"
 #include "baselib/video.h"
 #include "dolphin/os.h"
 #include "lb/lbfile.h"
+
+#include <stddef.h>
+#include <dolphin/dvd.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXTexture.h>
+#include <dolphin/os/OSCache.h>
+#include <dolphin/os/OSContext.h>
+#include <sysdolphin/baselib/debug.h>
+#include <sysdolphin/baselib/devcom.h>
+#include <sysdolphin/baselib/sobjlib.h>
+#include <Runtime/runtime.h>
 
 struct lbl_803BAFE8_t {
     /* 0x00 */ s32 x0;

@@ -1,5 +1,13 @@
 #include "mninfobonus.h"
 
+#include "inlines.h"
+
+#include "mninfobonus.static.h"
+#include <platform.h>
+
+#include "mn/mnmain.h"
+
+#include <common_structs.h>
 #include <baselib/controller.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -15,12 +23,6 @@
 #include <lb/lbarchive.h>
 #include <lb/lbaudio_ax.h>
 #include <sc/types.h>
-#include <common_structs.h>
-#include <platform.h>
-
-#include "inlines.h"
-#include "mninfobonus.static.h"
-#include "mn/mnmain.h"
 
 inline int mnInfoBonus_802528F8_inline(int j)
 {

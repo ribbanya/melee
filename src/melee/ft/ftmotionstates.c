@@ -1,5 +1,31 @@
 
+#include "ft_0BEC.h"
+#include "ft_0C31.h"
+#include "ft_0CD1.h"
+#include "ft_0CDD.h"
+#include "ft_0D31.h"
+#include "ft_0D4D.h"
+#include "ftcamera.h"
+#include "ftcliffcommon.h"
+#include "ftCo_800C7590.h"
+#include "ftCo_800C78B0.h"
+#include "ftCo_800C7CA0.h"
+#include "ftcolanim.h"
+#include "ftlipstickswing.h"
+#include "ftstarrodswing.h"
+#include "ftswing.h"
+#include "types.h"
+
+#include "ftCrazyHand/ftCh_CaptureCrazyHand.h"
+#include "ftCrazyHand/ftCh_CaptureDamageCrazyHand.h"
+#include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
+#include "ftCrazyHand/ftCh_ThrownCrazyHand.h"
+#include "ftKirby/ftkirbycaptureyoshi.h"
+#include "ftKirby/ftkirbyyoshiegg.h"
+
 #include <melee/ft/chara/ftCommon/forward.h>
+
+#include <stddef.h>
 #include <melee/ft/chara/ftCommon/ftCo_AppealS.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack100.h>
@@ -107,30 +133,6 @@
 #include <melee/ft/chara/ftMasterHand/ftMh_CaptureDamageMasterHand.h>
 #include <melee/ft/chara/ftMasterHand/ftMh_CaptureMasterHand.h>
 #include <melee/ft/chara/ftMasterHand/ftMh_ThrownMasterHand.h>
-#include <stddef.h>
-
-#include "ft_0BEC.h"
-#include "ft_0C31.h"
-#include "ft_0CD1.h"
-#include "ft_0CDD.h"
-#include "ft_0D31.h"
-#include "ft_0D4D.h"
-#include "ftcamera.h"
-#include "ftcliffcommon.h"
-#include "ftCo_800C7590.h"
-#include "ftCo_800C78B0.h"
-#include "ftCo_800C7CA0.h"
-#include "ftcolanim.h"
-#include "ftlipstickswing.h"
-#include "ftstarrodswing.h"
-#include "ftswing.h"
-#include "types.h"
-#include "ftCrazyHand/ftCh_CaptureCrazyHand.h"
-#include "ftCrazyHand/ftCh_CaptureDamageCrazyHand.h"
-#include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
-#include "ftCrazyHand/ftCh_ThrownCrazyHand.h"
-#include "ftKirby/ftkirbycaptureyoshi.h"
-#include "ftKirby/ftkirbyyoshiegg.h"
 
 MotionState ftData_MotionStateList[ftCo_MS_Count] = {
     {

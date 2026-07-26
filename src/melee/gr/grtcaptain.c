@@ -1,17 +1,21 @@
 #include "gr/grtcaptain.h"
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbspdisplay.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 static void grTCaptain_OnDemoInit(int);
 static void grTCaptain_OnInit(void);

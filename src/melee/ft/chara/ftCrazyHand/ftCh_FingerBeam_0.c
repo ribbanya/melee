@@ -1,22 +1,29 @@
 #include "ftCh_FingerBeam_0.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
+
+#include "it/forward.h"
+
 #include "it/items/itcrazyhandbomb.h"
 #include "lb/lb_00B0.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
-#include "it/forward.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
 
 static void fn_801588B8(HSD_GObj* gobj);
 

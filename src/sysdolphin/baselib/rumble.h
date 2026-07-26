@@ -2,9 +2,10 @@
 #define SYSDOLPHIN_BASELIB_RUMBLE_H
 
 #include <platform.h>
-#include <dolphin/pad.h>
 
 #include "baselib/forward.h"
+
+#include <dolphin/pad.h>
 
 struct HSD_RumbleData {
     u8 last_status;

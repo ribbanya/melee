@@ -1,18 +1,12 @@
 #include "ft_0D27.h"
 
-#include <melee/ft/chara/ftCommon/ftCo_FallSpecial.h>
-#include <melee/ft/chara/ftCommon/ftCo_Lift.h>
-#include <melee/ft/ft_0877.h>
-#include <melee/ft/ftcamera.h>
-#include <melee/ft/ftchangeparam.h>
-#include <melee/it/items/itkinoko.h>
-#include <baselib/aobj.h>
-#include <baselib/jobj.h>
-
 #include "platform.h"
 #include "stdbool.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftlib.h"
 #include "ft/inlines.h"
@@ -21,10 +15,20 @@
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallAerial.h"
-#include "ft/ftanim.h"
 #include "ftCommon/types.h"
+
 #include "it/forward.h"
+
 #include "it/it_26B1.h"
+
+#include <baselib/aobj.h>
+#include <baselib/jobj.h>
+#include <melee/ft/chara/ftCommon/ftCo_FallSpecial.h>
+#include <melee/ft/chara/ftCommon/ftCo_Lift.h>
+#include <melee/ft/ft_0877.h>
+#include <melee/ft/ftcamera.h>
+#include <melee/ft/ftchangeparam.h>
+#include <melee/it/items/itkinoko.h>
 
 void ftCo_800D2770(Fighter_GObj* gobj, f32 arg8)
 {

@@ -1,14 +1,10 @@
 #include "ftSeak/ftSk_SpecialS.h"
 
 #include <placeholder.h>
-#include <common_structs.h>
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/jobj.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
@@ -19,14 +15,21 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftNess/ftNs_AttackHi4.h"
+
+#include "ftSeak/forward.h"
+
 #include "ftSeak/ftSk_Init.h"
 #include "ftSeak/types.h"
 #include "it/items/itseakchain.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
-#include "ft/ft_084E.h"
-#include "ftSeak/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/jobj.h>
 
 /// @todo Fix common data struct
 #define COMMON_DATA_F32 ((float*) p_ftCommonData)

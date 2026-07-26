@@ -1,13 +1,13 @@
 #include "gobjplink.h"
 
-#include <baselib/gobj.h>
-
 #include "debug.h"
 #include "gobjgxlink.h"
 #include "gobjobject.h"
 #include "gobjproc.h"
 #include "gobjuserdata.h"
 #include "objalloc.h"
+
+#include <baselib/gobj.h>
 
 void GObj_PReorder(HSD_GObj* gobj, HSD_GObj* hiprio_gobj)
 {

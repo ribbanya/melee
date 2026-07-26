@@ -1,9 +1,9 @@
 #include "ftMr_SpecialLw.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "inlines.h"
+
+#include <platform.h>
+
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
@@ -13,11 +13,15 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
-#include "lb/lbrefract.h"
 #include "ftMario/types.h"
+#include "lb/lbrefract.h"
+
+#include <common_structs.h>
 
 static void updateRot(HSD_GObj* gobj)
 {

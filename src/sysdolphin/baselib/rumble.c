@@ -1,9 +1,11 @@
 #include "rumble.h"
 
 #include <platform.h>
-#include <dolphin/pad.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/os.h>
+#include <dolphin/pad.h>
 
 /// @todo Circular dependency
 #include "controller.h" // IWYU pragma: keep

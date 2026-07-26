@@ -1,31 +1,39 @@
 #include "ftkirbyspecialmars.h"
 
+#include "types.h"
+
 #include <placeholder.h>
-#include <common_structs.h>
-#include <baselib/jobj.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
-#include "types.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-#include "ftKirby/forward.h"
-#include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
 #include "ftGameWatch/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftMars/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
 
 /* 10B2E8 */ static void fn_8010B2E8(Fighter_GObj* gobj);
 

@@ -1,18 +1,19 @@
 #include "ftMh_Squeeze.h"
 
-#include <platform.h>
-
 #include "ftMh_CaptureMasterHand.h"
 #include "ftMh_Squeezing.h"
 #include "ftMh_Throw.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
 
 void ftMh_MS_378_80154A78(HSD_GObj* gobj)
 {

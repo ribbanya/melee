@@ -1,19 +1,23 @@
 #include "ftCo_HammerFall.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "ftCo_HammerLanding.h"
 #include "ftCo_HammerWait.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "it/item.h"
 #include "pl/plbonuslib.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 bool ftCo_800C5CD4(Fighter_GObj* gobj)
 {

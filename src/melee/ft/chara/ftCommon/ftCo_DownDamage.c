@@ -1,24 +1,29 @@
 #include "ftCo_DownDamage.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_Damage.h"
 #include "ftCo_DamageFall.h"
 #include "ftCo_DownBound.h"
 #include "ftCo_DownStand.h"
 #include "ftCo_FlyReflect.h"
 #include "ftCo_PassiveWall.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftCo_800C7CA0.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
-#include "ftCommon/forward.h"
+
 #include "lb/forward.h"
+
+#include <common_structs.h>
 
 /* 09F184 */ static void ftCo_8009F184(Fighter_GObj* gobj);
 

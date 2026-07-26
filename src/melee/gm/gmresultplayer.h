@@ -2,10 +2,10 @@
 #define MELEE_GM_RESULTPLAYER_H
 
 #include <placeholder.h>
-#include <melee/ft/forward.h>
 #include <platform.h>
 
 #include "baselib/forward.h"
+#include <melee/ft/forward.h>
 
 struct ResultsMatchInfo;
 

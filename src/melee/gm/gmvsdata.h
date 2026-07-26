@@ -1,10 +1,11 @@
 #ifndef MELEE_GM_VS_DATA_H
 #define MELEE_GM_VS_DATA_H
 
-#include <melee/gm/types.h>
 #include <placeholder.h>
 
 #include "mn/forward.h"
+
+#include <melee/gm/types.h>
 
 extern CSSData gm_804807B0;
 extern SSSData gm_80480668;

@@ -1,17 +1,20 @@
 #include "gr/grfigure1.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbspdisplay.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 20DFDC */ static void grFigure1_OnDemoInit(int);
 /* 20DFE0 */ static void grFigure1_OnInit(void);

@@ -1,12 +1,12 @@
 #include "itporygon2.h"
 
-#include <melee/it/it_26B1.h>
-#include <melee/it/item.h>
-
 #include "it/inlines.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/itgroundcoll.h"
+
+#include <melee/it/it_26B1.h>
+#include <melee/it/item.h>
 
 ItemStateTable it_803F8250[] = {
     {

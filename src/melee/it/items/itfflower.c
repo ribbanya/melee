@@ -1,16 +1,17 @@
 #include "itfflower.h"
 
-#include <placeholder.h>
-
 #include "inlines.h"
 #include "itlgunbeam.h"
+
+#include <placeholder.h>
+
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
 #include "it/itCommonItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 

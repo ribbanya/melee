@@ -1,17 +1,21 @@
 #include "ftLk_AttackAir.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-
 #include "ftLk_Init.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ftcoll.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftLink/types.h"
+
 #include "lb/forward.h"
+#include <baselib/forward.h>
 
 /* 0EB484 */ static void lwOnHit(HSD_GObj* gobj);
 /* 0EB528 */ static void lwOnAnim(HSD_GObj* gobj);

@@ -2,25 +2,28 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <math.h>
-#include <trigf.h>
-#include <baselib/jobj.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
 
 #include "db/db.h"
 #include "ft/chara/ftKirby/ftkirby.h"
 #include "ft/chara/ftNess/ftNs_SpecialN.h"
 #include "ft/ftlib.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/items/itnesspkflashexplode.h"
-#include "it/itPKFlash.h"
 #include "it/itgroundcoll.h"
+#include "it/itPKFlash.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 /* 2AB29C */ static bool itNesspkflash_UnkMotion1_Coll(Item_GObj* gobj);
 /* 2AB2A4 */ static bool itNesspkflash_UnkMotion2_Coll(Item_GObj* gobj);

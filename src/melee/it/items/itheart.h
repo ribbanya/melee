@@ -1,12 +1,13 @@
 #ifndef GALE01_283AE4
 #define GALE01_283AE4
 
-#include <dolphin/mtx.h>
-#include <dolphin/types.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
 #include "it/types.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
 
 /* 283AE4 */ Item_GObj* it_80283AE4(Item_GObj* gobj, Vec3* pos, s32 arg2);
 /* 283BD4 */ void it_80283BD4(Item_GObj*);

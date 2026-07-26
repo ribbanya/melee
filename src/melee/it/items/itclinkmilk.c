@@ -1,16 +1,20 @@
 #include "itclinkmilk.h"
 
-#include <baselib/jobj.h>
+#include "inlines.h"
+
 #include <placeholder.h>
 
-#include "inlines.h"
 #include "ft/chara/ftCLink/ftCl_Init.h"
+
+#include "ft/forward.h"
+
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
-#include "ft/forward.h"
 #include "it/types.h"
+
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F7A28[] = {
     { 0, itClinkmilk_UnkMotion1_Anim, itClinkmilk_UnkMotion1_Phys,

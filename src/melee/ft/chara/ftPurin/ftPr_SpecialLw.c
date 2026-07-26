@@ -1,18 +1,21 @@
 #include "ftPr_SpecialLw.h"
 
-#include <common_structs.h>
+#include "ftPr_SpecialHi.h"
+
 #include <platform.h>
 
-#include "ftPr_SpecialHi.h"
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
 
 void ftPr_SpecialLw_Enter(Fighter_GObj* gobj)
 {

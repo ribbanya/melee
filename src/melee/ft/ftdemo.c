@@ -1,16 +1,9 @@
 #include "ftdemo.h"
 
-#include <platform.h>
-#include <math.h>
-#include <baselib/archive.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/objalloc.h>
-
 #include "ftdynamics.h"
+
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
@@ -33,8 +26,19 @@
 #include "ftCommon/ftCo_09F4.h"
 #include "ftCommon/ftCo_DemoCallback0.h"
 #include "lb/lbshadow.h"
+
 #include "pl/forward.h"
+
 #include "pl/types.h"
+
+#include <math.h>
+#include <baselib/archive.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/objalloc.h>
 
 static HSD_GObjEvent on_create_fighter[16] = {
     ftCo_800BECB0, ftCo_800BED88, ftCo_800BEF04, NULL,

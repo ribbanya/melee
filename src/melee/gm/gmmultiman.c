@@ -4,6 +4,11 @@
  */
 #include "gmmultiman.h"
 
+#include <platform.h>
+
+#include "ft/forward.h"
+#include "mn/forward.h"
+
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/types.h>
@@ -13,10 +18,6 @@
 #include <melee/lb/lbdvd.h>
 #include <melee/lb/lbtime.h>
 #include <melee/lb/types.h>
-#include <platform.h>
-
-#include "ft/forward.h"
-#include "mn/forward.h"
 
 static CSSData gm_80490960;
 static StartMeleeData gm_80490AA8;

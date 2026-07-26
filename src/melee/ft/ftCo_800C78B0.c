@@ -1,8 +1,9 @@
 #include "ftCo_800C78B0.h"
 
+#include "ftcommon.h"
+
 #include <platform.h>
 
-#include "ftcommon.h"
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -10,13 +11,15 @@
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
+#include "ftCommon/types.h"
+
+#include "it/forward.h"
+
 #include "it/it_26B1.h"
 #include "it/items/itlikelike.h"
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
 #include "pl/player.h"
-#include "ftCommon/types.h"
-#include "it/forward.h"
 
 /* 0C7890 */ void fn_800C7890(Fighter_GObj* gobj);
 

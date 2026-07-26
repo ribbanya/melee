@@ -1,10 +1,11 @@
 #ifndef GALE01_2F28C8
 #define GALE01_2F28C8
 
-#include <baselib/forward.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
 
 /* 2F28C8 */ void it_802F28C8(Item_GObj*, int, float);
 /* 2F295C */ float it_802F295C(HSD_GObj* owner_gobj, itUnk2_DatAttrs* attr);

@@ -1,9 +1,9 @@
 #ifndef MELEE_FTCO_SQUATRV_H
 #define MELEE_FTCO_SQUATRV_H
 
-#include <stdbool.h>
-
 #include "ft/forward.h"
+
+#include <stdbool.h>
 
 /* 0D65D8 */ bool ftCo_SquatRv_CheckInput(Fighter_GObj* gobj);
 /* 0D6658 */ void ftCo_SquatRv_Anim(Fighter_GObj* gobj);

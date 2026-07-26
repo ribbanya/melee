@@ -1,14 +1,17 @@
 #include "itgamewatchbreath.h"
 
+#include "inlines.h"
+
+#include <platform.h>
+
+#include "ftGameWatch/ftGw_AttackAir.h"
+
+#include "it/forward.h"
+#include <baselib/forward.h>
+
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>
-#include <baselib/forward.h>
-#include <platform.h>
-
-#include "inlines.h"
-#include "ftGameWatch/ftGw_AttackAir.h"
-#include "it/forward.h"
 
 ItemStateTable it_803F7938[] = {
     { 0, itGamewatchbreath_UnkMotion1_Anim, NULL, NULL },

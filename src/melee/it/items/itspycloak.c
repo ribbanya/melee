@@ -1,14 +1,15 @@
 #include "itspycloak.h"
 
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
+
+#include <baselib/forward.h>
 
 /* 295C68 */ static void it_80295C68(Item_GObj* gobj);
 /* 295CB8 */ static bool itSpycloak_UnkMotion0_Anim(Item_GObj* gobj);

@@ -1,10 +1,11 @@
 #include "dispatch.h"
 
-#include <MetroTRK/dserror.h>
-#include <MetroTRK/msgbuf.h>
 #include <platform.h>
 
 #include "MetroTRK/msghndlr.h"
+
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/msgbuf.h>
 
 /* 4A4B40 */ u32 gTRKDispatchTableSize;
 

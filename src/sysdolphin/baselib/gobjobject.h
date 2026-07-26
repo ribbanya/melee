@@ -3,9 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
+#include <baselib/forward.h>
 
 UNK_T HSD_GObjObject_80390ADC(HSD_GObj* gobj);
 void HSD_GObjObject_80390A70(HSD_GObj* gobj, u8 kind, void* obj);

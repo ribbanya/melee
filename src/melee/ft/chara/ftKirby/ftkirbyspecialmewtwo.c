@@ -1,36 +1,46 @@
 #include "ftkirbyspecialmewtwo.h"
 
-#include <placeholder.h>
-#include <common_structs.h>
-#include <baselib/gobj.h>
-#include <MSL/math.h>
-#include <dolphin/mtx.h>
-
 #include "inlines.h"
+
+#include <placeholder.h>
+
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Escape.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+
 #include "ftKirby/forward.h"
+
+#include "ftKirby/types.h"
+
 #include "ftMewtwo/forward.h"
+#include "it/forward.h"
+
 #include "it/items/itmewtwoshadowball.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ftCommon/forward.h"
-#include "ftKirby/types.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <MSL/math.h>
 
 /* 3B7570 */ static Vec3 const ftKb_Init_803B7570 = { 0.0f, 4.0f, 0.0f };
 /* 3B757C */ static Vec3 const ftKb_Init_803B757C = { 0.0f, 4.0f, 0.0f };

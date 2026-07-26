@@ -1,25 +1,29 @@
 #include "ftZd_SpecialS.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "ftZd_Init.h"
+
+#include <platform.h>
+
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 #include "ftZelda/types.h"
 #include "it/items/itzeldadinfire.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ftCommon/forward.h"
+
+#include <dolphin/mtx.h>
 
 static MotionFlags const ftZd_MF_SpecialSStart_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx;

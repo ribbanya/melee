@@ -1,11 +1,13 @@
 #ifndef GALE01_2CCAB4
 #define GALE01_2CCAB4
 
-#include <baselib/forward.h>
-#include <stdbool.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <stdbool.h>
 
 /* 2CCAB4 */ void itThunder_Logic7_Spawned(Item_GObj*);
 /* 2CCB10 */ void it_802CCB10(Item_GObj*);

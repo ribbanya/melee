@@ -1,16 +1,14 @@
 #include "ftPr_Init.h"
 
-#include <placeholder.h>
-#include <baselib/archive.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/objalloc.h>
-
 #include "ftPr_SpecialHi.h"
 #include "ftPr_SpecialLw.h"
 #include "ftPr_SpecialN.h"
 #include "ftPr_SpecialS.h"
+
+#include <placeholder.h>
+
 #include "ef/efsync.h"
+#include "ft/dobjlist.h"
 #include "ft/fighter.h"
 #include "ft/ft_0877.h"
 #include "ft/ftanim.h"
@@ -19,11 +17,17 @@
 #include "ft/ftdynamics.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
-#include "it/it_26B1.h"
-#include "ft/dobjlist.h"
 #include "ftPurin/types.h"
+#include "it/it_26B1.h"
+
+#include <baselib/archive.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
 
 MotionState ftPr_Init_MotionStateTable[ftPr_MS_SelfCount] = {
     {

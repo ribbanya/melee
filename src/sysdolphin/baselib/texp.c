@@ -1,13 +1,13 @@
 #include "texp.h"
 
 #include <__mem.h>
+#include <dolphin/gx.h>
+#include <baselib/debug.h>
+#include <baselib/state.h>
 #include <sysdolphin/baselib/class.h>
 #include <sysdolphin/baselib/tev.h>
 #include <sysdolphin/baselib/texpdag.h>
 #include <sysdolphin/baselib/tobj.h>
-#include <baselib/state.h>
-#include <dolphin/gx.h>
-#include <baselib/debug.h>
 
 HSD_TExpType HSD_TExpGetType(HSD_TExp* texp)
 {

@@ -4,6 +4,7 @@
 #define GALE01_114BF4
 
 #include <baselib/forward.h>
+
 #include <stdbool.h>
 
 /* 114BF4 */ void ftNs_AttackS4_OnReflect(HSD_GObj* gobj);

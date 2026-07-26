@@ -1,10 +1,11 @@
 #include "trigf.h"
 
-#include <cmath.h>
-#include <platform.h>
-#include <trigf.h>
-
 #include "math.h"
+
+#include <platform.h>
+
+#include <cmath.h>
+#include <trigf.h>
 
 #define __epsilon 3.45266983e-4f
 

@@ -1,27 +1,31 @@
 #include "itgshell.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <sysdolphin/baselib/random.h>
-#include <MSL/math.h>
-#include <baselib/gobj.h>
-#include <dolphin/mtx.h>
-
 #include "common_structs.h"
 #include "inlines.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "baselib/jobj.h"
 #include "ef/efasync.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/itcoll.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
-#include "it/itgroundcoll.h"
 #include "it/types.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <sysdolphin/baselib/random.h>
+#include <MSL/math.h>
 
 typedef struct itGShell_Attrs {
     float x0;

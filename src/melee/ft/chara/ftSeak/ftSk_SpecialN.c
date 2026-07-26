@@ -1,32 +1,40 @@
 #include "ftSk_SpecialN.h"
 
-#include <common_structs.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
 #include "baselib/random.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
+
 #include "ftSeak/forward.h"
+
 #include "ftSeak/ftSk_Init.h"
+#include "ftSeak/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itseakneedleheld.h"
 #include "it/items/itseakneedlethrown.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftSeak/types.h"
-#include "it/forward.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 /* 1120D4 */ static void ftSk_SpecialN_801120D4(Fighter_GObj* gobj);
 /* 112D44 */ static void shootNeedles(Fighter_GObj* gobj);

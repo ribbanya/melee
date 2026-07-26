@@ -1,8 +1,8 @@
 #ifndef GALE01_0BCC20
 #define GALE01_0BCC20
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 099150 */ void ftCo_CaptureWaitKoopa_Anim(Fighter_GObj* gobj);
 /* 0991C8 */ void ftCo_CaptureWaitKoopa_IASA(Fighter_GObj* gobj);

@@ -1,16 +1,19 @@
 #include "ft_0DF0.h"
 
-#include <melee/ft/ft_0877.h>
-#include <common_structs.h>
-
 #include "placeholder.h"
 #include "platform.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
+#include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-#include "ft/ftanim.h"
+
+#include <common_structs.h>
+#include <melee/ft/ft_0877.h>
 
 void ftCo_800DEE84(Fighter_GObj* gobj, u32 arg1, float arg2, float dmg_mult)
 {

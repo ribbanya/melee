@@ -2,9 +2,9 @@
 #define _archive_h_
 
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
+#include <baselib/forward.h>
 
 #define HSD_ARCHIVE_DONT_FREE 1
 

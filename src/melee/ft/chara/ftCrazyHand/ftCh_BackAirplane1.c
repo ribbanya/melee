@@ -1,11 +1,14 @@
 #include "ftCh_BackAirplane1.h"
 
+#include "types.h"
+
 #include <platform.h>
 
-#include "types.h"
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
@@ -13,9 +16,10 @@
 #include "ftCrazyHand/ftCh_BackAirplane3.h"
 #include "ftCrazyHand/ftCh_CaptureDamageCrazyHand.h"
 #include "ftMasterHand/types.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
 
 void ftCh_Init_801592D4(HSD_GObj* gobj)
 {

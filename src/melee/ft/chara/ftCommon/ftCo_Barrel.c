@@ -1,26 +1,30 @@
 #include "ftCo_Barrel.h"
 
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
+#include "ftCo_Throw.h"
+
 #include <platform.h>
 
-#include "ftCo_Throw.h"
 #include "ft/fighter.h"
+#include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
+#include "it/it_26B1.h"
 #include "it/items/ittarucann.h"
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
-#include "ft/ftanim.h"
-#include "it/it_26B1.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 /* 0C9290 */ static void fn_800C9290(Fighter_GObj* gobj);
 

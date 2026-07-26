@@ -1,8 +1,8 @@
 #ifndef GALE01_09A804
 #define GALE01_09A804
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 09A804 */ void ftCo_8009A804(Fighter_GObj* gobj);
 /* 09A8D8 */ void ftCo_CliffWait_Anim(Fighter_GObj* gobj);

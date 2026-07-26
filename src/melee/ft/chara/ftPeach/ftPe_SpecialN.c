@@ -1,13 +1,12 @@
 #include "ftPe_SpecialN.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "ftPe_Init.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -16,12 +15,20 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftPeach/types.h"
+
+#include "it/forward.h"
+
 #include "it/items/itpeachtoad.h"
 #include "it/items/itpeachtoadspore.h"
-#include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "it/forward.h"
+
 #include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 typedef enum cmd_var_idx {
     cmd_phys_state,

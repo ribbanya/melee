@@ -1,3 +1,15 @@
+#include "ft_0CDD.h"
+
+#include <platform.h>
+
+#include "ft/ftanim.h"
+
+#include "ftCommon/forward.h"
+#include "it/forward.h"
+
+#include "it/it_26B1.h"
+
+#include <dolphin/mtx.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
@@ -6,14 +18,6 @@
 #include <melee/ft/ftcommon.h>
 #include <melee/ft/types.h>
 #include <melee/it/items/itlgun.h>
-#include <dolphin/mtx.h>
-#include <platform.h>
-
-#include "ft_0CDD.h"
-#include "ft/ftanim.h"
-#include "ftCommon/forward.h"
-#include "it/forward.h"
-#include "it/it_26B1.h"
 
 void ftCo_800CE1D4(HSD_GObj*); /* extern */
 

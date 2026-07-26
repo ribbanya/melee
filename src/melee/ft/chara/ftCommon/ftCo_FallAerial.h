@@ -3,8 +3,8 @@
 
 #include <placeholder.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0CCDA8 */ void ftCo_FallAerial_Enter(Fighter_GObj* gobj);
 /* 0CCDFC */ void ftCo_FallAerial_Anim(Fighter_GObj* gobj);

@@ -1,11 +1,11 @@
 #include "ftcmdscript.h"
 
+#include <common_structs.h>
 #include <math.h>
 #include <sysdolphin/baselib/debug.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/types.h>
 #include <melee/lb/lb_00CE.h>
-#include <common_structs.h>
 
 void ftCo_800B3E04(Fighter* fp)
 {

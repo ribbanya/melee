@@ -1,6 +1,16 @@
 #include "debugconsole_main.h"
 
+#include <platform.h>
+
+#include <stdio.h>
+#include <string.h>
+#include <dolphin/os.h>
+#include <dolphin/os/OSCache.h>
+#include <dolphin/os/OSReset.h>
+#include <dolphin/os/OSResetSW.h>
+#include <dolphin/os/OSThread.h>
 #include <dolphin/pad.h>
+#include <dolphin/vi/vifuncs.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
@@ -8,15 +18,6 @@
 #include <sysdolphin/baselib/hsd_3915.h>
 #include <sysdolphin/baselib/hsd_393C.h>
 #include <sysdolphin/baselib/video.h>
-#include <dolphin/os.h>
-#include <dolphin/os/OSCache.h>
-#include <dolphin/os/OSReset.h>
-#include <dolphin/os/OSResetSW.h>
-#include <dolphin/os/OSThread.h>
-#include <dolphin/vi/vifuncs.h>
-#include <platform.h>
-#include <stdio.h>
-#include <string.h>
 
 typedef struct _ExcptNode {
     /* 0x1 */ struct _ExcptNode* next;

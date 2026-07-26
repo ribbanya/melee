@@ -2,11 +2,12 @@
 #define GALE01_08A698
 
 #include <placeholder.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
+
+#include <dolphin/mtx.h>
 
 typedef struct WaitStruct {
     union {

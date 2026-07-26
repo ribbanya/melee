@@ -3,19 +3,22 @@
 #include <platform.h>
 
 #include "baselib/forward.h"
+
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/chara/ftCommon/ftCo_Thrown.h"
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftCrazyHand/ftCh_ThrownCrazyHand.h"
 #include "ftMasterHand/types.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
 
 void ftCh_Init_801594D4(HSD_GObj* gobj)
 {

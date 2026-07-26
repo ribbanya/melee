@@ -1,15 +1,8 @@
 #include "itsamusgrapple.h"
 
-#include <baselib/gobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/objalloc.h>
-#include <common_structs.h>
-
 #include "itlinkhookshot.h"
 #include "placeholder.h"
+
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
 #include "ef/efsync.h"
@@ -17,7 +10,9 @@
 #include "ft/chara/ftCommon/ftCo_AirCatch.h"
 #include "ft/chara/ftCommon/ftCo_CliffJump.h"
 #include "ft/chara/ftCommon/ftCo_DamageFall.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"
@@ -25,17 +20,25 @@
 #include "ft/ftlib.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "ftSamus/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
 #include "it/items/inlines.h"
+#include "it/types.h"
 #include "lb/lbvector.h"
 #include "lb/types.h"
 #include "mp/mpcoll.h"
-#include "ft/types.h"
-#include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
+#include <baselib/random.h>
 
 extern Vec3 it_803B8674;
 extern itSamusGrapple_HitboxData it_803B8660;

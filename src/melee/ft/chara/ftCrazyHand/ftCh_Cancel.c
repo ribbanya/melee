@@ -1,17 +1,22 @@
 #include "ftCh_Cancel.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "types.h"
+
+#include <platform.h>
+
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_Squeezing_0.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <dolphin/mtx.h>
 
 void ftCh_Init_8015A030(HSD_GObj* gobj)
 {

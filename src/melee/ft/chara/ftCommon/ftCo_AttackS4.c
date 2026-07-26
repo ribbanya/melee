@@ -1,9 +1,5 @@
 #include "ftCo_AttackS4.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-
 #include "ftCo_Attack1.h"
 #include "ftCo_AttackHi3.h"
 #include "ftCo_AttackHi4.h"
@@ -14,8 +10,12 @@
 #include "ftCo_ItemThrow.h"
 #include "ftCo_SpecialS.h"
 #include "math.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0CDD.h"
 #include "ft/ft_0DF1.h"
@@ -25,7 +25,9 @@
 #include "ft/ftdata.h"
 #include "ft/ftswing.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Dash.h"
@@ -37,7 +39,10 @@
 #include "ftNess/ftNs_AttackS4.h"
 #include "ftPeach/ftPe_AttackS4.h"
 #include "it/it_26B1.h"
-#include "ft/ft_084E.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

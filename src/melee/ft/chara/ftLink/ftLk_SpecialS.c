@@ -1,15 +1,12 @@
 #include "ftLk_SpecialS.h"
 
-#include <platform.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-
 #include "ftLk_Init.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
@@ -27,7 +24,13 @@
 #include "ftLink/types.h"
 #include "it/items/itlinkboomerang.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

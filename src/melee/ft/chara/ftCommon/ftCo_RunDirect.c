@@ -5,6 +5,7 @@
 #include "ft/fighter.h"
 #include "ft/ft_0892.h"
 #include "ft/types.h"
+#include "ftCaptain/types.h"
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackDash.h"
@@ -12,7 +13,6 @@
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/ftCo_Run.h"
 #include "ftCommon/ftCo_SpecialS.h"
-#include "ftCaptain/types.h"
 
 void ftCo_RunDirect_Anim(Fighter_GObj* gobj)
 {

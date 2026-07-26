@@ -1,12 +1,13 @@
 #ifndef GALE01_2182C4
 #define GALE01_2182C4
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2182C4 */ void grPushOn_802182C4(bool);
 /* 2182C8 */ void grPushOn_802182C8(void);

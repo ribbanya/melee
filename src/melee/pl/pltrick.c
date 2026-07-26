@@ -1,19 +1,22 @@
 #include "pltrick.h"
 
-#include <sysdolphin/baselib/debug.h>
 #include <placeholder.h>
 
 #include "ft/ft_0892.h"
 #include "ft/ftdata.h"
 #include "ft/inlines.h"
+#include "gm/gm_16AE.h"
 #include "if/ifmagnify.h"
+
+#include "pl/forward.h"
+
 #include "pl/pl_040D.h"
 #include "pl/player.h"
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"
-#include "gm/gm_16AE.h"
-#include "pl/forward.h"
 #include "pl/types.h"
+
+#include <sysdolphin/baselib/debug.h>
 
 /* 037F00 */ static void fn_80037F00(HSD_GObj**, Fighter*, ft_800898B4_t*, s32,
                                      s32);

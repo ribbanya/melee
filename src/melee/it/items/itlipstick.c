@@ -3,11 +3,11 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itlipstickspore.h"
-#include "it/itmaplib.h"
-#include "it/itCommonItems.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
 
 #define GET_ATTRS(ip)                                                         \
     ((itLipstickAttributes*) (ip)->xC4_article_data->x4_specialAttributes)

@@ -1,22 +1,18 @@
 #include "ftCo_DownBound.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
-
 #include "ftCo_09F7.h"
 #include "ftCo_Down.h"
 #include "ftCo_DownAttack.h"
 #include "ftCo_DownStand.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
@@ -24,11 +20,19 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "ftSandbag/ftSb_Init.h"
-#include "ft/ft_084E.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
 
 /* 097040 */ static void ftCo_800976A4(Fighter_GObj* gobj);
 /* 0972E8 */ static void ftCo_8009794C(Fighter_GObj* gobj);

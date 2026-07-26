@@ -1,9 +1,5 @@
 #include "ftDonkey/ftDk_Init.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-#include <common_structs.h>
-
 #include "ftDk_HeavyFall.h"
 #include "ftDk_HeavyJump.h"
 #include "ftDk_HeavyLanding.h"
@@ -15,6 +11,9 @@
 #include "ftDk_SpecialLw.h"
 #include "ftDk_SpecialN.h"
 #include "ftDk_SpecialS.h"
+
+#include <platform.h>
+
 #include "ft/ftcamera.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcoll.h"
@@ -30,9 +29,14 @@
 #include "ftCommon/ftCo_CargoWait.h"
 #include "ftCommon/ftCo_CargoWalk.h"
 #include "ftDonkey/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbanim.h"
 #include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 MotionState ftDk_Init_MotionStateTable[ftDk_MS_SelfCount] = {
     {

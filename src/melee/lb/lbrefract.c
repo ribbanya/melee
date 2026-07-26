@@ -1,9 +1,15 @@
 #include "lbrefract.h"
 
+#include "lbarchive.h"
+#include "types.h"
+
 #include <placeholder.h>
+
 #include <string.h>
+#include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXTexture.h>
+#include <dolphin/mtx.h>
 #include <dolphin/os/OSCache.h>
 #include <baselib/class.h>
 #include <baselib/cobj.h>
@@ -12,13 +18,8 @@
 #include <baselib/memory.h>
 #include <baselib/pobj.h>
 #include <baselib/state.h>
-#include <MetroTRK/intrinsics.h>
 #include <baselib/tobj.h>
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-
-#include "lbarchive.h"
-#include "types.h"
+#include <MetroTRK/intrinsics.h>
 
 extern f32 lbl_803BB0E0[6];
 

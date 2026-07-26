@@ -1,13 +1,13 @@
 #include "video.h"
 
-#include <dolphin/gx.h>
-#include <dolphin/vi.h>
-#include <dolphin/os.h>
-#include <dolphin/vi/vifuncs.h>
-#include <dolphin/vi/vitypes.h>
-
 #include "debug.h"
 #include "state.h"
+
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
+#include <dolphin/vi.h>
+#include <dolphin/vi/vifuncs.h>
+#include <dolphin/vi/vitypes.h>
 
 HSD_VIInfo HSD_VIData;
 static u8 garbage[HSD_ANTIALIAS_GARBAGE_SIZE] ATTRIBUTE_ALIGN(32);

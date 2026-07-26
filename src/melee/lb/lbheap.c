@@ -1,13 +1,16 @@
+#include "lbheap.static.h"
+
+#include "placeholder.h"
+
+#include <platform.h>
+
+#include "lb/lbmemory.h"
+
+#include <dolphin/os.h>
+#include <dolphin/os/OSAlloc.h>
 #include <baselib/debug.h>
 #include <baselib/initialize.h>
 #include <baselib/memory.h>
-#include <dolphin/os.h>
-#include <dolphin/os/OSAlloc.h>
-#include <platform.h>
-
-#include "lbheap.static.h"
-#include "placeholder.h"
-#include "lb/lbmemory.h"
 
 struct lbHeap_HeapDesc {
     u32 idx;

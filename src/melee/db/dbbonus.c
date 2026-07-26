@@ -1,16 +1,21 @@
-#include <sysdolphin/baselib/memory.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
+#include "db.h"
+
 #include <platform.h>
 
-#include "db.h"
 #include "gm/gm_unsplit.h"
+
+#include "if/forward.h"
+
 #include "if/textdraw.h"
 #include "if/textlib.h"
 #include "pl/player.h"
 #include "pl/plbonus.h"
-#include "if/forward.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <sysdolphin/baselib/memory.h>
 
 static struct {
     GXColor bg;

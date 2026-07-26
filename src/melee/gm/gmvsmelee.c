@@ -1,6 +1,11 @@
 #include "gmvsmelee.h"
 
+#include "gmvsmelee.static.h"
+
+#include "ft/forward.h"
 #include <melee/pl/forward.h>
+
+#include <baselib/debug.h>
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmresult.h>
@@ -12,10 +17,6 @@
 #include <melee/lb/lbcardnew.h>
 #include <melee/lb/lbdvd.h>
 #include <melee/lb/lbtime.h>
-#include <baselib/debug.h>
-
-#include "gmvsmelee.static.h"
-#include "ft/forward.h"
 
 /* 4D6730 */ static u8 gm_804D6730[6];
 

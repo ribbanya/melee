@@ -1,14 +1,17 @@
 #ifndef GALE01_2BAEEC
 #define GALE01_2BAEEC
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
+#include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/itCharItems.h"
 #include "it/items/types.h"
-#include "ft/forward.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2BAEEC */ void it_802BAEEC(Item_GObj*);
 /* 2BAEEC */ void it_802BAEEC(Item_GObj* gobj);

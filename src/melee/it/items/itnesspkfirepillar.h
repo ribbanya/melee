@@ -1,12 +1,15 @@
 #ifndef _ITNESSPKFIREPILLAR_H_
 #define _ITNESSPKFIREPILLAR_H_
 
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 void itNesspkfirepillar_802AA494(HSD_GObj* parent1_gobj,
                                  HSD_GObj* parent2_gobj, Vec3* offset,

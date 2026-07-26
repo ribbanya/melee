@@ -1,8 +1,8 @@
 #include "ansi_fp.h"
 
-#include <dolphin/types.h>
-
 #include "math.h"
+
+#include <dolphin/types.h>
 
 #define __HI(x) (((s32*) &x)[0])
 #define __LO(x) (((s32*) &x)[1])

@@ -1,13 +1,7 @@
 #include "itzgshell.h"
 
-#include <MSL/math.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
-
 #include "inlines.h"
+
 #include "baselib/random.h"
 #include "cm/camera.h"
 #include "ef/efasync.h"
@@ -17,17 +11,26 @@
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/itcoll.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itnokonoko.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "mp/mpcoll.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <MSL/math.h>
 
 typedef struct itGShell_Attrs {
     float x0;

@@ -1,10 +1,10 @@
 #ifndef GALE01_155E18
 #define GALE01_155E18
 
-#include <baselib/forward.h>
-
 #include "ft/types.h"
+
 #include "ftCrazyHand/forward.h"
+#include <baselib/forward.h>
 
 /* 155E18 */ void ftCh_Init_OnDeath(HSD_GObj* gobj);
 /* 155E1C */ void ftCh_Init_OnLoad(HSD_GObj* gobj);

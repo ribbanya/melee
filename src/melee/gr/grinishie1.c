@@ -1,40 +1,46 @@
 #include "grinishie1.h"
 
-#include <platform.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <sysdolphin/baselib/dobj.h>
-#include <sysdolphin/baselib/gobjproc.h>
-#include <sysdolphin/baselib/jobj.h>
-#include <sysdolphin/baselib/memory.h>
-#include <sysdolphin/baselib/random.h>
-#include <baselib/gobjgxlink.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-
 #include "grlib.h"
 #include "grmaterial.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "gm/gm_unsplit.h"
-#include "it/it_26B1.h"
-#include "it/itdrop.h"
-#include "it/itspawn.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
 #include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/types.h"
+#include "it/it_26B1.h"
+#include "it/itdrop.h"
+#include "it/itspawn.h"
 #include "it/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbspdisplay.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <sysdolphin/baselib/dobj.h>
+#include <sysdolphin/baselib/gobjproc.h>
+#include <sysdolphin/baselib/jobj.h>
+#include <sysdolphin/baselib/memory.h>
+#include <sysdolphin/baselib/random.h>
 
 /* 1FA908 */ static void grInishie1_801FA908(bool);
 /* 1FA90C */ static void grInishie1_801FA90C(void);

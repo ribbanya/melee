@@ -3,8 +3,8 @@
 
 #include <placeholder.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0C8B74 */ void ftCo_DownSpot_Enter(Fighter_GObj* gobj);
 /* 0C8C04 */ void ftCo_DownSpot_Anim(Fighter_GObj* gobj);

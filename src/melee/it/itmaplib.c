@@ -1,23 +1,27 @@
 #include "itmaplib.h"
 
-#include <MetroTRK/intrinsics.h>
-#include <baselib/debug.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <placeholder.h>
-
 #include "it_2725.h"
 #include "it_3F14.h"
 #include "iteffect.h"
 #include "ithitbox.h"
 #include "math.h"
+
+#include <placeholder.h>
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <MetroTRK/intrinsics.h>
 
 static void sdata2_order(void)
 {

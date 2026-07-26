@@ -1,9 +1,9 @@
 #include "itcerebi.h"
 
-#include <baselib/gobj.h>
+#include "inlines.h"
+
 #include <platform.h>
 
-#include "inlines.h"
 #include "baselib/random.h"
 #include "ef/efsync.h"
 #include "gr/stage.h"
@@ -12,6 +12,8 @@
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
+
+#include <baselib/gobj.h>
 
 /* 2D3F6C */ static void it_802D3F6C(Item_GObj* gobj);
 /* 2D3FA0 */ static void it_802D3FA0(Item_GObj* gobj);

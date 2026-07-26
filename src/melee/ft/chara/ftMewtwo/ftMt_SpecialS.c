@@ -3,8 +3,10 @@
 #include <platform.h>
 
 #include "forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -16,7 +18,6 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/inlines.h"
 #include "ftMewtwo/types.h"
-#include "ft/ft_084E.h"
 
 /// Flag values read during Confusion's reflect think function
 

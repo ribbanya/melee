@@ -1,9 +1,23 @@
 #include "itkoopaflame.h"
 
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
+
+#include "it/items/forward.h"
+
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/lbrefract.h"
+#include "lb/types.h"
+
 #include <melee/it/forward.h>
+
+#include <common_structs.h>
 #include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 #include <sysdolphin/baselib/random.h>
 #include <melee/db/db.h>
 #include <melee/ef/eflib.h>
@@ -16,16 +30,6 @@
 #include <melee/it/item.h>
 #include <melee/lb/lbvector.h>
 #include <MSL/math.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-
-#include "inlines.h"
-#include "it/items/forward.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
-#include "lb/types.h"
-#include "lb/lbrefract.h"
 
 #define itkpf_Floor 1
 #define itkpf_Ceiling 2

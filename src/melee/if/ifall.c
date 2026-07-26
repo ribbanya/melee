@@ -1,12 +1,5 @@
 #include "ifall.h"
 
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
 #include <placeholder.h>
 
 #include "if/if_2F6E.h"
@@ -23,6 +16,14 @@
 #include "lb/lbarchive.h"
 #include "lb/lbspdisplay.h"
 #include "sc/types.h"
+
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
 
 static struct ifAll_804A0FD8_t {
     /* 0x00 */ HSD_GObj* gobj;

@@ -1,27 +1,33 @@
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ftkirby.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ftkirby.h"
 #include "baselib/random.h"
 #include "cm/camera.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
+
+#include "ftKirby/forward.h"
+
+#include "ftKirby/types.h"
+
+#include "it/forward.h"
+
 #include "it/item.h"
 #include "it/items/itkoopaflame.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftKirby/forward.h"
-#include "ftKirby/types.h"
-#include "it/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 enum_t ftKb_Init_803CB540[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,

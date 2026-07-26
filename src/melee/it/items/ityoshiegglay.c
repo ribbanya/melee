@@ -1,22 +1,25 @@
 #include "ityoshiegglay.h"
 
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <melee/it/item.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "ef/efasync.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itCommonItems.h"
 #include "it/items/types.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/types.h"
-#include "it/itgroundcoll.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <melee/it/item.h>
 
 ItemStateTable it_803F94A0[] = {
     { -1, it_27CF_UnkMotion0_Anim, it_27CF_UnkMotion0_Phys,

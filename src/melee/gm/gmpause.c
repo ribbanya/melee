@@ -1,5 +1,7 @@
 #include "gmpause.h"
 
+#include <placeholder.h>
+
 #include <math.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
@@ -11,7 +13,6 @@
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
-#include <placeholder.h>
 
 struct PauseData {
     /* +0 */ HSD_JObj* background;

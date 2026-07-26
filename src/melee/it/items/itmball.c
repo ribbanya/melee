@@ -1,8 +1,6 @@
 #include "itmball.h"
 
 #include <platform.h>
-#include <baselib/gobj.h>
-#include <melee/it/item.h>
 
 #include "ef/efasync.h"
 #include "it/inlines.h"
@@ -10,10 +8,13 @@
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
 #include "mp/mpcoll.h"
-#include "it/itgroundcoll.h"
+
+#include <baselib/gobj.h>
+#include <melee/it/item.h>
 
 ItemStateTable it_803F6488[] = {
     { -1, itMball_Motion0_Anim, itMball_Motion0_Phys, itMball_Motion0_Coll },

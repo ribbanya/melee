@@ -3,12 +3,13 @@
 #include <platform.h>
 
 #include "baselib/forward.h"
+
 #include "ft/chara/ftCommon/ftCo_Thrown.h"
 #include "ft/fighter.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
-#include "ft/ftanim.h"
 
 void ftCh_GrabUnk1_8015B850(HSD_GObj* gobj, FtMotionId msid)
 {

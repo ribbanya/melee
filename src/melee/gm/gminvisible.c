@@ -1,14 +1,16 @@
 #include "gminvisible.h"
 
-#include <melee/gm/gmmain_lib.h>
-#include <melee/gm/gmvsmelee.h>
-#include <melee/gm/types.h>
-#include <platform.h>
-
 #include "gm_unsplit.h"
 #include "gmmovieend.h"
 #include "gmvsdata.h"
+
+#include <platform.h>
+
 #include "mn/forward.h"
+
+#include <melee/gm/gmmain_lib.h>
+#include <melee/gm/gmvsmelee.h>
+#include <melee/gm/types.h>
 
 GameScene gm_803DF390_Scenes[] = {
     {

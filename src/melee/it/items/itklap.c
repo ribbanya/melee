@@ -1,11 +1,8 @@
 #include "itklap.h"
 
-#include <math.h>
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
 #include <placeholder.h>
 
+#include "ftCommon/types.h"
 #include "gr/grkongo.h"
 #include "gr/ground.h"
 #include "it/inlines.h"
@@ -15,10 +12,14 @@
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
-#include "ftCommon/types.h"
-#include "it/types.h"
+
+#include <math.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 ItemStateTable it_803F8940[] = {
     {

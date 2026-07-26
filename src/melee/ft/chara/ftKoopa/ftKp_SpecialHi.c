@@ -1,5 +1,22 @@
 #include "ftKp_SpecialHi.h"
 
+#include "ftKp_Init.h"
+#include "ftKp_SpecialN.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/ftCo_Fall.h"
+#include "ftCommon/ftCo_FallSpecial.h"
+#include "ftCommon/types.h"
+#include "ftKoopa/types.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
 #include <trigf.h>
 #include <melee/ef/eflib.h>
 #include <melee/ef/efsync.h>
@@ -9,20 +26,6 @@
 #include <melee/ft/ftcliffcommon.h>
 #include <melee/ft/ftcommon.h>
 #include <melee/ft/ftparts.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "ftKp_Init.h"
-#include "ftKp_SpecialN.h"
-#include "ftCommon/ftCo_Fall.h"
-#include "ftCommon/ftCo_FallSpecial.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftCommon/types.h"
-#include "ftKoopa/types.h"
 
 static inline void ftKp_SpecialHi_Enter_inline(Fighter_GObj* gobj)
 {

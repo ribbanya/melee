@@ -1,6 +1,7 @@
 #include "list.h"
 
 #include <platform.h>
+
 #include <__mem.h>
 #include <baselib/debug.h>
 #include <baselib/objalloc.h>

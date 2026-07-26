@@ -1,9 +1,11 @@
 #ifndef SYSDOLPHIN_BASELIB_DEVCOM_H
 #define SYSDOLPHIN_BASELIB_DEVCOM_H
 
-#include <sysdolphin/baselib/forward.h>
-#include <sysdolphin/baselib/archive.h>
 #include <platform.h>
+
+#include <sysdolphin/baselib/forward.h>
+
+#include <sysdolphin/baselib/archive.h>
 
 bool HSD_DevComIsBusy(int idx);
 void HSD_DevComARAMWakeUp(void);

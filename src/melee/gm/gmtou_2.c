@@ -1,7 +1,33 @@
 #include "gmtou_2.h"
 
+#include "gm_unsplit.h"
+#include "gmmain_lib.h"
+
 #include <placeholder.h>
+#include <platform.h>
+
+#include "ft/forward.h"
+
+#include "gm/types.h"
+
+#include "gr/forward.h"
+
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbdvd.h"
+#include "lb/types.h"
+
+#include "mn/forward.h"
+
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+
+#include "pl/forward.h"
+
+#include "sc/types.h"
+
 #include <dolphin/os.h>
+#include <dolphin/pad.h>
 #include <baselib/controller.h>
 #include <baselib/dobj.h>
 #include <baselib/fog.h>
@@ -11,23 +37,6 @@
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>
 #include <baselib/sislib.h>
-#include <dolphin/pad.h>
-#include <platform.h>
-
-#include "gm_unsplit.h"
-#include "gmmain_lib.h"
-#include "ft/forward.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbdvd.h"
-#include "lb/types.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "pl/forward.h"
-#include "sc/types.h"
-#include "gm/types.h"
-#include "gr/forward.h"
-#include "mn/forward.h"
 
 /// @todo .sdata2 order hack
 static void sdata2_order(void)

@@ -1,10 +1,11 @@
 #ifndef GALE01_2CCF9C
 #define GALE01_2CCF9C
 
-#include <stdbool.h>
-
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <stdbool.h>
 
 /* 2CCF9C */ void itFreezer_802CCF9C(Item_GObj*);
 /* 2CCFFC */ void itFreezer_802CCFFC(Item_GObj*);

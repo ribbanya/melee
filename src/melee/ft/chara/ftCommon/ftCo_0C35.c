@@ -1,16 +1,18 @@
 #include "ftCo_0C35.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <baselib/jobj.h>
-
 #include "ftCo_Damage.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/jobj.h>
 
 static void inlineA0(Fighter_GObj* gobj)
 {

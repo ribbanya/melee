@@ -1,17 +1,20 @@
 #include "grtpeach.h"
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
 #include "lb/lbspdisplay.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 2228B4 */ static void grTPeach_802228B4(bool arg0);
 /* 2228B8 */ static void grTPeach_802228B8(void);

@@ -1,8 +1,6 @@
 #include "itfflowerflame.h"
 
 #include <placeholder.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -10,6 +8,9 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/jobj.h>
 
 /* 29AA1C */ static void it_8029AA1C(HSD_GObj*);
 /* 29AA6C */ static bool itFflowerflame_UnkMotion0_Anim(Item_GObj*);

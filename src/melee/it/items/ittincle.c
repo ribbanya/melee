@@ -1,25 +1,26 @@
 #include "ittincle.h"
 
-#include <baselib/random.h>
-#include <MSL/math.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "gr/ground.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
-#include "lb/lb_00B0.h"
-#include "it/itCommonItems.h"
 #include "it/types.h"
+#include "lb/lb_00B0.h"
 #include "lb/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <MSL/math.h>
 
 /* 2EC870 */ static void it_802EC870(Item_GObj*, int);
 

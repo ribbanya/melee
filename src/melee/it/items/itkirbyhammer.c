@@ -1,6 +1,5 @@
 #include "itkirbyhammer.h"
 
-#include <common_structs.h>
 #include <placeholder.h>
 
 #include "db/db.h"
@@ -11,6 +10,8 @@
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/types.h"
+
+#include <common_structs.h>
 
 ItemStateTable it_803F6C98[] = {
     { 0, NULL, NULL, NULL },

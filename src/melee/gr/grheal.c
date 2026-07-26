@@ -1,34 +1,42 @@
 #include "gr/grheal.h"
 
-#include <platform.h>
-#include <baselib/debug.h>
-#include <baselib/gobjgxlink.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-
 #include "placeholder.h"
+
+#include <platform.h>
+
 #include "baselib/gobj.h"
 #include "baselib/gobjproc.h"
 #include "baselib/jobj.h"
 #include "gm/gm_1832.h"
+
 #include "gr/forward.h"
+
 #include "gr/granime.h"
+#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "it/it_26B1.h"
 #include "it/items/itcoin.h"
 #include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+
+#include "mp/forward.h"
+
 #include "mp/mplib.h"
 #include "ty/toy.h"
-#include "gr/grdisplay.h"
-#include "gr/types.h"
-#include "lb/forward.h"
-#include "mp/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobjgxlink.h>
 
 typedef struct grHeal_UnkData {
     s32 x0;

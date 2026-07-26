@@ -1,15 +1,16 @@
 #include "ftMh_BackAirplane3.h"
 
-#include <dolphin/mtx.h>
-
 #include "ftMh_Wait1_2.h"
+
 #include "ft/fighter.h"
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 #include "pl/player.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 void ftMh_BackAirplane3_Anim(HSD_GObj* gobj)
 {

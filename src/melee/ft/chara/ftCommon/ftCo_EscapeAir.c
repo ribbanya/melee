@@ -1,22 +1,26 @@
 #include "ftCo_EscapeAir.h"
 
-#include <platform.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-
 #include "ftCo_AirCatch.h"
 #include "ftCo_FallSpecial.h"
 #include "ftCo_ItemThrow.h"
 #include "math.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
-#include "ftCommon/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 /* 099D70 */ static void ftCo_80099D70(Fighter_GObj* gobj);
 

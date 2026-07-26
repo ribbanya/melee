@@ -1,12 +1,15 @@
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
-
 #include "db.h"
+
+#include "if/forward.h"
+
 #include "if/textdraw.h"
 #include "if/textlib.h"
 #include "lb/lbaudio_ax.h"
-#include "if/forward.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
 
 static char db_SoundInfoText_buf[0x70];
 

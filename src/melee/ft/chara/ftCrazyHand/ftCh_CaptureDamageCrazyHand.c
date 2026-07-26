@@ -3,13 +3,14 @@
 #include <platform.h>
 
 #include "baselib/forward.h"
+
 #include "ft/chara/ftCommon/ftCo_Attack100.h"
 #include "ft/fighter.h"
+#include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
 #include "ftCrazyHand/ftCh_FingerBeam.h"
-#include "ft/ftanim.h"
 
 void ftCh_GrabUnk1_8015B670(HSD_GObj* gobj)
 {

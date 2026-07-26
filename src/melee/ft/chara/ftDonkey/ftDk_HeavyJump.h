@@ -2,6 +2,7 @@
 #define GALE01_0E0440
 
 #include <baselib/forward.h>
+
 #include <dolphin/types.h>
 
 /* 0E0440 */ void ftDk_HeavyJump_IASA(HSD_GObj* gobj);

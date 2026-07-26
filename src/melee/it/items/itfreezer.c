@@ -1,19 +1,21 @@
 #include "itfreezer.h"
 
-#include <platform.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-
 #include "inlines.h"
+
+#include <platform.h>
+
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
-#include "it/item.h"
 #include "it/itCommonItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+
+#include <common_structs.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F7C70[] = {
     { 0, itFreezer_UnkMotion0_Anim, itFreezer_UnkMotion0_Phys,

@@ -1,17 +1,22 @@
 #include "ftCo_CargoFall.h"
 
-#include <platform.h>
-#include <common_structs.h>
-
 #include "ftCo_CargoLanding.h"
 #include "ftCo_CargoThrow.h"
 #include "ftCo_Shouldered.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
+
 #include "ftCommon/forward.h"
+
+#include <common_structs.h>
 
 void ftCo_8009BC58(Fighter_GObj* gobj)
 {

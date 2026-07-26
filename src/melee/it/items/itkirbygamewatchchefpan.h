@@ -1,13 +1,13 @@
 #ifndef ITKIRBY_GAMEWATCH_CHEFPAN_H
 #define ITKIRBY_GAMEWATCH_CHEFPAN_H
 
-#include <melee/it/forward.h>
-#include <melee/it/items/types.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <stdbool.h>
-
 #include "ft/forward.h"
+#include <baselib/forward.h>
+#include <melee/it/forward.h>
+
+#include <stdbool.h>
+#include <dolphin/mtx.h>
+#include <melee/it/items/types.h>
 
 /* 2C74D8 */ Item_GObj* it_802C74D8(HSD_GObj* parent, Vec3* pos, Fighter_Part,
                                     float dir);

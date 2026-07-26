@@ -1,6 +1,29 @@
 #include "gm_1832.h"
 
+#include "gm_unsplit.h"
+
+#include "dolphin/pad.h"
+
+#include "ft/forward.h"
+
+#include "gm/gm_1B14.h"
+
+#include "gr/forward.h"
+#include "it/forward.h"
+
+#include "it/itspawn.h"
+#include "mn/inlines.h"
+
+#include "pl/forward.h"
+
+#include "pl/pl_040D.h"
+
 #include <math_ppc.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/dobj.h>
@@ -40,24 +63,8 @@
 #include <melee/mp/mpcoll.h>
 #include <melee/pl/player.h>
 #include <melee/sc/types.h>
-#include <Runtime/runtime.h>
 #include <MetroTRK/intrinsics.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <dolphin/gx.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/mtx.h>
-
-#include "gm_unsplit.h"
-#include "dolphin/pad.h"
-#include "gm/gm_1B14.h"
-#include "mn/inlines.h"
-#include "pl/pl_040D.h"
-#include "ft/forward.h"
-#include "gr/forward.h"
-#include "it/forward.h"
-#include "it/itspawn.h"
-#include "pl/forward.h"
+#include <Runtime/runtime.h>
 
 static struct {
     int x0;

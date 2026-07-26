@@ -4,8 +4,8 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0C9468 */ bool ftCo_Walk_CheckInput(Fighter_GObj* gobj);
 /* 0C94B4 */ bool ftCo_Walk_CheckInput_Ottotto(Fighter_GObj* gobj);

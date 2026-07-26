@@ -2,9 +2,9 @@
 #define GALE01_390730
 
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
+#include <baselib/forward.h>
 
 #define HSD_GOBJ_GXLINK_NONE ((u8) 0xFF)
 #define HSD_GOBJ_OBJ_NONE 0xFF

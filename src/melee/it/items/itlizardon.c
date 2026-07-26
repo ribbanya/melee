@@ -1,25 +1,30 @@
 #include "itlizardon.h"
 
+#include "inlines.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 
-#include "inlines.h"
 #include "ef/efsync.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
+#include "it/itCommonItems.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "MSL/math.h"
 #include "sysdolphin/baselib/random.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 ItemStateTable it_803F7BC0[] = { {
                                      0,

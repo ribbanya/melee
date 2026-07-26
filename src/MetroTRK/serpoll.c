@@ -1,11 +1,11 @@
 #include "serpoll.h"
 
-#include <MetroTRK/msgcmd.h>
-
 #include "MetroTRK/dolphin_trk_glue.h"
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/msghndlr.h"
 #include "MetroTRK/nubevent.h"
+
+#include <MetroTRK/msgcmd.h>
 
 void* gTRKInputPendingPtr;
 static FramingState gTRKFramingState;

@@ -1,5 +1,25 @@
 #include "ftKp_SpecialN.h"
 
+#include <placeholder.h>
+
+#include "baselib/random.h"
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/ftCo_Fall.h"
+#include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
+
+#include "ftKoopa/forward.h"
+
+#include "ftKoopa/types.h"
+
+#include "it/forward.h"
+#include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>
@@ -12,22 +32,6 @@
 #include <melee/it/item.h>
 #include <melee/it/items/itkoopaflame.h>
 #include <melee/lb/lb_00B0.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <placeholder.h>
-
-#include "baselib/random.h"
-#include "ftCommon/ftCo_Fall.h"
-#include "ftCommon/inlines.h"
-#include "ftKoopa/forward.h"
-#include "ft/ft_084E.h"
-#include "ft/ftanim.h"
-#include "ft/types.h"
-#include "ftCommon/types.h"
-#include "ftKoopa/types.h"
-#include "it/forward.h"
-#include "lb/forward.h"
 
 static MotionFlags const ftKp_MF_SpecialN_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_SkipRumble;

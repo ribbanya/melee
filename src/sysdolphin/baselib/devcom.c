@@ -1,15 +1,16 @@
 #include "devcom.h"
 
-#include <baselib/debug.h>
-#include <baselib/synth.h>
+#include "devcom.static.h"
+#include <placeholder.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/ar.h>
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
 #include <dolphin/os/OSCache.h>
-#include <placeholder.h>
-
-#include "devcom.static.h"
+#include <baselib/debug.h>
+#include <baselib/synth.h>
 
 bool HSD_DevComIsBusy(int idx)
 {

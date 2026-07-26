@@ -1,18 +1,5 @@
 #include "grrcruise.h"
 
-#include <platform.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/archive.h>
-#include <baselib/dobj.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <sysdolphin/baselib/debug.h>
-#include <sysdolphin/baselib/memory.h>
-#include <baselib/aobj.h>
-#include <dolphin/os.h>
-
 #include "grdatfiles.h"
 #include "grdisplay.h"
 #include "grlib.h"
@@ -22,16 +9,33 @@
 #include "math.h"
 #include "placeholder.h"
 #include "stage.h"
+
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "gm/gm_1A45.h"
+#include "gr/granime.h"
+#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "mp/mplib.h"
-#include "gr/granime.h"
-#include "gr/types.h"
 #include "lb/types.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/archive.h>
+#include <baselib/dobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <sysdolphin/baselib/debug.h>
+#include <sysdolphin/baselib/memory.h>
 
 struct grRCruise_YakumonoParam {
     f32 x0;

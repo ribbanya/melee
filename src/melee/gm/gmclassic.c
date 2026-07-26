@@ -1,5 +1,20 @@
 #include "gmclassic.h"
 
+#include "gm_unsplit.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft/forward.h"
+
+#include "gm/types.h"
+
+#include "gr/forward.h"
+
+#include "lb/types.h"
+
+#include "mn/forward.h"
+
 #include <sysdolphin/baselib/random.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmregcommon.h>
@@ -7,15 +22,6 @@
 #include <melee/gr/stage.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbdvd.h>
-#include <placeholder.h>
-#include <platform.h>
-
-#include "gm_unsplit.h"
-#include "ft/forward.h"
-#include "gm/types.h"
-#include "gr/forward.h"
-#include "lb/types.h"
-#include "mn/forward.h"
 
 extern UNK_T gmClassic_80470708[];
 extern DebugGameOverData gmClassic_80470850;

@@ -1,13 +1,15 @@
 #include "mpisland.h" // IWYU pragma: keep
 
-#include <baselib/debug.h>
-#include <baselib/memory.h>
+#include "mplib.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
-#include "mplib.h"
 #include "lb/lb_00B0.h"
 #include "mp/types.h"
+
+#include <baselib/debug.h>
+#include <baselib/memory.h>
 
 /* 3B73E8 */ mpIsland_Palette mpIsland_TerrainPalette = { {
     { mp_Terrain_Rock, { 0x80, 0x60, 0x60, 0xFF } },

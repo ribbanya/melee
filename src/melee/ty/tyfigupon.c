@@ -1,13 +1,11 @@
 #include "tyfigupon.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/aobj.h>
-
 #include "stddef.h"
 #include "toy.h"
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "baselib/archive.h"
 #include "baselib/cobj.h"
 #include "baselib/controller.h"
@@ -45,6 +43,10 @@
 #include "sc/types.h"
 #include "ty/inlines.h"
 #include "ty/types.h"
+
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/aobj.h>
 
 /* 314AA8 */ static void _tyFigupon_80314AA8(HSD_JObj*, char*, char*, char*);
 /* 314B54 */ static s32 _tyFigupon_80314B54(void);

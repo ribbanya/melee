@@ -1,13 +1,18 @@
 #include "ftMh_FingerGun3.h"
 
 #include "ftMh_Wait1_2.h"
+
 #include "ft/fighter.h"
+
 #include "ft/forward.h"
+
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
+
 #include "ftMasterHand/forward.h"
+
 #include "pl/player.h"
-#include "ft/ft_084E.h"
 
 void ftMh_FingerGun3_Anim(HSD_GObj* gobj)
 {

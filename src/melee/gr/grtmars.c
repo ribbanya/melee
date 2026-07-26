@@ -1,17 +1,21 @@
 #include "grtmars.h"
 
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <dolphin/os.h>
-#include <platform.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "lb/lbspdisplay.h"
+
+#include <platform.h>
+
 #include "gr/types.h"
+
 #include "lb/forward.h"
+
+#include "lb/lbspdisplay.h"
+
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 221EF4 */ static void grTMars_80221EF4(bool);
 /* 221EF8 */ static void grTMars_80221EF8(void);

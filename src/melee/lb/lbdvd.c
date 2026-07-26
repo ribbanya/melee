@@ -1,24 +1,30 @@
+#include "lb_0195.h"
+#include "lbarchive.h"
+
+#include "lbdvd.static.h"
+
+#include "lbfile.h"
+#include "lbheap.h"
+
+#include <platform.h>
+
+#include "ft/forward.h"
+#include "gm/forward.h"
+
+#include "gm/gm_1B14.h"
+#include "lb/types.h"
+
+#include <baselib/forward.h>
+
+#include <string.h>
 #include <dolphin/dvd.h>
+#include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <melee/db/db.h>
 #include <melee/ef/efasync.h>
 #include <melee/gr/grdatfiles.h>
 #include <melee/gr/stage.h>
 #include <melee/pl/player.h>
-#include <baselib/forward.h>
-#include <dolphin/os.h>
-#include <platform.h>
-#include <string.h>
-
-#include "lb_0195.h"
-#include "lbarchive.h"
-#include "lbdvd.static.h"
-#include "lbfile.h"
-#include "lbheap.h"
-#include "gm/gm_1B14.h"
-#include "ft/forward.h"
-#include "gm/forward.h"
-#include "lb/types.h"
 
 void lbDvd_800174BC(void)
 {

@@ -2,7 +2,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
 
 #include "cm/camera.h"
 #include "ft/ftlib.h"
@@ -11,12 +10,14 @@
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
-#include "sysdolphin/baselib/random.h"
-#include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "sysdolphin/baselib/random.h"
+
+#include <common_structs.h>
 
 typedef struct itOldkuriAttributes {
     s32* x0;

@@ -1,23 +1,9 @@
 #include "grcorneria.h"
 
-#include <placeholder.h>
-#include <baselib/controller.h>
-#include <baselib/debug.h>
-#include <baselib/generator.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/sislib.h>
-#include <baselib/archive.h>
-#include <baselib/gobjproc.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
-#include <dolphin/pad.h>
-#include <math.h>
-
 #include "granime.h"
+
 #include "grcorneria.static.h"
+
 #include "grdatfiles.h"
 #include "grdisplay.h"
 #include "grlib.h"
@@ -28,6 +14,9 @@
 #include "inlines.h"
 #include "stage.h"
 #include "types.h"
+
+#include <placeholder.h>
+
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "gm/gm_1832.h"
@@ -42,8 +31,25 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-#include "pl/player.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <math.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <dolphin/pad.h>
+#include <baselib/archive.h>
+#include <baselib/controller.h>
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/sislib.h>
 
 struct grCorneria_YakumonoParam {
     /* 0x00 */ f32 x0;

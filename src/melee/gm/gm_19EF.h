@@ -1,9 +1,9 @@
 #ifndef MELEE_GM_GM_19EF_H
 #define MELEE_GM_GM_19EF_H
 
-#include <dolphin/types.h>
-
 #include "placeholder.h"
+
+#include <dolphin/types.h>
 
 /* 19F9C4 */ void fn_8019F9C4(u32);
 /* 1A0A10 */ void gm_801A0A10_OnEnter(void*);

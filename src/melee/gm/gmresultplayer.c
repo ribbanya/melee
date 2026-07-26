@@ -1,5 +1,19 @@
 #include "gmresultplayer.h"
 
+#include "math.h"
+#include "placeholder.h"
+
+#include "cm/camera.h"
+
+#include "ft/forward.h"
+#include "gr/forward.h"
+#include "pl/forward.h"
+
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <dolphin/pad.h>
+#include <baselib/object.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
@@ -32,18 +46,6 @@
 #include <melee/mp/mpcoll.h>
 #include <melee/pl/player.h>
 #include <melee/sc/types.h>
-#include <baselib/object.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
-#include <dolphin/pad.h>
-
-#include "math.h"
-#include "placeholder.h"
-#include "cm/camera.h"
-#include "ft/forward.h"
-#include "gr/forward.h"
-#include "pl/forward.h"
 
 extern ResultsData lbl_8046DBE8;
 

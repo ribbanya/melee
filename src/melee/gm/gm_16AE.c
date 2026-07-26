@@ -1,6 +1,25 @@
 #include "gm_16AE.h"
 
+#include "gm_16AE.static.h"
+
+#include "gm_unsplit.h"
+#include "gmmain_lib.h"
+
+#include "dolphin/pad.h"
+
+#include "ft/forward.h"
+
+#include "gm/types.h"
+#include "it/itspawn.h"
+
+#include "pl/forward.h"
+
+#include <common_structs.h>
 #include <math.h>
+#include <string.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/rumble.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <melee/cm/camera.h>
@@ -35,20 +54,6 @@
 #include <melee/pl/plbonus.h>
 #include <melee/pl/plbonuslib.h>
 #include <melee/sfx/crowdsfx.h>
-#include <baselib/rumble.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <string.h>
-
-#include "gm_16AE.static.h"
-#include "gm_unsplit.h"
-#include "gmmain_lib.h"
-#include "dolphin/pad.h"
-#include "it/itspawn.h"
-#include "ft/forward.h"
-#include "gm/types.h"
-#include "pl/forward.h"
 
 lbl_8046B6A0_t* gm_16AE_GetUnkData_0(void)
 {

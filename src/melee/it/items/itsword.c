@@ -2,22 +2,26 @@
 /// @todo A lot of duplicate code here, can maybe be cleaned up with inlines.
 #include "itsword.h"
 
-#include <placeholder.h>
-#include <platform.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-
 #include "inlines.h"
 #include "types.h" // IWYU pragma: keep
+
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
-#include "it/items/forward.h"
-#include "it/types.h"
 #include "it/itdraw.h"
+#include "it/item.h"
+
+#include "it/items/forward.h"
+
 #include "it/itgroundcoll.h"
+#include "it/types.h"
+
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 /* 284E30 */ static void it_80284E30(Item_GObj* gobj);
 /* 285084 */ static void it_80285084(Item_GObj* gobj);

@@ -1,24 +1,19 @@
 #include "gronett.h"
 
+#include "types.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/debug.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <dolphin/os.h>
-#include <math.h>
 
-#include "types.h"
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "gm/gm_16AE.h"
+#include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/grdisplay.h"
 #include "gr/grlib.h"
 #include "gr/grmaterial.h"
+#include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "if/ifhazard.h"
@@ -26,10 +21,19 @@
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
-#include "gr/granime.h"
-#include "gr/ground.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <math.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 1E40E4 */ static void grOnett_801E40E4(void* user_data, int joint_id,
                                           CollData* coll, int coll_x50,

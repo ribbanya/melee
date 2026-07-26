@@ -1,12 +1,13 @@
-#include <stddef.h>
-
 #include "fighter.h"
 #include "ft_0CD1.h"
+
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "it/items/itharisen.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
+#include "it/items/itharisen.h"
+
+#include <stddef.h>
 
 void ftCo_800CD350(Fighter_GObj* gobj, int arg1, int arg2, float arg3)
 {

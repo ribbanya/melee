@@ -1,27 +1,33 @@
 #include "itsamusbomb.h"
 
-#include <platform.h>
-#include <math_ppc.h>
-#include <baselib/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <common_structs.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "math.h"
+
+#include <platform.h>
+
 #include "db/db.h"
+
+#include "ft/forward.h"
+
 #include "ftSamus/ftSs_Init.h"
+
 #include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbvector.h"
-#include "ft/forward.h"
 #include "it/itCharItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbvector.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
 ItemStateTable it_803F7220[] = {
     { 0, itSamusbomb_UnkMotion0_Anim, itSamusbomb_UnkMotion0_Phys,

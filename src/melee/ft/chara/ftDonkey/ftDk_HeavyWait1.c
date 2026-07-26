@@ -1,8 +1,8 @@
 #include "ftDk_HeavyWait1.h"
 
-#include <stdbool.h>
-
 #include "ftDk_HeavyWait0.h"
+
+#include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
@@ -10,7 +10,8 @@
 #include "ftCommon/ftCo_KneeBend.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftDonkey/types.h"
-#include "ft/ft_084E.h"
+
+#include <stdbool.h>
 
 void ftDk_HeavyWait1_IASA(HSD_GObj* gobj)
 {

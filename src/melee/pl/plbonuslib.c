@@ -1,6 +1,26 @@
 #include "plbonuslib.h"
 
+#include "inlines.h"
+#include "pl_040D.h"
+#include "placeholder.h"
+#include "plbonus.h"
+
 #include <platform.h>
+
+#include "ft/types.h"
+#include "gm/gm_16AE.h"
+
+#include "pl/forward.h"
+
+#include "pl/player.h"
+#include "pl/plbonusinline.h"
+#include "pl/types.h"
+
+#include <baselib/forward.h>
+
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
 #include <ft/ft_0877.h>
 #include <ft/ft_0892.h>
 #include <ft/ftlib.h>
@@ -10,21 +30,6 @@
 #include <it/it_26B1.h>
 #include <MetroTRK/intrinsics.h>
 #include <MSL/math.h>
-#include <baselib/debug.h>
-#include <baselib/forward.h>
-#include <common_structs.h>
-#include <dolphin/os.h>
-
-#include "inlines.h"
-#include "pl_040D.h"
-#include "placeholder.h"
-#include "plbonus.h"
-#include "ft/types.h"
-#include "gm/gm_16AE.h"
-#include "pl/forward.h"
-#include "pl/player.h"
-#include "pl/plbonusinline.h"
-#include "pl/types.h"
 
 /// @todo Lots of 6s in here
 /// pl_8004049C seems to indicate it might have actually been

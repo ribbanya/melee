@@ -1,13 +1,13 @@
 #include "state.h"
 
-#include <dolphin/gx/GXEnum.h>
-#include <baselib/texp.h>
-
 #include "lobj.h"
 #include "mobj.h"
 #include "pobj.h"
 #include "tev.h"
 #include "util.h"
+
+#include <dolphin/gx/GXEnum.h>
+#include <baselib/texp.h>
 
 static GXColor dark_matter = { 0x00, 0x00, 0x00, 0xFF };
 

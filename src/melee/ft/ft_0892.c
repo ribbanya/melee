@@ -1,15 +1,17 @@
 #include "ft_0892.h"
 
-#include <math_ppc.h>
-#include <trigf.h>
-
 #include "ft/chara/ftFox/ftFx_AppealS.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "it/it_26B1.h"
 #include "pl/plattack.h"
 #include "pl/pltrick.h"
-#include "ft/types.h"
-#include "ftCommon/forward.h"
+
+#include <math_ppc.h>
+#include <trigf.h>
 
 void lbBgFlash_80020E38(HSD_JObj*, Vec3*, f32, f32, f32);
 void lbBgFlash_80021410(IKState*);

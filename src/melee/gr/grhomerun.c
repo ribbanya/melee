@@ -1,12 +1,9 @@
 #include "grhomerun.h"
 
-#include <platform.h>
-#include <baselib/cobj.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/os.h>
-
 #include "placeholder.h"
+
+#include <platform.h>
+
 #include "baselib/archive.h"
 #include "baselib/debug.h"
 #include "baselib/fog.h"
@@ -18,23 +15,32 @@
 #include "baselib/sislib.h"
 #include "baselib/wobj.h"
 #include "cm/camera.h"
+
+#include "cm/forward.h"
+
 #include "ft/ftlib.h"
 #include "gm/gmregclear.h"
+#include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
-#include "cm/forward.h"
-#include "gr/granime.h"
-#include "gr/types.h"
+
 #include "mp/forward.h"
+
+#include "mp/mplib.h"
+
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <baselib/cobj.h>
 
 /* 21E994 */ static void fn_8021E994(void* user_data, int joint_id,
                                      CollData* coll, int coll_x50,

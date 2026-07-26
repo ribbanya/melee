@@ -1,17 +1,20 @@
 #ifndef GALE01_1601C4
 #define GALE01_1601C4
 
-#include <baselib/forward.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
 #include "ft/forward.h"
 #include "gm/forward.h"
 #include "mn/forward.h"
+
 #include "mn/types.h"
+
 #include "sc/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
 
 struct MatchEnd;
 struct gm_801677C0_s;

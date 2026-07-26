@@ -2,12 +2,13 @@
 #define GALE01_21C750
 
 #include <placeholder.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 21C750 */ void grHomeRun_8021C750(bool);
 /* 21C754 */ void grHomeRun_8021C754(void);

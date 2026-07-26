@@ -1,11 +1,6 @@
 #include "itluigifireball.h"
 
 #include <platform.h>
-#include <common_structs.h>
-#include <math_ppc.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/mtx.h>
 
 #include "db/db.h"
 #include "ef/efasync.h"
@@ -14,8 +9,14 @@
 #include "it/it_2725.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "it/itgroundcoll.h"
+#include "it/itmaplib.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/mtx.h>
 
 /* 2C027C */ static void it_802C027C(Item_GObj* gobj);
 /* 2C02E4 */ static bool itLuigifireball_UnkMotion0_Anim(Item_GObj* gobj);

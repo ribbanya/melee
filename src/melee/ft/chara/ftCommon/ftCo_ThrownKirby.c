@@ -2,10 +2,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <common_structs.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/debug.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -17,12 +13,21 @@
 #include "ftCaptain/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirby.h"
 #include "ftKirby/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-#include "ftKirby/forward.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 static void sdata2_order(void)
 {

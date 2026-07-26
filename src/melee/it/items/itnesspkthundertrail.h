@@ -1,12 +1,14 @@
 #ifndef GALE01_2AC43C
 #define GALE01_2AC43C
 
-#include <dolphin/mtx.h>
 #include <platform.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <dolphin/mtx.h>
 
 /* 2AC43C */ Item_GObj* it_802AC43C(Fighter_GObj* gobj, Item_GObj* ball,
                                     Vec3* pos, s32 trail_idx, s32 arg4,

@@ -1,13 +1,14 @@
 #ifndef MELEE_FTANIM_H
 #define MELEE_FTANIM_H
 
-#include <melee/ft/forward.h>
-#include <melee/it/forward.h>
-#include <melee/lb/forward.h>
-#include <baselib/forward.h>
 #include <platform.h>
 
 #include "ft/types.h"
+
+#include <baselib/forward.h>
+#include <melee/ft/forward.h>
+#include <melee/it/forward.h>
+#include <melee/lb/forward.h>
 
 /* 06DBF4 */ void ftAnim_GetNextAnimJointInTree(HSD_AnimJoint**, int*);
 /* 06DCF4 */ void ftAnim_GetNextMatAnimJointInTree(HSD_MatAnimJoint**, int*);

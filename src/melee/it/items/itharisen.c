@@ -2,14 +2,15 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/item.h"
 #include "it/itCommonItems.h"
+#include "it/item.h"
 #include "it/itgroundcoll.h"
+
+#include <baselib/forward.h>
 
 ItemStateTable it_803F5FF0[] = {
     { -1, itHarisen_UnkMotion0_Anim, itHarisen_UnkMotion0_Phys,

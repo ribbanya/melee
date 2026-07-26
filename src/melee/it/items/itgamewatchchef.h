@@ -2,11 +2,14 @@
 #define GALE01_2C837C
 
 #include <platform.h>
-#include <dolphin/mtx.h>
-#include <baselib/forward.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2C837C */ HSD_GObj* it_802C837C(Item_GObj*, Vec3*, enum_t, u32, float);
 /* 2C847C */ bool itGameWatchChef_Logic112_DmgDealt(Item_GObj*);

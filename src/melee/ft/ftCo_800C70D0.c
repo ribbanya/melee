@@ -1,10 +1,12 @@
 #include "ftCo_800C70D0.h"
 
-#include <platform.h>
-
 #include "ft_0852.h"
 #include "ftCo_800C7070.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
+
 #include "ftCommon/forward.h"
 
 static inline void inlineB0(Fighter_GObj* gobj)

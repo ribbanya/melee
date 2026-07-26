@@ -3,8 +3,8 @@
 
 #include <placeholder.h>
 
-#include "ftCommon/forward.h"
 #include "ft/forward.h"
+#include "ftCommon/forward.h"
 
 /* 0CB4E0 */ void ftCo_KneeBend_Enter(Fighter_GObj* gobj,
                                       ftCo_JumpInput jump_input);

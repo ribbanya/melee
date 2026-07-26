@@ -1,18 +1,22 @@
 #include "ftCh_Walk.h"
 
+#include "types.h"
+
 #include <platform.h>
 
-#include "types.h"
 #include "baselib/forward.h"
+
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
-#include "pl/player.h"
-#include "ft/ftanim.h"
+
 #include "pl/forward.h"
+
+#include "pl/player.h"
 
 void fn_801578E8(HSD_GObj* gobj)
 {

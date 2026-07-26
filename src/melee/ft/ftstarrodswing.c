@@ -1,8 +1,5 @@
 #include "ftstarrodswing.h"
 
-#include <baselib/gobj.h>
-#include <baselib/debug.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -10,11 +7,17 @@
 #include "ft/ft_0877.h"
 #include "ft/ft_0CD1.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
+
+#include "it/forward.h"
+
+#include "it/it_26B1.h"
 #include "it/items/itstarrod.h"
 #include "lb/lb_00B0.h"
-#include "ft/types.h"
-#include "it/forward.h"
-#include "it/it_26B1.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
 
 void ftCo_800CD82C(Fighter_GObj* gobj, int arg1, int arg2, float arg3)
 {

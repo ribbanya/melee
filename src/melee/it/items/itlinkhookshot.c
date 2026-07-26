@@ -1,12 +1,7 @@
 #include "itlinkhookshot.h"
 
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/objalloc.h>
-#include <common_structs.h>
-#include <MetroTRK/intrinsics.h>
-
 #include "placeholder.h"
+
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
 #include "dolphin/mtx.h"
@@ -20,9 +15,17 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
+#include "ftCaptain/types.h"
+#include "ftLink/types.h"
 #include "it/inlines.h"
+#include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
@@ -32,12 +35,12 @@
 #include "sysdolphin/baselib/gobjobject.h"
 #include "sysdolphin/baselib/gobjplink.h"
 #include "sysdolphin/baselib/jobj.h"
-#include "ft/types.h"
-#include "ftCaptain/types.h"
-#include "ftLink/types.h"
-#include "it/it_26B1.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/objalloc.h>
+#include <MetroTRK/intrinsics.h>
 
 /* 2A5770 */ static void it_802A5770_inline(ItemLink* link_1,
                                             itLinkHookshotAttributes* arg2,

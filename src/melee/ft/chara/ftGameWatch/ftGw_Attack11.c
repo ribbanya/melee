@@ -1,11 +1,12 @@
 #include "ftGw_Attack11.h"
 
-#include <platform.h>
-#include <dolphin/mtx.h>
-
 #include "ftGw_Init.h"
+
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
+#include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
@@ -14,7 +15,8 @@
 #include "ftGameWatch/types.h"
 #include "it/items/itgamewatchgreenhouse.h"
 #include "lb/lb_00B0.h"
-#include "ft/ft_084E.h"
+
+#include <dolphin/mtx.h>
 
 /// 0x8014BDB0
 /// https://decomp.me/scratch/7BADg // Create Insecticide Spray Item

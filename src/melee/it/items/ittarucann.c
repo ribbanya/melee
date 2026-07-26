@@ -1,10 +1,5 @@
 #include "ittarucann.h"
 
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/gobj.h>
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -16,17 +11,25 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
+#include "it/itCommonItems.h"
 #include "it/iteffect.h"
 #include "it/item.h"
+#include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "MSL/math.h"
-#include "it/itCommonItems.h"
-#include "it/itgroundcoll.h"
-#include "it/types.h"
-#include "lb/forward.h"
+
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /// @todo Remove
 static f32 fake1(void);
