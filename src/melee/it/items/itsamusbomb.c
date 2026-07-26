@@ -27,7 +27,6 @@
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
-#include <MetroTRK/intrinsics.h>
 
 ItemStateTable it_803F7220[] = {
     { 0, itSamusbomb_UnkMotion0_Anim, itSamusbomb_UnkMotion0_Phys,

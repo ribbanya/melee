@@ -3,14 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 2EAF28 */ s32 it_802EAF28(Item_GObj* gobj);
 /* 2EAF34 */ Item_GObj* it_802EAF34(HSD_GObj*, Vec3*, int);

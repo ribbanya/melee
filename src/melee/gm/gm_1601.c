@@ -38,7 +38,6 @@
 
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"
-#include "sc/types.h"
 #include "ty/toy.h"
 
 #include <stdio.h>

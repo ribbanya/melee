@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
 #include <melee/gm/forward.h>
 #include <melee/it/forward.h>
@@ -11,7 +10,6 @@
 
 struct PlayerInitData;
 struct StartMeleeData;
-
 struct lbl_8046B6A0_24C_t;
 
 /* 16AE38 */ lbl_8046B6A0_t* gm_16AE_GetUnkData_0(void);

@@ -31,11 +31,9 @@
 
 #include "vi/forward.h"
 
-#include "vi/types.h"
 #include "vi/vi.h"
 
 #include <dolphin/gx.h>
-#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>

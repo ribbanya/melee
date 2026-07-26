@@ -3,12 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "baselib/forward.h"
-
 #include "baselib/objalloc.h"
-
-#include <dolphin/mtx.h>
 
 #define PSAPPSRT_UNK_B09 (1 << 9)
 #define PSAPPSRT_UNK_B10 (1 << 10)

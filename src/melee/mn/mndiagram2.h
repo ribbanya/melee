@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/gobj.h>
 #include <melee/mn/types.h>
 

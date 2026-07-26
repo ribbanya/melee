@@ -14,11 +14,10 @@
 #include "gm/gm_1B14.h"
 #include "lb/types.h"
 
-#include <baselib/forward.h>
-
 #include <string.h>
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
+#include <baselib/archive.h>
 #include <baselib/debug.h>
 #include <melee/db/db.h>
 #include <melee/ef/efasync.h>

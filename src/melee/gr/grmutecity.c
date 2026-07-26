@@ -43,7 +43,6 @@
 #include <baselib/jobj.h>
 #include <baselib/lobj.h>
 #include <baselib/psappsrt.h>
-#include <baselib/psstructs.h>
 #include <baselib/random.h>
 #include <sysdolphin/baselib/spline.h>
 

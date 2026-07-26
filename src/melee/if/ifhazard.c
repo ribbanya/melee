@@ -3,7 +3,6 @@
 #include <platform.h>
 
 #include "gm/gm_unsplit.h"
-#include "sc/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

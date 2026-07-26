@@ -3,21 +3,16 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "ft/forward.h"
-
-#include "ft/types.h"
-
-#include "ftCommon/forward.h"
-#include "gr/forward.h"
-
-#include "gr/types.h"
-
-#include "it/forward.h"
-#include "mp/forward.h"
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+
+#include "ft/forward.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "it/forward.h"
+#include "mp/forward.h"
 
 struct _m2c_stack_ftCo_800A3554 {
     /* 0x00 */ char pad_0[0x10];

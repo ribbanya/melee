@@ -8,7 +8,6 @@
 #include "ft/ftlib.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_16AE.h"
-#include "gm/types.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "if/if_2FC93.h"
@@ -30,7 +29,6 @@
 #include <baselib/gobjplink.h>
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
-#include <baselib/tobj.h>
 
 /* 3F97E8 */ extern HSD_CameraDescPerspective ifMagnify_803F97E8;
 static char ifMagnify_803F988C[] = "!(jobj->flags & JOBJ_USE_QUATERNION)";

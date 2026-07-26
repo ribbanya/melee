@@ -12,6 +12,7 @@
 #include "it/items/forward.h"
 
 #include <math_ppc.h>
+#include <stddef.h>
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>

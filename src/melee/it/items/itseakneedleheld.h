@@ -1,15 +1,13 @@
 #ifndef GALE01_2B18B0
 #define GALE01_2B18B0
 
-#include "ft/forward.h"
-#include "it/forward.h"
-
-#include "it/items/types.h"
-
 #include <baselib/forward.h>
-
 #include <stdbool.h>
 #include <dolphin/mtx.h>
+
+#include "ft/forward.h"
+#include "it/forward.h"
+#include "it/items/types.h"
 
 /* 2B18B0 */ void it_802B18B0(Item_GObj* gobj);
 /* 2B19AC */ Item_GObj* it_802B19AC(Fighter_GObj* parent_gobj, Vec3* cur_pos,

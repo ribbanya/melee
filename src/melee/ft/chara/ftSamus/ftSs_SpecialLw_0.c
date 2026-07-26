@@ -30,7 +30,6 @@
 #include "lb/lbcollision.h"
 
 #include <common_structs.h>
-#include <math.h>
 #include <trigf.h>
 
 void ftSs_Init_80128944(HSD_GObj* gobj, float farg1, float farg2)

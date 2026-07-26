@@ -29,7 +29,6 @@
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
-#include <baselib/wobj.h>
 
 /// .data
 /// IfAll.dat::ScInfPnm_scene_models

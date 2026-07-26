@@ -1,9 +1,6 @@
 #include "lb/lb_00B0.h"
 
-#include "sc/types.h" // IWYU pragma: keep
-
 #include <math.h>
-#include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>
 #include <baselib/dobj.h> // IWYU pragma: keep
@@ -14,6 +11,8 @@
 #include <baselib/robj.h>
 #include <baselib/texp.h>
 #include <baselib/tobj.h>
+
+#include "sc/types.h" // IWYU pragma: keep
 
 /* 00B9D8 */ static void lb_8000B9D8(HSD_JObj*, float**, s32);
 /* 00BC04 */ static HSD_JObj* lbFindJObjWithAObj(HSD_JObj*);

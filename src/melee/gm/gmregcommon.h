@@ -2,7 +2,6 @@
 #define MELEE_GM_REGCOMMON_H
 
 #include <platform.h>
-
 #include <melee/gm/forward.h>
 
 int gm_8017BE84(u32 arg0);

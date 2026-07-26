@@ -39,9 +39,9 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/aobj.h>
 #include <baselib/class.h>
 #include <baselib/debug.h>
-#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>

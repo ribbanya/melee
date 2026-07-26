@@ -6,7 +6,6 @@
 #include "ft/chara/ftYoshi/forward.h"
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2F2BFC */ void it_802F2BFC(Item_GObj* gobj, Fighter_GObj* owner_gobj);

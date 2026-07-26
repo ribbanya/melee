@@ -2,7 +2,6 @@
 #define MELEE_FT_KP_SPECIAL_LW_H
 
 #include <platform.h>
-
 #include <melee/ft/forward.h>
 
 /* 1344C8 */ void ftKp_SpecialAirSEndF_Coll(Fighter_GObj* gobj);

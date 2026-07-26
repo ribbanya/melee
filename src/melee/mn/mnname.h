@@ -2,9 +2,7 @@
 #define GALE01_23749C
 
 #include <placeholder.h>
-
 #include <baselib/forward.h>
-
 #include <stdbool.h>
 #include <dolphin/types.h>
 #include <baselib/gobj.h>

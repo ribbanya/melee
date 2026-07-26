@@ -1,11 +1,9 @@
 #include <placeholder.h>
-
-#include "it/forward.h"
-
-#include "it/items/types.h"
-
 #include <stdbool.h>
 #include <dolphin/mtx.h>
+
+#include "it/forward.h"
+#include "it/items/types.h"
 
 extern ItemStateTable it_803F9328[];
 void it_802EFA44(Item_GObj*, Vec*, float);

@@ -19,6 +19,7 @@
 #include "MSL/math.h"
 
 #include <stdarg.h>
+#include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/generator.h>

@@ -18,7 +18,6 @@
 #include <dolphin/os.h>
 #include <baselib/class.h>
 #include <baselib/debug.h>
-#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>

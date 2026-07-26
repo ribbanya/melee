@@ -18,12 +18,10 @@
 
 #include <stdarg.h>
 #include <baselib/aobj.h>
-#include <baselib/dobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>
 #include <baselib/object.h>
 #include <baselib/pobj.h>
-#include <baselib/robj.h>
 #include <baselib/tobj.h>
 #include <Runtime/Gecko_setjmp.h>
 

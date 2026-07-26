@@ -6,7 +6,6 @@
 #include "dolphin/os.h"
 #include "lb/lbfile.h"
 
-#include <stddef.h>
 #include <dolphin/dvd.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXTexture.h>

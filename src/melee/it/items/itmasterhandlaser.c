@@ -25,7 +25,6 @@
 
 #include <common_structs.h>
 #include <math_ppc.h>
-#include <MetroTRK/intrinsics.h>
 
 ItemStateTable it_803F9378[] = {
     {

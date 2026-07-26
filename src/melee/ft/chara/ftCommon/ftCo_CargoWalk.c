@@ -9,7 +9,6 @@
 #include <platform.h>
 
 #include "ft/ftwalkcommon.h"
-#include "ft/types.h"
 
 #include "ftCommon/forward.h"
 

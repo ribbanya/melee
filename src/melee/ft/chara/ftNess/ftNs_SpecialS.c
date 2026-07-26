@@ -15,7 +15,6 @@
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>
-#include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 

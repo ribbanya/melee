@@ -21,7 +21,6 @@
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
-#include <MetroTRK/intrinsics.h>
 
 /* 08998C */ static bool fn_8008998C(Fighter* fp, IKState* ik, Vec3* normal);
 

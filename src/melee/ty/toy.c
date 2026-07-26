@@ -30,7 +30,6 @@
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "MSL/math.h"
-#include "sc/types.h"
 #include "ty/types.h"
 
 #include <common_structs.h>
@@ -60,7 +59,6 @@
 #include <baselib/sislib.h>
 #include <baselib/sobjlib.h>
 #include <baselib/state.h>
-#include <baselib/wobj.h>
 
 int Toy_GetTrophyTotal(void)
 {

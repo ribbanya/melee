@@ -12,9 +12,9 @@
 #include "ft/forward.h"
 #include "gm/forward.h"
 
-#include "gm/types.h"
 #include "mn/inlines.h"
 
+#include <stddef.h>
 #include <baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>

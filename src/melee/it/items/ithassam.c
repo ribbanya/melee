@@ -26,7 +26,6 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-#include "lb/lbrefract.h"
 #include "lb/lbvector.h"
 
 #include <common_structs.h>

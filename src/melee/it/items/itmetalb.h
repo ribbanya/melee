@@ -2,14 +2,11 @@
 #define GALE01_2953C8
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 void itMetalB_Logic32_Spawned(Item_GObj*);
 void it_802953FC(Item_GObj*);

@@ -40,7 +40,6 @@
 #include <math_ppc.h>
 #include <baselib/gobj.h>
 #include <baselib/objalloc.h>
-#include <MetroTRK/intrinsics.h>
 
 /* 2A5770 */ static void it_802A5770_inline(ItemLink* link_1,
                                             itLinkHookshotAttributes* arg2,

@@ -2,13 +2,11 @@
 #define GALE01_292D48
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 #include "it/types.h"
-
-#include <dolphin/mtx.h>
 
 /* 292D48 */ Item_GObj* it_80292D48(Vec3*);
 /* 292E04 */ void itFFlower_Logic25_Spawned(Item_GObj*);

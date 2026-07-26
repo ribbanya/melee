@@ -28,7 +28,6 @@
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
 #include <baselib/random.h>
 
 /* 07121C */ static void ftAction_8007121C(Fighter_GObj* gobj,

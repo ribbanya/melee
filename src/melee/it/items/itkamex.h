@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2CA49C */ void it_802CA49C(Item_GObj*);

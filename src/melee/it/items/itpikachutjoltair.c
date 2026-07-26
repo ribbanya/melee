@@ -14,7 +14,6 @@
 #include "it/items/itpikachutjoltground.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
-#include "lb/lbrefract.h"
 
 #include <trigf.h>
 #include <baselib/jobj.h>

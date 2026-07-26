@@ -4,7 +4,6 @@
 #include <platform.h>
 
 #include "baselib/forward.h"
-
 #include "baselib/gobj.h"
 
 void GObj_GXReorder(HSD_GObj* gobj, HSD_GObj* hiprio_gobj);

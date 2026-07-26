@@ -6,6 +6,7 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
+#include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

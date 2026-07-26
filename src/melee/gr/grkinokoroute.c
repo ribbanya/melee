@@ -35,7 +35,6 @@
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/psstructs.h>
 #include <baselib/random.h>
 
 static struct {

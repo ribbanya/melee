@@ -6,7 +6,6 @@
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
 #include "if/textlib.h"
-#include "if/types.h"
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbcardgame.h"

@@ -27,7 +27,6 @@
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
-#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>

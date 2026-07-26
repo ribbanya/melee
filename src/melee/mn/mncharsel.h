@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
 
 /* 25BC20 */ TextKerning* mnCharSel_8025BC20(TextKerning* arg0, u32 arg1);

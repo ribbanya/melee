@@ -17,10 +17,7 @@ typedef struct {
     } content;
 } PerfDispItem;
 
-#include "particle.static.h"
 #include <placeholder.h>
-
-#include <math.h>
 #include <math_ppc.h>
 #include <string.h>
 #include <trigf.h>
@@ -35,6 +32,9 @@ typedef struct {
 #include <baselib/psstructs.h>
 #include <baselib/random.h>
 #include <MetroTRK/intrinsics.h>
+#include <math.h>
+
+#include "particle.static.h"
 
 static HSD_JObj* hsd_804D08E8[8];
 static void* hsd_804D0908[0x144 / 4];

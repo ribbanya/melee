@@ -96,7 +96,6 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 #include "pl/player.h"
-#include "sc/types.h"
 #include "ty/toy.h"
 #include "ty/tydisplay.h"
 

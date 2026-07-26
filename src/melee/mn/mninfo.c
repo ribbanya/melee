@@ -14,7 +14,6 @@
 #include "lb/lbspdisplay.h"
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
-#include "sc/types.h"
 
 #include <dolphin/gx/GXStruct.h>
 #include <sysdolphin/baselib/debug.h>

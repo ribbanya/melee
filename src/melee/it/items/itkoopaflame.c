@@ -9,7 +9,6 @@
 
 #include "it/itgroundcoll.h"
 #include "it/types.h"
-#include "lb/lbrefract.h"
 #include "lb/types.h"
 
 #include <melee/it/forward.h>

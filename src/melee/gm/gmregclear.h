@@ -3,13 +3,13 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "ft/forward.h"
 #include <melee/gm/forward.h>
 #include <melee/gr/forward.h>
 #include <melee/it/forward.h>
 #include <melee/mn/forward.h>
 #include <sysdolphin/baselib/forward.h>
+
+#include "ft/forward.h"
 
 struct Unk1PData_x24;
 struct gmm_x0_528_t;

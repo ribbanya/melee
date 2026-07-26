@@ -16,7 +16,6 @@
 #include <baselib/gobjplink.h>
 #include <baselib/hsd_3915.h>
 #include <baselib/video.h>
-#include <baselib/wobj.h>
 
 /// .data
 /* 3FDC20 */ static HSD_WObjDesc devtext_eyepos = {

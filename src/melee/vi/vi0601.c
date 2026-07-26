@@ -1,14 +1,21 @@
 #include "vi/vi0601.h"
 
 #include <platform.h>
+#include <dolphin/gx/GXStruct.h>
+#include <baselib/cobj.h>
+#include <baselib/displayfunc.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/aobj.h>
 
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
-
 #include "gr/forward.h"
-
 #include "gr/grcorneria.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -18,21 +25,9 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 #include "pl/player.h"
-
 #include "sc/forward.h"
-
 #include "sc/types.h"
 #include "vi/vi.h"
-
-#include <dolphin/gx/GXStruct.h>
-#include <baselib/aobj.h>
-#include <baselib/cobj.h>
-#include <baselib/displayfunc.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
 
 static SceneDesc* un_804D6FB0;
 static GXColor erase_colors_vi0601;

@@ -3,11 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
 
 /* 0C0874 */ void ftCo_800C0874(Fighter_GObj* gobj, UNK_T arg1,
                                 ftCommon_BuryType arg2);

@@ -2,15 +2,12 @@
 #define GALE01_27CF30
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/itCommonItems.h"
 #include "it/items/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 2F2F34 */ void it_802F2F34(HSD_GObj*, itYoshiEggLay_DatAttrs*);
 /* 2F3020 */ void it_802F3020(HSD_GObj*);

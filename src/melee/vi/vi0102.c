@@ -34,7 +34,6 @@
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
-#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
@@ -42,7 +41,6 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/wobj.h>
 
 static SceneDesc* un_804D6F30;
 static GXColor erase_colors_vi0102;

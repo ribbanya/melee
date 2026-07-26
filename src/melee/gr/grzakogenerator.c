@@ -26,7 +26,6 @@
 #include <baselib/gobj.h>
 #include <baselib/gobjproc.h>
 #include <baselib/memory.h>
-#include <baselib/psstructs.h>
 #include <baselib/random.h>
 
 grZakoGenerator_Config*

@@ -4,7 +4,6 @@
 #include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/item.h"
 #include "it/items/types.h"
 

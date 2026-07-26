@@ -15,8 +15,6 @@
 
 #include "ftCommon/forward.h"
 
-#include "it/types.h"
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

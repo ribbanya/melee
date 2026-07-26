@@ -1,11 +1,10 @@
 #ifndef GALE01_08521C
 #define GALE01_08521C
 
-#include "ft/forward.h"
-
-#include "ft/types.h"
-
 #include <dolphin/types.h>
+
+#include "ft/forward.h"
+#include "ft/types.h"
 
 typedef struct ft_8045993C_t {
     /* +0 */ u32 pad_x0;

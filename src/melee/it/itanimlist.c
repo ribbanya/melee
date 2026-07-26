@@ -22,7 +22,6 @@
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
 
 static void sdata2_order(void)
 {

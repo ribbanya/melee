@@ -28,12 +28,10 @@
 
 #include "pl/player.h"
 #include "sc/types.h"
-#include "vi/types.h"
 #include "vi/vi.h"
 
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
-#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
@@ -42,7 +40,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
-#include <baselib/wobj.h>
 
 typedef struct Vi0502Data {
     Vec3 initial_pos;

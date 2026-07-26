@@ -48,7 +48,6 @@
 #include <baselib/jobj.h>
 #include <baselib/random.h>
 #include <baselib/spline.h>
-#include <MetroTRK/intrinsics.h>
 
 GrJoint grKg_803E16E0[] = {
     { 2, 10, 19 }, { 3, 10, 22 }, { 5, 10, 43 },

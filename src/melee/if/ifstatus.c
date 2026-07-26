@@ -10,7 +10,6 @@
 #include "if/if_2F72.h"
 #include "if/ifcoget.h"
 #include "if/ifstock.h"
-#include "if/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "mn/mnmain.h"
