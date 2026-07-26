@@ -14,7 +14,6 @@
 #include "ft/forward.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
-#include "gm/types.h"
 
 /* 284358 */ static void it_80284358(Item_GObj* gobj);
 /* 284380 */ static bool itTomato_UnkMotion0_Anim(HSD_GObj* gobj);

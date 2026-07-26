@@ -27,7 +27,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <placeholder.h>
-#include <baselib/tobj.h>
 
 #include "ft/dobjlist.h"
 

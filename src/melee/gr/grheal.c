@@ -29,7 +29,6 @@
 #include "gr/types.h"
 #include "lb/forward.h"
 #include "mp/forward.h"
-#include "gm/types.h"
 
 typedef struct grHeal_UnkData {
     s32 x0;

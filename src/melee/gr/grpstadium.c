@@ -39,7 +39,6 @@
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/os.h>
 #include <math.h>
-#include <baselib/tobj.h>
 
 #include "dolphin/gx/GXStruct.h"
 #include "cm/forward.h"
