@@ -1,25 +1,31 @@
 #include "itmaterial.h"
 
+#include <placeholder.h>
+
+#include "ft/ftdevice.h"
+
+#include "it/forward.h"
+
+#include "it/inlines.h"
+#include "it/types.h"
+
+#include "lb/forward.h"
+
+#include "lb/lb_00B0.h"
+
+#include <common_structs.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/os.h>
 #include <baselib/class.h>
-#include <baselib/tev.h>
 #include <baselib/debug.h>
+#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>
 #include <baselib/state.h>
+#include <baselib/tev.h>
 #include <baselib/texp.h>
 #include <baselib/tobj.h>
-#include <common_structs.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/os.h>
-#include <placeholder.h>
-
-#include "ft/ftdevice.h"
-#include "it/forward.h"
-#include "it/inlines.h"
-#include "lb/lb_00B0.h"
-#include "it/types.h"
-#include "lb/forward.h"
 
 struct it_MObjInfo {
     /*   +0 */ HSD_ClassInfo parent;
