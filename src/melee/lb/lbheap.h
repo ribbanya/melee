@@ -4,8 +4,6 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include <baselib/forward.h>
-
 /* 0158D0 */ void lbHeap_800158D0(int, int);
 /* 0158E8 */ int lbHeap_800158E8(int);
 /* 015900 */ void lbHeap_80015900(void);

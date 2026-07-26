@@ -4,7 +4,6 @@
 #include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
 
 static float lbVector_Len(Vec3* vec);
 static float lbVector_Len_xy(Vec3* vec);
