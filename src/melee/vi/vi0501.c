@@ -2,15 +2,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/gx.h>
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/aobj.h>
 
 #include "cm/camera.h"
 #include "dolphin/mtx.h"
@@ -19,7 +10,9 @@
 #include "ft/ftdemo.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_1A45.h"
+
 #include "gr/forward.h"
+
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -30,11 +23,26 @@
 #include "lb/lbspdisplay.h"
 #include "mn/mnmain.h"
 #include "mp/mpcoll.h"
+
 #include "pl/forward.h"
+
 #include "pl/player.h"
 #include "sc/types.h"
+
 #include "vi/forward.h"
+
+#include "vi/types.h"
 #include "vi/vi.h"
+
+#include <dolphin/gx.h>
+#include <baselib/aobj.h>
+#include <baselib/cobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 static SceneDesc* un_804D6F70;
 static HSD_Archive* un_804D6F74;

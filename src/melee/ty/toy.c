@@ -1,6 +1,38 @@
 #include "toy.h"
 
+#include "platform.h"
+
+#include "toy.static.h"
+
+#include "tylist.h"
+
 #include <placeholder.h>
+
+#include "db/db.h"
+
+#include "gm/forward.h"
+
+#include "gm/gm_1601.h"
+#include "gm/gm_16AE.h"
+#include "gm/gm_16F1.h"
+#include "gm/gm_1A3F.h"
+#include "gm/gm_1A45.h"
+#include "gm/gmmain_lib.h"
+#include "if/textdraw.h"
+#include "lb/lb_00B0.h"
+#include "lb/lb_00CE.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lblanguage.h"
+#include "lb/lbspdisplay.h"
+#include "lb/lbvector.h"
+#include "melee/if/textlib.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "MSL/math.h"
+#include "sc/types.h"
+#include "ty/types.h"
+
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <stdio.h>
@@ -28,31 +60,7 @@
 #include <baselib/sislib.h>
 #include <baselib/sobjlib.h>
 #include <baselib/state.h>
-
-#include "platform.h"
-#include "toy.static.h"
-#include "tylist.h"
-#include "db/db.h"
-#include "gm/forward.h"
-#include "gm/gm_1601.h"
-#include "gm/gm_16AE.h"
-#include "gm/gm_16F1.h"
-#include "gm/gm_1A3F.h"
-#include "gm/gm_1A45.h"
-#include "gm/gmmain_lib.h"
-#include "if/textdraw.h"
-#include "lb/lb_00B0.h"
-#include "lb/lb_00CE.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lblanguage.h"
-#include "lb/lbspdisplay.h"
-#include "lb/lbvector.h"
-#include "melee/if/textlib.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "MSL/math.h"
-#include "ty/types.h"
+#include <baselib/wobj.h>
 
 int Toy_GetTrophyTotal(void)
 {
