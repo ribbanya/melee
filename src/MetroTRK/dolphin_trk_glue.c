@@ -1,12 +1,16 @@
 #include "dolphin_trk_glue.h"
 
+#include "mpc_7xx_603e.h" // IWYU pragma: keep
+#include "targimpl.h"     // IWYU pragma: keep
+
+#include <placeholder.h>
+
 #include <dolphin/amc/AmcExi2Comm.h>
 #include <dolphin/db/DBInterface.h>
 #include <dolphin/odemu/odemu.h>
+#include <dolphin/os/OSContext.h>
 #include <dolphin/os/OSThread.h>
 #include <MetroTRK/dserror.h>
-#include <dolphin/os/OSContext.h>
-#include <placeholder.h>
 
 static DBCommTable gDBCommTable = { NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 

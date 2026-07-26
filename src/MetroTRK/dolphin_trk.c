@@ -1,6 +1,7 @@
 #include "MetroTRK/dolphin_trk.h"
 
-#include <MetroTRK/dserror.h>
+#include "mpc_7xx_603e.h" // IWYU pragma: keep
+
 #include <placeholder.h>
 #include <platform.h>
 
@@ -10,6 +11,8 @@
 #include "MetroTRK/mem_TRK.h"
 #include "MetroTRK/ppc_except.h"
 #include "MetroTRK/ppc_targimpl.h"
+
+#include <MetroTRK/dserror.h>
 
 #define BOOTINFO 0x80000000
 #define MEM2_CACHED 0x90000000

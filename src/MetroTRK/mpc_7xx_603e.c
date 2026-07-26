@@ -1,5 +1,7 @@
 #include "mpc_7xx_603e.h"
 
+#include "ppc_targimpl.h" // IWYU pragma: keep
+
 static int const target_cpu_minor_type = 84;
 
 ASM void TRKSaveExtended1Block(void)
