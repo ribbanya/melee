@@ -10,6 +10,7 @@
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXVert.h>
 #include <baselib/cobj.h>
+#include <baselib/tobj.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/initialize.h>

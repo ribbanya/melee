@@ -13,6 +13,7 @@
 #include <baselib/jobj.h>
 
 struct lbColl_8000A10C_arg0_t;
+
 struct Fighter_x1614_t;
 
 /* 005BB0 */ int lbColl_80005BB0(HitCapsule*, int);

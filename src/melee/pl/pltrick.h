@@ -9,6 +9,7 @@
 #include <baselib/forward.h>
 
 struct plActionStats;
+
 struct plAttackStats;
 
 /* 037B2C */ int pl_80037B2C(struct plActionStats* arg0, int arg1, int arg2);

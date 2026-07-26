@@ -19,6 +19,7 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
+#include <baselib/tobj.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/displayfunc.h>
 #include <sysdolphin/baselib/dobj.h>

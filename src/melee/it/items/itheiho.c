@@ -23,6 +23,7 @@
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/tobj.h>
 
 /* 2D8894 */ static void it_802D8894(Item_GObj*);
 /* 2D88CC */ static bool itHeiho_UnkMotion0_Anim(Item_GObj* gobj);
