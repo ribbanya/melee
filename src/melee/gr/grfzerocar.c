@@ -12,6 +12,7 @@
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>
 #include <baselib/debug.h>
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/object.h>
 

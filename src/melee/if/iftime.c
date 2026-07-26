@@ -21,6 +21,7 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
+#include <baselib/tobj.h>
 
 static struct ifTime_data {
     HSD_GObj* match_timer;

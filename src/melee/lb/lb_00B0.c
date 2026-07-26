@@ -12,6 +12,7 @@
 #include <baselib/quatlib.h>
 #include <baselib/robj.h>
 #include <baselib/texp.h>
+#include <baselib/tobj.h>
 
 /* 00B9D8 */ static void lb_8000B9D8(HSD_JObj*, float**, s32);
 /* 00BC04 */ static HSD_JObj* lbFindJObjWithAObj(HSD_JObj*);

@@ -33,6 +33,7 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/sislib.h>
+#include <baselib/tobj.h>
 
 /* 312834 */ static char* _tyList_80312834(char* buf, u32 num);
 /* 312904 */ static void _tyList_80312904(void*, s8);
