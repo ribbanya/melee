@@ -1,28 +1,26 @@
 #include "gm_1601.h"
 
-#include <baselib/video.h>
-#include <sysdolphin/baselib/controller.h>
-#include <sysdolphin/baselib/debugconsole_main.h>
-#include <sysdolphin/baselib/hsd_3915.h>
-#include <sysdolphin/baselib/random.h>
-#include <melee/pl/player.h>
-#include <baselib/sislib.h>
-#include <dolphin/os.h>
-#include <stdio.h>
-
 #include "gm_1601.static.h"
+
 #include "gm_unsplit.h"
 #include "gmmain_lib.h"
 #include "gmstamina.h"
 #include "placeholder.h"
+
 #include "baselib/gobjplink.h"
 #include "baselib/jobj.h"
 #include "cm/camera.h"
+
 #include "ft/forward.h"
 #include "gm/forward.h"
+
 #include "gm/types.h"
+
+#include "gr/forward.h"
+
 #include "gr/ground.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "if/ifnametag.h"
 #include "if/ifstatus.h"
 #include "lb/lb_00B0.h"
@@ -30,15 +28,28 @@
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbtime.h"
+
+#include "mn/forward.h"
+
 #include "mn/mnstagesel.h"
 #include "mn/types.h"
+
+#include "pl/forward.h"
+
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"
+#include "sc/types.h"
 #include "ty/toy.h"
-#include "gr/forward.h"
-#include "gr/types.h"
-#include "mn/forward.h"
-#include "pl/forward.h"
+
+#include <stdio.h>
+#include <dolphin/os.h>
+#include <baselib/sislib.h>
+#include <baselib/video.h>
+#include <sysdolphin/baselib/controller.h>
+#include <sysdolphin/baselib/debugconsole_main.h>
+#include <sysdolphin/baselib/hsd_3915.h>
+#include <sysdolphin/baselib/random.h>
+#include <melee/pl/player.h>
 
 /// JP character names
 char* lbl_803D4D74[] = {

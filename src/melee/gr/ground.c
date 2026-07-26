@@ -1,31 +1,5 @@
 #include "ground.h"
 
-#include <common_structs.h>
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/debug.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/memory.h>
-#include <baselib/particle.h>
-#include <baselib/random.h>
-#include <baselib/spline.h>
-#include <baselib/wobj.h>
-#include <baselib/aobj.h>
-#include <baselib/object.h>
-#include <dolphin/os.h>
-
 #include "grbattle.h"
 #include "grbigblue.h"
 #include "grbigblueroute.h"
@@ -99,7 +73,11 @@
 #include "inlines.h"
 #include "platform.h"
 #include "stage.h"
+
 #include "cm/camera.h"
+
+#include "ft/forward.h"
+
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gm/gm_unsplit.h"
@@ -118,9 +96,35 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 #include "pl/player.h"
+#include "sc/types.h"
 #include "ty/toy.h"
 #include "ty/tydisplay.h"
-#include "ft/forward.h"
+
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/cobj.h>
+#include <baselib/debug.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/memory.h>
+#include <baselib/object.h>
+#include <baselib/particle.h>
+#include <baselib/random.h>
+#include <baselib/spline.h>
+#include <baselib/wobj.h>
 
 /* 1BFFA8 */ static void Ground_OnStart(void);
 /* 1BFFAC */ static void Ground_801BFFAC(bool);

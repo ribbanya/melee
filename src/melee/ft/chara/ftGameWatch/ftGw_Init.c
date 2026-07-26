@@ -1,8 +1,5 @@
 #include "ftGw_Init.h"
 
-#include <common_structs.h>
-#include <platform.h>
-
 #include "ftGw_Attack100.h"
 #include "ftGw_Attack11.h"
 #include "ftGw_AttackAir.h"
@@ -12,16 +9,23 @@
 #include "ftGw_SpecialLw.h"
 #include "ftGw_SpecialN.h"
 #include "ftGw_SpecialS.h"
+
+#include <platform.h>
+
 #include "ft/ftcamera.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftmaterial.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
+
 #include "ftCommon/forward.h"
-#include "it/it_26B1.h"
-#include "ft/dobjlist.h"
+
 #include "ftGameWatch/types.h"
+#include "it/it_26B1.h"
+#include "it/types.h"
+
+#include <common_structs.h>
 
 MotionState ftGw_Init_MotionStateTable[ftGw_MS_SelfCount] = {
     {
