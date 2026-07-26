@@ -1,6 +1,20 @@
 #include "gm_19EF.h"
 
+#include "gm_1601.h"
+#include "gm_1A36.h"
+#include "gm_1A3F.h"
+#include "gm_1A45.h"
+
 #include <placeholder.h>
+
+#include "dolphin/pad.h"
+
+#include "ft/forward.h"
+#include "gm/forward.h"
+
+#include "gm/types.h"
+#include "mn/inlines.h"
+
 #include <baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
@@ -18,15 +32,6 @@
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
 #include <melee/ty/toy.h>
-
-#include "gm_1601.h"
-#include "gm_1A36.h"
-#include "gm_1A3F.h"
-#include "gm_1A45.h"
-#include "dolphin/pad.h"
-#include "ft/forward.h"
-#include "gm/forward.h"
-#include "mn/inlines.h"
 
 static HSD_Archive* lbl_804D6698;
 static SceneDesc* lbl_804D669C;
