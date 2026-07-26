@@ -1,5 +1,13 @@
 #include "itclimbersstring.h"
 
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
 #include "ft/chara/ftPopo/ftPp_SpecialS.h"
@@ -11,9 +19,10 @@
 #include "it/items/inlines.h"
 #include "it/items/itlinkhookshot.h"
 #include "lb/lbvector.h"
-
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
+#include "ft/types.h"
+#include "ftPopo/types.h"
+#include "it/it_26B1.h"
+#include "it/types.h"
 
 ItemStateTable it_803F76B8[] = {
     { -1, itClimbersstring_UnkMotion3_Anim, NULL, NULL },

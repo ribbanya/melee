@@ -2,17 +2,14 @@
 #define GALE01_IT_2725
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/itCharItems.h"
 #include "it/items/types.h"
 #include "it/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 struct lb_80014638_arg1_t;
 

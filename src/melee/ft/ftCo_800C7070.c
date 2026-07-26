@@ -1,10 +1,8 @@
 #include "ftCo_800C7070.h"
 
-#include <placeholder.h>
+#include <platform.h>
 
 #include "ft/fighter.h"
-#include "ft/types.h"
-
 #include "ftCommon/forward.h"
 
 /// @todo #ftCo_800C6150

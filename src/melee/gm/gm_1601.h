@@ -1,13 +1,22 @@
 #ifndef GALE01_1601C4
 #define GALE01_1601C4
 
+#include <baselib/forward.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/forward.h"
 #include "gm/forward.h"
 #include "mn/forward.h"
-
 #include "mn/types.h"
-
 #include "sc/forward.h"
+
+struct MatchEnd;
+struct gm_801677C0_s;
+struct lbl_8046B488_t;
+struct lbl_8046B6A0_24C_t;
 
 #define NUM_UNLOCKABLE_CHARACTERS 11
 #define NUM_UNLOCKABLE_STAGES 11

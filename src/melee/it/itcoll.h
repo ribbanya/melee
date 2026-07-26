@@ -2,10 +2,11 @@
 #define _itcoll_h_
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "lb/types.h"
+#include "ft/forward.h"
 
 /* 26F9A0 */ void it_8026F9A0(void);
 /* 26F9AC */ void it_8026F9AC(s32, void*, HitCapsule*, Item*, HurtCapsule*);

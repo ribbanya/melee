@@ -2,9 +2,9 @@
 #define GALE01_29B0C8
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 29B0C8 */ void itEvYoshiEgg_Spawn(Vec3*);

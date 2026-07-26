@@ -1,13 +1,14 @@
 #include "class.h"
 
+#include <__mem.h>
+#include <string.h>
+#include <dolphin/os.h>
+#include <baselib/forward.h>
+
 #include "debug.h"
 #include "hash.h"
 #include "memory.h"
 #include "object.h" // IWYU pragma: keep
-
-#include <__mem.h>
-#include <string.h>
-#include <dolphin/os.h>
 
 void _hsdClassInfoInit(void);
 HSD_ClassInfo hsdClass = { _hsdClassInfoInit };

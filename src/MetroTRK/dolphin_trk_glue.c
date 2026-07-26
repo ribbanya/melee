@@ -1,14 +1,12 @@
 #include "dolphin_trk_glue.h"
 
-#include "MetroTRK/mem_TRK.h"
-#include "MetroTRK/targimpl.h"
-#include "MetroTRK/trk.h"
-
 #include <dolphin/amc/AmcExi2Comm.h>
 #include <dolphin/db/DBInterface.h>
 #include <dolphin/odemu/odemu.h>
-#include <dolphin/os/OSError.h>
 #include <dolphin/os/OSThread.h>
+#include <MetroTRK/dserror.h>
+#include <dolphin/os/OSContext.h>
+#include <placeholder.h>
 
 static DBCommTable gDBCommTable = { NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 

@@ -1,11 +1,12 @@
 #ifndef GALE01_1FDFF8
 #define GALE01_1FDFF8
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "gr/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 1FDFF8 */ void grKraid_OnDemoInit(bool);
 /* 1FDFFC */ void grKraid_OnInit(void);

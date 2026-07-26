@@ -1,19 +1,14 @@
 #include "ftCo_ItemParasolOpen.h"
 
+#include <platform.h>
+
 #include "ftCo_ItemParasolFall.h"
 #include "math.h"
-
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftCommon/ftCo_ItemParasolFallSpecial.h"
@@ -22,8 +17,9 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_SpecialAir.h"
 #include "ftCommon/inlines.h"
-
 #include "ftPeach/forward.h"
+#include "ft/ftanim.h"
+#include "ftCommon/types.h"
 
 bool ftCo_800CEE70(Fighter_GObj* gobj)
 {

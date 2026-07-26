@@ -1,8 +1,9 @@
 #ifndef GALE01_2C9D40
 #define GALE01_2C9D40
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2C9D40 */ void it_802C9D40(Item_GObj*);

@@ -2,9 +2,9 @@
 #define MELEE_MN_ITEMSW_H
 
 #include <placeholder.h>
-
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <dolphin/types.h>
 
 typedef struct MnItemSwData {
     /* 0x00 */ u8 menu_kind;

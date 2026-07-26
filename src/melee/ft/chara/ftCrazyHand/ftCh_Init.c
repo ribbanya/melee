@@ -1,20 +1,14 @@
 #include "ftCh_Init.h"
 
-#include "types.h"
-
-#include <placeholder.h>
 #include <platform.h>
 
+#include "types.h"
 #include "baselib/forward.h"
-
-#include "ft/fighter.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcamera.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCrazyHand/forward.h"
-
 #include "ftCrazyHand/ftCh_BackAirplane1.h"
 #include "ftCrazyHand/ftCh_BackAirplane2.h"
 #include "ftCrazyHand/ftCh_BackAirplane3.h"
@@ -47,10 +41,7 @@
 #include "ftCrazyHand/ftCh_Walk.h"
 #include "ftMasterHand/types.h"
 #include "it/it_26B1.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "it/forward.h"
 
 /// @todo Figure out how to use #GET_JOBJ instead.
 static inline HSD_JObj* get_jobj(HSD_GObj* gobj)

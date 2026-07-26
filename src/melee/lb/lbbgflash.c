@@ -9,12 +9,11 @@
 #include "lbbgflash.h"
 
 #include <placeholder.h>
+#include <MetroTRK/intrinsics.h>
+#include <dolphin/gx/GXEnum.h>
 
 #include "dolphin/gx/GXStruct.h"
-
 #include "lb/forward.h"
-
-#include "lb/lbspdisplay.h"
 
 typedef struct BgFlashState {
     u8 active : 1;

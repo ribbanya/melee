@@ -2,12 +2,12 @@
 #define GALE01_20741C
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 #include "ft/forward.h"
 #include "gr/forward.h"
 #include "lb/forward.h"
-
-#include <dolphin/mtx.h>
 
 /* 20741C */ void grKinokoRoute_8020741C(bool);
 /* 207420 */ void grKinokoRoute_80207420(void);

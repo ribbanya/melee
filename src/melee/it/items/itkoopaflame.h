@@ -2,10 +2,11 @@
 #define GALE01_2AC8A8
 
 #include <platform.h>
-
 #include <melee/it/forward.h>
-
 #include <melee/it/items/types.h>
+#include <dolphin/mtx.h>
+
+#include "ft/forward.h"
 
 /* 2AC8A8 */ void itKoopaFlame_Update_Direction(Item_GObj* gobj, int flags);
 /* 2AC9F8 */ void itKoopaFlame_Update_Angle(Item_GObj* gobj, int flags);

@@ -2,10 +2,9 @@
 #define SYSDOLPHIN_DEBCONSOLE_MAIN_H
 
 #include <placeholder.h>
-
 #include <sysdolphin/baselib/forward.h>
-
 #include <dolphin/os/OSContext.h>
+#include <dolphin/types.h>
 
 /* 394950 */ void hsd_80394950(OSContext*);
 /* 394A48 */ void Exception_ReportStackTrace(OSContext*, int);

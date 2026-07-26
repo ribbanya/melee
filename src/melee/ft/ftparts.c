@@ -1,19 +1,6 @@
 #include "ftparts.h"
 
-#include "fighter.h"
-#include "ftdata.h"
-#include "ftmaterial.h"
-
-#include "ftparts.static.h"
-
-#include "inlines.h"
-#include "placeholder.h"
-#include "types.h"
-
-#include "ft/forward.h"
-
 #include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
 #include <sysdolphin/baselib/class.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/displayfunc.h>
@@ -24,6 +11,23 @@
 #include <sysdolphin/baselib/pobj.h>
 #include <sysdolphin/baselib/util.h>
 #include <melee/lb/lbrefract.h>
+#include <baselib/dobj.h>
+#include <baselib/list.h>
+#include <baselib/mobj.h>
+#include <baselib/objalloc.h>
+#include <baselib/tobj.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXTransform.h>
+
+#include "fighter.h"
+#include "ftdata.h"
+#include "ftmaterial.h"
+#include "ftparts.static.h"
+#include "placeholder.h"
+#include "ft/forward.h"
+#include "ft/dobjlist.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
 
 #define MAX_FT_PARTS 140
 

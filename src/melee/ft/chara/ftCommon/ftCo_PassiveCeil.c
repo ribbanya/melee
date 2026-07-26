@@ -1,9 +1,12 @@
 #include "ftCo_PassiveCeil.h"
 
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ftCo_DamageFall.h"
 #include "ftCo_DownAttack.h"
 #include "ftCo_FallSpecial.h"
-
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -13,14 +16,9 @@
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftKirby/ftkirby.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 
 bool ftCo_800C23A0(Fighter_GObj* gobj)
 {

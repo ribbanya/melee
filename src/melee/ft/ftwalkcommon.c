@@ -1,24 +1,19 @@
 #include "ftwalkcommon.h"
 
+#include <baselib/forward.h>
+#include <baselib/debug.h>
+#include <dolphin/os.h>
+#include <platform.h>
+
 #include "fighter.h"
 #include "ft_081B.h"
 #include "ftcommon.h"
 #include "math.h"
-
 #include "ft/forward.h"
-
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/debug.h>
 
 FtWalkType ftWalkCommon_GetWalkType(HSD_GObj* gobj)
 {

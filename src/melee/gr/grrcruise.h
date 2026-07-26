@@ -1,9 +1,12 @@
 #ifndef GALE01_1FF164
 #define GALE01_1FF164
 
-#include "gr/forward.h"
-
 #include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
+
+#include "gr/forward.h"
+#include "lb/forward.h"
 
 /* 1FF164 */ void grRCruise_801FF164(bool);
 /* 1FF168 */ void grRCruise_801FF168(void);

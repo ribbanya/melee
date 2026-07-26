@@ -1,17 +1,20 @@
 #include "ftdata.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+#include <baselib/debug.h>
+#include <baselib/objalloc.h>
+#include <baselib/archive.h>
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+#include <string.h>
+
 #include "ft_0877.h"
 #include "ft_459A.h"
-
-#include <platform.h>
-
 #include "ef/efasync.h"
-
-#include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_0852.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCaptain/ftCa_Init.h"
 #include "ftCaptain/ftCa_SpecialLw.h"
@@ -109,7 +112,6 @@
 #include "ftSeak/ftSk_SpecialHi.h"
 #include "ftSeak/ftSk_SpecialLw.h"
 #include "ftSeak/ftSk_SpecialN.h"
-#include "ftSeak/ftSk_SpecialS.h"
 #include "ftYoshi/ftYs_Guard.h"
 #include "ftYoshi/ftYs_Init.h"
 #include "ftYoshi/ftYs_SpecialHi.h"
@@ -127,11 +129,8 @@
 #include "lb/lbdvd.h"
 #include "lb/lbfile.h"
 #include "pl/player.h"
-
-#include <baselib/forward.h>
-
-#include <baselib/debug.h>
-#include <baselib/objalloc.h>
+#include "ft/forward.h"
+#include "pl/forward.h"
 
 extern int ft_8045996C[FTKIND_MAX];
 

@@ -1,29 +1,25 @@
 #include "ftLk_SpecialLw.h"
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
-#include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
-
 #include "ftLink/forward.h"
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itlinkbomb.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 /* 0EB75C */ static bool updateBomb(HSD_GObj* gobj, FtMotionId msid);
 /* 0EB7C8 */ static void spawnBomb(HSD_GObj* gobj);

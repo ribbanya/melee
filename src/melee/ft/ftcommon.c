@@ -1,5 +1,16 @@
 #include "ftcommon.h"
 
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/rumble.h>
+#include <melee/it/items/itpeachparasol.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+
 #include "fighter.h"
 #include "ft_081B.h"
 #include "ft_0877.h"
@@ -8,18 +19,14 @@
 #include "ftlib.h"
 #include "ftparts.h"
 #include "stdbool.h"
-
 #include "ef/eflib.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0C88.h"
 #include "ft/ft_0DF0.h"
 #include "ft/ftchangeparam.h"
 #include "ft/ftcolanim.h"
-#include "ft/ftmaterial.h"
 #include "ft/ftmetal.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Damage.h"
@@ -28,9 +35,7 @@
 #include "ftCommon/ftCo_HammerWait.h"
 #include "ftCommon/ftpickupitem.h"
 #include "gm/gm_unsplit.h"
-
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "it/items/it_2E5A.h"
@@ -38,23 +43,13 @@
 #include "it/items/itrabbitc.h"
 #include "it/items/itsword.h"
 #include "lb/lbspdisplay.h"
-
 #include "mp/forward.h"
-
 #include "mp/mplib.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 #include "sfx/crowdsfx.h"
-
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/rumble.h>
-#include <melee/it/items/itpeachparasol.h>
+#include "ftCommon/forward.h"
+#include "lb/forward.h"
 
 const Vec3 ftCo_803B74A0 = { 0 };
 

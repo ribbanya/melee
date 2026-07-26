@@ -3,8 +3,8 @@
 
 #include <baselib/forward.h>
 #include <melee/gr/forward.h>
-
 #include <dolphin/mtx.h>
+#include <stdbool.h>
 
 /* 1E3030 */ void grStory_801E3030(void);
 /* 1E30A8 */ void grStory_UnkStage0_OnLoad(void);

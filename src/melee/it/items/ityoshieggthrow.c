@@ -1,11 +1,17 @@
 #include "ityoshieggthrow.h"
 
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "ef/efasync.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7118[] = {
     {

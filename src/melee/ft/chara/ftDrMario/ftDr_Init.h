@@ -1,9 +1,11 @@
 #ifndef GALE01_14949C
 #define GALE01_14949C
 
-#include "ft/types.h"
-
 #include <baselib/forward.h>
+#include <platform.h>
+
+#include "ft/types.h"
+#include "ftMario/forward.h"
 
 /* 14949C */ void ftDr_Init_OnDeath(HSD_GObj* gobj);
 /* 1494E4 */ void ftDr_Init_OnLoad(HSD_GObj* gobj);

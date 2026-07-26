@@ -2,9 +2,10 @@
 #define GALE01_29BAB8
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 typedef struct itKirbyCutterBeamAttributes {

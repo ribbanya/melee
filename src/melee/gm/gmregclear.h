@@ -3,12 +3,16 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <melee/gm/forward.h>
 #include <melee/gr/forward.h>
 #include <melee/it/forward.h>
 #include <melee/mn/forward.h>
 #include <sysdolphin/baselib/forward.h>
+
+#include "ft/forward.h"
+
+struct Unk1PData_x24;
+struct gmm_x0_528_t;
 
 /* 17C0C8 */ void fn_8017C0C8(void);
 /* 17C1A4 */ void fn_8017C1A4(HSD_GObj*);

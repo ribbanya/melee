@@ -1,12 +1,14 @@
 #ifndef GALE01_1BA8FC
 #define GALE01_1BA8FC
 
-#include "gm/types.h"
+#include <sysdolphin/baselib/forward.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "gm/types.h"
 #include "melee/ft/forward.h"
 #include "melee/gm/forward.h"
 #include "melee/mn/forward.h"
-#include <sysdolphin/baselib/forward.h>
 
 /* 1BA8FC */ UNK_RET gm_801BA8FC(UNK_PARAMS);
 /* 1BA938 */ void gm_801BA938(struct EventData*, int lo, int hi, bool);

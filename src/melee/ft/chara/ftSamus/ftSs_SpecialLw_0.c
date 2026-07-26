@@ -1,9 +1,12 @@
 #include "ftSs_SpecialLw_0.h"
 
+#include <common_structs.h>
+#include <trigf.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ftSs_Init.h"
 #include "ftSs_SpecialLw_1.h"
-#include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -11,9 +14,6 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Attack1.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackHi3.h"
@@ -27,10 +27,8 @@
 #include "ftCommon/ftCo_SpecialS.h"
 #include "ftCommon/ftCo_SquatWait.h"
 #include "lb/lbcollision.h"
-
-#include <common_structs.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftSamus/types.h"
 
 void ftSs_Init_80128944(HSD_GObj* gobj, float farg1, float farg2)
 {

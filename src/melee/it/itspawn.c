@@ -1,7 +1,12 @@
 #include "it/itspawn.h"
 
-#include "placeholder.h"
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
+#include <baselib/memory.h>
+#include <baselib/random.h>
+#include <common_structs.h>
 
+#include "placeholder.h"
 #include "db/db.h"
 #include "ef/efsync.h"
 #include "gm/gm_unsplit.h"
@@ -12,11 +17,7 @@
 #include "it/it_3F14.h"
 #include "it/item.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/memory.h>
-#include <baselib/random.h>
+#include "it/types.h"
 
 ItemPickTable monster;
 ItemPickTable it_804A0E50;

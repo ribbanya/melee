@@ -1,6 +1,19 @@
 #include "targimpl.h"
 
-#include "metrotrk.h"
+#include <MetroTRK/dolphin_trk.h>
+#include <MetroTRK/flush_cache.h>
+#include <MetroTRK/m7xx_m603e_reg.h>
+#include <MetroTRK/main_TRK.h>
+#include <MetroTRK/memmap.h>
+#include <MetroTRK/msgbuf.h>
+#include <MetroTRK/notify.h>
+#include <MetroTRK/nubevent.h>
+#include <MetroTRK/nubinit.h>
+#include <MetroTRK/ppc_except.h>
+#include <MetroTRK/ppc_reg.h>
+#include <MetroTRK/ppc_targimpl.h>
+#include <MetroTRK/support.h>
+#include <placeholder.h>
 
 static bool TRKTargetCheckStep(void);
 

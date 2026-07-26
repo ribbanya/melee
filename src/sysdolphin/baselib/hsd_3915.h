@@ -2,8 +2,9 @@
 #define HSD_3915_H
 
 #include <placeholder.h>
-
 #include <sysdolphin/baselib/list.h>
+#include <dolphin/gx/GXStruct.h>
+#include <platform.h>
 
 /* 391580 */ void DrawRectangle(float x, float y, float w, float h,
                                 GXColor* color);

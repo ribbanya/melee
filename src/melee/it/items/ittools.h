@@ -2,9 +2,10 @@
 #define GALE01_2EEFA8
 
 #include <placeholder.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2EEFA8 */ Item_GObj* it_802EEFA8(Vec3*, s32, f32);

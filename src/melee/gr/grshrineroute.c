@@ -1,5 +1,19 @@
 #include "grshrineroute.h"
 
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/lobj.h>
+#include <baselib/random.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <math.h>
+#include <placeholder.h>
+
 #include "granime.h"
 #include "grdisplay.h"
 #include "grlib.h"
@@ -8,8 +22,6 @@
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
-#include "types.h"
-
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/ftdevice.h"
@@ -20,16 +32,9 @@
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
 #include "pl/player.h"
-
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/random.h>
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "mp/forward.h"
 
 struct grShrineRoute_YakumonoParam {
     int x0;

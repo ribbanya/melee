@@ -1,20 +1,19 @@
+#include <placeholder.h>
+#include <stdio.h>
+#include <dolphin/os.h>
+#include <baselib/debug.h>
+#include <baselib/hsd_3B34.h>
+#include <dolphin/card/CARDMount.h>
+#include <dolphin/os/OSCache.h>
+#include <platform.h>
+
 #include "lbarchive.h"
 #include "lbcardnew.h"
 #include "lblanguage.h"
-
 #include "lbsnap.static.h"
-#include <placeholder.h>
-
 #include "ft/ft_0877.h"
 #include "gm/gm_unsplit.h"
-#include "it/it_266F.h"
-
-#include <stdio.h>
-#include <dolphin/card.h>
-#include <dolphin/os.h>
-#include <dolphin/os/OSTime.h>
-#include <baselib/debug.h>
-#include <baselib/hsd_3B34.h>
+#include "it/itspawn.h"
 
 void lbSnap_8001D2BC(void)
 {

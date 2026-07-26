@@ -2,9 +2,10 @@
 #define GALE01_0174BC
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <platform.h>
 
 #include "lb/forward.h"
-#include <baselib/forward.h>
 
 typedef void (*lbDvd_Callback)(int, int index, int, int);
 

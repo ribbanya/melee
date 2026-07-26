@@ -1,8 +1,10 @@
 #ifndef GALE01_2D007C
 #define GALE01_2D007C
 
-#include "it/forward.h"
+#include <baselib/forward.h>
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2D007C */ void itKireihana_Logic15_Spawned(Item_GObj*);

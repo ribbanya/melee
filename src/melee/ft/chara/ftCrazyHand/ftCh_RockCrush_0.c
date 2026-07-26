@@ -1,26 +1,24 @@
 #include "ftCh_RockCrush_0.h"
 
-#include "types.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
+#include "types.h"
 #include "baselib/forward.h"
-
 #include "baselib/random.h"
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
 #include "ft/ftbosslib.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
+#include "pl/forward.h"
 
 static inline float my_sqrtf(float x)
 {

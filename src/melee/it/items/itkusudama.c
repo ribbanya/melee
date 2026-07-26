@@ -1,20 +1,18 @@
 #include "itkusudama.h"
 
-#include "math.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
 
+#include "math.h"
 #include "dolphin/mtx.h"
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/it_3F14.h"
 #include "it/itCommonItems.h"
 #include "it/itdrop.h"
 #include "it/item.h"
@@ -23,6 +21,8 @@
 #include "it/itmaplib.h"
 #include "it/itspawn.h"
 #include "sysdolphin/baselib/random.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 ItemStateTable it_803F59F8[] = {
     { -1, itKusudama_UnkMotion0_Anim, itKusudama_UnkMotion0_Phys,

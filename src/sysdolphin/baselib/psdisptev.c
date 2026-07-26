@@ -1,6 +1,7 @@
 #include "psdisptev.h"
 
 #include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
 
 static u32 prevTev[2];
 

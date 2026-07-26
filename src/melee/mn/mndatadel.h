@@ -2,6 +2,7 @@
 #define MELEE_MN_DATADEL_H
 
 #include <placeholder.h>
+#include <dolphin/types.h>
 
 #include "baselib/forward.h"
 

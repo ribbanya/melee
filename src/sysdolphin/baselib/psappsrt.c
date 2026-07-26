@@ -1,9 +1,9 @@
 #include "psappsrt.h"
 
-#include "objalloc.h"
-#include "psstructs.h"
-
 #include <string.h>
+#include <baselib/objalloc.h>
+
+#include "psstructs.h"
 
 /* 004D4538 */ static u16 HSD_PSAppSrt_804D7958[4];
 /* 004CDC90 */ HSD_ObjAllocData HSD_PSAppSrt_804D10B0;

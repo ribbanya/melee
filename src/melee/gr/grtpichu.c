@@ -1,22 +1,16 @@
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
-#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
+#include "gr/forward.h"
 
 /* 222B98 */ static void grTPichu_80222B98(bool);
 /* 222B9C */ static void grTPichu_80222B9C(void);

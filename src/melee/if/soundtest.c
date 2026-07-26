@@ -1,13 +1,16 @@
 #include "soundtest.h"
 
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjplink.h>
+#include <baselib/memory.h>
+#include <baselib/sobjlib.h>
+#include <dolphin/os.h>
+
 #include "placeholder.h"
-
-#include "gm/forward.h"
-
 #include "gm/gm_unsplit.h"
 #include "gm/gmmain_lib.h"
 #include "if/textlib.h"
-#include "if/types.h"
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbcardgame.h"
@@ -16,25 +19,7 @@
 #include "lb/lbsnap.h"
 #include "mn/inlines.h"
 #include "ty/toy.h"
-#include "ty/tylist.h"
-
-#include <printf.h>
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/lobj.h>
-#include <baselib/memory.h>
-#include <baselib/particle.h>
-#include <baselib/sislib.h>
-#include <baselib/sobjlib.h>
-#include <MSL/stdio.h>
-#include <MSL/string.h>
+#include "gm/types.h"
 
 /// .data
 struct un_803F9F28_t {

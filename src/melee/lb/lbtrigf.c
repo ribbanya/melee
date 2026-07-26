@@ -1,6 +1,7 @@
 #include <math.h>
 #include <trigf.h>
 #include <MetroTRK/intrinsics.h>
+#include <platform.h>
 
 /* 022DF8 */ static float lb_sqrtf(float x);
 /* 400770 */ extern float MSL_TrigF_80400770[];

@@ -1,7 +1,8 @@
 #include "gobjplink.h"
 
+#include <baselib/gobj.h>
+
 #include "debug.h"
-#include "gobj.h"
 #include "gobjgxlink.h"
 #include "gobjobject.h"
 #include "gobjproc.h"

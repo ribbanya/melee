@@ -1,12 +1,6 @@
 #include "gmopening.h"
 
-#include "gm_unsplit.h"
-#include "gmtitle.h"
-
-#include "dolphin/pad.h"
-
 #include <stdio.h>
-#include <sysdolphin/baselib/debugconsole_main.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>
 #include <sysdolphin/baselib/gobjplink.h>
@@ -18,6 +12,16 @@
 #include <melee/lb/lbmthp.h>
 #include <melee/mn/inlines.h>
 #include <melee/mn/types.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm_unsplit.h"
+#include "gmtitle.h"
+#include "gm/types.h"
 
 /* 3B7D68 */ static const Vec3 gm_803B7D68 = { 0.0f, 0.0f, 1.0f };
 /* 3B7D74 */ static const Vec3 gm_803B7D74 = { 0.0f, 0.0f, 0.0f };

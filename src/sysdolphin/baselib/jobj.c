@@ -1,25 +1,26 @@
 #include "jobj.h"
 
-#include "aobj.h"
-#include "class.h"
-#include "cobj.h"
-#include "displayfunc.h"
-#include "dobj.h"
-#include "fobj.h"
-#include "id.h"
-#include "math.h"
-#include "mobj.h"
-#include "mtx.h"
-#include "pobj.h"
-#include "robj.h"
-#include "spline.h"
-
 #include <__mem.h>
 #include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <dolphin/os.h>
+#include <baselib/aobj.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/list.h>
+#include <baselib/mobj.h>
+#include <baselib/object.h>
+#include <baselib/pobj.h>
+
+#include "cobj.h"
+#include "displayfunc.h"
+#include "dobj.h"
+#include "id.h"
+#include "mtx.h"
+#include "robj.h"
+#include "spline.h"
 
 void JObjInfoInit(void);
 HSD_JObjInfo hsdJObj = { JObjInfoInit };

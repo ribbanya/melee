@@ -1,9 +1,9 @@
 #include "ftPk_SpecialS.h"
 
-#include "ftPk_SpecialN.h"
-
 #include <platform.h>
+#include <common_structs.h>
 
+#include "ftPk_SpecialN.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -14,11 +14,8 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftPikachu/types.h"
-
 #include "lb/forward.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 void ftPk_SpecialS_Enter(HSD_GObj* gobj)
 {

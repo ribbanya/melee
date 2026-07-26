@@ -3,18 +3,20 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "dolphin/gx.h"
-
-#include "ft/forward.h"
-#include "lb/forward.h"
-
-#include "lb/types.h"
-
 #include <baselib/forward.h>
 #include <melee/sc/forward.h>
-
 #include <dolphin/mtx.h>
+#include <dolphin/gx/GXEnum.h>
+
+#include "dolphin/gx.h"
+#include "ft/forward.h"
+#include "lb/forward.h"
+#include "lb/types.h"
+
+struct Fighter_804D653C_t;
+struct lb_80011A50_t;
+struct lb_80014638_arg0_t;
+struct lb_80014638_arg1_t;
 
 /* 00F9F8 */ void lb_8000F9F8(HSD_JObj* jobj);
 /* 00FA94 */ void lb_8000FA94(void);

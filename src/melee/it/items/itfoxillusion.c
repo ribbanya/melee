@@ -1,22 +1,20 @@
 #include "itfoxillusion.h"
 
-#include "inlines.h"
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
 
+#include "inlines.h"
 #include "db/db.h"
 #include "ft/chara/ftFox/ftFx_SpecialS.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/itCharItems.h"
 #include "it/item.h"
 #include "it/types.h"
-
-#include <common_structs.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "it/itdraw.h"
 
 ItemStateTable it_803F6818[] = {
     {

@@ -1,8 +1,9 @@
 #ifndef GALE01_2CAFD4
 #define GALE01_2CAFD4
 
-#include "it/forward.h"
+#include <platform.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2CAFD4 */ void it_802CAFD4(Item_GObj*);

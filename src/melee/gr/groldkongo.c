@@ -1,13 +1,17 @@
 #include "groldkongo.h"
 
 #include <platform.h>
+#include <math.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
 
 #include "baselib/debug.h"
 #include "cm/camera.h"
 #include "ef/efsync.h"
-
-#include "forward.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "ftCommon/ftCo_BarrelWait.h"
@@ -17,16 +21,10 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <math.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "ft/forward.h"
 
 struct grOldKongo_YakumonoParam {
     s16 rframe_bird_wait_a;

@@ -2,10 +2,9 @@
 #define GALE01_ITSPAWN_H
 
 #include <platform.h>
-
 #include <melee/it/forward.h>
-
 #include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 struct it_8026C47C_arg0_t;
 

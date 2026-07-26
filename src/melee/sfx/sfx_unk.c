@@ -1,12 +1,7 @@
-#include "crowdsfx.h"
-
-#include "ft/ftlib.h"
-#include "lb/lbaudio_ax.h"
-#include "pl/player.h"
-#include "pl/plbonuslib.h"
-
 #include <baselib/gobj.h>
 #include <baselib/gobjproc.h>
+
+#include "crowdsfx.h"
 
 void un_80321900(void)
 {

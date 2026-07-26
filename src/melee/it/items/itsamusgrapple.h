@@ -1,15 +1,15 @@
 #ifndef GALE01_2B7150
 #define GALE01_2B7150
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/itCharItems.h"
 #include "it/items/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
+#include "lb/types.h"
 
 typedef struct itSamusGrapple_HitboxData {
     struct {

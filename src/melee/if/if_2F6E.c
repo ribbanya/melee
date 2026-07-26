@@ -17,6 +17,8 @@
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
 
+#include "mn/types.h"
+
 /* 3F9628 */ Element_803F9628 ifStatus_803F9628[8] = {
     { NULL, 0, if_802F74D0, 0x7C860U, 8, 0, { 0 }, 0, NULL, NULL, 0, 0 },
     { NULL, 0, if_802F73C4, 0xC351U, 0, 0, { 0 }, 0, NULL, NULL, 0, 0 },

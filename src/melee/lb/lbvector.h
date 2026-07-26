@@ -2,7 +2,6 @@
 #define GALE01_00D2EC
 
 #include <baselib/forward.h>
-
 #include <dolphin/mtx.h>
 #include <MetroTRK/intrinsics.h>
 

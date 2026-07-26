@@ -2,10 +2,10 @@
 #define MELEE_MN_NAME_NEW_H
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <platform.h>
 
 #include "mn/types.h"
-
-#include <baselib/forward.h>
 
 /* 23B0F8 */ void mnNameNew_8023B0F8(HSD_GObj* arg0, u8 arg1);
 /* 23B224 */ void mnNameNew_8023B224(u8);

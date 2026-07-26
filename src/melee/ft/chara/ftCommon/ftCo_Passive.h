@@ -2,6 +2,7 @@
 #define GALE01_098430
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 098358 */ void ftCo_800987D0(Fighter_GObj* gobj);
 /* 098430 */ void ftCo_Passive_Anim(Fighter_GObj* gobj);

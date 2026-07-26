@@ -1,5 +1,7 @@
 #include "ansi_fp.h"
 
+#include <dolphin/types.h>
+
 #include "math.h"
 
 #define __HI(x) (((s32*) &x)[0])

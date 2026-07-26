@@ -1,17 +1,6 @@
 #include "gmregclear.h"
 
-#include "platform.h"
-
-#include "baselib/forward.h"
-
-#include "dolphin/pad.h"
-
-#include "gm/forward.h"
-
-#include "mn/inlines.h"
-
 #include <math_ppc.h>
-#include <dolphin/gx.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/dobj.h>
@@ -24,34 +13,23 @@
 #include <sysdolphin/baselib/random.h>
 #include <sysdolphin/baselib/sislib.h>
 #include <sysdolphin/baselib/tobj.h>
-#include <sysdolphin/baselib/util.h>
 #include <melee/cm/camera.h>
 #include <melee/db/db.h>
-#include <melee/ef/efasync.h>
-#include <melee/ef/eflib.h>
 #include <melee/ft/ft_0877.h>
 #include <melee/ft/ftbosslib.h>
 #include <melee/ft/ftlib.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_16AE.h>
 #include <melee/gm/gm_16F1.h>
-#include <melee/gm/gm_17AD.h>
-#include <melee/gm/gm_17BA.h>
 #include <melee/gm/gm_1832.h>
-#include <melee/gm/gm_19EF.h>
 #include <melee/gm/gm_1A36.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gm_1A45.h>
-#include <melee/gm/gm_1A7A.h>
-#include <melee/gm/gm_1ADD.h>
-#include <melee/gm/gm_1AED.h>
 #include <melee/gm/gm_1B03.h>
 #include <melee/gm/gm_1BA8.h>
-#include <melee/gm/gm_1BFA.h>
 #include <melee/gm/gmadventure.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmregcommon.h>
-#include <melee/gm/gmtoulib.h>
 #include <melee/gm/types.h>
 #include <melee/gr/ground.h>
 #include <melee/gr/grpushon.h>
@@ -61,7 +39,6 @@
 #include <melee/if/ifstatus.h>
 #include <melee/if/ifstock.h>
 #include <melee/if/iftime.h>
-#include <melee/it/item.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lbaudio_ax.h>
@@ -71,10 +48,21 @@
 #include <melee/lb/lblanguage.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/lb/lbtime.h>
-#include <melee/mp/mpcoll.h>
 #include <melee/pl/player.h>
 #include <melee/sc/types.h>
 #include <melee/ty/toy.h>
+#include <baselib/cobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+
+#include "platform.h"
+#include "dolphin/pad.h"
+#include "mn/inlines.h"
+#include "gr/forward.h"
+#include "mn/types.h"
+#include "pl/forward.h"
 
 typedef struct lbl_804706D8_t {
     s16 x0;

@@ -1,10 +1,16 @@
 #include "ftCo_0A01.h"
 
-#include "ftpickupitem.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <dolphin/mtx.h>
+#include <melee/ft/ftcmdscript.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <dolphin/gx/GXStruct.h>
 
+#include "ftpickupitem.h"
 #include "baselib/random.h"
 #include "cm/camera.h"
 #include "ft/chara/ftPopo/ftPp_SpecialLw.h"
@@ -12,16 +18,13 @@
 #include "ft/ft_0877.h"
 #include "ft/ftcpuattack.h"
 #include "ft/ftlib.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
 #include "ftDonkey/forward.h"
 #include "ftKoopa/forward.h"
 #include "ftMewtwo/forward.h"
 #include "ftPopo/forward.h"
 #include "ftSamus/forward.h"
-
 #include "gm/gm_unsplit.h"
 #include "gr/grbigblue.h"
 #include "gr/grcastle.h"
@@ -43,12 +46,17 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 #include "pl/player.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <dolphin/mtx.h>
-#include <melee/ft/ftcmdscript.h>
-#include <MetroTRK/intrinsics.h>
+#include "ftDonkey/types.h"
+#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
+#include "ftMewtwo/types.h"
+#include "ftSamus/types.h"
+#include "gm/forward.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "it/it_26B1.h"
+#include "lb/forward.h"
+#include "pl/forward.h"
 
 /**
  * Priority table, mapping ItemKind to priority number,

@@ -1,11 +1,12 @@
 #ifndef GALE01_2246D8
 #define GALE01_2246D8
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "gr/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 2246D8 */ void grTGanon_802246D8(bool);
 /* 2246DC */ void grTGanon_802246DC(void);

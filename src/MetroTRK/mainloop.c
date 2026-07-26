@@ -1,5 +1,8 @@
 #include "mainloop.h"
 
+#include <MetroTRK/nubevent.h>
+#include <platform.h>
+
 #include "MetroTRK/dispatch.h"
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/serpoll.h"

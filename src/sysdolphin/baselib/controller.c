@@ -1,14 +1,14 @@
 #include "controller.h"
 
-#include "placeholder.h"
-
-#include "baselib/rumble.h"
-#include "baselib/util.h"
-
 #include <math_ppc.h>
 #include <trigf.h>
-#include <dolphin/os/OSInterrupt.h>
 #include <dolphin/pad.h>
+#include <baselib/forward.h>
+#include <dolphin/os.h>
+#include <dolphin/os/OSResetSW.h>
+#include <math.h>
+
+#include "baselib/rumble.h"
 
 HSD_PadStatus default_status_data = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };

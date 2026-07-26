@@ -2,8 +2,8 @@
 #define MELEE_GM_1BFA_H
 
 #include <placeholder.h>
-
 #include <melee/gm/forward.h>
+#include <dolphin/types.h>
 
 typedef struct un_804A1F48_t {
     u16 x0;

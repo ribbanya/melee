@@ -2,17 +2,15 @@
 #define _jobj_h_
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 #include "baselib/class.h"
 #include "baselib/debug.h"
-
 #include "baselib/forward.h" // IWYU pragma: export
-
 #include "baselib/list.h"
 #include "baselib/object.h"
 #include "baselib/pobj.h"
-
-#include <dolphin/mtx.h>
 
 struct HSD_JObj;
 

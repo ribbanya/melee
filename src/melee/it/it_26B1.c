@@ -1,18 +1,18 @@
 #include "it_26B1.h"
 
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <MetroTRK/intrinsics.h>
+
 #include "it_2725.h"
 #include "itanimlist.h"
-
-#include <placeholder.h>
-
 #include "ft/ftlib.h"
 #include "ft/types.h"
 #include "gm/gm_unsplit.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
-#include "it/it_2725.h"
 #include "it/it_3F14.h"
-#include "it/itanimlist.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/items/itbat.h"
@@ -31,13 +31,8 @@
 #include "it/items/ittomato.h"
 #include "it/ithitbox.h"
 #include "it/types.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <MetroTRK/intrinsics.h>
+#include "it/itspawn.h"
+#include "lb/types.h"
 
 static inline float _sqrtfItem(float x)
 {

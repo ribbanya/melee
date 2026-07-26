@@ -1,18 +1,18 @@
 #include "ftCo_CliffWait.h"
 
+#include <platform.h>
+
 #include "ftCo_CliffAttack.h"
 #include "ftCo_CliffClimb.h"
 #include "ftCo_CliffJump.h"
 #include "ftCo_DamageFall.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 /* 09A9AC */ static bool ftCo_8009A9AC(Fighter_GObj* gobj);
 

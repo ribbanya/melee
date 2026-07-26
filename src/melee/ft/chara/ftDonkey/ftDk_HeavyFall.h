@@ -2,6 +2,7 @@
 #define GALE01_0E030C
 
 #include <baselib/forward.h>
+#include <stdbool.h>
 
 /* 0E030C */ void ftDk_HeavyFall_IASA(HSD_GObj* gobj);
 /* 0E0330 */ void ftDk_HeavyFall_Phys(HSD_GObj* gobj);

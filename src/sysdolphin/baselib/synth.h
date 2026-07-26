@@ -2,8 +2,8 @@
 #define SYSDOLPHIN_SYNTH_H
 
 #include <placeholder.h>
-
 #include <dolphin/ax.h>
+#include <platform.h>
 
 struct HSD_SynthSFXNode;
 

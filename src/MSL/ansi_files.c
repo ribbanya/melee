@@ -1,5 +1,6 @@
 #include <console_io.h>
 #include <stdio.h>
+#include <stddef.h>
 
 FILE __files[3] = {
     {

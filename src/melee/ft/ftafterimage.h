@@ -1,6 +1,8 @@
 #ifndef GALE01_0C2600
 #define GALE01_0C2600
 
+#include <dolphin/types.h>
+
 #include "ft/forward.h"
 
 /* 0C2600 */ void ftCo_800C2600(Fighter_GObj* gobj, u32 arg1);

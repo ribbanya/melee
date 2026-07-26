@@ -1,24 +1,26 @@
 #include "lbcardgame.h"
 
-#include "lbcardgame.static.h"
+#include <dolphin/os.h>
+#include <sysdolphin/baselib/cobj.h>
+#include <sysdolphin/baselib/gobj.h>
+#include <sysdolphin/baselib/gobjgxlink.h>
+#include <sysdolphin/baselib/gobjobject.h>
+#include <sysdolphin/baselib/gobjproc.h>
+#include <sysdolphin/baselib/jobj.h>
+#include <baselib/debug.h>
+#include <dolphin/card/CARDMount.h>
+#include <placeholder.h>
+#include <stdio.h>
 
+#include "lbcardgame.static.h"
 #include "gm/gm_unsplit.h"
 #include "gm/gmmain_lib.h"
 #include "if/textlib.h"
 #include "lb/lbarchive.h"
 #include "lb/lbcardnew.h"
 #include "lb/lblanguage.h"
-
-#include <dolphin/card.h>
-#include <dolphin/os.h>
-#include <sysdolphin/baselib/cobj.h>
-#include <sysdolphin/baselib/controller.h>
-#include <sysdolphin/baselib/gobj.h>
-#include <sysdolphin/baselib/gobjgxlink.h>
-#include <sysdolphin/baselib/gobjobject.h>
-#include <sysdolphin/baselib/gobjproc.h>
-#include <sysdolphin/baselib/hsd_3AA7.h>
-#include <sysdolphin/baselib/jobj.h>
+#include "gm/forward.h"
+#include "sc/types.h"
 
 static struct {
     u32 x0, x4, x8;

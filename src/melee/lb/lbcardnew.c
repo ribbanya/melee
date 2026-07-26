@@ -1,14 +1,21 @@
 #include "lbcardnew.h"
 
-#include "lbcardnew.static.h"
-
 #include <dolphin/card.h>
-#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/hsd_3AA7.h>
 #include <sysdolphin/baselib/hsd_3B27.h>
 #include <sysdolphin/baselib/memory.h>
-#include <melee/lb/lb_0195.h>
 #include <MSL/strtoul.h>
+#include <baselib/debug.h>
+#include <ctype.h>
+#include <dolphin/card/CARDDelete.h>
+#include <dolphin/card/CARDMount.h>
+#include <dolphin/card/CARDOpen.h>
+#include <dolphin/dvd.h>
+#include <dolphin/os.h>
+#include <string.h>
+
+#include "lbcardnew.static.h"
+#include "lb/types.h"
 
 int lb_80019BB8(int card_result)
 {

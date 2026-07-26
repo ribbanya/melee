@@ -2,8 +2,8 @@
 #define GALE01_3A949C
 
 #include <placeholder.h>
-
 #include <Gecko_setjmp.h>
+#include <dolphin/types.h>
 
 typedef struct {
     u8 x0[0x80 * 0x24];

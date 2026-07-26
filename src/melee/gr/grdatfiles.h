@@ -2,11 +2,10 @@
 #define GALE01_1C5FC0
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "gr/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 1C5FC0 */ void grDatFiles_801C5FC0(HSD_Archive*, void* data, u32 length);
 /* 1C6038 */ void grDatFiles_801C6038(void*, s32, s32);

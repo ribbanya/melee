@@ -1,22 +1,20 @@
 #include "gmtou_1.h"
 
-#include "gm_1601.h"
-#include "gm_1A3F.h"
-#include "gm_1A45.h"
-#include "gm_unsplit.h"
-#include "gmtou_1.h"
-#include "gmtoulib.h"
-#include "types.h"
-
 #include <placeholder.h>
+#include <baselib/controller.h>
+#include <baselib/dobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/jobj.h>
+#include <baselib/mobj.h>
+#include <baselib/random.h>
+#include <baselib/sislib.h>
+#include <platform.h>
 
-#include "baselib/fog.h"
-#include "baselib/gobjgxlink.h"
-#include "baselib/gobjobject.h"
+#include "gm_unsplit.h"
 #include "dolphin/pad.h"
-
-#include "gm/forward.h"
-
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbdvd.h"
@@ -24,22 +22,7 @@
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "sc/types.h"
-
-#include <printf.h>
-#include <dolphin/os.h>
-#include <baselib/controller.h>
-#include <baselib/dobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/mobj.h>
-#include <baselib/particle.h>
-#include <baselib/random.h>
-#include <baselib/sislib.h>
+#include "gm/types.h"
 
 /** @todo .sdata2 literal-order anchor (same idiom as gmtou_0.c/gmtou_2.c):
  * retail keeps -19.5f/13.0f at the head of this TU's pool (0x804DA7E0/E4),

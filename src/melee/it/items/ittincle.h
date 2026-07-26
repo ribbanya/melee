@@ -2,9 +2,11 @@
 #define GALE01_2EB5C8
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2EB5C8 */ void it_802EB5C8(Item_GObj*);

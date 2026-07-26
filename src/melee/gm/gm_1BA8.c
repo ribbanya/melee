@@ -1,30 +1,13 @@
 #include "gm_1BA8.h"
 
-#include "gm_1BA8.static.h"
-
-#include "gm_unsplit.h"
-
-#include "ft/forward.h"
-
-#include "vi/vi1201v1.h"
-
-#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
-#include <sysdolphin/baselib/memory.h>
 #include <sysdolphin/baselib/random.h>
 #include <melee/cm/camera.h>
 #include <melee/db/db.h>
 #include <melee/ft/ftbosslib.h>
 #include <melee/ft/ftlib.h>
-#include <melee/gm/gm_1601.h>
-#include <melee/gm/gm_16F1.h>
-#include <melee/gm/gm_unsplit.h>
-#include <melee/gm/gmcamera.h>
 #include <melee/gm/gmmain_lib.h>
-#include <melee/gm/gmresult.h>
-#include <melee/gm/gmresultplayer.h>
-#include <melee/gm/gmtoulib.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 #include <melee/gr/ground.h>
@@ -37,22 +20,24 @@
 #include <melee/lb/lbcardnew.h>
 #include <melee/lb/lbdvd.h>
 #include <melee/lb/lbmthp.h>
-#include <melee/lb/lbsnap.h>
-#include <melee/lb/lbtime.h>
 #include <melee/lb/types.h>
-#include <melee/mn/mngallery.h>
 #include <melee/mn/types.h>
 #include <melee/pl/player.h>
 #include <melee/pl/plbonuslib.h>
-#include <melee/vi/types.h>
 #include <melee/vi/vi0102.h>
 #include <melee/vi/vi0401.h>
-#include <melee/vi/vi0402.h>
 #include <melee/vi/vi0501.h>
 #include <melee/vi/vi0502.h>
 #include <melee/vi/vi1101.h>
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
+
+#include "gm_1BA8.static.h"
+#include "gm_unsplit.h"
+#include "ft/forward.h"
+#include "pl/forward.h"
 
 GameScene gm_803DF618_Scenes[] = {
     {

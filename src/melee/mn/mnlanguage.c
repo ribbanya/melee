@@ -1,5 +1,3 @@
-#include "baselib/gobjuserdata.h"
-
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>
@@ -15,6 +13,15 @@
 #include <melee/mn/inlines.h>
 #include <melee/mn/mnlanguage.h>
 #include <melee/mn/mnmain.h>
+#include <baselib/debug.h>
+#include <baselib/object.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
+#include "baselib/gobjuserdata.h"
+#include "gm/forward.h"
+#include "lb/lbaudio_ax.h"
+#include "mn/forward.h"
 
 extern HSD_Archive* mn_804D6BB8;
 static HSD_GObj* mnLanguage_804D6C50;

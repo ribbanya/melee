@@ -2,9 +2,7 @@
 #define MELEE_GM_CLASSIC_H
 
 #include <placeholder.h>
-
 #include <melee/gm/forward.h>
-
 #include <melee/gm/types.h>
 
 /* 1B2F78 */ void gmClassic_OnLoad(void);

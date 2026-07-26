@@ -1,29 +1,22 @@
 #include "ftPr_SpecialS.h"
 
 #include <placeholder.h>
+#include <common_structs.h>
+#include <math.h>
+#include <stddef.h>
 
 #include "forward.h"
-
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftPurin/types.h"
-
-#include <common_structs.h>
-#include <math.h>
-#include <baselib/archive.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/objalloc.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 static MotionFlags const ftPr_MF_SpecialS_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx | Ft_MF_SkipHit;

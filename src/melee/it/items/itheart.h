@@ -1,8 +1,10 @@
 #ifndef GALE01_283AE4
 #define GALE01_283AE4
 
-#include "it/forward.h"
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 #include "it/types.h"
 

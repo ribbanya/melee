@@ -1,11 +1,18 @@
 #include "hsd_3AA7.h"
 
+#include <dolphin/card.h>
+#include <dolphin/os.h>
+#include <dolphin/card/CARDCreate.h>
+#include <dolphin/card/CARDOpen.h>
+#include <dolphin/card/CARDRdwr.h>
+#include <dolphin/card/CARDRead.h>
+#include <dolphin/card/CARDWrite.h>
+#include <platform.h>
+#include <string.h>
+
 #include "hsd_3A94.h"
 #include "hsd_3B2B.h"
 #include "hsd_3B2E.h"
-
-#include <dolphin/card.h>
-#include <dolphin/os.h>
 
 #define CARD_QUEUE_CMD(cmd) fn_803AC168((cmd))
 #define CARD_WRITE_BLOCK(state, block_idx, file_id, seq_num, payload,         \

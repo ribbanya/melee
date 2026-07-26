@@ -2,8 +2,10 @@
 #define GALE01_0CDD14
 
 #include <placeholder.h>
+#include <dolphin/mtx.h>
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 0CDD14 */ void ftCo_Attack_800CDD14(Fighter_GObj* gobj);
 /* 0CDDA0 */ void ftCo_800CDDA0(Fighter_GObj*);

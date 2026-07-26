@@ -1,19 +1,21 @@
 #include "ittarucann.h"
 
-#include "types.h"
-
-#include "baselib/forward.h"
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Barrel.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
-#include "it/itanimlist.h"
 #include "it/iteffect.h"
 #include "it/item.h"
 #include "it/ithitbox.h"
@@ -21,9 +23,10 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "MSL/math.h"
-
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 /// @todo Remove
 static f32 fake1(void);

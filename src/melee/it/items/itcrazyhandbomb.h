@@ -2,10 +2,13 @@
 #define GALE01_2F0F6C
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2F0F6C */ void it_802F0F6C(Fighter_GObj* owner, Vec3* prev_pos, Vec3* pos,
                               ItemKind kind, f32 facing_dir);

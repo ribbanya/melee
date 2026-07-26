@@ -1,22 +1,22 @@
 #include "itfreeze.h"
 
-#include "placeholder.h"
+#include <baselib/jobj.h>
+#include <MSL/math.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
 
+#include "placeholder.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-
-#include "it/items/forward.h"
-
 #include "it/items/itwhitebea.h"
 #include "it/itmaplib.h"
-
-#include <baselib/jobj.h>
-#include <MSL/math.h>
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 ItemStateTable it_803F5D28[] = { {
                                      0,

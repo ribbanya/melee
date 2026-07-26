@@ -2,6 +2,7 @@
 #define _METROTRK_SERPOLL_H
 
 #include <platform.h>
+#include <MetroTRK/dserror.h>
 
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/trk.h"

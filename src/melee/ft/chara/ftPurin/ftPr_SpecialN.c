@@ -1,16 +1,24 @@
 #include "ftPr_SpecialN.h"
 
 #include <placeholder.h>
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <melee/cm/camera.h>
+#include <melee/ef/efsync.h>
+#include <melee/mp/mplib.h>
+#include <baselib/debug.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "forward.h"
-
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftCo_Landing.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -20,21 +28,11 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftPurin/ftPr_Init.h"
 #include "ftPurin/types.h"
-
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
-#include <baselib/archive.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/objalloc.h>
-#include <melee/cm/camera.h>
-#include <melee/ef/efsync.h>
-#include <melee/mp/mplib.h>
+#include "ft/ftanim.h"
+#include "lb/forward.h"
 
 static void sdata2_order(void)
 {

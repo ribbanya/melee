@@ -1,7 +1,10 @@
 #include "itarwinglaser.h"
 
-#include <placeholder.h>
 #include <platform.h>
+#include <trigf.h>
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
 
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
@@ -9,17 +12,15 @@
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
-
-#include <trigf.h>
-#include <baselib/jobj.h>
-#include <MSL/math.h>
+#include "gr/forward.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 typedef struct ArwingLaserAttr {
     /* +0 */ ItemAttr* x0;

@@ -2,12 +2,11 @@
 #define GALE01_2B3368
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
 
 /* 2B3368 */ Item_GObj* it_802B3368(Item_GObj* gobj);
 /* 2B338C */ Item_GObj* it_802B338C(Item_GObj* owner, Vec3* pos,

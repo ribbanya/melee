@@ -2,20 +2,13 @@
 
 #include "ftDr_AppealS.h"
 #include "types.h"
-
 #include "forward.h"
-
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AppealS.h"
-
-#include "ftMario/forward.h"
-
 #include "ftMario/ftMr_Init.h"
 #include "ftMario/ftMr_SpecialHi.h"
 #include "ftMario/ftMr_SpecialLw.h"
@@ -24,6 +17,7 @@
 #include "ftMario/types.h"
 #include "it/it_26B1.h"
 #include "it/items/itdrmariopill.h"
+#include "it/forward.h"
 
 MotionState ftDr_Init_MotionStateTable[ftMr_MS_SelfCount] = {
     {

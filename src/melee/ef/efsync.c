@@ -1,18 +1,24 @@
 #include "efsync.h"
 
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+#include <stdarg.h>
+
 #include "efalt.h"
 #include "efasync.h"
 #include "efdata.h"
 #include "eflib.h"
 #include "types.h"
-
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
-#include "baselib/particle.h"
 #include "baselib/psstructs.h"
 #include "baselib/random.h"
 #include "ft/inlines.h"
 #include "MSL/math.h"
+#include "ft/forward.h"
 
 /*
  * TODO: efSync_Spawn is at 98% matching, and its associated jump

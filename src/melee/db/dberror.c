@@ -1,15 +1,17 @@
-#include "db.h"
-
 #include <dolphin/base/PPCArch.h>
 #include <dolphin/db.h>
 #include <dolphin/os.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/debugconsole_main.h>
-#include <sysdolphin/baselib/hsd_3933.h>
 #include <sysdolphin/baselib/hsd_393C.h>
 #include <sysdolphin/baselib/video.h>
 #include <melee/lb/lb_0195.h>
-#include <melee/lb/lbcardnew.h>
+#include <dolphin/os/OSContext.h>
+#include <dolphin/os/OSError.h>
+#include <platform.h>
+#include <stdarg.h>
+
+#include "db.h"
 
 void db_ClearFPUExceptions(void)
 {

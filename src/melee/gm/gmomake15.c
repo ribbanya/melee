@@ -1,10 +1,5 @@
 #include "gmomake15.h"
 
-#include "gm_unsplit.h"
-#include "gmopening.h"
-
-#include "dolphin/pad.h"
-
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>
 #include <sysdolphin/baselib/sobjlib.h>
@@ -12,6 +7,14 @@
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbmthp.h>
 #include <melee/mn/inlines.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm_unsplit.h"
+#include "gmopening.h"
+#include "gm/types.h"
 
 static HSD_GObj* gm_804D6858;
 

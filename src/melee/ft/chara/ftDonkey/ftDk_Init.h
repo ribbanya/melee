@@ -1,8 +1,10 @@
 #ifndef GALE01_10D740
 #define GALE01_10D740
 
-#include "ft/types.h"
+#include <baselib/forward.h>
+#include <stdbool.h>
 
+#include "ft/types.h"
 #include "ftDonkey/forward.h"
 
 /* 10D740 */ void ftDk_Init_OnDeath(HSD_GObj* gobj);

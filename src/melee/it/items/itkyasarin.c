@@ -1,9 +1,10 @@
 #include "itkyasarin.h"
 
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+
 #include "placeholder.h"
-
-#include "gr/forward.h"
-
 #include "gr/grinishie2.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -11,17 +12,13 @@
 #include "it/it_3F14.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-
-#include "it/items/forward.h"
-
 #include "it/items/itkyasarinegg.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/itzako.h"
 #include "MSL/math.h"
-
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "it/types.h"
+#include "lb/forward.h"
 
 ItemStateTable it_803F90D0[] = {
     {

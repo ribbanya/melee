@@ -1,6 +1,7 @@
 #include "leak.h"
 
 #include <dolphin/os.h>
+#include <dolphin/types.h>
 
 #define HEAP_MAGIC 0x01234567
 

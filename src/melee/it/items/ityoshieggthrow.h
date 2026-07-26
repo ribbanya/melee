@@ -3,10 +3,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2B2890 */ void it_802B2890(Item_GObj*);
 /* 2B28C8 */ void it_802B28C8(Item_GObj* gobj, Vec3* pos, Vec3* offset,

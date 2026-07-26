@@ -2,7 +2,6 @@
 #define MELEE_MN_INFOBONUS_H
 
 #include <placeholder.h>
-
 #include <baselib/forward.h>
 
 /* 2528F8 */ int mnInfoBonus_802528F8(void);

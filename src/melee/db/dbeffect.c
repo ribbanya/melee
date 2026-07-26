@@ -1,6 +1,7 @@
-#include "db.h"
-
 #include <melee/if/ifall.h>
+#include <common_structs.h>
+
+#include "db.h"
 
 int db_MiscVisualEffectsStatus;
 

@@ -1,14 +1,11 @@
 #include "ftMh_BackAirplane2.h"
 
 #include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
 
 void ftMh_BackAirplane2_IASA(HSD_GObj* gobj)
 {

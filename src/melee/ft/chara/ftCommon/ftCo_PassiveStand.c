@@ -1,14 +1,11 @@
 #include "ftCo_PassiveStand.h"
 
+#include <platform.h>
+#include <common_structs.h>
+
 #include "ftCo_DownAttack.h"
 #include "math.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -17,9 +14,8 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 09855C */ static void ftCo_800989D4(Fighter_GObj* gobj, FtMotionId msid);
 

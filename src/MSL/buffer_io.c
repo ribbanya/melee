@@ -1,5 +1,7 @@
 #include "buffer_io.h"
 
+#include <stdio.h>
+
 void __prep_buffer(FILE* file)
 {
     file->buffer_ptr = file->buffer;

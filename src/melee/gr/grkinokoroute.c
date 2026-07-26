@@ -1,9 +1,18 @@
 #include "grkinokoroute.h"
 
-#include "ground.h"
-
 #include <platform.h>
+#include <math_ppc.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
 
+#include "ground.h"
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/ftdevice.h"
@@ -20,16 +29,9 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/psstructs.h>
-#include <baselib/random.h>
+#include "gr/granime.h"
+#include "gr/types.h"
+#include "it/forward.h"
 
 static struct {
     int x0;

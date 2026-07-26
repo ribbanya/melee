@@ -1,9 +1,11 @@
 #include "mn/mndatadel.h"
 
+#include <baselib/object.h>
+#include <baselib/sislib.h>
+#include <platform.h>
+
 #include "mn/mndatadel.static.h"
-
 #include "placeholder.h"
-
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
@@ -27,6 +29,7 @@
 #include "sc/types.h"
 #include "sysdolphin/baselib/debug.h"
 #include "ty/toy.h"
+#include "mn/forward.h"
 
 static void sdata2_order(void)
 {

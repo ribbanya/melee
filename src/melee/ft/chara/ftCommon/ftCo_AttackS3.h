@@ -5,6 +5,7 @@
 #include <platform.h>
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 08B658 */ bool ftCo_AttackS3_CheckInput(Fighter_GObj* gobj);
 /* 08B8D4 */ void ftCo_AttackS3_Anim(Fighter_GObj* gobj);

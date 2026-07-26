@@ -1,16 +1,24 @@
 #include "grbigblue.h"
 
-#include "grbigblue.static.h"
+#include <placeholder.h>
+#include <platform.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/memory.h>
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/os.h>
 
+#include "grbigblue.static.h"
 #include "grdisplay.h"
 #include "grfzerocar.h"
 #include "grmaterial.h"
 #include "ground.h"
-#include "placeholder.h"
-
-#include <placeholder.h>
-#include <platform.h>
-
 #include "baselib/debug.h"
 #include "cm/camera.h"
 #include "gm/gm_1A45.h"
@@ -25,15 +33,8 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/memory.h>
-#include <baselib/random.h>
+#include "gr/granime.h"
+#include "mp/forward.h"
 
 /* 1E8560 */ static void fn_801E8560(void* user_data, int joint_id,
                                      CollData* coll, int coll_x50,

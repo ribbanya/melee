@@ -1,34 +1,23 @@
 #include "textlib.h"
 
-#include "platform.h"
+#include <printf.h>
+#include <stdarg.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
+#include <baselib/memory.h>
+#include <MSL/math.h>
+#include <MSL/string.h>
+#include <baselib/objalloc.h>
+#include <common_structs.h>
 
+#include "platform.h"
 #include "baselib/controller.h"
 #include "baselib/debug.h"
 #include "if/textdraw.h"
 #include "if/types.h"
 #include "lb/lb_00B0.h"
-#include "lb/lbaudio_ax.h"
 #include "mn/inlines.h"
 #include "ty/toy.h"
-
-#include <printf.h>
-#include <stdarg.h>
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/lobj.h>
-#include <baselib/memory.h>
-#include <baselib/particle.h>
-#include <baselib/sislib.h>
-#include <MSL/math.h>
-#include <MSL/stdio.h>
-#include <MSL/string.h>
 
 struct unk_series {
     s16 values[26];

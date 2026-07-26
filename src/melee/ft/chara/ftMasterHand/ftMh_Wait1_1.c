@@ -5,8 +5,6 @@
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 
-#include <dolphin/mtx.h>
-
 void ftMh_MS_375_80154C78(HSD_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);

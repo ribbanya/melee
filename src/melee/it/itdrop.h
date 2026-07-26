@@ -2,6 +2,7 @@
 #define GALE01_ITDROP_H
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/types.h"
 

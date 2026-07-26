@@ -6,6 +6,13 @@
 #include <melee/ft/ft_081B.h>
 #include <melee/ft/ftcommon.h>
 #include <melee/it/it_26B1.h>
+#include <baselib/jobj.h>
+#include <platform.h>
+
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "it/forward.h"
 
 void ftCo_800CE0CC(HSD_GObj*); /* extern */
 void ftCo_800CE14C(HSD_GObj*); /* extern */

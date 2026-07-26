@@ -1,8 +1,9 @@
 #ifndef GALE01_2CCF9C
 #define GALE01_2CCF9C
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2CCF9C */ void itFreezer_802CCF9C(Item_GObj*);

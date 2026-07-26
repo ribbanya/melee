@@ -1,11 +1,14 @@
 #include "ftCo_YoshiEgg.h"
 
+#include <platform.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+
 #include "ftCo_Bury.h"
 #include "ftCo_CaptureKoopa.h"
 #include "placeholder.h"
-
-#include <platform.h>
-
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -19,16 +22,10 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "ftYoshi/ftYs_SpecialN.h"
-
 #include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 0BBCC0 */ static void ftCo_800BBCC0(Fighter_GObj* gobj);
 

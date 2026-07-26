@@ -2,9 +2,9 @@
 #define GALE01_2E4A44
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2E4A44 */ void it_802E4A44(Item_GObj*);

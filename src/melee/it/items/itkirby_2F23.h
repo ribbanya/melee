@@ -2,10 +2,12 @@
 #define GALE01_2F23AC
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2F23AC */ f64 it_802F23AC(Item_GObj* obj, Vec3* pos);
 /* 2F23EC */ void it_802F23EC(Item_GObj* gobj, Fighter_GObj* owner_gobj,

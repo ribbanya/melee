@@ -2,12 +2,12 @@
 #define GALE01_2993E0
 
 #include <platform.h>
+#include <common_structs.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <common_structs.h>
 
 /* 2996D0 */ Item_GObj* it_802996D0(HSD_GObj*, Vec3*, u32, f32);
 /* 299B6C */ bool itLGunBeam_Logic39_DmgDealt(Item_GObj*);

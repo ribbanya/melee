@@ -1,20 +1,25 @@
 #include "itkabigon.h"
 
-#include "inlines.h"
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
+#include "inlines.h"
 #include "cm/camera.h"
-#include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
 #include "it/itmaplib.h"
-
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7AD8[] = {
     { 0, itKabigon_UnkMotion0_Anim, itKabigon_UnkMotion0_Phys,

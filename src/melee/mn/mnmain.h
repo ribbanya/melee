@@ -3,15 +3,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "gm/forward.h"
-#include "mn/forward.h"
-
-#include "mn/types.h"
-
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 #include <baselib/object.h>
+#include <baselib/forward.h>
+
+#include "gm/forward.h"
+#include "mn/forward.h"
+#include "mn/types.h"
 
 typedef struct _MainMenuData {
     /* 0x0000 */ MenuKind8 menu_kind;

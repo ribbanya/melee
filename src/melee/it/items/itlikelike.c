@@ -1,18 +1,18 @@
 #include "itlikelike.h"
 
-#include "math.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
 
+#include "math.h"
 #include "cm/camera.h"
 #include "ft/ftCo_800C78B0.h"
 #include "ft/ftlib.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -25,9 +25,9 @@
 #include "lb/lb_00B0.h"
 #include "lb/types.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/gobj.h>
-#include <baselib/random.h>
+#include "ft/forward.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 #define GET_ATTRS(ip)                                                         \
     ((itLikelikeAttributes*) ip->xC4_article_data->x4_specialAttributes)

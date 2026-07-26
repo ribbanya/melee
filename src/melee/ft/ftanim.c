@@ -1,7 +1,5 @@
 #include "ftanim.h"
 
-#include "placeholder.h"
-
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/jobj.h>
@@ -9,16 +7,21 @@
 #include <sysdolphin/baselib/object.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack100.h>
 #include <melee/ft/fighter.h>
-#include <melee/ft/ft_0852.h>
 #include <melee/ft/ftaction.h>
 #include <melee/ft/ftcommon.h>
 #include <melee/ft/ftdata.h>
 #include <melee/ft/ftparts.h>
-#include <melee/ft/inlines.h>
 #include <melee/ft/types.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbanim.h>
 #include <melee/lb/lbvector.h>
+#include <baselib/debug.h>
+#include <baselib/tobj.h>
+#include <dolphin/mtx.h>
+
+#include "placeholder.h"
+#include "ft/dobjlist.h"
+#include "lb/forward.h"
 
 static HSD_AnimJoint* ftAnim_804590D8[30];
 static HSD_MatAnimJoint* ftAnim_804590D8_unk[30];

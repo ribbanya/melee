@@ -1,9 +1,9 @@
 #include "hsd_392C.h"
 
 #include <placeholder.h>
-
 #include <dolphin/mcc.h>
 #include <sysdolphin/baselib/hsd_3933.h>
+#include <dolphin/os.h>
 
 struct ParticleConsoleState {
     /* 00 */ u8 x0_b0 : 1;

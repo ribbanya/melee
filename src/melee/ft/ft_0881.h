@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "ft/forward.h"
-
 #include "ft/types.h"
 
 /* 0881D8 */ void ft_800881D8(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan);

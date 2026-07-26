@@ -1,9 +1,11 @@
 #include "ftCo_FallSpecial.h"
 
-#include "ftCo_DamageFall.h"
-
 #include <platform.h>
+#include <common_structs.h>
+#include <math.h>
+#include <placeholder.h>
 
+#include "ftCo_DamageFall.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -18,10 +20,8 @@
 #include "ftCommon/types.h"
 #include "mp/mplib.h"
 #include "sfx/crowdsfx.h"
-
-#include <common_structs.h>
-#include <math.h>
-#include <dolphin/mtx.h>
+#include "ftCommon/forward.h"
+#include "mp/forward.h"
 
 void ftCo_800968C8(Fighter_GObj* gobj)
 {

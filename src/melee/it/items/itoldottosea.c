@@ -1,9 +1,14 @@
 #include "itoldottosea.h"
 
+#include <baselib/random.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "gm/gm_16AE.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -15,8 +20,10 @@
 #include "it/itzako.h"
 #include "lb/lblanguage.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/itspawn.h"
+#include "it/types.h"
 
 ItemStateTable it_803F89C8[] = {
     { 0, itOldottosea_UnkMotion0_Anim, itOldottosea_UnkMotion0_Phys,

@@ -1,6 +1,8 @@
 #include "ftFx_AppealS.h"
 
 #include <platform.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -12,8 +14,8 @@
 #include "pl/player.h"
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
+#include "pl/forward.h"
 
 #define FTFOX_APPEALS_ATTACKID 0x72
 

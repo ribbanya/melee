@@ -1,10 +1,15 @@
 #include "itsamusgrapple.h"
 
+#include <baselib/gobj.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/objalloc.h>
+#include <common_structs.h>
+
 #include "itlinkhookshot.h"
 #include "placeholder.h"
-
-#include "baselib/forward.h"
-
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
 #include "dolphin/types.h"
@@ -13,11 +18,7 @@
 #include "ft/chara/ftCommon/ftCo_AirCatch.h"
 #include "ft/chara/ftCommon/ftCo_CliffJump.h"
 #include "ft/chara/ftCommon/ftCo_DamageFall.h"
-#include "ft/chara/ftSamus/types.h"
-#include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"
@@ -34,12 +35,8 @@
 #include "lb/lbvector.h"
 #include "lb/types.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "ft/types.h"
+#include "it/types.h"
 
 extern Vec3 it_803B8674;
 extern itSamusGrapple_HitboxData it_803B8660;

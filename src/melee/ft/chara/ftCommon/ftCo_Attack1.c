@@ -1,5 +1,8 @@
 #include "ftCo_Attack1.h"
 
+#include <platform.h>
+#include <common_structs.h>
+
 #include "ftCo_AttackHi3.h"
 #include "ftCo_AttackHi4.h"
 #include "ftCo_AttackLw3.h"
@@ -9,9 +12,6 @@
 #include "ftCo_ItemThrow.h"
 #include "ftCo_Wait.h"
 #include "ftpickupitem.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0881.h"
@@ -29,8 +29,8 @@
 #include "ftCommon/types.h"
 #include "ftGameWatch/ftGw_Attack11.h"
 #include "it/it_26B1.h"
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 08AB50 */ static void onPkPc21EC(Fighter_GObj* gobj);
 /* 08AB84 */ static void decideAttack11(Fighter_GObj* gobj);

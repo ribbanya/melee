@@ -1,6 +1,15 @@
 #include "gr/granime.h"
 
 #include <platform.h>
+#include <stdarg.h>
+#include <baselib/aobj.h>
+#include <baselib/mobj.h>
+#include <baselib/tobj.h>
+#include <Runtime/Gecko_setjmp.h>
+#include <baselib/jobj.h>
+#include <baselib/object.h>
+#include <baselib/pobj.h>
+#include <placeholder.h>
 
 #include "baselib/debug.h"
 #include "gr/grdatfiles.h"
@@ -10,15 +19,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lbheap.h"
-
-#include <stdarg.h>
-#include <dolphin/os.h>
-#include <baselib/aobj.h>
-#include <baselib/dobj.h>
-#include <baselib/mobj.h>
-#include <baselib/robj.h>
-#include <baselib/tobj.h>
-#include <Runtime/Gecko_setjmp.h>
+#include "gr/forward.h"
+#include "gr/types.h"
 
 /* 1C6620 */ static void grAnime_801C6620(HSD_PObj* arg0, HSD_ShapeAnim* arg1);
 /* 1C6710 */ static void grAnime_801C6710(HSD_TObj* tobj,

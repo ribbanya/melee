@@ -1,7 +1,21 @@
-#include "gm_1A36.h"
-
-#include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/card/CARDBios.h>
+#include <dolphin/dvd.h>
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
+#include <dolphin/pad.h>
+#include <baselib/controller.h>
+#include <baselib/debug.h>
+#include <baselib/hsd_392C.h>
+#include <baselib/hsd_3933.h>
+#include <baselib/initialize.h>
+#include <baselib/rumble.h>
+#include <baselib/sislib.h>
+#include <baselib/video.h>
+#include <common_structs.h>
+#include <dolphin/os/OSAlarm.h>
+#include <dolphin/vi/vifuncs.h>
 
 #include "db/db.h"
 #include "gm/gm_unsplit.h"
@@ -19,25 +33,6 @@
 #include "lb/lbmthp.h"
 #include "lb/lbsnap.h"
 #include "lb/lbtime.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/card/CARDBios.h>
-#include <dolphin/dvd.h>
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
-#include <dolphin/pad.h>
-#include <dolphin/vi.h>
-#include <baselib/controller.h>
-#include <baselib/debug.h>
-#include <baselib/debugconsole_main.h>
-#include <baselib/hsd_392C.h>
-#include <baselib/hsd_3933.h>
-#include <baselib/initialize.h>
-#include <baselib/particle.h>
-#include <baselib/rumble.h>
-#include <baselib/sislib.h>
-#include <baselib/video.h>
 
 extern GXRenderModeObj GXNtsc480IntDf;
 extern PadLibData HSD_PadLibData;

@@ -2,19 +2,15 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "baselib/forward.h"
+#include <math_ppc.h>
+#include <common_structs.h>
 
 #include "baselib/jobj.h"
 #include "db/db.h"
 #include "ef/efsync.h"
-
 #include "ft/forward.h"
-
 #include "ft/inlines.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -23,10 +19,7 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "mp/mplib.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <baselib/gobj.h>
+#include "it/itCharItems.h"
 
 ItemStateTable it_803F9378[] = {
     {

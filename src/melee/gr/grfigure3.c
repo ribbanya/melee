@@ -1,18 +1,17 @@
 #include "grfigure3.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
+
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "types.h"
-
-#include <platform.h>
-
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
+#include "gr/types.h"
+#include "lb/forward.h"
 
 static void grFigure3_8020E504(bool number);
 static void grFigure3_8020E508(void);

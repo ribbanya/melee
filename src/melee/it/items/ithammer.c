@@ -1,20 +1,18 @@
 #include "ithammer.h"
 
-#include "ithammerhead.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
 
+#include "ithammerhead.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
+#include "it/itgroundcoll.h"
 
 typedef struct itHammerData {
     u32 x0;

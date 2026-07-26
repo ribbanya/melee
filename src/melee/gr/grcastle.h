@@ -2,14 +2,14 @@
 #define GALE01_1CD338
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <melee/it/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "gr/forward.h"
 #include "it/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
-#include <melee/it/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 1CD338 */ void grCastle_801CD338(bool);
 /* 1CD37C */ void grCastle_801CD37C(void);

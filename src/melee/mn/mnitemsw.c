@@ -1,12 +1,6 @@
 #include "mnitemsw.h"
 
 #include <platform.h>
-
-#include "baselib/gobjgxlink.h"
-#include "baselib/gobjobject.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-
 #include <baselib/gobj.h>
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
@@ -23,6 +17,15 @@
 #include <melee/lb/lbspdisplay.h>
 #include <melee/mn/mnmainrule.h>
 #include <melee/sc/types.h>
+#include <baselib/object.h>
+#include <placeholder.h>
+
+#include "baselib/gobjgxlink.h"
+#include "baselib/gobjobject.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "gm/types.h"
+#include "mn/forward.h"
 
 extern StaticModelDesc MenMainCursorIs_Top;
 extern StaticModelDesc MenMainConIs_Top;

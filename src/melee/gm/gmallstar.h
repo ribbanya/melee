@@ -2,9 +2,9 @@
 #define MELEE_GM_ALLSTAR_H
 
 #include <placeholder.h>
-
 #include <melee/gm/forward.h>
 #include <melee/mn/forward.h>
+#include <dolphin/types.h>
 
 /* 1B5324 */ void gm_801B5324(UnkAllstarData*, u8);
 /* 1B5624 */ void gm_801B5624(GameScene*);

@@ -1,3 +1,5 @@
+#include <dolphin/types.h>
+
 #include "ft/types.h"
 
 UnkCostumeStruct ft_8045A6A8;

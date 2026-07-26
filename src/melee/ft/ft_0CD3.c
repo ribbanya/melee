@@ -1,14 +1,12 @@
+#include <stddef.h>
+
 #include "fighter.h"
 #include "ft_0CD1.h"
-#include "ftswing.h"
-
-#include "ft/chara/ftCommon/ftCo_Fall.h"
-#include "ft/ft_081B.h"
-#include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "it/items/itharisen.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
 
 void ftCo_800CD350(Fighter_GObj* gobj, int arg1, int arg2, float arg3)
 {

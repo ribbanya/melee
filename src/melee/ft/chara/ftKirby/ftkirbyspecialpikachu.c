@@ -1,32 +1,27 @@
 #include "ftkirbyspecialpikachu.h"
 
-#include "types.h"
-
 #include <placeholder.h>
+#include <common_structs.h>
+#include <stddef.h>
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
 
+#include "types.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-
 #include "ftKirby/forward.h"
-
 #include "ftKirby/ftkirby.h"
 #include "it/items/itpikachutjoltground.h"
-
-#include <common_structs.h>
-#include <stddef.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 
 void ftKb_SpecialNPk_800F9FD4(Fighter_GObj* gobj)
 {

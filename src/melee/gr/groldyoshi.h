@@ -1,9 +1,12 @@
 #ifndef GALE01_20E798
 #define GALE01_20E798
 
-#include "gr/forward.h"
-
 #include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
+
+#include "gr/forward.h"
+#include "lb/forward.h"
 
 /* 20E798 */ void grOldYoshi_8020E798(bool);
 /* 20E79C */ void grOldYoshi_8020E79C(void);

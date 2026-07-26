@@ -5,8 +5,8 @@
 
 #include "ft/chara/ftYoshi/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2F2BFC */ void it_802F2BFC(Item_GObj* gobj, Fighter_GObj* owner_gobj);
 /* 2F2CE0 */ void it_802F2CE0(Item_GObj* gobj, bool clear_destroy_type);

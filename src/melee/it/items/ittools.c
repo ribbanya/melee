@@ -1,19 +1,23 @@
 #include "ittools.h"
 
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+
 #include "inlines.h"
 #include "math.h"
 #include "placeholder.h"
-
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itcoll.h"
 #include "it/item.h"
 #include "it/ithitbox.h"
-
-#include <baselib/jobj.h>
+#include "ft/forward.h"
+#include "it/itCharItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F9260[] = {
     { 0, itTools_UnkMotion4_Anim, itTools_UnkMotion4_Phys,

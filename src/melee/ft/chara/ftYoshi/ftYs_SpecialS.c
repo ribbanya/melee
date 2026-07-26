@@ -1,22 +1,23 @@
 #include "ftYs_SpecialS.h"
 
-#include "ftYoshi/ftYs_SpecialS.static.h"
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <platform.h>
 
+#include "ftYoshi/ftYs_SpecialS.static.h"
 #include "ftYs_Init.h"
 #include "ftYs_SpecialHi.h"
 #include "math.h"
 #include "placeholder.h"
-
-#include "baselib/forward.h"
-
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -25,22 +26,13 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/inlines.h"
 #include "ftYoshi/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
 #include "mp/mplib.h"
-
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 static MotionFlags const ftYs_MF_SpecialS_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx | Ft_MF_SkipModel;

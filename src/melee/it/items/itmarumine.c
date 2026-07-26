@@ -1,22 +1,23 @@
 #include "itmarumine.h"
 
-#include "inlines.h"
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "ef/efsync.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
 #include "it/ithitbox.h"
-#include "it/itmaplib.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 
 static Vec3 const it_803B86C8 = { 0 };
 

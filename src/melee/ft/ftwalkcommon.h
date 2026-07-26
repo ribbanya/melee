@@ -1,6 +1,8 @@
 #ifndef GALE01_0DFBF8
 #define GALE01_0DFBF8
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
 

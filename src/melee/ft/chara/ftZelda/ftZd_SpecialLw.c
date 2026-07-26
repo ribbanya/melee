@@ -1,20 +1,16 @@
 #include "ftZd_SpecialLw.h"
 
-#include "math.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
 
-#include "ef/eflib.h"
+#include "math.h"
 #include "ef/efsync.h"
-
 #include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
@@ -23,8 +19,7 @@
 #include "it/items/itzeldadinfire.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 /// 8013ADB4 - 8013AE30 (124 bytes)
 /// https://decomp.me/scratch/LbMVE

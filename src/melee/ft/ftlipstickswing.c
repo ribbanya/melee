@@ -1,17 +1,19 @@
 #include "ftlipstickswing.h"
 
+#include <baselib/debug.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ef/efasync.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0CD1.h"
 #include "ft/inlines.h"
-
 #include "it/forward.h"
-
 #include "it/items/itlipstick.h"
-#include "it/items/itstarrod.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/gobj.h>
+#include "ft/types.h"
+#include "it/it_26B1.h"
 
 void ftCo_800CDAB4(Fighter_GObj* gobj, int arg1, int arg2, float arg3)
 {

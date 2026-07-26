@@ -1,6 +1,8 @@
 #ifndef GALE01_0BE7E0
 #define GALE01_0BE7E0
 
+#include <baselib/forward.h>
+
 #include "ft/forward.h"
 #include "pl/forward.h"
 

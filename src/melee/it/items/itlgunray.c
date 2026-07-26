@@ -1,6 +1,10 @@
 #include "itlgunray.h"
 
 #include <placeholder.h>
+#include <math.h>
+#include <baselib/gobj.h>
+#include <melee/it/item.h>
+#include <baselib/jobj.h>
 
 #include "db/db.h"
 #include "it/inlines.h"
@@ -9,13 +13,7 @@
 #include "it/items/inlines.h"
 #include "it/items/itfoxlaser.h"
 #include "it/types.h"
-#include "lb/lbvector.h"
-
-#include <math.h>
-#include <stdbool.h>
-#include <baselib/gobj.h>
-#include <melee/it/item.h>
-#include <melee/lb/lbrefract.h>
+#include "it/itCommonItems.h"
 
 /* 298300 */ static bool itLgunray_UnkMotion0_Anim(Item_GObj*);
 /* 2983AC */ static void it_802982AC(Item_GObj*, Item_GObj*, Article*);

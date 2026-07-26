@@ -2,10 +2,12 @@
 #define GALE01_2C6F40
 
 #include <melee/it/forward.h>
-
 #include <melee/ft/types.h>
 #include <melee/it/items/types.h>
 #include <melee/it/types.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 extern ItemStateTable it_803F7918[];
 

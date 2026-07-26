@@ -1,25 +1,19 @@
 #include "ftCh_FingerGun2.h"
 
-#include "types.h"
-
-#include <placeholder.h>
 #include <platform.h>
 
+#include "types.h"
 #include "baselib/forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftbosslib.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_BackAirplane1.h"
 #include "ftCrazyHand/ftCh_FingerBeam.h"
 #include "ftMasterHand/types.h"
 #include "pl/player.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
+#include "pl/forward.h"
 
 void ftCh_GrabUnk1_8015ABD0(HSD_GObj* gobj)
 {

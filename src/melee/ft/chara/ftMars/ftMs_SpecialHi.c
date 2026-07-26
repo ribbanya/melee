@@ -1,6 +1,7 @@
 #include "ftMs_SpecialHi.h"
 
 #include <platform.h>
+#include <common_structs.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -8,13 +9,10 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftMars/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 /// 80138208 00134DE8
 /// https://decomp.me/scratch/lrV6F

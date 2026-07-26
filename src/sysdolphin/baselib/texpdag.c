@@ -1,8 +1,10 @@
 #include "texpdag.h"
 
-#include "texp.h"
-#include "tobj.h"
+#include <baselib/texp.h>
+#include <dolphin/gx/GXEnum.h>
+#include <string.h>
 
+#include "tobj.h"
 #include "baselib/debug.h"
 
 int assign_reg(int num, u32* unused, HSD_TExpDag* list, int* order)

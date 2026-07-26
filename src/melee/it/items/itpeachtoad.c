@@ -1,15 +1,11 @@
 #include "itpeachtoad.h"
 
+#include <baselib/jobj.h>
+
 #include "inlines.h"
-
-#include "baselib/forward.h"
-
-#include "db/db.h"
 #include "ftKirby/ftkirbyspecialpeach.h"
 #include "ftPeach/ftPe_SpecialN.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"

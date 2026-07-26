@@ -1,27 +1,23 @@
 #include "ftCo_AttackDash.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+
 #include "ftCo_ItemThrow.h"
 #include "ftCo_Wait.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftswing.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirbyattackdash.h"
 #include "it/it_26B1.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
 
 /* 08B498 */ static void decideFighter(Fighter_GObj* gobj);
 /* 08B4D4 */ static void doEnter(Fighter_GObj* gobj);

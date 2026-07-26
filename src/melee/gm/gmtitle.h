@@ -2,7 +2,6 @@
 #define MELEE_GM_TITLE_H
 
 #include <placeholder.h>
-
 #include <sysdolphin/baselib/forward.h>
 
 /* 1A12C4 */ HSD_GObj* gmTitle_801A12C4(void);

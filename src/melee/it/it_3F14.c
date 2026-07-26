@@ -1,10 +1,5 @@
 #include "it_3F14.h"
 
-#include "it_266F.h"
-
-#include "it/items/itarwinglaser.h"
-#include "it/items/itheiho.h"
-#include "it/items/itkyasarinegg.h"
 #include "items/itbat.h"
 #include "items/itbombhei.h"
 #include "items/itbox.h"
@@ -48,6 +43,8 @@
 #include "items/ittarucann.h"
 #include "items/ittomato.h"
 #include "items/itwstar.h"
+#include "it/forward.h"
+#include "it/itdraw.h"
 
 /// Common items
 struct sdata_ItemGXLink it_803F1418[43] = {

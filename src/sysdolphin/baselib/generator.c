@@ -1,7 +1,5 @@
 #include "generator.h"
 
-#include "particle.h"
-
 #include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
@@ -10,6 +8,17 @@
 #include <sysdolphin/baselib/psappsrt.h>
 #include <sysdolphin/baselib/psstructs.h>
 #include <sysdolphin/baselib/random.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <baselib/list.h>
+#include <baselib/objalloc.h>
+#include <baselib/object.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+#include <string.h>
+
+#include "particle.h"
 
 /* 4D78DA */ extern u16 hsd_804D78DA;
 /* 4D78E0 */ extern u16 hsd_804D78E0;

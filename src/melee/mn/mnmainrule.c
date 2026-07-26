@@ -1,15 +1,5 @@
 #include "mnmainrule.h"
 
-#include "inlines.h"
-#include "mnmain.h"
-
-#include "baselib/gobjgxlink.h"
-#include "baselib/gobjobject.h"
-#include "baselib/gobjuserdata.h"
-#include "gm/gm_1A36.h"
-#include "gm/gm_1A3F.h"
-#include "gm/gmtoulib.h"
-
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjplink.h>
@@ -22,6 +12,17 @@
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
+
+#include "inlines.h"
+#include "baselib/gobjgxlink.h"
+#include "baselib/gobjobject.h"
+#include "baselib/gobjuserdata.h"
+#include "gm/gm_1A36.h"
+#include "gm/gm_1A3F.h"
+#include "gm/gmtoulib.h"
+#include "gm/forward.h"
+#include "mn/forward.h"
+#include "mn/mnmain.h"
 
 extern HSD_FogDesc* MenMain_fog;
 extern UNK_T MenMain_lights;

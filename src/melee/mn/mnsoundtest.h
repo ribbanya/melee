@@ -1,6 +1,8 @@
 #ifndef MELEE_MN_SOUNDTEST_H
 #define MELEE_MN_SOUNDTEST_H
 
+#include <dolphin/types.h>
+
 #include "baselib/forward.h"
 #include "mn/forward.h"
 

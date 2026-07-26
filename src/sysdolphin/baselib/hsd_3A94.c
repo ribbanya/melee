@@ -1,11 +1,12 @@
 #include "hsd_3A94.h"
 
+#include <string.h>
+#include <dolphin/card/CARDOpen.h>
+#include <platform.h>
+
 #include "hsd_3AA7.h"
 #include "hsd_3B2B.h"
 #include "hsd_3B2E.h"
-
-#include <string.h>
-#include <dolphin/card.h>
 
 extern volatile s32 hsd_804D7980;
 extern s32 hsd_804D7988;

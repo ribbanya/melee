@@ -2,19 +2,18 @@
 /// @brief Seems to deal with the challenger approaching functions.
 #include "gm_1BFA.h"
 
-#include "gm_unsplit.h"
+#include <melee/gm/types.h>
+#include <platform.h>
 
+#include "gm_unsplit.h"
 #include "baselib/memory.h"
 #include "gm/gmmain_lib.h"
-#include "if/textlib.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcardgame.h"
 #include "lb/lbcardnew.h"
 #include "lb/lbtime.h"
 #include "ty/toy.h"
-#include "ty/tylist.h"
-
-#include <melee/gm/types.h>
+#include "mn/forward.h"
 
 extern UNK_T gm_804D6860[];
 extern StartMeleeData gm_80480530;

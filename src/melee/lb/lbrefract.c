@@ -1,10 +1,6 @@
 #include "lbrefract.h"
 
-#include "lbarchive.h"
-#include "types.h"
-
 #include <placeholder.h>
-
 #include <string.h>
 #include <dolphin/gx/GXBump.h>
 #include <dolphin/gx/GXEnum.h>
@@ -23,6 +19,12 @@
 #include <baselib/pobj.h>
 #include <baselib/state.h>
 #include <MetroTRK/intrinsics.h>
+#include <baselib/tobj.h>
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+
+#include "lbarchive.h"
+#include "types.h"
 
 extern f32 lbl_803BB0E0[6];
 

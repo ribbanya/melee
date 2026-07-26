@@ -12,8 +12,6 @@
 #include <sysdolphin/baselib/sislib.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
-#include <melee/gm/gmmain_lib.h>
-#include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcardgame.h>
 #include <melee/lb/lbspdisplay.h>
@@ -21,6 +19,11 @@
 #include <melee/mn/mnmain.h>
 #include <melee/mn/mnruleplus.h>
 #include <melee/sc/types.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm/forward.h"
+#include "mn/forward.h"
 
 #define NUM_STAGES 29
 

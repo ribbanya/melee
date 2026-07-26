@@ -1,11 +1,5 @@
-#include "placeholder.h"
-
 #include <platform.h>
-
-#include "it/ithitbox.h"
-
 #include <melee/gr/forward.h>
-
 #include <dolphin/os.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
@@ -30,6 +24,17 @@
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/mp/mplib.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+
+#include "placeholder.h"
+#include "it/ithitbox.h"
+#include "ft/forward.h"
+#include "gr/granime.h"
+#include "gr/ground.h"
+#include "it/forward.h"
+#include "lb/forward.h"
+#include "mp/forward.h"
 
 struct grGreens_YakumonoParam {
     int x0_blockTimerMin;

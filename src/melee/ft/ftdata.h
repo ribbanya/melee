@@ -3,12 +3,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "ft/forward.h"
-
 #include "ft/types.h"
-
-#include <baselib/forward.h>
+#include "ftCommon/forward.h"
+#include "lb/forward.h"
 
 /* 085560 */ void ftData_80085560(int idx, int increment);
 /* 0855C8 */ void ftData_800855C8(FighterKind kind, u8 color);

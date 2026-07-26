@@ -2,9 +2,10 @@
 #define _itzrshell_h_
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 void it_802E02E8(Item_GObj*);

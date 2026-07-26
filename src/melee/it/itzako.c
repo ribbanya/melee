@@ -1,11 +1,18 @@
 #include "itzako.h"
 
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <math.h>
+#include <placeholder.h>
+
 #include "it_2725.h"
 #include "it_3F14.h"
 #include "ithitbox.h"
 #include "itmaplib.h"
 #include "itmaterial.h"
-
 #include "baselib/jobj.h"
 #include "baselib/random.h"
 #include "cm/camera.h"
@@ -16,13 +23,17 @@
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "it/inlines.h"
-#include "it/items/itheiho.h"
 #include "it/itgroundcoll.h"
 #include "items/itcoin.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "pl/plbonuslib.h"
 #include "ty/tydisplay.h"
+#include "ft/forward.h"
+#include "it/it_26B1.h"
+#include "it/item.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 static void sdata2_order(void)
 {

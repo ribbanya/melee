@@ -4,21 +4,16 @@
 #include "ftLg_SpecialLw.h"
 #include "ftLg_SpecialN.h"
 #include "ftLg_SpecialS.h"
-#include "types.h"
-
-#include "forward.h"
-
 #include "ft/ftcamera.h"
 #include "ft/ftCo_800C70D0.h"
 #include "ft/ftCo_800C7178.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
+#include "ftLuigi/types.h"
 
 MotionState ftLg_Init_MotionStateTable[ftLg_MS_SelfCount] = {
     {

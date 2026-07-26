@@ -2,6 +2,7 @@
 #define GALE01_09B9C8
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 09B9C8 */ void ftCo_8009B9C8(Fighter_GObj* gobj, int arg1);
 /* 09BA50 */ void ftCo_CargoKneebend_Anim(Fighter_GObj* gobj);

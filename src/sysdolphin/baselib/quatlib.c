@@ -1,9 +1,9 @@
 #include "quatlib.h"
 
 #include <placeholder.h>
-
 #include <trigf.h>
 #include <MSL/math.h>
+#include <MetroTRK/intrinsics.h>
 
 inline float sqrtf(float x)
 {

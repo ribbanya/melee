@@ -1,10 +1,18 @@
 #include "gr/grkongo.h"
 
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/spline.h>
+#include <baselib/debug.h>
+#include <baselib/gobjgxlink.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+
 #include "grkongo.static.h"
-
 #include "grmaterial.h"
-#include "types.h"
-
 #include "ef/efsync.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
@@ -21,18 +29,14 @@
 #include "it/itspawn.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
 #include "mp/forward.h"
-
 #include "mp/mplib.h"
 #include "MSL/math.h"
-
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/spline.h>
+#include "ft/forward.h"
+#include "gr/grdisplay.h"
+#include "gr/types.h"
+#include "it/forward.h"
+#include "lb/forward.h"
 
 GrJoint grKg_803E16E0[] = {
     { 2, 10, 19 }, { 3, 10, 22 }, { 5, 10, 43 },

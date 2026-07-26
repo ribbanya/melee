@@ -1,6 +1,8 @@
 #ifndef _BUFFER_IO
 #define _BUFFER_IO
 
+#include <stddef.h>
+
 #include "stdio.h"
 
 enum {

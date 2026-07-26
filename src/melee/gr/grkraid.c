@@ -1,17 +1,23 @@
 #include "grkraid.h"
 
+#include <baselib/controller.h>
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <dolphin/os.h>
+#include <dolphin/pad.h>
+#include <placeholder.h>
+
 #include "cm/camera.h"
 #include "ft/ftlib.h"
-
 #include "gr/forward.h"
-
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/controller.h>
-#include <baselib/random.h>
+#include "gr/granime.h"
+#include "gr/ground.h"
+#include "gr/types.h"
 
 struct grKraid_YakumonoParam {
     u32 map_time_min;

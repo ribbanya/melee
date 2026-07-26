@@ -1,7 +1,8 @@
 #include <placeholder.h>
+#include <dolphin/mtx.h>
+#include <stdbool.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 extern ItemStateTable it_803F9328[];

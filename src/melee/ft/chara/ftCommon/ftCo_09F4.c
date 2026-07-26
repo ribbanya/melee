@@ -1,13 +1,6 @@
 #include "ftCo_09F4.h"
 
-#include <placeholder.h>
 #include <platform.h>
-
-#include "ft/ftdevice.h"
-#include "gr/ground.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbspdisplay.h"
-
 #include <math.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
@@ -17,6 +10,14 @@
 #include <baselib/jobj.h>
 #include <baselib/lobj.h>
 #include <melee/sc/types.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+
+#include "ft/ftdevice.h"
+#include "gr/ground.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+#include "lb/forward.h"
 
 /* 09F480 */ static void ftCo_8009F480(Fighter_GObj* gobj);
 /* 09F54C */ static void ftCo_8009F54C(HSD_GObj* gobj, int code);

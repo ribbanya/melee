@@ -2,6 +2,7 @@
 #define MELEE_GM_17AD_H
 
 #include <placeholder.h>
+#include <dolphin/types.h>
 
 /* 17AD04 */ s32 fn_8017AD04(s32, s32);
 /* 17AD28 */ s32 fn_8017AD28(s32);

@@ -1,14 +1,15 @@
 #include "ftSs_Init.h"
 
+#include <dolphin/mtx.h>
+#include <baselib/aobj.h>
+#include <baselib/jobj.h>
+#include <baselib/object.h>
+
 #include "ftSs_SpecialHi.h"
 #include "ftSs_SpecialLw_0.h"
 #include "ftSs_SpecialLw_1.h"
 #include "ftSs_SpecialN.h"
 #include "ftSs_SpecialS.h"
-#include "types.h"
-
-#include "forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcamera.h"
 #include "ft/ftcolanim.h"
@@ -16,18 +17,13 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/aobj.h>
-#include <baselib/jobj.h>
-#include <baselib/object.h>
+#include "ftSamus/types.h"
+#include "it/forward.h"
 
 MotionState ftSs_Init_MotionStateTable[ftSs_MS_SelfCount] = {
     {

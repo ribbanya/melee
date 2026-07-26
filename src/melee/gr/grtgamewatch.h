@@ -1,11 +1,12 @@
 #ifndef GALE01_224110
 #define GALE01_224110
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "gr/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 224110 */ void grTGameWatch_80224110(bool);
 /* 224114 */ void grTGameWatch_80224114(void);

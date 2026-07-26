@@ -2,7 +2,6 @@
 
 #include "cm/camera.h"
 #include "dolphin/pad.h"
-#include "gm/gm_1A36.h"
 #include "gm/gm_unsplit.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"

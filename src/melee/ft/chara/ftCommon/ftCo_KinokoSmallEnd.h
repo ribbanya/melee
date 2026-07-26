@@ -1,6 +1,8 @@
 #ifndef MELEE_FTCO_KINOKOSMALLEND_H
 #define MELEE_FTCO_KINOKOSMALLEND_H
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0D237C */ bool Fighter_PoisonMushroomEnd(Fighter_GObj* gobj);

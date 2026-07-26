@@ -1,15 +1,14 @@
 #include "itparasol.h"
 
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "it/itgroundcoll.h"
 
 /// @todo Fix these to be in a single file, not math.h
 #define M_PI 3.14159265358979323846

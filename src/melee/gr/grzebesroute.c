@@ -1,22 +1,24 @@
 #include "grzebesroute.h"
 
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/lobj.h>
+#include <baselib/random.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "placeholder.h"
-
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/lobj.h>
-#include <baselib/random.h>
+#include "gr/granime.h"
+#include "mp/forward.h"
 
 struct grZebesRoute_YakumonoParam {
     int camera_timer;

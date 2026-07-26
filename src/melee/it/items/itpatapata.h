@@ -1,8 +1,10 @@
 #ifndef GALE01_2E05A0
 #define GALE01_2E05A0
 
-#include "it/forward.h"
+#include <dolphin/mtx.h>
+#include <platform.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2E05A0 */ void it_802E05A0(Item_GObj*);

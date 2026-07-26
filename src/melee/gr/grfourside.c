@@ -1,15 +1,17 @@
 #include "grfourside.h"
 
-#include "m2c_macros.h"
-#include "placeholder.h"
-
 #include <platform.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/cobj.h>
+#include <dolphin/os.h>
 
+#include "placeholder.h"
 #include "cm/camera.h"
 #include "cm/types.h"
-
-#include "forward.h"
-
 #include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/ground.h"
@@ -20,14 +22,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "mp/forward.h"
 
 struct grFourside_YakumonoParam {
     /* 00 */ int heli_wait;

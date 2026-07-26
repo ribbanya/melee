@@ -1,5 +1,9 @@
 #include "ftcolanim.h"
 
+#include <baselib/debug.h>
+#include <baselib/forward.h>
+#include <dolphin/os.h>
+
 #include "ft/chara/ftCommon/ftCo_HammerWait.h"
 #include "ft/fighter.h"
 #include "ft/ft_0D4D.h"
@@ -8,6 +12,9 @@
 #include "gm/gm_1601.h"
 #include "lb/lbspdisplay.h"
 #include "pl/player.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "lb/types.h"
 
 #pragma force_active on
 

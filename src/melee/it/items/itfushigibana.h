@@ -1,8 +1,9 @@
 #ifndef GALE01_2D6FD0
 #define GALE01_2D6FD0
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2D6FD0 */ void itFushigibana_Logic29_Spawned(Item_GObj*);

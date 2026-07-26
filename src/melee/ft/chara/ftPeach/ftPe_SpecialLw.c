@@ -1,35 +1,28 @@
 #include "ftPe_SpecialLw.h"
 
-#include "ftPe_Init.h"
-
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
 
+#include "ftPe_Init.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
-#include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
 #include "ftPeach/types.h"
-
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itpeachturnip.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
+#include "ft/ft_084E.h"
 
 /* 11CE48 */ static ItemKind pickVeg(HSD_GObj* gobj);
 /* 11D018 */ static void spawnVeg(HSD_GObj* gobj);

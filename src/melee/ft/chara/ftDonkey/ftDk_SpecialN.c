@@ -1,14 +1,11 @@
 #include "ftDk_SpecialN.h"
 
-#include "ftDk_Init.h"
-
 #include <platform.h>
+#include <common_structs.h>
 
+#include "ftDk_Init.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
-
-#include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -22,11 +19,9 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 #include "ftDonkey/types.h"
-
 #include "lb/forward.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftDonkey/forward.h"
 
 static void setCallbacks(HSD_GObj* gobj)
 {

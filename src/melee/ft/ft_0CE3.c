@@ -1,5 +1,3 @@
-#include "ft_0CDD.h"
-
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>
@@ -7,9 +5,20 @@
 #include <melee/ft/ft_0881.h>
 #include <melee/ft/ft_0892.h>
 #include <melee/ft/ftcommon.h>
-#include <melee/ft/inlines.h>
 #include <melee/it/items/itfflower.h>
 #include <melee/lb/lb_00B0.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ft_0CDD.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCaptain/types.h"
+#include "ftCommon/types.h"
+#include "it/it_26B1.h"
 
 void ftCo_800CE620(HSD_GObj*); /* extern */
 

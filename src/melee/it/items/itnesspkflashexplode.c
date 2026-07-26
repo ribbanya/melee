@@ -2,19 +2,21 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
 
 #include "cm/camera.h"
 #include "db/db.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itcoll.h"
 #include "it/item.h"
-
-#include <baselib/jobj.h>
+#include "it/itPKFlash.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 /* 2AFD44 */ static bool itNessPKFlashExplode_UnkMotion0_Coll(Item_GObj* gobj);
 

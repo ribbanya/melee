@@ -1,12 +1,12 @@
 #include "gm_17AD.h"
 
-#include "gm/inlines.h"
-
 #include <melee/pl/forward.h>
-
 #include <melee/gm/gmresult.h>
 #include <melee/gm/types.h>
 #include <melee/lb/lblanguage.h>
+#include <placeholder.h>
+
+#include "gm/inlines.h"
 
 /// @todo :: figure out how to force the other functions not to inline this
 #pragma dont_inline on

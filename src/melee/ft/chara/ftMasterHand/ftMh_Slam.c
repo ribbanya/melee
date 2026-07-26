@@ -1,27 +1,21 @@
 #include "ftMh_Slam.h"
 
-#include "ftMh_ThrownMasterHand.h"
-#include "ftMh_Wait1_2.h"
-
 #include <platform.h>
 
+#include "ftMh_ThrownMasterHand.h"
+#include "ftMh_Wait1_2.h"
 #include "ft/fighter.h"
-#include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
-#include "ftCommon/ftCo_Attack100.h"
-#include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/ftCo_Thrown.h"
-#include "ftCrazyHand/ftCh_Init.h"
 #include "ftCrazyHand/ftCh_Squeezing_1.h"
 #include "ftMasterHand/types.h"
 #include "pl/player.h"
+#include "ft/ft_084E.h"
 
 void ftMh_Slam_Anim(HSD_GObj* gobj)
 {

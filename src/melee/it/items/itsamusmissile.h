@@ -2,9 +2,9 @@
 #define GALE01_2B62D0
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 struct _m2c_stack_it_802B64FC {

@@ -4,6 +4,8 @@
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/types.h>
 
+#include "ft/forward.h"
+
 void gm_801A50B8_OnLoad(void)
 {
     u8 var_r0;

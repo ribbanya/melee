@@ -1,6 +1,8 @@
 #ifndef GALE01_10C288
 #define GALE01_10C288
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 10C3C0 */ void ftKb_SpecialNPe_8010C3C0(Fighter_GObj* gobj);

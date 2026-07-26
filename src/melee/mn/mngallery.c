@@ -1,9 +1,5 @@
 #include "mngallery.h"
 
-#include "baselib/debug.h"
-#include "baselib/memory.h"
-#include "mn/inlines.h"
-
 #include <baselib/controller.h>
 #include <baselib/displayfunc.h>
 #include <baselib/dobj.h>
@@ -18,6 +14,21 @@
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lbmthp.h>
 #include <melee/sc/types.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/mobj.h>
+#include <baselib/sislib.h>
+#include <baselib/tobj.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
+#include "baselib/debug.h"
+#include "baselib/memory.h"
+#include "mn/inlines.h"
+#include "gm/types.h"
+#include "lb/lbaudio_ax.h"
+#include "mn/mnmain.h"
 
 static StaticModelDesc mnGallery_804A0BA0;
 static StaticModelDesc mnGallery_804A0BB0;

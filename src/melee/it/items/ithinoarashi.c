@@ -1,12 +1,15 @@
 #include "ithinoarashi.h"
 
-#include "inlines.h"
+#include <math.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
 
+#include "inlines.h"
 #include "baselib/random.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
@@ -16,9 +19,9 @@
 #include "it/itmaplib.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <math.h>
-#include <trigf.h>
+#include "it/itCharItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 /* 2D60C8 */ static bool itHinoarashi_UnkMotion2_Anim(Item_GObj* gobj);
 

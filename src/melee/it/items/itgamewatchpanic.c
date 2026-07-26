@@ -1,14 +1,14 @@
 #include "itgamewatchpanic.h"
 
-#include "inlines.h"
+#include <common_structs.h>
+#include <placeholder.h>
 
-#include "db/db.h"
+#include "inlines.h"
 #include "ft/chara/ftGameWatch/ftGw_SpecialLw.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
-#include "it/itzako.h"
 
 /* 2C7FAC */ static bool itGamewatchpanic_UnkMotion1_Anim(Item_GObj*);
 

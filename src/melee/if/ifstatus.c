@@ -1,20 +1,5 @@
 #include "ifstatus.h"
 
-#include "ifall.h"
-#include "m2c_macros.h"
-#include "placeholder.h"
-
-#include "gm/gm_unsplit.h"
-#include "if/if_2F72.h"
-#include "if/ifcoget.h"
-#include "if/ifstock.h"
-#include "if/types.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "mn/mnmain.h"
-#include "pl/player.h"
-#include "sc/types.h"
-
 #include <baselib/aobj.h>
 #include <baselib/dobj.h>
 #include <baselib/gobj.h>
@@ -23,10 +8,28 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/mobj.h>
 #include <baselib/mtx.h>
 #include <baselib/random.h>
 #include <baselib/tobj.h>
+#include <baselib/debug.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+
+#include "ifall.h"
+#include "placeholder.h"
+#include "gm/gm_unsplit.h"
+#include "if/if_2F72.h"
+#include "if/ifcoget.h"
+#include "if/ifstock.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "mn/mnmain.h"
+#include "pl/player.h"
+#include "sc/types.h"
+#include "ft/forward.h"
+#include "gm/types.h"
+#include "mn/types.h"
+#include "pl/forward.h"
 
 typedef struct FlagsX {
     u32 b80 : 1;

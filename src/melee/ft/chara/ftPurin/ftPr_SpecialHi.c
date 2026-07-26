@@ -1,11 +1,9 @@
 #include "ftPr_SpecialHi.h"
 
+#include <baselib/gobj.h>
+#include <platform.h>
+
 #include "ftPr_Init.h"
-
-#include <placeholder.h>
-
-#include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -18,12 +16,8 @@
 #include "gm/gm_unsplit.h"
 #include "gr/grpstadium.h"
 #include "lb/types.h"
-
-#include <common_structs.h>
-#include <baselib/archive.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/objalloc.h>
+#include "ft/ft_084E.h"
+#include "ftPurin/forward.h"
 
 static inline void ftPurin_SpecialHi_SetVars(HSD_GObj* gobj)
 {

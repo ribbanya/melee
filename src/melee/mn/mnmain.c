@@ -1,12 +1,5 @@
 #include "mnmain.h"
 
-#include "dolphin/pad.h"
-
-#include "mn/forward.h"
-
-#include "mn/types.h"
-
-#include <math.h>
 #include <trigf.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/displayfunc.h>
@@ -49,6 +42,22 @@
 #include <melee/mn/mnsoundtest.h>
 #include <melee/mn/mnvibration.h>
 #include <melee/sc/types.h>
+#include <baselib/aobj.h>
+#include <baselib/cobj.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/memory.h>
+#include <baselib/sislib.h>
+#include <baselib/tobj.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
+#include "dolphin/pad.h"
+#include "mn/forward.h"
+#include "mn/types.h"
+#include "lb/lbspdisplay.h"
 
 static HSD_GObj* mn_804D6BA8;
 static HSD_GObj* mn_804D6BAC;

@@ -3,22 +3,17 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftFox/types.h"
 #include "ftMario/ftMr_SpecialN.h"
 #include "it/it_26B1.h"
 #include "it/items/itdrmariopill.h"
 #include "it/items/itfoxblaster.h"
 #include "it/items/itnessbat.h"
-
-#include <dolphin/mtx.h>
+#include "it/forward.h"
 
 static inline void setupInitialState(Fighter* fp)
 {

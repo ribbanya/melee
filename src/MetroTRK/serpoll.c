@@ -1,5 +1,7 @@
 #include "serpoll.h"
 
+#include <MetroTRK/msgcmd.h>
+
 #include "MetroTRK/dolphin_trk_glue.h"
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/msghndlr.h"

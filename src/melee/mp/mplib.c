@@ -1,36 +1,7 @@
 #include "mplib.h"
 
-#include "mpisland.h"
-#include "placeholder.h"
-#include "platform.h"
-#include "stdbool.h"
-#include "types.h"
-
-#include "baselib/debug.h"
-
-#include "baselib/forward.h"
-
-#include "baselib/memory.h"
-#include "db/db.h"
-#include "dolphin/gx/GXGeometry.h"
-#include "dolphin/gx/GXStruct.h"
-#include "dolphin/gx/GXVert.h"
-#include "dolphin/types.h"
-#include "ft/ftlib.h"
-#include "gr/grdynamicattr.h"
-#include "gr/ground.h"
-#include "it/inlines.h"
-#include "it/it_26B1.h"
-#include "it/itCharItems.h"
-
-#include "lb/forward.h"
-#include "mp/forward.h"
-
-#include "mp/mpcoll.h"
-
 #include <math.h>
 #include <math_ppc.h>
-#include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
 #include <sysdolphin/baselib/cobj.h>
@@ -42,7 +13,30 @@
 #include <melee/cm/camera.h>
 #include <melee/cm/types.h>
 #include <melee/gr/stage.h>
-#include <melee/lb/types.h>
+#include <baselib/state.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/os.h>
+
+#include "mpisland.h"
+#include "placeholder.h"
+#include "platform.h"
+#include "baselib/debug.h"
+#include "baselib/memory.h"
+#include "db/db.h"
+#include "dolphin/gx/GXGeometry.h"
+#include "dolphin/gx/GXStruct.h"
+#include "dolphin/gx/GXVert.h"
+#include "ft/ftlib.h"
+#include "gr/grdynamicattr.h"
+#include "gr/ground.h"
+#include "it/inlines.h"
+#include "it/it_26B1.h"
+#include "lb/forward.h"
+#include "mp/mpcoll.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "it/types.h"
 
 #define LINEID_CHECK(line, line_id)                                           \
     do {                                                                      \

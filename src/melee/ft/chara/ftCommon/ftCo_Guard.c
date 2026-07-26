@@ -1,3 +1,12 @@
+#include <common_structs.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ftCo_0C35.h"
 #include "ftCo_Attack1.h"
 #include "ftCo_AttackHi3.h"
@@ -7,14 +16,11 @@
 #include "ftCo_AttackS3.h"
 #include "ftCo_AttackS4.h"
 #include "ftCo_Escape.h"
-
 #include "ftCo_Guard.static.h"
-
 #include "ftCo_ItemThrow.h"
 #include "ftCo_Pass.h"
 #include "ftCo_ShieldBreakFly.h"
 #include "ftCo_SpecialS.h"
-
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
@@ -35,12 +41,8 @@
 #include "lb/lb_00CE.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
-
-#include <common_structs.h>
-#include <math.h>
-#include <math_ppc.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "ft/ft_084E.h"
+#include "lb/forward.h"
 
 bool ftCo_80091A2C(Fighter_GObj* gobj)
 {

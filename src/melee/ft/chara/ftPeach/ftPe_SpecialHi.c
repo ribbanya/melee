@@ -1,36 +1,29 @@
 #include "ftPe_SpecialHi.h"
 
-#include "ftPe_Init.h"
-
 #include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <melee/it/items/itpeachparasol.h>
 
+#include "ftPe_Init.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftPeach/types.h"
-
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
-#include <math.h>
-#include <dolphin/mtx.h>
-#include <melee/it/items/itpeachparasol.h>
+#include "ft/ft_084E.h"
 
 /* 11D424 */ static void ftPe_SpecialHi_8011D424(HSD_GObj* gobj);
 /* 11D598 */ static void ftPe_SpecialHi_8011DD8C(HSD_GObj* gobj);

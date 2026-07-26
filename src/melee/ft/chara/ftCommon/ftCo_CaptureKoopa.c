@@ -1,11 +1,11 @@
 #include "ftCo_CaptureKoopa.h"
 
+#include <platform.h>
+#include <baselib/jobj.h>
+
 #include "ftCo_CaptureDamageKoopa.h"
 #include "ftCo_Lift.h"
 #include "math.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
@@ -13,13 +13,9 @@
 #include "ft/types.h"
 #include "ftCaptain/types.h"
 #include "ftCommon/ftCo_Attack100.h"
-#include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 #include "ftKoopa/ftKp_Init.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
 
 void ftCo_800BC438(Fighter_GObj* gobj)
 {

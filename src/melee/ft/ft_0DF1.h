@@ -1,6 +1,8 @@
 #ifndef GALE01_0DF1C8
 #define GALE01_0DF1C8
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0DF1C8 */ bool ftCo_800DF1C8(Fighter* fp);

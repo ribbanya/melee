@@ -1,22 +1,26 @@
 #include "grticeclimber.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <platform.h>
+
 #include "granime.h"
 #include "grmaterial.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "types.h"
-
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "it/inlines.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
+#include "gr/types.h"
+#include "it/forward.h"
+#include "lb/forward.h"
 
 /* 220F10 */ static void grTIceClimber_80220F10(bool);
 /* 220F14 */ static void grTIceClimber_80220F14(void);

@@ -2,9 +2,9 @@
 #define GALE01_28EB88
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 28EB88 */ Item_GObj* it_8028EB88(Item_GObj*, Vec3*, f32, f32);

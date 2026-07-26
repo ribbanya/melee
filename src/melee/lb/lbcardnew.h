@@ -3,9 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <melee/lb/forward.h>
-
 #include <sysdolphin/baselib/gobj.h>
 
 /* 019BB8 */ int lb_80019BB8(int card_result);

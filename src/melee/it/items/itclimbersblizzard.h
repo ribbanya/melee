@@ -2,9 +2,9 @@
 #define GALE01_2C2144
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2C2144 */ Item_GObj* itClimbersBlizzard_Spawn(Item_GObj*, Vec3*, f32);

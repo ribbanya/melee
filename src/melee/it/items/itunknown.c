@@ -1,21 +1,25 @@
 #include "itunknown.h"
 
-#include "inlines.h"
+#include <trigf.h>
+#include <baselib/random.h>
+#include <MSL/math.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "inlines.h"
 #include "cm/camera.h"
-#include "ef/eflib.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "lb/lbvector.h"
-
-#include <trigf.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "it/itCommonItems.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7D60[] = {
     { 0, itUnknown_UnkMotion0_Anim, itUnknown_UnkMotion0_Phys,

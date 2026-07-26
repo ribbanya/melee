@@ -1,13 +1,13 @@
 #include "ftcamera.h"
 
-#include "ftlib.h"
-
-#include "ft/fighter.h"
-#include "ft/types.h"
-#include "gr/stage.h"
-
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
+#include <stdbool.h>
+
+#include "ftlib.h"
+#include "ft/fighter.h"
+#include "gr/stage.h"
+#include "cm/forward.h"
 
 void ftCamera_80076018(UnkFloat6_Camera* in, UnkFloat6_Camera* out, float mul)
 {

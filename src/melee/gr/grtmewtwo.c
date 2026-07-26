@@ -1,27 +1,19 @@
 #include "grtmewtwo.h"
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
-#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
 #include "mp/forward.h"
-
 #include "mp/mplib.h"
-
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
 
 typedef struct grTMewtwo_UnkStruct {
     DynamicsDesc* x0;

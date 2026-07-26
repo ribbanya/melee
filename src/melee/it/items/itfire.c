@@ -1,19 +1,18 @@
 #include "itfire.h"
 
-#include "inlines.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <common_structs.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
+#include "it/itCharItems.h"
+#include "it/itgroundcoll.h"
 
 ItemStateTable it_803F7C10[] = {
     { 0, itFire_UnkMotion0_Anim, itFire_UnkMotion0_Phys,

@@ -1,4 +1,13 @@
+#include <baselib/gobjgxlink.h>
+#include <baselib/mobj.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+
 #include "grpura.static.h"
+#include "gr/forward.h"
+#include "gr/granime.h"
+#include "lb/forward.h"
 
 /* 211CFC */ static void grPura_80211CFC(bool);
 /* 211D00 */ static void grPura_80211D00(void);

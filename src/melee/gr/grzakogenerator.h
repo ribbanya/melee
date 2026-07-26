@@ -2,8 +2,11 @@
 #define GALE01_1CA394
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <placeholder.h>
 
 #include "gr/types.h"
+#include "it/forward.h"
 
 /* 1CA394 */ grZakoGenerator_Config*
 grZakoGenerator_801CA394(grZakoGenerator_Spawn*, int,

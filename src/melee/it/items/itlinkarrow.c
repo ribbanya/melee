@@ -1,5 +1,11 @@
 #include "itlinkarrow.h"
 
+#include <math.h>
+#include <sysdolphin/baselib/random.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "baselib/gobj.h"
 #include "baselib/mtx.h"
 #include "db/db.h"
@@ -9,7 +15,6 @@
 #include "ft/chara/ftLink/ftLk_SpecialN.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itcoll.h"
@@ -19,9 +24,11 @@
 #include "lb/lbrefract.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <math.h>
-#include <sysdolphin/baselib/random.h>
+#include "it/itCharItems.h"
+#include "it/itdraw.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 static void sdata2_order(void)
 {

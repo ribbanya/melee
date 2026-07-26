@@ -1,9 +1,13 @@
 #include "itwhispyapple.h"
 
-#include "it/forward.h"
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
+#include "it/forward.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -12,8 +16,10 @@
 #include "it/itmaplib.h"
 #include "lb/lbspdisplay.h"
 #include "MSL/math.h"
-
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/itspawn.h"
+#include "it/types.h"
 
 ItemStateTable it_803F91D0[] = {
     {

@@ -1,10 +1,3 @@
-#include "placeholder.h"
-
-#include "ft/forward.h"
-
-#include "ty/toy.h"
-
-#include <baselib/gobj.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
@@ -27,6 +20,11 @@
 #include <melee/mn/mnname.h>
 #include <melee/mn/types.h>
 #include <melee/sc/types.h>
+#include <dolphin/gx/GXStruct.h>
+#include <platform.h>
+
+#include "placeholder.h"
+#include "ty/toy.h"
 
 // DATA / MELEE RECORDS / MISC RECORDS
 #define NUM_STAGES 29

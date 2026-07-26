@@ -1,11 +1,24 @@
 #include "gm_1A45.h"
 
-#include "gm_1A36.h"
+#include <dolphin/os/OSThread.h>
+#include <baselib/controller.h>
+#include <baselib/gobjproc.h>
+#include <baselib/hsd_3915.h>
+#include <baselib/hsd_392C.h>
+#include <baselib/initialize.h>
+#include <baselib/leak.h>
+#include <baselib/perf.h>
+#include <baselib/sobjlib.h>
+#include <baselib/class.h>
+#include <baselib/gobj.h>
+#include <baselib/video.h>
+#include <common_structs.h>
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
+#include <dolphin/pad.h>
 
 #include "gm_1A45.static.h"
-
 #include "gm_unsplit.h"
-
 #include "db/db.h"
 #include "gm/gmscdata.h"
 #include "if/ifcoget.h"
@@ -14,17 +27,7 @@
 #include "lb/lbcardgame.h"
 #include "lb/lbheap.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/os/OSThread.h>
-#include <baselib/controller.h>
-#include <baselib/gobjproc.h>
-#include <baselib/hsd_3915.h>
-#include <baselib/hsd_392C.h>
-#include <baselib/initialize.h>
-#include <baselib/leak.h>
-#include <baselib/particle.h>
-#include <baselib/perf.h>
-#include <baselib/sobjlib.h>
+#include "gm/types.h"
 
 static u64 gm_803DA888[8] = {
     0, 0x82FFFA, 0, 0x8EFFFA, 0x800FFA, 0x808FFA, 0x800FFA, 0,

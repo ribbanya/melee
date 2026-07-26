@@ -1,14 +1,15 @@
 #include "MetroTRK/dolphin_trk.h"
 
+#include <MetroTRK/dserror.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "MetroTRK/__exception.h"
 #include "MetroTRK/dolphin_trk_glue.h"
 #include "MetroTRK/flush_cache.h"
 #include "MetroTRK/mem_TRK.h"
-#include "MetroTRK/mpc_7xx_603e.h"
 #include "MetroTRK/ppc_except.h"
 #include "MetroTRK/ppc_targimpl.h"
-
-#include <dolphin/os.h>
 
 #define BOOTINFO 0x80000000
 #define MEM2_CACHED 0x90000000

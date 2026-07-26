@@ -1,6 +1,8 @@
 #ifndef MELEE_FTCO_DAMAGESCREW_H
 #define MELEE_FTCO_DAMAGESCREW_H
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0D2FA4 */ bool ftCo_800D2FA4(Fighter_GObj* gobj);

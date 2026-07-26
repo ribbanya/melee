@@ -1,5 +1,8 @@
 #include "object.h"
 
+#include <baselib/class.h>
+#include <baselib/forward.h>
+
 HSD_ClassInfo hsdObj = { ObjInfoInit };
 extern HSD_ClassInfo hsdClass;
 

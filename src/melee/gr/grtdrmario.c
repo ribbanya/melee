@@ -1,19 +1,16 @@
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <baselib/gobjproc.h>
+#include "gr/forward.h"
 
 /* 22050C */ static void grtDrMario_8022050C(bool);
 /* 220510 */ static void grtDrMario_80220510(void);

@@ -3,6 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
 

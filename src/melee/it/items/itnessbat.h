@@ -1,9 +1,12 @@
 #ifndef GALE01_2AD478
 #define GALE01_2AD478
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2AD478 */ HSD_GObj* it_802AD478(Item_GObj*, Vec3*, Fighter_Part, f32);

@@ -1,6 +1,9 @@
 #include "grgarden.h"
 
 #include <platform.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <dolphin/os.h>
 
 #include "baselib/psstructs.h"
 #include "ft/ftdevice.h"
@@ -17,12 +20,6 @@
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
 
 struct grGarden_YakumonoParam {
     float x0;

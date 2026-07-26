@@ -1,9 +1,13 @@
 #include "it/items/itnokonoko.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
@@ -13,6 +17,10 @@
 #include "it/itmaplib.h"
 #include "it/itzako.h"
 #include "mp/mpcoll.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/types.h"
 
 ItemStateTable it_803F85F0[] = {
     { 0, NULL, NULL, NULL },

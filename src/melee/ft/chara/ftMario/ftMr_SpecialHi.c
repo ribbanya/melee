@@ -1,23 +1,20 @@
 #include "ftMr_SpecialHi.h"
 
+#include <platform.h>
+#include <common_structs.h>
+
 #include "inlines.h"
 #include "math.h"
-#include "types.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftMario/types.h"
 
 void ftMr_SpecialHi_Enter(HSD_GObj* gobj)
 {

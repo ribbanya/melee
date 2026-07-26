@@ -1,9 +1,5 @@
 #include "gmtitle.h"
 
-#include "gm_unsplit.h"
-
-#include "dolphin/pad.h"
-
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/displayfunc.h>
 #include <sysdolphin/baselib/fog.h>
@@ -24,6 +20,17 @@
 #include <melee/mn/inlines.h>
 #include <melee/mn/mnmain.h>
 #include <melee/sc/types.h>
+#include <baselib/jobj.h>
+#include <baselib/sislib.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm_unsplit.h"
+#include "ft/forward.h"
+#include "mn/forward.h"
 
 static StaticModelDesc gmTitle_80479B28;
 static StaticModelDesc gmTitle_80479B38;

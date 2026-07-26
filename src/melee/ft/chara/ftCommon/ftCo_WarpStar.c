@@ -1,8 +1,11 @@
 #include "ftCo_WarpStar.h"
 
-#include "stdbool.h"
-
 #include <platform.h>
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <placeholder.h>
 
 #include "cm/camera.h"
 #include "ef/efasync.h"
@@ -13,20 +16,13 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/types.h"
 #include "gr/stage.h"
 #include "it/item.h"
 #include "it/items/itwstar.h"
 #include "lb/lbrefract.h"
 #include "mp/mpcoll.h"
-
-#include <math.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
 
 #pragma force_active on
 

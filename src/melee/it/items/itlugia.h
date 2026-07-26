@@ -1,8 +1,11 @@
 #ifndef GALE01_2D1438
 #define GALE01_2D1438
 
-#include "it/forward.h"
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2D1438 */ void it_2725_Logic17_Spawned(Item_GObj*);

@@ -1,24 +1,19 @@
 #include "ftCo_DamageBind.h"
 
+#include <common_structs.h>
+#include <platform.h>
+
 #include "ftCo_DamageFall.h"
 #include "ftCo_Lift.h"
-
-#include <placeholder.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
-#include "ftCommon/ftCo_Attack100.h"
-#include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "pl/player.h"
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
 
 bool ftCo_800C44CC(Fighter_GObj* gobj)
 {

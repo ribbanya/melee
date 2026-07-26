@@ -1,11 +1,9 @@
 #include "ftCa_SpecialN.h"
 
-#include "math.h"
-#include "types.h"
-
 #include <platform.h>
 
-#include "ef/eflib.h"
+#include "math.h"
+#include "types.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -17,8 +15,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 /// Create Aesthetic Wind Effect for Warlock Punch
 static void ftCaptain_SpecialN_CreateWindEffect(HSD_GObj* gobj)

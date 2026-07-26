@@ -1,9 +1,14 @@
 #include "it_279C.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
 #include "it_2725.h"
 #include "ithitbox.h"
 #include "itzako.h"
-
 #include "baselib/random.h"
 #include "db/db.h"
 #include "ef/efsync.h"
@@ -138,6 +143,13 @@
 #include "pl/plbonuslib.h"
 #include "pl/plstale.h"
 #include "pl/pltrick.h"
+#include "ft/types.h"
+#include "gm/forward.h"
+#include "it/forward.h"
+#include "it/inlines.h"
+#include "it/itCommonItems.h"
+#include "it/it_26B1.h"
+#include "it/item.h"
 
 #define IT_M_PI_2 1.5707963267948966
 

@@ -2,18 +2,17 @@
 #define MELEE_GM_RESULT_H
 
 #include <placeholder.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "baselib/forward.h"
-
 #include "dolphin/gx/GXStruct.h"
-
 #include "gm/forward.h"
-
-#include <dolphin/mtx.h>
 
 struct ResultsPlayerData;
 struct StatsEntry;
 struct StatsList;
+struct ResultsData;
 
 /* 174274 */ MatchEnd* fn_80174274(void);
 /* 174284 */ s32 fn_80174284(u8);

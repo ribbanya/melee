@@ -1,13 +1,14 @@
 #ifndef GALE01_1E3734
 #define GALE01_1E3734
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "gr/forward.h"
 #include "it/forward.h"
 #include "lb/forward.h"
 #include "sc/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 1E3734 */ void grOnett_801E3734(bool);
 /* 1E3738 */ void grOnett_801E3738(void);

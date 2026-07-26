@@ -2,14 +2,14 @@
 #define GALE01_1C87D0
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <melee/it/forward.h>
+#include <common_structs.h>
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
-#include <melee/it/forward.h>
-
-#include <common_structs.h>
-#include <baselib/gobj.h>
 
 /* 1C8D44 */ Item_GObj*
 grMaterial_801C8D44(int arg0, int arg1, Ground* arg2, Vec3* arg3, int arg4,

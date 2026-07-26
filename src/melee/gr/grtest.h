@@ -2,11 +2,11 @@
 #define GALE01_206E2C
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "gr/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 206E2C */ void grTest_80206E2C(bool);
 /* 206E30 */ void grTest_80206E30(void);

@@ -2,12 +2,13 @@
 #define GALE01_09CB40
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
 #include "ftKirby/forward.h"
-
 #include "lb/lbanim.h"
+#include "lb/forward.h"
 
 /* 09CF84 */ void ftCo_8009CF84(Fighter* fp);
 /* 09D074 */ void ftCo_8009D074(Fighter* fp);

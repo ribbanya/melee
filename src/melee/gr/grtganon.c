@@ -1,21 +1,16 @@
 #include "grtganon.h"
 
-#include "gr/grdisplay.h"
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
+
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
-#include "lb/types.h"
-
 #include "mp/forward.h"
-
 #include "mp/mplib.h"
-
-#include <dolphin/os/OSError.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
+#include "gr/granime.h"
 
 StageCallbacks grTGn_StageCallbacks[] = {
     { grTGanon_8022486C, grTGanon_80224898, grTGanon_802248A0,

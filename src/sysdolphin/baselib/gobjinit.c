@@ -1,7 +1,8 @@
+#include <stddef.h>
+
 #include "gobj.h"
 #include "gobjproc.h"
 #include "memory.h"
-
 #include "baselib/objalloc.h"
 
 static HSD_GObjLibInitDataType HSD_GObj_80408620 = {

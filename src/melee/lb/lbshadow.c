@@ -21,6 +21,15 @@
 #include <melee/gr/ground.h>
 #include <melee/lb/lbvector.h>
 #include <melee/lb/types.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/cobj.h>
+#include <baselib/tobj.h>
+#include <common_structs.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <placeholder.h>
+
+#include "ft/dobjlist.h"
 
 void lbShadow_8000E9F0(Vec3* p, HSD_Spline* spline, f32 u)
 {

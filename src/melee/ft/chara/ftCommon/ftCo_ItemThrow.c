@@ -1,40 +1,30 @@
 #include "ftCo_ItemThrow.h"
 
-#include "ftCo_FallSpecial.h"
-#include "ftCo_Lift.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <math.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
 
+#include "ftCo_FallSpecial.h"
+#include "ftCo_Lift.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
-
-#include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 #include "pl/plbonuslib.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
-#include <math.h>
-#include <trigf.h>
+#include "ft/ft_084E.h"
 
 /* 094D70 */ bool ftCo_800951D0(Fighter_GObj* gobj);
 /* 094E7C */ static bool ftCo_800952DC(Fighter_GObj* gobj);

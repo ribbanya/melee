@@ -1,13 +1,16 @@
-#include "db.h"
-#include "dbsound.h"
-
-#include "ft/ftlib.h"
-#include "lb/lbarchive.h"
-
-#include <dolphin/card.h>
-#include <dolphin/vi.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/card/CARDMount.h>
+#include <dolphin/os.h>
+#include <dolphin/pad.h>
+#include <dolphin/vi/vifuncs.h>
+#include <platform.h>
+
+#include "db.h"
+#include "dbsound.h"
+#include "ft/ftlib.h"
+#include "lb/lbarchive.h"
 
 /* 4D6B30 */ u16 db_gameLaunchButtonState;
 /* 4D6B2C */ char** db_bonus_names;

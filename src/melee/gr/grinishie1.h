@@ -2,6 +2,8 @@
 #ifndef GALE01_1FA908
 #define GALE01_1FA908
 
+#include <stdbool.h>
+
 #include "gr/forward.h"
 
 /* 1FCAAC */ bool grInishie1_801FCAAC(int);

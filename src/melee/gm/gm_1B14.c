@@ -1,17 +1,17 @@
 #include "gm_1B14.h"
 
-#include "gm_1B03.h"
+#include <dolphin/gx/GXTexture.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "gm_1B0FF.h"
 #include "gmvsdata.h"
-
-#include "gm/gm_1A3F.h"
-#include "gm/gm_1BA8.h"
 #include "gm/gmmovieend.h"
 #include "melee/gm/gm_unsplit.h"
 #include "melee/gm/gmcamera.h"
 #include "melee/gm/gmmain_lib.h"
 #include "melee/gm/gmresult.h"
-#include "melee/gm/gmtoulib.h"
 #include "melee/gm/gmvsmelee.h"
 #include "melee/gm/types.h"
 #include "melee/lb/lbaudio_ax.h"
@@ -23,10 +23,8 @@
 #include "melee/lb/types.h"
 #include "melee/mn/types.h"
 #include "mn/inlines.h"
-
-#include <sysdolphin/baselib/controller.h>
-#include <sysdolphin/baselib/memory.h>
-#include <sysdolphin/baselib/random.h>
+#include "ft/forward.h"
+#include "pl/forward.h"
 
 /* 4D68C0 */ static u8 gm_804D68C0;
 /* 4D68C1 */ static u8 gm_804D68C1;

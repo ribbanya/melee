@@ -1,6 +1,8 @@
 #ifndef GALE01_0D4DD4
 #define GALE01_0D4DD4
 
+#include <dolphin/mtx.h>
+
 #include "ft/forward.h"
 
 /* 0D4DD4 */ void fn_800D4DD4(Fighter_GObj* gobj);

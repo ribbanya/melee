@@ -2,9 +2,9 @@
 #define GALE01_2D66F8
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2D61C8 */ void it_802D61C8(Item_GObj* gobj, s32 coll);

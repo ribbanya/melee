@@ -1,8 +1,11 @@
 #ifndef MELEE_EF_EFASYNC_H
 #define MELEE_EF_EFASYNC_H
 
-#include "ef/forward.h"
 #include <baselib/forward.h>
+#include <dolphin/types.h>
+#include <stdarg.h>
+
+#include "ef/forward.h"
 
 /* 063930 */ void* efAsync_Dispatch(s32 gfx_id, HSD_GObj* gobj, va_list vlist);
 /* 06729C */ void efAsync_LoadAsync(int index);

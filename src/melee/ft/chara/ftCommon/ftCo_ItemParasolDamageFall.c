@@ -1,16 +1,13 @@
 #include "ftCo_ItemParasolDamageFall.h"
 
+#include <baselib/forward.h>
+#include <stddef.h>
+
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
-#include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DamageIce.h"
 

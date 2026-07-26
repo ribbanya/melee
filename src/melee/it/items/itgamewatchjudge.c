@@ -1,21 +1,21 @@
 #include "itgamewatchjudge.h"
 
+#include <baselib/gobj.h>
+
 #include "inlines.h"
 #include "math.h"
 #include "placeholder.h"
-
 #include "baselib/jobj.h"
 #include "db/db.h"
 #include "ft/ftlib.h"
 #include "ftGameWatch/ftGw_SpecialS.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/itzako.h"
+#include "ft/forward.h"
 
 ItemStateTable it_803F7968[] = {
     { 0, itGamewatchjudge_UnkMotion0_Anim, NULL, NULL },

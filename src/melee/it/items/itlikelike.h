@@ -2,9 +2,11 @@
 #define GALE01_2D9A2C
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2D9A2C */ bool it_802D9A2C(Item_GObj* gobj);

@@ -2,12 +2,11 @@
 #define _aobj_h_
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "baselib/debug.h"
 #include "baselib/fobj.h"
-
 #include "baselib/forward.h" // IWYU pragma: export
-
 #include "baselib/objalloc.h"
 #include "baselib/object.h"
 

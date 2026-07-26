@@ -1,20 +1,17 @@
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <baselib/gobjproc.h>
+#include "gr/forward.h"
 
 void grTKirby_80221364(bool);                  /* static */
 void grTKirby_80221368(void);                  /* static */

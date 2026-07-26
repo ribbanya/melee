@@ -1,12 +1,16 @@
 #include "ftPk_SpecialHi.h"
 
 #include <platform.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <common_structs.h>
 
-#include "ef/eflib.h"
 #include "ef/efsync.h"
-
 #include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -14,11 +18,8 @@
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_Pass.h"
@@ -26,13 +27,8 @@
 #include "ftPikachu/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "ft/ft_084E.h"
+#include "lb/forward.h"
 
 /// @todo Move elsewhere.
 #define MAX_STICK_MAG 0.999f

@@ -1,8 +1,9 @@
 #ifndef GALE01_295ED4
 #define GALE01_295ED4
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 295ED4 */ void it_80295ED4(Item_GObj* gobj);

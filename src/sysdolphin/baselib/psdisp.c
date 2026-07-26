@@ -1,18 +1,24 @@
 #include "psdisp.h"
 
+#include <string.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/debug.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <math.h>
+#include <placeholder.h>
+#include <trigf.h>
+
 #include "baselib/cobj.h"
 #include "baselib/fog.h"
-
 #include "baselib/forward.h"
-
 #include "baselib/lobj.h"
 #include "baselib/mtx.h"
 #include "baselib/psdisptev.h"
 #include "baselib/psstructs.h"
 #include "baselib/state.h"
 #include "baselib/util.h"
-
-#include <string.h>
 
 extern float __fabsf(float);
 #define fabsf __fabsf

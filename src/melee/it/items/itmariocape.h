@@ -1,10 +1,13 @@
 #ifndef GALE01_2B2560
 #define GALE01_2B2560
 
+#include <dolphin/mtx.h>
+#include <stdbool.h>
+
 #include "baselib/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2B2560 */ Item_GObj* it_802B2560(Fighter_GObj* gobj, float facing_dir,
                                     Vec3* pos, Fighter_Part part,

@@ -1,9 +1,11 @@
 #ifndef GALE01_1D84A0
 #define GALE01_1D84A0
 
-#include "forward.h"
-
 #include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
+
+#include "forward.h"
 
 /* 1D84A4 */ void grZebes_801D84A4(void);
 /* 1D8644 */ void grZebes_801D8644(HSD_GObj*);

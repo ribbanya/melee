@@ -2,12 +2,13 @@
 #define GALE01_20B864
 
 #include <placeholder.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
 
 #include "gr/forward.h"
 #include "lb/forward.h"
 #include "sc/forward.h"
-
-#include <dolphin/mtx.h>
 
 /* 20B864 */ void grBigBlueRoute_8020B864(bool);
 /* 20B89C */ void grBigBlueRoute_8020B89C(void);

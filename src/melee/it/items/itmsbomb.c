@@ -1,23 +1,24 @@
 #include "itmsbomb.h"
 
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
 #include "common_structs.h"
-
 #include "baselib/jobj.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
-#include "it/it_3F14.h"
-#include "it/itCommonItems.h"
 #include "it/item.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/types.h"
 
 typedef struct {
     float x0;

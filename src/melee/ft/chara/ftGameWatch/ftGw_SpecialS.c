@@ -1,10 +1,10 @@
 #include "ftGw_SpecialS.h"
 
-#include "ftGw_Init.h"
-#include "types.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
 
+#include "ftGw_Init.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -16,9 +16,8 @@
 #include "it/items/itfoods.h"
 #include "it/items/itgamewatchjudge.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
+#include "ft/ft_084E.h"
+#include "ftGameWatch/types.h"
 
 static void ftGw_SpecialS_ItemJudgementExitHitlag(HSD_GObj* gobj);
 static void ftGw_SpecialS_ItemJudgementEnterHitlag(HSD_GObj* gobj);

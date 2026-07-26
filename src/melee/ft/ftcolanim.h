@@ -2,6 +2,7 @@
 #define GALE01_0BFE6C
 
 #include <placeholder.h>
+#include <platform.h>
 
 #include "ft/forward.h"
 

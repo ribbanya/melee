@@ -1,16 +1,22 @@
 #include "itsscopebeam.h"
 
+#include <trigf.h>
+#include <baselib/random.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+
 #include "db/db.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "lb/lbvector.h"
 #include "MSL/math.h"
-
-#include <trigf.h>
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 ItemStateTable it_803F6568[] = {
     { 0, itSscopebeam_UnkMotion9_Anim, itSscopebeam_UnkMotion9_Phys,

@@ -1,9 +1,21 @@
 #include "item.h"
 
-#include "it_266F.h"
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/jobj.h>
+#include <baselib/aobj.h>
+#include <placeholder.h>
+
 #include "it_26B1.h"
 #include "math.h"
-
 #include "cm/camera.h"
 #include "db/db.h"
 #include "ef/efasync.h"
@@ -23,28 +35,16 @@
 #include "it/itmaplib.h"
 #include "it/itmaterial.h"
 #include "it/types.h"
-
-#include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/class.h>
-#include <baselib/debug.h>
-#include <baselib/dobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/jobj.h>
+#include "cm/forward.h"
+#include "it/itCharItems.h"
+#include "it/items/types.h"
+#include "it/itgroundcoll.h"
+#include "lb/types.h"
 
 /* 267130 */ static void Item_80267130(HSD_GObj* gobj, SpawnItem* spawnItem);
 /* 2674AC */ static void Item_802674AC(SpawnItem* spawnItem);

@@ -4,8 +4,6 @@
 #include "ftLk_SpecialLw.h"
 #include "ftLk_SpecialN.h"
 #include "ftLk_SpecialS.h"
-#include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -15,16 +13,13 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Guard.h"
 #include "it/it_26B1.h"
 #include "lb/lbanim.h"
-
-#include <dolphin/mtx.h>
+#include "ftLink/types.h"
 
 MotionState ftLk_Init_MotionStateTable[ftLk_MS_SelfCount] = {
     {

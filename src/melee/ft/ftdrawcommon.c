@@ -2,10 +2,16 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/state.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
 
 #include "cm/camera.h"
 #include "ft/ft_0C88.h"
-#include "ft/ft_0C8C.h"
 #include "ft/ftafterimage.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdata.h"
@@ -17,11 +23,10 @@
 #include "lb/lbcollision.h"
 #include "lb/lbgx.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/state.h>
+#include "ft/dobjlist.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
+#include "lb/types.h"
 
 static U8Vec4 ftDrawCommon_804D3A88 = { 0xFF, 0xFF, 0xFF, 0x80 };
 static U8Vec4 ftDrawCommon_804D3A8C = { 0x80, 0x80, 0xFF, 0x80 };

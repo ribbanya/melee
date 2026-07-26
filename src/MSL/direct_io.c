@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #include "buffer_io.h"
 #include "stdio.h"
 #include "string.h"

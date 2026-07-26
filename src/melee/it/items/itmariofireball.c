@@ -1,22 +1,22 @@
 #include "itmariofireball.h"
 
-#include "db/db.h"
-#include "ef/efasync.h"
-#include "it/inlines.h"
-#include "it/it_266F.h"
-#include "it/it_26B1.h"
-#include "it/it_2725.h"
-#include "it/it_3F14.h"
-#include "it/itCommonItems.h"
-#include "it/item.h"
-#include "it/itmaplib.h"
-
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/mtx.h>
+#include <baselib/forward.h>
+
+#include "db/db.h"
+#include "ef/efasync.h"
+#include "it/inlines.h"
+#include "it/it_26B1.h"
+#include "it/it_2725.h"
+#include "it/itCommonItems.h"
+#include "it/item.h"
+#include "it/itmaplib.h"
+#include "it/itgroundcoll.h"
 
 ItemStateTable it_803F6788[] = {
     { 0, itMariofireball_UnkMotion0_Anim, itMariofireball_UnkMotion0_Phys,

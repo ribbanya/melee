@@ -2,8 +2,12 @@
 #define GALE01_20362C
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "gr/forward.h"
+#include "lb/forward.h"
 
 /* 20362C */ UNK_RET grVenom_8020362C(UNK_PARAMS);
 /* 203B14 */ void grVenom_80203B14(bool);

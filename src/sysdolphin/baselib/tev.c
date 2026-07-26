@@ -1,11 +1,12 @@
 #include "tev.h"
 
-#include "debug.h"
-
-#include <placeholder.h>
-
 #include <__mem.h>
 #include <dolphin/gx.h>
+#include <baselib/debug.h>
+#include <baselib/objalloc.h>
+#include <baselib/state.h>
+#include <baselib/texp.h>
+#include <dolphin/gx/GXEnum.h>
 
 static struct {
     GXColorS10 a;

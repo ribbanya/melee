@@ -2,12 +2,12 @@
 #define GALE01_2C4D10
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
+#include "lb/forward.h"
 
 /* 2C4D10 */ u32 it_802C4D10(Item_GObj*);
 /* 2C4F50 */ bool it_802C4F50(Item_GObj*, CollData*);

@@ -2,10 +2,10 @@
 #define GALE01_0C15F4
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "ftCommon/forward.h"
-
-#include <dolphin/mtx.h>
+#include "ft/forward.h"
 
 /* 0C15F4 */ bool ftCo_800C15F4(Fighter_GObj* gobj);
 /* 0C1718 */ bool ftCo_800C1718(Fighter_GObj* gobj);

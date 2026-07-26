@@ -1,11 +1,14 @@
 #include "itwstar.h"
 
-#include "placeholder.h"
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <common_structs.h>
+#include <platform.h>
 
+#include "placeholder.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
@@ -14,9 +17,9 @@
 #include "it/item.h"
 #include "it/ithitbox.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "ft/types.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 HSD_AnimJoint* it_80294364(Item_GObj* gobj)
 {

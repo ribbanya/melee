@@ -2,8 +2,8 @@
 #define GALE01_323CF0
 
 #include <placeholder.h>
-
 #include <stdarg.h>
+#include <stddef.h>
 
 /* 323CF4 */ int sprintf(char* s, const char* format, ...);
 /* 323DC8 */ int vsnprintf(char* s, size_t n, const char* format, va_list);

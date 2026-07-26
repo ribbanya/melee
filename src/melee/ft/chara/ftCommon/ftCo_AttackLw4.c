@@ -1,11 +1,9 @@
 #include "ftCo_AttackLw4.h"
 
-#include "ftCo_Wait.h"
-
 #include <platform.h>
+#include <common_structs.h>
 
-#include "forward.h"
-
+#include "ftCo_Wait.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -14,9 +12,8 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftNess/ftNs_AttackLw4.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 08CC5C */ static void doEnter(Fighter_GObj* gobj);
 

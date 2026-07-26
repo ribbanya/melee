@@ -1,17 +1,18 @@
 #include "lb_0192.h"
 
-#include "lbaudio_ax.h"
-#include "lblanguage.h"
-
-#include "gm/gmmain_lib.h"
-#include "gm/types.h"
-
 #include <dolphin/dvd.h>
-#include <dolphin/vi.h>
-#include <baselib/controller.h>
 #include <baselib/initialize.h>
 #include <baselib/sislib.h>
 #include <baselib/video.h>
+#include <baselib/forward.h>
+#include <baselib/rumble.h>
+#include <dolphin/gx.h>
+#include <placeholder.h>
+
+#include "lbaudio_ax.h"
+#include "lblanguage.h"
+#include "gm/gmmain_lib.h"
+#include "gm/types.h"
 
 static struct strings {
     const char* x0;

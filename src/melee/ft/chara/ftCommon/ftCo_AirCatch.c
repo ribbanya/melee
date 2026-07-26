@@ -1,10 +1,12 @@
 #include "ftCo_AirCatch.h"
 
-#include "ftCo_FallSpecial.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <common_structs.h>
+#include <baselib/jobj.h>
+#include <dolphin/mtx.h>
 
+#include "ftCo_FallSpecial.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -14,22 +16,18 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
 #include "ftLink/types.h"
-
 #include "ftSamus/forward.h"
-
 #include "ftSamus/types.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/items/itlinkhookshot.h"
 #include "it/items/itsamusgrapple.h"
 #include "lb/lb_00B0.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <common_structs.h>
-#include <baselib/jobj.h>
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "lb/forward.h"
 
 bool ftCo_800C3A14(Fighter_GObj* gobj)
 {

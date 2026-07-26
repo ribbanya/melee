@@ -1,7 +1,5 @@
 #include "particle.h"
 
-#include "generator.h"
-
 typedef struct {
     /* 0x00 */ void* next;
     /* 0x04 */ s32 type;
@@ -19,31 +17,22 @@ typedef struct {
     } content;
 } PerfDispItem;
 
-#include "particle.static.h"
-
-#include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
-#include <dolphin/gx.h>
-#include <dolphin/gx/GXGeometry.h>
-#include <dolphin/mcc.h>
 #include <dolphin/os.h>
-#include <dolphin/pad.h>
-#include <dolphin/vi.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/list.h>
-#include <baselib/memory.h>
 #include <baselib/mtx.h>
-#include <baselib/perf.h>
 #include <baselib/psappsrt.h>
 #include <baselib/psstructs.h>
 #include <baselib/random.h>
-#include <baselib/state.h>
-#include <baselib/video.h>
-#include <MetroTRK/ppc_reg.h>
+#include <baselib/generator.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
+#include <baselib/object.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <string.h>
+
+#include "particle.static.h"
 
 static HSD_JObj* hsd_804D08E8[8];
 static void* hsd_804D0908[0x144 / 4];

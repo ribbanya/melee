@@ -2,9 +2,9 @@
 #define GALE01_0CF138
 
 #include <placeholder.h>
+#include <dolphin/types.h>
 
 #include "ft/forward.h"
-
 #include "ft/types.h"
 
 /* 0CF138 */ float ftCo_CalcYScaledKnockback(float, float, float);

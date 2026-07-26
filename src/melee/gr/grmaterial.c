@@ -1,22 +1,8 @@
 #include "grmaterial.h"
 
-#include "gr/types.h"
-#include "it/it_2725.h"
-#include "it/item.h"
-#include "it/items/ityaku.h"
-#include "it/ithitbox.h"
-#include "it/types.h"
-
-#include "lb/forward.h"
-
-#include "lb/lb_00B0.h"
-#include "lb/lbspdisplay.h"
-
 #include <baselib/forward.h>
-
 #include <dolphin/os.h>
 #include <baselib/debug.h>
-#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/id.h>
 #include <baselib/jobj.h>
@@ -25,6 +11,20 @@
 #include <baselib/tev.h>
 #include <baselib/texp.h>
 #include <baselib/tobj.h>
+#include <baselib/class.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXStruct.h>
+
+#include "gr/types.h"
+#include "it/it_2725.h"
+#include "it/item.h"
+#include "it/items/ityaku.h"
+#include "it/ithitbox.h"
+#include "it/types.h"
+#include "lb/forward.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 /* 1C897C */ static void grMaterial_801C897C(HSD_JObj* jobj, u32 flags);
 /* 1C8E74 */ static void grMaterial_801C8E74(void);

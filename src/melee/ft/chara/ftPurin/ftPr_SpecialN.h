@@ -1,8 +1,10 @@
 #ifndef GALE01_13D658
 #define GALE01_13D658
 
-#include "ft/forward.h"
 #include <baselib/forward.h>
+#include <stdbool.h>
+
+#include "ft/forward.h"
 
 /* 13D658 */ void ftPr_SpecialS_8013D658(HSD_GObj* gobj);
 /* 13D764 */ void ftPr_SpecialS_8013D764(HSD_GObj* gobj);

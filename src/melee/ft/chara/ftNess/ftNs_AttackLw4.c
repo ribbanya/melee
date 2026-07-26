@@ -1,9 +1,9 @@
 #include "ftNs_AttackLw4.h"
 
-#include "ftNs_AttackHi4.h"
-
 #include <platform.h>
+#include <common_structs.h>
 
+#include "ftNs_AttackHi4.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -11,8 +11,7 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Wait.h"
 #include "ftNess/types.h"
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
 
 /// 0x8011659C
 /// https://decomp.me/scratch/xVTx7

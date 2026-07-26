@@ -1,16 +1,15 @@
 #include "crowdsfx.h"
 
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
 #include "ft/ftlib.h"
 #include "lb/lbaudio_ax.h"
-
 #include "mp/forward.h"
-
 #include "mp/mplib.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
 
 /* 4A2F08 */ CrowdSFX_UnkStruct un_804A2F08;
 /* 4D7050 */ CrowdSFX_UnkStruct* un_804D7050;

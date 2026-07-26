@@ -3,9 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <melee/if/forward.h>
-
 #include <melee/if/types.h>
 
 /* 2F6EA4 */ void ifStatus_802F6EA4(int, int, int, int, Event, Event);

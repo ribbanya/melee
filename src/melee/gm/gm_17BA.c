@@ -1,14 +1,15 @@
 #include "gm_17BA.h"
 
-#include "gm_17AD.h"
-#include "gm_unsplit.h"
-
-#include "gm/inlines.h"
-
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmresult.h>
 #include <melee/gm/types.h>
 #include <melee/lb/lblanguage.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm_17AD.h"
+#include "gm/inlines.h"
+#include "pl/forward.h"
 
 static const char* lbl_803D79D0[] = {
     "１Ｐ",

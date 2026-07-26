@@ -1,9 +1,14 @@
 #include "ftNs_SpecialHi.h"
 
-#include "ftNs_Init.h"
-
 #include <platform.h>
+#include <math.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
+#include <common_structs.h>
 
+#include "ftNs_Init.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
@@ -22,14 +27,9 @@
 #include "it/items/itnesspkthunderball.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
 #include "mp/forward.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ft_084E.h"
+#include "lb/forward.h"
 
 /// SpecialHi/SpecialAirHi (PK Thunder)
 #define FTNESS_SPECIALHI_COLL_FLAG                                            \

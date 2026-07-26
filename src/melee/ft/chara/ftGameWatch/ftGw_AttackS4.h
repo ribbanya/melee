@@ -4,6 +4,7 @@
 #define GALE01_14A848
 
 #include <baselib/forward.h>
+#include <stdbool.h>
 
 /* 14A848 */ void ftGw_ItemTorchSetup(HSD_GObj* gobj);
 /* 14A904 */ void ftGw_AttackS4_ItemTorchSetFlag(HSD_GObj* gobj);

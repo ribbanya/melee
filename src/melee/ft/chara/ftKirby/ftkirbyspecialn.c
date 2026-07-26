@@ -1,10 +1,15 @@
-#include "ftkirby.h"
-#include "types.h"
-
 #include <placeholder.h>
+#include <common_structs.h>
+#include <trigf.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <MSL/math.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <platform.h>
 
-#include "baselib/forward.h"
-
+#include "ftkirby.h"
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
@@ -17,9 +22,6 @@
 #include "ft/chara/ftCommon/ftCo_ThrownKirby.h"
 #include "ft/chara/ftCommon/ftCo_Wait.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0892.h"
@@ -29,20 +31,15 @@
 #include "ft/ftdata.h"
 #include "ft/ftparts.h"
 #include "ft/ftwalkcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_CaptureKirby.h"
 #include "ftCommon/ftCo_CaptureWaitKirby.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
-
 #include "ftKirby/forward.h"
-
 #include "ftKirby/inlines.h"
-
 #include "ftLuigi/forward.h"
-
 #include "it/itCommonItems.h"
 #include "it/items/it_2ADA.h"
 #include "it/items/it_2F28.h"
@@ -56,14 +53,10 @@
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <common_structs.h>
-#include <stddef.h>
-#include <trigf.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/types.h"
+#include "ftKirby/types.h"
+#include "it/forward.h"
 
 static MotionFlags const ftKb_MF_SpecialN_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx;

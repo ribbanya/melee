@@ -1,9 +1,13 @@
 #ifndef GALE01_800C78B0
 #define GALE01_800C78B0
 
-#include "types.h"
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
 
+#include "types.h"
 #include "ft/forward.h"
+#include "lb/forward.h"
 
 /* 78B0 */ void ftCo_800C78B0(HSD_GObj* gobj, HSD_GObj* owner);
 /* 7A30 */ void ftCo_800C7A30(Fighter_GObj* gobj);

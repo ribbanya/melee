@@ -2,9 +2,11 @@
 #define GALE01_2ECCDC
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2ECCDC */ void itKyasarin_Logic25_Destroyed(Item_GObj*);

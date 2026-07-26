@@ -1,8 +1,9 @@
 #ifndef GALE01_2CC6E4
 #define GALE01_2CC6E4
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2CC6E4 */ void itFire_Logic6_Spawned(Item_GObj*);

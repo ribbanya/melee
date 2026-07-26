@@ -1,6 +1,13 @@
 #include "sislib.h"
 
-#include "cobj.h"
+#include <printf.h>
+#include <stdarg.h>
+#include <dolphin/os.h>
+#include <melee/lb/lbarchive.h>
+#include <baselib/archive.h>
+#include <baselib/cobj.h>
+#include <dolphin/gx/GXEnum.h>
+
 #include "gobj.h"
 #include "gobjgxlink.h"
 #include "gobjobject.h"
@@ -10,15 +17,8 @@
 #include "state.h"
 #include "tev.h"
 #include "wobj.h"
-
 #include "dolphin/gx.h"
 #include "dolphin/mtx.h"
-
-#include <printf.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <dolphin/os.h>
-#include <melee/lb/lbarchive.h>
 
 static HSD_WObjDesc HSD_SisLib_8040C490 = {
     NULL,

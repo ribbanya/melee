@@ -1,6 +1,9 @@
 #ifndef GALE01_0DF0D0
 #define GALE01_0DF0D0
 
+#include <dolphin/mtx.h>
+#include <dolphin/types.h>
+
 #include "ft/forward.h"
 
 /* 0DEE84 */ void ftCo_800DEE84(Fighter_GObj* gobj, u32, f32, f32);

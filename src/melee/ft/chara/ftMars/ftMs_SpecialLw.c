@@ -1,9 +1,10 @@
 #include "ftMs_SpecialLw.h"
 
-#include "math.h"
-
 #include <platform.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
+#include "math.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -17,14 +18,11 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftMars/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 static MotionFlags const ftMs_MF_SpecialLw_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepColAnimHitStatus | Ft_MF_SkipHit;

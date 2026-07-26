@@ -1,7 +1,10 @@
 #ifndef GALE01_09B67C
 #define GALE01_09B67C
 
+#include <stdbool.h>
+
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 09B67C */ bool ftCo_8009B67C(Fighter_GObj* gobj);
 /* 09B744 */ void ftCo_CargoWalk_Anim(Fighter_GObj* gobj);

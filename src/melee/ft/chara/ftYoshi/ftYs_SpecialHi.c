@@ -1,32 +1,27 @@
 #include "ftYs_SpecialHi.h"
 
+#include <math.h>
+#include <dolphin/mtx.h>
+#include <common_structs.h>
+
 #include "placeholder.h"
-
 #include "baselib/forward.h"
-
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
 #include "ftYoshi/forward.h"
-
 #include "ftYoshi/ftYs_Init.h"
 #include "ftYoshi/types.h"
 #include "it/items/ityoshieggthrow.h"
 #include "it/items/ityoshitongue.h"
 #include "lb/lb_00B0.h"
-
-#include <math.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
 
 static void setDamageCallbacks(Fighter_GObj* gobj)
 {

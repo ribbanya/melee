@@ -1,12 +1,13 @@
 #include "gmscdata.h"
 
+#include <stddef.h>
+
 #include "gm_1A33.h"
 #include "gm_1B14.h"
 #include "gm_unsplit.h"
 #include "gmadventure.h"
 #include "gmallstar.h"
 #include "gmapproach.h"
-#include "gmcamera.h"
 #include "gmclassic.h"
 #include "gmfixedcamera.h"
 #include "gmgiant.h"
@@ -29,10 +30,7 @@
 #include "gmsupersudden.h"
 #include "gmtiny.h"
 #include "gmtitle.h"
-#include "gmtoulib.h"
 #include "gmvsmelee.h"
-#include "types.h"
-
 #include "if/ifprize.h"
 #include "mn/mncharsel.h"
 #include "mn/mnmain.h"
@@ -51,6 +49,7 @@
 #include "vi/vi1201v1.h"
 #include "vi/vi1201v2.h"
 #include "vi/vi1202.h"
+#include "gm/forward.h"
 
 /// @todo Do these callbacks have uniform signatures, or polymorphic user data?
 static GameSceneHandler gm_803DA920[] = {

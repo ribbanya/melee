@@ -1,10 +1,5 @@
 #include "textdraw.h"
 
-#include "platform.h"
-
-#include "if/types.h"
-
-#include <printf.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
@@ -12,17 +7,13 @@
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>
 #include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
 #include <baselib/hsd_3915.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/memory.h>
-#include <baselib/sislib.h>
 #include <baselib/video.h>
-#include <baselib/wobj.h>
-#include <MSL/stdio.h>
-#include <MSL/string.h>
+#include <dolphin/gx/GXStruct.h>
+#include <placeholder.h>
+
+#include "platform.h"
+#include "if/types.h"
 
 /// .data
 /* 3FDC20 */ static HSD_WObjDesc devtext_eyepos = {

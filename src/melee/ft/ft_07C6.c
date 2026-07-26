@@ -1,7 +1,5 @@
 #include "ft_07C6.h"
 
-#include <placeholder.h>
-
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
@@ -17,6 +15,7 @@
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcollision.h>
 #include <melee/pl/player.h>
+#include <platform.h>
 
 void ft_8007C630(Fighter_GObj* gobj)
 {

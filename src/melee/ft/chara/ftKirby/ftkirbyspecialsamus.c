@@ -1,5 +1,11 @@
-#include "ftkirby.h"
+#include <MSL/math.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "ftkirby.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Escape.h"
@@ -16,8 +22,13 @@
 #include "ftKirby/inlines.h"
 #include "it/items/itsamuschargeshot.h"
 #include "lb/lb_00B0.h"
-
-#include <MSL/math.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
+#include "it/forward.h"
 
 long ftKb_SpecialNSs_800FCC14(Fighter_GObj* gobj, long* out1, long* out2)
 {

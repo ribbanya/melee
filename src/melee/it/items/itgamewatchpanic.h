@@ -2,11 +2,11 @@
 #define GALE01_2C7D60
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/types.h"
-
 #include "it/forward.h"
-
 #include "it/items/types.h"
 #include "it/types.h"
 

@@ -1,9 +1,12 @@
 #include "ftCo_800C7CA0.h"
 
-#include "ftcommon.h"
-
 #include <placeholder.h>
+#include <trigf.h>
+#include <baselib/dobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
 
+#include "ftcommon.h"
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ft/fighter.h"
@@ -11,17 +14,11 @@
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/types.h"
-
-#include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DownBound.h"
 #include "ftKirby/ftkirby.h"
-#include "lb/lbaudio_ax.h"
-
-#include <trigf.h>
-#include <baselib/dobj.h>
-#include <baselib/jobj.h>
+#include "ftCommon/types.h"
+#include "lb/forward.h"
 
 HSD_MObj* ft_804D6580;
 

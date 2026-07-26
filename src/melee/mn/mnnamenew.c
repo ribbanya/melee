@@ -1,7 +1,8 @@
 #include "mnnamenew.h"
 
-#include "mnnamenew.static.h"
+#include <dolphin/mtx.h>
 
+#include "mnnamenew.static.h"
 #include "baselib/debug.h"
 #include "dolphin/gx/GXStruct.h"
 #include "gm/gm_1A3F.h"
@@ -29,8 +30,8 @@
 #include "sysdolphin/baselib/memory.h"
 #include "sysdolphin/baselib/random.h"
 #include "sysdolphin/baselib/sislib.h"
+#include "gm/types.h"
 
-#include <dolphin/os.h>
 typedef char* GlyphRow[4];
 
 /// Glyph strings in the keyboard tables are read through

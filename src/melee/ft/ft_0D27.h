@@ -1,6 +1,8 @@
 #ifndef GALE01_0D2770
 #define GALE01_0D2770
 
+#include <platform.h>
+
 #include "ft/forward.h"
 
 /* 0D2770 */ void ftCo_800D2770(Fighter_GObj*, f32);

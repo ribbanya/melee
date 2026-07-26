@@ -1,27 +1,22 @@
 #include "itdrmariopill.h"
 
+#include <math.h>
+#include <math_ppc.h>
+#include <common_structs.h>
+
 #include "placeholder.h"
 #include "platform.h"
-
-#include "baselib/forward.h"
-
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
 #include "baselib/mtx.h"
 #include "db/db.h"
 #include "dolphin/mtx.h"
-#include "dolphin/types.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_0BF0.h"
 #include "ft/ftlib.h"
 #include "ftDrMario/ftDr_Init.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -29,9 +24,8 @@
 #include "it/item.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
-
-#include <math.h>
-#include <math_ppc.h>
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 #define GET_ATTRS(ip)                                                         \
     ((itDrMarioPillAttributes*) ip->xC4_article_data->x4_specialAttributes)

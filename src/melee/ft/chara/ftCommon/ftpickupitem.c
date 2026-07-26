@@ -1,15 +1,15 @@
 #include "ftpickupitem.h"
 
-#include "ftCo_HammerWait.h"
-#include "ftCo_Lift.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
 
+#include "ftCo_HammerWait.h"
+#include "ftCo_Lift.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
@@ -25,18 +25,12 @@
 #include "ftCommon/ftCo_WarpStar.h"
 #include "ftCommon/types.h"
 #include "ftDonkey/ftDk_HeavyWait0.h"
-
 #include "it/forward.h"
-
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "pl/plbonuslib.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 094B6C */ static void ftpickupitem_80094B6C(Fighter_GObj* gobj,
                                                Item_GObj* item_gobj);

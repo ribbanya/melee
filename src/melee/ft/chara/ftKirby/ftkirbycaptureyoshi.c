@@ -1,24 +1,17 @@
 #include "ftkirbycaptureyoshi.h"
 
-#include <placeholder.h>
+#include <stddef.h>
+#include <platform.h>
 
 #include "ft/chara/ftCommon/ftCo_Lift.h"
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Attack100.h"
-
-#include <common_structs.h>
-#include <stddef.h>
-#include <baselib/gobj.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "ft/ftanim.h"
 
 /* 4D95A0 */ extern f64 ftKb_Init_804D95A0;
 

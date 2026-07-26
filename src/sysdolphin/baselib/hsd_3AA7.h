@@ -2,8 +2,8 @@
 #define GALE01_3AA790
 
 #include <placeholder.h>
-
 #include <dolphin/card.h>
+#include <dolphin/types.h>
 
 typedef union CardFileData {
     int size;

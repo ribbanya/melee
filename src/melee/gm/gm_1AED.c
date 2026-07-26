@@ -4,13 +4,12 @@
 #include <melee/db/db.h>
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/gmmain_lib.h>
-#include <melee/gm/types.h>
 #include <melee/lb/lb_00B0.h>
-#include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcardgame.h>
 #include <melee/lb/lbcardnew.h>
 #include <melee/lb/lblanguage.h>
 #include <melee/mn/inlines.h>
+#include <common_structs.h>
 
 static u8 gm_804D6870;
 static u16 gm_804D6872;

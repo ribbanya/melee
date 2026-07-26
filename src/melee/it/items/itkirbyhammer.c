@@ -1,5 +1,8 @@
 #include "itkirbyhammer.h"
 
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "db/db.h"
 #include "ef/efasync.h"
 #include "ft/chara/ftKirby/ftkirby.h"
@@ -7,6 +10,7 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
+#include "it/types.h"
 
 ItemStateTable it_803F6C98[] = {
     { 0, NULL, NULL, NULL },

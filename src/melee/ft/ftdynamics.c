@@ -2,9 +2,13 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
-
 #include "ft/ft_0877.h"
 #include "ft/ftcoll.h"
 #include "ft/inlines.h"
@@ -12,10 +16,12 @@
 #include "gr/ground.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <stddef.h>
-#include <baselib/debug.h>
-#include <baselib/jobj.h>
+#include "ft/ftanim.h"
+#include "ftKirby/types.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "it/forward.h"
+#include "lb/types.h"
 
 #pragma force_active on
 

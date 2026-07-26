@@ -1,18 +1,7 @@
 #include "lbcollision.h"
 
-#include "lb_00B0.h"
-#include "lbaudio_ax.h"
-#include "lbvector.h"
-
 #include <placeholder.h>
 #include <platform.h>
-
-#include "ft/types.h"
-
-#include "lb/forward.h"
-
-#include "lb/types.h"
-
 #include <math.h>
 #include <math_ppc.h>
 #include <dolphin/gx.h>
@@ -22,7 +11,15 @@
 #include <baselib/mtx.h>
 #include <baselib/state.h>
 #include <baselib/tev.h>
-#include <MetroTRK/intrinsics.h>
+#include <baselib/pobj.h>
+#include <dolphin/gx/GXEnum.h>
+
+#include "lb_00B0.h"
+#include "lbaudio_ax.h"
+#include "lbvector.h"
+#include "ft/types.h"
+#include "lb/forward.h"
+#include "lb/types.h"
 
 /* 006E58 */ static bool
 lbColl_80006E58(Vec3* hit_start, Vec3* hit_end, Vec3* hurt_start,

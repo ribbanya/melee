@@ -1,5 +1,10 @@
 #include "itgreatfoxlaser.h"
 
+#include <MSL/math.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "ft/ftlib.h"
 #include "gr/ground.h"
 #include "it/inlines.h"
@@ -10,8 +15,8 @@
 #include "it/ithitbox.h"
 #include "it/itzako.h"
 #include "lb/lb_00B0.h"
-
-#include <MSL/math.h>
+#include "it/itCommonItems.h"
+#include "it/types.h"
 
 ItemStateTable it_803F8FD0[] = {
     { 0, itGreatfoxlaser_UnkMotion1_Anim, itGreatfoxlaser_UnkMotion1_Phys,

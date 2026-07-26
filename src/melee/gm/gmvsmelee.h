@@ -3,9 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <melee/gm/forward.h>
 
 #include "mn/forward.h"
-#include <melee/gm/forward.h>
+
+struct VsModeData;
 
 /* 1A5244 */ struct VsModeData* gm_801A5244(void);
 /* 1A5250 */ u8* gm_801A5250(void); /// Returns KO Star Counts

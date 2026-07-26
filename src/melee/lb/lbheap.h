@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
 
 /* 0158D0 */ void lbHeap_800158D0(int, int);

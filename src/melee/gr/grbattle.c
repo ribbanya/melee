@@ -1,16 +1,3 @@
-#include "granime.h"
-#include "grdisplay.h"
-#include "grlib.h"
-#include "grmaterial.h"
-#include "ground.h"
-#include "grzakogenerator.h"
-#include "inlines.h"
-#include "stage.h"
-#include "types.h"
-
-#include "gm/gm_16AE.h"
-#include "lb/lbspdisplay.h"
-
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
@@ -19,6 +6,23 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "granime.h"
+#include "grdisplay.h"
+#include "grlib.h"
+#include "grmaterial.h"
+#include "ground.h"
+#include "grzakogenerator.h"
+#include "inlines.h"
+#include "stage.h"
+#include "gm/gm_16AE.h"
+#include "lb/lbspdisplay.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "lb/forward.h"
 
 /** @var ::grBattle_YakumonoParam::bg_curr_color_overlay
  * @todo ::ColorOverlay_x8_t, from ::grMaterial_801C9604

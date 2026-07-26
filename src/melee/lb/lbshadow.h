@@ -3,10 +3,8 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <melee/lb/forward.h>
 #include <sysdolphin/baselib/forward.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 

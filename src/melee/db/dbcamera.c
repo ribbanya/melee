@@ -1,3 +1,13 @@
+#include <math.h>
+#include <trigf.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "baselib/controller.h"
 #include "cm/camera.h"
 #include "db/db.h"
@@ -8,9 +18,11 @@
 #include "if/textlib.h"
 #include "lb/lbshadow.h"
 #include "lb/lbvector.h"
+#include "cm/forward.h"
+#include "ft/forward.h"
+#include "gm/forward.h"
+#include "if/forward.h"
 
-#include <math.h>
-#include <trigf.h>
 /* 4A03C0 */ static char db_CameraInfoDisplay_buf[0xC0];
 
 /// @todo does the padding mean this should be in another file before this one?

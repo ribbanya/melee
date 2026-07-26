@@ -5,6 +5,7 @@
 
 #include "it/item.h"
 #include "it/items/types.h"
+#include "it/forward.h"
 
 void itSuikun_Logic14_Spawned(Item_GObj*);
 void it_802CFCB4(Item_GObj*);

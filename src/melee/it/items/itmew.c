@@ -1,18 +1,17 @@
 #include "itmew.h"
 
-#include "inlines.h"
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <stdbool.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
-
-#include <baselib/gobj.h>
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
 
 /* 2D3B8C */ static void it_802D3B8C(Item_GObj* gobj);
 /* 2D3BE0 */ static void it_802D3BE0(Item_GObj* gobj);

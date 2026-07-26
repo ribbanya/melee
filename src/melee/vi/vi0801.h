@@ -2,7 +2,6 @@
 #define MELEE_VI_0801_H
 
 #include <placeholder.h>
-
 #include <baselib/forward.h>
 
 /* 31EE60 */ void vi0801_8031EE60(HSD_GObj*);

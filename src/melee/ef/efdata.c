@@ -1,5 +1,7 @@
 #include "efdata.h"
 
+#include <baselib/objalloc.h>
+
 /* 458EB0 */ HSD_ObjAllocData efLib_AllocData;
 
 // .sbss (mwcc allocates .sbss in reverse definition order ? sometimes...)

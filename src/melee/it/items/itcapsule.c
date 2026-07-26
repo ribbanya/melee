@@ -1,12 +1,13 @@
 #include "itcapsule.h"
 
-#include "math.h"
-
-#include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
+#include "math.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -15,11 +16,8 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "it/itdrop.h"
+#include "it/itgroundcoll.h"
 
 ItemStateTable it_803F5468[] = {
     {

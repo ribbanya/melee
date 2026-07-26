@@ -1,14 +1,10 @@
 #include "mnsnap.h"
 
 #include <placeholder.h>
-
-#include "baselib/debug.h"
-
 #include <baselib/aobj.h>
 #include <baselib/dobj.h>
 #include <baselib/gobjobject.h>
 #include <baselib/jobj.h>
-#include <baselib/mobj.h>
 #include <baselib/sislib.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjplink.h>
@@ -22,6 +18,12 @@
 #include <melee/lb/lbsnap.h>
 #include <melee/mn/inlines.h>
 #include <melee/mn/mnmain.h>
+#include <baselib/gobj.h>
+#include <baselib/tobj.h>
+#include <dolphin/mtx.h>
+
+#include "baselib/debug.h"
+#include "lb/lbspdisplay.h"
 
 typedef struct mnSnap_State {
     /* 0x000 */ s32 frame_count;

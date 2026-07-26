@@ -3,12 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
 
 /* 2DC69C */ void it_802DC69C(Item_GObj*);
 /* 2DC774 */ bool itNokonoko_Logic3_DmgReceived(Item_GObj*);

@@ -1,15 +1,12 @@
 #include "itscball.h"
 
-#include "it/inlines.h"
-#include "it/it_266F.h"
-#include "it/it_26B1.h"
-#include "it/it_2725.h"
-#include "it/it_3F14.h"
-#include "it/item.h"
-
 #include <baselib/forward.h>
 
-#include <baselib/gobj.h>
+#include "it/inlines.h"
+#include "it/it_26B1.h"
+#include "it/it_2725.h"
+#include "it/item.h"
+#include "it/itgroundcoll.h"
 
 /* 294AD0 */ static void it_80294AD0(Item_GObj* gobj);
 /* 294B20 */ static bool itScball_UnkMotion0_Anim(HSD_GObj* gobj);

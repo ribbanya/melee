@@ -1,14 +1,14 @@
 #include "ftMh_BackDisappear.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
+
 #include "ftMh_TagCancel.h"
 #include "ftMh_ThrownMasterHand.h"
 #include "ftMh_Wait1_1.h"
 #include "ftMh_Wait1_2.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
-#include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftcommon.h"
@@ -16,9 +16,7 @@
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ft_084E.h"
 
 void ftMh_BackDisappear_Anim(HSD_GObj* gobj)
 {

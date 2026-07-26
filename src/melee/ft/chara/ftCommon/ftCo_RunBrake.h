@@ -2,8 +2,10 @@
 #define GALE01_0CABC4
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 0CABC4 */ bool ftCo_RunBrake_CheckInput(Fighter_GObj* gobj);
 /* 0CAC18 */ void ftCo_RunBrake_Enter(Fighter_GObj* gobj);

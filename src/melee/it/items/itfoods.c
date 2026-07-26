@@ -1,14 +1,21 @@
 #include "it/items/itfoods.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/items/types.h"
 #include "sysdolphin/baselib/random.h"
-
-#include <baselib/gobj.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/itspawn.h"
+#include "it/types.h"
 
 /* 28FC84 */ bool itFoods_UnkMotion0_Anim(Item_GObj* arg0);
 /* 28FC8C */ void itFoods_UnkMotion0_Phys(Item_GObj* arg0);

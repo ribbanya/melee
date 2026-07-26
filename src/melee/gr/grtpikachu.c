@@ -1,17 +1,14 @@
 #include "grtpikachu.h"
 
-#include "gr/grdisplay.h"
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
+
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
-#include "lb/types.h"
-
-#include <dolphin/os/OSError.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
+#include "gr/granime.h"
 
 StageCallbacks grTPk_StageCallbacks[] = {
     { grTPikachu_80223008, grTPikachu_80223034, grTPikachu_8022303C,

@@ -1,19 +1,17 @@
 #include "ft/chara/ftCommon/ftCo_DownSpot.h"
 
-#include <placeholder.h>
+#include <stddef.h>
 
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdata.h"
-#include "ft/inlines.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_DownBound.h"
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
 
 void ftCo_DownSpot_Enter(Fighter_GObj* gobj)
 {

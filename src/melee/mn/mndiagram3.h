@@ -2,9 +2,7 @@
 #define MNDIAGRAM3_H
 
 #include <placeholder.h>
-
 #include <baselib/forward.h>
-
 #include <baselib/gobj.h>
 #include <melee/mn/types.h>
 

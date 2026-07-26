@@ -2,10 +2,9 @@
 #define GALE01_014E24
 
 #include <platform.h>
-
 #include <baselib/forward.h>
-
 #include <dolphin/os/OSAlarm.h>
+#include <dolphin/os/OSContext.h>
 
 typedef struct _Handle {
     struct _Handle* x0_next;

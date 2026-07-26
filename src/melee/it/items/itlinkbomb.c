@@ -1,19 +1,16 @@
 #include "itlinkbomb.h"
 
+#include <baselib/gobj.h>
+#include <common_structs.h>
+
 #include "placeholder.h"
-
-#include "baselib/forward.h"
-
 #include "baselib/jobj.h"
 #include "baselib/random.h"
 #include "ft/chara/ftLink/ftLk_AttackAir.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/it_3F14.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
 #include "it/itgroundcoll.h"
@@ -22,6 +19,7 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
+#include "it/types.h"
 
 const Vec3 it_803B8640 = { 0 };
 

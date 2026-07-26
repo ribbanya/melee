@@ -1,20 +1,14 @@
 #include "ftCh_ThrownCrazyHand.h"
 
-#include <placeholder.h>
 #include <platform.h>
 
 #include "baselib/forward.h"
-
 #include "ft/chara/ftCommon/ftCo_Thrown.h"
 #include "ft/fighter.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
 
 void ftCh_GrabUnk1_8015B850(HSD_GObj* gobj, FtMotionId msid)
 {

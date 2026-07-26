@@ -1,5 +1,11 @@
-#include "ftkirby.h"
+#include <lb/lbrefract.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "ftkirby.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftpickupitem.h"
 #include "ft/fighter.h"
@@ -11,8 +17,13 @@
 #include "it/items/itlinkarrow.h"
 #include "it/items/itlinkbow.h"
 #include "lb/lb_00B0.h"
-
-#include <lb/lbrefract.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
+#include "ftLink/types.h"
+#include "it/forward.h"
 
 ftLk_SpecialNIndex ftKb_SpecialNLk800FB394(Fighter_GObj* gobj)
 {

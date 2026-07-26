@@ -1,8 +1,9 @@
 #ifndef GALE01_2E2470
 #define GALE01_2E2470
 
-#include "it/forward.h"
+#include <stdbool.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 2E2470 */ void it_802E2470(Item_GObj*);

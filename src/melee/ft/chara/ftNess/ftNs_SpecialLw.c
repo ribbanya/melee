@@ -1,12 +1,11 @@
 #include "ftNs_SpecialLw.h"
 
+#include <platform.h>
+#include <common_structs.h>
+
 #include "ftNs_Init.h"
 #include "math.h"
-
-#include <platform.h>
-
 #include "ef/efasync.h"
-#include "ef/eflib.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0881.h"
@@ -17,12 +16,9 @@
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
 #include "ftNess/types.h"
-#include "pl/pl_040D.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 /// SpecialLw (PSI Magnet)
 #define FTNESS_SPECIALLW_COLL_FLAG                                            \

@@ -1,31 +1,24 @@
 #include "ftbosslib.h"
 
-#include "ft_0877.h"
-#include "ftlib.h"
-#include "math.h"
-
-#include "cm/camera.h"
-#include "ft/inlines.h"
-#include "ft/types.h"
-
-#include "ftCommon/forward.h"
-
-#include "ftMasterHand/types.h"
-#include "it/it_26B1.h"
-#include "lb/lbvector.h"
-#include "mp/mplib.h"
-
-#include "pl/forward.h"
-
-#include "pl/player.h"
-
 #include <math_ppc.h>
-#include <dolphin/os/OSError.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
-#include <MetroTRK/intrinsics.h>
+
+#include "ft_0877.h"
+#include "ftlib.h"
+#include "math.h"
+#include "cm/camera.h"
+#include "ft/inlines.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "ftMasterHand/types.h"
+#include "it/it_26B1.h"
+#include "lb/lbvector.h"
+#include "mp/mplib.h"
+#include "pl/forward.h"
+#include "pl/player.h"
 
 /// @todo Float reorder hack
 static float get_zero(void)

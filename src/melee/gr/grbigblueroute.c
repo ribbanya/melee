@@ -1,6 +1,15 @@
 #include "grbigblueroute.h"
 
 #include <platform.h>
+#include <trigf.h>
+#include <dolphin/os.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/spline.h>
+#include <common_structs.h>
 
 #include "baselib/debug.h"
 #include "baselib/memory.h"
@@ -20,15 +29,8 @@
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-
-#include <trigf.h>
-#include <dolphin/os.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/spline.h>
+#include "gr/granime.h"
+#include "it/forward.h"
 
 struct grBigBlueRoute_YakumonoParam {
     int x0;

@@ -1,11 +1,9 @@
 #include "ftMh_FingerBeam.h"
 
-#include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "baselib/forward.h"
-
 #include "ft/fighter.h"
-#include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
@@ -14,8 +12,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "it/forward.h"
 
 void ftMh_Poke1_Coll(HSD_GObj* gobj) {}
 

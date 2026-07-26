@@ -1,15 +1,13 @@
 #include "ftPe_Float.h"
 
+#include <platform.h>
+#include <common_structs.h>
+
 #include "ftPe_FloatAttack.h"
 #include "ftPe_FloatFall.h"
-
-#include <platform.h>
-
 #include "ef/efasync.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
@@ -17,9 +15,6 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_SpecialAir.h"
 #include "ftPeach/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
 
 bool ftPe_Float_CheckContinueInput(Fighter* fp)
 {

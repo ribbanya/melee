@@ -1,35 +1,29 @@
-#include "ftkirby.h"
-#include "types.h"
-
 #include <placeholder.h>
+#include <common_structs.h>
+#include <stddef.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
+#include "ftkirby.h"
 #include "baselib/forward.h"
-
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
 #include "ftKirby/forward.h"
-
 #include "it/items/itnesspkflash.h"
 #include "lb/lb_00B0.h"
-
-#include <common_structs.h>
-#include <stddef.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ftCommon/forward.h"
+#include "ftKirby/types.h"
+#include "ftNess/types.h"
+#include "it/forward.h"
 
 static void ftKb_NsSpecialNStart_Anim_inline(HSD_GObj* gobj, Vec3* flash_pos)
 {

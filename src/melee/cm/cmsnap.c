@@ -1,11 +1,11 @@
 #include "cm/cmsnap.h"
 
-#include "lb/lbspdisplay.h"
-
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
-#include <baselib/tobj.h>
+#include <platform.h>
+
+#include "lb/lbspdisplay.h"
 
 typedef struct {
     int unk0;

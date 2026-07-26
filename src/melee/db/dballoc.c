@@ -1,9 +1,10 @@
-#include "db.h"
-
-#include "ef/efdata.h"
-
-#include <sysdolphin/baselib/particle.h>
 #include <sysdolphin/baselib/psappsrt.h>
+#include <baselib/generator.h>
+#include <baselib/objalloc.h>
+#include <common_structs.h>
+
+#include "db.h"
+#include "ef/efdata.h"
 
 static UnkFlagStruct db_804D6BA0;
 

@@ -1,20 +1,7 @@
 #include "tylist.h"
 
-#include "toy.h"
-#include "types.h"
-
 #include <placeholder.h>
 #include <platform.h>
-
-#include "lb/lb_00B0.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mn/mnsoundtest.h"
-#include "ty/toy.h"
-#include "ty/types.h"
-
 #include <math_ppc.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
@@ -31,11 +18,17 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/lobj.h>
-#include <baselib/mobj.h>
 #include <baselib/sislib.h>
-#include <baselib/tobj.h>
-#include <baselib/wobj.h>
+#include <baselib/aobj.h>
+#include <common_structs.h>
+
+#include "toy.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "ty/types.h"
+#include "sc/forward.h"
 
 /* 312834 */ static char* _tyList_80312834(char* buf, u32 num);
 /* 312904 */ static void _tyList_80312904(void*, s8);

@@ -1,15 +1,15 @@
 #include "grhomerun.h"
 
-#include "placeholder.h"
-
 #include <platform.h>
+#include <baselib/cobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
 
+#include "placeholder.h"
 #include "baselib/archive.h"
 #include "baselib/debug.h"
 #include "baselib/fog.h"
-
-#include "baselib/forward.h"
-
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
@@ -30,8 +30,11 @@
 #include "lb/lb_00B0.h"
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
-#include "lb/types.h"
 #include "mp/mplib.h"
+#include "cm/forward.h"
+#include "gr/granime.h"
+#include "gr/types.h"
+#include "mp/forward.h"
 
 /* 21E994 */ static void fn_8021E994(void* user_data, int joint_id,
                                      CollData* coll, int coll_x50,

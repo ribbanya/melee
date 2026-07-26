@@ -1,9 +1,5 @@
 #include "grpstadium.h"
 
-#include "baselib/forward.h"
-
-#include "dolphin/gx/GXStruct.h"
-
 #include <sysdolphin/baselib/archive.h>
 #include <sysdolphin/baselib/displayfunc.h>
 #include <sysdolphin/baselib/dobj.h>
@@ -37,6 +33,21 @@
 #include <melee/lb/lbvector.h>
 #include <melee/mp/mplib.h>
 #include <melee/pl/player.h>
+#include <baselib/cobj.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/tobj.h>
+#include <dolphin/gx/GXTexture.h>
+#include <dolphin/os.h>
+#include <math.h>
+
+#include "dolphin/gx/GXStruct.h"
+#include "cm/forward.h"
+#include "gr/forward.h"
+#include "gr/ground.h"
+#include "lb/forward.h"
+#include "mn/forward.h"
+#include "pl/forward.h"
 
 static struct grPStadium_YakumonoParam {
     int x0;

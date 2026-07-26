@@ -1,13 +1,13 @@
 #ifndef GALE01_2C68F8
 #define GALE01_2C68F8
 
-#include "it/forward.h"
-
-#include "it/items/types.h"
-
 #include <baselib/forward.h>
-
 #include <dolphin/mtx.h>
+#include <stdbool.h>
+
+#include "it/forward.h"
+#include "it/items/types.h"
+#include "ft/forward.h"
 
 /* 2C68F8 */ HSD_GObj* itGamewatchFire_Spawn(HSD_GObj*, Vec3*, Fighter_Part,
                                              float);

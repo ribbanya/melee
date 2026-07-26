@@ -1,14 +1,17 @@
 #ifndef GALE01_1DCCFC
 #define GALE01_1DCCFC
 
-#include "types.h"
-
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
 
+#include "types.h"
 #include "gr/forward.h"
 #include "it/forward.h"
 #include "lb/forward.h"
-#include <baselib/forward.h>
+
+struct grSmashTaunt_GroundVars;
 
 /* 1DCCFC */ void grCorneria_801DCCFC(void);
 /* 1DCE1C */ void grCorneria_801DCE1C(void);

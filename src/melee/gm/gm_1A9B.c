@@ -10,12 +10,16 @@
 /// whose functions anchor at 0x803DB458). Splitting here reproduces the
 /// retail anchor exactly; keeping the tables in gmregenddisp.c compiles the
 /// same instructions with displacements 0x460/0x79C/0xAB8 instead.
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/sobjlib.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "gm_1A7A.h"
-
 #include "dolphin/pad.h"
-
 #include "gm/forward.h"
-
 #include "gm/gm_1A36.h"
 #include "gm/gm_1A3F.h"
 #include "gm/gm_1BA8.h"
@@ -25,11 +29,6 @@
 #include "lb/lbbgflash.h"
 #include "lb/lbmthp.h"
 #include "mn/inlines.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/sobjlib.h>
 
 static u8 gmRegend_InputDelayTimer;
 static u8 gmRegend_ExitTimer;

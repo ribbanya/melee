@@ -1,15 +1,11 @@
 #include "ftMr_SpecialS.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+
 #include "ftMr_Init.h"
 #include "math.h"
-#include "types.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
@@ -22,8 +18,8 @@
 #include "it/items/itmariocape.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftMario/types.h"
 
 static void setCallbacks(Fighter* fp)
 {

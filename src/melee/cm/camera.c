@@ -1,43 +1,6 @@
 #include "camera.h"
 
-#include "platform.h"
-
 #include <placeholder.h>
-
-#include "baselib/cobj.h"
-#include "baselib/displayfunc.h"
-#include "baselib/fog.h"
-
-#include "baselib/forward.h"
-
-#include "baselib/gobj.h"
-#include "baselib/lobj.h"
-#include "baselib/memory.h"
-#include "baselib/random.h"
-#include "baselib/wobj.h"
-
-#include "cm/forward.h"
-
-#include "cm/types.h"
-#include "dolphin/mtx.h"
-#include "dolphin/pad.h"
-#include "dolphin/types.h"
-
-#include "ft/forward.h"
-
-#include "ft/ftlib.h"
-#include "gm/gm_unsplit.h"
-#include "gr/grlib.h"
-#include "gr/ground.h"
-#include "gr/stage.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbrefract.h"
-#include "lb/lbshadow.h"
-#include "lb/lbspdisplay.h"
-#include "lb/lbvector.h"
-#include "mp/mplib.h"
-#include "pl/player.h"
-
 #include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
@@ -52,6 +15,39 @@
 #include <melee/gr/grhomerun.h>
 #include <melee/gr/grkinokoroute.h>
 #include <melee/gr/grzebes.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/debug.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os.h>
+
+#include "platform.h"
+#include "baselib/cobj.h"
+#include "baselib/displayfunc.h"
+#include "baselib/fog.h"
+#include "baselib/gobj.h"
+#include "baselib/lobj.h"
+#include "baselib/memory.h"
+#include "baselib/random.h"
+#include "baselib/wobj.h"
+#include "cm/forward.h"
+#include "cm/types.h"
+#include "dolphin/mtx.h"
+#include "dolphin/pad.h"
+#include "ft/forward.h"
+#include "ft/ftlib.h"
+#include "gm/gm_unsplit.h"
+#include "gr/grlib.h"
+#include "gr/ground.h"
+#include "gr/stage.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbrefract.h"
+#include "lb/lbshadow.h"
+#include "lb/lbspdisplay.h"
+#include "lb/lbvector.h"
+#include "mp/mplib.h"
+#include "pl/player.h"
+#include "gr/forward.h"
+#include "gr/types.h"
 
 /* 029AAC */ static void Camera_80029AAC(CameraBounds* bounds,
                                          CameraTransformState* transform,

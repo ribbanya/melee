@@ -2,9 +2,9 @@
 
 #include "ftCo_HammerWait.h"
 #include "ftCo_Pass.h"
-
 #include "ft/inlines.h"
 #include "ft/types.h"
+#include "ftCommon/forward.h"
 
 bool ftCo_800C60C8(Fighter_GObj* gobj)
 {

@@ -1,14 +1,13 @@
 #include "tyfigupon.h"
 
-#include "math.h"
-#include "placeholder.h"
-#include "platform.h"
-#include "stddef.h"
-#include "toy.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/aobj.h>
 
+#include "stddef.h"
+#include "toy.h"
 #include "baselib/archive.h"
 #include "baselib/cobj.h"
 #include "baselib/controller.h"
@@ -22,7 +21,6 @@
 #include "baselib/gobjproc.h"
 #include "baselib/gobjuserdata.h"
 #include "baselib/jobj.h"
-#include "baselib/lobj.h"
 #include "baselib/memory.h"
 #include "baselib/mobj.h"
 #include "baselib/random.h"
@@ -46,11 +44,7 @@
 #include "MSL/math.h"
 #include "sc/types.h"
 #include "ty/inlines.h"
-#include "ty/toy.h"
 #include "ty/types.h"
-
-#include <math_ppc.h>
-#include <trigf.h>
 
 /* 314AA8 */ static void _tyFigupon_80314AA8(HSD_JObj*, char*, char*, char*);
 /* 314B54 */ static s32 _tyFigupon_80314B54(void);

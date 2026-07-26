@@ -1,22 +1,16 @@
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
-#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
+#include "gr/forward.h"
 
 /* 223580 */ static void grTSamus_OnDemoInit(int);
 /* 223584 */ static void grTSamus_OnInit(void);

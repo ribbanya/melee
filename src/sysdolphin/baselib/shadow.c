@@ -1,25 +1,28 @@
 #include "shadow.h"
 
-#include "class.h"
-#include "cobj.h"
-#include "debug.h"
-#include "jobj.h"
-#include "list.h"
-#include "memory.h"
-#include "mobj.h"
-#include "mtx.h"
-#include "object.h"
-#include "perf.h"
-#include "pobj.h"
-#include "state.h"
-#include "tev.h"
-#include "tobj.h"
-#include "util.h"
-
-#include <math.h>
 #include <trigf.h>
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
+#include <baselib/class.h>
+#include <baselib/cobj.h>
+#include <baselib/debug.h>
+#include <baselib/list.h>
+#include <baselib/objalloc.h>
+#include <baselib/object.h>
+#include <baselib/pobj.h>
+#include <baselib/texp.h>
+#include <baselib/tobj.h>
+#include <dolphin/gx/GXEnum.h>
+#include <string.h>
+
+#include "jobj.h"
+#include "memory.h"
+#include "mobj.h"
+#include "mtx.h"
+#include "perf.h"
+#include "state.h"
+#include "tev.h"
+#include "util.h"
 
 HSD_ObjAllocData shadow_alloc_data;
 

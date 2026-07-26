@@ -1,32 +1,27 @@
 #include "player.h"
 
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobjplink.h>
+#include <baselib/objalloc.h>
+#include <placeholder.h>
+
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_0877.h"
 #include "ft/ft_0D4D.h"
 #include "ft/ftdata.h"
 #include "ft/ftdemo.h"
 #include "ft/ftlib.h"
-#include "ft/types.h"
 #include "ftKirby/ftkirby.h"
 #include "gm/gm_unsplit.h"
 #include "if/ifstatus.h"
 #include "lb/lbarchive.h"
-
 #include "pl/forward.h"
-
 #include "pl/plattack.h"
 #include "pl/plbonus.h"
 #include "pl/plstale.h"
 #include "pl/types.h"
-
-#include <dolphin/mtx.h>
-#include <dolphin/os.h>
-#include <baselib/debug.h>
-#include <baselib/gobjplink.h>
-#include <baselib/objalloc.h>
 
 typedef struct _ftMapping {
     s8 internal_id;

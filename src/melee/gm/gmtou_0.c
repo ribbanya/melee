@@ -1,20 +1,20 @@
-#include "gm_1601.h"
-#include "gm_1A3F.h"
-#include "gm_1A45.h"
+#include <placeholder.h>
+#include <baselib/dobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/jobj.h>
+#include <baselib/mobj.h>
+#include <baselib/random.h>
+#include <baselib/sislib.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/pad.h>
+#include <platform.h>
+
 #include "gm_unsplit.h"
 #include "gmmain_lib.h"
 #include "gmtou_1.h"
-#include "gmtoulib.h"
-#include "types.h"
-
-#include <placeholder.h>
-
-#include "baselib/fog.h"
-#include "baselib/gobjgxlink.h"
-#include "baselib/gobjobject.h"
-
-#include "gm/forward.h"
-
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "mn/inlines.h"
@@ -23,22 +23,8 @@
 #include "mn/mnname.h"
 #include "mn/mnnamenew.h"
 #include "sc/types.h"
-
-#include <printf.h>
-#include <dolphin/os.h>
-#include <baselib/controller.h>
-#include <baselib/dobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/mobj.h>
-#include <baselib/particle.h>
-#include <baselib/random.h>
-#include <baselib/sislib.h>
+#include "gm/types.h"
+#include "mn/forward.h"
 
 /// @todo .sdata2 order hack
 static void sdata2_order(void)

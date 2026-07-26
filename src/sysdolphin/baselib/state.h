@@ -2,10 +2,10 @@
 #define SYSDOLPHIN_BASELIB_S
 
 #include <platform.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
 
 #include "baselib/forward.h"
-
-#include <dolphin/gx.h>
 
 #define HSD_STATE_ALL -1
 #define HSD_STATE_NONE 0

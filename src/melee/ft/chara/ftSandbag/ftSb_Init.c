@@ -1,19 +1,16 @@
 #include "ftSb_Init.h"
 
-#include "math.h"
-
 #include <platform.h>
+#include <common_structs.h>
 
-#include "forward.h"
-
+#include "math.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftcamera.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "lb/lb_00B0.h"
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
 
 MotionState ftSb_Init_MotionStateTable[ftSb_MS_SelfCount] = {
     {

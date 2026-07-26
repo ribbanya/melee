@@ -1,20 +1,22 @@
 #include "itmatadogas.h"
 
-#include "inlines.h"
+#include <baselib/random.h>
+#include <MSL/math.h>
+#include <baselib/debug.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "ef/efsync.h"
-#include "ft/ft_0C31.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
-
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7B58[] = {
     { 0, it_802CB118, it_802CB14C, it_802CB150 },

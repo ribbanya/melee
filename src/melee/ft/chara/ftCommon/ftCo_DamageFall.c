@@ -1,5 +1,9 @@
 #include "ftCo_DamageFall.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+
 #include "ftCo_AirCatch.h"
 #include "ftCo_AttackAir.h"
 #include "ftCo_DamageIce.h"
@@ -8,25 +12,17 @@
 #include "ftCo_ItemThrow.h"
 #include "ftCo_SpecialAir.h"
 #include "math.h"
-
-#include <placeholder.h>
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemParasolDamageFall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
-
-#include <baselib/forward.h>
 
 void ftCo_80090574(Fighter_GObj* gobj)
 {

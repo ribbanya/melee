@@ -1,5 +1,9 @@
 #include "nubevent.h"
 
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/msgbuf.h>
+#include <MetroTRK/mutex_TRK.h>
+
 #include "MetroTRK/mem_TRK.h"
 
 typedef struct EventQueue {

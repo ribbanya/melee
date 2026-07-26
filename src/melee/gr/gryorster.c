@@ -1,8 +1,13 @@
 #include "gryorster.h"
 
 #include <platform.h>
-
-#include "forward.h"
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
 
 #include "ft/ftlib.h"
 #include "gr/grdisplay.h"
@@ -15,11 +20,9 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
+#include "gr/granime.h"
+#include "gr/types.h"
+#include "mp/forward.h"
 
 /* 2024F0 */ static void grYorster_802024F0(void* user_data, int joint_id,
                                             CollData* coll, int coll_x50,

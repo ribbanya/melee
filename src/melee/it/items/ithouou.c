@@ -1,21 +1,22 @@
 #include "ithouou.h"
 
-#include "inlines.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "mp/mplib.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7F58[] = {
     { 0, it_802D2C54, it_802D2C78, it_802D2D04 },

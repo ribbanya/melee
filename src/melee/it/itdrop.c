@@ -1,7 +1,10 @@
 #include "it/itdrop.h"
 
-#include "inlines.h"
+#include <baselib/random.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
+#include "inlines.h"
 #include "ft/ftlib.h"
 #include "gm/gm_unsplit.h"
 #include "it/it_26B1.h"
@@ -10,9 +13,6 @@
 #include "it/item.h"
 #include "it/items/it_2E5A.h"
 #include "it/itspawn.h"
-
-#include <baselib/gobj.h>
-#include <baselib/random.h>
 
 ItemKind it_8026F3AC(void)
 {

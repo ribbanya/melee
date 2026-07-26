@@ -1,11 +1,13 @@
 #include "ftSs_SpecialN.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
 #include "inlines.h"
 #include "math.h"
-
-#include <platform.h>
-
-#include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -15,7 +17,6 @@
 #include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Escape.h"
 #include "ftCommon/ftCo_Fall.h"
@@ -24,11 +25,11 @@
 #include "ftSamus/types.h"
 #include "it/items/itsamusmissile.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
+#include "ftSamus/forward.h"
+#include "it/forward.h"
+#include "it/items/itsamuschargeshot.h"
 
 static void ftSamus_801293BC_inner(HSD_GObj* gobj)
 {

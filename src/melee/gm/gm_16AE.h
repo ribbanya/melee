@@ -2,10 +2,15 @@
 #define MELEE_GM_16AE_H
 
 #include <placeholder.h>
-
 #include <melee/gm/forward.h>
 #include <melee/it/forward.h>
 #include <melee/mn/forward.h>
+#include <baselib/forward.h>
+#include <platform.h>
+
+struct PlayerInitData;
+struct StartMeleeData;
+struct lbl_8046B6A0_24C_t;
 
 /* 16AE38 */ lbl_8046B6A0_t* gm_16AE_GetUnkData_0(void);
 /* 16AE44 */ lbl_8046B6A0_t* gm_16AE_GetUnkData_1(void);

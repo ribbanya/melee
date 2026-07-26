@@ -6,11 +6,8 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Attack100.h"
-#include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
 

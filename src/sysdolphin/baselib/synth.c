@@ -1,13 +1,17 @@
 #include "synth.h"
 
-#include "synth.static.h"
-
 #include <math_ppc.h>
 #include <dolphin/ai.h>
 #include <dolphin/ar.h>
 #include <dolphin/os.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/devcom.h>
+#include <baselib/forward.h>
+#include <dolphin/dvd.h>
+#include <dolphin/os/OSAlloc.h>
+#include <string.h>
+
+#include "synth.static.h"
 
 /* 389334 */ static int HSD_Synth_80389334(int sfx_id, u8 vol, u8 vol2, u8 pan,
                                            int priority, u8 itd_flag,

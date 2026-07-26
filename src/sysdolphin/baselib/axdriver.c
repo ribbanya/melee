@@ -1,15 +1,18 @@
 #include "axdriver.h"
 
-#include "axdriver.static.h"
-
 #include <math_ppc.h>
 #include <string.h>
 #include <dolphin/axfx.h>
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
-#include <sysdolphin/baselib/axdriver.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/synth.h>
+#include <baselib/forward.h>
+#include <cmath.h>
+#include <dolphin/ax.h>
+#include <placeholder.h>
+
+#include "axdriver.static.h"
 
 typedef struct {
     s32 v[8];

@@ -1,11 +1,19 @@
 #include "ftCo_CaptureWaitKirby.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <platform.h>
+
 #include "ft/fighter.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftKirby/ftkirby.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 void ftCo_800BD620(Fighter_GObj* gobj)
 {

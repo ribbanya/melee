@@ -1,11 +1,12 @@
 #ifndef GALE01_288C88
 #define GALE01_288C88
 
-#include "it/forward.h"
-
-#include "it/items/types.h"
-
 #include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <stdbool.h>
+
+#include "it/forward.h"
+#include "it/items/types.h"
 
 /* 288C88 */ Item_GObj* it_80288C88(HSD_GObj* arg_gobj, Vec3* pos, Vec3* vel,
                                     float dir);

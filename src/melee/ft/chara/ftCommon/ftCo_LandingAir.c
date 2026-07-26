@@ -3,15 +3,10 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Landing.h"
 
 void ftCo_LandingAir_EnterWithLag(Fighter_GObj* gobj)

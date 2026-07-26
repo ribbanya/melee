@@ -1,13 +1,11 @@
 #include "gr/grdynamicattr.h"
 
 #include <platform.h>
+#include <math_ppc.h>
+#include <baselib/debug.h>
 
 #include "gr/types.h"
 #include "mp/mplib.h"
-
-#include <math.h>
-#include <math_ppc.h>
-#include <baselib/debug.h>
 
 static const s32 GC_Id_None = -1;
 

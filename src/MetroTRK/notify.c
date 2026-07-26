@@ -1,5 +1,8 @@
 #include "notify.h"
 
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/msgcmd.h>
+
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/support.h"
 #include "MetroTRK/targimpl.h"

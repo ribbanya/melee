@@ -1,5 +1,8 @@
 #include "ftCo_Wait.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+
 #include "ftCo_Attack1.h"
 #include "ftCo_AttackHi3.h"
 #include "ftCo_AttackHi4.h"
@@ -9,9 +12,6 @@
 #include "ftCo_AttackS4.h"
 #include "ftCo_Escape.h"
 #include "ftCo_SpecialS.h"
-
-#include <platform.h>
-
 #include "ft/ft_081B.h"
 #include "ft/ftcoll.h"
 #include "ft/ftwaitanim.h"
@@ -27,8 +27,7 @@
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/ftCo_Walk.h"
 #include "ftFox/ftFx_AppealS.h"
-
-#include <baselib/forward.h>
+#include "ft/ft_084E.h"
 
 void ftCo_Wait_Anim(HSD_GObj* gobj)
 {

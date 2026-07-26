@@ -1,10 +1,12 @@
 #include "pl_040D.h"
 
+#include <melee/gm/gm_unsplit.h>
+
 #include "player.h"
 #include "plbonus.h"
 #include "plbonusinline.h"
-
-#include <melee/gm/gm_unsplit.h>
+#include "pl/forward.h"
+#include "pl/types.h"
 
 void pl_80040DDC(int slot)
 {

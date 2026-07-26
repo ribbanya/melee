@@ -1,11 +1,11 @@
 #include "gr/grinishie2.h"
 
-#include "placeholder.h"
-
 #include <platform.h>
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
 
-#include "baselib/forward.h"
-
+#include "placeholder.h"
 #include "cm/camera.h"
 #include "gm/gm_unsplit.h"
 #include "gr/granime.h"
@@ -24,7 +24,6 @@
 #include "sysdolphin/baselib/gobjproc.h"
 #include "sysdolphin/baselib/random.h"
 
-#include <baselib/jobj.h>
 GrJoint grI2_803E4A60[] = {
     { 0, 1, 1 },  { 12, 3, 1 },  { 13, 4, 1 },  { 14, 15, 0 }, { 3, 5, 0 },
     { 4, 6, 0 },  { 5, 7, 0 },   { 6, 8, 0 },   { 7, 9, 0 },   { 8, 10, 0 },

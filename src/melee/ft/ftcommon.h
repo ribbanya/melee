@@ -1,10 +1,13 @@
 #ifndef GALE01_07C930
 #define GALE01_07C930
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
 #include "it/forward.h"
-#include <baselib/forward.h>
 
 /* 07C930 */ void ftCommon_ApplyFrictionGround(Fighter*, float);
 /* 07C98C */ void ftCommon_8007C98C(Fighter*, float accel, float target_vel,

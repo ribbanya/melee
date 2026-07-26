@@ -1,6 +1,14 @@
 #include "ft/chara/ftPopo/ftPp_SpecialS.h"
 
-#include "ef/eflib.h"
+#include <math.h>
+#include <trigf.h>
+#include <baselib/forward.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
@@ -12,9 +20,11 @@
 #include "ftNana/ftNn_Init.h"
 #include "ftPopo/ftPp_Init.h"
 #include "pl/player.h"
-
-#include <math.h>
-#include <trigf.h>
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "ftPopo/forward.h"
+#include "ftPopo/types.h"
 
 static inline void setRefGObjFlagAndClear(Fighter* fp)
 {

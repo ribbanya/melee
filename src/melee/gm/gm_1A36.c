@@ -1,10 +1,11 @@
 #include "gm_1A36.h"
 
-#include "gm/gm_1A36.static.h"
-
 #include <baselib/controller.h>
 #include <melee/gm/gmscdata.h>
 #include <melee/gm/types.h>
+#include <dolphin/pad.h>
+
+#include "gm/gm_1A36.static.h"
 
 u64 gm_GetButtonsPressed(u8 idx)
 {

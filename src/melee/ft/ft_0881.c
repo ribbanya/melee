@@ -4,10 +4,13 @@
 #include <melee/db/db.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_0877.h>
-#include <melee/ft/inlines.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/pl/player.h>
 #include <melee/pl/plstale.h>
+
+#include "ft/forward.h"
+#include "pl/forward.h"
+#include "pl/types.h"
 
 void ft_800881D8(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan)
 {

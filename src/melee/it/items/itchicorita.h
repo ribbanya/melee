@@ -3,9 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2C9588 */ void it_802C9588(Item_GObj*);

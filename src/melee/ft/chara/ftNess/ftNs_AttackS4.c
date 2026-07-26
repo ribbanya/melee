@@ -13,6 +13,7 @@
 #include "ftNess/ftNs_Init.h"
 #include "ftNess/types.h"
 #include "it/items/itnessbat.h"
+#include "ft/ft_084E.h"
 
 /// 0x80114BF4
 void ftNs_AttackS4_OnReflect(

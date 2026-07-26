@@ -1,17 +1,17 @@
 #include "lb_0195.h"
 
+#include <baselib/controller.h>
+#include <dolphin/os.h>
+#include <dolphin/os/OSAlarm.h>
+#include <dolphin/os/OSReset.h>
+#include <dolphin/pad.h>
+#include <dolphin/vi/vifuncs.h>
+
 #include "lb_0192.h"
 #include "lbaudio_ax.h"
 #include "lbcardgame.h"
 #include "lbcardnew.h"
 #include "lbsnap.h"
-
-#include <dolphin/dvd.h>
-#include <dolphin/vi.h>
-#include <baselib/controller.h>
-#include <baselib/initialize.h>
-#include <baselib/sislib.h>
-#include <baselib/video.h>
 
 struct lb_804329F0_t {
     union {

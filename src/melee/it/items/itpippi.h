@@ -5,6 +5,7 @@
 
 #include "it/item.h"
 #include "it/items/types.h"
+#include "it/forward.h"
 
 void itPippi_Logic20_Spawned(Item_GObj*);
 void it_802D32D8(Item_GObj*);

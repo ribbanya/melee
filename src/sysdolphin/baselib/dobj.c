@@ -1,12 +1,12 @@
 #include "dobj.h"
 
-#include "aobj.h"
-#include "class.h"
-#include "debug.h"
-#include "mobj.h"
-#include "pobj.h"
-
 #include <dolphin/os.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/mobj.h>
+
+#include "aobj.h"
+#include "pobj.h"
 
 static void DObjInfoInit(void);
 HSD_DObjInfo hsdDObj = { DObjInfoInit };

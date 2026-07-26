@@ -1,11 +1,17 @@
 #include "itnesspkfirepillar.h"
 
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "db/db.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 
 /**
  * <rei wolf> i do know 1.0f and 0.0 are swapped but idk how to get a 1.0 in

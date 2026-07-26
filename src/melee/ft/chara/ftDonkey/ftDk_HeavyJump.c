@@ -1,7 +1,8 @@
 #include "ftDk_HeavyJump.h"
 
-#include "ftDk_HeavyFall.h"
+#include <platform.h>
 
+#include "ftDk_HeavyFall.h"
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"

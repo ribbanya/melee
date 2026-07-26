@@ -2,27 +2,21 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <common_structs.h>
 
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
 #include "ef/efsync.h"
 #include "gm/gm_1BA8.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/it_3F14.h"
 #include "it/itCommonItems.h"
 #include "it/item.h"
-
-#include "it/items/forward.h"
-
 #include "it/ithitbox.h"
-
-#include <string.h>
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F6728[] = {
     { -1, itEvyoshiegg_UnkMotion0_Anim, itEvyoshiegg_UnkMotion0_Phys,

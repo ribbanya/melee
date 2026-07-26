@@ -1,11 +1,9 @@
 #include "ftMt_SpecialLw.h"
 
-#include "ftMt_Init.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
 
-#include "forward.h"
-
+#include "ftMt_Init.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -17,8 +15,8 @@
 #include "ftMewtwo/types.h"
 #include "it/items/itmewtwodisable.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftMewtwo/forward.h"
 
 /// SpecialLw/SpecialAirLw
 

@@ -1,9 +1,9 @@
 #include "ftGw_AttackLw3.h"
 
-#include "ftGw_Init.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
 
+#include "ftGw_Init.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
@@ -27,8 +27,7 @@
 #include "it/it_26B1.h"
 #include "it/items/itgamewatchmanhole.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 static void ftGw_AttackLw3_ItemManholeExitHitlag(HSD_GObj*);
 static void ftGw_AttackLw3_ItemManholeEnterHitlag(HSD_GObj*);

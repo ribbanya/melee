@@ -1,19 +1,6 @@
 #include "mnsoundtest.h"
 
-#include "inlines.h"
-#include "types.h"
-
 #include <platform.h>
-
-#include "forward.h"
-
-#include "gm/gm_unsplit.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lbarchive.h"
-#include "lb/lbspdisplay.h"
-
-#include <baselib/forward.h>
-
 #include <dolphin/os.h>
 #include <baselib/controller.h>
 #include <baselib/debug.h>
@@ -26,6 +13,17 @@
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
+#include <baselib/object.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
+#include "inlines.h"
+#include "gm/gm_unsplit.h"
+#include "gm/gmmain_lib.h"
+#include "lb/lbarchive.h"
+#include "lb/lbspdisplay.h"
+#include "lb/lbaudio_ax.h"
+#include "mn/mnmain.h"
 
 extern HSD_PadStatus HSD_PadCopyStatus[4];
 

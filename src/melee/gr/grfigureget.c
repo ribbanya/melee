@@ -1,37 +1,30 @@
 #include "grfigureget.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/random.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
-#include "types.h"
-
-#include <platform.h>
-
-#include "baselib/forward.h"
-
 #include "ft/ftlib.h"
 #include "gm/gmregclear.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/items/itcoin.h"
-#include "it/types.h"
-
-#include "lb/forward.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 #include "mp/mplib.h"
 #include "ty/toy.h"
 #include "ty/tydisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
+#include "gr/types.h"
+#include "mp/forward.h"
 
 typedef struct grFigureGet_Data {
     s32 x0;

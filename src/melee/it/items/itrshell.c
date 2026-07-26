@@ -1,15 +1,15 @@
 #include "itrshell.h"
 
-#include "inlines.h"
-#include "m2c_macros.h"
-
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
+#include "inlines.h"
 #include "baselib/jobj.h"
 #include "ef/efasync.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -19,6 +19,10 @@
 #include "it/itmaplib.h"
 #include "MSL/math.h"
 #include "sysdolphin/baselib/random.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 typedef struct itRShell_Attrs {
     float x0;

@@ -1,20 +1,18 @@
 #include "lobj.h"
 
-#include "aobj.h"
-#include "class.h"
-#include "cobj.h"
-#include "list.h"
-#include "object.h"
-#include "wobj.h"
-
 #include <placeholder.h>
-
-#include "dolphin/gx/GXEnum.h"
-
-#include "forward.h"
-
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/object.h>
+
+#include "aobj.h"
+#include "cobj.h"
+#include "list.h"
+#include "wobj.h"
+#include "dolphin/gx/GXEnum.h"
 
 static void LObjInfoInit(void);
 

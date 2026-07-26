@@ -2,13 +2,13 @@
 #define GALE01_041C78
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
 #include "mp/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
+#include "lb/forward.h"
 
 /* 041C78 */ void mpColl_80041C78(void);
 /* 041C8C */ void mpCollPrev(CollData* cd);

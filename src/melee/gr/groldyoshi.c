@@ -1,9 +1,12 @@
 #include "groldyoshi.h"
 
-#include "types.h"
-
 #include <platform.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
 
+#include "types.h"
 #include "baselib/random.h"
 #include "gr/grlib.h"
 #include "gr/grmaterial.h"
@@ -13,9 +16,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
+#include "gr/granime.h"
+#include "mp/forward.h"
 
 /* 20F2A8 */ static void fn_8020F2A8(void* user_data, int joint_id,
                                      CollData* coll, int coll_x50,

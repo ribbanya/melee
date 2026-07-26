@@ -1,11 +1,15 @@
-#include "ft/forward.h"
+#include <baselib/object.h>
+#include <baselib/sislib.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+#include <platform.h>
 
-#include "gm/gm_1A36.h"
 #include "mn/types.h"
+#include "lb/lblanguage.h"
+
 #define MNDIAGRAM_SOURCE
 #include "mndiagram.static.h"
-#include "mndiagram2.static.h"
-
 #include "baselib/debug.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
@@ -15,7 +19,6 @@
 #include "baselib/gobjuserdata.h"
 #include "baselib/jobj.h"
 #include "baselib/memory.h"
-#include "dolphin/types.h"
 #include "gm/gm_1601.h"
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"

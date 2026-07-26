@@ -2,12 +2,13 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/aobj.h>
+#include <baselib/object.h>
+#include <baselib/rumble.h>
 
 #include "baselib/archive.h"
 #include "baselib/controller.h"
-
 #include "baselib/forward.h"
-
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
@@ -18,7 +19,6 @@
 #include "dolphin/pad.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_16AE.h"
-#include "gm/gm_1A36.h"
 #include "gm/gm_1A45.h"
 #include "gm/gmpause.h"
 #include "gm/types.h"
@@ -29,7 +29,6 @@
 #include "lb/lbsnap.h"
 #include "lb/lbspdisplay.h"
 #include "mn/inlines.h"
-#include "mn/mnmain.h"
 #include "sc/types.h"
 
 typedef struct _SisLibUnkStruct2 {

@@ -1,15 +1,21 @@
 #include "it/itdraw.h"
 
-#include "inlines.h"
+#include <baselib/tev.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/pobj.h>
+#include <baselib/state.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
+#include "inlines.h"
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 #include "it/it_2725.h"
 #include "lb/lbcollision.h"
 #include "lb/lbgx.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/tev.h>
 
 U8Vec4 it_804D5168 = { 0xFF, 0x40, 0x80, 0x80 };
 

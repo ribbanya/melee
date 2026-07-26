@@ -2,10 +2,11 @@
 #define MELEE_GM_1832_H
 
 #include <placeholder.h>
-
 #include <sysdolphin/baselib/forward.h>
-
 #include <melee/gm/types.h>
+#include <platform.h>
+
+#include "mn/forward.h"
 
 /* 1849E0 */ void fn_801849E0(HSD_GObj*);
 /* 184A04 */ void fn_80184A04(HSD_GObj*);

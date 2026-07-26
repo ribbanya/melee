@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <dolphin/ar.h>
 
 typedef void (*lbArqCallback)(void* arg);

@@ -1,7 +1,17 @@
 #include "vi1101.h"
 
-#include "vi.h"
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/aobj.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/mtx.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
+#include "vi.h"
 #include "cm/camera.h"
 #include "dolphin/gx/GXStruct.h"
 #include "ef/efasync.h"
@@ -20,10 +30,10 @@
 #include "mp/mpcoll.h"
 #include "pl/player.h"
 #include "sc/types.h"
+#include "ft/forward.h"
+#include "gr/forward.h"
+#include "pl/forward.h"
 
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
 u8 un_804D6FD8[8];
 GXColor un_804D5B08 = { 0, 0, 0, 0xff };
 

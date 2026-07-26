@@ -1,17 +1,21 @@
 #include "gmallstar.h"
 
-#include "gm/gmallstar.static.h"
-
-#include "gm_unsplit.h"
-#include "gmregcommon.h"
-
-#include "baselib/random.h"
-#include "gr/ground.h"
-
 #include <melee/gm/gmmain_lib.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbbgflash.h>
 #include <melee/lb/lbdvd.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "gm/gmallstar.static.h"
+#include "gm_unsplit.h"
+#include "gmregcommon.h"
+#include "baselib/random.h"
+#include "gr/ground.h"
+#include "ft/forward.h"
+#include "gm/types.h"
+#include "lb/types.h"
+#include "mn/forward.h"
 
 extern CSSData gmClassic_80470708;
 extern DebugGameOverData gmClassic_80470850;

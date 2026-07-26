@@ -3,9 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
-
 #include <dolphin/gx/GXStruct.h>
 
 /* 2F7EFC */ int ifStock_802F7EFC(int, int);

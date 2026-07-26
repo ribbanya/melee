@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdio.h>
+
 #include "stdlib.h"
 
 /// Widechar to multibyte string conversion,

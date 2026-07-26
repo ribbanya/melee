@@ -1,14 +1,5 @@
 #include "ft/ft_0D31.h"
 
-#include "baselib/random.h"
-#include "ft/fighter.h"
-#include "ft/ft_0C88.h"
-#include "ft/ftcolanim.h"
-#include "ft/ftcommon.h"
-#include "ft/ftparts.h"
-#include "ftCommon/ftCo_Throw.h"
-#include "lb/lbvector.h"
-
 #include <melee/cm/camera.h>
 #include <melee/ef/efasync.h>
 #include <melee/ef/efsync.h>
@@ -25,6 +16,22 @@
 #include <melee/pl/player.h>
 #include <melee/pl/plbonuslib.h>
 #include <melee/pl/plstale.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+
+#include "baselib/random.h"
+#include "ft/fighter.h"
+#include "ft/ft_0C88.h"
+#include "ft/ftcolanim.h"
+#include "ft/ftcommon.h"
+#include "ft/ftparts.h"
+#include "ftCommon/ftCo_Throw.h"
+#include "lb/lbvector.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
 
 const Quaternion lbl_803B7500 = { 0, 3.1415927f, 0, 0 };
 

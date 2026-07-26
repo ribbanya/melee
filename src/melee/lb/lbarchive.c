@@ -1,13 +1,14 @@
 #include "lbarchive.h"
 
-#include "lbfile.h"
-#include "lbheap.h"
-
 #include <stdarg.h>
 #include <dolphin/os.h>
 #include <baselib/archive.h>
 #include <baselib/debug.h>
 #include <melee/lb/lbdvd.h>
+#include <string.h>
+
+#include "lbfile.h"
+#include "lbheap.h"
 
 #pragma push
 #pragma dont_inline on

@@ -1,14 +1,12 @@
 #include "ftLg_SpecialS.h"
 
-#include "types.h"
-
 #include <platform.h>
+#include <common_structs.h>
+#include <baselib/random.h>
 
-#include "ef/eflib.h"
+#include "types.h"
 #include "ef/efsync.h"
-
 #include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -18,12 +16,8 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
 #include "lb/forward.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
+#include "ft/ft_084E.h"
 
 /// Luigi's Green Missile GFX callback
 void ftLg_SpecialS_SetGFX(HSD_GObj* gobj)

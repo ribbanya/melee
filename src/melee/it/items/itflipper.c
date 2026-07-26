@@ -1,5 +1,11 @@
 #include "itflipper.h"
 
+#include <math.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -11,8 +17,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 #include "lb/lbvector.h"
-
-#include <math.h>
+#include "it/itCommonItems.h"
+#include "it/types.h"
 
 ItemStateTable ItemStateTable_Flipper[] = {
     {

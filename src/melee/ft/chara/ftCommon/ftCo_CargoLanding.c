@@ -1,19 +1,16 @@
 #include "ftCo_CargoLanding.h"
 
-#include "ftCo_CargoWait.h"
-#include "ftCo_Shouldered.h"
-
 #include <platform.h>
 
-#include "ft/ft_081B.h"
+#include "ftCo_CargoWait.h"
+#include "ftCo_Shouldered.h"
 #include "ft/ftanim.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCaptain/types.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftDonkey/types.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 void ftCo_8009BD4C(Fighter_GObj* gobj)
 {

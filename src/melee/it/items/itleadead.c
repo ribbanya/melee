@@ -2,12 +2,15 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <trigf.h>
+#include <baselib/jobj.h>
+#include <MSL/math.h>
+#include <common_structs.h>
 
 #include "cm/camera.h"
 #include "ft/ftCo_800C7590.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -20,10 +23,10 @@
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 #include "sysdolphin/baselib/random.h"
-
-#include <trigf.h>
-#include <baselib/jobj.h>
-#include <MSL/math.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/types.h"
 
 ItemStateTable it_803F8EB0[] = {
     {

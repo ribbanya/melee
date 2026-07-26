@@ -1,32 +1,6 @@
 #include "gmtou_2.h"
 
-#include "gm_1601.h"
-#include "gm_1A3F.h"
-#include "gm_1A45.h"
-#include "gm_unsplit.h"
-#include "gmmain_lib.h"
-#include "gmtou_2.h"
-#include "gmtoulib.h"
-#include "types.h"
-
 #include <placeholder.h>
-
-#include "baselib/fog.h"
-#include "baselib/gobjobject.h"
-
-#include "ft/forward.h"
-
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbdvd.h"
-#include "lb/types.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-
-#include "pl/forward.h"
-
-#include "sc/types.h"
-
 #include <dolphin/os.h>
 #include <baselib/controller.h>
 #include <baselib/dobj.h>
@@ -34,10 +8,26 @@
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>
 #include <baselib/sislib.h>
+#include <dolphin/pad.h>
+#include <platform.h>
+
+#include "gm_unsplit.h"
+#include "gmmain_lib.h"
+#include "ft/forward.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbdvd.h"
+#include "lb/types.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "pl/forward.h"
+#include "sc/types.h"
+#include "gm/types.h"
+#include "gr/forward.h"
+#include "mn/forward.h"
 
 /// @todo .sdata2 order hack
 static void sdata2_order(void)

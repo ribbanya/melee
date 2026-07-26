@@ -1,24 +1,16 @@
 #include "ftcpuattack.h"
 
-#include "ftcmdscript.h"
-
-#include "baselib/debug.h"
-#include "baselib/random.h"
-#include "ft/ftlib.h"
-
 #include <melee/ft/chara/ftDonkey/forward.h>
 #include <melee/ft/chara/ftKoopa/forward.h>
 #include <melee/ft/chara/ftSamus/forward.h>
 #include <melee/ft/chara/ftYoshi/forward.h>
 #include <melee/ft/chara/ftZelda/forward.h>
-
 #include <math.h>
 #include <math_ppc.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_09F7.h>
 #include <melee/ft/chara/ftCommon/ftCo_0A01.h>
 #include <melee/ft/fighter.h>
-#include <melee/ft/inlines.h>
 #include <melee/gr/ground.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
@@ -27,6 +19,26 @@
 #include <melee/mp/mpisland.h>
 #include <melee/mp/mplib.h>
 #include <melee/mp/types.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "ftcmdscript.h"
+#include "baselib/debug.h"
+#include "baselib/random.h"
+#include "ft/ftlib.h"
+#include "ft/types.h"
+#include "ftCommon/forward.h"
+#include "ftGameWatch/types.h"
+#include "ftKirby/forward.h"
+#include "ftNess/forward.h"
+#include "ftPeach/forward.h"
+#include "ftZelda/types.h"
+#include "gr/forward.h"
+#include "gr/types.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 /// @todo .sdata2 order hack
 static void sdata2_order(void)

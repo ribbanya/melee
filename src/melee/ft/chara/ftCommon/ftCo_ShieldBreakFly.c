@@ -1,10 +1,10 @@
 #include "ftCo_ShieldBreakFly.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+
 #include "ftCo_ShieldBreakDown.h"
 #include "ftCo_ShieldBreakFall.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -13,10 +13,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 void ftCo_80098B20(Fighter_GObj* gobj)
 {

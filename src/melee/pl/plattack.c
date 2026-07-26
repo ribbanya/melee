@@ -1,7 +1,10 @@
 #include "plattack.h"
 
+#include <dolphin/types.h>
+
 #include "pl/player.h"
 #include "pl/types.h"
+#include "pl/forward.h"
 
 u16 unk_804D6480;
 

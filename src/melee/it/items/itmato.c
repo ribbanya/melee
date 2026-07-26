@@ -1,16 +1,14 @@
 #include "itmato.h"
 
 #include <platform.h>
-
-#include "it/inlines.h"
-#include "it/itCommonItems.h"
-#include "it/itzako.h"
-#include "it/types.h"
-
 #include <dolphin/mtx.h>
 #include <melee/gr/ground.h>
 #include <melee/it/item.h>
 #include <melee/lb/lb_00B0.h>
+
+#include "it/inlines.h"
+#include "it/itzako.h"
+#include "it/types.h"
 
 ItemStateTable it_803F83E0[] = {
     {

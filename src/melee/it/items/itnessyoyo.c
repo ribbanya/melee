@@ -1,8 +1,15 @@
 #include "itnessyoyo.h"
 
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/objalloc.h>
+#include <placeholder.h>
+
 #include "inlines.h"
 #include "math.h"
-
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
 #include "ft/chara/ftNess/ftNs_AttackHi4.h"
@@ -17,9 +24,10 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
+#include "ft/types.h"
+#include "ftNess/types.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 ItemStateTable it_803F7558[] = {
     { -1, itNessyoyo_UnkMotion3_Anim, itNessyoyo_UnkMotion0_Phys, NULL },

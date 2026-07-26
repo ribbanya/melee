@@ -1,18 +1,22 @@
 #include "ithassam.h"
 
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "inlines.h"
 #include "math.h"
-
 #include "cm/camera.h"
 #include "ef/eflib.h"
 #include "ft/ftlib.h"
 #include "ft/inlines.h"
 #include "gm/gm_unsplit.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
@@ -20,10 +24,9 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 #include "lb/lbvector.h"
-
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "ft/forward.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 
 /* 2CDC5C */ static void itHassam_802CDC5C(Item_GObj* gobj);
 /* 2CDC80 */ static void itHassam_802CDC80(Item_GObj* gobj);

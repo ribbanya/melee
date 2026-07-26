@@ -2,9 +2,12 @@
 #define GALE01_202B6C
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "gr/forward.h"
 #include "it/forward.h"
+#include "lb/forward.h"
 
 /* 202B6C */ void grGarden_80202B6C(bool);
 /* 202B70 */ void grGarden_80202B70(void);

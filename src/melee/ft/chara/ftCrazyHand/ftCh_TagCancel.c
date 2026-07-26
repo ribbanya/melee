@@ -1,23 +1,17 @@
 #include "ftCh_TagCancel.h"
 
-#include "types.h"
-
-#include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
 
+#include "types.h"
 #include "baselib/forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftbosslib.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_Wait1_0.h"
 #include "ftMasterHand/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
 
 void ftCh_GrabUnk1_8015B8FC(HSD_GObj*);
 #pragma push

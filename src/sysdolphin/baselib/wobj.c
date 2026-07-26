@@ -1,15 +1,16 @@
 #include "baselib/wobj.h"
 
+#include <dolphin/mtx.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/object.h>
+#include <platform.h>
+
 #include "aobj.h"
-#include "class.h"
-#include "debug.h"
-#include "fobj.h"
 #include "jobj.h"
-#include "object.h"
 #include "robj.h"
 #include "spline.h"
-
-#include <dolphin/mtx.h>
 
 static void WObjInfoInit(void);
 

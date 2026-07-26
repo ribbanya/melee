@@ -1,23 +1,19 @@
 #include "ftCo_JumpAerial.h"
 
-#include "math.h"
-
 #include <placeholder.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
 
+#include "math.h"
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
 #include "ft/ft_0D27.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackAir.h"
@@ -30,6 +26,10 @@
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftCo_SpecialAir.h"
 #include "ftPeach/ftPe_Float.h"
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ftCommon/types.h"
+#include "ftYoshi/types.h"
 
 /* 0CC3C4 */ static void ftYs_JumpAerial_Anim_Cb(Fighter_GObj* gobj);
 /* 0CC654 */ static void ftNs_JumpAerial_Phys_Cb(Fighter_GObj* gobj);

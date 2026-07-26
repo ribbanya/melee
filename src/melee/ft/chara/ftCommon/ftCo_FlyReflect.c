@@ -1,17 +1,25 @@
 #include "ftCo_FlyReflect.h"
 
+#include <MetroTRK/intrinsics.h>
+#include <common_structs.h>
+
 #include "ftCo_Damage.h"
 #include "ftCo_DownBound.h"
 #include "ftCo_PassiveCeil.h"
 #include "ftCo_PassiveWall.h"
 #include "placeholder.h"
-
 #include "cm/camera.h"
 #include "ft/ft_081B.h"
-#include "ftCommon/inlines.h"
 #include "ftKirby/ftkirby.h"
 #include "lb/lbrefract.h"
 #include "lb/lbvector.h"
+#include "ef/efasync.h"
+#include "ft/fighter.h"
+#include "ft/ftcoll.h"
+#include "ft/ftcommon.h"
+#include "ft/types.h"
+#include "ftCommon/types.h"
+#include "lb/forward.h"
 
 #pragma force_active on
 

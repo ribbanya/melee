@@ -2,6 +2,14 @@
 
 #include "ft/chara/ftPopo/ftPp_SpecialHi.h"
 
+#include <math.h>
+#include <trigf.h>
+#include <MetroTRK/intrinsics.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftCo_Landing.h"
 #include "ft/chara/ftPopo/ftPp_SpecialS.h"
@@ -19,9 +27,13 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "pl/player.h"
-
-#include <math.h>
-#include <trigf.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ft/types.h"
+#include "ftPopo/forward.h"
+#include "ftPopo/types.h"
+#include "it/itCharItems.h"
+#include "lb/forward.h"
 
 static void sdata2_order(void)
 {

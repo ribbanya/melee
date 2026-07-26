@@ -3,11 +3,13 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <melee/gm/forward.h>
+#include <melee/gm/types.h>
 
 #include "ft/forward.h"
-#include <melee/gm/forward.h>
+#include "mn/types.h"
 
-#include <melee/gm/types.h>
+struct gmMainLib_8015EF30_s;
 
 /* 15CC34 */ GameRules* gmMainLib_GetGameRules(void);
 /* 15CC40 */ struct gmm_x1868* gmMainLib_GetSaveData(void);

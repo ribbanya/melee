@@ -1,14 +1,5 @@
 #include "gm_1832.h"
 
-#include "gm_1B03.static.h"
-
-#include "gm_unsplit.h"
-
-#include "dolphin/pad.h"
-#include "gm/gm_1B14.h"
-#include "mn/inlines.h"
-#include "pl/pl_040D.h"
-
 #include <math_ppc.h>
 #include <sysdolphin/baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
@@ -29,22 +20,13 @@
 #include <melee/cm/camera.h>
 #include <melee/ef/efasync.h>
 #include <melee/ef/eflib.h>
-#include <melee/ft/ft_0877.h>
-#include <melee/ft/ftbosslib.h>
 #include <melee/ft/ftdemo.h>
-#include <melee/ft/ftlib.h>
-#include <melee/gm/gm_1601.h>
-#include <melee/gm/gm_1A36.h>
-#include <melee/gm/gm_1A3F.h>
-#include <melee/gm/gm_1A45.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/types.h>
 #include <melee/gr/ground.h>
-#include <melee/gr/grpushon.h>
 #include <melee/gr/stage.h>
 #include <melee/if/ifall.h>
 #include <melee/if/ifstatus.h>
-#include <melee/it/it_266F.h>
 #include <melee/it/item.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lb_0195.h>
@@ -59,6 +41,23 @@
 #include <melee/pl/player.h>
 #include <melee/sc/types.h>
 #include <Runtime/runtime.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <dolphin/gx.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+
+#include "gm_unsplit.h"
+#include "dolphin/pad.h"
+#include "gm/gm_1B14.h"
+#include "mn/inlines.h"
+#include "pl/pl_040D.h"
+#include "ft/forward.h"
+#include "gr/forward.h"
+#include "it/forward.h"
+#include "it/itspawn.h"
+#include "pl/forward.h"
 
 static struct {
     int x0;

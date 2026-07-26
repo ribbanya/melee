@@ -1,6 +1,7 @@
-#include "platform.h"
-
 #include <__mem.h>
+#include <string.h>
+
+#include "platform.h"
 
 SECTION_INIT void* memset(void* dst, int val, unsigned long /*size_t*/ n)
 {

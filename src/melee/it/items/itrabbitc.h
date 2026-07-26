@@ -2,12 +2,11 @@
 #define GALE01_294DA0
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
 
 /* 294DA0 */ bool itRabbitC_Logic30_ShieldBounced(Item_GObj*);
 /* 294DC0 */ HSD_GObj* it_80294DC0(Vec3*);

@@ -2,9 +2,10 @@
 #define GALE01_12EB48
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/types.h>
 
 #include "ft/forward.h"
-#include <baselib/forward.h>
 
 /* 12EB48 */ void ftYs_SpecialS_8012EB48(Fighter_GObj* gobj);
 /* 12EC7C */ void fn_8012EC7C(Fighter_GObj* gobj);

@@ -1,10 +1,12 @@
 #ifndef MELEE_EF_EFLIB_H
 #define MELEE_EF_EFLIB_H
 
-#include "ef/forward.h"
 #include <baselib/forward.h>
-
 #include <dolphin/mtx.h>
+#include <platform.h>
+#include <stdarg.h>
+
+#include "ef/forward.h"
 
 typedef struct EF_ParamEntry {
     /* 0x0 */ void* gobj;

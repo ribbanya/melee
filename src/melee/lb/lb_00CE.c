@@ -1,14 +1,12 @@
 #include "lb/lb_00CE.h"
 
-#include "placeholder.h"
-
 #include <platform.h>
-
-#include <baselib/forward.h>
-
 #include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
+#include <cmath.h>
+
+#include "placeholder.h"
 
 static void sdata2_order(void)
 {

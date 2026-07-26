@@ -11,8 +11,6 @@
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftPeach/types.h"
 
-#include <dolphin/mtx.h>
-
 static ftPeach_MotionState getFloatDir(HSD_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);

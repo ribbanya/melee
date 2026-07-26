@@ -1,18 +1,21 @@
 #include "itkamex.h"
 
-#include "inlines.h"
+#include <baselib/jobj.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "lb/lbaudio_ax.h"
-
-#include <baselib/jobj.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7B08[] = {
     { 0, it_802CA5D8, it_802CA618, it_802CA654 },

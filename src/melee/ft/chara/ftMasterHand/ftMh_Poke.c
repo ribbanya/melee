@@ -1,11 +1,12 @@
 #include "ftMh_Poke.h"
 
-#include "ftMh_Wait1_2.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
 
+#include "ftMh_Wait1_2.h"
 #include "ft/fighter.h"
-#include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
@@ -13,10 +14,8 @@
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/random.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ft_084E.h"
+#include "pl/forward.h"
 
 void ftMh_PaperCrush_Coll(HSD_GObj* gobj) {}
 

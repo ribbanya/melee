@@ -1,8 +1,9 @@
 #include "itmariocape.h"
 
-#include "inlines.h"
+#include <placeholder.h>
+#include <platform.h>
 
-#include "db/db.h"
+#include "inlines.h"
 #include "ef/efasync.h"
 #include "ft/chara/ftMario/ftMr_SpecialS.h"
 #include "ft/ftlib.h"

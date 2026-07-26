@@ -1,5 +1,11 @@
 #include "it_2725.h"
 
+#include <baselib/gobjobject.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <placeholder.h>
+
 #include "it_279C.h"
 #include "it_3F14.h"
 #include "itanimlist.h"
@@ -7,12 +13,10 @@
 #include "ithitbox.h"
 #include "itmaplib.h"
 #include "math.h"
-
 #include "baselib/jobj.h"
 #include "baselib/random.h"
 #include "db/db.h"
 #include "ef/efsync.h"
-#include "ft/ft_0C31.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -23,8 +27,9 @@
 #include "lb/lbcollision.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
-
-#include <baselib/gobjobject.h>
+#include "it/itCommonItems.h"
+#include "it/types.h"
+#include "lb/types.h"
 
 extern f32 it_804DC73C;
 

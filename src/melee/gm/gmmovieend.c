@@ -5,9 +5,15 @@
 
 #include "gmmovieend.h"
 
+#include <sysdolphin/baselib/gobj.h>
+#include <sysdolphin/baselib/gobjgxlink.h>
+#include <sysdolphin/baselib/gobjobject.h>
+#include <sysdolphin/baselib/sobjlib.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "gm_unsplit.h"
 #include "gmopening.h"
-
 #include "dolphin/pad.h"
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
@@ -15,11 +21,6 @@
 #include "if/textlib.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbmthp.h"
-
-#include <sysdolphin/baselib/gobj.h>
-#include <sysdolphin/baselib/gobjgxlink.h>
-#include <sysdolphin/baselib/gobjobject.h>
-#include <sysdolphin/baselib/sobjlib.h>
 
 void gm_801A6254(GameScene* arg0)
 {

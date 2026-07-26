@@ -3,10 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/os/OSInterrupt.h>
+#include <dolphin/os.h>
 
 #include "MetroTRK/dserror.h"
-
-#include <dolphin/os/OSInterrupt.h>
 
 typedef enum {
     HARDWARE_GDEV = 0,

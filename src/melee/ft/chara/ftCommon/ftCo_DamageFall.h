@@ -1,11 +1,12 @@
 #ifndef GALE01_090824
 #define GALE01_090824
 
-#include "common_structs.h"
-
-#include "ftCommon/forward.h"
-
 #include <dolphin/mtx.h>
+#include <platform.h>
+
+#include "common_structs.h"
+#include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 090574 */ void ftCo_80090574(Fighter_GObj* gobj);
 /* 090594 */ void ftCo_80090594(Fighter* fp, enum_t element, int dmg,

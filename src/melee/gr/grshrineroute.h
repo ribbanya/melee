@@ -1,11 +1,12 @@
 #ifndef GALE01_2087B0
 #define GALE01_2087B0
 
-#include "forward.h"
-
-#include "lb/types.h"
-
 #include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
+#include "forward.h"
+#include "lb/types.h"
 
 /* 2087B8 */ void grShrineRoute_OnDemoInit(bool);
 /* 2087BC */ void grShrineRoute_OnInit(void);

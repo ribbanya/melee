@@ -1,13 +1,14 @@
 #ifndef GALE01_2BE598
 #define GALE01_2BE598
 
-#include "it/forward.h"
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
 
+#include "it/forward.h"
 #include "it/itCharItems.h"
 #include "it/items/types.h"
 #include "it/itYoyo.h"
-
-#include <dolphin/mtx.h>
 
 /* 2BE598 */ void it_802BE598(Item_GObj*);
 /* 2BE5B8 */ void it_802BE5B8(Item_GObj*);

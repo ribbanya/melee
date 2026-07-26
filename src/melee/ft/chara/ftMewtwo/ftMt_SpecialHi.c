@@ -1,12 +1,14 @@
 #include "ftMt_SpecialHi.h"
 
 #include <platform.h>
+#include <common_structs.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+#include <MSL/math.h>
 
-#include "ef/eflib.h"
 #include "ef/efsync.h"
-
 #include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -15,7 +17,6 @@
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
@@ -24,12 +25,9 @@
 #include "ftMewtwo/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
+#include "ft/ft_084E.h"
+#include "lb/forward.h"
 
-#include <common_structs.h>
-#include <math_ppc.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
-#include <MSL/math.h>
 /// Create Teleport Start GFX
 void ftMt_SpecialHi_CreateGFX(HSD_GObj* gobj)
 {

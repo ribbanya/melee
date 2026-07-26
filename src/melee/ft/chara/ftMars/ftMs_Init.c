@@ -1,17 +1,12 @@
 #include "ftMs_Init.h"
 
+#include <platform.h>
+
 #include "ftMs_SpecialHi.h"
 #include "ftMs_SpecialLw.h"
 #include "ftMs_SpecialN.h"
 #include "ftMs_SpecialS.h"
-
-#include <platform.h>
-
-#include "ef/eflib.h"
 #include "ef/efsync.h"
-
-#include "forward.h"
-
 #include "ft/ftcamera.h"
 #include "ft/ftlib.h"
 #include "ft/ftparts.h"

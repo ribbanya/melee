@@ -1,20 +1,15 @@
 #include "ftYs_SpecialN.h"
 
-#include "placeholder.h"
-
 #include <placeholder.h>
+#include <dolphin/mtx.h>
 
 #include "baselib/forward.h"
-
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_CaptureYoshi.h"
 #include "ftCommon/ftCo_Fall.h"
@@ -26,9 +21,11 @@
 #include "it/items/ityoshiegglay.h"
 #include "it/items/ityoshitongue.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ftYoshi/forward.h"
+#include "it/forward.h"
+#include "it/itCommonItems.h"
 
 /* 12CEE0 */ static void fn_8012CEE0(Fighter_GObj*);
 /* 12CF7C */ static void fn_8012CF7C(Fighter_GObj*);

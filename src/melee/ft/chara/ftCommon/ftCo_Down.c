@@ -1,10 +1,9 @@
 #include "ftCo_Down.h"
 
-#include "ftCo_DownAttack.h"
-#include "math.h"
-
 #include <platform.h>
 
+#include "ftCo_DownAttack.h"
+#include "math.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -12,8 +11,8 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 /* 097EAC */ static void ftCo_80098324(Fighter_GObj* gobj, FtMotionId msid);
 

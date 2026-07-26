@@ -1,6 +1,15 @@
 #include "ftkirby.h"
 
-#include "ftKb_Init.static.h"
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/id.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/dobj.h>
+#include <baselib/objalloc.h>
+#include <dolphin/os.h>
 
 #include "ftkirbyattackdash.h"
 #include "ftkirbyspecialdonkey.h"
@@ -10,7 +19,6 @@
 #include "ftkirbyspecialpeach.h"
 #include "ftkirbyspecialpikachu.h"
 #include "ftkirbyspecialzelda.h"
-
 #include "ef/efasync.h"
 #include "ft/chara/ftKirby/ftkirbyspecialmewtwo.h"
 #include "ft/fighter.h"
@@ -23,7 +31,6 @@
 #include "ft/ftdynamics.h"
 #include "ft/ftmaterial.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftKirby/ftkirbyspecialgamewatch.h"
@@ -33,15 +40,11 @@
 #include "lb/lbarchive.h"
 #include "lb/lbdvd.h"
 #include "pl/player.h"
-
-#include <common_structs.h>
-#include <stddef.h>
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <baselib/id.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <MSL/math.h>
+#include "ft/dobjlist.h"
+#include "ftGameWatch/types.h"
+#include "ftKirby/types.h"
+#include "it/forward.h"
+#include "lb/forward.h"
 
 void ftAnim_80070458(Fighter* fp, CostumeTObjList*, u32 tobj_idx, float frame);
 void fn_800F9260(HSD_GObj*);

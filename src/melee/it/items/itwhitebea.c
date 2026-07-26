@@ -1,9 +1,16 @@
 #include "itwhitebea.h"
 
+#include <MSL/math.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
@@ -15,8 +22,9 @@
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 #include "sysdolphin/baselib/random.h"
-
-#include <MSL/math.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F8A88[] = {
     { 0, itWhitebea_UnkMotion0_Anim, itWhitebea_UnkMotion0_Phys,

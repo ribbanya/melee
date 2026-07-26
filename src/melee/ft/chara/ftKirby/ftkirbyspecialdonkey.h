@@ -1,6 +1,10 @@
 #ifndef GALE01_0FF8EC
 #define GALE01_0FF8EC
 
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ft/forward.h"
 #include "it/forward.h"
 

@@ -2,12 +2,11 @@
 #define GALE01_298DEC
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
+#include "ft/forward.h"
 
 /* 298DEC */ void it_80298DEC(Fighter_GObj*, Vec*, int, float);
 /* 298ED0 */ void it_80298ED0(Item_GObj*, Fighter_GObj*);

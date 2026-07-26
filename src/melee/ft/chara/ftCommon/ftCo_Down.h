@@ -1,7 +1,10 @@
 #ifndef GALE01_097D9C
 #define GALE01_097D9C
 
+#include <stdbool.h>
+
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 097D9C */ bool ftCo_Down_CheckInput(Fighter_GObj* gobj);
 /* 097F08 */ void ftCo_Down_Anim(Fighter_GObj* gobj);

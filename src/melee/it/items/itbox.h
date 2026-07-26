@@ -1,8 +1,9 @@
 #ifndef GALE01_286088
 #define GALE01_286088
 
-#include "it/forward.h"
+#include <platform.h>
 
+#include "it/forward.h"
 #include "it/items/types.h"
 
 /* 286088 */ Item_GObj* it_80286088(Item_GObj*);

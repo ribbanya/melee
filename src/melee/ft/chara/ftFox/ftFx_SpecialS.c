@@ -1,6 +1,8 @@
 #include "ftFx_SpecialS.h"
 
-#include "ef/eflib.h"
+#include <common_structs.h>
+#include <melee/it/items/itfoxillusion.h>
+
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -9,17 +11,15 @@
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
 #include "ftFox/types.h"
-
-#include <common_structs.h>
-#include <melee/it/items/itfoxillusion.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
+#include "it/forward.h"
 
 static MotionFlags const ftFx_MF_SpecialS_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_SkipRumble;

@@ -2,9 +2,9 @@
 #define MELEE_MN_MNDIAGRAM2_H
 
 #include <placeholder.h>
-
 #include <baselib/gobj.h>
 #include <melee/mn/types.h>
+#include <platform.h>
 
 /* 243A3C */ bool mnDiagram2_IsTimeStat(u8 stat_type);
 /* 243A5C */ bool mnDiagram2_IsDistanceStat(u8 stat_type);

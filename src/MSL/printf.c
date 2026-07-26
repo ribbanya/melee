@@ -1,12 +1,12 @@
 #include "printf.h"
 
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "ansi_fp.h"
-#include "ctype.h"
 #include "limits.h"
-#include "stdarg.h"
-#include "stdio.h"
 #include "stdlib.h"
-#include "string.h"
 #include "wchar.h"
 
 enum justification_options {

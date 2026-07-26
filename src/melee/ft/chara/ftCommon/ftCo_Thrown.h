@@ -1,6 +1,8 @@
 #ifndef MELEE_FTCO_THROWN_H
 #define MELEE_FTCO_THROWN_H
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0DE3FC */ void ftCo_800DE3FC(Fighter_GObj* gobj, FtMotionId msid,

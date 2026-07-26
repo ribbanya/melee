@@ -1,23 +1,18 @@
 #include "ithammerhead.h"
 
-#include "common_structs.h"
-
 #include <platform.h>
 
+#include "common_structs.h"
 #include "db/db.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_3F14.h"
 #include "it/item.h"
-
-#include "it/items/forward.h"
-
 #include "it/itmaplib.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 
 ItemStateTable it_803F6640[] = {
     {

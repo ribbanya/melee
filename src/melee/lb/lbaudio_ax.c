@@ -1,12 +1,5 @@
-#include "lbaudio_ax.static.h"
 #include <placeholder.h>
-
-#include "baselib/forward.h"
-
-#include "baselib/random.h"
-
 #include <melee/ft/forward.h>
-
 #include <dolphin/ai.h>
 #include <dolphin/ar.h>
 #include <dolphin/axfx.h>
@@ -25,6 +18,18 @@
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lblanguage.h>
 #include <melee/pl/player.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/objalloc.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
+#include <platform.h>
+#include <string.h>
+
+#include "lbaudio_ax.static.h"
+#include "baselib/random.h"
+#include "gr/forward.h"
+#include "pl/forward.h"
 
 typedef bool (*lbl_803BCA24_fn)(HSD_GObj*);
 

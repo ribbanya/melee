@@ -1,18 +1,15 @@
 #include "ftMh_BackAirplane1.h"
 
-#include "ftMh_BackAirplane2.h"
+#include <dolphin/mtx.h>
 
+#include "ftMh_BackAirplane2.h"
 #include "ft/fighter.h"
-#include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
-
 #include "ftMasterHand/forward.h"
-
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 static void doAnim(HSD_GObj* gobj);
 

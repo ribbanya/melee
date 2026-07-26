@@ -1,6 +1,8 @@
 #ifndef MELEE_FTCO_APPEALS_H
 #define MELEE_FTCO_APPEALS_H
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0DE9B8 */ bool ftCo_800DE9B8(Fighter_GObj* gobj);

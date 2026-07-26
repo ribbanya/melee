@@ -2,9 +2,11 @@
 #define GALE01_2EAF28
 
 #include <placeholder.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2EAF28 */ s32 it_802EAF28(Item_GObj* gobj);

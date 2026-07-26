@@ -2,13 +2,13 @@
 #define GALE01_0735BC
 
 #include <platform.h>
-
-#include "ft/forward.h"
 #include <baselib/forward.h>
-
 #include <dolphin/mtx.h>
 
+#include "ft/forward.h"
+
 struct Fighter_804D6540_x0_t;
+struct DObjList;
 
 /* 0735BC */ void ftParts_JObjMakePositionMtx(HSD_JObj*, Mtx mtx, Mtx rmtx);
 /* 073700 */ void ftParts_JObjInfoInit(void);

@@ -1,4 +1,6 @@
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 #include "baselib/psstructs.h"
 #include "ft/ftdevice.h"
@@ -9,14 +11,9 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
+#include "gr/forward.h"
 
 /* 21F840 */ static void grTMario_8021F840(bool);
 /* 21F844 */ static void grTMario_8021F844(void);

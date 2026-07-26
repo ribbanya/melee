@@ -1,11 +1,10 @@
 #include "ftGw_SpecialHi.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+
 #include "ftGw_Init.h"
 #include "math.h"
-#include "types.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0881.h"
@@ -14,14 +13,13 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "it/items/itgamewatchrescue.h"
 #include "lb/lb_00B0.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "ftGameWatch/types.h"
 
 static void ftGw_SpecialHi_ItemRescueEnterHitlag(HSD_GObj* gobj);
 static void ftGw_SpecialHi_ItemRescueExitHitlag(HSD_GObj* gobj);

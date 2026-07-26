@@ -1,11 +1,13 @@
 #include "ftLk_SpecialN.h"
 
+#include <platform.h>
+#include <common_structs.h>
+#include <trigf.h>
+#include <dolphin/mtx.h>
+
 #include "ftLk_Init.h"
 #include "math.h"
 #include "placeholder.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -17,20 +19,13 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
-
 #include "ftLink/forward.h"
-
 #include "ftLink/types.h"
-
 #include "it/forward.h"
-
 #include "it/items/itlinkarrow.h"
 #include "it/items/itlinkbow.h"
 #include "lb/lb_00B0.h"
-
-#include <common_structs.h>
-#include <trigf.h>
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

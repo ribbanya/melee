@@ -2,9 +2,9 @@
 #define GALE01_292D48
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
 #include "it/types.h"
 

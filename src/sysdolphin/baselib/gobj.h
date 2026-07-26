@@ -2,6 +2,7 @@
 #define GALE01_390730
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "baselib/forward.h" // IWYU pragma: export
 

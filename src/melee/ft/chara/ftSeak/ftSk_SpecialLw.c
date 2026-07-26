@@ -1,21 +1,25 @@
 #include "ftSeak/ftSk_SpecialLw.h"
 
-#include "ef/eflib.h"
+#include <math.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
+
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftZelda/ftZd_SpecialLw.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <math.h>
-#include <baselib/gobj.h>
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ftCommon/forward.h"
+#include "ftSeak/types.h"
 
 static MotionFlags const ftSk_MF_SpecialLw_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepGfx | Ft_MF_KeepColAnimHitStatus |

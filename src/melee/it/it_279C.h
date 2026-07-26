@@ -2,14 +2,12 @@
 #define GALE01_IT_279C
 
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
 #include "it/types.h"
-
-#include <baselib/forward.h>
 
 /* 279C48 */ void it_80279C48(Item_GObj*);
 /* 279CDC */ void it_80279CDC(Item_GObj*, f32);

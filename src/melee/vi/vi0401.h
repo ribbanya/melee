@@ -1,6 +1,8 @@
 #ifndef MELEE_VI_0401_H
 #define MELEE_VI_0401_H
 
+#include <dolphin/types.h>
+
 #include "ft/forward.h"
 
 /* 31D020 */ void vi0401_8031D020(int, int);

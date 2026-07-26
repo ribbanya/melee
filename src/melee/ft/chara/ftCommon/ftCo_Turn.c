@@ -1,18 +1,14 @@
 #include "ftCo_Turn.h"
 
 #include <placeholder.h>
+#include <common_structs.h>
+#include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack1.h"
 #include "ftCommon/ftCo_Attack100.h"
@@ -26,6 +22,9 @@
 #include "ftCommon/ftCo_Guard.h"
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/ftCo_SpecialS.h"
+#include "ft/ft_084E.h"
+#include "ft/ftanim.h"
+#include "ftCommon/types.h"
 
 bool ftCo_800C97A8(Fighter_GObj* gobj)
 {

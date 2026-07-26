@@ -4,15 +4,11 @@
 #include "ftafterimage.h"
 
 #include <placeholder.h>
-
-#include "baselib/debug.h"
-
 #include <math_ppc.h>
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/state.h>
-#include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftLink/types.h>
 #include <melee/ft/chara/ftMars/types.h>
 #include <melee/ft/inlines.h>
@@ -20,6 +16,13 @@
 #include <melee/it/items/itsword.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbvector.h>
+#include <dolphin/gx/GXEnum.h>
+#include <platform.h>
+
+#include "baselib/debug.h"
+#include "ft/types.h"
+#include "it/forward.h"
+#include "it/items/forward.h"
 
 typedef struct AfterimageVtx {
     f32 x, y, z;

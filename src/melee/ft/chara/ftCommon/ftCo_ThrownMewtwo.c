@@ -1,13 +1,9 @@
 #include "ftCo_ThrownMewtwo.h"
 
-#include "placeholder.h"
-
 #include <platform.h>
 
+#include "placeholder.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"

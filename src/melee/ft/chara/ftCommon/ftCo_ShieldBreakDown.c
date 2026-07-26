@@ -1,22 +1,19 @@
 #include "ftCo_ShieldBreakDown.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
+
 #include "ftCo_DownAttack.h"
 #include "ftCo_DownBound.h"
 #include "ftCo_ShieldBreakStand.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
+#include "ftCommon/forward.h"
 
 void ftCo_80098E3C(Fighter_GObj* gobj)
 {

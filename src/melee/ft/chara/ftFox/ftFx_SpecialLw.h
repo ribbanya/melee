@@ -2,6 +2,7 @@
 #define GALE01_0E83E0
 
 #include <baselib/forward.h>
+#include <stdbool.h>
 
 /* 0E83E0 */ void ftFx_SpecialLw_CreateLoopGFX(HSD_GObj* gobj);
 /* 0E845C */ void ftFx_SpecialLw_CreateStartGFX(HSD_GObj* gobj);

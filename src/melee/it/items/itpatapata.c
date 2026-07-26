@@ -2,14 +2,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <common_structs.h>
 
 #include "cm/camera.h"
 #include "ft/ftlib.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itCommonItems.h"
@@ -21,9 +21,8 @@
 #include "lb/lb_00B0.h"
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
-
-#include <baselib/jobj.h>
-#include <baselib/random.h>
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F88C0[] = {
     { 0, NULL, NULL, NULL },

@@ -1,18 +1,18 @@
 #include "itoctarockstone.h"
 
+#include <baselib/random.h>
+#include <common_structs.h>
+
 #include "ft/ftlib.h"
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
-
-#include <baselib/random.h>
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F8E90[] = {
     { 0, itOctarockstone_UnkMotion0_Anim, itOctarockstone_UnkMotion0_Phys,

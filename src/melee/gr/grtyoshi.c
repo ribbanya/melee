@@ -1,22 +1,16 @@
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/jobj.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
-#include "gr/grdisplay.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <dolphin/os/OSError.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
+#include "gr/forward.h"
 
 /* 223B48 */ static void grTYoshi_OnDemoInit(bool);
 /* 223B4C */ static void grTYoshi_OnInit(void);

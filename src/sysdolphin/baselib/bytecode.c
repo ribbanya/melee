@@ -1,18 +1,18 @@
 #include "bytecode.h"
 
-#include <placeholder.h>
 #include <platform.h>
-
-#include "baselib/debug.h"
-#include "baselib/list.h"
-#include "baselib/random.h"
-#include "baselib/util.h"
-
 #include <math_ppc.h>
 #include <trigf.h>
 #include <dolphin/os.h>
 #include <melee/lb/lb_00CE.h>
 #include <MSL/math.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/mtx.h>
+
+#include "baselib/debug.h"
+#include "baselib/list.h"
+#include "baselib/random.h"
+#include "baselib/util.h"
 
 typedef union {
     void* p;

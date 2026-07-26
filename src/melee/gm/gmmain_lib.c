@@ -1,18 +1,10 @@
-#include "gmmain_lib.static.h"
-
-#include "placeholder.h"
-
 #include <platform.h>
-
-#include "ft/forward.h"
-
 #include <dolphin/os/OSReset.h>
 #include <sysdolphin/baselib/random.h>
 #include <sysdolphin/baselib/video.h>
 #include <melee/db/db.h>
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/types.h>
-#include <melee/if/textlib.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcardnew.h>
@@ -20,7 +12,15 @@
 #include <melee/lb/lbtime.h>
 #include <melee/mn/mnname.h>
 #include <melee/ty/toy.h>
-#include <melee/ty/tylist.h>
+#include <common_structs.h>
+#include <dolphin/dvd.h>
+#include <dolphin/gx.h>
+#include <dolphin/vi/vitypes.h>
+
+#include "gmmain_lib.static.h"
+#include "placeholder.h"
+#include "gm/gmmain_lib.h"
+#include "mn/types.h"
 
 GameRules gmMainLib_803D4A48 = {
     0,

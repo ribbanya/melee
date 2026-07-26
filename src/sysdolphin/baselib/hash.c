@@ -1,5 +1,7 @@
 #include "hash.h"
 
+#include <baselib/forward.h>
+
 #include "debug.h"
 
 HSD_HashEntry* HashSearchEntry(HSD_Hash* hash, int idx, void* key,

@@ -1,26 +1,27 @@
 #include "initialize.h"
 
+#include <stdarg.h>
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
+#include <baselib/class.h>
+#include <baselib/debug.h>
+#include <baselib/fobj.h>
+#include <baselib/list.h>
+#include <baselib/objalloc.h>
+#include <baselib/video.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/vi/vifuncs.h>
+
 #include "aobj.h"
-#include "class.h"
-#include "debug.h"
 #include "displayfunc.h"
-#include "fobj.h"
 #include "id.h"
-#include "list.h"
 #include "lobj.h"
 #include "mtx.h"
-#include "objalloc.h"
 #include "random.h"
 #include "robj.h"
 #include "shadow.h"
 #include "state.h"
 #include "tev.h"
-#include "video.h"
-
-#include <stdarg.h>
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
-#include <dolphin/vi.h>
 
 extern OSHeapHandle HSD_Synth_804D6018;
 extern GXRenderModeObj GXNtsc480IntDf;

@@ -1,6 +1,8 @@
 #ifndef GALE01_08A1B8
 #define GALE01_08A1B8
 
+#include <dolphin/types.h>
+
 #include "ft/forward.h"
 
 /* 089B08 */ void ft_80089B08(Fighter_GObj* gobj);

@@ -3,6 +3,7 @@
 
 #include <melee/ft/forward.h>
 #include <sysdolphin/baselib/forward.h>
+#include <platform.h>
 
 /* 1AA644 */ bool gm_801AA644(void);
 /* 1AA664 */ bool gm_801AA664(CharacterKind);

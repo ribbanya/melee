@@ -1,6 +1,8 @@
 #include "ftMs_SpecialS.h"
 
 #include <platform.h>
+#include <common_structs.h>
+#include <baselib/debug.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -12,10 +14,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftMars/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/debug.h>
+#include "ft/ft_084E.h"
 
 void ftMs_SpecialS_Enter(HSD_GObj* gobj)
 {

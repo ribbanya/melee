@@ -1,7 +1,13 @@
 #include "itlinkboomerang.h"
 
-#include "placeholder.h"
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <math.h>
 
+#include "placeholder.h"
 #include "baselib/mtx.h"
 #include "ft/chara/ftLink/ftLk_SpecialS.h"
 #include "ft/ftlib.h"
@@ -16,9 +22,8 @@
 #include "it/itmaplib.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <math_ppc.h>
-#include <trigf.h>
+#include "it/types.h"
+#include "lb/types.h"
 
 #define HYPOT(x, y) sqrtf((x) * (x) + (y) * (y))
 #define VEC_XY_LENGTH(v) HYPOT((v)->x, (v)->y)

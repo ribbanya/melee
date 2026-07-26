@@ -1,10 +1,12 @@
 #ifndef GALE01_20B160
 #define GALE01_20B160
 
+#include <dolphin/mtx.h>
+#include <baselib/forward.h>
+#include <platform.h>
+
 #include "gr/forward.h"
 #include "lb/forward.h"
-
-#include <dolphin/mtx.h>
 
 /* 20B160 */ void grZebesRoute_8020B160(bool);
 /* 20B164 */ void grZebesRoute_8020B164(void);

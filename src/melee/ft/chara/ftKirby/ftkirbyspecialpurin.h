@@ -2,6 +2,7 @@
 #define GALE01_100DE0
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "ft/forward.h"
 

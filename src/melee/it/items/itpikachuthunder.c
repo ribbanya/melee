@@ -1,6 +1,9 @@
 #include "itpikachuthunder.h"
 
 #include <placeholder.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
 
 #include "db/db.h"
 #include "ft/chara/ftPikachu/ftPk_SpecialLw.h"
@@ -9,16 +12,10 @@
 #include "it/it_2725.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
-
-#include "it/items/forward.h"
-
 #include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/types.h"
 #include "MSL/math.h"
-
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
 
 ItemStateTable it_803F70C8[] = {
     {

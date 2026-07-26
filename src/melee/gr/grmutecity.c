@@ -1,20 +1,29 @@
 #include "grmutecity.h"
 
+#include <platform.h>
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
+#include <baselib/lobj.h>
+#include <baselib/psappsrt.h>
+#include <sysdolphin/baselib/spline.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <dolphin/os.h>
+#include <placeholder.h>
+
 #include "grdatfiles.h"
 #include "grfzerocar.h"
 #include "grlib.h"
 #include "grmaterial.h"
-
 #include "grmutecity.static.h"
-
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
 #include "stage.h"
-#include "types.h"
-
-#include <platform.h>
-
 #include "cm/camera.h"
 #include "if/ifhazard.h"
 #include "lb/lb_00B0.h"
@@ -23,16 +32,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
-
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
-#include <baselib/lobj.h>
-#include <baselib/psappsrt.h>
-#include <baselib/psstructs.h>
-#include <sysdolphin/baselib/spline.h>
+#include "gr/granime.h"
+#include "gr/grdisplay.h"
+#include "gr/types.h"
+#include "it/forward.h"
+#include "mp/forward.h"
 
 typedef void (*grMc_SpeedFn)(Item_GObj*, Ground*, Vec3*, HSD_GObj*, f32);
 

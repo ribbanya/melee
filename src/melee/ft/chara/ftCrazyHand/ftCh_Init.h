@@ -1,8 +1,9 @@
 #ifndef GALE01_155E18
 #define GALE01_155E18
 
-#include "ft/types.h"
+#include <baselib/forward.h>
 
+#include "ft/types.h"
 #include "ftCrazyHand/forward.h"
 
 /* 155E18 */ void ftCh_Init_OnDeath(HSD_GObj* gobj);

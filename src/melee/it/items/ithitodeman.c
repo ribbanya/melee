@@ -1,8 +1,15 @@
 #include "ithitodeman.h"
 
-#include "inlines.h"
+#include <math.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
 
-#include "ef/eflib.h"
+#include "inlines.h"
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
 #include "it/inlines.h"
@@ -10,12 +17,10 @@
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
-
-#include <math.h>
-#include <baselib/random.h>
+#include "it/itCharItems.h"
+#include "it/types.h"
 
 ItemStateTable it_803F8128[] = {
     {

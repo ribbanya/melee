@@ -1,5 +1,8 @@
 #include "nubinit.h"
 
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/nubevent.h>
+
 #include "MetroTRK/dispatch.h"
 #include "MetroTRK/dolphin_trk_glue.h"
 #include "MetroTRK/msgbuf.h"

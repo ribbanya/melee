@@ -1,18 +1,15 @@
 #include "itlgun.h"
 
-#include "itlgunray.h"
-
-#include "it/inlines.h"
-#include "it/it_266F.h"
-#include "it/it_26B1.h"
-#include "it/it_2725.h"
-#include "it/it_3F14.h"
-#include "it/types.h"
-
-#include <stdbool.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <melee/it/item.h>
+
+#include "itlgunray.h"
+#include "it/inlines.h"
+#include "it/it_26B1.h"
+#include "it/it_2725.h"
+#include "it/types.h"
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
 
 /* 28E7D8 */ static void it_8028E7D8(Item_GObj*);
 /* 28E828 */ static bool itLgun_UnkMotion0_Anim(Item_GObj*);

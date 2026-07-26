@@ -1,5 +1,8 @@
 #include "gobj.h"
 
+#include <baselib/objalloc.h>
+#include <baselib/object.h>
+
 #include "class.h"
 #include "cobj.h"
 #include "fog.h"
@@ -7,7 +10,6 @@
 #include "gobjproc.h"
 #include "jobj.h"
 #include "lobj.h"
-#include "object.h"
 
 u8 HSD_GObj_804D784B;
 s8 HSD_GObj_804D784A;

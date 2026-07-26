@@ -1,11 +1,9 @@
 #include "spline.h"
 
-#include <placeholder.h>
-
-#include "forward.h"
-
 #include <math.h>
 #include <MetroTRK/intrinsics.h>
+
+#include "forward.h"
 
 f32 splGetHelmite(f32 fterm, f32 time, f32 p0, f32 p1, f32 d0, f32 d1)
 {

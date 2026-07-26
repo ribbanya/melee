@@ -1,21 +1,15 @@
 #include "ftCh_CaptureDamageCrazyHand.h"
 
-#include <placeholder.h>
 #include <platform.h>
 
 #include "baselib/forward.h"
-
 #include "ft/chara/ftCommon/ftCo_Attack100.h"
 #include "ft/fighter.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
 #include "ftCrazyHand/ftCh_FingerBeam.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
 
 void ftCh_GrabUnk1_8015B670(HSD_GObj* gobj)
 {

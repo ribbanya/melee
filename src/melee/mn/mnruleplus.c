@@ -1,6 +1,5 @@
 #include "placeholder.h"
 #include "platform.h"
-
 #include "baselib/debug.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
@@ -14,21 +13,13 @@
 #include "gm/gm_1A3F.h"
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
-#include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"
-
 #include "mn/forward.h"
-
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "mn/mnmainrule.h"
 #include "mn/mnstagesw.h"
-#include "mn/types.h"
 #include "sc/types.h"
-
-#include <sysdolphin/baselib/forward.h>
-
-#include <dolphin/os.h>
 
 extern StaticModelDesc MenMainConRl_Top;
 extern StaticModelDesc MenMainCursorRl_Top;

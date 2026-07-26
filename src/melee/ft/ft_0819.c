@@ -1,6 +1,9 @@
 #include "ft_0819.h"
 
 #include <placeholder.h>
+#include <baselib/gobj.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "ft/ftCo_800C703C.h"
 #include "ft/inlines.h"
@@ -9,8 +12,7 @@
 #include "it/it_26B1.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
-
-#include <baselib/gobj.h>
+#include "it/forward.h"
 
 void ft_80081938(HSD_GObj* gobj)
 {

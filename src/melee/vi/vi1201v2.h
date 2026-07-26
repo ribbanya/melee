@@ -2,12 +2,11 @@
 #define MELEE_VI_1201_V2_H
 
 #include <placeholder.h>
+#include <baselib/forward.h>
 
 #include "dolphin/gx/GXStruct.h"
-
 #include "ft/forward.h"
 #include "vi/forward.h"
-#include <baselib/forward.h>
 
 /* 3204B0 */ void un_803204B0(int, int);
 /* 3204C0 */ void un_803204C0(HSD_GObj*);

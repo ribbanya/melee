@@ -1,20 +1,17 @@
 #include "gr/grtkoopa.h"
 
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
 
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
 #include "lb/forward.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
 
 /* 221648 */ static void grTKoopa_80221648(bool);
 /* 22164C */ static void grTKoopa_8022164C(void);

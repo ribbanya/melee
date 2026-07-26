@@ -5,6 +5,7 @@
 
 #include "it/item.h"
 #include "it/items/types.h"
+#include "it/forward.h"
 
 void itTogepy_Logic21_Spawned(Item_GObj*);
 void it_802D3728(Item_GObj*);

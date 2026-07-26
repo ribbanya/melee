@@ -1,8 +1,9 @@
 #include "ftLk_SpecialHi.h"
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <common_structs.h>
 
-#include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -11,16 +12,11 @@
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-#include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftLink/types.h"
-
-#include <baselib/forward.h>
-
-#include <common_structs.h>
+#include "ft/ft_084E.h"
 
 /* 0EBA4C */ static void onAccessory4(HSD_GObj* gobj);
 /* 0EBE64 */ static void doColl(HSD_GObj* gobj);

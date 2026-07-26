@@ -1,19 +1,5 @@
 #include "mnevent.h"
 
-#include "db/db.h"
-
-#include "ft/forward.h"
-
-#include "gm/gm_1601.h"
-#include "gm/gm_1BA8.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mn/types.h"
-
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -24,6 +10,20 @@
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
+#include <placeholder.h>
+#include <platform.h>
+
+#include "db/db.h"
+#include "ft/forward.h"
+#include "gm/gm_1601.h"
+#include "gm/gm_1BA8.h"
+#include "gm/gmmain_lib.h"
+#include "lb/lbarchive.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "mn/types.h"
+#include "gm/forward.h"
 
 static inline s32 mnEvent_CountUnlocked(void)
 {

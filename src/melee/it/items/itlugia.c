@@ -1,22 +1,25 @@
 #include "itlugia.h"
 
+#include <math.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+
 #include "inlines.h"
 #include "placeholder.h"
-
 #include "ef/eflib.h"
 #include "gr/stage.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/it_279C.h"
 #include "it/item.h"
-#include "it/itmaplib.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <math.h>
-#include <baselib/random.h>
+#include "it/itCommonItems.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
 
 ItemStateTable it_803F7EE8[] = {
     { 0, it_802D1DB4, it_802D1DD8, it_802D1E64 },

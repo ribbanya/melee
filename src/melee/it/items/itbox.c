@@ -2,6 +2,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <math.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
 
 #include "baselib/jobj.h"
 #include "baselib/random.h"
@@ -9,11 +13,8 @@
 #include "ef/efsync.h"
 #include "gr/grkongo.h"
 #include "it/inlines.h"
-#include "it/it_266F.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
-#include "it/it_3F14.h"
-#include "it/itanimlist.h"
 #include "it/itCommonItems.h"
 #include "it/iteffect.h"
 #include "it/item.h"
@@ -23,8 +24,10 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
-
-#include <math.h>
+#include "it/itdrop.h"
+#include "it/itgroundcoll.h"
+#include "it/types.h"
+#include "lb/forward.h"
 
 static double const ROT_VEL_SCALE = 0.03490658476948738;
 

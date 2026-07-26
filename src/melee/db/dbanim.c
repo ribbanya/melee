@@ -1,15 +1,20 @@
-#include "db.h"
-
-#include "ftCommon/ftCo_KinokoGiantEnd.h"
-#include "ftCommon/ftCo_KinokoGiantStart.h"
-#include "ftCommon/ftCo_KinokoSmallEnd.h"
-#include "ftCommon/ftCo_KinokoSmallStart.h"
-
 #include <melee/ft/ftlib.h>
 #include <melee/ft/inlines.h>
 #include <melee/if/textdraw.h>
 #include <melee/if/textlib.h>
 #include <melee/pl/player.h>
+#include <baselib/gobj.h>
+#include <common_structs.h>
+#include <dolphin/gx/GXStruct.h>
+#include <platform.h>
+
+#include "db.h"
+#include "ftCommon/ftCo_KinokoGiantEnd.h"
+#include "ftCommon/ftCo_KinokoGiantStart.h"
+#include "ftCommon/ftCo_KinokoSmallEnd.h"
+#include "ftCommon/ftCo_KinokoSmallStart.h"
+#include "ft/forward.h"
+#include "if/forward.h"
 
 static struct {
     DevText* text;

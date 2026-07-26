@@ -1,6 +1,8 @@
 #ifndef MELEE_FTCO_LANDING_H
 #define MELEE_FTCO_LANDING_H
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 
 /* 0D5AEC */ void ftCo_Landing_Enter(Fighter_GObj* gobj, FtMotionId msid,

@@ -1,27 +1,22 @@
-#include "ftNn_Init.h"
-
 #include <platform.h>
+#include <MSL/math.h>
+#include <common_structs.h>
+#include <placeholder.h>
 
-#include "ef/eflib.h"
+#include "ftNn_Init.h"
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftPopo/ftPp_SpecialS.h"
 #include "ftPopo/types.h"
 #include "pl/player.h"
-
-#include <dolphin/mtx.h>
-#include <MSL/math.h>
+#include "ftCommon/forward.h"
 
 /* 123B3C */ static void ftNn_Init_80123B3C(Fighter_GObj* nana_gobj);
 /* 123BF0 */ static void ftNn_Init_80123BF0(Fighter_GObj* gobj);

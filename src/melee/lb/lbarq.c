@@ -3,6 +3,8 @@
 #include <trigf.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <dolphin/os/OSCache.h>
+#include <placeholder.h>
 
 /* 4316C0 */ lbArqGlobal lbArq_804316C0;
 

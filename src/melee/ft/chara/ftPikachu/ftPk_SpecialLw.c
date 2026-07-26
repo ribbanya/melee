@@ -1,15 +1,13 @@
 #include "ftPk_SpecialLw.h"
 
-#include "math.h"
-
 #include <platform.h>
+#include <dolphin/mtx.h>
 
+#include "math.h"
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/efsync.h"
-
 #include "forward.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_0892.h"
@@ -20,8 +18,8 @@
 #include "ftCommon/inlines.h"
 #include "ftPikachu/types.h"
 #include "it/items/itpikachuthunder.h"
-
-#include <dolphin/mtx.h>
+#include "ft/ft_084E.h"
+#include "it/forward.h"
 
 bool ftPk_SpecialLw_CheckProperty(HSD_GObj* gobj)
 {

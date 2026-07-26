@@ -4,6 +4,7 @@
 #include <placeholder.h>
 
 #include "ftCommon/forward.h"
+#include "ft/forward.h"
 
 /* 0CD82C */ void ftCo_800CD82C(Fighter_GObj*, int, int, float);
 /* 0CD88C */ void ftCo_StarRodSwing_Anim(Fighter_GObj* gobj);

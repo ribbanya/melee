@@ -1,27 +1,23 @@
 #include "mnvibration.h"
 
-#include "dolphin/pad.h"
-
 #include <baselib/debug.h>
+#include <baselib/object.h>
+#include <baselib/rumble.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+
+#include "dolphin/pad.h"
+#include "gm/types.h"
+
 #undef HSD_ASSERT
 #define HSD_ASSERT(line, cond)                                                \
     ((cond) ? ((void) 0)                                                      \
             : __assert(mnVibration_804D4FF4, line, mnVibration_804D4FFC))
 #include <baselib/jobj.h>
+
 #undef HSD_ASSERT
 #define HSD_ASSERT(line, cond)                                                \
     ((cond) ? ((void) 0) : __assert(__FILE__, line, #cond))
-
-#include "ft/ft_0C31.h"
-#include "gm/gm_1A36.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mn/types.h"
 
 #include <dolphin/os.h>
 #include <baselib/controller.h>
@@ -33,6 +29,15 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
+
+#include "gm/gm_1A36.h"
+#include "gm/gmmain_lib.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "mn/types.h"
 
 /// --- Externs ---
 extern long HSD_GObj_804D783C;

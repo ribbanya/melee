@@ -1,25 +1,22 @@
 #include "gm_1A7A.h"
 
-#include "gm_unsplit.h"
-
-#include "gm/gm_1BA8.h"
-#include "gm/gmregtyfall.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbspdisplay.h"
-#include "mn/mnmain.h"
-#include "sc/types.h"
-#include "ty/toy.h"
-
-#include <sysdolphin/baselib/archive.h>
 #include <sysdolphin/baselib/cobj.h>
-#include <sysdolphin/baselib/fog.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
-#include <sysdolphin/baselib/lobj.h>
+#include <baselib/aobj.h>
+#include <platform.h>
+
+#include "gm_unsplit.h"
+#include "gm/gmregtyfall.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+#include "mn/mnmain.h"
+#include "sc/types.h"
+#include "ty/toy.h"
 
 extern Event gm_804D6724;
 

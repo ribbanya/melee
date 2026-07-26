@@ -1,21 +1,17 @@
 #include "ftCo_CaptureDamageKoopa.h"
 
+#include <platform.h>
+#include <baselib/forward.h>
+
 #include "ftCo_CaptureCut.h"
 #include "ftCo_CaptureKoopa.h"
 #include "ftCo_CaptureWaitKoopa.h"
-#include "ftCo_Throw.h"
-
-#include <platform.h>
-
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ftCommon/ftCo_Attack100.h"
-
-#include <baselib/forward.h>
+#include "ftCommon/forward.h"
 
 void ftCo_800BC9C8(Fighter_GObj* gobj)
 {

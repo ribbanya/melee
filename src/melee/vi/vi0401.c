@@ -1,16 +1,24 @@
 #include "vi0401.h"
 
 #include <placeholder.h>
+#include <baselib/cobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <platform.h>
 
 #include "cm/camera.h"
 #include "dolphin/pad.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "ft/ftdemo.h"
-#include "gm/gm_1A36.h"
 #include "gm/gm_1A45.h"
 #include "gm/gm_unsplit.h"
-#include "gm/gmregclear.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "it/item.h"
@@ -22,16 +30,8 @@
 #include "sc/types.h"
 #include "vi/types.h"
 #include "vi/vi.h"
-
-#include <baselib/aobj.h>
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/lobj.h>
+#include "gr/forward.h"
+#include "pl/forward.h"
 
 static SceneDesc* un_804D6F48;
 static SceneDesc* un_804D6F4C;

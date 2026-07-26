@@ -1,24 +1,22 @@
 #include "ft/ft_0C8C.h"
 
-#include <placeholder.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <platform.h>
 
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_0877.h"
 #include "ft/ft_0D4D.h"
 #include "ft/ftCo_800C7CA0.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DownSpot.h"
 #include "ftCommon/ftCo_Lift.h"
-#include "ftCrazyHand/ftCh_Init.h"
 #include "ftCrazyHand/ftCh_TagGrab.h"
 #include "ftMasterHand/ftMh_Damage_0.h"
 #include "gm/gm_unsplit.h"

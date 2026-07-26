@@ -1,16 +1,13 @@
 #include "ftCo_ItemParasolFall.h"
 
+#include <platform.h>
+
 #include "ft/fighter.h"
-
 #include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftCommon/ftCo_EscapeAir.h"

@@ -2,6 +2,9 @@
 #define MELEE_GM_VS_DATA_H
 
 #include <melee/gm/types.h>
+#include <placeholder.h>
+
+#include "mn/forward.h"
 
 extern CSSData gm_804807B0;
 extern SSSData gm_80480668;

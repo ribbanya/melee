@@ -1,20 +1,22 @@
 #include "ft_0899.h"
 
-#include "math.h"
+#include <math_ppc.h>
+#include <trigf.h>
+#include <baselib/jobj.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
 
+#include "math.h"
 #include "db/dbsound.h"
 #include "ft/fighter.h"
 #include "ft/ftparts.h"
-#include "ft/inlines.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbbgflash.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
-
-#include <math_ppc.h>
-#include <trigf.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
+#include "mp/forward.h"
 
 /* 08998C */ static bool fn_8008998C(Fighter* fp, IKState* ik, Vec3* normal);
 

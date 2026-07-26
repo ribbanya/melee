@@ -1,11 +1,15 @@
 #include "efalt.h"
 
+#include <baselib/debug.h>
+#include <baselib/generator.h>
+#include <dolphin/mtx.h>
+#include <placeholder.h>
+#include <platform.h>
+
 #include "eflib.h"
 #include "types.h"
-
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
-#include "baselib/particle.h"
 #include "MSL/math.h"
 
 #define EFALT_VA_ARG(t) (*((t*) __va_arg(vlist_arg, _var_arg_typeof(t))))

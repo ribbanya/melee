@@ -1,15 +1,14 @@
 #include "grtclink.h"
 
+#include <baselib/gobj.h>
+#include <dolphin/os.h>
+
 #include "ground.h"
 #include "grzakogenerator.h"
 #include "inlines.h"
-#include "types.h"
-
 #include "lb/lbspdisplay.h"
-#include "lb/types.h"
-
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
+#include "gr/granime.h"
+#include "gr/types.h"
 
 static StageCallbacks grTCLink_StageCallbacks[] = {
     {

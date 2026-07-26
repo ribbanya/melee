@@ -2,6 +2,8 @@
 #define _METROTRK_SUPPORT_H
 
 #include <platform.h>
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/msgcmd.h>
 
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/trk.h"

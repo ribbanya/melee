@@ -1,28 +1,23 @@
 #include "ftCh_GrabUnk1_B174.h"
 
+#include <platform.h>
+#include <dolphin/mtx.h>
+
 #include "math.h"
 #include "types.h"
-
-#include <placeholder.h>
-#include <platform.h>
-
 #include "baselib/forward.h"
-
 #include "cm/camera.h"
 #include "ft/fighter.h"
 #include "ft/ft_0881.h"
 #include "ft/ftbosslib.h"
 #include "ft/ftlib.h"
-#include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "lb/lb_00B0.h"
 #include "pl/player.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <MetroTRK/intrinsics.h>
+#include "ft/ftanim.h"
+#include "pl/forward.h"
 
 bool fn_8015B4EC(Vec3* vec);
 
