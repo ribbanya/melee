@@ -6,6 +6,7 @@
 #include "gmvsdata.h"
 
 #include "gm/types.h"
+#include "mn/types.h"
 
 CSSData gm_804807B0;
 SSSData gm_80480668;

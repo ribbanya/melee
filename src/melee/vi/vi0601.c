@@ -9,7 +9,6 @@
 #include <baselib/displayfunc.h>
 #include <dolphin/gx/GXStruct.h>
 #include <platform.h>
-#include <baselib/aobj.h>
 
 #include "cm/camera.h"
 #include "ef/efasync.h"

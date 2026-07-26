@@ -9,6 +9,7 @@
 #include <baselib/mtx.h>
 #include <dolphin/mtx.h>
 #include <platform.h>
+#include <baselib/aobj.h>
 
 #include "vi.h"
 #include "cm/camera.h"

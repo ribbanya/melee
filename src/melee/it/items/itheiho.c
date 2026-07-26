@@ -6,6 +6,7 @@
 #include <baselib/aobj.h>
 #include <baselib/jobj.h>
 #include <placeholder.h>
+#include <baselib/tobj.h>
 
 #include "inlines.h"
 #include "gr/stage.h"

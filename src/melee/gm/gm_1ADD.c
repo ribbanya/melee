@@ -17,6 +17,7 @@
 #include <melee/sc/types.h>
 #include <dolphin/pad.h>
 #include <placeholder.h>
+#include <baselib/mobj.h>
 
 #include "gm_unsplit.h"
 

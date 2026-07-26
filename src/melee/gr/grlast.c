@@ -25,6 +25,7 @@
 #include <dolphin/os.h>
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/aobj.h>
 
 #include "baselib/psstructs.h"
 #include "gr/types.h"

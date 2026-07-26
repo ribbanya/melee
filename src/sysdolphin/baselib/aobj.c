@@ -9,6 +9,8 @@
 #include <baselib/objalloc.h>
 #include <baselib/object.h>
 #include <baselib/pobj.h>
+#include <baselib/mobj.h>
+#include <baselib/tobj.h>
 
 #include "cobj.h"
 #include "dobj.h"
