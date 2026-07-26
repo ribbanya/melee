@@ -8,9 +8,6 @@
 
 #include "ft/forward.h"
 #include "lb/forward.h"
-
-#include "lb/types.h"
-
 #include <baselib/forward.h>
 #include <melee/sc/forward.h>
 

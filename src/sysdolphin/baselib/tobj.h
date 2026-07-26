@@ -5,7 +5,7 @@
 
 #include "baselib/class.h"
 
-#include "baselib/forward.h" // IWYU pragma: export
+#include "baselib/forward.h"
 
 #include "baselib/object.h"
 
@@ -14,8 +14,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
-
-struct HSD_TObj;
 
 #define TOBJ_ANIM 0x10
 

@@ -6,7 +6,7 @@
 #include "baselib/class.h"
 #include "baselib/debug.h"
 
-#include "baselib/forward.h" // IWYU pragma: export
+#include "baselib/forward.h"
 
 #include "baselib/list.h"
 #include "baselib/object.h"
@@ -15,8 +15,6 @@
 #include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
-
-struct HSD_JObj;
 
 #define JOBJ_PTCL_ACTIVE 0x7FFFFFFF
 #define JOBJ_PTCL_OFFSET_MASK 0xFFFFFF
