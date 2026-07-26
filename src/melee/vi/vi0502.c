@@ -1,24 +1,19 @@
 #include "vi0502.h"
 
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-#include <baselib/mtx.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
 
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
+
 #include "ft/forward.h"
+
 #include "ft/ftdemo.h"
 #include "gm/gm_unsplit.h"
+
+#include "gr/forward.h"
+
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -28,11 +23,25 @@
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
 #include "sc/types.h"
+#include "vi/types.h"
 #include "vi/vi.h"
-#include "gr/forward.h"
-#include "pl/forward.h"
+
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/mtx.h>
+#include <baselib/wobj.h>
 
 typedef struct Vi0502Data {
     Vec3 initial_pos;
