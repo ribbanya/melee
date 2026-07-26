@@ -4,6 +4,7 @@
 #include <platform.h>
 #include <math_ppc.h>
 #include <common_structs.h>
+#include <MetroTRK/intrinsics.h>
 
 #include "baselib/jobj.h"
 #include "db/db.h"

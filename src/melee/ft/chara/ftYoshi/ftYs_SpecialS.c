@@ -6,6 +6,7 @@
 #include <baselib/jobj.h>
 #include <common_structs.h>
 #include <platform.h>
+#include <baselib/forward.h>
 
 #include "ftYoshi/ftYs_SpecialS.static.h"
 #include "ftYs_Init.h"

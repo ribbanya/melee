@@ -18,7 +18,6 @@
 #include "ftcoll.h"
 #include "ftlib.h"
 #include "ftparts.h"
-#include "stdbool.h"
 #include "ef/eflib.h"
 #include "ft/forward.h"
 #include "ft/ft_0881.h"

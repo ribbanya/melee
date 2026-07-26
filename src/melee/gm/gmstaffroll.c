@@ -18,8 +18,6 @@
 #include <sysdolphin/baselib/wobj.h>
 #include <baselib/generator.h>
 #include <baselib/gobj.h>
-#include <baselib/mobj.h>
-#include <baselib/tobj.h>
 #include <cmath.h>
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

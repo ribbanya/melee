@@ -22,6 +22,7 @@
 #include "it/itCharItems.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
+#include "lb/lbrefract.h"
 
 /* 2D60C8 */ static bool itHinoarashi_UnkMotion2_Anim(Item_GObj* gobj);
 

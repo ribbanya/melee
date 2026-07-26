@@ -2,8 +2,8 @@
 
 #include <baselib/objalloc.h>
 #include <baselib/object.h>
+#include <baselib/class.h>
 
-#include "class.h"
 #include "cobj.h"
 #include "fog.h"
 #include "gobjplink.h"

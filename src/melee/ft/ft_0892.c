@@ -2,7 +2,6 @@
 
 #include <math_ppc.h>
 #include <trigf.h>
-#include <baselib/gobj.h>
 
 #include "ft/chara/ftFox/ftFx_AppealS.h"
 #include "ft/inlines.h"

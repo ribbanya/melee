@@ -16,7 +16,6 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/ftdevice.h"
-#include "ft/types.h"
 #include "it/forward.h"
 #include "it/it_26B1.h"
 #include "it/it_279C.h"

@@ -7,7 +7,6 @@
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
-#include <baselib/aobj.h>
 #include <platform.h>
 
 #include "gm_unsplit.h"

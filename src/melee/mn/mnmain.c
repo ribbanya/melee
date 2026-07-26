@@ -50,7 +50,6 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
-#include <baselib/tobj.h>
 #include <dolphin/mtx.h>
 #include <placeholder.h>
 

@@ -6,7 +6,6 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/aobj.h>
 #include <stddef.h>
 
 #include "ef/efasync.h"

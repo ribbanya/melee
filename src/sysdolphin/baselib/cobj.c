@@ -12,6 +12,7 @@
 #include <baselib/object.h>
 #include <baselib/video.h>
 #include <dolphin/vi/vifuncs.h>
+#include <math.h>
 
 #include "aobj.h"
 #include "displayfunc.h"

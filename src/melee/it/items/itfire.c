@@ -1,7 +1,6 @@
 #include "itfire.h"
 
 #include <placeholder.h>
-#include <platform.h>
 #include <common_structs.h>
 
 #include "inlines.h"

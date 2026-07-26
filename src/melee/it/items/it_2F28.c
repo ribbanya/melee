@@ -1,7 +1,6 @@
 #include "it_2F28.h"
 
 #include <math_ppc.h>
-#include <baselib/jobj.h>
 #include <melee/it/item.h>
 #include <common_structs.h>
 #include <placeholder.h>

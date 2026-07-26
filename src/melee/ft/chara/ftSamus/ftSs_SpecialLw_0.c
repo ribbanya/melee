@@ -4,6 +4,7 @@
 #include <trigf.h>
 #include <placeholder.h>
 #include <platform.h>
+#include <math.h>
 
 #include "ftSs_Init.h"
 #include "ftSs_SpecialLw_1.h"

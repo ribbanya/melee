@@ -4,6 +4,7 @@
 #include <baselib/gobj.h>
 #include <baselib/objalloc.h>
 #include <common_structs.h>
+#include <MetroTRK/intrinsics.h>
 
 #include "placeholder.h"
 #include "baselib/gobjgxlink.h"

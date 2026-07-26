@@ -12,7 +12,6 @@
 #include "placeholder.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjuserdata.h"
-#include "dolphin/types.h"
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_0A01.h"
 #include "ft/chara/ftCommon/ftCo_AirCatch.h"

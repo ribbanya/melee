@@ -27,6 +27,7 @@
 #include "ft/forward.h"
 #include "it/itCommonItems.h"
 #include "it/itgroundcoll.h"
+#include "lb/lbrefract.h"
 
 /* 2CDC5C */ static void itHassam_802CDC5C(Item_GObj* gobj);
 /* 2CDC80 */ static void itHassam_802CDC80(Item_GObj* gobj);

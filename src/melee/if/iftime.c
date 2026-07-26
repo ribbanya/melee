@@ -9,7 +9,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/aobj.h>
-#include <baselib/tobj.h>
 #include <platform.h>
 
 #include "dolphin/os.h"

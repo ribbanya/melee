@@ -4,7 +4,6 @@
 #include <baselib/generator.h>
 #include <dolphin/mtx.h>
 #include <placeholder.h>
-#include <platform.h>
 #include <stdarg.h>
 
 #include "efalt.h"

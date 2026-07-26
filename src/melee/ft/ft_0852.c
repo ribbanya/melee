@@ -3,7 +3,6 @@
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <dolphin/mtx.h>
-#include <platform.h>
 
 #include "ft/forward.h"
 #include "ft/ftdata.h"

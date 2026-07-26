@@ -4,7 +4,6 @@
 #include <baselib/jobj.h>
 #include <baselib/aobj.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/object.h>
 
 #include "gr/granime.h"

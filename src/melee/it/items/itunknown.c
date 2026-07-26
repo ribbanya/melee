@@ -20,6 +20,7 @@
 #include "lb/lbvector.h"
 #include "it/itCommonItems.h"
 #include "it/types.h"
+#include "lb/lbrefract.h"
 
 ItemStateTable it_803F7D60[] = {
     { 0, itUnknown_UnkMotion0_Anim, itUnknown_UnkMotion0_Phys,

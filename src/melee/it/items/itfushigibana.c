@@ -1,7 +1,6 @@
 #include "itfushigibana.h"
 
 #include <placeholder.h>
-#include <platform.h>
 #include <baselib/forward.h>
 #include <common_structs.h>
 

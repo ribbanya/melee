@@ -31,6 +31,8 @@ typedef struct {
 #include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <string.h>
+#include <MetroTRK/intrinsics.h>
+#include <math.h>
 
 #include "particle.static.h"
 

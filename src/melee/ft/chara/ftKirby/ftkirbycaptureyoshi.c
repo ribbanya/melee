@@ -1,6 +1,5 @@
 #include "ftkirbycaptureyoshi.h"
 
-#include <stddef.h>
 #include <platform.h>
 
 #include "ft/chara/ftCommon/ftCo_Lift.h"

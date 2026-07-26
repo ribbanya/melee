@@ -22,7 +22,6 @@
 #include "ft/ftlib.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-#include "lb/types.h"
 #include "mp/mplib.h"
 #include "gr/types.h"
 #include "mp/forward.h"

@@ -4,6 +4,7 @@
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
+#include <math.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"

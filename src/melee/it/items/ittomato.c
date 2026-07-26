@@ -12,7 +12,6 @@
 #include "it/itCommonItems.h"
 #include "it/item.h"
 #include "ft/forward.h"
-#include "gm/types.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 

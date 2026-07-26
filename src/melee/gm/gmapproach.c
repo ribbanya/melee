@@ -13,7 +13,6 @@
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
 #include <baselib/aobj.h>
-#include <baselib/mobj.h>
 #include <baselib/tobj.h>
 #include <common_structs.h>
 #include <placeholder.h>

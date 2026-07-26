@@ -19,6 +19,7 @@
 #include <baselib/debug.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/os.h>
+#include <baselib/forward.h>
 
 #include "platform.h"
 #include "baselib/cobj.h"

@@ -2,7 +2,6 @@
 
 #include <placeholder.h>
 #include <common_structs.h>
-#include <stddef.h>
 #include <baselib/gobj.h>
 #include <platform.h>
 

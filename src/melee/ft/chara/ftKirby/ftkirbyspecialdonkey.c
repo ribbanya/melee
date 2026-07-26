@@ -2,9 +2,7 @@
 
 #include <placeholder.h>
 #include <common_structs.h>
-#include <stddef.h>
 #include <trigf.h>
-#include <dolphin/types.h>
 
 #include "ftkirby.h"
 #include "ef/eflib.h"

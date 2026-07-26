@@ -10,7 +10,6 @@
 #include "ft/ft_0CD1.h"
 #include "ft/ftlipstickswing.h"
 #include "ft/ftstarrodswing.h"
-#include "ft/types.h"
 #include "it/it_26B1.h"
 
 int lbl_803C6D70[6][5] = {

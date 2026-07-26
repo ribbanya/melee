@@ -6,6 +6,7 @@
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <common_structs.h>
+#include <MetroTRK/intrinsics.h>
 
 #include "math.h"
 #include "db/db.h"

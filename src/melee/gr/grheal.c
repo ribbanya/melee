@@ -25,7 +25,6 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
 #include "ty/toy.h"
-#include "gm/types.h"
 #include "gr/grdisplay.h"
 #include "gr/types.h"
 #include "lb/forward.h"

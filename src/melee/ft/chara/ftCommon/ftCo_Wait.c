@@ -16,7 +16,6 @@
 #include "ft/ftcoll.h"
 #include "ft/ftwaitanim.h"
 #include "ft/inlines.h"
-#include "ft/types.h"
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Dash.h"

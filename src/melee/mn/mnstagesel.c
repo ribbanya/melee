@@ -34,7 +34,6 @@
 #include "placeholder.h"
 #include "gm/forward.h"
 #include "mn/forward.h"
-#include "sc/types.h"
 
 /// @todo .sdata2 order hack
 static void order_sdata2(void)

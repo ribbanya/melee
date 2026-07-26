@@ -1,6 +1,5 @@
 #include "itgamewatchturtle.h"
 
-#include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftGameWatch/ftGw_AttackAir.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>

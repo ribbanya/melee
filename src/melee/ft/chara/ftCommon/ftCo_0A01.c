@@ -38,7 +38,6 @@
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/item.h"
-#include "it/types.h"
 #include "lb/lb_00CE.h"
 #include "lb/lbcollision.h"
 #include "lb/lbvector.h"

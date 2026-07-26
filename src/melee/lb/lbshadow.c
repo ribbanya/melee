@@ -23,7 +23,6 @@
 #include <melee/lb/types.h>
 #include <MetroTRK/intrinsics.h>
 #include <baselib/cobj.h>
-#include <baselib/tobj.h>
 #include <common_structs.h>
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>

@@ -7,8 +7,7 @@
 #include <sysdolphin/baselib/tobj.h>
 #include <baselib/state.h>
 #include <dolphin/gx.h>
-
-#include "debug.h"
+#include <baselib/debug.h>
 
 HSD_TExpType HSD_TExpGetType(HSD_TExp* texp)
 {

@@ -19,7 +19,6 @@
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/lb/lbvector.h>
-#include <baselib/aobj.h>
 #include <baselib/debug.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>

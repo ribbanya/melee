@@ -36,7 +36,6 @@
 #include <baselib/cobj.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
-#include <baselib/tobj.h>
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/os.h>
 #include <math.h>

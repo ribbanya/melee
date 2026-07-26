@@ -10,7 +10,6 @@
 #include <baselib/memory.h>
 #include <baselib/sobjlib.h>
 #include <baselib/tobj.h>
-#include <baselib/aobj.h>
 #include <dolphin/mtx.h>
 #include <platform.h>
 

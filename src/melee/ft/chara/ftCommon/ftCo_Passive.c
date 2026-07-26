@@ -13,7 +13,6 @@
 #include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
-#include "ft/types.h"
 #include "ft/ft_084E.h"
 
 void ftCo_800987D0(Fighter_GObj* gobj)

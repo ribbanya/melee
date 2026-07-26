@@ -17,7 +17,6 @@
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbvector.h>
 #include <dolphin/gx/GXEnum.h>
-#include <platform.h>
 
 #include "baselib/debug.h"
 #include "ft/types.h"

@@ -2,7 +2,6 @@
 
 #include <placeholder.h>
 #include <common_structs.h>
-#include <stddef.h>
 #include <baselib/jobj.h>
 #include <dolphin/mtx.h>
 #include <platform.h>

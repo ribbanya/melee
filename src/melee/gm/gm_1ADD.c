@@ -15,7 +15,6 @@
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lblanguage.h>
 #include <melee/sc/types.h>
-#include <baselib/mobj.h>
 #include <dolphin/pad.h>
 #include <placeholder.h>
 

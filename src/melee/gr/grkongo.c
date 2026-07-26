@@ -10,6 +10,7 @@
 #include <baselib/gobjgxlink.h>
 #include <dolphin/os.h>
 #include <placeholder.h>
+#include <MetroTRK/intrinsics.h>
 
 #include "grkongo.static.h"
 #include "grmaterial.h"

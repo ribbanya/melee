@@ -10,7 +10,6 @@
 #include <baselib/quatlib.h>
 #include <baselib/robj.h>
 #include <baselib/texp.h>
-#include <baselib/tobj.h>
 #include <stddef.h>
 
 #include "sc/types.h" // IWYU pragma: keep

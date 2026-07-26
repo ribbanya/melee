@@ -1,6 +1,5 @@
 #include "mndiagram2.h"
 
-#include <stdbool.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>

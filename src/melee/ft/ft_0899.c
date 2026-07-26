@@ -7,6 +7,7 @@
 #include <dolphin/mtx.h>
 #include <placeholder.h>
 #include <platform.h>
+#include <MetroTRK/intrinsics.h>
 
 #include "math.h"
 #include "db/dbsound.h"

@@ -25,6 +25,7 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 #include "lb/types.h"
+#include "lb/lbrefract.h"
 
 #define itkpf_Floor 1
 #define itkpf_Ceiling 2

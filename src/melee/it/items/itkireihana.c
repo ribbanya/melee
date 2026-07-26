@@ -1,7 +1,6 @@
 #include "itkireihana.h"
 
 #include <placeholder.h>
-#include <platform.h>
 
 #include "inlines.h"
 #include "baselib/random.h"
