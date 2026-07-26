@@ -12,7 +12,6 @@
 #include <MSL/math.h>
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/aobj.h>
 
 #include "gm_1A7A.h"
 #include "gm_unsplit.h"

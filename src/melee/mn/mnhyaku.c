@@ -1,19 +1,6 @@
 #include "mnhyaku.h"
 
 #include <placeholder.h>
-
-#include "gm/forward.h"
-
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mn/types.h"
-
-#include "sc/forward.h"
-
-#include "sc/types.h"
-
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
@@ -26,6 +13,14 @@
 #include <baselib/memory.h>
 #include <baselib/object.h>
 #include <baselib/sislib.h>
+
+#include "gm/forward.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "mn/types.h"
+#include "sc/forward.h"
 
 static HSD_GObj* mnHyaku_804D6C58;
 

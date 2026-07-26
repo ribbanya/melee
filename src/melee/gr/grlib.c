@@ -20,7 +20,7 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "lb/lbspdisplay.h"
-#include "lb/types.h" // IWYU pragma: keep
+#include "lb/types.h"
 #include "sc/types.h"
 
 #include <math.h>

@@ -1,9 +1,16 @@
 #include "if/ifstock.h"
 
-#include "if/ifstock.static.h"
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
+#include <baselib/aobj.h>
+#include <baselib/dobj.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/tobj.h>
 
+#include "if/ifstock.static.h"
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"
 #include "baselib/jobj.h"
@@ -22,18 +29,7 @@
 #include "lb/lbvector.h"
 #include "mn/types.h"
 #include "pl/player.h"
-
 #include "sc/forward.h"
-
-#include "sc/types.h"
-
-#include <dolphin/mtx.h>
-#include <baselib/aobj.h>
-#include <baselib/dobj.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/tobj.h>
 
 struct IfStockStealAnim {
     Vec3 start;

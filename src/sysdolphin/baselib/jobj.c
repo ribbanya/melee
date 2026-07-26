@@ -11,8 +11,6 @@
 #include <baselib/fobj.h>
 #include <baselib/list.h>
 #include <baselib/object.h>
-#include <baselib/mobj.h>
-#include <baselib/pobj.h>
 
 #include "cobj.h"
 #include "displayfunc.h"

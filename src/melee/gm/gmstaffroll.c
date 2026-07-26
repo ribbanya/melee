@@ -23,8 +23,6 @@
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
 #include <placeholder.h>
-#include <baselib/mobj.h>
-#include <baselib/tobj.h>
 
 #include "gm_unsplit.h"
 #include "baselib/psappsrt.h"

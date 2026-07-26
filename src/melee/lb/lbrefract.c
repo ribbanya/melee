@@ -2,14 +2,8 @@
 
 #include <placeholder.h>
 #include <string.h>
-#include <dolphin/gx/GXBump.h>
 #include <dolphin/gx/GXEnum.h>
-#include <dolphin/gx/GXGeometry.h>
-#include <dolphin/gx/GXLighting.h>
-#include <dolphin/gx/GXPixel.h>
-#include <dolphin/gx/GXTev.h>
 #include <dolphin/gx/GXTexture.h>
-#include <dolphin/gx/GXTransform.h>
 #include <dolphin/os/OSCache.h>
 #include <baselib/class.h>
 #include <baselib/cobj.h>

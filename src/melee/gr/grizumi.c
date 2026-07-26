@@ -1,21 +1,5 @@
 #include "grizumi.h"
 
-#include "granime.h"
-#include "grdatfiles.h"
-#include "grdisplay.h"
-#include "grlib.h"
-#include "ground.h"
-#include "grzakogenerator.h"
-#include "inlines.h"
-
-#include "cm/camera.h"
-#include "ft/ftdrawcommon.h"
-#include "gr/types.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbdvd.h"
-#include "lb/lbspdisplay.h"
-#include "mp/mplib.h"
-
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
@@ -24,7 +8,6 @@
 #include <baselib/cobj.h>
 #include <baselib/debug.h>
 #include <baselib/displayfunc.h>
-#include <baselib/dobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -37,8 +20,21 @@
 #include <baselib/object.h>
 #include <baselib/random.h>
 #include <baselib/state.h>
-#include <baselib/tobj.h>
-#include <baselib/wobj.h>
+
+#include "granime.h"
+#include "grdatfiles.h"
+#include "grdisplay.h"
+#include "grlib.h"
+#include "ground.h"
+#include "grzakogenerator.h"
+#include "inlines.h"
+#include "cm/camera.h"
+#include "ft/ftdrawcommon.h"
+#include "gr/types.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbdvd.h"
+#include "lb/lbspdisplay.h"
+#include "mp/mplib.h"
 
 struct grIzumi_YakumonoParam {
     float x0;

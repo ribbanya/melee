@@ -1,41 +1,11 @@
-#include "lbspdisplay.static.h"
-
-#include "math.h"
-#include "stdarg.h"
-
 #include <placeholder.h>
 #include <platform.h>
-
-#include "baselib/debug.h"
-#include "baselib/displayfunc.h"
-#include "baselib/rumble.h"
-#include "baselib/tobj.h"
-#include "dolphin/gx/GXCull.h"
-#include "dolphin/gx/GXGeometry.h"
-#include "dolphin/gx/GXLighting.h"
-#include "dolphin/gx/GXPixel.h"
-#include "dolphin/gx/GXTev.h"
-#include "dolphin/gx/GXTexture.h"
-#include "dolphin/gx/GXTransform.h"
-#include "dolphin/gx/GXVert.h"
-#include "dolphin/pad.h"
-
-#include "ft/forward.h"
-
-#include "lb/lbarchive.h"
-#include "lb/lbcollision.h"
-#include "lb/lbcommand.h"
-#include "lb/lbdvd.h"
-#include "lb/lbvector.h"
-#include "lb/types.h"
-
 #include <math_ppc.h>
 #include <trigf.h>
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
-#include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>
@@ -48,6 +18,22 @@
 #include <baselib/tev.h>
 #include <melee/mp/mplib.h>
 #include <melee/sc/types.h>
+
+#include "lbspdisplay.static.h"
+#include "math.h"
+#include "stdarg.h"
+#include "baselib/debug.h"
+#include "baselib/displayfunc.h"
+#include "baselib/rumble.h"
+#include "baselib/tobj.h"
+#include "dolphin/pad.h"
+#include "ft/forward.h"
+#include "lb/lbarchive.h"
+#include "lb/lbcollision.h"
+#include "lb/lbcommand.h"
+#include "lb/lbdvd.h"
+#include "lb/lbvector.h"
+#include "lb/types.h"
 
 typedef bool (*lb_803BA248_fn)(ColorOverlay*);
 

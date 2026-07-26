@@ -1,24 +1,6 @@
 #include "ifmagnify.h"
 
 #include <placeholder.h>
-
-#include "baselib/gobjuserdata.h"
-#include "cm/camera.h"
-#include "ft/ftdrawcommon.h"
-#include "ft/ftlib.h"
-#include "gm/gm_1601.h"
-#include "gm/gm_16AE.h"
-#include "gm/types.h"
-#include "gr/ground.h"
-#include "gr/stage.h"
-#include "if/if_2FC93.h"
-#include "if/ifall.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbspdisplay.h"
-#include "pl/player.h"
-#include "sc/types.h"
-
 #include <trigf.h>
 #include <dolphin/gx.h>
 #include <baselib/cobj.h>
@@ -30,6 +12,23 @@
 #include <baselib/gobjplink.h>
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
+#include <baselib/tobj.h>
+
+#include "baselib/gobjuserdata.h"
+#include "cm/camera.h"
+#include "ft/ftdrawcommon.h"
+#include "ft/ftlib.h"
+#include "gm/gm_1601.h"
+#include "gm/gm_16AE.h"
+#include "gr/ground.h"
+#include "gr/stage.h"
+#include "if/if_2FC93.h"
+#include "if/ifall.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbspdisplay.h"
+#include "pl/player.h"
+#include "sc/types.h"
 
 /* 3F97E8 */ extern HSD_CameraDescPerspective ifMagnify_803F97E8;
 static char ifMagnify_803F988C[] = "!(jobj->flags & JOBJ_USE_QUATERNION)";

@@ -5,7 +5,6 @@
 #include <baselib/aobj.h>
 #include <baselib/debug.h>
 #include <baselib/object.h>
-#include <baselib/gobj.h>
 
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"

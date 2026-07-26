@@ -8,7 +8,6 @@
 #include "ftCo_CargoWait.h"
 #include "ftCo_Shouldered.h"
 #include "ft/ftwalkcommon.h"
-#include "ft/types.h"
 #include "ftDonkey/types.h"
 #include "ftCommon/forward.h"
 

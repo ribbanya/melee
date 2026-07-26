@@ -12,7 +12,6 @@
 #include <baselib/tobj.h>
 #include <dolphin/mtx.h>
 #include <platform.h>
-#include <baselib/aobj.h>
 
 #include "gm_unsplit.h"
 #include "math.h"

@@ -27,7 +27,7 @@
 #include <baselib/gobjproc.h>
 #include <baselib/memory.h>
 #include <baselib/psstructs.h>
-#include <sysdolphin/baselib/random.h>
+#include <baselib/random.h>
 
 grZakoGenerator_Config*
 grZakoGenerator_801CA394(grZakoGenerator_Spawn* spawn_descs, int count,

@@ -1,14 +1,16 @@
 #include "itanimlist.h"
 
+#include <placeholder.h>
+#include <common_structs.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+
 #include "it_2725.h"
 #include "it_3F14.h"
 #include "iteffect.h"
 #include "ithitbox.h"
-
-#include <placeholder.h>
-
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/itcoll.h"
 #include "it/item.h"
@@ -17,12 +19,6 @@
 #include "lb/lbcommand.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
-
-#include <common_structs.h>
-#include <dolphin/mtx.h>
-#include <baselib/debug.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjproc.h>
 
 static void sdata2_order(void)
 {

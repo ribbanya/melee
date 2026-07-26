@@ -17,7 +17,6 @@
 #include <common_structs.h>
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/mobj.h>
 
 #include "gm_unsplit.h"
 

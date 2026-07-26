@@ -21,6 +21,7 @@
 #include <baselib/sislib.h>
 #include <baselib/aobj.h>
 #include <common_structs.h>
+#include <baselib/tobj.h>
 
 #include "toy.h"
 #include "lb/lb_00B0.h"
