@@ -3,13 +3,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <stddef.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/thp/thp.h>
-#include <dolphin/os/OSAlarm.h>
 
-#include "lb/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/os/OSAlarm.h>
+#include <dolphin/thp/thp.h>
 
 /* THPDec function declarations */
 BOOL THPInit(void);
