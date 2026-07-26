@@ -3,6 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <sysdolphin/baselib/forward.h>
 
 /* 2599EC */ int mnStageSel_802599EC(void);

@@ -1,6 +1,26 @@
 #include "gmstaffroll.h"
 
+#include "gm_unsplit.h"
+
 #include <placeholder.h>
+
+#include "baselib/psappsrt.h"
+#include "baselib/psstructs.h"
+#include "ef/efasync.h"
+#include "ef/eflib.h"
+
+#include "ft/forward.h"
+
+#include "gm/gmmain_lib.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbbgflash.h"
+#include "lb/lblanguage.h"
+#include "lb/lbspdisplay.h"
+#include "sc/types.h"
+#include "ty/toy.h"
+
 #include <cmath.h>
 #include <common_structs.h>
 #include <math_ppc.h>
@@ -23,24 +43,6 @@
 #include <sysdolphin/baselib/random.h>
 #include <sysdolphin/baselib/sislib.h>
 #include <sysdolphin/baselib/wobj.h>
-#include <baselib/mobj.h>
-#include <baselib/tobj.h>
-
-#include "gm_unsplit.h"
-#include "baselib/psappsrt.h"
-#include "baselib/psstructs.h"
-#include "ef/efasync.h"
-#include "ef/eflib.h"
-#include "ft/forward.h"
-#include "gm/gmmain_lib.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbbgflash.h"
-#include "lb/lblanguage.h"
-#include "lb/lbspdisplay.h"
-#include "sc/types.h"
-#include "ty/toy.h"
 
 struct staffInfo_t {
     char pad_0[0x948];

@@ -2,11 +2,12 @@
 #define GALE01_091A2C
 
 #include <placeholder.h>
-#include <baselib/forward.h>
-#include <stdbool.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
+#include <baselib/forward.h>
+
+#include <stdbool.h>
 
 /* 091A2C */ bool ftCo_80091A2C(Fighter_GObj* gobj);
 /* 091A4C */ bool ftCo_80091A4C(Fighter_GObj* gobj);

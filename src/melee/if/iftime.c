@@ -2,6 +2,17 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
+#include "dolphin/os.h"
+#include "gm/gm_unsplit.h"
+#include "if/ifall.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+
+#include "mn/forward.h"
+
+#include "sc/types.h"
+
 #include <baselib/aobj.h>
 #include <baselib/dobj.h>
 #include <baselib/gobj.h>
@@ -10,15 +21,6 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/tobj.h>
-
-#include "dolphin/os.h"
-#include "gm/gm_unsplit.h"
-#include "if/ifall.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "mn/forward.h"
-#include "sc/types.h"
 
 static struct ifTime_data {
     HSD_GObj* match_timer;

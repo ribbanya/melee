@@ -3,6 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <melee/ft/forward.h>
 
 /* 0C8170 */ void ft_800C8170(Fighter* fp);

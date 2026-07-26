@@ -3,10 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 12CC6C */ Fighter_Part ftYs_SpecialN_GetBoneIndex(Fighter_GObj* gobj);
 /* 12CC94 */ void ftYs_SpecialN_SetupItemVel(Fighter_GObj* gobj, Vec3* out);

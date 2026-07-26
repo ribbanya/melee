@@ -3,9 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
 
 #include "lb/forward.h"
+#include <baselib/forward.h>
 
 typedef void (*lbDvd_Callback)(int, int index, int, int);
 

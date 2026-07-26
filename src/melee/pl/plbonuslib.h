@@ -3,9 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
+#include <dolphin/mtx.h>
 
 /* 03D60C */ bool pl_8003D60C(int);
 /* 03D644 */ void pl_8003D644(int, int, int, int);

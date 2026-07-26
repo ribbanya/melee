@@ -1,7 +1,19 @@
 #include "tylist.h"
 
+#include "toy.h"
+
 #include <placeholder.h>
 #include <platform.h>
+
+#include "lb/lb_00B0.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+
+#include "sc/forward.h"
+
+#include "ty/types.h"
+
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <trigf.h>
@@ -21,15 +33,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/sislib.h>
-#include <baselib/tobj.h>
-
-#include "toy.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbspdisplay.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "sc/forward.h"
-#include "ty/types.h"
 
 /* 312834 */ static char* _tyList_80312834(char* buf, u32 num);
 /* 312904 */ static void _tyList_80312904(void*, s8);

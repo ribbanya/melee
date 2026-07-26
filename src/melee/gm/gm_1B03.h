@@ -2,8 +2,10 @@
 #define GALE01_1B0348
 
 #include <placeholder.h>
+
 #include <melee/mn/forward.h>
 #include <sysdolphin/baselib/forward.h>
+
 #include <dolphin/types.h>
 #include <melee/gm/types.h>
 

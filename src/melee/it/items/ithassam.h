@@ -4,6 +4,7 @@
 #include <platform.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
 
 /* 2CDBE0 */ void itHassam_802CDBE0(Item_GObj*);

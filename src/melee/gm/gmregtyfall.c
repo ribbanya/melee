@@ -1,6 +1,36 @@
 #include "gmregtyfall.h"
 
+#include "gm_unsplit.h"
+#include "math.h"
+
 #include <platform.h>
+
+#include "cm/camera.h"
+#include "dolphin/pad.h"
+#include "ef/efasync.h"
+#include "ef/eflib.h"
+#include "ft/ftdemo.h"
+
+#include "gm/forward.h"
+#include "gr/forward.h"
+
+#include "gr/ground.h"
+#include "gr/stage.h"
+#include "it/item.h"
+#include "lb/lb_00B0.h"
+#include "lb/lbarchive.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbspdisplay.h"
+#include "mn/inlines.h"
+#include "mn/mnmain.h"
+#include "mp/mpcoll.h"
+
+#include "pl/forward.h"
+
+#include "pl/player.h"
+#include "sc/types.h"
+#include "ty/toy.h"
+
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
@@ -12,31 +42,6 @@
 #include <baselib/memory.h>
 #include <baselib/sobjlib.h>
 #include <baselib/tobj.h>
-#include <baselib/aobj.h>
-
-#include "gm_unsplit.h"
-#include "math.h"
-#include "cm/camera.h"
-#include "dolphin/pad.h"
-#include "ef/efasync.h"
-#include "ef/eflib.h"
-#include "ft/ftdemo.h"
-#include "gm/forward.h"
-#include "gr/forward.h"
-#include "gr/ground.h"
-#include "gr/stage.h"
-#include "it/item.h"
-#include "lb/lb_00B0.h"
-#include "lb/lbarchive.h"
-#include "lb/lbaudio_ax.h"
-#include "lb/lbspdisplay.h"
-#include "mn/inlines.h"
-#include "mn/mnmain.h"
-#include "mp/mpcoll.h"
-#include "pl/forward.h"
-#include "pl/player.h"
-#include "sc/types.h"
-#include "ty/toy.h"
 
 struct ImageDesc_Array {
     HSD_ImageDesc x0[2][2];

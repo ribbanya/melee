@@ -3,10 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
+
+#include <dolphin/mtx.h>
 
 typedef struct WaitStruct {
     union {

@@ -1,14 +1,9 @@
 #include "it/items/itheiho.h"
 
-#include <placeholder.h>
-#include <baselib/aobj.h>
-#include <baselib/dobj.h>
-#include <baselib/gobj.h>
-#include <baselib/jobj.h>
-#include <baselib/random.h>
-#include <baselib/tobj.h>
-
 #include "inlines.h"
+
+#include <placeholder.h>
+
 #include "gr/stage.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -22,6 +17,12 @@
 #include "it/itzako.h"
 #include "it/types.h"
 #include "MSL/math.h"
+
+#include <baselib/aobj.h>
+#include <baselib/dobj.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
 /* 2D8894 */ static void it_802D8894(Item_GObj*);
 /* 2D88CC */ static bool itHeiho_UnkMotion0_Anim(Item_GObj* gobj);

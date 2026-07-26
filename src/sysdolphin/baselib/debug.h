@@ -2,6 +2,7 @@
 #define SYSDOLPHIN_BASELIB_DEBUG_H
 
 #include <platform.h>
+
 #include <stdio.h>
 #include <dolphin/os.h>
 #include <dolphin/os/OSContext.h>

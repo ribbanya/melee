@@ -3,9 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/gx.h>
 
 #include "baselib/forward.h"
+
+#include <dolphin/gx.h>
 
 void psDispParticles(s32, u32);
 HSD_Particle* particleSort(s32, u8, HSD_Particle**, HSD_Particle**);

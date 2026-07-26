@@ -1,12 +1,13 @@
 #ifndef GALE01_122EDC
 #define GALE01_122EDC
 
+#include "ft/types.h"
+
+#include "ftPopo/forward.h"
 #include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stdbool.h>
-
-#include "ft/types.h"
-#include "ftPopo/forward.h"
 
 /* 122EDC */ void ftNn_Init_OnLoad(Fighter_GObj* gobj);
 /* 122F28 */ void ftNn_Init_OnDeath(Fighter_GObj* gobj);

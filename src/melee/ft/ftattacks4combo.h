@@ -2,10 +2,11 @@
 #define GALE01_0CECE8
 
 #include <placeholder.h>
-#include <stdbool.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
+
+#include <stdbool.h>
 
 /* 0CECE8 */ bool ftCo_800CECE8(Fighter_GObj* gobj);
 /* 0CED30 */ void ftCo_800CED30(Fighter_GObj* gobj);

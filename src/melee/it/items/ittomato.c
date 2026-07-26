@@ -1,11 +1,13 @@
 #include "ittomato.h"
 
-#include <platform.h>
-#include <baselib/gobj.h>
-
 #include "inlines.h"
+
+#include <platform.h>
+
 #include "baselib/jobj.h"
+
 #include "ft/forward.h"
+
 #include "gm/gm_1832.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -14,7 +16,8 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
-#include "gm/types.h"
+
+#include <baselib/gobj.h>
 
 /* 284358 */ static void it_80284358(Item_GObj* gobj);
 /* 284380 */ static bool itTomato_UnkMotion0_Anim(HSD_GObj* gobj);
