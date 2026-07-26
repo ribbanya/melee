@@ -1,5 +1,9 @@
 #include "targimpl.h"
 
+#include "mpc_7xx_603e.h" // IWYU pragma: keep
+
+#include <placeholder.h>
+
 #include <MetroTRK/dolphin_trk.h>
 #include <MetroTRK/flush_cache.h>
 #include <MetroTRK/m7xx_m603e_reg.h>
@@ -13,7 +17,6 @@
 #include <MetroTRK/ppc_reg.h>
 #include <MetroTRK/ppc_targimpl.h>
 #include <MetroTRK/support.h>
-#include <placeholder.h>
 
 static bool TRKTargetCheckStep(void);
 

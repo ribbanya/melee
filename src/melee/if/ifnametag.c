@@ -1,16 +1,5 @@
 #include "ifnametag.h"
 
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/gobjuserdata.h>
-#include <baselib/jobj.h>
-#include <baselib/memory.h>
-#include <baselib/sislib.h>
 #include <placeholder.h>
 #include <platform.h>
 
@@ -23,9 +12,24 @@
 #include "lb/lbvector.h"
 #include "mn/mnmain.h"
 #include "mn/mnname.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
 #include "sc/types.h"
-#include "pl/forward.h"
+
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/gobjuserdata.h>
+#include <baselib/jobj.h>
+#include <baselib/memory.h>
+#include <baselib/sislib.h>
+#include <baselib/wobj.h>
 
 /// .data
 /// IfAll.dat::ScInfPnm_scene_models
