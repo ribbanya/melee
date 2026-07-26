@@ -7,7 +7,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <platform.h>
-#include <baselib/aobj.h>
 
 #include "vi.h"
 #include "ef/efasync.h"

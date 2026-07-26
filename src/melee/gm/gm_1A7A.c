@@ -8,6 +8,7 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 #include <platform.h>
+#include <baselib/aobj.h>
 
 #include "gm_unsplit.h"
 #include "gm/gmregtyfall.h"

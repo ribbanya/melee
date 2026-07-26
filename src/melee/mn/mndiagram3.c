@@ -24,6 +24,7 @@
 #include "mndiagram3.static.h"
 #include "baselib/debug.h"
 #include "mn/forward.h"
+#include "gm/types.h"
 
 void mnDiagram3_PopulateRankings(HSD_GObj* gobj)
 {

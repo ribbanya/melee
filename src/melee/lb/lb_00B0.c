@@ -11,6 +11,7 @@
 #include <baselib/robj.h>
 #include <baselib/texp.h>
 #include <stddef.h>
+#include <baselib/tobj.h>
 
 #include "sc/types.h" // IWYU pragma: keep
 

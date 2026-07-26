@@ -52,6 +52,7 @@
 #include <baselib/sislib.h>
 #include <dolphin/mtx.h>
 #include <placeholder.h>
+#include <baselib/tobj.h>
 
 #include "dolphin/pad.h"
 #include "mn/forward.h"

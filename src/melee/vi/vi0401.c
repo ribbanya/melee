@@ -10,7 +10,6 @@
 #include <baselib/jobj.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
-#include <baselib/aobj.h>
 
 #include "cm/camera.h"
 #include "dolphin/pad.h"

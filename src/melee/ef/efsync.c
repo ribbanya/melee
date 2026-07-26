@@ -1,23 +1,27 @@
 #include "efsync.h"
 
-#include <baselib/debug.h>
-#include <baselib/generator.h>
-#include <dolphin/mtx.h>
-#include <placeholder.h>
-#include <stdarg.h>
-
 #include "efalt.h"
 #include "efasync.h"
 #include "efdata.h"
 #include "eflib.h"
 #include "types.h"
+
+#include <placeholder.h>
+
 #include "baselib/gobj.h"
 #include "baselib/jobj.h"
 #include "baselib/psstructs.h"
 #include "baselib/random.h"
+
+#include "ft/forward.h"
+
 #include "ft/inlines.h"
 #include "MSL/math.h"
-#include "ft/forward.h"
+
+#include <stdarg.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/generator.h>
 
 /*
  * TODO: efSync_Spawn is at 98% matching, and its associated jump
@@ -73,7 +77,7 @@ void* efSync_Spawn(s32 gfx_id, HSD_GObj* gobj, ...)
     efLib_LoadKind = EF_LOADKIND_ASYNC;
     efLib_AnimCount = 0;
     va_start(vlist, gobj);
-    if ((gfx_id == 0x479) && ((u32) efAsync_DatEntries[1].data == NULL)) {
+    if ((gfx_id == 0x479) && (efAsync_DatEntries[1].data == NULL)) {
         gfx_id = 0x506;
     }
     if (gfx_id < 0x250) {

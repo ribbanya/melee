@@ -10,6 +10,7 @@
 #include <baselib/jobj.h>
 #include <baselib/aobj.h>
 #include <platform.h>
+#include <baselib/tobj.h>
 
 #include "dolphin/os.h"
 #include "gm/gm_unsplit.h"
