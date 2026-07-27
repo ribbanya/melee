@@ -1,8 +1,8 @@
 #include "texpdag.h"
 
-#include "tobj.h"
-
 #include "baselib/debug.h"
+
+#include <baselib/forward.h>
 
 #include <string.h>
 #include <dolphin/gx/GXEnum.h>

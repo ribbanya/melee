@@ -1,5 +1,7 @@
 #include "texp.h"
 
+#include <baselib/forward.h>
+
 #include <__mem.h>
 #include <dolphin/gx.h>
 #include <baselib/debug.h>

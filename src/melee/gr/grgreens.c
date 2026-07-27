@@ -13,6 +13,7 @@
 
 #include "lb/forward.h"
 #include "mp/forward.h"
+#include <baselib/forward.h>
 #include <melee/gr/forward.h>
 
 #include <common_structs.h>

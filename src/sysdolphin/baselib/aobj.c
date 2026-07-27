@@ -14,11 +14,9 @@
 #include <baselib/debug.h>
 #include <baselib/fobj.h>
 #include <baselib/list.h>
-#include <baselib/mobj.h>
 #include <baselib/objalloc.h>
 #include <baselib/object.h>
 #include <baselib/pobj.h>
-#include <baselib/tobj.h>
 #include <MetroTRK/intrinsics.h>
 
 HSD_ObjAllocData aobj_alloc_data;

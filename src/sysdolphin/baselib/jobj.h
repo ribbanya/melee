@@ -16,6 +16,8 @@
 
 #include <dolphin/mtx.h>
 
+struct HSD_JObj;
+
 #define JOBJ_PTCL_ACTIVE 0x7FFFFFFF
 #define JOBJ_PTCL_OFFSET_MASK 0xFFFFFF
 #define JOBJ_PTCL_OFFSET_SHIFT 6

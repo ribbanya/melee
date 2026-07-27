@@ -3,6 +3,8 @@
 
 #include <baselib/forward.h>
 
+#include <dolphin/types.h>
+
 struct HSD_GObjProc {
     /* 0x00 */ HSD_GObjProc* child;
     /* 0x04 */ HSD_GObjProc* next;

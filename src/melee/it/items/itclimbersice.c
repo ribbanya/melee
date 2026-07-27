@@ -19,6 +19,7 @@
 #include "it/types.h"
 
 #include "lb/forward.h"
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <MSL/math.h>

@@ -9,7 +9,6 @@
 #include "ft/forward.h"
 
 #include "gm/gm_1832.h"
-#include "gm/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"

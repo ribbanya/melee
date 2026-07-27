@@ -23,6 +23,8 @@
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>

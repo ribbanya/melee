@@ -7,6 +7,7 @@
 #include "ft/types.h"
 
 #include "it/forward.h"
+#include <baselib/forward.h>
 
 #include <baselib/jobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack100.h>

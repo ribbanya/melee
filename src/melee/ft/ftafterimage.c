@@ -17,6 +17,7 @@
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
+#include <baselib/jobj.h>
 #include <baselib/state.h>
 #include <melee/ft/chara/ftLink/types.h>
 #include <melee/ft/chara/ftMars/types.h>

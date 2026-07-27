@@ -15,6 +15,8 @@
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 
+struct HSD_TObj;
+
 #define TOBJ_ANIM 0x10
 
 #define HSD_A_T_TIMG 1

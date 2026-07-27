@@ -13,9 +13,10 @@
 
 #include "lb/lbspdisplay.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
-#include <baselib/gobjproc.h>
 
 /* 220228 */ static void grTDonkey_80220228(bool);
 /* 22022C */ static void grTDonkey_8022022C(void);

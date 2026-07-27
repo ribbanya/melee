@@ -12,9 +12,10 @@
 
 #include "lb/lbspdisplay.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
-#include <baselib/jobj.h>
 
 /* 223B48 */ static void grTYoshi_OnDemoInit(bool);
 /* 223B4C */ static void grTYoshi_OnInit(void);

@@ -15,6 +15,8 @@
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/types.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <baselib/jobj.h>
 

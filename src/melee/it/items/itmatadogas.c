@@ -14,6 +14,8 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/debug.h>
 #include <baselib/jobj.h>

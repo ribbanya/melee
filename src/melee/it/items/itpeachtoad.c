@@ -13,6 +13,8 @@
 #include "it/item.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/jobj.h>
 
 ItemStateTable it_803F7528[] = {

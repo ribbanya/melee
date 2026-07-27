@@ -4,6 +4,8 @@
 #include "gobj.h"
 #include "objalloc.h"
 
+#include <platform.h>
+
 extern HSD_ObjAllocData gobjproc_alloc_data;
 
 /**

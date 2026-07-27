@@ -27,6 +27,8 @@
 #include "ftCommon/types.h"
 #include "ftSandbag/ftSb_Init.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>

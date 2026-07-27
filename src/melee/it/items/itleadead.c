@@ -24,6 +24,8 @@
 #include "mp/mplib.h"
 #include "sysdolphin/baselib/random.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/jobj.h>

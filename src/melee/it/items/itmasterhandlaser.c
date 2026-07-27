@@ -23,6 +23,8 @@
 #include "lb/lb_00B0.h"
 #include "mp/mplib.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math_ppc.h>
 

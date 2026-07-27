@@ -14,6 +14,7 @@
 #include "gr/inlines.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include "mp/forward.h"
 

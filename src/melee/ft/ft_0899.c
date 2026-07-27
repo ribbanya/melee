@@ -16,6 +16,8 @@
 
 #include "mp/mplib.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <trigf.h>

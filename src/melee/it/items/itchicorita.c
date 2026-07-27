@@ -16,6 +16,7 @@
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/jobj.h>
 
 ItemStateTable it_803F7A98[] = {
     { 0, itChicorita_UnkMotion0_Anim, itChicorita_UnkMotion0_Phys,
