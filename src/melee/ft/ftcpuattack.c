@@ -10,26 +10,33 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
+
+#include "ftDonkey/forward.h"
+
 #include "ftGameWatch/types.h"
-#include "ftKirby/types.h"
+
+#include "ftKirby/forward.h"
+#include "ftKoopa/forward.h"
+
 #include "ftNess/types.h"
 #include "ftPeach/types.h"
-#include "ftZelda/types.h"
+
+#include "ftSamus/forward.h"
+#include "ftYoshi/forward.h"
+#include "ftZelda/forward.h"
+
 #include "gr/types.h"
 #include "it/types.h"
 #include "lb/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>
 #include <baselib/jobj.h>
-#include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_09F7.h>
 #include <melee/ft/chara/ftCommon/ftCo_0A01.h>
-#include <melee/ft/chara/ftDonkey/types.h>
-#include <melee/ft/chara/ftKoopa/types.h>
-#include <melee/ft/chara/ftSamus/types.h>
-#include <melee/ft/chara/ftYoshi/types.h>
 #include <melee/ft/chara/ftZelda/types.h>
 #include <melee/ft/fighter.h>
 #include <melee/gr/ground.h>

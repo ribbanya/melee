@@ -4,19 +4,18 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "dolphin/gx/GXStruct.h"
-
+#include "cm/forward.h"
+#include "gr/forward.h" // IWYU pragma: export
+#include "it/forward.h"
+#include "lb/forward.h"
 #include "mp/forward.h"
-#include <melee/cm/forward.h>
-#include <melee/gr/forward.h>
-#include <melee/it/forward.h>
-#include <melee/lb/forward.h>
-#include <melee/sc/forward.h>
-#include <sysdolphin/baselib/forward.h>
+#include "sc/forward.h"
+#include <baselib/forward.h>
 
 #include <dolphin/gx.h>
+#include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
-#include <melee/lb/types.h>
+#include <lb/types.h>
 
 typedef struct StageBlastZone {
     f32 left;   // 0x74

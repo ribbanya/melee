@@ -15,6 +15,9 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
 #include "ftLink/types.h"
+
+#include "ftSamus/forward.h"
+
 #include "ftSamus/types.h"
 #include "it/inlines.h"
 #include "it/items/itlinkhookshot.h"
