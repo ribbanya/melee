@@ -4,7 +4,6 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "baselib/forward.h" // IWYU pragma: export
 #include <baselib/forward.h>
 
 UNK_T HSD_GObjObject_80390ADC(HSD_GObj* gobj);
