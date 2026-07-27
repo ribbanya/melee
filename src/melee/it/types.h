@@ -5,9 +5,6 @@
 #include <platform.h>
 
 #include "cm/forward.h"
-
-#include "ft/types.h"
-
 #include "it/forward.h" // IWYU pragma: export
 
 #include "it/itCharItems.h"
