@@ -19,7 +19,7 @@
 #include "ftCommon/inlines.h"
 #include "ftFox/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbrefract.h"
 #include "lb/lbvector.h"

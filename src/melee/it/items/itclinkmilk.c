@@ -6,7 +6,7 @@
 
 #include "ft/chara/ftCLink/ftCl_Init.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "it/inlines.h"

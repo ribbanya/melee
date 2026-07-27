@@ -3,7 +3,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_0877.h"
 #include "ft/ftanim.h"
@@ -12,12 +12,12 @@
 #include "ft/types.h"
 #include "ftKirby/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

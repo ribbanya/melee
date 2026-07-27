@@ -18,7 +18,7 @@
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
@@ -28,19 +28,19 @@
 #include "ft/types.h"
 #include "ftCaptain/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"

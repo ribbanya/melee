@@ -8,7 +8,7 @@
 #include "ef/efasync.h"
 #include "ef/efsync.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -21,7 +21,7 @@
 #include "ftCommon/inlines.h"
 #include "ftPikachu/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itpikachuthunder.h"
 

@@ -10,28 +10,28 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftGameWatch/types.h"
 
-#include "ftKirby/forward.h"
-#include "ftNess/forward.h"
-#include "ftPeach/forward.h"
+#include "ftKirby/types.h"
+#include "ftNess/types.h"
+#include "ftPeach/types.h"
 
 #include "ftZelda/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/types.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
-#include <baselib/forward.h>
-#include <melee/ft/chara/ftDonkey/forward.h>
-#include <melee/ft/chara/ftKoopa/forward.h>
-#include <melee/ft/chara/ftSamus/forward.h>
-#include <melee/ft/chara/ftYoshi/forward.h>
-#include <melee/ft/chara/ftZelda/forward.h>
+#include "lb/types.h"
+#include <baselib/types.h>
+#include <melee/ft/chara/ftDonkey/types.h>
+#include <melee/ft/chara/ftKoopa/types.h>
+#include <melee/ft/chara/ftSamus/types.h>
+#include <melee/ft/chara/ftYoshi/types.h>
+#include <melee/ft/chara/ftZelda/types.h>
 
 #include <common_structs.h>
 #include <math.h>

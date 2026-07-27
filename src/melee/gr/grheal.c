@@ -9,7 +9,7 @@
 #include "baselib/jobj.h"
 #include "gm/gm_1832.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/granime.h"
 #include "gr/grdisplay.h"
@@ -22,17 +22,17 @@
 #include "it/items/itcoin.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "ty/toy.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

@@ -7,7 +7,7 @@
 
 #include "ft/ftanim.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 /* 09C540 */ static void ftCo_8009C540(Fighter_GObj* gobj);
 

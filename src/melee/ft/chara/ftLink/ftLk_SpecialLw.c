@@ -14,14 +14,14 @@
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
 
-#include "ftLink/forward.h"
-#include "it/forward.h"
+#include "ftLink/types.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/items/itlinkbomb.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 

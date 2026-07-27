@@ -7,7 +7,7 @@
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grcorneria.h"
 #include "gr/ground.h"
@@ -19,7 +19,7 @@
 #include "mp/mpcoll.h"
 #include "pl/player.h"
 
-#include "sc/forward.h"
+#include "sc/types.h"
 
 #include "sc/types.h"
 #include "vi/vi.h"

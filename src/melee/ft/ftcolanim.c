@@ -7,14 +7,14 @@
 #include "ft/ftdata.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "gm/gm_1601.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/os.h>
 #include <baselib/debug.h>

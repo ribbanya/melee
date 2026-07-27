@@ -12,7 +12,7 @@
 #include "it/it_26B1.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"

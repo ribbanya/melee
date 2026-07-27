@@ -8,8 +8,8 @@
 
 #include <platform.h>
 
-#include "gm/forward.h"
-#include "mn/forward.h"
+#include "gm/types.h"
+#include "mn/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>

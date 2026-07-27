@@ -9,7 +9,7 @@
 #include "ft/ftwalkcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack1.h"

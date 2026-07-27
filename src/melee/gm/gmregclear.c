@@ -4,12 +4,12 @@
 
 #include "dolphin/pad.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "mn/inlines.h"
 #include "mn/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include <common_structs.h>
 #include <math_ppc.h>

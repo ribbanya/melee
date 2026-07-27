@@ -6,8 +6,8 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
-#include "mn/forward.h"
+#include "ft/types.h"
+#include "mn/types.h"
 
 #include <melee/gm/gm_unsplit.h>
 #include <melee/gm/gmmain_lib.h>

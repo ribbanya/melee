@@ -4,14 +4,14 @@
 
 #include <platform.h>
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "ft/ftbosslib.h"
 #include "ft/ftcamera.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCrazyHand/forward.h"
+#include "ftCrazyHand/types.h"
 
 #include "ftCrazyHand/ftCh_BackAirplane1.h"
 #include "ftCrazyHand/ftCh_BackAirplane2.h"
@@ -45,7 +45,7 @@
 #include "ftCrazyHand/ftCh_Walk.h"
 #include "ftMasterHand/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

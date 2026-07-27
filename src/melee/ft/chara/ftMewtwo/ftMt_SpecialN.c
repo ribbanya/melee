@@ -5,7 +5,7 @@
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -24,7 +24,7 @@
 #include "ftMewtwo/ftMt_Init.h"
 #include "ftMewtwo/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itmewtwoshadowball.h"
 #include "lb/lb_00B0.h"

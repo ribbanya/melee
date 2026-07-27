@@ -9,8 +9,8 @@
 
 #include "dolphin/pad.h"
 
-#include "ft/forward.h"
-#include "gm/forward.h"
+#include "ft/types.h"
+#include "gm/types.h"
 
 #include "mn/inlines.h"
 

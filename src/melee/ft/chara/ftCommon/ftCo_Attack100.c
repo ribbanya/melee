@@ -33,7 +33,7 @@
 #include "it/items/itsscope.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "mp/mplib.h"
 

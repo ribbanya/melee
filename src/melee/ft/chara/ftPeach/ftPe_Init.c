@@ -18,13 +18,13 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_ItemParasolFallSpecial.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
 #include "ftPeach/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "lb/lbanim.h"

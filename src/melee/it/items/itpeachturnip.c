@@ -13,7 +13,7 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

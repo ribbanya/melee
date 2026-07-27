@@ -3,8 +3,8 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
-#include "it/forward.h"
+#include "ft/types.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

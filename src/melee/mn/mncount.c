@@ -4,7 +4,7 @@
 
 #include "ty/toy.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/gx/GXStruct.h>
 #include <sysdolphin/baselib/debug.h>

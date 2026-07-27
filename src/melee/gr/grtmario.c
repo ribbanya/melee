@@ -4,7 +4,7 @@
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/granime.h"
 #include "gr/grlib.h"
@@ -13,7 +13,7 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbspdisplay.h"
 

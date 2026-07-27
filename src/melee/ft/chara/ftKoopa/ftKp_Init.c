@@ -16,11 +16,11 @@
 #include "ftCommon/ftCo_Thrown.h"
 #include "ftKoopa/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

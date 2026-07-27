@@ -8,7 +8,7 @@
 #include "ft/chara/ftKirby/ftkirbyspecialdonkey.h"
 #include "ft/chara/ftSeak/ftSk_SpecialS.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "it/inlines.h"
@@ -16,7 +16,7 @@
 #include "it/item.h"
 #include "it/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

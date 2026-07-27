@@ -14,7 +14,7 @@
 #include "ft/types.h"
 #include "ftMewtwo/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

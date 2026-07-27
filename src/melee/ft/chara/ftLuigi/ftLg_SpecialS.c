@@ -6,7 +6,7 @@
 
 #include "ef/efsync.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -19,7 +19,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <baselib/random.h>

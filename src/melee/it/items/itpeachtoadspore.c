@@ -2,14 +2,14 @@
 
 #include "inlines.h"
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "baselib/random.h"
 #include "db/db.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

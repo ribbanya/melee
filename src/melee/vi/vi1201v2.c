@@ -12,7 +12,7 @@
 #include "gm/gm_1601.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -28,7 +28,7 @@
 #include "sc/types.h"
 #include "ty/toy.h"
 
-#include "vi/forward.h"
+#include "vi/types.h"
 
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>

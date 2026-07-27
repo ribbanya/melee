@@ -7,12 +7,12 @@
 #include "baselib/jobj.h"
 #include "db/db.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "ftGameWatch/ftGw_SpecialS.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

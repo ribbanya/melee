@@ -23,7 +23,7 @@
 #include "ftKirby/ftkirbycaptureyoshi.h"
 #include "ftKirby/ftkirbyyoshiegg.h"
 
-#include <melee/ft/chara/ftCommon/forward.h>
+#include <melee/ft/chara/ftCommon/types.h>
 
 #include <stddef.h>
 #include <melee/ft/chara/ftCommon/ftCo_AppealS.h>

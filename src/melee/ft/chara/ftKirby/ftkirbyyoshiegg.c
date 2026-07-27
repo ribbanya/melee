@@ -9,7 +9,7 @@
 #include "ft/chara/ftCommon/ftCo_Bury.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -24,11 +24,11 @@
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirbyspecialdonkey.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>

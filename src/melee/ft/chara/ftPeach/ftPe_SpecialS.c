@@ -14,7 +14,7 @@
 #include "ftPeach/types.h"
 #include "it/items/itpeachexplode.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 

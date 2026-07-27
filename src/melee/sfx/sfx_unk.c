@@ -1,6 +1,6 @@
 #include "crowdsfx.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/gobjproc.h>

@@ -18,7 +18,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftPurin/types.h"

@@ -11,7 +11,7 @@
 #include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_DownSpot.h"
 #include "ftCommon/ftCo_HammerWait.h"
@@ -19,12 +19,12 @@
 #include "ftLink/ftLk_AttackAir.h"
 #include "ftMasterHand/ftMh_Wait1_2.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/items/itpeachparasol.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math_ppc.h>

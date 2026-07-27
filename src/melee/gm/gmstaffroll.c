@@ -9,7 +9,7 @@
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/gmmain_lib.h"
 #include "lb/lb_00B0.h"

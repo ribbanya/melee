@@ -8,7 +8,7 @@
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 
-#include "ftMasterHand/forward.h"
+#include "ftMasterHand/types.h"
 
 #include "pl/player.h"
 

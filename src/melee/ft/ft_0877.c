@@ -7,7 +7,7 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_0A01.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "lb/lbaudio_ax.h"

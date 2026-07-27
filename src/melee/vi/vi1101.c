@@ -9,13 +9,13 @@
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdemo.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_1A45.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grlib.h"
 #include "gr/ground.h"
@@ -27,7 +27,7 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"

@@ -21,13 +21,13 @@
 #include "it/itspawn.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

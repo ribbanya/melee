@@ -6,11 +6,11 @@
 
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_PassiveWall.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "mp/mplib.h"
 

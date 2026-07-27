@@ -6,8 +6,8 @@
 #include "db/db.h"
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
-#include "it/forward.h"
+#include "ft/types.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -17,7 +17,7 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <trigf.h>

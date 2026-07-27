@@ -6,7 +6,7 @@
 
 #include "ftKirby/ftkirbyspecialgamewatch.h"
 
-#include "it/items/forward.h"
+#include "it/items/types.h"
 
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>

@@ -7,7 +7,7 @@
 #include "gobjuserdata.h"
 #include "objalloc.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

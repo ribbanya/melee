@@ -10,13 +10,13 @@
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
 
-#include "ftKoopa/forward.h"
+#include "ftKoopa/types.h"
 
 #include "ftKoopa/types.h"
 
-#include "it/forward.h"
-#include "lb/forward.h"
-#include <baselib/forward.h>
+#include "it/types.h"
+#include "lb/types.h"
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

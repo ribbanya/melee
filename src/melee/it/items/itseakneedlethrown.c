@@ -5,7 +5,7 @@
 #include "db/db.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -15,13 +15,13 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

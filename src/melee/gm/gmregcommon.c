@@ -1,6 +1,6 @@
 #include "gmregcommon.h"
 
-#include <melee/ft/forward.h>
+#include <melee/ft/types.h>
 
 #include <baselib/debug.h>
 #include <melee/gm/gm_unsplit.h>

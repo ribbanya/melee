@@ -2,7 +2,7 @@
 
 #include <placeholder.h>
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <baselib/aobj.h>
 #include <baselib/fobj.h>

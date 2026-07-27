@@ -6,7 +6,7 @@
 
 #include "db/db.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

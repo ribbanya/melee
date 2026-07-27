@@ -14,17 +14,17 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/ftkirby.h"
 #include "ftKirby/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/debug.h>

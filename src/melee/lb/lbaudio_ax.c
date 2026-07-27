@@ -4,10 +4,10 @@
 
 #include "baselib/random.h"
 
-#include "gr/forward.h"
-#include "pl/forward.h"
-#include <baselib/forward.h>
-#include <melee/ft/forward.h>
+#include "gr/types.h"
+#include "pl/types.h"
+#include <baselib/types.h>
+#include <melee/ft/types.h>
 
 #include <string.h>
 #include <dolphin/ai.h>

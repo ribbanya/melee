@@ -8,7 +8,7 @@
 #include "db/db.h"
 #include "ft/ftlib.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "gr/grdynamicattr.h"
 #include "it/it_26B1.h"
@@ -16,7 +16,7 @@
 #include "lb/lbvector.h"
 #include "lb/types.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

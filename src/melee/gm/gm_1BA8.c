@@ -4,9 +4,9 @@
 
 #include "gm_unsplit.h"
 
-#include "ft/forward.h"
-#include "pl/forward.h"
-#include <baselib/forward.h>
+#include "ft/types.h"
+#include "pl/types.h"
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

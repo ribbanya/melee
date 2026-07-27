@@ -8,7 +8,7 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftFox/forward.h"
+#include "ftFox/types.h"
 
 #include "ftFox/ftFx_AppealS.h"
 #include "ftFox/ftFx_Init.h"
@@ -18,7 +18,7 @@
 #include "ftFox/ftFx_SpecialS.h"
 #include "ftFox/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

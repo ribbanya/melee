@@ -6,7 +6,7 @@
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -23,7 +23,7 @@
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

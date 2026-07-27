@@ -8,7 +8,7 @@
 
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
@@ -22,19 +22,19 @@
 #include "gr/stage.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/items/itbox.h"
 #include "it/items/itklap.h"
 #include "it/itspawn.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "MSL/math.h"

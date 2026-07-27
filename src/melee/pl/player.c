@@ -4,7 +4,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_0877.h"
 #include "ft/ft_0D4D.h"
@@ -16,7 +16,7 @@
 #include "if/ifstatus.h"
 #include "lb/lbarchive.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/plattack.h"
 #include "pl/plbonus.h"

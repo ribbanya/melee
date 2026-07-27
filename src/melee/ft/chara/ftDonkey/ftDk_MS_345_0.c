@@ -1,6 +1,6 @@
 #include "ftDk_MS_345_0.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/inlines.h"
 #include "ftCommon/ftCo_Turn.h"

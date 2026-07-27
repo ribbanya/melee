@@ -13,8 +13,8 @@
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"
 
-#include "sc/forward.h"
-#include <baselib/forward.h>
+#include "sc/types.h"
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

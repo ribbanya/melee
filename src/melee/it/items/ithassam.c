@@ -9,13 +9,13 @@
 #include "cm/camera.h"
 #include "ef/eflib.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "ft/inlines.h"
 #include "gm/gm_unsplit.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -28,7 +28,7 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

@@ -19,7 +19,7 @@
 #include "ftCommon/inlines.h"
 #include "ftZelda/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

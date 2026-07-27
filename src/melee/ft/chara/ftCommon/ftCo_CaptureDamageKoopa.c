@@ -8,16 +8,16 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 void ftCo_800BC9C8(Fighter_GObj* gobj)
 {

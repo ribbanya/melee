@@ -3,7 +3,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "cm/forward.h"
+#include "cm/types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -17,7 +17,7 @@
 #include "ftCommon/types.h"
 #include "gm/gm_16AE.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

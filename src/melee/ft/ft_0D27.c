@@ -3,7 +3,7 @@
 #include "platform.h"
 #include "stdbool.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
@@ -17,7 +17,7 @@
 #include "ftCommon/ftCo_FallAerial.h"
 #include "ftCommon/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

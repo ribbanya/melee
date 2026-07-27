@@ -15,7 +15,7 @@
 #include "it/itdraw.h"
 #include "it/item.h"
 
-#include "it/items/forward.h"
+#include "it/items/types.h"
 
 #include "it/itgroundcoll.h"
 #include "it/types.h"

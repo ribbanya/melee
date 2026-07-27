@@ -14,7 +14,7 @@
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 

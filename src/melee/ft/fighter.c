@@ -37,7 +37,7 @@
 #include "ft/dobjlist.h"
 #include "ft/ftanim.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_09F4.h"
 #include "ftCommon/ftCo_0A01.h"
@@ -63,14 +63,14 @@
 #include "ftPeach/types.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "gr/types.h"
 #include "if/ifmagnify.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/it_279C.h"

@@ -7,7 +7,7 @@
 
 #include "ft/fighter.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 static inline void inlineB0(Fighter_GObj* gobj)
 {

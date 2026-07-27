@@ -9,7 +9,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "sc/types.h"
 

@@ -7,11 +7,11 @@
 #include "db/db.h"
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/inlines.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -23,7 +23,7 @@
 #include "lb/lb_00B0.h"
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math_ppc.h>

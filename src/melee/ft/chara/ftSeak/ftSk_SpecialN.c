@@ -7,7 +7,7 @@
 #include "ef/efsync.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -21,17 +21,17 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
 
-#include "ftSeak/forward.h"
+#include "ftSeak/types.h"
 
 #include "ftSeak/ftSk_Init.h"
 #include "ftSeak/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itseakneedleheld.h"
 #include "it/items/itseakneedlethrown.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

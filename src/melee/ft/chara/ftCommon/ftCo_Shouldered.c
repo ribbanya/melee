@@ -12,13 +12,13 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 

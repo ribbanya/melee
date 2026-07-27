@@ -14,11 +14,11 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_unsplit.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

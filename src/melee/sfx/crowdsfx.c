@@ -5,7 +5,7 @@
 #include "ft/ftlib.h"
 #include "lb/lbaudio_ax.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "pl/player.h"

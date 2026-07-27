@@ -11,8 +11,8 @@
 #include "ef/eflib.h"
 #include "ft/ftdemo.h"
 
-#include "gm/forward.h"
-#include "gr/forward.h"
+#include "gm/types.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -25,7 +25,7 @@
 #include "mn/mnmain.h"
 #include "mp/mpcoll.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"

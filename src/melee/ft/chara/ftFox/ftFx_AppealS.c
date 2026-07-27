@@ -12,7 +12,7 @@
 #include "ftFox/types.h"
 #include "gr/grcorneria.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "pl/plbonus.h"

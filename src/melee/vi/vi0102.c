@@ -7,12 +7,12 @@
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdemo.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -23,14 +23,14 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"
 #include "vi/types.h"
 #include "vi/vi.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>

@@ -2,7 +2,7 @@
 
 #include "mn/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

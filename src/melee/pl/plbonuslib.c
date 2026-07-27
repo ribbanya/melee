@@ -10,13 +10,13 @@
 #include "ft/types.h"
 #include "gm/gm_16AE.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "pl/plbonusinline.h"
 #include "pl/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/os.h>

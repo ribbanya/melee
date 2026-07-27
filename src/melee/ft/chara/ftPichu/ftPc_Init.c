@@ -8,7 +8,7 @@
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 
-#include "ftPikachu/forward.h"
+#include "ftPikachu/types.h"
 
 #include "ftPikachu/ftPk_Init.h"
 #include "ftPikachu/ftPk_SpecialHi.h"

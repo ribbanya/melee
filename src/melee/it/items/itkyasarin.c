@@ -15,7 +15,7 @@
 #include "it/itzako.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "MSL/math.h"
 

@@ -4,7 +4,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftcommon.h"
 #include "ft/types.h"

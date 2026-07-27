@@ -6,8 +6,8 @@
 
 #include "ftGameWatch/ftGw_AttackAir.h"
 
-#include "it/forward.h"
-#include <baselib/forward.h>
+#include "it/types.h"
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <melee/it/inlines.h>

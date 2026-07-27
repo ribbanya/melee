@@ -2,8 +2,8 @@
 
 #include "inlines.h"
 
-#include "ft/forward.h"
-#include "it/forward.h"
+#include "ft/types.h"
+#include "it/types.h"
 
 #include <melee/ft/chara/ftGameWatch/ftGw_AttackAir.h>
 #include <melee/it/inlines.h>

@@ -7,12 +7,12 @@
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbshadow.h"
 

@@ -17,7 +17,7 @@
 #include "lb/lbsnap.h"
 #include "lb/lbtime.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/card/CARDBios.h>

@@ -8,9 +8,9 @@
 #include "baselib/debug.h"
 #include "ft/types.h"
 
-#include "it/forward.h"
-#include "it/items/forward.h"
-#include <baselib/forward.h>
+#include "it/types.h"
+#include "it/items/types.h"
+#include <baselib/types.h>
 
 #include <math_ppc.h>
 #include <stddef.h>

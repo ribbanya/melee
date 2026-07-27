@@ -30,7 +30,7 @@
 #include "ftCommon/ftCo_CargoWalk.h"
 #include "ftDonkey/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbanim.h"
 #include "mp/mplib.h"

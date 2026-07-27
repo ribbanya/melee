@@ -5,7 +5,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include <melee/ft/chara/ftGameWatch/ftGw_Attack11.h>
 #include <melee/it/inlines.h>

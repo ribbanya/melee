@@ -7,7 +7,7 @@
 #include "ft/chara/ftKirby/ftkirby.h"
 #include "ft/ftlib.h"
 
-#include "ftLink/forward.h"
+#include "ftLink/types.h"
 
 #include "ftLink/ftLk_SpecialN.h"
 #include "it/inlines.h"

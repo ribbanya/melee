@@ -10,7 +10,7 @@
 #include "mn/inlines.h"
 #include "ty/toy.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <printf.h>

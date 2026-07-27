@@ -4,11 +4,11 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ftDonkey/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/debug.h>
 #include <melee/ft/fighter.h>

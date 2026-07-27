@@ -15,7 +15,7 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itleadead.h"
 #include "pl/player.h"

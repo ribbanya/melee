@@ -9,7 +9,7 @@
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_0852.h"
 #include "ft/types.h"
@@ -126,11 +126,11 @@
 #include "lb/lbdvd.h"
 #include "lb/lbfile.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <string.h>
 #include <dolphin/os.h>

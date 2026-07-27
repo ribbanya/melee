@@ -30,7 +30,7 @@
 #include "gmtitle.h"
 #include "gmvsmelee.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "if/ifprize.h"
 #include "mn/mncharsel.h"

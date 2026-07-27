@@ -5,8 +5,8 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
-#include "mn/forward.h"
+#include "ft/types.h"
+#include "mn/types.h"
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

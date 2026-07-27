@@ -5,7 +5,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
@@ -15,7 +15,7 @@
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

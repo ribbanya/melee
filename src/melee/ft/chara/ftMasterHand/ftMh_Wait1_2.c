@@ -11,7 +11,7 @@
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

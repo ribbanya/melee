@@ -13,7 +13,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Wait.h"
 #include "ftNess/types.h"
@@ -21,7 +21,7 @@
 #include "it/itYoyo.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"

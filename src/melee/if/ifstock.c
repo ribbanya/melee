@@ -23,7 +23,7 @@
 #include "mn/types.h"
 #include "pl/player.h"
 
-#include "sc/forward.h"
+#include "sc/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>

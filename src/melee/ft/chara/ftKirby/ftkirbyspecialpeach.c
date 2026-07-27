@@ -7,7 +7,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -19,20 +19,20 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/ftkirby.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itpeachtoad.h"
 #include "it/items/itpeachtoadspore.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>

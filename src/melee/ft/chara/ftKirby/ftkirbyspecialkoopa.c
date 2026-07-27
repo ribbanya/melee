@@ -16,11 +16,11 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/item.h"
 #include "it/items/itkoopaflame.h"

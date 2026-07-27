@@ -11,7 +11,7 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <baselib/gobj.h>

@@ -14,7 +14,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftMewtwo/forward.h"
+#include "ftMewtwo/types.h"
 
 #include "ftMewtwo/types.h"
 #include "it/items/itmewtwodisable.h"

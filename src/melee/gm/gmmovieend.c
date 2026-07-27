@@ -19,7 +19,7 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lbmthp.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

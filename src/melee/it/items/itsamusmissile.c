@@ -6,7 +6,7 @@
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ftSamus/ftSs_SpecialN.h"
 #include "it/inlines.h"
@@ -18,7 +18,7 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

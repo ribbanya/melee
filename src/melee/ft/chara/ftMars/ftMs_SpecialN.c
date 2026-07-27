@@ -7,7 +7,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -21,17 +21,17 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftMars/forward.h"
+#include "ftMars/types.h"
 
 #include "ftMars/ftMs_Init.h"
 #include "ftMars/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

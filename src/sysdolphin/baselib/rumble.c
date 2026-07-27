@@ -2,7 +2,7 @@
 
 #include <platform.h>
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/os.h>
 #include <dolphin/pad.h>

@@ -6,8 +6,8 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
-#include "ftKoopa/forward.h"
+#include "ftCommon/types.h"
+#include "ftKoopa/types.h"
 
 #include "ftKoopa/ftKp_Init.h"
 #include "ftKoopa/ftKp_SpecialHi.h"
@@ -15,7 +15,7 @@
 #include "ftKoopa/ftKp_SpecialN.h"
 #include "ftKoopa/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

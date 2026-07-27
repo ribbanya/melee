@@ -4,7 +4,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
@@ -16,7 +16,7 @@
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 

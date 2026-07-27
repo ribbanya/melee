@@ -16,7 +16,7 @@
 #include "ftCommon/inlines.h"
 #include "ftPikachu/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 

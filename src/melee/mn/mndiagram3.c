@@ -6,7 +6,7 @@
 
 #include "baselib/debug.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

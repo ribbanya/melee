@@ -8,7 +8,7 @@
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/dvd.h>
 #include <dolphin/gx.h>

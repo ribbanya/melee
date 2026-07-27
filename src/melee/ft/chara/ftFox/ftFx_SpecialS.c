@@ -11,7 +11,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
@@ -19,7 +19,7 @@
 #include "ftCommon/inlines.h"
 #include "ftFox/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include <common_structs.h>
 #include <melee/it/items/itfoxillusion.h>

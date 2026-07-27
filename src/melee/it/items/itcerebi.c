@@ -13,7 +13,7 @@
 #include "it/it_279C.h"
 #include "it/item.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

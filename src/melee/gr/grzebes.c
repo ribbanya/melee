@@ -5,7 +5,7 @@
 
 #include "cm/camera.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
@@ -19,8 +19,8 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
-#include "lb/forward.h"
+#include "it/types.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

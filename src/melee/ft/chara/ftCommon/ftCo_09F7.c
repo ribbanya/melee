@@ -9,7 +9,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

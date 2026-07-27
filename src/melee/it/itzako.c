@@ -13,7 +13,7 @@
 #include "cm/camera.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "gm/gm_unsplit.h"
@@ -27,7 +27,7 @@
 #include "it/types.h"
 #include "items/itcoin.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"

@@ -17,7 +17,7 @@
 #include "ftCommon/types.h"
 #include "ftKoopa/ftKp_Init.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/jobj.h>
 

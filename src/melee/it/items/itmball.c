@@ -13,7 +13,7 @@
 #include "it/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <melee/it/item.h>

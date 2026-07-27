@@ -8,7 +8,7 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

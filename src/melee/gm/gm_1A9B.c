@@ -17,7 +17,7 @@
 
 #include "dolphin/pad.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_1A36.h"
 #include "gm/gm_1A3F.h"
@@ -29,7 +29,7 @@
 #include "lb/lbmthp.h"
 #include "mn/inlines.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>

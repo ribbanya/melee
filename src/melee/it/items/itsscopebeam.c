@@ -9,12 +9,12 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbvector.h"
 #include "MSL/math.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

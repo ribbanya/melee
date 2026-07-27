@@ -22,7 +22,7 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbrefract.h"
 #include "mp/mpcoll.h"

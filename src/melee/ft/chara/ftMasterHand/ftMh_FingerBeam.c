@@ -1,6 +1,6 @@
 #include "ftMh_FingerBeam.h"
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
@@ -9,7 +9,7 @@
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itmasterhandlaser.h"
 #include "lb/lb_00B0.h"

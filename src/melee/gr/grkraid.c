@@ -5,7 +5,7 @@
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/granime.h"
 #include "gr/ground.h"

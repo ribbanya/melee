@@ -16,7 +16,7 @@
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <trigf.h>

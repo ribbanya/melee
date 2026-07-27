@@ -5,7 +5,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/ftcolanim.h"

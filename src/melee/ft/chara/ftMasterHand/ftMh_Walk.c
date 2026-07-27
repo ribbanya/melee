@@ -12,7 +12,7 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "ftMasterHand/forward.h"
+#include "ftMasterHand/types.h"
 
 #include "lb/lbvector.h"
 #include "mp/mplib.h"

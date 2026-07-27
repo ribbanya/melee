@@ -8,14 +8,14 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftMasterHand/types.h"
 #include "it/it_26B1.h"
 #include "lb/lbvector.h"
 #include "mp/mplib.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

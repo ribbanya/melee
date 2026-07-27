@@ -13,7 +13,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftPopo/ftPp_SpecialS.h"
 #include "ftPopo/types.h"

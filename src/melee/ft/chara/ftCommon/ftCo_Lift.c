@@ -12,17 +12,17 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/item.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <dolphin/mtx.h>

@@ -2,7 +2,7 @@
 
 #include <placeholder.h>
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>

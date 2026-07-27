@@ -9,7 +9,7 @@
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -23,7 +23,7 @@
 #include "it/itspawn.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "sysdolphin/baselib/random.h"
 

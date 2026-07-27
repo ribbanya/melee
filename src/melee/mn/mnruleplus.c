@@ -16,7 +16,7 @@
 #include "gm/types.h"
 #include "lb/lbspdisplay.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
@@ -24,7 +24,7 @@
 #include "mn/mnstagesw.h"
 #include "sc/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 extern StaticModelDesc MenMainConRl_Top;
 extern StaticModelDesc MenMainCursorRl_Top;

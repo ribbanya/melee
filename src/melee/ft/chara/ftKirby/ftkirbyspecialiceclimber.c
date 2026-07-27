@@ -7,7 +7,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -21,14 +21,14 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/ftkirbyspecialdonkey.h"
 #include "ftKirby/types.h"
 #include "it/items/itclimbersice.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>

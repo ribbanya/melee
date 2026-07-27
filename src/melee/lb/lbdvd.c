@@ -8,8 +8,8 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
-#include "gm/forward.h"
+#include "ft/types.h"
+#include "gm/types.h"
 
 #include "gm/gm_1B14.h"
 #include "lb/types.h"

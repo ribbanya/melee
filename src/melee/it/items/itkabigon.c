@@ -17,7 +17,7 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

@@ -1,6 +1,6 @@
 #include "it_3F14.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/itdraw.h"
 #include "items/itbat.h"

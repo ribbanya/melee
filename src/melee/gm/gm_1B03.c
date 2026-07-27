@@ -5,11 +5,11 @@
 
 #include "if/soundtest.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/inlines.h"
 
-#include <melee/pl/forward.h>
+#include <melee/pl/types.h>
 
 #include <common_structs.h>
 #include <sysdolphin/baselib/controller.h>

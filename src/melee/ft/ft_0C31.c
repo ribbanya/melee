@@ -9,19 +9,19 @@
 #include "ef/efasync.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftcolanim.h"
 #include "ft/ftcoll.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/types.h"
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

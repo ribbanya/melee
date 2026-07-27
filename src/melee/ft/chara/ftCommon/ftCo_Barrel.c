@@ -11,7 +11,7 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_Lift.h"
@@ -22,7 +22,7 @@
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

@@ -9,7 +9,7 @@
 #include "ft/chara/ftZelda/ftZd_SpecialLw.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -19,7 +19,7 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

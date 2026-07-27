@@ -14,7 +14,7 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftPurin/forward.h"
+#include "ftPurin/types.h"
 
 #include "ftPurin/types.h"
 #include "gm/gm_unsplit.h"

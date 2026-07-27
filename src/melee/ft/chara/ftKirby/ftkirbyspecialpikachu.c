@@ -7,7 +7,7 @@
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -18,12 +18,12 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/ftkirby.h"
 #include "it/items/itpikachutjoltground.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>

@@ -12,15 +12,15 @@
 
 #include "gm/gm_16AE.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbspdisplay.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>

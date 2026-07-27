@@ -9,13 +9,13 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftLink/types.h"
 
-#include "lb/forward.h"
-#include <baselib/forward.h>
+#include "lb/types.h"
+#include <baselib/types.h>
 
 /* 0EB484 */ static void lwOnHit(HSD_GObj* gobj);
 /* 0EB528 */ static void lwOnAnim(HSD_GObj* gobj);

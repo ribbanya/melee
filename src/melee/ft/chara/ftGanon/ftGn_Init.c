@@ -6,7 +6,7 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCaptain/forward.h"
+#include "ftCaptain/types.h"
 
 #include "ftCaptain/ftCa_Init.h"
 #include "ftCaptain/ftCa_SpecialHi.h"
@@ -15,7 +15,7 @@
 #include "ftCaptain/ftCa_SpecialS.h"
 #include "ftCaptain/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include <baselib/gobj.h>
 

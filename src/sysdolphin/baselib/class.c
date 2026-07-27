@@ -5,7 +5,7 @@
 #include "memory.h"
 #include "object.h" // IWYU pragma: keep
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <__mem.h>
 #include <string.h>

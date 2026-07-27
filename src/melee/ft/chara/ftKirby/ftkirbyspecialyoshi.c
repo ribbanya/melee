@@ -18,20 +18,20 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/ftkirby.h"
 #include "ftKirby/ftkirbycaptureyoshi.h"
 
-#include "ftYoshi/forward.h"
-#include "it/forward.h"
+#include "ftYoshi/types.h"
+#include "it/types.h"
 
 #include "it/itCommonItems.h"
 #include "it/items/itkirbyyoshispecialn.h"
 #include "it/items/ityoshiegglay.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <stddef.h>
 #include <dolphin/mtx.h>

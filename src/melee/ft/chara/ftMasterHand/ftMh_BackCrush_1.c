@@ -5,7 +5,7 @@
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 void ftMh_BackCrush_Coll(HSD_GObj* gobj) {}
 

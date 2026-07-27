@@ -3,7 +3,7 @@
 #include "ftCl_AppealS.h"
 #include "inlines.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -15,13 +15,13 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Guard.h"
 
-#include "ftLink/forward.h"
+#include "ftLink/types.h"
 
 #include "ftLink/ftLk_Init.h"
 #include "ftLink/ftLk_SpecialHi.h"
@@ -30,15 +30,15 @@
 #include "ftLink/ftLk_SpecialS.h"
 #include "ftLink/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbanim.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

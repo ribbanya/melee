@@ -10,7 +10,7 @@
 
 #include "db/db.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_1601.h"
 #include "gm/gm_16AE.h"

@@ -12,17 +12,17 @@
 #include "ef/efsync.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

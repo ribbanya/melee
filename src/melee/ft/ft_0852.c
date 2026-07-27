@@ -1,12 +1,12 @@
 #include "ft_0852.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdata.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <stddef.h>
 #include <dolphin/mtx.h>

@@ -14,7 +14,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
@@ -24,7 +24,7 @@
 #include "lb/lb_00B0.h"
 #include "pl/plbonuslib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

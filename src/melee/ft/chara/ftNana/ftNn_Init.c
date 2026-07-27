@@ -7,7 +7,7 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftPopo/forward.h"
+#include "ftPopo/types.h"
 
 #include "ftPopo/ftPp_Init.h"
 #include "ftPopo/ftPp_SpecialHi.h"

@@ -13,7 +13,7 @@
 #include "ftMario/ftMr_SpecialN.h"
 #include "ftMario/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itdrmariopill.h"
 #include "lb/lb_00B0.h"

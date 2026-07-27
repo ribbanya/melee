@@ -16,7 +16,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

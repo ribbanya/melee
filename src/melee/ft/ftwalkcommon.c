@@ -7,16 +7,16 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/os.h>
 #include <baselib/debug.h>

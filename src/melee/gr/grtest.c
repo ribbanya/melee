@@ -3,7 +3,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/granime.h"
 #include "gr/ground.h"

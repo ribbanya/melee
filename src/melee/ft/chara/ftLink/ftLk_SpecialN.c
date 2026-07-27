@@ -19,11 +19,11 @@
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
 
-#include "ftLink/forward.h"
+#include "ftLink/types.h"
 
 #include "ftLink/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itlinkarrow.h"
 #include "it/items/itlinkbow.h"

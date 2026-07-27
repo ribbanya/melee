@@ -8,7 +8,7 @@
 #include "robj.h"
 #include "spline.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <__mem.h>
 #include <math.h>

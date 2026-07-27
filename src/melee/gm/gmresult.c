@@ -2,7 +2,7 @@
 
 #include "gm/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include <dolphin/gx/GXCull.h>
 #include <dolphin/os.h>

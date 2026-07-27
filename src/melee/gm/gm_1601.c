@@ -11,12 +11,12 @@
 #include "baselib/jobj.h"
 #include "cm/camera.h"
 
-#include "ft/forward.h"
-#include "gm/forward.h"
+#include "ft/types.h"
+#include "gm/types.h"
 
 #include "gm/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -29,12 +29,12 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbtime.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/mnstagesel.h"
 #include "mn/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"

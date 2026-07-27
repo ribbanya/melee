@@ -13,7 +13,7 @@
 #include "ft/types.h"
 #include "ftCaptain/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_KneeBend.h"
 #include "ftCommon/types.h"

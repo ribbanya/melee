@@ -13,7 +13,7 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

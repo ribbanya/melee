@@ -9,7 +9,7 @@
 #include "it/item.h"
 #include "it/itmaplib.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"

@@ -5,7 +5,7 @@
 
 #include <platform.h>
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"

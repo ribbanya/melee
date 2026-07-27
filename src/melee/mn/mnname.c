@@ -18,7 +18,7 @@
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/mnmain.h"
 

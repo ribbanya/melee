@@ -3,14 +3,14 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "forward.h"
+#include "types.h"
 
 #include "ft/chara/ftCommon/ftCo_Fall.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftCo_Landing.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -26,7 +26,7 @@
 #include "ftPurin/ftPr_Init.h"
 #include "ftPurin/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <math.h>

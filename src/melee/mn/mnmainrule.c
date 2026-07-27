@@ -6,17 +6,17 @@
 #include "baselib/gobjobject.h"
 #include "baselib/gobjuserdata.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_1A36.h"
 #include "gm/gm_1A3F.h"
 #include "gm/gmtoulib.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/mnmain.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>

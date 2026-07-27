@@ -21,7 +21,7 @@
 #include "lb/lbvector.h"
 #include "lb/types.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

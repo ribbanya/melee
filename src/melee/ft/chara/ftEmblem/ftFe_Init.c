@@ -5,7 +5,7 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftMars/forward.h"
+#include "ftMars/types.h"
 
 #include "ftMars/ftMs_Init.h"
 #include "ftMars/ftMs_SpecialHi.h"

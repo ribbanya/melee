@@ -3,7 +3,7 @@
 #include "debug.h"
 #include "gobj.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 void GObj_InitUserData(HSD_GObj* gobj, u8 kind,
                        void (*remove_func)(void* user_data), void* data)

@@ -5,12 +5,12 @@
 #include "ft/ftdevice.h"
 #include "gr/ground.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <dolphin/gx/GXStruct.h>

@@ -13,11 +13,11 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
-#include "ftCaptain/forward.h"
+#include "ftCaptain/types.h"
 
 #include "ftCaptain/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 MotionState ftCa_Init_MotionStateTable[ftCa_MS_SelfCount] = {
     {

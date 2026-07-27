@@ -76,7 +76,7 @@
 
 #include "cm/camera.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"

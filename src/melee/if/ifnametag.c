@@ -13,7 +13,7 @@
 #include "mn/mnmain.h"
 #include "mn/mnname.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"

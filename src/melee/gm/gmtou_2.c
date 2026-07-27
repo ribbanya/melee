@@ -6,23 +6,23 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbdvd.h"
 #include "lb/types.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "sc/types.h"
 

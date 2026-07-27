@@ -4,12 +4,12 @@
 
 #include "ft/ftanim.h"
 
-#include "ftCommon/forward.h"
-#include "it/forward.h"
+#include "ftCommon/types.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <sysdolphin/baselib/gobj.h>

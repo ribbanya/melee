@@ -1,6 +1,6 @@
 #include "object.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/class.h>
 

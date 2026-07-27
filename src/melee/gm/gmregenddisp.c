@@ -4,7 +4,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/gmregtyfall.h"
 #include "gm/inlines.h"

@@ -19,7 +19,7 @@
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
@@ -31,7 +31,7 @@
 #include "ftCommon/ftCo_Walk.h"
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

@@ -12,7 +12,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
@@ -20,12 +20,12 @@
 #include "ftCommon/ftpickupitem.h"
 #include "ftPeach/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

@@ -17,12 +17,12 @@
 #include "ft/types.h"
 #include "ftCommon/types.h"
 
-#include "ftSeak/forward.h"
+#include "ftSeak/types.h"
 
 #include "ftSeak/ftSk_SpecialS.h"
 #include "ftSeak/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -32,7 +32,7 @@
 #include "it/items/itlinkhookshot.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"

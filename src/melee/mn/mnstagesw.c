@@ -3,9 +3,9 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gm/forward.h"
-#include "mn/forward.h"
-#include <baselib/forward.h>
+#include "gm/types.h"
+#include "mn/types.h"
+#include <baselib/types.h>
 
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>

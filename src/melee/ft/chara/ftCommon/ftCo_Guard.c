@@ -36,14 +36,14 @@
 #include "ftCommon/types.h"
 #include "ftYoshi/ftYs_Guard.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lb_00CE.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

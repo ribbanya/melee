@@ -12,7 +12,7 @@
 #include "ft/types.h"
 #include "ftSeak/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 

@@ -8,7 +8,7 @@
 
 #include "baselib/controller.h"
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "baselib/random.h"
 #include "ft/fighter.h"
@@ -36,7 +36,7 @@
 #include "gr/stage.h"
 #include "mp/mplib.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

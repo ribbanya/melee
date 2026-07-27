@@ -14,30 +14,30 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
-#include "ftDonkey/forward.h"
+#include "ftCommon/types.h"
+#include "ftDonkey/types.h"
 
 #include "ftDonkey/types.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/types.h"
 
-#include "ftKoopa/forward.h"
-#include "ftMewtwo/forward.h"
+#include "ftKoopa/types.h"
+#include "ftMewtwo/types.h"
 
 #include "ftMewtwo/types.h"
 
-#include "ftPopo/forward.h"
-#include "ftSamus/forward.h"
+#include "ftPopo/types.h"
+#include "ftSamus/types.h"
 
 #include "ftSamus/types.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grbigblue.h"
 #include "gr/grcastle.h"
@@ -54,7 +54,7 @@
 #include "it/it_26B1.h"
 #include "it/item.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00CE.h"
 #include "lb/lbcollision.h"
@@ -63,11 +63,11 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <math_ppc.h>

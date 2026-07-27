@@ -10,7 +10,7 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

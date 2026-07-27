@@ -7,7 +7,7 @@
 #include "baselib/gobjobject.h"
 #include "gm/types.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/inlines.h"
 #include "mn/mnmain.h"

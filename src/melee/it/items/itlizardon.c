@@ -7,7 +7,7 @@
 
 #include "ef/efsync.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -21,7 +21,7 @@
 #include "MSL/math.h"
 #include "sysdolphin/baselib/random.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

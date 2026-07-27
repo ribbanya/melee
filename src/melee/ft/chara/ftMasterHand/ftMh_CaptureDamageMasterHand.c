@@ -7,7 +7,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 void ftMh_CaptureDamageMasterHand_IASA(HSD_GObj* gobj) {}
 

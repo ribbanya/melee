@@ -5,7 +5,7 @@
 
 #include "cm/camera.h"
 
-#include "cm/forward.h"
+#include "cm/types.h"
 
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
@@ -19,7 +19,7 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/itdrop.h"
@@ -29,7 +29,7 @@
 #include "lb/lbvector.h"
 #include "lb/types.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

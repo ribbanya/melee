@@ -12,7 +12,7 @@
 
 #include "ef/eflib.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
@@ -23,7 +23,7 @@
 #include "ft/ftmetal.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_DamageFall.h"
@@ -32,7 +32,7 @@
 #include "ftCommon/ftpickupitem.h"
 #include "gm/gm_unsplit.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/item.h"
@@ -41,11 +41,11 @@
 #include "it/items/itrabbitc.h"
 #include "it/items/itsword.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "pl/player.h"

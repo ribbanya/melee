@@ -13,7 +13,7 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/items/itlikelike.h"

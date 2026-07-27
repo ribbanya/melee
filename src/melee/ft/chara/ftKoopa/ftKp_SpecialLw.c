@@ -8,7 +8,7 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftKoopa/forward.h"
+#include "ftKoopa/types.h"
 
 #include "ftKoopa/types.h"
 

@@ -5,11 +5,11 @@
 #include "mncharsel.static.h"
 #include <placeholder.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "mn/types.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include <common_structs.h>
 #include <trigf.h>

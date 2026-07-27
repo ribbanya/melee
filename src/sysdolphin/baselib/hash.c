@@ -2,7 +2,7 @@
 
 #include "debug.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 HSD_HashEntry* HashSearchEntry(HSD_Hash* hash, int idx, void* key,
                                HSD_HashEntry** ptr)

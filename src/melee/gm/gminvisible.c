@@ -6,7 +6,7 @@
 
 #include <platform.h>
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>

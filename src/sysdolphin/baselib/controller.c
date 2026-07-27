@@ -2,7 +2,7 @@
 
 #include "baselib/rumble.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <math_ppc.h>

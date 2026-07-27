@@ -10,7 +10,7 @@
 
 #include "ft/ftwalkcommon.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftDonkey/types.h"
 

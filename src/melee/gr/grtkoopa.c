@@ -8,11 +8,11 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbspdisplay.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

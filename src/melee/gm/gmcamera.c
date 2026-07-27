@@ -6,7 +6,7 @@
 #include "baselib/archive.h"
 #include "baselib/controller.h"
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "baselib/gobj.h"
 #include "baselib/gobjgxlink.h"

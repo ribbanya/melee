@@ -16,7 +16,7 @@
 #include "ftCommon/inlines.h"
 #include "ftNess/ftNs_AttackHi4.h"
 
-#include "ftSeak/forward.h"
+#include "ftSeak/types.h"
 
 #include "ftSeak/ftSk_Init.h"
 #include "ftSeak/types.h"

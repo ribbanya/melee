@@ -5,7 +5,7 @@
 #include "db/db.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -15,7 +15,7 @@
 #include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftDrMario/ftDr_Init.h"

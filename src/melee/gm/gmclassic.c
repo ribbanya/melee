@@ -5,15 +5,15 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/types.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "lb/types.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include <sysdolphin/baselib/random.h>
 #include <melee/gm/gmmain_lib.h>

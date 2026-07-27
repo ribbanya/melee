@@ -1,6 +1,6 @@
 #include "spline.h"
 
-#include "forward.h"
+#include "types.h"
 
 #include <math.h>
 #include <MetroTRK/intrinsics.h>

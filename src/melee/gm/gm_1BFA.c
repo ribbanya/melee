@@ -13,7 +13,7 @@
 #include "lb/lbcardnew.h"
 #include "lb/lbtime.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "ty/toy.h"
 

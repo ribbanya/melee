@@ -10,16 +10,16 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/items/itheiho.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

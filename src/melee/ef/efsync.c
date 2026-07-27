@@ -13,7 +13,7 @@
 #include "baselib/psstructs.h"
 #include "baselib/random.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/inlines.h"
 #include "MSL/math.h"

@@ -2,17 +2,17 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DamageIce.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <stddef.h>
 

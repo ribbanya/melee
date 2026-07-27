@@ -5,8 +5,8 @@
 
 #include "db/db.h"
 
-#include "ft/forward.h"
-#include "gm/forward.h"
+#include "ft/types.h"
+#include "gm/types.h"
 
 #include "gm/gm_1601.h"
 #include "gm/gm_1BA8.h"

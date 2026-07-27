@@ -8,7 +8,7 @@
 #include "gm/gm_16AE.h"
 #include "if/ifmagnify.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/pl_040D.h"
 #include "pl/player.h"

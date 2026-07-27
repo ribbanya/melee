@@ -2,7 +2,7 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -14,7 +14,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include <stdbool.h>
 #include <stddef.h>

@@ -15,25 +15,25 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 #include "ftFox/inlines.h"
 #include "ftFox/types.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itfoxblaster.h"
 #include "it/items/itfoxlaser.h"
 #include "it/items/itnesspkflash.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

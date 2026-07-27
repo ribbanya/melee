@@ -9,7 +9,7 @@
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grbigblueroute.h"
 #include "gr/ground.h"

@@ -5,14 +5,14 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "it/items/forward.h"
+#include "it/items/types.h"
 
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 #include "lb/types.h"
 
-#include <baselib/forward.h>
-#include <melee/it/forward.h>
+#include <baselib/types.h>
+#include <melee/it/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

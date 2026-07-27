@@ -7,12 +7,12 @@
 
 #include "cm/camera.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftCo_800C78B0.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

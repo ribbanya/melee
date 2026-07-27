@@ -3,7 +3,7 @@
 #include "devcom.static.h"
 #include <placeholder.h>
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/ar.h>
 #include <dolphin/dvd.h>

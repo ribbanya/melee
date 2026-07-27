@@ -4,7 +4,7 @@
 
 #include <platform.h>
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_0877.h"
@@ -18,7 +18,7 @@
 #include "it/items/itmasterhandlaser.h"
 #include "lb/lbaudio_ax.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

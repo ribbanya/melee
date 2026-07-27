@@ -33,13 +33,13 @@
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
 
-#include "ftLuigi/forward.h"
-#include "it/forward.h"
+#include "ftLuigi/types.h"
+#include "it/types.h"
 
 #include "it/itCommonItems.h"
 #include "it/items/it_2ADA.h"
@@ -55,7 +55,7 @@
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

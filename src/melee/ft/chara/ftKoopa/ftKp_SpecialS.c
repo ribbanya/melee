@@ -12,7 +12,7 @@
 #include "ft/types.h"
 #include "ftCaptain/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_CaptureDamageKoopa.h"
 #include "ftCommon/ftCo_CaptureKoopa.h"
@@ -22,12 +22,12 @@
 #include "ftCommon/ftCo_ThrownKoopa.h"
 #include "ftCommon/inlines.h"
 
-#include "ftKoopa/forward.h"
+#include "ftKoopa/types.h"
 
 #include "ftKoopa/ftKp_Init.h"
 #include "ftKoopa/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>

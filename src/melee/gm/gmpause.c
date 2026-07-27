@@ -2,7 +2,7 @@
 
 #include <placeholder.h>
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <sysdolphin/baselib/controller.h>

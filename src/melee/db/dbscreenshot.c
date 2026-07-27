@@ -4,7 +4,7 @@
 
 #include "gm/gm_unsplit.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stdio.h>

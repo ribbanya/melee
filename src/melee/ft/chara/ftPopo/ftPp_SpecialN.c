@@ -17,7 +17,7 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftPopo/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itclimbersice.h"
 #include "lb/lb_00B0.h"

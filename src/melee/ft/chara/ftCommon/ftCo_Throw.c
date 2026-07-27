@@ -5,11 +5,11 @@
 #include "ft/ft_084E.h"
 #include "ftCommon/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "mp/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

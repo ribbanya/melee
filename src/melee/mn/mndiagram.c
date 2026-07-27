@@ -4,7 +4,7 @@
 #include "lb/lblanguage.h"
 #include "mn/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

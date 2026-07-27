@@ -6,7 +6,7 @@
 
 #include "dolphin/pad.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "gm/gm_unsplit.h"
 #include "gm/gmmain_lib.h"

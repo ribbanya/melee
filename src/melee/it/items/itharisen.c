@@ -10,7 +10,7 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 

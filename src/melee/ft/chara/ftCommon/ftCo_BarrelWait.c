@@ -7,7 +7,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "cm/forward.h"
+#include "cm/types.h"
 
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
@@ -20,7 +20,7 @@
 #include "ftCommon/types.h"
 #include "gr/ground.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"

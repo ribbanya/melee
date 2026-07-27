@@ -7,7 +7,7 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/types.h"
 #include "mn/types.h"

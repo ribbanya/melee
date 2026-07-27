@@ -14,7 +14,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itgamewatchchef.h"
 #include "lb/lb_00B0.h"

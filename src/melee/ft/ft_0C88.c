@@ -3,7 +3,7 @@
 #include "ft/dobjlist.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftCo_800C7CA0.h"
 #include "ft/ftcolanim.h"

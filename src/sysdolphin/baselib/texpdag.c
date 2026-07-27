@@ -2,7 +2,7 @@
 
 #include "baselib/debug.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <string.h>
 #include <dolphin/gx/GXEnum.h>

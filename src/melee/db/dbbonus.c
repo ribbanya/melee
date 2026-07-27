@@ -4,14 +4,14 @@
 
 #include "gm/gm_unsplit.h"
 
-#include "if/forward.h"
+#include "if/types.h"
 
 #include "if/textdraw.h"
 #include "if/textlib.h"
 #include "pl/player.h"
 #include "pl/plbonus.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

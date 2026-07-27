@@ -5,7 +5,7 @@
 
 #include <platform.h>
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "cm/camera.h"
 #include "ft/fighter.h"
@@ -18,7 +18,7 @@
 #include "ftMasterHand/types.h"
 #include "lb/lb_00B0.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

@@ -8,7 +8,7 @@
 #include "ft/ftdata.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_DownBound.h"
 #include "ftCommon/types.h"

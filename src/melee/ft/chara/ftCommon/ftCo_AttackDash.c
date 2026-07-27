@@ -13,14 +13,14 @@
 #include "ft/ftswing.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirbyattackdash.h"
 #include "it/it_26B1.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 

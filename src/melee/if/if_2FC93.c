@@ -7,7 +7,7 @@
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"

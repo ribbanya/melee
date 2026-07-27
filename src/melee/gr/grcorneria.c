@@ -32,7 +32,7 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mplib.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 

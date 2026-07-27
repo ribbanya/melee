@@ -13,18 +13,18 @@
 #include "baselib/random.h"
 #include "baselib/wobj.h"
 
-#include "cm/forward.h"
+#include "cm/types.h"
 
 #include "cm/types.h"
 #include "dolphin/mtx.h"
 #include "dolphin/pad.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftlib.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grlib.h"
 #include "gr/ground.h"
@@ -38,7 +38,7 @@
 #include "mp/mplib.h"
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <math_ppc.h>

@@ -24,7 +24,7 @@
 #include "it/item.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"

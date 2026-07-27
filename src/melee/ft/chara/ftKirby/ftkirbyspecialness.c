@@ -3,7 +3,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
@@ -15,17 +15,17 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/types.h"
 #include "ftNess/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itnesspkflash.h"
 #include "lb/lb_00B0.h"

@@ -5,7 +5,7 @@
 #include "baselib/cobj.h"
 #include "baselib/fog.h"
 
-#include "baselib/forward.h"
+#include "baselib/types.h"
 
 #include "baselib/lobj.h"
 #include "baselib/mtx.h"

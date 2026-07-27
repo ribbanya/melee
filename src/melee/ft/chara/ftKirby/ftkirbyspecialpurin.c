@@ -11,7 +11,7 @@
 #include "ft/chara/ftCommon/ftCo_Landing.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
@@ -25,20 +25,20 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftKirby/forward.h"
+#include "ftKirby/types.h"
 
 #include "ftKirby/types.h"
 #include "ftPurin/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>

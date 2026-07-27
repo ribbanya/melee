@@ -4,7 +4,7 @@
 
 #include "baselib/objalloc.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <stddef.h>
 

@@ -2,7 +2,7 @@
 
 #include "synth.static.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math_ppc.h>
 #include <string.h>

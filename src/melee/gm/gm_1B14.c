@@ -6,7 +6,7 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "gm/gmmovieend.h"
 #include "melee/gm/gm_unsplit.h"
@@ -25,7 +25,7 @@
 #include "melee/mn/types.h"
 #include "mn/inlines.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/os.h>

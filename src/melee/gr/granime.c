@@ -5,7 +5,7 @@
 
 #include "baselib/debug.h"
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/grdatfiles.h"
 #include "gr/grmaterial.h"

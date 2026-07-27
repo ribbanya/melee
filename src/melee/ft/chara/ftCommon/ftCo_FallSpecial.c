@@ -12,7 +12,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
@@ -21,7 +21,7 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "sfx/crowdsfx.h"

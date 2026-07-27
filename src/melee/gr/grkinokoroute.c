@@ -19,7 +19,7 @@
 #include "gr/stage.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"

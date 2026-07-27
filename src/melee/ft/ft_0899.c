@@ -12,11 +12,11 @@
 #include "lb/lbbgflash.h"
 #include "lb/lbvector.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math_ppc.h>

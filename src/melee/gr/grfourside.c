@@ -16,7 +16,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

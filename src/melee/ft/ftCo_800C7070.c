@@ -4,7 +4,7 @@
 
 #include "ft/fighter.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 /// @todo #ftCo_800C6150
 void ftCo_800C7070(Fighter_GObj* gobj)

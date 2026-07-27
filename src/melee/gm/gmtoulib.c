@@ -7,18 +7,18 @@
 #include "gmtoulib.static.h"
 #include <placeholder.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include "mn/mnmain.h"
 #include "mn/mnname.h"
 #include "mn/mnstagesel.h"
 
-#include "pl/forward.h"
+#include "pl/types.h"
 
 #include "pl/player.h"
 #include "sc/types.h"

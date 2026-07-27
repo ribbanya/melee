@@ -5,7 +5,7 @@
 #include "gmvsdata.h"
 #include "gmvsmelee.h"
 
-#include "mn/forward.h"
+#include "mn/types.h"
 
 #include <stddef.h>
 #include <melee/gm/gmmain_lib.h>

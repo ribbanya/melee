@@ -6,7 +6,7 @@
 #include "baselib/psstructs.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <math.h>
 #include <dolphin/gx/GXStruct.h>

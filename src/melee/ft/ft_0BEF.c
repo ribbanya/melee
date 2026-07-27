@@ -4,7 +4,7 @@
 
 #include <platform.h>
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 void ftCo_800BEFD4(Fighter_GObj* gobj)
 {

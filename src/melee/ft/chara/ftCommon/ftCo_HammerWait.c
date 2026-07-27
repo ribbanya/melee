@@ -17,8 +17,8 @@
 #include "ft/ftcommon.h"
 #include "ft/ftdevice.h"
 
-#include "ftCommon/forward.h"
-#include "it/forward.h"
+#include "ftCommon/types.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/it_279C.h"

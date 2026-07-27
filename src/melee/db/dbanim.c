@@ -2,15 +2,15 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ftCommon/ftCo_KinokoGiantEnd.h"
 #include "ftCommon/ftCo_KinokoGiantStart.h"
 #include "ftCommon/ftCo_KinokoSmallEnd.h"
 #include "ftCommon/ftCo_KinokoSmallStart.h"
 
-#include "if/forward.h"
-#include <baselib/forward.h>
+#include "if/types.h"
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

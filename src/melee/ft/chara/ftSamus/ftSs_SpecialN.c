@@ -18,24 +18,24 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/ftCo_Escape.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 
-#include "ftSamus/forward.h"
+#include "ftSamus/types.h"
 
 #include "ftSamus/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itsamuschargeshot.h"
 #include "it/items/itsamusmissile.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

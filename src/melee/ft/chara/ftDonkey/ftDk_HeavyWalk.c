@@ -5,7 +5,7 @@
 
 #include <platform.h>
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftwalkcommon.h"
 #include "ft/inlines.h"

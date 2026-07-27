@@ -6,7 +6,7 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 /* 294AD0 */ static void it_80294AD0(Item_GObj* gobj);
 /* 294B20 */ static bool itScball_UnkMotion0_Anim(HSD_GObj* gobj);

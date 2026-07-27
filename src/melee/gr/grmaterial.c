@@ -7,13 +7,13 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>

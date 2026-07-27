@@ -4,7 +4,7 @@
 
 #include "ft/dobjlist.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>

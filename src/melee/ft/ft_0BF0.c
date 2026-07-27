@@ -4,16 +4,16 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftparts.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftFox/types.h"
 #include "ftMario/ftMr_SpecialN.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/items/itdrmariopill.h"
 #include "it/items/itfoxblaster.h"

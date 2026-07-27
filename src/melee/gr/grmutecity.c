@@ -21,7 +21,7 @@
 #include "gr/types.h"
 #include "if/ifhazard.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
@@ -29,7 +29,7 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

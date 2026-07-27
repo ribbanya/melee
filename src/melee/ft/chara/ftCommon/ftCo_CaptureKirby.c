@@ -8,7 +8,7 @@
 #include "ft/chara/ftKirby/ftkirby.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
@@ -16,7 +16,7 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <math.h>
 #include <baselib/gobj.h>

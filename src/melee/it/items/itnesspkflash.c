@@ -8,7 +8,7 @@
 #include "ft/chara/ftNess/ftNs_SpecialN.h"
 #include "ft/ftlib.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"

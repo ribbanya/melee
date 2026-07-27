@@ -1,11 +1,11 @@
 #include "grpura.static.h"
 #include <placeholder.h>
 
-#include "gr/forward.h"
+#include "gr/types.h"
 
 #include "gr/granime.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/os.h>

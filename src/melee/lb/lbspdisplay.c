@@ -11,7 +11,7 @@
 #include "baselib/tobj.h"
 #include "dolphin/pad.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "lb/lbarchive.h"
 #include "lb/lbcollision.h"

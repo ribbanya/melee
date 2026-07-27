@@ -20,11 +20,11 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 
-#include "ftDonkey/forward.h"
+#include "ftDonkey/types.h"
 
 #include "ftDonkey/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

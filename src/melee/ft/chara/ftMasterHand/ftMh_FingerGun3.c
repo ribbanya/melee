@@ -4,13 +4,13 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 
-#include "ftMasterHand/forward.h"
+#include "ftMasterHand/types.h"
 
 #include "pl/player.h"
 

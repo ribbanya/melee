@@ -2,12 +2,12 @@
 
 #include "baselib/gobjuserdata.h"
 
-#include "gm/forward.h"
+#include "gm/types.h"
 
 #include "lb/lbaudio_ax.h"
 
-#include "mn/forward.h"
-#include <baselib/forward.h>
+#include "mn/types.h"
+#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>

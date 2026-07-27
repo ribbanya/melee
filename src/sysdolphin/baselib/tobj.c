@@ -9,7 +9,7 @@
 
 #include <placeholder.h>
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <string.h>
 #include <dolphin/gx.h>

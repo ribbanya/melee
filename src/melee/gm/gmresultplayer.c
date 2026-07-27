@@ -5,9 +5,9 @@
 
 #include "cm/camera.h"
 
-#include "ft/forward.h"
-#include "gr/forward.h"
-#include "pl/forward.h"
+#include "ft/types.h"
+#include "gr/types.h"
+#include "pl/types.h"
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>

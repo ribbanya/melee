@@ -13,18 +13,18 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/inlines.h"
 #include "ftNana/ftNn_Init.h"
 
-#include "ftPopo/forward.h"
+#include "ftPopo/types.h"
 
 #include "ftPopo/ftPp_Init.h"
 #include "ftPopo/types.h"
 #include "pl/player.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>

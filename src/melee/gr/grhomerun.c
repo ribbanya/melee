@@ -16,7 +16,7 @@
 #include "baselib/wobj.h"
 #include "cm/camera.h"
 
-#include "cm/forward.h"
+#include "cm/types.h"
 
 #include "ft/ftlib.h"
 #include "gm/gmregclear.h"
@@ -33,7 +33,7 @@
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 

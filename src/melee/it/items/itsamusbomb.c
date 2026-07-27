@@ -6,11 +6,11 @@
 
 #include "db/db.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ftSamus/ftSs_Init.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -22,7 +22,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math_ppc.h>

@@ -9,7 +9,7 @@
 #include "ft/ftanim.h"
 #include "ft/types.h"
 
-#include "ftLink/forward.h"
+#include "ftLink/types.h"
 
 #include <common_structs.h>
 #include <baselib/debug.h>

@@ -15,7 +15,7 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include "ftCommon/types.h"
 
 #include "ftCommon/types.h"
 #include "ftSamus/ftSs_SpecialLw_1.h"

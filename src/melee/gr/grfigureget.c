@@ -13,7 +13,7 @@
 #include "gm/gmregclear.h"
 #include "gr/types.h"
 
-#include "it/forward.h"
+#include "it/types.h"
 
 #include "it/inlines.h"
 #include "it/items/itcoin.h"
@@ -21,7 +21,7 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
-#include "mp/forward.h"
+#include "mp/types.h"
 
 #include "mp/mplib.h"
 #include "ty/toy.h"

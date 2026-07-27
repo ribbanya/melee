@@ -1,6 +1,6 @@
 #include "gmmenu.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include <dolphin/types.h>
 #include <melee/gm/gm_unsplit.h>

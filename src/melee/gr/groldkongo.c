@@ -7,7 +7,7 @@
 #include "cm/camera.h"
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
@@ -19,7 +19,7 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

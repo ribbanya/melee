@@ -29,7 +29,7 @@
 #include "it/types.h"
 #include "lb/types.h"
 
-#include <baselib/forward.h>
+#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

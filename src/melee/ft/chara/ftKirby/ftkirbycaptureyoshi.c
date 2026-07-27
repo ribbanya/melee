@@ -6,7 +6,7 @@
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"

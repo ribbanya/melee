@@ -2,14 +2,14 @@
 
 #include "ft/fighter.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/ft_0C8C.h"
 #include "ft/ftCo_800C7CA0.h"
 #include "ft/ftdevice.h"
 #include "ftCommon/ftCo_09F4.h"
 
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include "lb/lb_00B0.h"
 #include "lb/lbrefract.h"

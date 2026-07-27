@@ -16,15 +16,15 @@
 
 #include "ef/efsync.h"
 
-#include "ft/forward.h"
+#include "ft/types.h"
 
 #include "ft/types.h"
 #include "ftCommon/ftCo_Bury.h"
 #include "ftCommon/ftCo_Guard.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/forward.h"
-#include "it/forward.h"
+#include "gr/types.h"
+#include "it/types.h"
 
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
