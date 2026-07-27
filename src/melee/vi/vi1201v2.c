@@ -1,26 +1,19 @@
 #include "vi/vi1201v2.h"
 
+#include "vi.h"
+
 #include <placeholder.h>
 #include <platform.h>
-#include <dolphin/gx/GXStruct.h>
-#include <dolphin/mtx.h>
-#include <baselib/cobj.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjplink.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
 
-#include "vi.h"
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "ft/ftdemo.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_unsplit.h"
+
 #include "gr/forward.h"
+
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "it/item.h"
@@ -34,7 +27,19 @@
 #include "pl/player.h"
 #include "sc/types.h"
 #include "ty/toy.h"
+
 #include "vi/forward.h"
+
+#include <dolphin/gx/GXStruct.h>
+#include <dolphin/mtx.h>
+#include <baselib/cobj.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjplink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 typedef struct un_80400304_t {
     Vec3 player_spawn;

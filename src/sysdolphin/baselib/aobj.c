@@ -1,5 +1,14 @@
 #include "aobj.h"
 
+#include "cobj.h"
+#include "dobj.h"
+#include "fog.h"
+#include "id.h"
+#include "jobj.h"
+#include "lobj.h"
+#include "robj.h"
+#include "wobj.h"
+
 #include <__mem.h>
 #include <stdarg.h>
 #include <baselib/debug.h>
@@ -9,15 +18,6 @@
 #include <baselib/object.h>
 #include <baselib/pobj.h>
 #include <MetroTRK/intrinsics.h>
-
-#include "cobj.h"
-#include "dobj.h"
-#include "fog.h"
-#include "id.h"
-#include "jobj.h"
-#include "lobj.h"
-#include "robj.h"
-#include "wobj.h"
 
 HSD_ObjAllocData aobj_alloc_data;
 

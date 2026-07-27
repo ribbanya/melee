@@ -11,9 +11,6 @@
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/forward.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/types.h"

@@ -3,11 +3,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2ECCDC */ void itKyasarin_Logic25_Destroyed(Item_GObj*);
 /* 2ECD1C */ void it_802ECD1C(Item_GObj*, Vec3*);

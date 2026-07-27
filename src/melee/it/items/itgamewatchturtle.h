@@ -2,8 +2,10 @@
 #define GALE01_2C6F40
 
 #include <platform.h>
+
 #include <baselib/forward.h>
 #include <melee/it/forward.h>
+
 #include <dolphin/mtx.h>
 #include <melee/ft/types.h>
 #include <melee/it/items/types.h>

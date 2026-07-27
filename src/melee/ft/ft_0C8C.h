@@ -2,11 +2,12 @@
 #define GALE01_0C8C84
 
 #include <placeholder.h>
-#include <baselib/forward.h>
-#include <stdbool.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
+#include <baselib/forward.h>
+
+#include <stdbool.h>
 
 extern HSD_MObj* ft_804D6588;
 

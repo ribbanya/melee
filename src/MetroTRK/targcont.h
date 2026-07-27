@@ -2,9 +2,10 @@
 #define _METROTRK_TARGCONT_H
 
 #include <platform.h>
-#include <MetroTRK/dserror.h>
 
 #include "MetroTRK/trk.h"
+
+#include <MetroTRK/dserror.h>
 
 DSError TRKTargetContinue(void);
 

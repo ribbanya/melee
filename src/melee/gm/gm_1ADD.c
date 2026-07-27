@@ -1,6 +1,9 @@
 #include "gm_1ADD.h"
 
+#include "gm_unsplit.h"
+
 #include <placeholder.h>
+
 #include <dolphin/pad.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
@@ -17,8 +20,6 @@
 #include <melee/lb/lbarchive.h>
 #include <melee/lb/lblanguage.h>
 #include <melee/sc/types.h>
-
-#include "gm_unsplit.h"
 
 static struct unkd4d0 {
     struct unkd4d0* next;

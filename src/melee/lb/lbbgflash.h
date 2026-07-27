@@ -7,11 +7,13 @@
 #define GALE01_01FC08
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 #include "dolphin/gx/GXStruct.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 /* 01FC08 */ void fn_8001FC08(void);
 /* 01FEC4 */ void fn_8001FEC4(HSD_GObj* gobj, s32 code);

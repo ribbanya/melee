@@ -2,6 +2,7 @@
 #define GALE01_323CF0
 
 #include <placeholder.h>
+
 #include <stdarg.h>
 #include <stddef.h>
 

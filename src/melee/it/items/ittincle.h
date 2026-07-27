@@ -3,11 +3,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 2EB5C8 */ void it_802EB5C8(Item_GObj*);
 /* 2EB684 */ bool itTincle_Logic13_DmgReceived(Item_GObj*);

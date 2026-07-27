@@ -3,7 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <baselib/forward.h>
+
 #include <sysdolphin/baselib/gobj.h>
 
 /* 01C600 */ void lb_8001C600(void);

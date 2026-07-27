@@ -3,12 +3,14 @@
 
 #include <placeholder.h>
 #include <platform.h>
-#include <sysdolphin/baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "ft/types.h"
+
 #include "gr/forward.h"
 #include "lb/forward.h"
+#include <sysdolphin/baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 /* 0C0658 */ ColorOverlay* ftCo_800C0658(Fighter* fp);
 /* 0C0674 */ ColorOverlay* ftCo_800C0674(Fighter_GObj* gobj);

@@ -9,6 +9,8 @@
 
 #include <placeholder.h>
 
+#include <baselib/forward.h>
+
 #include <string.h>
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>

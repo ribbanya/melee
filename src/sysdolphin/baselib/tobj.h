@@ -2,14 +2,18 @@
 #define _hsd_tobj_h_
 
 #include <platform.h>
+
+#include "baselib/class.h"
+
+#include "baselib/forward.h"
+
+#include "baselib/object.h"
+
 #include <baselib/forward.h>
+
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
-
-#include "baselib/class.h"
-#include "baselib/forward.h"
-#include "baselib/object.h"
 
 struct HSD_TObj;
 

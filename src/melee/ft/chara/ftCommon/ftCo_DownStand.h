@@ -1,10 +1,10 @@
 #ifndef GALE01_0980BC
 #define GALE01_0980BC
 
-#include <stdbool.h>
-
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
+
+#include <stdbool.h>
 
 /* 0980BC */ bool ftCo_800980BC(Fighter_GObj* gobj);
 /* 098160 */ void ftCo_80098160(Fighter_GObj* gobj, FtMotionId msid);

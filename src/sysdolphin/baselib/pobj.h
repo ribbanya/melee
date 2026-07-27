@@ -2,14 +2,18 @@
 #define _pobj_h_
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/gx/GXEnum.h>
-#include <dolphin/mtx.h>
 
 #include "baselib/aobj.h"
 #include "baselib/class.h"
+
 #include "baselib/forward.h" // IWYU pragma: export
+
 #include "baselib/list.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
 
 #define HSD_MTX_RIGID 1
 #define HSD_MTX_ENVELOPE 2

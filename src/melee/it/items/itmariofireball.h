@@ -2,11 +2,14 @@
 #define GALE01_29B6F8
 
 #include <platform.h>
-#include <baselib/forward.h>
-#include <dolphin/mtx.h>
 
 #include "it/forward.h"
+
 #include "it/items/types.h"
+
+#include <baselib/forward.h>
+
+#include <dolphin/mtx.h>
 
 void it_8029B6F8(Item_GObj*, Vec3*, ItemKind, f32);
 void it_8029B7C0(Item_GObj*);

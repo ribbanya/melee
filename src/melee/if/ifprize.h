@@ -2,6 +2,7 @@
 #define _IFPRIZE_H_
 
 #include <platform.h>
+
 #include <baselib/forward.h>
 
 /* 2FE3F8 */ void un_802FE3F8(int a, int b, short* c, short* d);

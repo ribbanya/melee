@@ -1,6 +1,16 @@
 #include "mnstagesel.h"
 
+#include "inlines.h"
+
+#include "mnstagesel.static.h"
+
+#include "placeholder.h"
+
 #include <platform.h>
+
+#include "gm/forward.h"
+#include "mn/forward.h"
+
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>
 #include <baselib/archive.h>
@@ -28,12 +38,6 @@
 #include <melee/lb/lbspdisplay.h>
 #include <melee/lb/types.h>
 #include <melee/mn/mnmain.h>
-
-#include "inlines.h"
-#include "mnstagesel.static.h"
-#include "placeholder.h"
-#include "gm/forward.h"
-#include "mn/forward.h"
 
 /// @todo .sdata2 order hack
 static void order_sdata2(void)

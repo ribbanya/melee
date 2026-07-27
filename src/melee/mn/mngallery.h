@@ -2,8 +2,10 @@
 #define GALE01_258940
 
 #include <platform.h>
+
 #include <baselib/forward.h>
 #include <melee/sc/forward.h>
+
 #include <baselib/gobj.h>
 
 /* 258940 */ void mnGallery_80258940(void);

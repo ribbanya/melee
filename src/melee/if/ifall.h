@@ -3,7 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 
 /* 2F3394 */ void ifAll_802F3394(void);

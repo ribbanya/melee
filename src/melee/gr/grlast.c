@@ -2,6 +2,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
+#include "baselib/psstructs.h"
+#include "gr/types.h"
+
+#include "lb/forward.h"
+
 #include <math.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
@@ -25,10 +31,6 @@
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/lb/lbvector.h>
-
-#include "baselib/psstructs.h"
-#include "gr/types.h"
-#include "lb/forward.h"
 
 /* 21A620 */ static void grLast_OnDemoInit(enum_t);
 /* 21A740 */ static void grLast_OnInit(void);

@@ -3,6 +3,7 @@
 
 #include <placeholder.h>
 #include <platform.h>
+
 #include <melee/gm/forward.h>
 
 struct gm_80480DA8_0_t {

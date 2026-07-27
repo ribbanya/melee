@@ -1,22 +1,16 @@
 #include "vi0801.h"
 
-#include <platform.h>
-#include <dolphin/gx/GXStruct.h>
-#include <baselib/cobj.h>
-#include <baselib/displayfunc.h>
-#include <baselib/fog.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
-
 #include "vi.h"
+
+#include <platform.h>
+
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
+
 #include "gr/forward.h"
+
 #include "gr/grbigblueroute.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -27,6 +21,16 @@
 #include "mp/mpcoll.h"
 #include "pl/player.h"
 #include "sc/types.h"
+
+#include <dolphin/gx/GXStruct.h>
+#include <baselib/cobj.h>
+#include <baselib/displayfunc.h>
+#include <baselib/fog.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
 static SceneDesc* un_804D6FB8;
 static GXColor un_804D6FBC;

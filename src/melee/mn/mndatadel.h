@@ -2,9 +2,10 @@
 #define MELEE_MN_DATADEL_H
 
 #include <placeholder.h>
-#include <dolphin/types.h>
 
 #include "baselib/forward.h"
+
+#include <dolphin/types.h>
 
 /* 24E940 */ void mnDataDel_8024E940(void);
 /* 24EA6C */ void mnDataDel_8024EA6C(void);

@@ -2,12 +2,14 @@
 #define GALE01_2AFD8C
 
 #include <platform.h>
-#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
+
 #include "it/items/types.h"
 #include "it/types.h"
+
+#include <dolphin/mtx.h>
 
 typedef struct itSeakNeedleThrownAttributes {
     f32 x0;

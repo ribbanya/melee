@@ -2,7 +2,9 @@
 #define MELEE_MN_ITEMSW_H
 
 #include <placeholder.h>
+
 #include <baselib/forward.h>
+
 #include <dolphin/types.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

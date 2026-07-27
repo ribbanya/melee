@@ -2,11 +2,12 @@
 #define _mtx_h_
 
 #include <platform.h>
+
+#include "baselib/objalloc.h"
+
 #include <dolphin/mtx.h>
 #include <MetroTRK/intrinsics.h>
 #include <MSL/math.h>
-
-#include "baselib/objalloc.h"
 
 #define VEC2_SQ_LEN(v) ((SQ((v).x) + SQ((v).y)))
 #define VEC3_SQ_LEN(v) ((SQ((v).x) + SQ((v).y) + SQ((v).z)))
