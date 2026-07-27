@@ -28,6 +28,8 @@
 #include <dolphin/mtx.h>
 #include <baselib/generator.h>
 #include <baselib/gobj.h>
+#include <baselib/mobj.h>
+#include <baselib/tobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/debug.h>
