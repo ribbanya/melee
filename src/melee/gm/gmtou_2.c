@@ -7,22 +7,19 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "gm/types.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbdvd.h"
 #include "lb/types.h"
-
-#include "mn/types.h"
-
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
+#include "mn/types.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include "sc/types.h"
 

@@ -7,9 +7,6 @@
 #include "ef/eflib.h"
 #include "ef/efsync.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -21,7 +18,7 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 
-#include "ftKirby/types.h"
+#include "ftKirby/forward.h"
 
 #include "ftKirby/inlines.h"
 #include "it/items/itkirbycutterbeam.h"

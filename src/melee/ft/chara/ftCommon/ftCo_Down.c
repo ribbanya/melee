@@ -12,7 +12,6 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
 
 #include <math.h>

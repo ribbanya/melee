@@ -5,12 +5,10 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "ftDonkey/types.h"
 
-#include <baselib/types.h>
-
 #include <baselib/debug.h>
+#include <baselib/types.h>
 #include <melee/ft/fighter.h>
 
 float ftCo_CalcYScaledKnockback(float arg0, float scale, float arg2)

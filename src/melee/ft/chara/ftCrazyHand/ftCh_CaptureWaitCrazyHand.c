@@ -3,7 +3,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/chara/ftCommon/ftCo_CaptureCut.h"
 #include "ft/fighter.h"
 #include "ft/ftanim.h"

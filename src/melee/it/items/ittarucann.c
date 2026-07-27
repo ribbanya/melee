@@ -18,20 +18,17 @@
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "MSL/math.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 /// @todo Remove
 static f32 fake1(void);

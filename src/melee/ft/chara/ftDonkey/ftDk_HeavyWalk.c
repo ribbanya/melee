@@ -5,10 +5,9 @@
 
 #include <platform.h>
 
-#include "ft/types.h"
-
 #include "ft/ftwalkcommon.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftDonkey/types.h"
 

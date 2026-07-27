@@ -2,13 +2,12 @@
 
 #include <platform.h>
 
-#include <baselib/types.h>
-
 #include <string.h>
 #include <dolphin/ar.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/devcom.h>
+#include <baselib/types.h>
 
 struct MemEntry {
     struct MemEntry* x0_next;

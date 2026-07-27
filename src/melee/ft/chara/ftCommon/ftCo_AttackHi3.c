@@ -13,7 +13,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 #include <common_structs.h>
 

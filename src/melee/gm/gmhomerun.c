@@ -6,7 +6,8 @@
 #include <platform.h>
 
 #include "ft/types.h"
-#include <melee/pl/types.h>
+
+#include "pl/forward.h"
 
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/types.h>

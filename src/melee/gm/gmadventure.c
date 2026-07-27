@@ -6,11 +6,10 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "gm/types.h"
-
 #include "mn/types.h"
-#include "pl/types.h"
+
+#include "pl/forward.h"
 
 #include <sysdolphin/baselib/random.h>
 #include <melee/gm/gmmain_lib.h>

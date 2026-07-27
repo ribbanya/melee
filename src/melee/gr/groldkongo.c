@@ -6,11 +6,9 @@
 #include "baselib/debug.h"
 #include "cm/camera.h"
 #include "ef/efsync.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_BarrelWait.h"
 #include "gr/granime.h"
 #include "gr/grmaterial.h"
@@ -18,11 +16,9 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include <math.h>
 #include <dolphin/mtx.h>

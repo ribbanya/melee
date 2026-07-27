@@ -3,7 +3,6 @@
 #include <platform.h>
 
 #include <baselib/types.h>
-
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>

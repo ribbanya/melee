@@ -3,11 +3,8 @@
 #include <platform.h>
 
 #include "baselib/random.h"
-
 #include "gr/types.h"
 #include "pl/types.h"
-#include <baselib/types.h>
-#include <melee/ft/types.h>
 
 #include <string.h>
 #include <dolphin/ai.h>
@@ -23,8 +20,10 @@
 #include <baselib/gobjuserdata.h>
 #include <baselib/objalloc.h>
 #include <baselib/synth.h>
+#include <baselib/types.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/ftlib.h>
+#include <melee/ft/types.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_16AE.h>
 #include <melee/gr/stage.h>

@@ -4,9 +4,6 @@
 #include "platform.h"
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"

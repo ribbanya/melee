@@ -1,10 +1,9 @@
 #include "ftPr_SpecialLw.h"
 
 #include "ftPr_SpecialHi.h"
+#include "types.h"
 
 #include <platform.h>
-
-#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"

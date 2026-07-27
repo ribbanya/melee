@@ -6,13 +6,11 @@
 #include "gmmain_lib.h"
 
 #include "dolphin/pad.h"
-
 #include "ft/types.h"
-
 #include "gm/types.h"
 #include "it/itspawn.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include <common_structs.h>
 #include <math.h>

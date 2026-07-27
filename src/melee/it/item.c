@@ -6,9 +6,7 @@
 #include <placeholder.h>
 
 #include "cm/camera.h"
-
 #include "cm/types.h"
-
 #include "db/db.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"

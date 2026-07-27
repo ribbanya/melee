@@ -12,18 +12,14 @@
 #include "ft/ftlib.h"
 #include "gm/gmregclear.h"
 #include "gr/types.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/items/itcoin.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 #include "ty/toy.h"
 #include "ty/tydisplay.h"
 

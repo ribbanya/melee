@@ -9,18 +9,14 @@
 
 #include "ft/types.h"
 #include "gm/gm_16AE.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
 #include "pl/plbonusinline.h"
 #include "pl/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/types.h>
 #include <ft/ft_0877.h>
 #include <ft/ft_0892.h>
 #include <ft/ftlib.h>

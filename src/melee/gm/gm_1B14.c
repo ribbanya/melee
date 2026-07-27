@@ -7,7 +7,6 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "gm/gmmovieend.h"
 #include "melee/gm/gm_unsplit.h"
 #include "melee/gm/gmcamera.h"
@@ -25,7 +24,7 @@
 #include "melee/mn/types.h"
 #include "mn/inlines.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include <dolphin/gx/GXTexture.h>
 #include <dolphin/os.h>

@@ -11,9 +11,6 @@
 #include "ft/ftcommon.h"
 #include "ft/ftwalljump.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_MissFoot.h"

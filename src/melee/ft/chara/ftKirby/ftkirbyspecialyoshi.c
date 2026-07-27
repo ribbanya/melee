@@ -17,26 +17,21 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/ftkirby.h"
 #include "ftKirby/ftkirbycaptureyoshi.h"
-
+#include "ftKirby/types.h"
 #include "ftYoshi/types.h"
-#include "it/types.h"
-
 #include "it/itCommonItems.h"
 #include "it/items/itkirbyyoshispecialn.h"
 #include "it/items/ityoshiegglay.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
 
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 /* 1095DC */ static void fn_801095DC(HSD_GObj*);
 /* 109680 */ static void fn_80109680(HSD_GObj*);

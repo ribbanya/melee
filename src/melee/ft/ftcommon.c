@@ -11,9 +11,6 @@
 #include <placeholder.h>
 
 #include "ef/eflib.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
 #include "ft/ft_0C88.h"
@@ -23,7 +20,7 @@
 #include "ft/ftmetal.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_DamageFall.h"
@@ -31,23 +28,16 @@
 #include "ftCommon/ftCo_HammerWait.h"
 #include "ftCommon/ftpickupitem.h"
 #include "gm/gm_unsplit.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "it/items/it_2E5A.h"
 #include "it/items/itfflowerflame.h"
 #include "it/items/itrabbitc.h"
 #include "it/items/itsword.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
+#include "lb/types.h"
 #include "mp/mplib.h"
+#include "mp/types.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 #include "sfx/crowdsfx.h"

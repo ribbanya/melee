@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
@@ -16,10 +15,8 @@
 #include "ftCrazyHand/ftCh_BackAirplane3.h"
 #include "ftCrazyHand/ftCh_CaptureDamageCrazyHand.h"
 #include "ftMasterHand/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 void ftCh_Init_801592D4(HSD_GObj* gobj)
 {

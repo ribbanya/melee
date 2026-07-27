@@ -5,7 +5,7 @@
 #include "dolphin/pad.h"
 #include "lb/lbspdisplay.h"
 
-#include "mn/types.h"
+#include "mn/forward.h"
 
 #include "mn/types.h"
 

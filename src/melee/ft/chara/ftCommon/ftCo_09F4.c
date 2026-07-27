@@ -4,13 +4,9 @@
 
 #include "ft/ftdevice.h"
 #include "gr/ground.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <math.h>
 #include <dolphin/gx/GXStruct.h>
@@ -22,6 +18,7 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/lobj.h>
+#include <baselib/types.h>
 #include <melee/sc/types.h>
 
 /* 09F480 */ static void ftCo_8009F480(Fighter_GObj* gobj);

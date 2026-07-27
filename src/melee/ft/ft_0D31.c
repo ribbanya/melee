@@ -12,12 +12,11 @@
 #include "ftCommon/types.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 #include <melee/cm/camera.h>
 #include <melee/ef/efasync.h>
 #include <melee/ef/efsync.h>

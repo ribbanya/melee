@@ -6,9 +6,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
@@ -22,7 +19,6 @@
 #include "ftCommon/ftCo_SpecialAir.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
-
 #include "ftPeach/types.h"
 
 bool ftCo_800CEE70(Fighter_GObj* gobj)

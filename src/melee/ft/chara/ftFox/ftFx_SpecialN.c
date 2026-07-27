@@ -16,12 +16,10 @@
 #include "ft/ftlib.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftpickupitem.h"
+#include "ftCommon/types.h"
 #include "ftFox/inlines.h"
 #include "ftFox/types.h"
 #include "it/it_26B1.h"

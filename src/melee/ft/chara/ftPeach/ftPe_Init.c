@@ -17,16 +17,12 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_ItemParasolFallSpecial.h"
 #include "ftCommon/ftCo_ItemParasolOpen.h"
+#include "ftCommon/types.h"
 #include "ftPeach/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 #include "lb/lbanim.h"
 
 MotionState ftPe_Init_MotionStateTable[ftPe_MS_SelfCount] = {

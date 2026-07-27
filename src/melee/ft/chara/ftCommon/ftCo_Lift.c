@@ -11,23 +11,17 @@
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/item.h"
-
-#include <baselib/types.h>
+#include "it/types.h"
 
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 void ftCo_80096D9C(Fighter_GObj* gobj)
 {

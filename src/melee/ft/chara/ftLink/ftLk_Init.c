@@ -14,12 +14,10 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Guard.h"
+#include "ftCommon/types.h"
 #include "ftLink/types.h"
 #include "it/it_26B1.h"
 #include "lb/lbanim.h"

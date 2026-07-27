@@ -5,8 +5,8 @@
 
 #include "gm/types.h"
 #include "mn/types.h"
-#include <baselib/types.h>
 
+#include <baselib/types.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

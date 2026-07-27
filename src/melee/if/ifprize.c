@@ -5,11 +5,9 @@
 #include <platform.h>
 
 #include "dolphin/pad.h"
-
-#include "gm/types.h"
-
 #include "gm/gm_unsplit.h"
 #include "gm/gmmain_lib.h"
+#include "gm/types.h"
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lblanguage.h"

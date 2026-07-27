@@ -9,11 +9,10 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-#include <baselib/types.h>
 
 #include <common_structs.h>
+#include <baselib/types.h>
 
 bool ftCo_800980BC(Fighter_GObj* gobj)
 {

@@ -19,19 +19,16 @@
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F58E0[] = {
     { -1, itTaru_UnkMotion0_Anim, itTaru_UnkMotion0_Phys,

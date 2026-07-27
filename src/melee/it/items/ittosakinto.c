@@ -17,11 +17,10 @@
 #include "it/types.h"
 #include "lb/lbaudio_ax.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 #define GET_ATTRS(it)                                                         \
     ((itTosakinto_Attrs*) (it)->xC4_article_data->x4_specialAttributes)

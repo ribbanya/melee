@@ -11,6 +11,7 @@
 #include "vi/vi.h"
 
 #include <stddef.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>

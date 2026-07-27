@@ -8,15 +8,10 @@
 
 #include "cm/camera.h"
 #include "ef/eflib.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -28,13 +23,12 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 /* 2CDC5C */ static void itHassam_802CDC5C(Item_GObj* gobj);
 /* 2CDC80 */ static void itHassam_802CDC80(Item_GObj* gobj);

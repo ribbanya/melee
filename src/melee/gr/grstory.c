@@ -10,19 +10,15 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itheiho.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include <dolphin/os.h>
 #include <baselib/gobj.h>

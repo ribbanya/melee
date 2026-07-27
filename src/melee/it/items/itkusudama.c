@@ -8,9 +8,6 @@
 #include "dolphin/mtx.h"
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -22,9 +19,7 @@
 #include "it/itmaplib.h"
 #include "it/itspawn.h"
 #include "it/types.h"
-
 #include "lb/types.h"
-
 #include "sysdolphin/baselib/random.h"
 
 #include <common_structs.h>

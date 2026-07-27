@@ -13,17 +13,14 @@
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
-
 #include "ftLink/types.h"
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itlinkbomb.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 
 /* 0EB75C */ static bool updateBomb(HSD_GObj* gobj, FtMotionId msid);
 /* 0EB7C8 */ static void spawnBomb(HSD_GObj* gobj);

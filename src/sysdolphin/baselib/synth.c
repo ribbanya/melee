@@ -2,8 +2,6 @@
 
 #include "synth.static.h"
 
-#include <baselib/types.h>
-
 #include <math_ppc.h>
 #include <string.h>
 #include <dolphin/ai.h>
@@ -11,6 +9,7 @@
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
 #include <dolphin/os/OSAlloc.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/devcom.h>
 

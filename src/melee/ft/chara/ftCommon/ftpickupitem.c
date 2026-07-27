@@ -19,16 +19,13 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 #include "ftCommon/ftCo_0A01.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_WarpStar.h"
 #include "ftCommon/types.h"
 #include "ftDonkey/ftDk_HeavyWait0.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "pl/plbonuslib.h"

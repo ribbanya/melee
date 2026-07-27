@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "it/types.h"
 
 #include <baselib/gobj.h>

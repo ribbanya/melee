@@ -9,12 +9,11 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 static void inlineA0(Fighter_GObj* gobj)
 {

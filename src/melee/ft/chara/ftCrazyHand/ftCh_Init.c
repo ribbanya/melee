@@ -5,14 +5,10 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/ftbosslib.h"
 #include "ft/ftcamera.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCrazyHand/types.h"
-
 #include "ftCrazyHand/ftCh_BackAirplane1.h"
 #include "ftCrazyHand/ftCh_BackAirplane2.h"
 #include "ftCrazyHand/ftCh_BackAirplane3.h"
@@ -43,11 +39,10 @@
 #include "ftCrazyHand/ftCh_Wait1_0.h"
 #include "ftCrazyHand/ftCh_Wait1_1.h"
 #include "ftCrazyHand/ftCh_Walk.h"
+#include "ftCrazyHand/types.h"
 #include "ftMasterHand/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 #include <baselib/gobj.h>
 

@@ -7,14 +7,12 @@
 #include "cm/camera.h"
 #include "ft/ftlib.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/ground.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbshadow.h"
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

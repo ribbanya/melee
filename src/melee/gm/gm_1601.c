@@ -10,14 +10,8 @@
 #include "baselib/gobjplink.h"
 #include "baselib/jobj.h"
 #include "cm/camera.h"
-
 #include "ft/types.h"
 #include "gm/types.h"
-
-#include "gm/types.h"
-
-#include "gr/types.h"
-
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "gr/types.h"
@@ -28,16 +22,11 @@
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbtime.h"
-
-#include "mn/types.h"
-
 #include "mn/mnstagesel.h"
 #include "mn/types.h"
-
-#include "pl/types.h"
-
 #include "pl/plbonus.h"
 #include "pl/plbonuslib.h"
+#include "pl/types.h"
 #include "ty/toy.h"
 
 #include <stdio.h>

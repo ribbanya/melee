@@ -12,20 +12,12 @@
 #include "baselib/memory.h"
 #include "baselib/random.h"
 #include "baselib/wobj.h"
-
-#include "cm/types.h"
-
 #include "cm/types.h"
 #include "dolphin/mtx.h"
 #include "dolphin/pad.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
-
-#include "gr/types.h"
-
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -38,8 +30,6 @@
 #include "mp/mplib.h"
 #include "pl/player.h"
 
-#include <baselib/types.h>
-
 #include <math.h>
 #include <math_ppc.h>
 #include <trigf.h>
@@ -51,6 +41,7 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
+#include <baselib/types.h>
 #include <melee/gr/grcastle.h>
 #include <melee/gr/grcorneria.h>
 #include <melee/gr/grgarden.h>

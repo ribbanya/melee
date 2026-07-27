@@ -9,9 +9,6 @@
 #include "ft/ft_0D27.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackHi4.h"
 #include "ftCommon/ftCo_ItemScrew.h"

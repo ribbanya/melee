@@ -10,9 +10,7 @@
 #include "baselib/rumble.h"
 #include "baselib/tobj.h"
 #include "dolphin/pad.h"
-
 #include "ft/types.h"
-
 #include "lb/lbarchive.h"
 #include "lb/lbcollision.h"
 #include "lb/lbcommand.h"

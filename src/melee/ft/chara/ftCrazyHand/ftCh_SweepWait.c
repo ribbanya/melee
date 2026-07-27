@@ -6,7 +6,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
@@ -14,10 +13,8 @@
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 static void fn_801577B4(HSD_GObj* gobj);
 

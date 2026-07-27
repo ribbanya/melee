@@ -23,21 +23,14 @@
 #include "ft/ftdynamics.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <math_ppc.h>
@@ -46,6 +39,7 @@
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 /* 0909D0 */ static void ftCo_800909D0(Fighter* fp);
 /* 090B48 */ static void ftCo_DamageIce_OnHit(Fighter_GObj* gobj);

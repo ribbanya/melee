@@ -3,28 +3,18 @@
 
 #include "baselib/controller.h"
 #include "cm/camera.h"
-
 #include "cm/types.h"
-
 #include "db/db.h"
-
-#include "ft/types.h"
-
 #include "ft/inlines.h"
-
-#include "gm/types.h"
-
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
+#include "gm/types.h"
 #include "gr/ground.h"
-
-#include "if/types.h"
-
 #include "if/textdraw.h"
 #include "if/textlib.h"
+#include "if/types.h"
 #include "lb/lbshadow.h"
 #include "lb/lbvector.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <math.h>
@@ -33,6 +23,7 @@
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 4A03C0 */ static char db_CameraInfoDisplay_buf[0xC0];
 

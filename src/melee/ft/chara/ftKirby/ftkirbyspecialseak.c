@@ -14,22 +14,18 @@
 #include "ft/ftanim.h"
 #include "ft/ftcolanim.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 
-#include "ftKirby/types.h"
+#include "ftKirby/forward.h"
 
 #include "ftKirby/ftkirbyspecialdonkey.h"
 #include "ftKirby/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itseakneedleheld.h"
 #include "it/items/itseakneedlethrown.h"
+#include "it/types.h"
 
 #include <common_structs.h>
 #include <stddef.h>

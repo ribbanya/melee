@@ -1,6 +1,6 @@
 #include "gr/grfzerocar.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"

@@ -9,9 +9,6 @@
 #include "placeholder.h"
 
 #include "ft/dobjlist.h"
-
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/types.h"
 

@@ -19,11 +19,10 @@
 #include "it/types.h"
 #include "lb/lbspdisplay.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 #define GET_ATTRS(ip)                                                         \
     ((itBombHeiAttributes*) ip->xC4_article_data->x4_specialAttributes)

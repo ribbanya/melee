@@ -9,7 +9,7 @@
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/grbigblueroute.h"
 #include "gr/ground.h"
@@ -23,6 +23,7 @@
 #include "sc/types.h"
 
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/displayfunc.h>
 #include <baselib/fog.h>

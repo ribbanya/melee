@@ -7,9 +7,6 @@
 #include "ft/ftanim.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-
-#include "ftKoopa/types.h"
-
 #include "ftKoopa/types.h"
 
 #include <common_structs.h>

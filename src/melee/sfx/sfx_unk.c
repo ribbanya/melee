@@ -1,9 +1,8 @@
 #include "crowdsfx.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
 #include <baselib/gobjproc.h>
+#include <baselib/types.h>
 
 void un_80321900(void)
 {

@@ -13,9 +13,6 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "it/it_26B1.h"
@@ -24,13 +21,12 @@
 #include "lb/lb_00B0.h"
 #include "pl/plbonuslib.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 094D70 */ bool ftCo_800951D0(Fighter_GObj* gobj);
 /* 094E7C */ static bool ftCo_800952DC(Fighter_GObj* gobj);

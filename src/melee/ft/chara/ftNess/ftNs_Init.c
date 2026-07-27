@@ -13,15 +13,11 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftNess/ftNs_SpecialLw.h"
 #include "ftNess/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 #include <baselib/gobj.h>
 

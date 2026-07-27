@@ -12,9 +12,6 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/types.h"
 #include "gr/stage.h"
 #include "it/item.h"
@@ -22,12 +19,11 @@
 #include "lb/lbrefract.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/types.h>
-
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 #pragma force_active on
 

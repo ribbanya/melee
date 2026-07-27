@@ -32,9 +32,7 @@
 #include "it/items/itsamusgrapple.h"
 #include "it/items/itsscope.h"
 #include "it/types.h"
-
 #include "lb/types.h"
-
 #include "mp/mplib.h"
 
 #include <common_structs.h>

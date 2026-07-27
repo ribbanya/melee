@@ -13,9 +13,8 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F82F0[] = {
     { 0, itFushigibana_UnkMotion0_Anim, itFushigibana_UnkMotion0_Phys,

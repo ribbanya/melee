@@ -8,9 +8,7 @@
 #include "baselib/psstructs.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
-
 #include "ft/types.h"
-
 #include "gm/gmmain_lib.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
@@ -28,6 +26,8 @@
 #include <dolphin/mtx.h>
 #include <baselib/generator.h>
 #include <baselib/gobj.h>
+#include <baselib/mobj.h>
+#include <baselib/tobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/debug.h>

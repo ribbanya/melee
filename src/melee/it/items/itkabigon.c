@@ -17,13 +17,12 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7AD8[] = {
     { 0, itKabigon_UnkMotion0_Anim, itKabigon_UnkMotion0_Phys,

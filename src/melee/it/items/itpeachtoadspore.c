@@ -2,20 +2,17 @@
 
 #include "inlines.h"
 
-#include "baselib/types.h"
-
 #include "baselib/random.h"
+#include "baselib/types.h"
 #include "db/db.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/itCharItems.h"
 #include "it/item.h"
+#include "it/types.h"
 
 #include <math.h>
 #include <baselib/gobj.h>

@@ -1,8 +1,7 @@
 #include "ftDk_MS_345_0.h"
 
-#include "ft/types.h"
-
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_Turn.h"
 #include "ftDonkey/types.h"
 

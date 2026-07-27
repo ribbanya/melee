@@ -16,14 +16,8 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
-
-#include "ftSeak/types.h"
-
 #include "ftSeak/ftSk_SpecialS.h"
 #include "ftSeak/types.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -31,11 +25,9 @@
 #include "it/item.h"
 #include "it/items/itlinkhookshot.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
 

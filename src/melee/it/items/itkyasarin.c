@@ -14,9 +14,7 @@
 #include "it/itmaplib.h"
 #include "it/itzako.h"
 #include "it/types.h"
-
 #include "lb/types.h"
-
 #include "MSL/math.h"
 
 #include <baselib/gobj.h>

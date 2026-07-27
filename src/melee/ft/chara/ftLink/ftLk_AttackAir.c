@@ -8,13 +8,11 @@
 #include "ft/ftcoll.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AttackAir.h"
+#include "ftCommon/types.h"
 #include "ftLink/types.h"
-
 #include "lb/types.h"
+
 #include <baselib/types.h>
 
 /* 0EB484 */ static void lwOnHit(HSD_GObj* gobj);

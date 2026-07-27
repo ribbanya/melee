@@ -5,9 +5,7 @@
 #include "db/db.h"
 #include "ef/eflib.h"
 #include "ef/efsync.h"
-
 #include "ft/types.h"
-
 #include "ftSamus/ftSs_SpecialN.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -18,14 +16,13 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7340[] = {
     { 0, itSamusmissile_UnkMotion0_Anim, itSamusmissile_UnkMotion0_Phys,

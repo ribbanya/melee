@@ -4,7 +4,7 @@
 
 #include "gm/inlines.h"
 
-#include <melee/pl/types.h>
+#include "pl/forward.h"
 
 #include <melee/gm/gmresult.h>
 #include <melee/gm/types.h>

@@ -6,9 +6,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -20,21 +17,15 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
-#include "ftMars/types.h"
-
 #include "ftMars/ftMs_Init.h"
 #include "ftMars/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 
 void ftMs_SpecialN_Enter(HSD_GObj* gobj)
 {

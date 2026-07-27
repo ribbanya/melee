@@ -5,15 +5,11 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
-
+#include "ft/types.h"
 #include "ftMasterHand/types.h"
-
 #include "pl/player.h"
 
 void ftMh_SweepWait_Anim(HSD_GObj* gobj)

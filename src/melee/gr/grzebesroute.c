@@ -10,10 +10,8 @@
 #include "gr/granime.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>

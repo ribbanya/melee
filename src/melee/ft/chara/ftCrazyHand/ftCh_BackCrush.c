@@ -3,17 +3,14 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 void ftCh_Init_801597F0(HSD_GObj* gobj, HSD_GObjEvent cb)
 {

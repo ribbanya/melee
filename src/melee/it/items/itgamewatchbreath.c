@@ -5,11 +5,10 @@
 #include <platform.h>
 
 #include "ftGameWatch/ftGw_AttackAir.h"
-
 #include "it/types.h"
-#include <baselib/types.h>
 
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>

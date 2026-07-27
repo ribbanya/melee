@@ -5,17 +5,14 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 #include <dolphin/mtx.h>
 

@@ -8,8 +8,6 @@
 #include "robj.h"
 #include "spline.h"
 
-#include <baselib/types.h>
-
 #include <__mem.h>
 #include <math.h>
 #include <math_ppc.h>
@@ -21,6 +19,7 @@
 #include <baselib/fobj.h>
 #include <baselib/list.h>
 #include <baselib/object.h>
+#include <baselib/types.h>
 
 void JObjInfoInit(void);
 HSD_JObjInfo hsdJObj = { JObjInfoInit };

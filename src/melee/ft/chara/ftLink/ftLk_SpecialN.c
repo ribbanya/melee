@@ -18,15 +18,10 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
-
 #include "ftLink/types.h"
-
-#include "ftLink/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itlinkarrow.h"
 #include "it/items/itlinkbow.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

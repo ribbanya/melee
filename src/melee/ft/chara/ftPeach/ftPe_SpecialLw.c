@@ -11,26 +11,21 @@
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftpickupitem.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftPeach/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itpeachturnip.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 /* 11CE48 */ static ItemKind pickVeg(HSD_GObj* gobj);
 /* 11D018 */ static void spawnVeg(HSD_GObj* gobj);

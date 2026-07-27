@@ -17,20 +17,16 @@
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 
-#include "ftKirby/types.h"
+#include "ftKirby/forward.h"
 
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itsamuschargeshot.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

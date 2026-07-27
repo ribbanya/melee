@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
@@ -13,15 +12,11 @@
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftCrazyHand/ftCh_TagCancel.h"
-
-#include "it/types.h"
-
 #include "it/items/itcrazyhandbomb.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 #include <dolphin/mtx.h>
 

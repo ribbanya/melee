@@ -4,9 +4,7 @@
 #include "types.h"
 
 #include "cm/camera.h"
-
 #include "cm/types.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gm/gm_16AE.h"
@@ -18,20 +16,16 @@
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/itdrop.h"
 #include "it/ithitbox.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "lb/types.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <trigf.h>
 #include <dolphin/gx/GXStruct.h>

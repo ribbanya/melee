@@ -17,10 +17,9 @@
 #include "it/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F9328[] = {
     { 0, 0, 0, itKyasarinegg_UnkMotion0_Coll },

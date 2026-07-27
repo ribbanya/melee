@@ -6,9 +6,6 @@
 
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
@@ -17,18 +14,15 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/ftkirby.h"
+#include "ftKirby/types.h"
 #include "it/items/itpikachutjoltground.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
+#include <baselib/types.h>
 
 void ftKb_SpecialNPk_800F9FD4(Fighter_GObj* gobj)
 {

@@ -3,9 +3,6 @@
 #include "platform.h"
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ftcoll.h"
@@ -14,15 +11,13 @@
 #include "ft/ftwaitanim.h"
 #include "ft/types.h"
 #include "ftCLink/ftCl_Init.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Dash.h"
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/ftCo_SquatRv.h"
+#include "ftCommon/types.h"
 #include "ftLink/ftLk_AttackAir.h"
 
 #include <melee/ft/chara/ftCommon/ftCo_Attack1.h>

@@ -3,15 +3,10 @@
 #include <placeholder.h>
 
 #include "ft/ftdevice.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/gx/GXEnum.h>

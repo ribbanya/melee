@@ -21,10 +21,8 @@
 #include "it/itgroundcoll.h"
 #include "it/ithitbox.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbrefract.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 

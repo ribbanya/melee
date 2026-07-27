@@ -13,7 +13,7 @@
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include "pl/player.h"
 

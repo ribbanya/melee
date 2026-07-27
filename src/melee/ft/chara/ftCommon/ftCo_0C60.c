@@ -5,7 +5,7 @@
 
 #include "ft/inlines.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 bool ftCo_800C60C8(Fighter_GObj* gobj)
 {

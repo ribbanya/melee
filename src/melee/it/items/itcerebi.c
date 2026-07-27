@@ -13,9 +13,8 @@
 #include "it/it_279C.h"
 #include "it/item.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 2D3F6C */ static void it_802D3F6C(Item_GObj* gobj);
 /* 2D3FA0 */ static void it_802D3FA0(Item_GObj* gobj);

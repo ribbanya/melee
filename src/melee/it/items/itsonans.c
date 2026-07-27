@@ -14,10 +14,9 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7CA0[] = {
     { 0, itSonans_UnkMotion0_Anim, itSonans_UnkMotion0_Phys,

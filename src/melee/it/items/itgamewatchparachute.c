@@ -5,9 +5,6 @@
 #include <placeholder.h>
 
 #include "ftGameWatch/ftGw_AttackAir.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"

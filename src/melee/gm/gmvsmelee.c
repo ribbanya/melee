@@ -3,7 +3,8 @@
 #include "gmvsmelee.static.h"
 
 #include "ft/types.h"
-#include <melee/pl/types.h>
+
+#include "pl/forward.h"
 
 #include <baselib/debug.h>
 #include <melee/gm/gm_unsplit.h>

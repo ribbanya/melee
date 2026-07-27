@@ -9,16 +9,13 @@
 #include <platform.h>
 
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 20E274 */ static void grFigure2_8020E274(void);
 /* 20E2E4 */ static void grFigure2_OnLoad(void);

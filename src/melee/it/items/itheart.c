@@ -13,10 +13,9 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 /* 283C7C */ static void it_80283C7C(Item_GObj* gobj);
 /* 283CD4 */ static bool itHeart_UnkMotion0_Anim(Item_GObj* gobj);

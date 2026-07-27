@@ -12,7 +12,7 @@
 #include "dolphin/gx/GXVert.h"
 #include "ft/ftlib.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/grdynamicattr.h"
 #include "gr/ground.h"
@@ -20,9 +20,6 @@
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "mp/mpcoll.h"
 
 #include <math.h>

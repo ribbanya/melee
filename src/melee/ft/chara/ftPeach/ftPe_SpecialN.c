@@ -15,20 +15,15 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftPeach/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itpeachtoad.h"
 #include "it/items/itpeachtoadspore.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 
 typedef enum cmd_var_idx {
     cmd_phys_state,

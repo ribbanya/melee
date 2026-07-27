@@ -32,15 +32,9 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
-
 #include "ftLuigi/types.h"
-#include "it/types.h"
-
 #include "it/itCommonItems.h"
 #include "it/items/it_2ADA.h"
 #include "it/items/it_2F28.h"
@@ -49,13 +43,12 @@
 #include "it/items/itkirbyhammer.h"
 #include "it/items/itluigifireball.h"
 #include "it/items/itmariofireball.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbanim.h"
 #include "lb/lbvector.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>
@@ -64,6 +57,7 @@
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 static MotionFlags const ftKb_MF_SpecialN_Coll =

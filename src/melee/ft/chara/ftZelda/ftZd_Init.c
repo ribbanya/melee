@@ -10,10 +10,8 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftZelda/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 MotionState ftZd_Init_MotionStateTable[ftZd_MS_SelfCount] = {
     {

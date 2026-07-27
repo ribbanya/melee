@@ -17,9 +17,7 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "if/ifhazard.h"
-
 #include "it/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"

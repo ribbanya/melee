@@ -4,9 +4,6 @@
 
 #include "db/db.h"
 #include "gm/gm_unsplit.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -15,12 +12,10 @@
 #include "it/ithitbox.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 
 #include <common_structs.h>

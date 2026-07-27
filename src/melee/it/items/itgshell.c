@@ -8,9 +8,6 @@
 
 #include "baselib/jobj.h"
 #include "ef/efasync.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -22,10 +19,9 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/random.h>
 #include <MSL/math.h>
 

@@ -3,15 +3,9 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftCommon/ftCo_EscapeAir.h"
@@ -21,6 +15,7 @@
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_SpecialAir.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 
 void ftCo_800CF280(Fighter_GObj* gobj)
 {

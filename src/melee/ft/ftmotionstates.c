@@ -23,8 +23,6 @@
 #include "ftKirby/ftkirbycaptureyoshi.h"
 #include "ftKirby/ftkirbyyoshiegg.h"
 
-#include <melee/ft/chara/ftCommon/types.h>
-
 #include <stddef.h>
 #include <melee/ft/chara/ftCommon/ftCo_AppealS.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack1.h>
@@ -130,6 +128,7 @@
 #include <melee/ft/chara/ftCommon/ftCo_WarpStar.h>
 #include <melee/ft/chara/ftCommon/ftCo_YoshiEgg.h>
 #include <melee/ft/chara/ftCommon/ftpickupitem.h>
+#include <melee/ft/chara/ftCommon/types.h>
 #include <melee/ft/chara/ftMasterHand/ftMh_CaptureDamageMasterHand.h>
 #include <melee/ft/chara/ftMasterHand/ftMh_CaptureMasterHand.h>
 #include <melee/ft/chara/ftMasterHand/ftMh_ThrownMasterHand.h>

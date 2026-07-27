@@ -8,16 +8,13 @@
 #include <platform.h>
 
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 static void grFigure3_8020E504(bool number);
 static void grFigure3_8020E508(void);

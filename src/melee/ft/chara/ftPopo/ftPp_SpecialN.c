@@ -16,10 +16,8 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftPopo/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itclimbersice.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

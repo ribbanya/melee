@@ -3,7 +3,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
 #include "ftCommon/types.h"
 
 /// @todo #ftCo_800C6150

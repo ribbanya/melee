@@ -6,9 +6,9 @@
 #include <placeholder.h>
 
 #include "pl/types.h"
-#include <baselib/types.h>
 
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>

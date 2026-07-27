@@ -19,9 +19,7 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftGameWatch/types.h"
 #include "it/it_26B1.h"
 

@@ -7,18 +7,15 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-
+#include "ft/types.h"
 #include "ftCommon/types.h"
-#include <baselib/types.h>
 
 #include <common_structs.h>
+#include <baselib/types.h>
 
 void ftCo_80098E3C(Fighter_GObj* gobj)
 {

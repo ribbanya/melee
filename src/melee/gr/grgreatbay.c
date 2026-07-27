@@ -22,10 +22,8 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <common_structs.h>
 #include <math.h>

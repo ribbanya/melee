@@ -8,15 +8,11 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-
-#include "ftCommon/types.h"
-
+#include "ft/types.h"
 #include "ftCommon/ftCo_Jump.h"
+#include "ftCommon/types.h"
 
 #include <baselib/types.h>
 

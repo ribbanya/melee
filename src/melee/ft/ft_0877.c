@@ -6,10 +6,8 @@
 #include "ft/fighter.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_0A01.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 #include "lb/lbaudio_ax.h"
 
 #include <baselib/gobj.h>

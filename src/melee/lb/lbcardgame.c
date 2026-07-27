@@ -3,10 +3,9 @@
 #include "lbcardgame.static.h"
 #include <placeholder.h>
 
-#include "gm/types.h"
-
 #include "gm/gm_unsplit.h"
 #include "gm/gmmain_lib.h"
+#include "gm/types.h"
 #include "if/textlib.h"
 #include "lb/lbarchive.h"
 #include "lb/lbcardnew.h"

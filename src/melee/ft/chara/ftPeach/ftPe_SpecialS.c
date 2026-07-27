@@ -13,10 +13,8 @@
 #include "ftCommon/inlines.h"
 #include "ftPeach/types.h"
 #include "it/items/itpeachexplode.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

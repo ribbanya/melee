@@ -36,9 +36,6 @@
 #include "ef/efasync.h"
 #include "ft/dobjlist.h"
 #include "ft/ftanim.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_09F4.h"
 #include "ftCommon/ftCo_0A01.h"
 #include "ftCommon/ftCo_0C35.h"
@@ -57,24 +54,23 @@
 #include "ftCommon/ftCo_Rebound.h"
 #include "ftCommon/ftCo_ShieldBreakFly.h"
 #include "ftCommon/ftCo_SpecialS.h"
+#include "ftCommon/types.h"
 #include "ftCrazyHand/ftCh_Wait1_0.h"
 #include "ftKirby/ftkirby.h"
 #include "ftMasterHand/ftMh_Wait1_0.h"
 #include "ftPeach/types.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
 #include "gr/types.h"
 #include "if/ifmagnify.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/it_279C.h"
 #include "it/item.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lb_00CE.h"
 #include "lb/lbanim.h"

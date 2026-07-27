@@ -8,13 +8,12 @@
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/dvd.h>
 #include <dolphin/gx.h>
 #include <baselib/initialize.h>
 #include <baselib/rumble.h>
 #include <baselib/sislib.h>
+#include <baselib/types.h>
 #include <baselib/video.h>
 
 static struct strings {

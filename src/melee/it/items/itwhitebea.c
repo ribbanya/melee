@@ -21,11 +21,10 @@
 #include "mp/mplib.h"
 #include "sysdolphin/baselib/random.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <MetroTRK/intrinsics.h>
 #include <MSL/math.h>
 

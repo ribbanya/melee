@@ -20,10 +20,9 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 
-#include "ftDonkey/types.h"
+#include "ftDonkey/forward.h"
 
 #include "ftDonkey/types.h"
-
 #include "lb/types.h"
 
 #include <common_structs.h>

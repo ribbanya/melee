@@ -15,17 +15,13 @@
 #include "ft/ftlib.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftMars/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

@@ -7,12 +7,10 @@
 #include "ft/ft_081B.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/ftCo_LandingAir.h"
+#include "ftCommon/types.h"
 #include "ftGameWatch/types.h"
 #include "it/items/itgamewatchbreath.h"
 #include "it/items/itgamewatchparachute.h"

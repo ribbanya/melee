@@ -17,10 +17,8 @@
 #include "ftCommon/types.h"
 #include "ftSamus/types.h"
 #include "it/items/itsamusbomb.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 

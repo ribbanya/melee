@@ -2,8 +2,6 @@
 
 #include <platform.h>
 
-#include <baselib/types.h>
-
 #include <stdio.h>
 #include <string.h>
 #include <dolphin/os.h>
@@ -13,6 +11,7 @@
 #include <dolphin/os/OSThread.h>
 #include <dolphin/pad.h>
 #include <dolphin/vi/vifuncs.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

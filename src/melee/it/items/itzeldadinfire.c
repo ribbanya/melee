@@ -8,9 +8,6 @@
 #include "ef/efsync.h"
 #include "ft/chara/ftZelda/ftZd_SpecialLw.h"
 #include "ft/ftlib.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -19,10 +16,9 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 /* 2C4434 */ static bool itZeldadinfire_UnkMotion1_Coll(Item_GObj* gobj);

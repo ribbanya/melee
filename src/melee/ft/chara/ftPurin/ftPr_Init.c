@@ -17,9 +17,6 @@
 #include "ft/ftdynamics.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftPurin/types.h"
 #include "it/it_26B1.h"

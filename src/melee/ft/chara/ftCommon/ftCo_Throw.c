@@ -4,16 +4,13 @@
 #include "baselib/jobj.h"
 #include "ft/ft_084E.h"
 #include "ftCommon/types.h"
-
 #include "lb/types.h"
-
 #include "mp/types.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <melee/ft/chara/ftCommon/ftCo_CargoWait.h>
 #include <melee/ft/chara/ftCommon/ftCo_Damage.h>
 #include <melee/ft/chara/ftCommon/ftCo_Fall.h>

@@ -5,16 +5,12 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCaptain/types.h"
-
 #include "ftCaptain/ftCa_Init.h"
 #include "ftCaptain/ftCa_SpecialHi.h"
 #include "ftCaptain/ftCa_SpecialLw.h"
 #include "ftCaptain/ftCa_SpecialN.h"
 #include "ftCaptain/ftCa_SpecialS.h"
 #include "ftCaptain/types.h"
-
 #include "ftCommon/types.h"
 
 #include <baselib/gobj.h>

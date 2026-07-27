@@ -21,12 +21,9 @@
 #include "ftCommon/inlines.h"
 #include "ftNess/types.h"
 #include "it/items/itnesspkthunderball.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
-
+#include "lb/types.h"
 #include "mp/types.h"
 
 #include <common_structs.h>

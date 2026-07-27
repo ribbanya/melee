@@ -15,10 +15,8 @@
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <common_structs.h>
 #include <dolphin/os.h>

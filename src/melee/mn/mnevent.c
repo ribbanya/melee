@@ -4,13 +4,11 @@
 #include <platform.h>
 
 #include "db/db.h"
-
 #include "ft/types.h"
-#include "gm/types.h"
-
 #include "gm/gm_1601.h"
 #include "gm/gm_1BA8.h"
 #include "gm/gmmain_lib.h"
+#include "gm/types.h"
 #include "lb/lbarchive.h"
 #include "lb/lbspdisplay.h"
 #include "mn/inlines.h"

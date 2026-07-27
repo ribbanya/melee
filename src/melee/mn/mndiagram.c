@@ -4,12 +4,11 @@
 #include "lb/lblanguage.h"
 #include "mn/types.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/object.h>
 #include <baselib/sislib.h>
+#include <baselib/types.h>
 
 #define MNDIAGRAM_SOURCE
 #include "mndiagram.static.h"

@@ -6,9 +6,6 @@
 #include "ef/efsync.h"
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -18,20 +15,13 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/ftkirbyspecialdonkey.h"
 #include "ftKirby/types.h"
-
 #include "ftZelda/types.h"
-
-#include "ftZelda/types.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 extern float ftKb_Init_803CB770[];
 

@@ -10,15 +10,12 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftFox/types.h"
-
 #include "it/types.h"
 
 #include <common_structs.h>

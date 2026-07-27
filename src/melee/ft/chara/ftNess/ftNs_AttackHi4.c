@@ -12,20 +12,16 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Wait.h"
+#include "ftCommon/types.h"
 #include "ftNess/types.h"
 #include "it/items/itnessyoyo.h"
 #include "it/itYoyo.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 
 #include <common_structs.h>

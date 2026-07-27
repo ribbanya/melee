@@ -5,11 +5,7 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -18,9 +14,6 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
-
-#include "ftYoshi/types.h"
-
 #include "ftYoshi/types.h"
 #include "it/items/ityoshistar.h"
 #include "lb/lb_00B0.h"

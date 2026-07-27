@@ -6,10 +6,8 @@
 #include "gr/inlines.h"
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <dolphin/os.h>
 #include <baselib/gobj.h>

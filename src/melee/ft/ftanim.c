@@ -3,7 +3,6 @@
 #include "placeholder.h"
 
 #include "ft/dobjlist.h"
-
 #include "lb/types.h"
 
 #include <dolphin/mtx.h>

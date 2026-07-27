@@ -4,12 +4,10 @@
 #include <platform.h>
 
 #include "if/soundtest.h"
-
+#include "mn/inlines.h"
 #include "mn/types.h"
 
-#include "mn/inlines.h"
-
-#include <melee/pl/types.h>
+#include "pl/forward.h"
 
 #include <common_structs.h>
 #include <sysdolphin/baselib/controller.h>

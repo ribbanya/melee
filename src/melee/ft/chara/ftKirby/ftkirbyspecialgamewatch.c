@@ -6,38 +6,28 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftGameWatch/types.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/ftkirby.h"
-
-#include "it/types.h"
-
+#include "ftKirby/types.h"
 #include "it/items/itgamewatchchef.h"
 #include "it/items/itkirbygamewatchchefpan.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 static MotionFlags const ftKb_MF_GwSpecialN_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepColAnimHitStatus | Ft_MF_SkipHit;

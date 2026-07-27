@@ -2,7 +2,6 @@
 
 #include "ftCl_AppealS.h"
 #include "inlines.h"
-
 #include "types.h"
 
 #include "ft/fighter.h"
@@ -14,33 +13,23 @@
 #include "ft/ftdata.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Guard.h"
-
-#include "ftLink/types.h"
-
+#include "ftCommon/types.h"
 #include "ftLink/ftLk_Init.h"
 #include "ftLink/ftLk_SpecialHi.h"
 #include "ftLink/ftLk_SpecialLw.h"
 #include "ftLink/ftLk_SpecialN.h"
 #include "ftLink/ftLk_SpecialS.h"
 #include "ftLink/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
-
+#include "it/types.h"
+#include "lb/lbanim.h"
 #include "lb/types.h"
 
-#include "lb/lbanim.h"
-
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 MotionState ftCl_Init_MotionStateTable[ftLk_MS_SelfCount] = {
     {

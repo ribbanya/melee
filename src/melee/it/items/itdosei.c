@@ -11,12 +11,11 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/types.h>
-
 #include <math.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 static void sdata2_order(void)
 {

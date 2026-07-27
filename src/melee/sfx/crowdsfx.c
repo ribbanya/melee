@@ -4,10 +4,8 @@
 
 #include "ft/ftlib.h"
 #include "lb/lbaudio_ax.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 

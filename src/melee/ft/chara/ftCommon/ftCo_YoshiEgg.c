@@ -17,23 +17,17 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftCaptain/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "ftYoshi/ftYs_SpecialN.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 /* 0BBCC0 */ static void ftCo_800BBCC0(Fighter_GObj* gobj);
 

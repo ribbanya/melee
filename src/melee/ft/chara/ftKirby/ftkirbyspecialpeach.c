@@ -6,9 +6,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -18,26 +15,19 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/ftkirby.h"
-
-#include "it/types.h"
-
+#include "ftKirby/types.h"
 #include "it/items/itpeachtoad.h"
 #include "it/items/itpeachtoadspore.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 10C344 */ static void fn_8010C344(Fighter_GObj* gobj);
 /* 10C44C */ static void fn_8010C44C(Fighter_GObj* gobj);

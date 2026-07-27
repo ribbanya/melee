@@ -12,7 +12,7 @@
 #include "ft/ftanim.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftNess/ftNs_AttackLw4.h"

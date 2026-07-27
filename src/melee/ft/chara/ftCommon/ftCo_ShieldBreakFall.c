@@ -5,14 +5,11 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ftcommon.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 void ftCo_80098D90(Fighter_GObj* gobj)
 {

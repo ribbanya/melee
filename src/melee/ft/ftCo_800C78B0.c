@@ -12,11 +12,9 @@
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itlikelike.h"
+#include "it/types.h"
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
 #include "pl/player.h"

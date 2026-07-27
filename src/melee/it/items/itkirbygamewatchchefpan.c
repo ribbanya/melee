@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "ftKirby/ftkirbyspecialgamewatch.h"
-
 #include "it/items/types.h"
 
 #include <melee/it/inlines.h>

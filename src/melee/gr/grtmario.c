@@ -4,7 +4,7 @@
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/granime.h"
 #include "gr/grlib.h"
@@ -12,10 +12,8 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

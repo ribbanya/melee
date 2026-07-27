@@ -10,9 +10,6 @@
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/chara/ftCommon/ftCo_Landing.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -24,21 +21,12 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
-
-#include "ftKirby/types.h"
-
+#include "ftCommon/types.h"
 #include "ftKirby/types.h"
 #include "ftPurin/types.h"
-
 #include "lb/types.h"
-
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <stddef.h>
@@ -47,6 +35,7 @@
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 /* 100E0C */ static void fn_80100E0C(Fighter_GObj* gobj);

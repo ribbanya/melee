@@ -31,7 +31,6 @@
 #include "gmvsmelee.h"
 
 #include "gm/types.h"
-
 #include "if/ifprize.h"
 #include "mn/mncharsel.h"
 #include "mn/mnmain.h"

@@ -5,13 +5,8 @@
 #include <platform.h>
 
 #include "db/db.h"
-
 #include "ft/types.h"
-
 #include "ftSamus/ftSs_Init.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -22,13 +17,12 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7220[] = {
     { 0, itSamusbomb_UnkMotion0_Anim, itSamusbomb_UnkMotion0_Phys,

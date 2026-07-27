@@ -15,9 +15,7 @@
 #include "baselib/sislib.h"
 #include "baselib/wobj.h"
 #include "cm/camera.h"
-
 #include "cm/types.h"
-
 #include "ft/ftlib.h"
 #include "gm/gmregclear.h"
 #include "gr/granime.h"
@@ -32,10 +30,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

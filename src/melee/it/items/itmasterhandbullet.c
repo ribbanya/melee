@@ -13,12 +13,11 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F9388[] = {
     { 0, itMasterhandbullet_UnkMotion1_Anim,

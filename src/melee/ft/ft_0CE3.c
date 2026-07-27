@@ -9,10 +9,9 @@
 #include "ftCommon/types.h"
 #include "it/it_26B1.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>

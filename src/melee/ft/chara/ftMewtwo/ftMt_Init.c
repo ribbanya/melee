@@ -13,10 +13,8 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftMewtwo/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 #include <baselib/gobj.h>
 

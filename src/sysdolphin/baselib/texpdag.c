@@ -2,11 +2,10 @@
 
 #include "baselib/debug.h"
 
-#include <baselib/types.h>
-
 #include <string.h>
 #include <dolphin/gx/GXEnum.h>
 #include <baselib/texp.h>
+#include <baselib/types.h>
 
 int assign_reg(int num, u32* unused, HSD_TExpDag* list, int* order)
 {

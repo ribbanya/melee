@@ -8,18 +8,15 @@
 #include <platform.h>
 
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 static void grShrine_80201C60(bool);
 static void grShrine_80201C64(void);

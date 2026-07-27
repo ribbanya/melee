@@ -12,15 +12,10 @@
 #include "ft/ftdata.h"
 #include "ft/ftmetal.h"
 #include "ft/ftparts.h"
-
 #include "ftCommon/types.h"
-
 #include "ftGameWatch/ftGw_Init.h"
 #include "ftKirby/ftkirby.h"
 #include "gm/gm_unsplit.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

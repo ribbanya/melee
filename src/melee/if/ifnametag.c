@@ -12,10 +12,8 @@
 #include "lb/lbvector.h"
 #include "mn/mnmain.h"
 #include "mn/mnname.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 #include "sc/types.h"
 
 #include <dolphin/mtx.h>

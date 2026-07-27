@@ -6,11 +6,9 @@
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
 #include "gm/types.h"
-
-#include "mn/types.h"
-
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
+#include "mn/types.h"
 
 #include <baselib/gobj.h>
 #include <baselib/gobjplink.h>

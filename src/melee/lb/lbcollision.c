@@ -8,9 +8,6 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
-#include "lb/types.h"
-
 #include "lb/types.h"
 
 #include <math.h>

@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "gm/gmregtyfall.h"
 #include "gm/inlines.h"
 #include "lb/lb_00B0.h"
@@ -16,6 +15,7 @@
 #include "ty/tydisplay.h"
 #include "ty/types.h"
 
+#include <baselib/aobj.h>
 #include <baselib/archive.h>
 #include <baselib/cobj.h>
 #include <baselib/debug.h>

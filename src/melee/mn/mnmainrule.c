@@ -5,19 +5,14 @@
 #include "baselib/gobjgxlink.h"
 #include "baselib/gobjobject.h"
 #include "baselib/gobjuserdata.h"
-
-#include "gm/types.h"
-
 #include "gm/gm_1A36.h"
 #include "gm/gm_1A3F.h"
 #include "gm/gmtoulib.h"
-
+#include "gm/types.h"
+#include "mn/mnmain.h"
 #include "mn/types.h"
 
-#include "mn/mnmain.h"
-
 #include <baselib/types.h>
-
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjplink.h>

@@ -5,11 +5,10 @@
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "it/types.h"
-#include <baselib/types.h>
 
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 #include <melee/ft/chara/ftCommon/ftCo_Attack100.h>
 #include <melee/ft/chara/ftCommon/ftpickupitem.h>
 #include <melee/ft/fighter.h>

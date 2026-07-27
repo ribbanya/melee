@@ -6,14 +6,9 @@
 
 #include "baselib/jobj.h"
 #include "db/db.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "ftGameWatch/ftGw_SpecialS.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"

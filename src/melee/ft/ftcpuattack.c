@@ -9,37 +9,29 @@
 #include "baselib/random.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftGameWatch/types.h"
-
 #include "ftKirby/types.h"
 #include "ftNess/types.h"
 #include "ftPeach/types.h"
-
 #include "ftZelda/types.h"
-
-#include "gr/types.h"
-
 #include "gr/types.h"
 #include "it/types.h"
-
 #include "lb/types.h"
-#include <baselib/types.h>
-#include <melee/ft/chara/ftDonkey/types.h>
-#include <melee/ft/chara/ftKoopa/types.h>
-#include <melee/ft/chara/ftSamus/types.h>
-#include <melee/ft/chara/ftYoshi/types.h>
-#include <melee/ft/chara/ftZelda/types.h>
 
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_09F7.h>
 #include <melee/ft/chara/ftCommon/ftCo_0A01.h>
+#include <melee/ft/chara/ftDonkey/types.h>
+#include <melee/ft/chara/ftKoopa/types.h>
+#include <melee/ft/chara/ftSamus/types.h>
+#include <melee/ft/chara/ftYoshi/types.h>
+#include <melee/ft/chara/ftZelda/types.h>
 #include <melee/ft/fighter.h>
 #include <melee/gr/ground.h>
 #include <melee/it/inlines.h>

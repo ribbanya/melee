@@ -1,17 +1,14 @@
 #include "ftMh_FingerBeam.h"
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
 #include "ftMasterHand/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itmasterhandlaser.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"

@@ -2,7 +2,6 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "gm/gm_1A3F.h"
 #include "melee/gm/gm_unsplit.h"
 #include "melee/gm/gmmain_lib.h"
@@ -15,7 +14,7 @@
 #include "melee/mn/mnsnap.h"
 #include "melee/mn/types.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include <sysdolphin/baselib/memory.h>
 

@@ -16,13 +16,12 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 #include <MetroTRK/intrinsics.h>
 
 ItemStateTable it_803F7EE8[] = {

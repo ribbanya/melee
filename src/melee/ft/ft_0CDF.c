@@ -3,15 +3,12 @@
 #include <platform.h>
 
 #include "ft/ftanim.h"
-
 #include "ftCommon/types.h"
+#include "it/it_26B1.h"
 #include "it/types.h"
 
-#include "it/it_26B1.h"
-
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>

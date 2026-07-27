@@ -10,14 +10,12 @@
 #include "ft/ftanim.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AttackAir.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/ftCo_LandingAir.h"
+#include "ftCommon/types.h"
 #include "ftPeach/types.h"
 #include "it/it_26B1.h"
 

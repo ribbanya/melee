@@ -14,31 +14,23 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
+#include "ftCommon/types.h"
 #include "ftFox/inlines.h"
 #include "ftFox/types.h"
-
-#include "ftKirby/types.h"
-
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itfoxblaster.h"
 #include "it/items/itfoxlaser.h"
 #include "it/items/itnesspkflash.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 static u32 ftKb_Init_804D3DB8[] = {

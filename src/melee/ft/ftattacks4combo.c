@@ -8,7 +8,6 @@
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "ftLink/types.h"
 
 #include <common_structs.h>

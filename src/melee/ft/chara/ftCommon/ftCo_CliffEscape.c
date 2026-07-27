@@ -10,7 +10,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 /// @todo Shared code with #ftCo_8009AEA4.
 void ftCo_8009B040(Fighter_GObj* gobj)

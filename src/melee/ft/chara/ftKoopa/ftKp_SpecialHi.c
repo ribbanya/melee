@@ -14,10 +14,9 @@
 #include "ftCommon/types.h"
 #include "ftKoopa/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <trigf.h>
+#include <baselib/types.h>
 #include <melee/ef/eflib.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>

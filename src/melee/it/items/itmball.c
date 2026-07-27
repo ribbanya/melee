@@ -13,9 +13,8 @@
 #include "it/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <melee/it/item.h>
 
 ItemStateTable it_803F6488[] = {

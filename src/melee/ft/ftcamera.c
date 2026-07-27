@@ -3,7 +3,6 @@
 #include "ftlib.h"
 
 #include "cm/types.h"
-
 #include "ft/fighter.h"
 #include "gr/stage.h"
 

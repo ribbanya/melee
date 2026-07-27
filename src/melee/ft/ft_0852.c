@@ -1,17 +1,14 @@
 #include "ft_0852.h"
 
-#include "ft/types.h"
-
 #include "ft/ftdata.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include <baselib/types.h>
 
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ftData* gFtDataList[FTKIND_MAX];
 

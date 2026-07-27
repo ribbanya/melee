@@ -1,16 +1,15 @@
 #include "grpstadium.h"
 
 #include "cm/types.h"
-
 #include "dolphin/gx/GXStruct.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/ground.h"
-
 #include "lb/types.h"
 #include "mn/types.h"
-#include "pl/types.h"
+
+#include "pl/forward.h"
 
 #include <math.h>
 #include <dolphin/gx/GXTexture.h>

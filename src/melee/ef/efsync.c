@@ -12,10 +12,8 @@
 #include "baselib/jobj.h"
 #include "baselib/psstructs.h"
 #include "baselib/random.h"
-
-#include "ft/types.h"
-
 #include "ft/inlines.h"
+#include "ft/types.h"
 #include "MSL/math.h"
 
 #include <stdarg.h>

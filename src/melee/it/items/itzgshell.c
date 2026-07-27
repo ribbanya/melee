@@ -19,10 +19,8 @@
 #include "it/itmaplib.h"
 #include "it/itzako.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 
 #include <common_structs.h>

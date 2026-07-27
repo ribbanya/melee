@@ -7,19 +7,13 @@
 
 #include <platform.h>
 
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
-#include "ftCommon/types.h"
-
-#include <baselib/types.h>
 
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/types.h>
 
 FtWalkType ftWalkCommon_GetWalkType(HSD_GObj* gobj)
 {

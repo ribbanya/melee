@@ -4,9 +4,8 @@
 
 #include "ty/toy.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

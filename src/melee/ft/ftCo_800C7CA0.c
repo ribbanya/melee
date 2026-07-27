@@ -15,7 +15,6 @@
 #include "ftCommon/ftCo_DownBound.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
-
 #include "lb/types.h"
 
 #include <common_structs.h>

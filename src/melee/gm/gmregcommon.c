@@ -1,8 +1,7 @@
 #include "gmregcommon.h"
 
-#include <melee/ft/types.h>
-
 #include <baselib/debug.h>
+#include <melee/ft/types.h>
 #include <melee/gm/gm_unsplit.h>
 
 #define NUM_OPPONENTS 3

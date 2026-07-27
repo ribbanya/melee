@@ -75,11 +75,9 @@
 #include "stage.h"
 
 #include "cm/camera.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
 #include "it/it_26B1.h"
 #include "it/it_3F14.h"

@@ -11,10 +11,8 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 #include "ftSeak/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 MotionState ftSk_Init_MotionStateTable[ftSk_MS_SelfCount] = {
     {

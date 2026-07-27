@@ -25,9 +25,6 @@
 #include "ft/ftdata.h"
 #include "ft/ftswing.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Dash.h"
@@ -35,14 +32,14 @@
 #include "ftCommon/ftCo_Squat.h"
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/ftCo_Walk.h"
+#include "ftCommon/types.h"
 #include "ftGameWatch/ftGw_AttackS4.h"
 #include "ftNess/ftNs_AttackS4.h"
 #include "ftPeach/ftPe_AttackS4.h"
 #include "it/it_26B1.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
+#include <baselib/types.h>
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

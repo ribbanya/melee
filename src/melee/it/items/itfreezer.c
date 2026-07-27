@@ -14,10 +14,9 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7C70[] = {
     { 0, itFreezer_UnkMotion0_Anim, itFreezer_UnkMotion0_Phys,

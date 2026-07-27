@@ -3,18 +3,15 @@
 #include <platform.h>
 
 #include "gm/gm_unsplit.h"
-
-#include "if/types.h"
-
 #include "if/textdraw.h"
 #include "if/textlib.h"
+#include "if/types.h"
 #include "pl/player.h"
 #include "pl/plbonus.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/memory.h>
 
 static struct {

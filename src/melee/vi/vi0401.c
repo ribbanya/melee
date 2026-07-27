@@ -10,7 +10,7 @@
 #include "gm/gm_1A45.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -20,7 +20,7 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include "pl/player.h"
 #include "sc/types.h"
@@ -30,6 +30,7 @@
 #include <stddef.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>

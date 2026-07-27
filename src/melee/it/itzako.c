@@ -12,10 +12,8 @@
 #include "baselib/random.h"
 #include "cm/camera.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
 #include "gr/grlib.h"
 #include "gr/ground.h"
@@ -26,11 +24,9 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 #include "items/itcoin.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "pl/plbonuslib.h"
 #include "ty/tydisplay.h"
 

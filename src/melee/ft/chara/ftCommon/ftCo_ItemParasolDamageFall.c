@@ -1,20 +1,15 @@
 #include "ftCo_ItemParasolDamageFall.h"
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
-
-#include "ftCommon/types.h"
-
+#include "ft/types.h"
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DamageIce.h"
-
-#include <baselib/types.h>
+#include "ftCommon/types.h"
 
 #include <stddef.h>
+#include <baselib/types.h>
 
 void ftCo_800CF4DC(Fighter_GObj* gobj)
 {

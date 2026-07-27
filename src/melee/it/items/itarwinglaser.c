@@ -5,7 +5,7 @@
 #include "ef/efsync.h"
 #include "ft/ftlib.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/grcorneria.h"
 #include "gr/ground.h"

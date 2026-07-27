@@ -8,10 +8,8 @@
 #include <placeholder.h>
 
 #include "dolphin/pad.h"
-
 #include "ft/types.h"
 #include "gm/types.h"
-
 #include "mn/inlines.h"
 
 #include <stddef.h>

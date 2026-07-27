@@ -12,9 +12,7 @@
 #include "lb/lbcardgame.h"
 #include "lb/lbcardnew.h"
 #include "lb/lbtime.h"
-
 #include "mn/types.h"
-
 #include "ty/toy.h"
 
 #include <melee/gm/types.h>

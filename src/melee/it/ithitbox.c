@@ -5,7 +5,6 @@
 #include "it/inlines.h"
 #include "it/itcoll.h"
 #include "it/types.h"
-
 #include "lb/types.h"
 
 #include <common_structs.h>

@@ -6,11 +6,9 @@
 #include "ft/ftCo_800C703C.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
+#include "it/types.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 

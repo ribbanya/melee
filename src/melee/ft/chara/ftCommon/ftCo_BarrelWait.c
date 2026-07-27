@@ -8,7 +8,6 @@
 #include <platform.h>
 
 #include "cm/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcamera.h"
@@ -19,10 +18,8 @@
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
 #include "gr/ground.h"
-
-#include "lb/types.h"
-
 #include "lb/lbcollision.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 
 #include <common_structs.h>

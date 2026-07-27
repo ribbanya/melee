@@ -4,19 +4,16 @@
 
 #include "ftKirby/ftkirbyspecialpeach.h"
 #include "ftPeach/ftPe_SpecialN.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
 
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7528[] = {
     { 0, itPeachtoad_UnkMotion0_Anim, NULL, NULL },

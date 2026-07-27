@@ -12,17 +12,13 @@
 #include "ft/ftanim.h"
 #include "ft/ftswing.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirbyattackdash.h"
 #include "it/it_26B1.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
+#include <baselib/types.h>
 
 /* 08B498 */ static void decideFighter(Fighter_GObj* gobj);
 /* 08B4D4 */ static void doEnter(Fighter_GObj* gobj);

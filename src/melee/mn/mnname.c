@@ -17,10 +17,8 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
-
-#include "mn/types.h"
-
 #include "mn/mnmain.h"
+#include "mn/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>

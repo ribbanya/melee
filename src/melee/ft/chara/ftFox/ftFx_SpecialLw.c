@@ -13,14 +13,12 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Jump.h"
 #include "ftCommon/ftCo_JumpAerial.h"
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftFox/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"

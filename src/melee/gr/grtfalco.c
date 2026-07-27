@@ -9,20 +9,15 @@
 #include <platform.h>
 
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
+#include "lb/types.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
+#include "mp/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 2207F0 */ static void grTFalco_802207F0(bool);
 /* 2207F4 */ static void grTFalco_802207F4(void);

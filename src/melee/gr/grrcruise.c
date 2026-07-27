@@ -20,10 +20,8 @@
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
 #include "lb/types.h"
-
-#include "mp/types.h"
-
 #include "mp/mplib.h"
+#include "mp/types.h"
 
 #include <math_ppc.h>
 #include <trigf.h>

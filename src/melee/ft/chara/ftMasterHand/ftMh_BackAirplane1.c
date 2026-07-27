@@ -7,9 +7,7 @@
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
 #include "ft/types.h"
-
 #include "ftMasterHand/types.h"
-
 #include "pl/player.h"
 
 #include <dolphin/mtx.h>

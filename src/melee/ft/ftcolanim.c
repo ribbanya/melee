@@ -6,18 +6,15 @@
 #include "ft/ftaction.h"
 #include "ft/ftdata.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "gm/gm_1601.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 #include "pl/player.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/types.h>
 
 #pragma force_active on
 

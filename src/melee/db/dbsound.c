@@ -1,15 +1,13 @@
 #include "db.h"
 
-#include "if/types.h"
-
 #include "if/textdraw.h"
 #include "if/textlib.h"
+#include "if/types.h"
 #include "lb/lbaudio_ax.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/types.h>
 
 static char db_SoundInfoText_buf[0x70];
 

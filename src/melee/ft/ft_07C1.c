@@ -7,20 +7,15 @@
 #include "ft/ftcoll.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_HammerWait.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 void ft_8007C224(HSD_GObj* gobj);
 

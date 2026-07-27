@@ -12,14 +12,11 @@
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftNess/ftNs_AttackHi4.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
+#include <baselib/types.h>
 
 /* 08CA38 */ void doEnter(Fighter_GObj* gobj);
 

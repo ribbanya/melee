@@ -1,11 +1,10 @@
 #include "texp.h"
 
-#include <baselib/types.h>
-
 #include <__mem.h>
 #include <dolphin/gx.h>
 #include <baselib/debug.h>
 #include <baselib/state.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/class.h>
 #include <sysdolphin/baselib/tev.h>
 #include <sysdolphin/baselib/texpdag.h>

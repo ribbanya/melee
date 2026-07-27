@@ -14,10 +14,8 @@
 #include "ft/ftparts.h"
 #include "ft/types.h"
 #include "ftFox/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 #include <baselib/gobj.h>
 

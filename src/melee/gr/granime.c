@@ -4,9 +4,6 @@
 #include <platform.h>
 
 #include "baselib/debug.h"
-
-#include "gr/types.h"
-
 #include "gr/grdatfiles.h"
 #include "gr/grmaterial.h"
 #include "gr/ground.h"

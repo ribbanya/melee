@@ -6,31 +6,23 @@
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdemo.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
-
-#include "gr/types.h"
-
 #include "gr/ground.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "it/item.h"
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 #include "sc/types.h"
 #include "vi/types.h"
 #include "vi/vi.h"
-
-#include <baselib/types.h>
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
@@ -41,6 +33,7 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 static SceneDesc* un_804D6F30;
 static GXColor erase_colors_vi0102;

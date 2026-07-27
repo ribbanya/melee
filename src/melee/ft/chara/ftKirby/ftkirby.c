@@ -28,16 +28,12 @@
 #include "ftKirby/ftkirbyspecialgamewatch.h"
 #include "ftKirby/ftkirbyspecialpurin.h"
 #include "ftKirby/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lbdvd.h"
+#include "lb/types.h"
 #include "pl/player.h"
 
 #include <trigf.h>

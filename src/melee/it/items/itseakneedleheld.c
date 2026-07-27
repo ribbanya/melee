@@ -7,19 +7,16 @@
 
 #include "ft/chara/ftKirby/ftkirbyspecialdonkey.h"
 #include "ft/chara/ftSeak/ftSk_SpecialS.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F70A8[] = {
     {

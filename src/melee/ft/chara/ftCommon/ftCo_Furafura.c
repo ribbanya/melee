@@ -10,7 +10,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/types.h"
+#include "ftCommon/forward.h"
 
 void ftCo_80099010(Fighter_GObj* gobj)
 {

@@ -12,7 +12,6 @@
 #include "ft/ft_0DF1.h"
 #include "ft/ftanim.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
 
 #include <common_structs.h>

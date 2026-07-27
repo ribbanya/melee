@@ -12,10 +12,9 @@
 #include "it/itmaplib.h"
 #include "pl/plbonuslib.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F62C0[] = {
     { -1, itMetalb_UnkMotion0_Anim, itMetalb_UnkMotion0_Phys,

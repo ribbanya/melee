@@ -7,8 +7,6 @@
 
 #include <placeholder.h>
 
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/itcoll.h"
 #include "it/item.h"

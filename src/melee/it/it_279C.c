@@ -13,12 +13,10 @@
 #include "ft/ft_0892.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
-
+#include "gm/gm_unsplit.h"
 #include "gm/types.h"
 
-#include "gm/gm_unsplit.h"
-
-#include "it/types.h"
+#include "it/forward.h"
 
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -141,6 +139,7 @@
 #include "it/items/itzgshell.h"
 #include "it/items/itzrshell.h"
 #include "it/itgroundcoll.h"
+#include "it/types.h"
 #include "items/itcoin.h"
 #include "items/itfoxillusion.h"
 #include "items/itlinkarrow.h"

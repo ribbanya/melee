@@ -15,14 +15,11 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/ftCo_Thrown.h"
 #include "ftKoopa/types.h"
-
+#include "it/it_26B1.h"
 #include "it/types.h"
 
-#include "it/it_26B1.h"
-
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 MotionState ftKp_Init_MotionStateTable[ftKp_MS_SelfCount] = {
     {

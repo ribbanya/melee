@@ -16,14 +16,12 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftKirby/types.h"
+#include "ftKirby/forward.h"
 
 #include "ftKirby/types.h"
-
-#include "it/types.h"
-
 #include "it/item.h"
 #include "it/items/itkoopaflame.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

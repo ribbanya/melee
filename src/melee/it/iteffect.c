@@ -8,17 +8,14 @@
 
 #include "ef/efasync.h"
 #include "ef/efsync.h"
-
 #include "it/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
 #include "lb/lblanguage.h"
 
-#include <baselib/types.h>
-
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 void it_8027870C(s32 arg0)
 {

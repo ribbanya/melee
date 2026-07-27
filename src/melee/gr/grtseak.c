@@ -1,22 +1,17 @@
 #include <platform.h>
 
-#include "gr/types.h"
-
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 223864 */ static void grTSeak_OnDemoInit(bool);
 /* 223868 */ static void grTSeak_OnInit(void);

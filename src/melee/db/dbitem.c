@@ -4,10 +4,8 @@
 #include <platform.h>
 
 #include "ef/efsync.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
 #include "if/textdraw.h"
 #include "if/textlib.h"
@@ -19,11 +17,10 @@
 #include "it/types.h"
 #include "pl/player.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/os.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 
 void fn_SetupItemAndPokemonMenu(void)

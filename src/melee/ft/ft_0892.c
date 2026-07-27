@@ -3,9 +3,7 @@
 #include "ft/chara/ftFox/ftFx_AppealS.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "it/it_26B1.h"
 #include "pl/plattack.h"
 #include "pl/pltrick.h"

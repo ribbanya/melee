@@ -15,11 +15,9 @@
 #include "ft/types.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
-
-#include "lb/types.h"
-
 #include "lb/lbrefract.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <MetroTRK/intrinsics.h>

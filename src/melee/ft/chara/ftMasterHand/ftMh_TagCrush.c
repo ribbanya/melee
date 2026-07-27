@@ -3,16 +3,12 @@
 #include "ftMh_Wait1_2.h"
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_084E.h"
 #include "ft/ftanim.h"
 #include "ft/ftbosslib.h"
+#include "ft/types.h"
 #include "ftCrazyHand/ftCh_Squeeze.h"
-
 #include "ftMasterHand/types.h"
-
 #include "pl/player.h"
 
 #include <baselib/gobj.h>

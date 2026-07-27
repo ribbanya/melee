@@ -3,21 +3,14 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftparts.h"
-
 #include "ftCommon/types.h"
-
 #include "ftFox/types.h"
 #include "ftMario/ftMr_SpecialN.h"
-
-#include "it/types.h"
-
 #include "it/items/itdrmariopill.h"
 #include "it/items/itfoxblaster.h"
 #include "it/items/itnessbat.h"
+#include "it/types.h"
 
 void ftCo_800BF034(Fighter_GObj* gobj)
 {

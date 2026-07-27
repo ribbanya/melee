@@ -5,9 +5,6 @@
 
 #include "baselib/jobj.h"
 #include "db/db.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -15,13 +12,12 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 #include "it/types.h"
-
 #include "lb/types.h"
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F6530[] = { { 0, itStarrodstar_UnkMotion0_Anim,
                                    itStarrodstar_UnkMotion0_Phys,

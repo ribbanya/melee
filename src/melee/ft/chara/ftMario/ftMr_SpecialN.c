@@ -14,11 +14,9 @@
 #include "ftCommon/ftCo_Wait.h"
 #include "ftCommon/inlines.h"
 #include "ftMario/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itdrmariopill.h"
 #include "it/items/itmariofireball.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <dolphin/mtx.h>

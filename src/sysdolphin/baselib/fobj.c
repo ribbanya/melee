@@ -2,11 +2,10 @@
 
 #include "spline.h"
 
-#include <baselib/types.h>
-
 #include <__mem.h>
 #include <baselib/debug.h>
 #include <baselib/objalloc.h>
+#include <baselib/types.h>
 
 HSD_ObjAllocData fobj_alloc_data;
 

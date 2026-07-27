@@ -1,11 +1,10 @@
 #include "ftZd_SpecialN.h"
 
+#include "types.h"
+
 #include <platform.h>
 
 #include "ef/efsync.h"
-
-#include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"

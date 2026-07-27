@@ -5,9 +5,6 @@
 #include <placeholder.h>
 
 #include "baselib/jobj.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -21,10 +18,9 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 typedef struct {
     float x0;

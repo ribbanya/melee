@@ -7,10 +7,8 @@
 
 #include "baselib/debug.h"
 #include "ft/types.h"
-
-#include "it/types.h"
 #include "it/items/types.h"
-#include <baselib/types.h>
+#include "it/types.h"
 
 #include <math_ppc.h>
 #include <stddef.h>
@@ -20,6 +18,7 @@
 #include <baselib/cobj.h>
 #include <baselib/jobj.h>
 #include <baselib/state.h>
+#include <baselib/types.h>
 #include <melee/ft/chara/ftLink/types.h>
 #include <melee/ft/chara/ftMars/types.h>
 #include <melee/ft/inlines.h>

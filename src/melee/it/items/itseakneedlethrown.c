@@ -4,9 +4,6 @@
 
 #include "db/db.h"
 #include "ft/ftlib.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -14,20 +11,17 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 ItemStateTable it_803F6F50[] = {

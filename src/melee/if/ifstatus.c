@@ -4,7 +4,6 @@
 #include "placeholder.h"
 
 #include "ft/types.h"
-
 #include "gm/gm_unsplit.h"
 #include "gm/types.h"
 #include "if/if_2F72.h"
@@ -14,10 +13,8 @@
 #include "lb/lbarchive.h"
 #include "mn/mnmain.h"
 #include "mn/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 #include "sc/types.h"
 
 #include <dolphin/gx/GXStruct.h>

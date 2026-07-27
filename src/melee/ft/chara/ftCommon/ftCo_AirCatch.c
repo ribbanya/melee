@@ -12,34 +12,23 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
 #include "ftLink/types.h"
-
 #include "ftSamus/types.h"
-
-#include "ftSamus/types.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/items/itlinkhookshot.h"
 #include "it/items/itsamusgrapple.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 bool ftCo_800C3A14(Fighter_GObj* gobj)
 {

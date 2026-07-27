@@ -11,16 +11,9 @@
 #include <platform.h>
 
 #include "gm/gm_16AE.h"
-
 #include "gr/types.h"
-
-#include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
@@ -31,6 +24,7 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 /** @var ::grBattle_YakumonoParam::bg_curr_color_overlay
  * @todo ::ColorOverlay_x8_t, from ::grMaterial_801C9604

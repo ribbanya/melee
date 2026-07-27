@@ -5,9 +5,6 @@
 #include <placeholder.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
@@ -16,9 +13,6 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AirCatch.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_AttackAir.h"
@@ -34,10 +28,9 @@
 #include "ftPeach/ftPe_Float.h"
 #include "ftYoshi/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 /* 0CC3C4 */ static void ftYs_JumpAerial_Anim_Cb(Fighter_GObj* gobj);
 /* 0CC654 */ static void ftNs_JumpAerial_Phys_Cb(Fighter_GObj* gobj);

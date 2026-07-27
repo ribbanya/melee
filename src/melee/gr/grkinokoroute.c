@@ -18,10 +18,8 @@
 #include "gr/inlines.h"
 #include "gr/stage.h"
 #include "gr/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"

@@ -2,10 +2,9 @@
 
 #include <platform.h>
 
-#include <baselib/types.h>
-
 #include <dolphin/os.h>
 #include <dolphin/pad.h>
+#include <baselib/types.h>
 
 /// @todo Circular dependency
 #include "controller.h" // IWYU pragma: keep

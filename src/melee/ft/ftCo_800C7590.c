@@ -14,10 +14,8 @@
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itleadead.h"
+#include "it/types.h"
 #include "pl/player.h"
 
 #include <common_structs.h>

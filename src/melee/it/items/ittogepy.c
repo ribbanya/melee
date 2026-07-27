@@ -12,11 +12,10 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F8058[] = {
     { 0, itTogepy_UnkMotion0_Anim, itTogepy_UnkMotion0_Phys,

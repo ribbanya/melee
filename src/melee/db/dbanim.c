@@ -3,18 +3,16 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
 #include "ftCommon/ftCo_KinokoGiantEnd.h"
 #include "ftCommon/ftCo_KinokoGiantStart.h"
 #include "ftCommon/ftCo_KinokoSmallEnd.h"
 #include "ftCommon/ftCo_KinokoSmallStart.h"
-
 #include "if/types.h"
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 #include <melee/ft/ftlib.h>
 #include <melee/ft/inlines.h>
 #include <melee/if/textdraw.h>

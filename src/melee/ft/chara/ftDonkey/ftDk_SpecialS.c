@@ -1,10 +1,9 @@
 #include "ftDonkey/ftDk_SpecialS.h"
 
 #include "ftDk_SpecialLw.h"
+#include "types.h"
 
 #include <platform.h>
-
-#include "types.h"
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"

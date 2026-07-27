@@ -8,9 +8,7 @@
 #include "if/ifall.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbarchive.h"
-
 #include "mn/types.h"
-
 #include "sc/types.h"
 
 #include <baselib/aobj.h>

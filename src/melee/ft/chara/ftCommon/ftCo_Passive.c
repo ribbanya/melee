@@ -14,9 +14,8 @@
 #include "ft/ftcolanim.h"
 #include "ft/ftcommon.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
+#include <baselib/types.h>
 
 void ftCo_800987D0(Fighter_GObj* gobj)
 {

@@ -23,11 +23,9 @@
 #include "it/it_2725.h"
 #include "it/item.h"
 #include "it/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mpisland.h"
 #include "mp/mplib.h"

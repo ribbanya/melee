@@ -10,11 +10,10 @@
 #include "it/itCommonItems.h"
 #include "it/item.h"
 
-#include <baselib/types.h>
-
 #include <stdbool.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 /* 2D3B8C */ static void it_802D3B8C(Item_GObj* gobj);
 /* 2D3BE0 */ static void it_802D3BE0(Item_GObj* gobj);

@@ -1,8 +1,8 @@
 #include "ftPr_SpecialS.h"
 
-#include <placeholder.h>
-
 #include "types.h"
+
+#include <placeholder.h>
 
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
@@ -11,11 +11,9 @@
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
+#include "ftCommon/types.h"
 #include "ftPurin/types.h"
 
 #include <common_structs.h>

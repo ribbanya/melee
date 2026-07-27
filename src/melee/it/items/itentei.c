@@ -16,11 +16,10 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7DC8[] = {
     { 0, itEntei_UnkMotion0_Anim, itEntei_UnkMotion0_Phys,

@@ -4,9 +4,6 @@
 #include <platform.h>
 
 #include "db/db.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -14,13 +11,12 @@
 #include "it/items/itnesspkthunderball.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F6C08[] = {
     { 0, itNesspkthundertrail_UnkMotion0_Anim,

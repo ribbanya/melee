@@ -1,14 +1,16 @@
 #include "grzebes.h"
 
+#include "types.h"
+
 #include <placeholder.h>
 #include <platform.h>
 
 #include "cm/camera.h"
-
-#include "types.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+
+#include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/grdisplay.h"
@@ -17,13 +19,10 @@
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
-#include "gr/types.h"
-
 #include "it/types.h"
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 #include "mp/mplib.h"
 
 #include <math.h>

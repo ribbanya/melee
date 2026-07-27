@@ -12,11 +12,10 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F7FF8[] = {
     { 0, itPippi_UnkMotion0_Anim, itPippi_UnkMotion0_Phys,

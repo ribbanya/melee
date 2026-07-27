@@ -11,9 +11,6 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCaptain/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_CaptureDamageKoopa.h"
 #include "ftCommon/ftCo_CaptureKoopa.h"
 #include "ftCommon/ftCo_Fall.h"
@@ -21,17 +18,14 @@
 #include "ftCommon/ftCo_Thrown.h"
 #include "ftCommon/ftCo_ThrownKoopa.h"
 #include "ftCommon/inlines.h"
-
-#include "ftKoopa/types.h"
-
+#include "ftCommon/types.h"
 #include "ftKoopa/ftKp_Init.h"
 #include "ftKoopa/types.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 static s32 ftKp_SpecialS_set_dir(Fighter_GObj* gobj)
 {

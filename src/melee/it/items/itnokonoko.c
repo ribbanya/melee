@@ -19,11 +19,10 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 ItemStateTable it_803F85F0[] = {
     { 0, NULL, NULL, NULL },

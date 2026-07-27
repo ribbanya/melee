@@ -22,7 +22,6 @@
 #include "lb/lbvector.h"
 #include "mn/types.h"
 #include "pl/player.h"
-
 #include "sc/types.h"
 
 #include <dolphin/mtx.h>

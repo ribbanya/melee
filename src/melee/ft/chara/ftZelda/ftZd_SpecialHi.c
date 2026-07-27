@@ -18,12 +18,10 @@
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/inlines.h"
 #include "ftZelda/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <math.h>

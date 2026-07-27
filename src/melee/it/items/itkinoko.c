@@ -10,7 +10,6 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 #include "it/types.h"
-
 #include "lb/types.h"
 
 #include <common_structs.h>

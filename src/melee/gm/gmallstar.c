@@ -9,13 +9,10 @@
 #include <platform.h>
 
 #include "baselib/random.h"
-
 #include "ft/types.h"
-
 #include "gm/types.h"
 #include "gr/ground.h"
 #include "lb/types.h"
-
 #include "mn/types.h"
 
 #include <melee/gm/gmmain_lib.h>

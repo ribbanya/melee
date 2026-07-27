@@ -24,12 +24,11 @@
 #include "mp/mplib.h"
 #include "sysdolphin/baselib/random.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 #include <MSL/math.h>
 
 ItemStateTable it_803F8EB0[] = {

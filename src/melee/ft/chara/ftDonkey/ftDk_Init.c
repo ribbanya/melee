@@ -29,10 +29,8 @@
 #include "ftCommon/ftCo_CargoWait.h"
 #include "ftCommon/ftCo_CargoWalk.h"
 #include "ftDonkey/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbanim.h"
+#include "lb/types.h"
 #include "mp/mplib.h"
 
 #include <common_structs.h>

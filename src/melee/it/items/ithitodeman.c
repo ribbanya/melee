@@ -16,14 +16,13 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
+#include <baselib/types.h>
 #include <MetroTRK/intrinsics.h>
 
 ItemStateTable it_803F8128[] = {

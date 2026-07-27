@@ -9,9 +9,8 @@
 #include <platform.h>
 
 #include "ft/types.h"
-#include "gm/types.h"
-
 #include "gm/gm_1B14.h"
+#include "gm/types.h"
 #include "lb/types.h"
 
 #include <string.h>

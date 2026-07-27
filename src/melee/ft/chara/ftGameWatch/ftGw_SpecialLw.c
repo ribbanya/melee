@@ -18,10 +18,8 @@
 #include "ftCommon/inlines.h"
 #include "ftGameWatch/types.h"
 #include "it/items/itgamewatchpanic.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

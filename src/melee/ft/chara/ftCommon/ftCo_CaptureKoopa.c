@@ -17,9 +17,8 @@
 #include "ftCommon/types.h"
 #include "ftKoopa/ftKp_Init.h"
 
-#include <baselib/types.h>
-
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 void ftCo_800BC438(Fighter_GObj* gobj)
 {

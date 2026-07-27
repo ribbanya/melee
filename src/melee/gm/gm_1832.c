@@ -3,18 +3,16 @@
 #include "gm_unsplit.h"
 
 #include "dolphin/pad.h"
-
 #include "ft/types.h"
-
 #include "gm/gm_1B14.h"
 
-#include "gr/types.h"
-#include "it/types.h"
+#include "gr/forward.h"
 
 #include "it/itspawn.h"
+#include "it/types.h"
 #include "mn/inlines.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include "pl/pl_040D.h"
 

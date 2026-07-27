@@ -18,9 +18,6 @@
 #include "ft/ft_0881.h"
 #include "ft/ft_0892.h"
 #include "ft/ftanim.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AppealS.h"
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Dash.h"
@@ -29,12 +26,12 @@
 #include "ftCommon/ftCo_Squat.h"
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/ftCo_Walk.h"
+#include "ftCommon/types.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 
 /* 09A410 */ static void ftCo_8009A410(Fighter_GObj* gobj);
 /* 09A6B8 */ static void ftCo_8009A6B8(Fighter_GObj* gobj);

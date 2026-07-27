@@ -13,10 +13,8 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
-#include "it/types.h"
-
 #include "it/items/itgamewatchchef.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

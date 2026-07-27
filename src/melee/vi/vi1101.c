@@ -8,14 +8,12 @@
 #include "dolphin/gx/GXStruct.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdemo.h"
+#include "ft/types.h"
 #include "gm/gm_1601.h"
 #include "gm/gm_1A45.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/grlib.h"
 #include "gr/ground.h"
@@ -27,12 +25,13 @@
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
 
-#include "pl/types.h"
+#include "pl/forward.h"
 
 #include "pl/player.h"
 #include "sc/types.h"
 
 #include <dolphin/mtx.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>

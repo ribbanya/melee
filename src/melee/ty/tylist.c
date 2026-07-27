@@ -9,9 +9,7 @@
 #include "lb/lbspdisplay.h"
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
-
 #include "sc/types.h"
-
 #include "ty/types.h"
 
 #include <common_structs.h>

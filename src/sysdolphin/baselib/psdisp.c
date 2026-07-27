@@ -4,14 +4,12 @@
 
 #include "baselib/cobj.h"
 #include "baselib/fog.h"
-
-#include "baselib/types.h"
-
 #include "baselib/lobj.h"
 #include "baselib/mtx.h"
 #include "baselib/psdisptev.h"
 #include "baselib/psstructs.h"
 #include "baselib/state.h"
+#include "baselib/types.h"
 #include "baselib/util.h"
 
 #include <math.h>

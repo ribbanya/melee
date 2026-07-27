@@ -8,9 +8,6 @@
 #include "ef/efasync.h"
 #include "ft/chara/ftCommon/ftCo_Bury.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
@@ -23,18 +20,15 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirbyspecialdonkey.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 static void fn_8010AA64(Fighter_GObj* gobj)
 {

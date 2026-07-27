@@ -2,9 +2,8 @@
 
 #include <placeholder.h>
 
-#include <baselib/types.h>
-
 #include <math.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

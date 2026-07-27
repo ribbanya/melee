@@ -5,9 +5,6 @@
 #include "baselib/jobj.h"
 #include "baselib/random.h"
 #include "ft/chara/ftLink/ftLk_AttackAir.h"
-
-#include "it/types.h"
-
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"

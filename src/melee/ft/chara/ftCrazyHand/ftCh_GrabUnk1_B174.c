@@ -6,7 +6,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "cm/camera.h"
 #include "ft/fighter.h"
 #include "ft/ft_0881.h"
@@ -17,10 +16,8 @@
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "lb/lb_00B0.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 #include <dolphin/mtx.h>
 

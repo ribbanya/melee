@@ -7,19 +7,14 @@
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
+#include "lb/types.h"
 #include "mp/mplib.h"
-
-#include <baselib/types.h>
+#include "mp/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/types.h>
 
 typedef struct grTMewtwo_UnkStruct {
     DynamicsDesc* x0;

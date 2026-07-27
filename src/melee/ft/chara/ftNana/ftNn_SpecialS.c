@@ -12,9 +12,7 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftPopo/ftPp_SpecialS.h"
 #include "ftPopo/types.h"
 #include "pl/player.h"

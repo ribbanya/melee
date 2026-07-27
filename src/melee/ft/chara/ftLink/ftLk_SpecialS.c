@@ -25,12 +25,11 @@
 #include "it/items/itlinkboomerang.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

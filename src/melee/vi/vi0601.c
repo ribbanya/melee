@@ -7,7 +7,7 @@
 #include "ef/eflib.h"
 #include "gm/gm_unsplit.h"
 
-#include "gr/types.h"
+#include "gr/forward.h"
 
 #include "gr/grcorneria.h"
 #include "gr/ground.h"
@@ -19,12 +19,13 @@
 #include "mp/mpcoll.h"
 #include "pl/player.h"
 
-#include "sc/types.h"
+#include "sc/forward.h"
 
 #include "sc/types.h"
 #include "vi/vi.h"
 
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/displayfunc.h>
 #include <baselib/gobj.h>

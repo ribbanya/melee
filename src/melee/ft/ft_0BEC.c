@@ -3,23 +3,16 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftFox/types.h"
 #include "ftMario/ftMr_SpecialN.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itdrmariopill.h"
 #include "it/items/itfoxblaster.h"
 #include "it/items/itnessbat.h"
+#include "it/types.h"
 
 static inline void setupInitialState(Fighter* fp)
 {

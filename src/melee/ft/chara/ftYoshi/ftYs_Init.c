@@ -5,30 +5,22 @@
 
 #include "ft/dobjlist.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-
 #include "ftCommon/types.h"
-
 #include "ftYoshi/ftYs_SpecialHi.h"
 #include "ftYoshi/ftYs_SpecialS.h"
 #include "ftYoshi/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
-
-#include <baselib/types.h>
+#include "it/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>
 #include <baselib/debug.h>
 #include <baselib/mobj.h>
+#include <baselib/types.h>
 
 /// @todo Belongs in #ftYs_Guard.c?
 /* 3B75C0 */ Vec3 const ftYs_Unk1_803B75C0 = { 0 };

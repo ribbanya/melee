@@ -3,7 +3,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/chara/ftCommon/ftCo_Throw.h"
 #include "ft/chara/ftCommon/ftCo_Thrown.h"
 #include "ft/fighter.h"
@@ -15,10 +14,8 @@
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftCrazyHand/ftCh_ThrownCrazyHand.h"
 #include "ftMasterHand/types.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 void ftCh_Init_801594D4(HSD_GObj* gobj)
 {

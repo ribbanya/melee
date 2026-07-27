@@ -5,7 +5,6 @@
 #include <platform.h>
 
 #include "baselib/types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -17,10 +16,8 @@
 #include "ftMasterHand/types.h"
 #include "it/items/itmasterhandlaser.h"
 #include "lb/lbaudio_ax.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 #include <baselib/gobj.h>
 

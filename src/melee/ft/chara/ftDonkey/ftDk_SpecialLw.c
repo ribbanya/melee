@@ -15,7 +15,7 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 
-#include "ftDonkey/types.h"
+#include "ftDonkey/forward.h"
 
 #include "ftDonkey/types.h"
 

@@ -9,9 +9,6 @@
 #include "ft/chara/ftCommon/ftCo_Escape.h"
 #include "ft/chara/ftCommon/ftCo_FallSpecial.h"
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0892.h"
@@ -20,20 +17,11 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
-
+#include "ftCommon/types.h"
 #include "ftDonkey/types.h"
-
-#include "ftDonkey/types.h"
-
 #include "ftKirby/types.h"
-
-#include "ftKirby/types.h"
-
 #include "lb/types.h"
 
 #include <common_structs.h>

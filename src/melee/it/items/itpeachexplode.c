@@ -9,9 +9,7 @@
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
 #include "it/item.h"
-
 #include "it/items/types.h"
-
 #include "it/types.h"
 
 ItemStateTable it_803F7488[] = {

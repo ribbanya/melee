@@ -5,13 +5,9 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_PassiveWall.h"
-
+#include "ftCommon/types.h"
 #include "lb/types.h"
-
 #include "mp/mplib.h"
 
 #include <common_structs.h>

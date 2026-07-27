@@ -5,9 +5,8 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "baselib/types.h"
-
 #include "baselib/random.h"
+#include "baselib/types.h"
 #include "ft/fighter.h"
 #include "ft/ft_084E.h"
 #include "ft/ft_0877.h"
@@ -17,10 +16,8 @@
 #include "ftCrazyHand/ftCh_TagCancel.h"
 #include "ftMasterHand/types.h"
 #include "lb/lbvector.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 
 #include <dolphin/mtx.h>
 #include <MetroTRK/intrinsics.h>

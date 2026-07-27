@@ -9,15 +9,13 @@
 #include <placeholder.h>
 
 #include "db/db.h"
-
-#include "gm/types.h"
-
 #include "gm/gm_1601.h"
 #include "gm/gm_16AE.h"
 #include "gm/gm_16F1.h"
 #include "gm/gm_1A3F.h"
 #include "gm/gm_1A45.h"
 #include "gm/gmmain_lib.h"
+#include "gm/types.h"
 #include "if/textdraw.h"
 #include "lb/lb_00B0.h"
 #include "lb/lb_00CE.h"

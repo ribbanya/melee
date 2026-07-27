@@ -6,27 +6,21 @@
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdemo.h"
+#include "ft/types.h"
 #include "gm/gm_unsplit.h"
-
-#include "gr/types.h"
-
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
+#include "gr/types.h"
 #include "it/item.h"
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "lb/lbshadow.h"
 #include "lb/lbspdisplay.h"
 #include "mp/mpcoll.h"
-
-#include "pl/types.h"
-
 #include "pl/player.h"
+#include "pl/types.h"
 #include "sc/types.h"
 #include "vi/vi.h"
 

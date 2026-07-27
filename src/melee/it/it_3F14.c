@@ -1,8 +1,9 @@
 #include "it_3F14.h"
 
-#include "it/types.h"
+#include "it/forward.h"
 
 #include "it/itdraw.h"
+#include "it/types.h"
 #include "items/itbat.h"
 #include "items/itbombhei.h"
 #include "items/itbox.h"

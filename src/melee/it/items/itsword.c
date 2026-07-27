@@ -14,9 +14,7 @@
 #include "it/it_2725.h"
 #include "it/itdraw.h"
 #include "it/item.h"
-
 #include "it/items/types.h"
-
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 

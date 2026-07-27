@@ -3,13 +3,11 @@
 #include <placeholder.h>
 
 #include "gm/types.h"
-
 #include "lb/lbarchive.h"
 #include "lb/lbaudio_ax.h"
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "mn/types.h"
-
 #include "sc/types.h"
 
 #include <dolphin/os.h>

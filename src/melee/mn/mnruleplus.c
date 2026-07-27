@@ -15,13 +15,11 @@
 #include "gm/gmmain_lib.h"
 #include "gm/types.h"
 #include "lb/lbspdisplay.h"
-
-#include "mn/types.h"
-
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "mn/mnmainrule.h"
 #include "mn/mnstagesw.h"
+#include "mn/types.h"
 #include "sc/types.h"
 
 #include <baselib/types.h>

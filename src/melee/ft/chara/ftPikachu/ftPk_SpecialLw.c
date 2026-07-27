@@ -1,15 +1,13 @@
 #include "ftPk_SpecialLw.h"
 
 #include "math.h"
+#include "types.h"
 
 #include <platform.h>
 
 #include "cm/camera.h"
 #include "ef/efasync.h"
 #include "ef/efsync.h"
-
-#include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -20,10 +18,8 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftPikachu/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itpikachuthunder.h"
+#include "it/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

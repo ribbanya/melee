@@ -17,13 +17,13 @@
 #include "ft/ftcommon.h"
 #include "ft/ftdevice.h"
 
-#include "ftCommon/types.h"
-#include "it/types.h"
+#include "ftCommon/forward.h"
 
 #include "it/it_26B1.h"
 #include "it/it_279C.h"
 #include "it/item.h"
 #include "it/items/ithammer.h"
+#include "it/types.h"
 #include "pl/plbonuslib.h"
 
 #include <common_structs.h>

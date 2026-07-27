@@ -1,12 +1,10 @@
 #include "ftMt_SpecialN.h"
 
 #include "math.h"
+#include "types.h"
 
 #include "ef/eflib.h"
 #include "ef/efsync.h"
-
-#include "types.h"
-
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ft_084E.h"
@@ -21,12 +19,12 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
+
+#include "ftMewtwo/forward.h"
+
 #include "ftMewtwo/ftMt_Init.h"
-#include "ftMewtwo/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itmewtwoshadowball.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

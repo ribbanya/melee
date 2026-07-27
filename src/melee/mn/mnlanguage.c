@@ -1,17 +1,14 @@
 #include <platform.h>
 
 #include "baselib/gobjuserdata.h"
-
 #include "gm/types.h"
-
 #include "lb/lbaudio_ax.h"
-
 #include "mn/types.h"
-#include <baselib/types.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/object.h>
+#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>

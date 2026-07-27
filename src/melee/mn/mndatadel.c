@@ -23,20 +23,17 @@
 #include "lb/lbcardgame.h"
 #include "lb/lblanguage.h"
 #include "lb/lbspdisplay.h"
-
-#include "mn/types.h"
-
 #include "mn/inlines.h"
 #include "mn/mnmain.h"
 #include "mn/mnmainrule.h"
+#include "mn/types.h"
 #include "sc/types.h"
 #include "sysdolphin/baselib/debug.h"
 #include "ty/toy.h"
 
-#include <baselib/types.h>
-
 #include <baselib/object.h>
 #include <baselib/sislib.h>
+#include <baselib/types.h>
 
 static void sdata2_order(void)
 {

@@ -1,22 +1,17 @@
 #include <platform.h>
 
-#include "gr/types.h"
-
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
 #include "gr/inlines.h"
 #include "gr/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbspdisplay.h"
-
-#include <baselib/types.h>
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
+#include <baselib/types.h>
 
 /* 22050C */ static void grtDrMario_8022050C(bool);
 /* 220510 */ static void grtDrMario_80220510(void);

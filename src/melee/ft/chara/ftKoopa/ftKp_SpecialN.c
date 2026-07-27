@@ -9,17 +9,13 @@
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
-
 #include "ftKoopa/types.h"
-
-#include "ftKoopa/types.h"
-
 #include "it/types.h"
 #include "lb/types.h"
-#include <baselib/types.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/types.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>

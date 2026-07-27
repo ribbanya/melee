@@ -5,10 +5,8 @@
 #include <placeholder.h>
 
 #include "ft/chara/ftCLink/ftCl_Init.h"
-
-#include "ft/types.h"
-
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"

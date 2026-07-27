@@ -18,11 +18,9 @@
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/inlines.h"
 #include "ftFox/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lbrefract.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

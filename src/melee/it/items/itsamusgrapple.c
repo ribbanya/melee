@@ -10,9 +10,6 @@
 #include "ft/chara/ftCommon/ftCo_AirCatch.h"
 #include "ft/chara/ftCommon/ftCo_CliffJump.h"
 #include "ft/chara/ftCommon/ftCo_DamageFall.h"
-
-#include "ft/types.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ftcliffcommon.h"
 #include "ft/ftcoll.h"

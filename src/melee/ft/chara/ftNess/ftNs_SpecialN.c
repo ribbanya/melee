@@ -15,10 +15,8 @@
 #include "ftCommon/inlines.h"
 #include "ftNess/ftNs_Init.h"
 #include "ftNess/types.h"
-
-#include "it/types.h"
-
 #include "it/items/itnesspkflash.h"
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>

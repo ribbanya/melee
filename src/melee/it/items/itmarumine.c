@@ -16,12 +16,11 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
-#include <baselib/types.h>
-
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
+#include <baselib/types.h>
 
 static Vec3 const it_803B86C8 = { 0 };
 

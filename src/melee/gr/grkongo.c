@@ -7,11 +7,9 @@
 #include <placeholder.h>
 
 #include "ef/efsync.h"
-
-#include "ft/types.h"
-
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
+#include "ft/types.h"
 #include "ftCommon/ftCo_BarrelWait.h"
 #include "gm/gm_unsplit.h"
 #include "gr/granime.h"
@@ -21,22 +19,16 @@
 #include "gr/inlines.h"
 #include "gr/stage.h"
 #include "gr/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itbox.h"
 #include "it/items/itklap.h"
 #include "it/itspawn.h"
-
-#include "lb/types.h"
-
+#include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-
-#include "mp/types.h"
-
+#include "lb/types.h"
 #include "mp/mplib.h"
+#include "mp/types.h"
 #include "MSL/math.h"
 
 #include <math_ppc.h>

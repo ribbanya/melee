@@ -3,9 +3,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/types.h"
-
 #include "ft/ftanim.h"
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
@@ -15,10 +12,8 @@
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <dolphin/mtx.h>
 #include <melee/ft/ftcamera.h>

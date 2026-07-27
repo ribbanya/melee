@@ -13,8 +13,6 @@
 #include "mn/types.h"
 #include "sc/types.h"
 
-#include <baselib/types.h>
-
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
@@ -27,6 +25,7 @@
 #include <baselib/memory.h>
 #include <baselib/object.h>
 #include <baselib/sislib.h>
+#include <baselib/types.h>
 
 /* 3EEED8 */ AnimLoopSettings mnSound_803EEED8[] = {
     { 0.0f, 199.0f, 0.0f },  { 0.0f, 29.0f, 0.0f }, { 30.0f, 59.0f, 30.0f },

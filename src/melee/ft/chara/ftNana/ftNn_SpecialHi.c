@@ -15,13 +15,11 @@
 #include "ft/types.h"
 #include "ftCommon/inlines.h"
 
-#include "ftPopo/types.h"
+#include "ftPopo/forward.h"
 
 #include "ftPopo/types.h"
-
-#include "lb/types.h"
-
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 #include "pl/player.h"
 
 #include <common_structs.h>

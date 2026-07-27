@@ -5,8 +5,6 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "it/types.h"
-
 #include <melee/ft/chara/ftGameWatch/ftGw_Attack11.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>

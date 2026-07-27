@@ -6,9 +6,6 @@
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftPopo/types.h"
-
 #include "ftPopo/ftPp_Init.h"
 #include "ftPopo/ftPp_SpecialHi.h"
 #include "ftPopo/ftPp_SpecialLw.h"

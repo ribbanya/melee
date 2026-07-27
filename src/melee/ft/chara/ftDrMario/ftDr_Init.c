@@ -3,27 +3,21 @@
 #include "ftDr_AppealS.h"
 #include "types.h"
 
-#include "types.h"
-
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/inlines.h"
 #include "ft/types.h"
-
-#include "ftCommon/types.h"
-
 #include "ftCommon/ftCo_AppealS.h"
+#include "ftCommon/types.h"
 #include "ftMario/ftMr_Init.h"
 #include "ftMario/ftMr_SpecialHi.h"
 #include "ftMario/ftMr_SpecialLw.h"
 #include "ftMario/ftMr_SpecialN.h"
 #include "ftMario/ftMr_SpecialS.h"
 #include "ftMario/types.h"
-
-#include "it/types.h"
-
 #include "it/it_26B1.h"
 #include "it/items/itdrmariopill.h"
+#include "it/types.h"
 
 #include <baselib/gobj.h>
 
