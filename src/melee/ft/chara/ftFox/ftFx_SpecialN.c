@@ -26,6 +26,7 @@
 #include "it/items/itfoxblaster.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbrefract.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/os.h>

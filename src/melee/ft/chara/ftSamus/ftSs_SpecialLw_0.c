@@ -28,6 +28,7 @@
 #include "ftCommon/ftCo_SquatWait.h"
 #include "ftSamus/types.h"
 #include "lb/lbcollision.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <trigf.h>

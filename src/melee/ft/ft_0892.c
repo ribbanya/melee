@@ -5,6 +5,7 @@
 #include "ft/types.h"
 #include "ftCommon/types.h"
 #include "it/it_26B1.h"
+#include "lb/types.h"
 #include "pl/plattack.h"
 #include "pl/pltrick.h"
 

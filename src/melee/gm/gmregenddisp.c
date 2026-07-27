@@ -15,6 +15,7 @@
 #include "ty/tydisplay.h"
 #include "ty/types.h"
 
+#include <baselib/aobj.h>
 #include <baselib/archive.h>
 #include <baselib/cobj.h>
 #include <baselib/debug.h>

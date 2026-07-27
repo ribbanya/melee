@@ -15,6 +15,7 @@
 #include "ftCommon/forward.h"
 
 #include "ftCommon/ftCo_Throw.h"
+#include "lb/types.h"
 #include "pl/player.h"
 
 #include <common_structs.h>

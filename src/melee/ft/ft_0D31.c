@@ -11,6 +11,7 @@
 #include "ftCommon/ftCo_Throw.h"
 #include "ftCommon/types.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 
 #include <baselib/forward.h>
 

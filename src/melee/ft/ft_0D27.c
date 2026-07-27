@@ -16,6 +16,7 @@
 #include "ftCommon/types.h"
 #include "it/it_26B1.h"
 #include "it/types.h"
+#include "lb/types.h"
 
 #include <baselib/aobj.h>
 #include <baselib/jobj.h>

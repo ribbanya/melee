@@ -15,6 +15,7 @@
 #include "ftCommon/types.h"
 #include "ftPopo/ftPp_SpecialS.h"
 #include "ftPopo/types.h"
+#include "lb/types.h"
 #include "pl/player.h"
 
 #include <common_structs.h>

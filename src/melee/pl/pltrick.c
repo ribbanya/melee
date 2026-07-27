@@ -7,6 +7,7 @@
 #include "ft/inlines.h"
 #include "gm/gm_16AE.h"
 #include "if/ifmagnify.h"
+#include "lb/types.h"
 
 #include "pl/forward.h"
 

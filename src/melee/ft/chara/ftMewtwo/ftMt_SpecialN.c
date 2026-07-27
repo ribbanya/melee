@@ -26,6 +26,7 @@
 #include "it/items/itmewtwoshadowball.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <trigf.h>

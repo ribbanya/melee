@@ -6,7 +6,6 @@
 
 #include "ef/efasync.h"
 #include "ef/eflib.h"
-#include "ft/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/it_2725.h"
@@ -18,6 +17,7 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 #include "lb/lbspdisplay.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

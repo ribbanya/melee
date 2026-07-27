@@ -24,6 +24,7 @@
 #include "ftLink/types.h"
 #include "it/items/itlinkboomerang.h"
 #include "lb/lb_00B0.h"
+#include "lb/types.h"
 
 #include <common_structs.h>
 #include <math.h>

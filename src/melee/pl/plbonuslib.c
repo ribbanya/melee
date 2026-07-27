@@ -9,6 +9,7 @@
 
 #include "ft/types.h"
 #include "gm/gm_16AE.h"
+#include "lb/types.h"
 
 #include "pl/forward.h"
 

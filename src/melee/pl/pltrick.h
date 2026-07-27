@@ -10,6 +10,7 @@
 
 struct plActionStats;
 struct plAttackStats;
+union Struct2070;
 
 /* 037B2C */ int pl_80037B2C(struct plActionStats* arg0, int arg1, int arg2);
 /* 037BC0 */ void pl_80037BC0(struct plAttackStats* stats,

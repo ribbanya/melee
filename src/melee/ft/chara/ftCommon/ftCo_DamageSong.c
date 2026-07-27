@@ -16,6 +16,7 @@
 #include "ftCommon/forward.h"
 
 #include "ftCommon/ftCo_Throw.h"
+#include "lb/types.h"
 #include "pl/player.h"
 
 /* 0C3390 */ static void ftCo_800C3390(Fighter_GObj* gobj);

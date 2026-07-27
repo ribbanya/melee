@@ -146,6 +146,7 @@
 #include "items/itlinkboomerang.h"
 #include "items/ityoshiegglay.h"
 #include "lb/lbvector.h"
+#include "lb/types.h"
 #include "pl/plattack.h"
 #include "pl/plbonuslib.h"
 #include "pl/plstale.h"
