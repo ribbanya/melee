@@ -3,7 +3,6 @@
 
 #include <platform.h>
 
-#include "baselib/forward.h" // IWYU pragma: export
 #include <baselib/forward.h>
 
 #define HSD_GOBJ_GXLINK_NONE ((u8) 0xFF)

@@ -3,15 +3,12 @@
 
 #include <platform.h>
 
-#include "baselib/forward.h" // IWYU pragma: export
-
-#include "baselib/object.h"
-
 #include <baselib/forward.h>
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <baselib/class.h>
+#include <baselib/object.h>
 
 #define PROJ_PERSPECTIVE 1
 #define PROJ_FRUSTUM 2
