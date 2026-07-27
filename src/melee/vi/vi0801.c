@@ -23,6 +23,7 @@
 #include "sc/types.h"
 
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/displayfunc.h>
 #include <baselib/fog.h>

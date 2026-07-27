@@ -25,6 +25,7 @@
 #include "vi/vi.h"
 
 #include <dolphin/gx/GXStruct.h>
+#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/displayfunc.h>
 #include <baselib/gobj.h>
