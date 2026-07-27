@@ -11,8 +11,7 @@
 #include <placeholder.h>
 
 #include "dolphin/gx/GXStruct.h"
-
-#include "lb/forward.h"
+#include "lb/types.h"
 
 #include <dolphin/gx/GXEnum.h>
 #include <MetroTRK/intrinsics.h>

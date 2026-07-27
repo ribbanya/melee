@@ -4,9 +4,6 @@
 #include <platform.h>
 
 #include "ft/fighter.h"
-
-#include "ft/forward.h"
-
 #include "ft/ft_081B.h"
 #include "ft/ft_0877.h"
 #include "ft/ft_0881.h"
@@ -28,6 +25,7 @@
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
 #include <baselib/random.h>
 
 /* 07121C */ static void ftAction_8007121C(Fighter_GObj* gobj,
