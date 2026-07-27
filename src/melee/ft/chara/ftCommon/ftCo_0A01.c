@@ -14,11 +14,20 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
+
+#include "ftDonkey/forward.h"
+
 #include "ftDonkey/types.h"
 #include "ftKirby/types.h"
-#include "ftKoopa/types.h"
+
+#include "ftKoopa/forward.h"
+#include "ftMewtwo/forward.h"
+
 #include "ftMewtwo/types.h"
-#include "ftPopo/types.h"
+
+#include "ftPopo/forward.h"
+#include "ftSamus/forward.h"
+
 #include "ftSamus/types.h"
 #include "gm/gm_unsplit.h"
 #include "gm/types.h"
@@ -32,7 +41,6 @@
 #include "gr/grrcruise.h"
 #include "gr/grvenom.h"
 #include "gr/stage.h"
-#include "gr/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"
@@ -44,7 +52,6 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 #include "pl/player.h"
-#include "pl/types.h"
 
 #include <math.h>
 #include <math_ppc.h>
