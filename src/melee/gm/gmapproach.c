@@ -7,7 +7,6 @@
 
 #include <common_structs.h>
 #include <baselib/aobj.h>
-#include <baselib/mobj.h>
 #include <baselib/tobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
