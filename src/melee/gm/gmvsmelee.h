@@ -3,9 +3,9 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <melee/gm/forward.h>
 
 #include "mn/forward.h"
-#include <melee/gm/forward.h>
 
 struct VsModeData;
 

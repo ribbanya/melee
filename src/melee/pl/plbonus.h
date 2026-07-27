@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <melee/pl/forward.h>
 
 /* 0386D8 */ unsigned int pl_800386D8(plActionStats*, ssize_t);

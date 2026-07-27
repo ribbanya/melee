@@ -4,7 +4,6 @@
 #include <platform.h>
 
 #include "baselib/forward.h"
-
 #include "baselib/gobj.h"
 
 void HSD_GObjPLink_80390228(HSD_GObj*);

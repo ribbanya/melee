@@ -2,13 +2,11 @@
 #define GALE01_284854
 
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/item.h"
 #include "it/items/types.h"
-
-#include <dolphin/mtx.h>
 
 Item_GObj* it_80284854(Vec3*);
 void itBat_Logic11_Spawned(Item_GObj*);

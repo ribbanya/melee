@@ -2,16 +2,13 @@
 #define GALE01_29D968
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/inlines.h"
 #include "it/item.h"
 #include "it/items/types.h"
-
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 29D968 */ void it_8029D968(Item_GObj*);
 /* 29D9A4 */ void it_8029D9A4(HSD_GObj*, enum_t, Item_StateChangeFlags);

@@ -2,12 +2,11 @@
 #define _METROTRK_SUPPORT_H
 
 #include <platform.h>
+#include <MetroTRK/dserror.h>
+#include <MetroTRK/msgcmd.h>
 
 #include "MetroTRK/msgbuf.h"
 #include "MetroTRK/trk.h"
-
-#include <MetroTRK/dserror.h>
-#include <MetroTRK/msgcmd.h>
 
 DSError TRKSuppAccessFile(u32, u8*, size_t*, u8*, bool, bool);
 DSError TRKRequestSend(MessageBuffer* msgBuf, int* bufferId, u32 p1, u32 p2,

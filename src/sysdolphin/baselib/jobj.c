@@ -1,13 +1,5 @@
 #include "jobj.h"
 
-#include "cobj.h"
-#include "displayfunc.h"
-#include "dobj.h"
-#include "id.h"
-#include "mtx.h"
-#include "robj.h"
-#include "spline.h"
-
 #include <__mem.h>
 #include <math.h>
 #include <math_ppc.h>
@@ -18,9 +10,15 @@
 #include <baselib/debug.h>
 #include <baselib/fobj.h>
 #include <baselib/list.h>
-#include <baselib/mobj.h>
 #include <baselib/object.h>
-#include <baselib/pobj.h>
+
+#include "cobj.h"
+#include "displayfunc.h"
+#include "dobj.h"
+#include "id.h"
+#include "mtx.h"
+#include "robj.h"
+#include "spline.h"
 
 void JObjInfoInit(void);
 HSD_JObjInfo hsdJObj = { JObjInfoInit };

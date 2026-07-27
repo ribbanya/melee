@@ -1,10 +1,10 @@
 #ifndef GALE01_09AA0C
 #define GALE01_09AA0C
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
-
-#include <stdbool.h>
 
 /* 09AA0C */ bool ftCo_8009AA0C(Fighter_GObj* gobj);
 /* 09AC68 */ void ftCo_CliffClimb_Anim(Fighter_GObj* gobj);

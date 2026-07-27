@@ -1,14 +1,7 @@
 #include "mndiagram3.h"
 
-#include "mndiagram3.static.h"
 #include <placeholder.h>
 #include <platform.h>
-
-#include "baselib/debug.h"
-#include "gm/types.h"
-
-#include "mn/forward.h"
-
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -27,6 +20,10 @@
 #include <melee/mn/mndiagram.h>
 #include <melee/mn/mnmain.h>
 #include <melee/mn/mnname.h>
+
+#include "mndiagram3.static.h"
+#include "baselib/debug.h"
+#include "mn/forward.h"
 
 void mnDiagram3_PopulateRankings(HSD_GObj* gobj)
 {

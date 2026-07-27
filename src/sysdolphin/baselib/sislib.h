@@ -3,15 +3,12 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "baselib/archive.h"
 #include "baselib/cobj.h"
-
 #include "baselib/forward.h"
-
 #include "dolphin/gx/GXStruct.h"
-
-#include <dolphin/mtx.h>
 
 typedef struct _TextGlyphTexture {
     /*0x00*/ u8 data[512];

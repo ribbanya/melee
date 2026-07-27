@@ -1,9 +1,14 @@
 #include "vi/vi1202.h"
 
-#include "vi.h"
-
 #include <platform.h>
+#include <baselib/cobj.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjobject.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
 
+#include "vi.h"
 #include "ef/efasync.h"
 #include "ef/eflib.h"
 #include "gm/gm_1601.h"
@@ -14,14 +19,6 @@
 #include "lb/lbspdisplay.h"
 #include "sc/types.h"
 #include "ty/toy.h"
-
-#include <baselib/aobj.h>
-#include <baselib/cobj.h>
-#include <baselib/gobj.h>
-#include <baselib/gobjgxlink.h>
-#include <baselib/gobjobject.h>
-#include <baselib/gobjproc.h>
-#include <baselib/jobj.h>
 
 static SceneDesc* un_804D7040;
 static SceneDesc* un_804D7044;

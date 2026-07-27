@@ -2,7 +2,6 @@
 #define GALE01_1C5B90
 
 #include <platform.h>
-
 #include <baselib/forward.h>
 
 /* 1C5DB0 */ void grDisplay_801C5DB0(HSD_GObj*, int);

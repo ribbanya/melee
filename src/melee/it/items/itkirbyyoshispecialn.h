@@ -6,7 +6,6 @@
 #include "ft/chara/ftKirby/forward.h"
 #include "ft/forward.h"
 #include "it/forward.h"
-
 #include "it/items/types.h"
 
 /* 2F2D98 */ void it_802F2D98(Item_GObj* gobj, Fighter_GObj* owner_gobj);

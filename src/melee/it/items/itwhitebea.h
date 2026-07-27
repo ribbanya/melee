@@ -2,12 +2,10 @@
 #define GALE01_2E31F8
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
-#include <stdbool.h>
 
 /* 2E31F8 */ void it_802E31F8(Item_GObj*);
 /* 2E324C */ bool itOldottosea_UnkMotion8_Anim(Item_GObj* gobj);

@@ -3,14 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <dolphin/mtx.h>
 
 #include "it/forward.h"
-
 #include "it/items/types.h"
-
 #include "lb/forward.h"
-
-#include <dolphin/mtx.h>
 
 /* 2E1820 */ void it_802E1820(Item_GObj*);
 /* 2E1874 */ void itKlap_Logic10_Destroyed(Item_GObj*);

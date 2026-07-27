@@ -2,9 +2,9 @@
 #define GALE01_31D6E4
 
 #include <placeholder.h>
+#include <baselib/forward.h>
 
 #include "vi/forward.h"
-#include <baselib/forward.h>
 
 /* 31D6E4 */ void un_8031D6E4(HSD_GObj*);
 /* 31D708 */ void un_8031D708(void);

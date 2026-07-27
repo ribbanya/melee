@@ -2,7 +2,6 @@
 #define MELEE_GM_STAMINA_H
 
 #include <platform.h>
-
 #include <melee/gm/forward.h>
 #include <melee/mn/forward.h>
 

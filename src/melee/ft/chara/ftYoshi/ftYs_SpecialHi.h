@@ -3,11 +3,10 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 12DF18 */ void ftYs_SpecialS_8012DF18(Fighter_GObj* gobj);
 /* 12DF8C */ void ftYs_SpecialS_8012DF8C(Fighter_GObj* gobj, Vec3*);

@@ -2,12 +2,11 @@
 #define GALE01_0FF8EC
 
 #include <platform.h>
+#include <baselib/forward.h>
+#include <dolphin/mtx.h>
 
 #include "ft/forward.h"
 #include "it/forward.h"
-#include <baselib/forward.h>
-
-#include <dolphin/mtx.h>
 
 /* 0FF8EC */ void ftKb_SpecialNDk_800FF8EC(Fighter_GObj* gobj);
 /* 0FFA10 */ void ftKb_SpecialNDk_800FFA10(Fighter_GObj* gobj);

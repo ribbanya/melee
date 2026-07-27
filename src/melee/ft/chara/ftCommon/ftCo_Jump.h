@@ -2,11 +2,10 @@
 #define GALE01_0CAE80
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
-
-#include <stdbool.h>
 
 /* 0CAE80 */ ftCo_JumpInput ftCo_Jump_GetInput(Fighter_GObj* gobj);
 /* 0CAED0 */ bool ftCo_Jump_CheckInput(Fighter_GObj* gobj);

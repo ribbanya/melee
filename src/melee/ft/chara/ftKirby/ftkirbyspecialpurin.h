@@ -2,10 +2,9 @@
 #define GALE01_100DE0
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "ft/forward.h"
-
-#include <stdbool.h>
 
 /* 100F94 */ void ftKb_SpecialNPr_80100F94(Fighter_GObj* gobj);
 /* 1010D4 */ void ftKb_SpecialNPr_801010D4(Fighter_GObj* gobj, bool unk,

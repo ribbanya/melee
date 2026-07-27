@@ -3,14 +3,13 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
-#include "ft/forward.h"
-#include "lb/forward.h"
 #include <baselib/forward.h>
-
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
+
+#include "ft/forward.h"
+#include "lb/forward.h"
 
 struct lbColl_8000A10C_arg0_t;
 struct Fighter_x1614_t;

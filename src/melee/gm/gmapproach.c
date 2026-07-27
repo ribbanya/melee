@@ -1,13 +1,9 @@
 #include "gmapproach.h"
 
-#include "gm_unsplit.h"
-
 #include <placeholder.h>
 #include <platform.h>
-
 #include <common_structs.h>
 #include <baselib/aobj.h>
-#include <baselib/mobj.h>
 #include <baselib/tobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/controller.h>
@@ -21,6 +17,8 @@
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbspdisplay.h>
 #include <melee/sc/types.h>
+
+#include "gm_unsplit.h"
 
 static struct {
     HSD_Archive* x0;

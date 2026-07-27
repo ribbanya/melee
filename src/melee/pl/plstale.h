@@ -2,9 +2,7 @@
 #define _plstale_h_
 
 #include <platform.h>
-
 #include <baselib/forward.h>
-
 #include <baselib/gobj.h>
 
 void plStale_InitAttackInstance(void);

@@ -3,14 +3,11 @@
 
 #include <placeholder.h>
 #include <platform.h>
+#include <melee/gm/forward.h>
+#include <melee/gm/types.h>
 
 #include "ft/forward.h"
-
 #include "mn/types.h"
-
-#include <melee/gm/forward.h>
-
-#include <melee/gm/types.h>
 
 struct gmMainLib_8015EF30_s;
 

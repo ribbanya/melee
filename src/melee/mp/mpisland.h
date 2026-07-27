@@ -2,13 +2,11 @@
 #define GALE01_05A6F8
 
 #include <placeholder.h>
-
-#include "mp/forward.h"
-
-#include "mp/types.h"
-
 #include <stdbool.h>
 #include <dolphin/mtx.h>
+
+#include "mp/forward.h"
+#include "mp/types.h"
 
 /* 05A6F8 */ void mpIsland_8005A6F8(void);
 /* 05A728 */ void mpIsland_8005A728(void);

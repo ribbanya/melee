@@ -2,11 +2,10 @@
 #define GALE01_0C97A8
 
 #include <placeholder.h>
+#include <stdbool.h>
 
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
-
-#include <stdbool.h>
 
 /* 0C97A8 */ bool ftCo_800C97A8(Fighter_GObj* gobj);
 /* 0C97DC */ bool ftCo_Turn_CheckInput(Fighter_GObj* gobj);

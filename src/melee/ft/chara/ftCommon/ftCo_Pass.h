@@ -1,10 +1,10 @@
 #ifndef GALE01_099F1C
 #define GALE01_099F1C
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
-
-#include <stdbool.h>
 
 /* 099F1C */ bool ftCo_80099F1C(Fighter_GObj* gobj);
 /* 099F9C */ bool ftCo_80099F9C(Fighter_GObj* gobj);

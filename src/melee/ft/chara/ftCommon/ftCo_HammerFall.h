@@ -1,10 +1,10 @@
 #ifndef GALE01_0C5CD4
 #define GALE01_0C5CD4
 
+#include <stdbool.h>
+
 #include "ft/forward.h"
 #include "ftCommon/forward.h"
-
-#include <stdbool.h>
 
 /* 0C5CD4 */ bool ftCo_800C5CD4(Fighter_GObj* gobj);
 /* 0C5D34 */ void ftCo_800C5D34(Fighter_GObj* gobj);

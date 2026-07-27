@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
 
 typedef struct CrowdSFX_UnkStruct {

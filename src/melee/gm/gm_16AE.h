@@ -3,7 +3,6 @@
 
 #include <placeholder.h>
 #include <platform.h>
-
 #include <baselib/forward.h>
 #include <melee/gm/forward.h>
 #include <melee/it/forward.h>

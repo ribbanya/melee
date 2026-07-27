@@ -2,9 +2,7 @@
 #define MELEE_MN_EVENT_H
 
 #include <placeholder.h>
-
 #include <baselib/forward.h>
-
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
 #include <baselib/gobj.h>
