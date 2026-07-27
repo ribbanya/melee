@@ -66,7 +66,7 @@ void ftCo_DownAttack_Coll(Fighter_GObj* gobj)
     ft_80084104(gobj);
 }
 
-void ftCo_80098634(Item_FtTrack* track)
+void ftCo_80098634(struct Item_FtTrack* track)
 {
     Fighter_GObj* cur_gobj;
     int i;
