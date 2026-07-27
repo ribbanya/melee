@@ -19,7 +19,7 @@
 #include <common_structs.h>
 #include <baselib/gobj.h>
 
-static itECB unk_vec4 = { 14, 0, -3, +3 };
+static itECB it_ecb = { 14, 0, -3, +3 };
 
 static inline bool inlineA0(Fighter* fp)
 {
@@ -66,21 +66,21 @@ void ftCo_DownAttack_Coll(Fighter_GObj* gobj)
     ft_80084104(gobj);
 }
 
-void ftCo_80098634(Item_FtTrack* arg0)
+void ftCo_80098634(Item_FtTrack* track)
 {
     Fighter_GObj* cur_gobj;
-    int count;
-    for (cur_gobj = HSD_GObj_Entities->fighters, count = 0; cur_gobj != NULL;
-         cur_gobj = cur_gobj->next, count++)
+    int i;
+    for (cur_gobj = HSD_GObj_Entities->fighters, i = 0; cur_gobj != NULL;
+         cur_gobj = cur_gobj->next, i++)
     {
         Fighter* fp = cur_gobj->user_data;
-        arg0->x0_ecb_arr[count].top = unk_vec4.top;
-        arg0->x0_ecb_arr[count].bottom = unk_vec4.bottom;
-        arg0->x0_ecb_arr[count].right = unk_vec4.right;
-        arg0->x0_ecb_arr[count].left = unk_vec4.left;
-        arg0->xC0_pos_arr[count] = fp->cur_pos;
+        track->x0_ecb_arr[i].top = it_ecb.top;
+        track->x0_ecb_arr[i].bottom = it_ecb.bottom;
+        track->x0_ecb_arr[i].right = it_ecb.right;
+        track->x0_ecb_arr[i].left = it_ecb.left;
+        track->xC0_pos_arr[i] = fp->cur_pos;
     }
-    arg0->x150_count = count;
+    track->x150_count = i;
 }
 
 bool ftCo_800986B0(Fighter_GObj* gobj)
