@@ -23,7 +23,6 @@
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 /* 0C63BC */ static void fn_800C63BC(Fighter_GObj* gobj);

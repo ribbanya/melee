@@ -14,7 +14,6 @@
 #include "ftMars/types.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 /// 80138208 00134DE8
 /// https://decomp.me/scratch/lrV6F

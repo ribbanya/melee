@@ -17,7 +17,6 @@
 #include "lb/types.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 static itECB it_ecb = { 14, 0, -3, +3 };
 

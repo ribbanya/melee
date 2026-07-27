@@ -10,7 +10,6 @@
 #include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/random.h>

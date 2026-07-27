@@ -41,7 +41,6 @@
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 /// @todo .sdata2 order hack

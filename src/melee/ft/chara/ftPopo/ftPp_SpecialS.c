@@ -27,7 +27,6 @@
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 static inline void setRefGObjFlagAndClear(Fighter* fp)

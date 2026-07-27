@@ -93,7 +93,6 @@
 #include <dolphin/mtx.h>
 #include <baselib/controller.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>
 #include <baselib/gobjproc.h>

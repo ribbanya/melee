@@ -23,7 +23,6 @@
 #include <sysdolphin/baselib/class.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/displayfunc.h>
-#include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/jobj.h>
 #include <sysdolphin/baselib/mtx.h>
 #include <sysdolphin/baselib/perf.h>

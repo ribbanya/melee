@@ -4,7 +4,6 @@
 
 #include <baselib/forward.h>
 
-#include <sysdolphin/baselib/gobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ftcoll.h>

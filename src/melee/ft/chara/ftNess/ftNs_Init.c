@@ -19,8 +19,6 @@
 #include "it/it_26B1.h"
 #include "it/types.h"
 
-#include <baselib/gobj.h>
-
 MotionState ftNs_Init_MotionStateTable[ftNs_MS_SelfCount] = {
     {
         // ftNs_MS_AttackS4 = 341

@@ -23,7 +23,6 @@
 #include "mp/mplib.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 void ft_80081B38(Fighter_GObj* gobj)
 {

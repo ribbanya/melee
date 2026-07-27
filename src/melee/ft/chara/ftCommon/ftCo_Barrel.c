@@ -25,7 +25,6 @@
 #include <baselib/forward.h>
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 /* 0C9290 */ static void fn_800C9290(Fighter_GObj* gobj);

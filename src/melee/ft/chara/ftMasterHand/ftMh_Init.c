@@ -40,8 +40,6 @@
 #include "it/it_26B1.h"
 #include "it/types.h"
 
-#include <baselib/gobj.h>
-
 MotionState ftMh_Init_MotionStateTable[ftMh_MS_SelfCount] = {
     {
         // ftMh_MS_Wait1_0 = 341

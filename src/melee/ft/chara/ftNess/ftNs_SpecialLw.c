@@ -21,7 +21,6 @@
 #include "pl/plbonuslib.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 /// SpecialLw (PSI Magnet)
 #define FTNESS_SPECIALLW_COLL_FLAG                                            \

@@ -13,7 +13,6 @@
 #include "lb/types.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 void ft_80081938(HSD_GObj* gobj)
 {

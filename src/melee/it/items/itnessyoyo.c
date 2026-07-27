@@ -24,7 +24,6 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 
-#include <baselib/gobj.h>
 #include <baselib/gobjobject.h>
 #include <baselib/gobjplink.h>
 #include <baselib/jobj.h>

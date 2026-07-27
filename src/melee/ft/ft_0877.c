@@ -10,7 +10,6 @@
 #include "it/types.h"
 #include "lb/lbaudio_ax.h"
 
-#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 #define TEST(expr) (expr) ? true : false

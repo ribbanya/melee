@@ -20,7 +20,6 @@
 #include "lb/lb_00B0.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 static MotionFlags const ftMr_MF_SpecialN_Coll =

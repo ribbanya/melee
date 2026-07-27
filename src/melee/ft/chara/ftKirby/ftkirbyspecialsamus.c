@@ -32,7 +32,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <MSL/math.h>
 
 long ftKb_SpecialNSs_800FCC14(Fighter_GObj* gobj, long* out1, long* out2)

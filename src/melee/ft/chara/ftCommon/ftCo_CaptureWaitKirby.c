@@ -17,7 +17,6 @@
 
 #include <baselib/forward.h>
 
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 void ftCo_800BD620(Fighter_GObj* gobj)

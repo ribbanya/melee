@@ -12,7 +12,6 @@
 #include "pl/player.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 void ftMh_Damage_IASA(HSD_GObj* gobj)
 {

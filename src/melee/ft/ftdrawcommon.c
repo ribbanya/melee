@@ -25,7 +25,6 @@
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/state.h>
 

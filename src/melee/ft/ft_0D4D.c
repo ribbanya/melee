@@ -18,7 +18,6 @@
 
 #include <baselib/forward.h>
 
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/chara/ftCommon/ftCo_AirCatch.h>

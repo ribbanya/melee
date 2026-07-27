@@ -28,7 +28,6 @@
 #include <baselib/forward.h>
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 void ftCo_80090574(Fighter_GObj* gobj)
 {

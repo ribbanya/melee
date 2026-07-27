@@ -17,7 +17,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <melee/cm/camera.h>
 #include <melee/ef/efasync.h>

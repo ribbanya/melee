@@ -26,7 +26,6 @@
 
 #include <common_structs.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 static void sdata2_order(void)

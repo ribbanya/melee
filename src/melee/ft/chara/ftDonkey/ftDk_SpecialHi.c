@@ -21,8 +21,6 @@
 
 #include "ftDonkey/types.h"
 
-#include <baselib/gobj.h>
-
 static u32 const coll_mf = Ft_MF_SkipMatAnim | Ft_MF_SkipColAnim |
                            Ft_MF_UpdateCmd | Ft_MF_SkipItemVis | Ft_MF_Unk19 |
                            Ft_MF_SkipModelPartVis | Ft_MF_SkipModelFlags |

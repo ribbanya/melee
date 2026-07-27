@@ -9,7 +9,6 @@
 #include <baselib/debug.h>
 #include <baselib/tobj.h>
 #include <sysdolphin/baselib/aobj.h>
-#include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/jobj.h>
 #include <sysdolphin/baselib/mtx.h>
 #include <sysdolphin/baselib/object.h>

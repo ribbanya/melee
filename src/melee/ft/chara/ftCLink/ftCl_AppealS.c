@@ -16,8 +16,6 @@
 #include "ftLink/types.h"
 #include "it/items/itclinkmilk.h"
 
-#include <baselib/gobj.h>
-
 void ftCl_AppealS_Anim(HSD_GObj* gobj)
 {
     /// @todo There might be only one @c Fighter* here.

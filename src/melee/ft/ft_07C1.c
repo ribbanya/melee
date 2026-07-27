@@ -15,7 +15,6 @@
 #include <baselib/forward.h>
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 void ft_8007C224(HSD_GObj* gobj);
 

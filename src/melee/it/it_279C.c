@@ -154,7 +154,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 #define IT_M_PI_2 1.5707963267948966

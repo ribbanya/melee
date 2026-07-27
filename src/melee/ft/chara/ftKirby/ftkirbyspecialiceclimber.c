@@ -30,7 +30,6 @@
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 /* 1090D4 */ static void fn_801090D4(Fighter_GObj*);
 

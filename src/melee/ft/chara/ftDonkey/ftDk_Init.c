@@ -35,7 +35,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 MotionState ftDk_Init_MotionStateTable[ftDk_MS_SelfCount] = {
     {

@@ -40,7 +40,6 @@
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/generator.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mobj.h>
 #include <baselib/objalloc.h>

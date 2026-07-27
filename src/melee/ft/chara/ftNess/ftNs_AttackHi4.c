@@ -27,7 +27,6 @@
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 void ftNs_AttackHi4_YoyoUpdateHitPos(HSD_GObj* gobj)
 {

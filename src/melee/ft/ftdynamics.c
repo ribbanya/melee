@@ -22,7 +22,6 @@
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 #pragma force_active on

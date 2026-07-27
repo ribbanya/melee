@@ -47,7 +47,6 @@
 #include <trigf.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/rumble.h>
 #include <melee/it/items/itpeachparasol.h>

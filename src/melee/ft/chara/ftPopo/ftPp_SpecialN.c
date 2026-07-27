@@ -22,7 +22,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 /* 11F500 */ static void ftPp_SpecialN_8011F500(Fighter_GObj* gobj);
 

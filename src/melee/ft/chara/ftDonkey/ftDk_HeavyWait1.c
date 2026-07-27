@@ -12,7 +12,6 @@
 #include "ftDonkey/types.h"
 
 #include <stdbool.h>
-#include <baselib/gobj.h>
 
 void ftDk_HeavyWait1_IASA(HSD_GObj* gobj)
 {

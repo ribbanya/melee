@@ -47,7 +47,6 @@
 #include <math.h>
 #include <math_ppc.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 bool ftCo_80091A2C(Fighter_GObj* gobj)

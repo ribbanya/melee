@@ -16,7 +16,6 @@
 #include "pl/player.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 /// @todo Figure out how to use #GET_JOBJ instead.

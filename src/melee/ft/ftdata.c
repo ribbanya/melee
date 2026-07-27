@@ -134,7 +134,6 @@
 #include <dolphin/os.h>
 #include <baselib/archive.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/objalloc.h>
 
 extern int ft_8045996C[FTKIND_MAX];

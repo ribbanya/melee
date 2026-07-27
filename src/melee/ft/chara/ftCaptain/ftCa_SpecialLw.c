@@ -18,7 +18,6 @@
 #include "ftCommon/ftCo_Fall.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 /// /* literal */ float const ftCa_SpecialHi_804D9220 = 0.0F;
 /// /* literal */ float const ftCa_SpecialHi_804D9224 = 0.01745329238474369f;

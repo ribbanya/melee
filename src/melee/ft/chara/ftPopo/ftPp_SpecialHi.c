@@ -36,7 +36,6 @@
 #include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <MetroTRK/intrinsics.h>
 
 static void sdata2_order(void)

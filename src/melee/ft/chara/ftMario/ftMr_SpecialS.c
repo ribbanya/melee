@@ -22,7 +22,6 @@
 #include "lb/lbspdisplay.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 static void setCallbacks(Fighter* fp)
 {

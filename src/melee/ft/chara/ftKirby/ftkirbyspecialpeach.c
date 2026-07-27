@@ -30,7 +30,6 @@
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 /* 10C344 */ static void fn_8010C344(Fighter_GObj* gobj);
 /* 10C44C */ static void fn_8010C44C(Fighter_GObj* gobj);

@@ -5,8 +5,6 @@
 #include "ft/types.h"
 #include "ftZakoBoy/types.h"
 
-#include <baselib/gobj.h>
-
 char ftBo_Init_DatFilename[] = "PlBo.dat";
 char ftBo_Init_DataName[] = "ftDataBoy";
 char ftBo_Init_803D3500[] = "PlBoNr.dat";

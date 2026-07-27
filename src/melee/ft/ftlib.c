@@ -27,7 +27,6 @@
 #include <trigf.h>
 #include <baselib/cobj.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 #include <baselib/random.h>
 #include <baselib/rumble.h>
 

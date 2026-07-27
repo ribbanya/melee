@@ -28,7 +28,6 @@
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 static void fn_8010AA64(Fighter_GObj* gobj)

@@ -19,7 +19,6 @@
 #include "lb/lbvector.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 #include <baselib/gobjobject.h>
 #include <baselib/gobjplink.h>
 #include <baselib/jobj.h>

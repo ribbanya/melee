@@ -244,6 +244,8 @@ static MotionFlags const Ft_MF_Unk30 = 1 << 30;
 /// Unused?
 static MotionFlags const Ft_MF_Unk31 = 1 << 31;
 
+#define FTPART_INVALID 0xFF
+
 /// Ledge Grab Macros
 
 #define CLIFFCATCH_BOTH 0

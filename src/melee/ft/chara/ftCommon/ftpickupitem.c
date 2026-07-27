@@ -33,7 +33,6 @@
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
-#include <baselib/gobj.h>
 
 /* 094B6C */ static void ftpickupitem_80094B6C(Fighter_GObj* gobj,
                                                Item_GObj* item_gobj);

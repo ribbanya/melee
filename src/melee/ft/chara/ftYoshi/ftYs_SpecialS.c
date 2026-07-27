@@ -35,7 +35,6 @@
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 static MotionFlags const ftYs_MF_SpecialS_Coll =

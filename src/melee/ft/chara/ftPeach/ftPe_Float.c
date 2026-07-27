@@ -16,7 +16,6 @@
 #include "ftPeach/types.h"
 
 #include <common_structs.h>
-#include <baselib/gobj.h>
 
 bool ftPe_Float_CheckContinueInput(Fighter* fp)
 {

@@ -44,7 +44,9 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
-#define FTPART_INVALID 0xFF
+#ifndef M2C
+#include <baselib/gobj.h> // IWYU pragma: export
+#endif
 
 /// Table in PlCo.dat
 struct FighterPartsTable {

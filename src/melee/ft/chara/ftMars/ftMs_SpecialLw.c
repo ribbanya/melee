@@ -25,7 +25,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 
 static MotionFlags const ftMs_MF_SpecialLw_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepColAnimHitStatus | Ft_MF_SkipHit;

@@ -14,8 +14,6 @@
 #include "it/it_26B1.h"
 #include "it/types.h"
 
-#include <baselib/gobj.h>
-
 MotionState ftGk_Init_MotionStateTable[ftKp_MS_SelfCount] = {
     {
         // ftKp_MS_SpecialNStart = 341

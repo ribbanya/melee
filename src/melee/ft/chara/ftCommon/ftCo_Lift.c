@@ -24,7 +24,6 @@
 
 #include <math.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 void ftCo_80096D9C(Fighter_GObj* gobj)
