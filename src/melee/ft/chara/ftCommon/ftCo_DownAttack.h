@@ -2,7 +2,6 @@
 #define GALE01_09805C
 
 #include "ft/forward.h"
-#include "ftCommon/forward.h"
 #include "it/forward.h"
 
 #include <stdbool.h>

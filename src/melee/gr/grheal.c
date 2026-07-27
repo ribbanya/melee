@@ -8,7 +8,6 @@
 #include "baselib/gobjproc.h"
 #include "baselib/jobj.h"
 #include "gm/gm_1832.h"
-#include "gm/types.h"
 #include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/ground.h"
