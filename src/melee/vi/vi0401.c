@@ -30,7 +30,6 @@
 #include <stddef.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
-#include <baselib/aobj.h>
 #include <baselib/cobj.h>
 #include <baselib/fog.h>
 #include <baselib/gobj.h>
