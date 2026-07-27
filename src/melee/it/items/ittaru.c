@@ -24,11 +24,12 @@
 #include "lb/lbvector.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F58E0[] = {
     { -1, itTaru_UnkMotion0_Anim, itTaru_UnkMotion0_Phys,

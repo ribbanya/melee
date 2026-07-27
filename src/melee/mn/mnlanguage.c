@@ -5,10 +5,11 @@
 #include "lb/lbaudio_ax.h"
 #include "mn/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/object.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>

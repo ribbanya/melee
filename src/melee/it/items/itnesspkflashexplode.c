@@ -14,10 +14,11 @@
 #include "it/types.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 2AFD44 */ static bool itNessPKFlashExplode_UnkMotion0_Coll(Item_GObj* gobj);
 

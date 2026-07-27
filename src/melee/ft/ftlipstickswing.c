@@ -12,9 +12,10 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
-#include <baselib/types.h>
 
 void ftCo_800CDAB4(Fighter_GObj* gobj, int arg1, int arg2, float arg3)
 {

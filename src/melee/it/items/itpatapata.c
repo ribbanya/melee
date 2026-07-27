@@ -20,11 +20,12 @@
 #include "mp/mpcoll.h"
 #include "MSL/math.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F88C0[] = {
     { 0, NULL, NULL, NULL },

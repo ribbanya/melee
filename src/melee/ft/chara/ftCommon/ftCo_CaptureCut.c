@@ -10,14 +10,17 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/types.h"
-#include "ftKirby/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "lb/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <melee/ft/chara/ftCommon/ftCo_Damage.h>
 #include <melee/ft/ftcoll.h>
 #include <melee/ft/ftparts.h>

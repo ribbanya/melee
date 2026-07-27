@@ -9,10 +9,11 @@
 #include "ftCommon/ftCo_KinokoSmallStart.h"
 #include "if/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <melee/ft/ftlib.h>
 #include <melee/ft/inlines.h>
 #include <melee/if/textdraw.h>

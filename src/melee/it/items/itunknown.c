@@ -16,13 +16,14 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 ItemStateTable it_803F7D60[] = {

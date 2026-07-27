@@ -17,12 +17,13 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F7220[] = {
     { 0, itSamusbomb_UnkMotion0_Anim, itSamusbomb_UnkMotion0_Phys,

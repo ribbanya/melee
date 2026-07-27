@@ -23,7 +23,6 @@
 #include <baselib/tev.h>
 #include <baselib/texp.h>
 #include <baselib/tobj.h>
-#include <baselib/types.h>
 
 /* 1C897C */ static void grMaterial_801C897C(HSD_JObj* jobj, u32 flags);
 /* 1C8E74 */ static void grMaterial_801C8E74(void);

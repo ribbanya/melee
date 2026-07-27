@@ -19,13 +19,15 @@
 #include "ftCommon/ftCo_ItemThrow.h"
 #include "ftCommon/ftCo_Pass.h"
 #include "ftCommon/types.h"
+
+#include "ftYoshi/forward.h"
+
 #include "ftYoshi/types.h"
 #include "lb/types.h"
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 char ftYs_Init_DatFilename[] = "PlYs.dat";
 char ftYs_Init_DataName[] = "ftDataYoshi";

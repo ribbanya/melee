@@ -10,10 +10,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 /* 20DFDC */ static void grFigure1_OnDemoInit(int);
 /* 20DFE0 */ static void grFigure1_OnInit(void);

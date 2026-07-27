@@ -57,7 +57,6 @@
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 static MotionFlags const ftKb_MF_SpecialN_Coll =

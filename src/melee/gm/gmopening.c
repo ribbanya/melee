@@ -8,12 +8,13 @@
 
 #include "gm/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stdio.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>
 #include <sysdolphin/baselib/gobjplink.h>

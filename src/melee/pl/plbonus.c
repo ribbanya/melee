@@ -11,11 +11,15 @@
 
 #include "ft/types.h"
 #include "it/it_26B1.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
 #include "pl/plbonusinline.h"
 #include "pl/types.h"
 
-#include <baselib/types.h>
+#include <baselib/forward.h>
+
 #include <sysdolphin/baselib/debug.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/ft_0877.h>

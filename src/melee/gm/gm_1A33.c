@@ -2,9 +2,10 @@
 
 #include <platform.h>
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/pad.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/sislib.h>
 #include <melee/gm/gm_1A36.h>
 #include <melee/gm/gm_1A45.h>

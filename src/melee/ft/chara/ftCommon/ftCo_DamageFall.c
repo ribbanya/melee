@@ -17,15 +17,18 @@
 #include "ft/ft_0881.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_ItemParasolDamageFall.h"
 #include "ftCommon/ftCo_JumpAerial.h"
-#include "ftCommon/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 void ftCo_80090574(Fighter_GObj* gobj)
 {

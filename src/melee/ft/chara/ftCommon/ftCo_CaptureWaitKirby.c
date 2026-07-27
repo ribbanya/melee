@@ -7,14 +7,18 @@
 #include "ft/ftcoll.h"
 #include "ft/ftcommon.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Attack100.h"
 #include "ftCommon/ftCo_CaptureCut.h"
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 void ftCo_800BD620(Fighter_GObj* gobj)
 {

@@ -23,10 +23,15 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/types.h"
 #include "ftPurin/types.h"
 #include "lb/types.h"
 #include "mp/mplib.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <stddef.h>
@@ -35,7 +40,6 @@
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 /* 100E0C */ static void fn_80100E0C(Fighter_GObj* gobj);

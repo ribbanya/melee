@@ -6,12 +6,13 @@
 #include "ft/ftlib.h"
 #include "lb/lbarchive.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/card/CARDMount.h>
 #include <dolphin/os.h>
 #include <dolphin/pad.h>
 #include <dolphin/vi/vifuncs.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
 

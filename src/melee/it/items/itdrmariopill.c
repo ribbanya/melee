@@ -10,7 +10,6 @@
 #include "dolphin/mtx.h"
 #include "ft/ft_0BF0.h"
 #include "ft/ftlib.h"
-#include "ft/types.h"
 #include "ftDrMario/ftDr_Init.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
@@ -23,10 +22,11 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>
-#include <baselib/types.h>
 
 #define GET_ATTRS(ip)                                                         \
     ((itDrMarioPillAttributes*) ip->xC4_article_data->x4_specialAttributes)

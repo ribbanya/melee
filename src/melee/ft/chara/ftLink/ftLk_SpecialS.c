@@ -29,7 +29,6 @@
 #include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 
 typedef enum cmd_var_idx {
     cmd_unk0_bool,

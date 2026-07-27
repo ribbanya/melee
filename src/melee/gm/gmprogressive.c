@@ -7,8 +7,9 @@
 
 #include "dolphin/pad.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/os/OSRtc.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

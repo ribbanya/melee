@@ -23,12 +23,13 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 2CDC5C */ static void itHassam_802CDC5C(Item_GObj* gobj);
 /* 2CDC80 */ static void itHassam_802CDC80(Item_GObj* gobj);

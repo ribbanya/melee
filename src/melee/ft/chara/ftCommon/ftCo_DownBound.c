@@ -20,9 +20,14 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
 #include "ftSandbag/ftSb_Init.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <math.h>
@@ -30,7 +35,6 @@
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 097040 */ static void ftCo_800976A4(Fighter_GObj* gobj);
 /* 0972E8 */ static void ftCo_8009794C(Fighter_GObj* gobj);

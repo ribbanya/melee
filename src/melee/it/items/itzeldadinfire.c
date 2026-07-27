@@ -16,9 +16,10 @@
 #include "it/itgroundcoll.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 /* 2C4434 */ static bool itZeldadinfire_UnkMotion1_Coll(Item_GObj* gobj);

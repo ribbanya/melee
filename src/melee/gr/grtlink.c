@@ -11,10 +11,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 /* 22192C */ static void grTLink_8022192C(bool);
 /* 221930 */ static void grTLink_80221930(void);

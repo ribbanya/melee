@@ -16,13 +16,14 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/mtx.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F7340[] = {
     { 0, itSamusmissile_UnkMotion0_Anim, itSamusmissile_UnkMotion0_Phys,

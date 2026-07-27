@@ -19,13 +19,17 @@
 #include "ftCommon/ftCo_ThrownKoopa.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
+
+#include "ftKoopa/forward.h"
+
 #include "ftKoopa/ftKp_Init.h"
 #include "ftKoopa/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 static s32 ftKp_SpecialS_set_dir(Fighter_GObj* gobj)
 {

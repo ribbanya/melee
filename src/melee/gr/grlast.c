@@ -11,6 +11,7 @@
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/aobj.h>
 #include <baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

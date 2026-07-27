@@ -11,10 +11,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 /* 221EF4 */ static void grTMars_80221EF4(bool);
 /* 221EF8 */ static void grTMars_80221EF8(void);

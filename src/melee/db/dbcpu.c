@@ -7,9 +7,10 @@
 #include "if/types.h"
 #include "pl/player.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
-#include <baselib/types.h>
 
 static struct {
     DevText* text;

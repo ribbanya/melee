@@ -18,8 +18,9 @@
 #include <baselib/debug.h>
 #include <baselib/fobj.h>
 #include <baselib/list.h>
+#include <baselib/mobj.h>
 #include <baselib/object.h>
-#include <baselib/types.h>
+#include <baselib/pobj.h>
 
 void JObjInfoInit(void);
 HSD_JObjInfo hsdJObj = { JObjInfoInit };

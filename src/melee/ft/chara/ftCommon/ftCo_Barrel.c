@@ -10,6 +10,9 @@
 #include "ft/ftcommon.h"
 #include "ft/ftlib.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Damage.h"
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/inlines.h"
@@ -19,10 +22,11 @@
 #include "lb/lbcollision.h"
 #include "mp/mpcoll.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 0C9290 */ static void fn_800C9290(Fighter_GObj* gobj);
 

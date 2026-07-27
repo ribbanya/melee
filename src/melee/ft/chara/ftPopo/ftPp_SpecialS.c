@@ -15,16 +15,20 @@
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
 #include "ftNana/ftNn_Init.h"
+
+#include "ftPopo/forward.h"
+
 #include "ftPopo/ftPp_Init.h"
 #include "ftPopo/types.h"
 #include "pl/player.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <math.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 static inline void setRefGObjFlagAndClear(Fighter* fp)
 {

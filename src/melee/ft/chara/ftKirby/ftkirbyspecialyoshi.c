@@ -31,7 +31,6 @@
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 1095DC */ static void fn_801095DC(HSD_GObj*);
 /* 109680 */ static void fn_80109680(HSD_GObj*);

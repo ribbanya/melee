@@ -16,8 +16,9 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F6728[] = {
     { -1, itEvyoshiegg_UnkMotion0_Anim, itEvyoshiegg_UnkMotion0_Phys,

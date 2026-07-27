@@ -11,11 +11,11 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
-#include "lb/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 void ft_8007C224(HSD_GObj* gobj);
 

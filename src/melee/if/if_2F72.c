@@ -14,6 +14,8 @@
 #include "pl/player.h"
 #include "sc/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -21,7 +23,6 @@
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /// Orphaned data strings from original ROM
 static char lbl_803F9780[] = "ScInfStc_scene_models";

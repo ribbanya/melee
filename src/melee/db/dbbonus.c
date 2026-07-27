@@ -9,9 +9,10 @@
 #include "pl/player.h"
 #include "pl/plbonus.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/memory.h>
 
 static struct {

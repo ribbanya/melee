@@ -12,9 +12,10 @@
 #include "lb/types.h"
 #include "pl/player.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/os.h>
 #include <baselib/debug.h>
-#include <baselib/types.h>
 
 #pragma force_active on
 

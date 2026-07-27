@@ -14,10 +14,11 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 struct grTFox_YakumonoParam {
     UNK_T unk0;

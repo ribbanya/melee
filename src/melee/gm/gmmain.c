@@ -17,6 +17,8 @@
 #include "lb/lbsnap.h"
 #include "lb/lbtime.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/card/CARDBios.h>
 #include <dolphin/dvd.h>
@@ -32,7 +34,6 @@
 #include <baselib/initialize.h>
 #include <baselib/rumble.h>
 #include <baselib/sislib.h>
-#include <baselib/types.h>
 #include <baselib/video.h>
 
 extern GXRenderModeObj GXNtsc480IntDf;

@@ -22,15 +22,19 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
+
+#include "ftSamus/forward.h"
+
 #include "ftSamus/types.h"
 #include "it/items/itsamuschargeshot.h"
 #include "it/items/itsamusmissile.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 
 static void ftSamus_801293BC_inner(HSD_GObj* gobj)
 {

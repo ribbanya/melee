@@ -23,7 +23,6 @@
 #include <math.h>
 #include <math_ppc.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <melee/ft/chara/ftCommon/ftCo_09F7.h>
 #include <melee/ft/chara/ftCommon/ftCo_0A01.h>

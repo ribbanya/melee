@@ -33,7 +33,6 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 static SceneDesc* un_804D6F30;
 static GXColor erase_colors_vi0102;

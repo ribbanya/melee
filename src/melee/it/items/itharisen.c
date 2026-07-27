@@ -10,8 +10,9 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F5FF0[] = {
     { -1, itHarisen_UnkMotion0_Anim, itHarisen_UnkMotion0_Phys,

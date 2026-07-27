@@ -22,7 +22,7 @@
 #include "mn/types.h"
 #include "sc/types.h"
 
-#include <baselib/types.h>
+#include <baselib/forward.h>
 
 extern StaticModelDesc MenMainConRl_Top;
 extern StaticModelDesc MenMainCursorRl_Top;

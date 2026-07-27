@@ -17,15 +17,19 @@
 #include "ftCommon/ftCo_FallSpecial.h"
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/inlines.h"
+
+#include "ftSeak/forward.h"
+
 #include "ftSeak/ftSk_Init.h"
 #include "ftSeak/types.h"
 #include "it/items/itseakneedleheld.h"
 #include "it/items/itseakneedlethrown.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 
 /* 1120D4 */ static void ftSk_SpecialN_801120D4(Fighter_GObj* gobj);
 /* 112D44 */ static void shootNeedles(Fighter_GObj* gobj);

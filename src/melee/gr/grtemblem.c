@@ -10,10 +10,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 static void grTRoy_802243F4(bool);
 static void grTRoy_802243F8(void);

@@ -8,6 +8,8 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>
@@ -18,7 +20,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/jobj.h>
 #include <baselib/lobj.h>
-#include <baselib/types.h>
 #include <melee/sc/types.h>
 
 /* 09F480 */ static void ftCo_8009F480(Fighter_GObj* gobj);

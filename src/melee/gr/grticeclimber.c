@@ -11,17 +11,23 @@
 #include "cm/camera.h"
 #include "ef/efsync.h"
 #include "gr/types.h"
+
+#include "it/forward.h"
+
 #include "it/inlines.h"
 #include "it/types.h"
+
+#include "lb/forward.h"
+
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
-#include "lb/types.h"
+
+#include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 220F10 */ static void grTIceClimber_80220F10(bool);
 /* 220F14 */ static void grTIceClimber_80220F14(void);

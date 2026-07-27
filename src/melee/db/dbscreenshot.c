@@ -4,13 +4,14 @@
 
 #include "gm/gm_unsplit.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stdio.h>
 #include <string.h>
 #include <baselib/controller.h>
 #include <baselib/debug.h>
 #include <baselib/hsd_3933.h>
-#include <baselib/types.h>
 #include <baselib/video.h>
 
 /* 4D6B94 */ int db_ScreenshotNumber;

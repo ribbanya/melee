@@ -25,7 +25,6 @@
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <melee/it/items/itpeachparasol.h>
 
 /* 11D424 */ static void ftPe_SpecialHi_8011D424(HSD_GObj* gobj);

@@ -13,17 +13,21 @@
 #include "ftCaptain/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirby.h"
 #include "ftKirby/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 static void sdata2_order(void)
 {

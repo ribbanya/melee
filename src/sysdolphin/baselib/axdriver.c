@@ -3,6 +3,8 @@
 #include "axdriver.static.h"
 #include <placeholder.h>
 
+#include <baselib/forward.h>
+
 #include <cmath.h>
 #include <math_ppc.h>
 #include <string.h>
@@ -10,7 +12,6 @@
 #include <dolphin/axfx.h>
 #include <dolphin/dvd.h>
 #include <dolphin/os.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/synth.h>
 

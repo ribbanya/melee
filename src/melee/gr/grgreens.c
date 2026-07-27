@@ -3,6 +3,9 @@
 #include <platform.h>
 
 #include "ft/types.h"
+
+#include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "it/ithitbox.h"
@@ -10,11 +13,12 @@
 #include "lb/types.h"
 #include "mp/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjproc.h>

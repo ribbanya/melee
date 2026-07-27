@@ -13,8 +13,6 @@
 #include "ftLink/types.h"
 #include "lb/types.h"
 
-#include <baselib/types.h>
-
 /* 0EB484 */ static void lwOnHit(HSD_GObj* gobj);
 /* 0EB528 */ static void lwOnAnim(HSD_GObj* gobj);
 

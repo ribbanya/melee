@@ -9,11 +9,15 @@
 
 #include "ft/ftanim.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/types.h"
+
+#include <baselib/forward.h>
 
 #include <dolphin/os.h>
 #include <baselib/debug.h>
-#include <baselib/types.h>
 
 FtWalkType ftWalkCommon_GetWalkType(HSD_GObj* gobj)
 {

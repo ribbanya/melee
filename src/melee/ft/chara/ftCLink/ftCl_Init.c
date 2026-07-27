@@ -29,7 +29,6 @@
 #include "lb/types.h"
 
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 MotionState ftCl_Init_MotionStateTable[ftLk_MS_SelfCount] = {
     {

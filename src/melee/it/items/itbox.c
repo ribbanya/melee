@@ -25,11 +25,12 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 static double const ROT_VEL_SCALE = 0.03490658476948738;
 

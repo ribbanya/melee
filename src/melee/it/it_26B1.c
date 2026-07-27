@@ -32,7 +32,6 @@
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <MetroTRK/intrinsics.h>
 
 static inline float _sqrtfItem(float x)

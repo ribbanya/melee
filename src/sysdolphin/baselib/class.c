@@ -5,10 +5,11 @@
 #include "memory.h"
 #include "object.h" // IWYU pragma: keep
 
+#include <baselib/forward.h>
+
 #include <__mem.h>
 #include <string.h>
 #include <dolphin/os.h>
-#include <baselib/types.h>
 
 void _hsdClassInfoInit(void);
 HSD_ClassInfo hsdClass = { _hsdClassInfoInit };

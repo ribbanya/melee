@@ -12,6 +12,8 @@
 #include "lb/lbspdisplay.h"
 #include "mn/mnmain.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/controller.h>
@@ -26,7 +28,6 @@
 #include <baselib/memory.h>
 #include <baselib/object.h>
 #include <baselib/sislib.h>
-#include <baselib/types.h>
 
 extern HSD_PadStatus HSD_PadCopyStatus[4];
 

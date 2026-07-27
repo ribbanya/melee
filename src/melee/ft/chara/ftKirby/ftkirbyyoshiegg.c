@@ -23,12 +23,13 @@
 #include "lb/lb_00B0.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 static void fn_8010AA64(Fighter_GObj* gobj)
 {

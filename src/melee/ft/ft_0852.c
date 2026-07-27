@@ -4,11 +4,12 @@
 #include "ft/inlines.h"
 #include "ft/types.h"
 
+#include <baselib/forward.h>
+
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 ftData* gFtDataList[FTKIND_MAX];
 

@@ -10,11 +10,12 @@
 #include "ft/fighter.h"
 #include "ft/ftanim.h"
 #include "ft/ftcommon.h"
-#include "ft/types.h"
-#include "ftCommon/ftCo_Jump.h"
-#include "ftCommon/types.h"
 
-#include <baselib/types.h>
+#include "ftCommon/forward.h"
+
+#include "ftCommon/ftCo_Jump.h"
+
+#include <baselib/forward.h>
 
 bool ftCo_8009BB1C(Fighter_GObj* gobj)
 {

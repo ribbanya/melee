@@ -16,9 +16,10 @@
 #include "ftCommon/types.h"
 #include "gm/gm_16AE.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <melee/ef/efsync.h>
 #include <melee/ft/chara/ftCommon/ftCo_AirCatch.h>
 #include <melee/ft/chara/ftCommon/ftCo_AppealS.h>

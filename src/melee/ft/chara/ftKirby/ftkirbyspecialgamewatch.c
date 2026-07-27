@@ -16,18 +16,21 @@
 #include "ftCommon/inlines.h"
 #include "ftCommon/types.h"
 #include "ftGameWatch/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirby.h"
-#include "ftKirby/types.h"
 #include "it/items/itgamewatchchef.h"
 #include "it/items/itkirbygamewatchchefpan.h"
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 
 static MotionFlags const ftKb_MF_GwSpecialN_Coll =
     ftCommon_GroundAirColl_MF | Ft_MF_KeepColAnimHitStatus | Ft_MF_SkipHit;

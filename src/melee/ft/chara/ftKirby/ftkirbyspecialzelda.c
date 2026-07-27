@@ -21,7 +21,6 @@
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 extern float ftKb_Init_803CB770[];
 

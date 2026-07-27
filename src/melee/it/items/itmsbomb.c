@@ -18,9 +18,10 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 typedef struct {
     float x0;

@@ -18,6 +18,9 @@
 #include "ftCommon/types.h"
 #include "ftFox/inlines.h"
 #include "ftFox/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
 #include "it/items/itfoxblaster.h"
@@ -26,11 +29,12 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 static u32 ftKb_Init_804D3DB8[] = {

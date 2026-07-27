@@ -20,10 +20,11 @@
 #include "it/items/itpeachparasol.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math_ppc.h>
 #include <trigf.h>
-#include <baselib/types.h>
 
 bool ft_8008A1FC(Fighter_GObj* gobj)
 {

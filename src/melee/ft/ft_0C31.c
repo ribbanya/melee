@@ -11,16 +11,20 @@
 #include "ft/ftcolanim.h"
 #include "ft/ftcoll.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/types.h"
 #include "lb/lbaudio_ax.h"
 #include "pl/player.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 0C63BC */ static void fn_800C63BC(Fighter_GObj* gobj);
 /* 0C63E0 */ static void fn_800C63E0(Fighter_GObj* gobj);

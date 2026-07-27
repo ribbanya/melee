@@ -7,14 +7,14 @@
 
 #include "it/items/types.h"
 #include "it/itgroundcoll.h"
-#include "it/types.h"
 #include "lb/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/random.h>
 #include <melee/db/db.h>
 #include <melee/ef/eflib.h>

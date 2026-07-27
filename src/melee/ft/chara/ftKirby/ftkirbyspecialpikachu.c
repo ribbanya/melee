@@ -14,15 +14,18 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirby.h"
-#include "ftKirby/types.h"
 #include "it/items/itpikachutjoltground.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
-#include <baselib/types.h>
 
 void ftKb_SpecialNPk_800F9FD4(Fighter_GObj* gobj)
 {

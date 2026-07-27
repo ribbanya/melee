@@ -5,9 +5,10 @@
 #include "if/types.h"
 #include "lb/lbaudio_ax.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>
-#include <baselib/types.h>
 
 static char db_SoundInfoText_buf[0x70];
 

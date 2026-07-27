@@ -28,9 +28,10 @@
 #include "ftMasterHand/ftMh_Wait1_2.h"
 #include "ftPeach/ftPe_Float.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 static inline bool ftCo_Fall_inline(Fighter_GObj* gobj)
 {

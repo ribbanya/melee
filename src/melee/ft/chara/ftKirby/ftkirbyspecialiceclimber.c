@@ -17,16 +17,20 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftCommon/ftCo_Landing.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/ftkirbyspecialdonkey.h"
 #include "ftKirby/types.h"
 #include "it/items/itclimbersice.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 /* 1090D4 */ static void fn_801090D4(Fighter_GObj*);
 

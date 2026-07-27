@@ -8,6 +8,7 @@
 #include "baselib/gobjproc.h"
 #include "baselib/jobj.h"
 #include "gm/gm_1832.h"
+#include "gm/types.h"
 #include "gr/granime.h"
 #include "gr/grdisplay.h"
 #include "gr/ground.h"
@@ -25,12 +26,13 @@
 #include "mp/types.h"
 #include "ty/toy.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
 #include <baselib/gobjgxlink.h>
-#include <baselib/types.h>
 
 typedef struct grHeal_UnkData {
     s32 x0;

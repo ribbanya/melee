@@ -3,13 +3,13 @@
 #include "ft/fighter.h"
 #include "ft/ft_081B.h"
 #include "ft/ftcommon.h"
-#include "ft/types.h"
 #include "ftCommon/ftCo_DamageFall.h"
 #include "ftCommon/ftCo_DamageIce.h"
 #include "ftCommon/types.h"
 
+#include <baselib/forward.h>
+
 #include <stddef.h>
-#include <baselib/types.h>
 
 void ftCo_800CF4DC(Fighter_GObj* gobj)
 {

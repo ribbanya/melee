@@ -14,10 +14,11 @@
 #include "it/types.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F6530[] = { { 0, itStarrodstar_UnkMotion0_Anim,
                                    itStarrodstar_UnkMotion0_Phys,

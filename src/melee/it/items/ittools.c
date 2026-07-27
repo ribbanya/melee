@@ -16,10 +16,11 @@
 #include "it/ithitbox.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F9260[] = {
     { 0, itTools_UnkMotion4_Anim, itTools_UnkMotion4_Phys,

@@ -16,12 +16,13 @@
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 ItemStateTable it_803F6F50[] = {

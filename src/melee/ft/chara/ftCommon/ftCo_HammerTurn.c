@@ -9,12 +9,16 @@
 #include "ft/ft_084E.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Turn.h"
 #include "ftCommon/types.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 0C57B4 */ static void ftCo_800C57B4(Fighter_GObj* gobj);
 

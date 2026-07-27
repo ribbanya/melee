@@ -19,9 +19,10 @@
 #include "it/types.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 
 ItemStateTable it_803F7668[] = {

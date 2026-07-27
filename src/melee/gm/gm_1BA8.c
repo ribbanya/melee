@@ -5,11 +5,12 @@
 #include "gm_unsplit.h"
 
 #include "ft/types.h"
-#include "pl/types.h"
+
+#include "pl/forward.h"
+#include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 #include <sysdolphin/baselib/gobjplink.h>
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/random.h>

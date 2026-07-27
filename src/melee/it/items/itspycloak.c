@@ -9,7 +9,7 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 
-#include <baselib/types.h>
+#include <baselib/forward.h>
 
 /* 295C68 */ static void it_80295C68(Item_GObj* gobj);
 /* 295CB8 */ static bool itSpycloak_UnkMotion0_Anim(Item_GObj* gobj);

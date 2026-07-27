@@ -10,6 +10,8 @@
 #include "mn/inlines.h"
 #include "ty/toy.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <printf.h>
 #include <stdarg.h>
@@ -17,7 +19,6 @@
 #include <baselib/gobjproc.h>
 #include <baselib/memory.h>
 #include <baselib/objalloc.h>
-#include <baselib/types.h>
 #include <MSL/math.h>
 #include <MSL/string.h>
 

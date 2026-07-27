@@ -19,15 +19,18 @@
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
 #include "ftGameWatch/types.h"
-#include "ftKirby/types.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftMars/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 /* 10B2E8 */ static void fn_8010B2E8(Fighter_GObj* gobj);
 

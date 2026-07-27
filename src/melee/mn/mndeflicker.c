@@ -8,6 +8,8 @@
 #include "mn/types.h"
 #include "sc/types.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
@@ -18,7 +20,6 @@
 #include <baselib/jobj.h>
 #include <baselib/memory.h>
 #include <baselib/sislib.h>
-#include <baselib/types.h>
 
 void mnDeflicker_8024A168(HSD_GObj* gobj);
 void mnDeflicker_8024A2E8(HSD_GObj* gobj);

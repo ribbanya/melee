@@ -8,6 +8,9 @@
 
 #include "ef/efasync.h"
 #include "ft/fighter.h"
+
+#include "ft/forward.h"
+
 #include "ft/ft_0852.h"
 #include "ft/types.h"
 #include "ftCaptain/ftCa_Init.h"
@@ -122,8 +125,10 @@
 #include "lb/lbarq.h"
 #include "lb/lbdvd.h"
 #include "lb/lbfile.h"
+
+#include "pl/forward.h"
+
 #include "pl/player.h"
-#include "pl/types.h"
 
 #include <string.h>
 #include <dolphin/os.h>
@@ -131,7 +136,6 @@
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/objalloc.h>
-#include <baselib/types.h>
 
 extern int ft_8045996C[FTKIND_MAX];
 

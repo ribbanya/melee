@@ -18,8 +18,9 @@
 #include "it/it_26B1.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 MotionState ftKp_Init_MotionStateTable[ftKp_MS_SelfCount] = {
     {

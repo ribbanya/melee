@@ -25,7 +25,6 @@
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>
-#include <baselib/types.h>
 
 /* 11CE48 */ static ItemKind pickVeg(HSD_GObj* gobj);
 /* 11D018 */ static void spawnVeg(HSD_GObj* gobj);

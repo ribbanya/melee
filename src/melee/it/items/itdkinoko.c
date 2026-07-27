@@ -12,8 +12,9 @@
 #include "it/types.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F6130[] = {
     { 0, itDkinoko_UnkMotion0_Anim, itDkinoko_UnkMotion0_Phys,

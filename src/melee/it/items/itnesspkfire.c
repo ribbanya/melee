@@ -11,12 +11,12 @@
 #include "it/item.h"
 #include "it/items/itnesspkfirepillar.h"
 #include "it/itgroundcoll.h"
-#include "it/types.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
-#include <baselib/types.h>
 
 ItemStateTable it_803F6B28[] = {
     { 0, itNesspkfire_UnkMotion0_Anim, NULL, itNesspkfire_UnkMotion0_Coll },

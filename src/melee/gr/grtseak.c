@@ -1,5 +1,7 @@
 #include <platform.h>
 
+#include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
@@ -8,10 +10,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 /* 223864 */ static void grTSeak_OnDemoInit(bool);
 /* 223868 */ static void grTSeak_OnInit(void);

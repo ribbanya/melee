@@ -12,9 +12,10 @@
 #include "mp/mplib.h"
 #include "mp/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
-#include <baselib/types.h>
 
 typedef struct grTMewtwo_UnkStruct {
     DynamicsDesc* x0;

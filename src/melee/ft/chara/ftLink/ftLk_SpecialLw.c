@@ -20,7 +20,6 @@
 #include "lb/lb_00B0.h"
 
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 
 /* 0EB75C */ static bool updateBomb(HSD_GObj* gobj, FtMotionId msid);
 /* 0EB7C8 */ static void spawnBomb(HSD_GObj* gobj);

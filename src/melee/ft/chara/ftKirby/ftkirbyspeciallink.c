@@ -13,6 +13,9 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 #include "ftCommon/ftCo_Fall.h"
+
+#include "ftKirby/forward.h"
+
 #include "ftKirby/inlines.h"
 #include "ftKirby/types.h"
 #include "ftLink/types.h"
@@ -21,9 +24,10 @@
 #include "it/types.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 #include <lb/lbrefract.h>
 
 ftLk_SpecialNIndex ftKb_SpecialNLk800FB394(Fighter_GObj* gobj)

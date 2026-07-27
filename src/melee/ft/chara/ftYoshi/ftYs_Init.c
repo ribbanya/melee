@@ -9,7 +9,9 @@
 #include "ft/ftcamera.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
-#include "ftCommon/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftYoshi/ftYs_SpecialHi.h"
 #include "ftYoshi/ftYs_SpecialS.h"
 #include "ftYoshi/types.h"
@@ -20,7 +22,6 @@
 #include <baselib/aobj.h>
 #include <baselib/debug.h>
 #include <baselib/mobj.h>
-#include <baselib/types.h>
 
 /// @todo Belongs in #ftYs_Guard.c?
 /* 3B75C0 */ Vec3 const ftYs_Unk1_803B75C0 = { 0 };

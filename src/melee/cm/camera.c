@@ -18,6 +18,9 @@
 #include "ft/ftlib.h"
 #include "ft/types.h"
 #include "gm/gm_unsplit.h"
+
+#include "gr/forward.h"
+
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
@@ -41,7 +44,6 @@
 #include <baselib/gobjobject.h>
 #include <baselib/gobjplink.h>
 #include <baselib/gobjproc.h>
-#include <baselib/types.h>
 #include <melee/gr/grcastle.h>
 #include <melee/gr/grcorneria.h>
 #include <melee/gr/grgarden.h>

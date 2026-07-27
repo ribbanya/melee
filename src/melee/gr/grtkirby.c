@@ -1,6 +1,8 @@
 
 #include <platform.h>
 
+#include "gr/forward.h"
+
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"
@@ -9,10 +11,11 @@
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 void grTKirby_80221364(bool);                  /* static */
 void grTKirby_80221368(void);                  /* static */

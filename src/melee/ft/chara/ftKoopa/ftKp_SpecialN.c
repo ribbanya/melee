@@ -15,7 +15,6 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
-#include <baselib/types.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_081B.h>

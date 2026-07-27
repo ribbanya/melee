@@ -7,8 +7,9 @@
 #include "gobjuserdata.h"
 #include "objalloc.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
-#include <baselib/types.h>
 
 void GObj_PReorder(HSD_GObj* gobj, HSD_GObj* hiprio_gobj)
 {
