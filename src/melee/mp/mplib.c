@@ -16,7 +16,6 @@
 
 #include "gr/grdynamicattr.h"
 #include "gr/ground.h"
-#include "gr/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/types.h"

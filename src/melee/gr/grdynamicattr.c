@@ -2,7 +2,6 @@
 
 #include <platform.h>
 
-#include "gr/types.h"
 #include "mp/mplib.h"
 
 #include <math_ppc.h>

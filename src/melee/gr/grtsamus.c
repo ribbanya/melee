@@ -1,7 +1,5 @@
 #include <platform.h>
 
-#include "gr/forward.h"
-
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "gr/grzakogenerator.h"

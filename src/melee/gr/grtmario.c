@@ -3,9 +3,6 @@
 #include "baselib/psstructs.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
-
-#include "gr/forward.h"
-
 #include "gr/granime.h"
 #include "gr/grlib.h"
 #include "gr/ground.h"

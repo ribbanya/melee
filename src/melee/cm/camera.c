@@ -24,7 +24,6 @@
 #include "gr/grlib.h"
 #include "gr/ground.h"
 #include "gr/stage.h"
-#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbrefract.h"
 #include "lb/lbshadow.h"

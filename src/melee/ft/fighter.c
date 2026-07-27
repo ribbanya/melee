@@ -65,7 +65,6 @@
 
 #include "gr/ground.h"
 #include "gr/stage.h"
-#include "gr/types.h"
 #include "if/ifmagnify.h"
 #include "it/it_26B1.h"
 #include "it/it_279C.h"

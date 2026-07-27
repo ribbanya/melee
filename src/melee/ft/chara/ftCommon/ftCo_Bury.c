@@ -35,7 +35,6 @@
 #include "gr/forward.h"
 
 #include "gr/ground.h"
-#include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 #include "mp/mplib.h"

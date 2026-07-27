@@ -12,6 +12,9 @@
 #include "ft/ftcommon.h"
 #include "ft/ftparts.h"
 #include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
 #include "ftCommon/ftCo_Landing.h"
 #include "ftCommon/types.h"
 #include "ftLink/types.h"
@@ -27,6 +30,8 @@
 #include "lb/types.h"
 #include "mp/mpcoll.h"
 #include "mp/mplib.h"
+
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

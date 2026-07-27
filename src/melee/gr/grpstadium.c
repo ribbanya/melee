@@ -2,9 +2,6 @@
 
 #include "cm/types.h"
 #include "dolphin/gx/GXStruct.h"
-
-#include "gr/forward.h"
-
 #include "gr/ground.h"
 #include "lb/types.h"
 #include "mn/types.h"

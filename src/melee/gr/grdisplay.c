@@ -6,9 +6,6 @@
 
 #include "cm/camera.h"
 #include "ft/ftlib.h"
-
-#include "gr/forward.h"
-
 #include "gr/ground.h"
 #include "gr/types.h"
 #include "lb/lbshadow.h"

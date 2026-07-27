@@ -3,9 +3,6 @@
 #include <platform.h>
 
 #include "ft/types.h"
-
-#include "gr/forward.h"
-
 #include "gr/granime.h"
 #include "gr/ground.h"
 #include "it/ithitbox.h"

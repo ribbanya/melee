@@ -8,9 +8,6 @@
 #include "cm/camera.h"
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
-
-#include "gr/forward.h"
-
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/grdisplay.h"

@@ -11,9 +11,6 @@
 #include <platform.h>
 
 #include "gm/gm_16AE.h"
-
-#include "gr/forward.h"
-
 #include "gr/types.h"
 #include "lb/lbspdisplay.h"
 #include "lb/types.h"

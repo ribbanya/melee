@@ -5,7 +5,6 @@
 #include "gr/granime.h"
 #include "gr/grdatfiles.h"
 #include "gr/ground.h"
-#include "gr/types.h"
 #include "lb/lbspdisplay.h"
 #include "sc/types.h"
 

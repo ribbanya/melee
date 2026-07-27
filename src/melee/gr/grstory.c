@@ -10,8 +10,6 @@
 #include <placeholder.h>
 #include <platform.h>
 
-#include "gr/forward.h"
-
 #include "gr/types.h"
 #include "it/it_26B1.h"
 #include "it/items/itheiho.h"

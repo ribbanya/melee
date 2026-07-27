@@ -47,7 +47,6 @@
 #include "gr/grrcruise.h"
 #include "gr/grvenom.h"
 #include "gr/stage.h"
-#include "gr/types.h"
 #include "it/inlines.h"
 #include "it/it_26B1.h"
 #include "it/item.h"

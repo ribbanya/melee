@@ -16,9 +16,6 @@
 #include "ft/ftdevice.h"
 #include "ft/ftlib.h"
 #include "gm/gm_1601.h"
-
-#include "gr/forward.h"
-
 #include "gr/types.h"
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
