@@ -10,7 +10,6 @@
 
 #include "gm/types.h"
 #include "mn/types.h"
-#include "sc/types.h"
 
 #include <dolphin/mtx.h>
 #include <baselib/aobj.h>
