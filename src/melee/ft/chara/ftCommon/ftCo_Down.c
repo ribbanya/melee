@@ -1,7 +1,6 @@
 #include "ftCo_Down.h"
 
 #include "ftCo_DownAttack.h"
-#include "math.h"
 
 #include <platform.h>
 
@@ -14,7 +13,7 @@
 #include "ft/ftcommon.h"
 #include "ft/types.h"
 
-#include "ftCommon/forward.h"
+#include <math.h>
 
 /* 097EAC */ static void ftCo_80098324(Fighter_GObj* gobj, FtMotionId msid);
 

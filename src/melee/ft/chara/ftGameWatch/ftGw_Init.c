@@ -12,7 +12,6 @@
 
 #include <platform.h>
 
-#include "ft/dobjlist.h"
 #include "ft/ftcamera.h"
 #include "ft/ftcolanim.h"
 #include "ft/ftmaterial.h"
@@ -24,6 +23,7 @@
 
 #include "ftGameWatch/types.h"
 #include "it/it_26B1.h"
+#include "it/types.h"
 
 #include <common_structs.h>
 
