@@ -18,6 +18,7 @@
 
 #include <common_structs.h>
 #include <math_ppc.h>
+#include <baselib/gobj.h>
 #include <melee/it/item.h>
 
 static void it_802F2A58(Item_GObj*);             /* static */

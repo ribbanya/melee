@@ -32,6 +32,8 @@
 
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>

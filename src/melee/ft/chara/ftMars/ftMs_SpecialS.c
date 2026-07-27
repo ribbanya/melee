@@ -16,6 +16,7 @@
 
 #include <common_structs.h>
 #include <baselib/debug.h>
+#include <baselib/gobj.h>
 
 void ftMs_SpecialS_Enter(HSD_GObj* gobj)
 {

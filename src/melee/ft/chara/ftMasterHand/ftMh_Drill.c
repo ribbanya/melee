@@ -12,6 +12,8 @@
 #include "ftMasterHand/types.h"
 #include "pl/player.h"
 
+#include <baselib/gobj.h>
+
 void ftMh_WalkWait_Anim(HSD_GObj* gobj)
 {
     if (!ftAnim_IsFramesRemaining(gobj)) {

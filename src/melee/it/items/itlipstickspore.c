@@ -21,6 +21,7 @@
 
 #include <common_structs.h>
 #include <trigf.h>
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <MSL/math.h>
 

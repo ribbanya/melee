@@ -13,6 +13,8 @@
 #include "it/it_279C.h"
 #include "it/item.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 
 /* 2D3F6C */ static void it_802D3F6C(Item_GObj* gobj);

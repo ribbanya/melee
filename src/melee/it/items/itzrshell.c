@@ -12,6 +12,7 @@
 #include "it/itzako.h"
 #include "it/types.h"
 
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 ItemStateTable it_803F87F0[] = {

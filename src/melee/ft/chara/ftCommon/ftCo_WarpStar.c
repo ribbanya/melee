@@ -22,6 +22,8 @@
 #include "lb/lbrefract.h"
 #include "mp/mpcoll.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

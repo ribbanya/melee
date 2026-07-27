@@ -12,6 +12,7 @@
 #include "it/types.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F6C98[] = {
     { 0, NULL, NULL, NULL },

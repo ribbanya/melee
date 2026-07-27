@@ -17,6 +17,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 void grTKirby_80221364(bool);                  /* static */
 void grTKirby_80221368(void);                  /* static */

@@ -25,6 +25,7 @@
 #include "lb/lbspdisplay.h"
 
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 struct grStory_YakumonoParam {

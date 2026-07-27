@@ -13,6 +13,8 @@
 #include "ftCommon/ftCo_Lift.h"
 #include "ftCommon/ftCo_Throw.h"
 
+#include <baselib/gobj.h>
+
 void ftMh_MS_388_80155A58(HSD_GObj* gobj_1, HSD_GObj* gobj_2)
 {
     Fighter* ft_1;

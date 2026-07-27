@@ -10,6 +10,7 @@
 #include "ftCommon/ftCo_KinokoSmallStart.h"
 
 #include "if/forward.h"
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <dolphin/gx/GXStruct.h>

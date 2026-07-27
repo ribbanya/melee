@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 222B98 */ static void grTPichu_80222B98(bool);
 /* 222B9C */ static void grTPichu_80222B9C(void);

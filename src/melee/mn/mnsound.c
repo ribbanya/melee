@@ -13,6 +13,8 @@
 #include "mn/types.h"
 #include "sc/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>
 #include <baselib/gobj.h>

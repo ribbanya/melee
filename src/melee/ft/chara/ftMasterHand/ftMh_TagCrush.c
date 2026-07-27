@@ -15,6 +15,8 @@
 
 #include "pl/player.h"
 
+#include <baselib/gobj.h>
+
 void ftMh_TagCrush_Anim(HSD_GObj* gobj)
 {
     if (ftBossLib_8015C31C() || ftBossLib_8015C3A0() ||

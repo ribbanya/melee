@@ -49,6 +49,8 @@
 
 #include "it/it_26B1.h"
 
+#include <baselib/gobj.h>
+
 /// @todo Figure out how to use #GET_JOBJ instead.
 static inline HSD_JObj* get_jobj(HSD_GObj* gobj)
 {

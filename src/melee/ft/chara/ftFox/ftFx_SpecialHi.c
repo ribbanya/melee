@@ -26,6 +26,7 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 #define FTFOX_SPECIALHI_COLL_FLAG                                             \
     Ft_MF_KeepGfx | Ft_MF_SkipMatAnim | Ft_MF_UpdateCmd | Ft_MF_SkipColAnim | \

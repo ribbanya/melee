@@ -7,6 +7,7 @@
 #include "lb/lbaudio_ax.h"
 
 #include "mn/forward.h"
+#include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/debug.h>

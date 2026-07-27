@@ -5,6 +5,7 @@
 
 #include "gm/forward.h"
 #include "mn/forward.h"
+#include <baselib/forward.h>
 
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>

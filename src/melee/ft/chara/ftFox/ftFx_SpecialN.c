@@ -32,6 +32,7 @@
 #include <common_structs.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/gobj.h>
 #include <melee/it/items/itfoxlaser.h>
 
 static inline void ftFox_SpecialN_GetHoldJoint(HSD_GObj* gobj, Vec3* pos,

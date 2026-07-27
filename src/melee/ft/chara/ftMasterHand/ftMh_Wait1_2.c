@@ -13,6 +13,8 @@
 
 #include <baselib/forward.h>
 
+#include <baselib/gobj.h>
+
 #pragma push
 #pragma dont_inline on
 void ftMh_MS_389_80150C8C(HSD_GObj* gobj)

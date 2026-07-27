@@ -20,6 +20,8 @@
 
 #include "lb/lbspdisplay.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>

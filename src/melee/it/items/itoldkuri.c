@@ -18,6 +18,7 @@
 #include "sysdolphin/baselib/random.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 typedef struct itOldkuriAttributes {
     s32* x0;

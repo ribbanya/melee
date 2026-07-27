@@ -32,10 +32,11 @@
 #include "it/items/itkirbygamewatchchefpan.h"
 #include "lb/lb_00B0.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
-#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 static MotionFlags const ftKb_MF_GwSpecialN_Coll =

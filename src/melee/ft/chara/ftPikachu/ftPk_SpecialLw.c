@@ -26,6 +26,7 @@
 #include "it/items/itpikachuthunder.h"
 
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 bool ftPk_SpecialLw_CheckProperty(HSD_GObj* gobj)
 {

@@ -23,6 +23,7 @@
 #include "sysdolphin/baselib/random.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F8190[] = {
     {

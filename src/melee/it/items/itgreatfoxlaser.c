@@ -16,6 +16,7 @@
 #include "lb/lb_00B0.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <MSL/math.h>
 

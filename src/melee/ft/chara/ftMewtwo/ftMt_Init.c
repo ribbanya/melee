@@ -18,6 +18,8 @@
 
 #include "it/it_26B1.h"
 
+#include <baselib/gobj.h>
+
 MotionState ftMt_Init_MotionStateTable[ftMt_MS_SelfCount] = {
     {
         // ftMt_MS_SpecialNStart = 341

@@ -2,6 +2,8 @@
 
 #include "debug.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 
 #pragma push

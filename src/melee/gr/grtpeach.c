@@ -12,9 +12,10 @@
 
 #include "lb/lbspdisplay.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
-#include <baselib/gobj.h>
 
 /* 2228B4 */ static void grTPeach_802228B4(bool arg0);
 /* 2228B8 */ static void grTPeach_802228B8(void);

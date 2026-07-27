@@ -38,6 +38,7 @@
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/gobj.h>
 #include <MSL/math.h>
 
 static u32 ftKb_Init_804D3DB8[] = {

@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 static void grTRoy_802243F4(bool);
 static void grTRoy_802243F8(void);

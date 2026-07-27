@@ -9,6 +9,8 @@
 #include "it/itgroundcoll.h"
 #include "it/itmaplib.h"
 
+#include <baselib/gobj.h>
+
 #define GET_ATTRS(ip)                                                         \
     ((itLipstickAttributes*) (ip)->xC4_article_data->x4_specialAttributes)
 

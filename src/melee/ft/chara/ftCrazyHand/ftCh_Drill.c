@@ -18,6 +18,8 @@
 
 #include "pl/player.h"
 
+#include <baselib/gobj.h>
+
 void fn_80157C50(HSD_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);

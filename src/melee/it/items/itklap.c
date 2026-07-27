@@ -16,6 +16,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>

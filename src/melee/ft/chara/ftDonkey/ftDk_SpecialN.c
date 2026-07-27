@@ -27,6 +27,7 @@
 #include "lb/forward.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 static void setCallbacks(HSD_GObj* gobj)
 {

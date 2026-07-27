@@ -18,6 +18,7 @@
 #include "pl/player.h"
 
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 #include <MetroTRK/intrinsics.h>
 

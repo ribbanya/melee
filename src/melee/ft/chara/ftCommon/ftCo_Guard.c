@@ -43,6 +43,8 @@
 #include "pl/player.h"
 #include "pl/plbonuslib.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>

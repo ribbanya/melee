@@ -33,6 +33,8 @@
 #include "sysdolphin/baselib/debug.h"
 #include "ty/toy.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/object.h>
 #include <baselib/sislib.h>
 

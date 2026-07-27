@@ -12,6 +12,8 @@
 #include "lb/lbspdisplay.h"
 #include "mn/mnmain.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
 #include <baselib/controller.h>

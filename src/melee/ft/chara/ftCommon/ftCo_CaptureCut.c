@@ -16,6 +16,7 @@
 #include "ftCommon/forward.h"
 #include "ftKirby/forward.h"
 #include "lb/forward.h"
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>

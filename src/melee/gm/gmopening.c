@@ -8,6 +8,8 @@
 
 #include "gm/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stdio.h>
 #include <dolphin/mtx.h>

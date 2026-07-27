@@ -3,6 +3,8 @@
 
 #include <platform.h>
 
+#include <baselib/forward.h>
+
 #include <baselib/cobj.h>
 #include <baselib/displayfunc.h>
 #include <baselib/gobj.h>

@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 void grTZelda_OnDemoInit(bool);                           /* static */
 void grTZelda_OnInit(void);                               /* static */

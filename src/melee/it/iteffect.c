@@ -15,6 +15,8 @@
 #include "lb/lbarchive.h"
 #include "lb/lblanguage.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/random.h>
 

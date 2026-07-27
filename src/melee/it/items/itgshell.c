@@ -22,6 +22,8 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 #include <sysdolphin/baselib/random.h>

@@ -16,6 +16,8 @@
 #include "lb/lbaudio_ax.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <dolphin/mtx.h>

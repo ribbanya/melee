@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 223580 */ static void grTSamus_OnDemoInit(int);
 /* 223584 */ static void grTSamus_OnInit(void);

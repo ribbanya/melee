@@ -14,6 +14,8 @@
 #include "lb/lbvector.h"
 #include "MSL/math.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <baselib/gobj.h>

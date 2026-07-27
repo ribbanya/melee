@@ -17,6 +17,8 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbcollision.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 

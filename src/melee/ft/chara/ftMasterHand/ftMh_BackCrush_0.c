@@ -12,6 +12,7 @@
 #include "pl/player.h"
 
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 void ftMh_BackPunch_Coll(HSD_GObj* gobj) {}

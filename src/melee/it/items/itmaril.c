@@ -16,6 +16,7 @@
 #include "lb/lbvector.h"
 
 #include <math.h>
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 ItemStateTable it_803F82B0[] = {

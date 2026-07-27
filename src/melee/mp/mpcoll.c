@@ -24,6 +24,7 @@
 #include <trigf.h>
 #include <dolphin/os.h>
 #include <baselib/debug.h>
+#include <baselib/gobj.h>
 
 struct mpColl_80458810_t {
     /*  +0 */ int right[9];

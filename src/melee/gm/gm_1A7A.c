@@ -11,6 +11,7 @@
 #include "sc/types.h"
 #include "ty/toy.h"
 
+#include <baselib/aobj.h>
 #include <sysdolphin/baselib/cobj.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

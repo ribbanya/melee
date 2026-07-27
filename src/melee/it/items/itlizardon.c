@@ -25,6 +25,7 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F7BC0[] = { {
                                      0,

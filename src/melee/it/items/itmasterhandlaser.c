@@ -27,6 +27,7 @@
 
 #include <common_structs.h>
 #include <math_ppc.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F9378[] = {
     {

@@ -4,9 +4,6 @@
 #include <platform.h>
 
 #include "baselib/debug.h"
-
-#include "baselib/forward.h" // IWYU pragma: export
-
 #include "baselib/object.h"
 
 #include <baselib/forward.h>

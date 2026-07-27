@@ -4,6 +4,8 @@
 
 #include "baselib/objalloc.h"
 
+#include <baselib/forward.h>
+
 #include <stddef.h>
 
 static HSD_GObjLibInitDataType HSD_GObj_80408620 = {

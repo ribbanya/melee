@@ -10,6 +10,8 @@
 #include "it/itCommonItems.h"
 #include "it/item.h"
 
+#include <baselib/forward.h>
+
 #include <stdbool.h>
 #include <baselib/gobj.h>
 #include <baselib/random.h>

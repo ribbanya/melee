@@ -8,6 +8,7 @@
 #include "lb/lbspdisplay.h"
 
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* static */ StageCallbacks grTLg_803E8DF0[4] = {
     {

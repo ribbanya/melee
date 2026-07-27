@@ -35,6 +35,7 @@
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/controller.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 static void ifStage251(HSD_GObj* gobj);

@@ -18,6 +18,8 @@
 
 #include "pl/player.h"
 
+#include <baselib/gobj.h>
+
 void fn_801578E8(HSD_GObj* gobj)
 {
     Fighter_ChangeMotionState(gobj, ftMh_MS_WalkLoop, 0, 0.0f, 1.0f, 0.0f,

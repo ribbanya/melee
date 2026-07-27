@@ -22,6 +22,8 @@
 
 #include "pl/player.h"
 
+#include <baselib/gobj.h>
+
 inline void func_8015ADD0_inline(HSD_GObj* gobj)
 {
     Fighter* fp = gobj->user_data;

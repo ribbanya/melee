@@ -6,6 +6,7 @@
 #include <placeholder.h>
 
 #include "pl/forward.h"
+#include <baselib/forward.h>
 
 #include <baselib/gobj.h>
 #include <sysdolphin/baselib/gobjproc.h>

@@ -42,6 +42,7 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 static void ftCh_Init_80156310(HSD_GObj* gobj);
 static void ftCh_Init_80156AD8(HSD_GObj* gobj);

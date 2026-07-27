@@ -6,6 +6,7 @@
 
 #include "ft/forward.h"
 #include "pl/forward.h"
+#include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

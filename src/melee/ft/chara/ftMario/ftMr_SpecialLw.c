@@ -22,6 +22,7 @@
 #include "lb/lbrefract.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 static void updateRot(HSD_GObj* gobj)
 {

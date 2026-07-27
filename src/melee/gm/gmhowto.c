@@ -7,6 +7,8 @@
 
 #include "gm/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>

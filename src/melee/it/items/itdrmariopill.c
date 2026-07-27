@@ -28,6 +28,8 @@
 #include "it/itmaplib.h"
 #include "it/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <math.h>
 #include <math_ppc.h>

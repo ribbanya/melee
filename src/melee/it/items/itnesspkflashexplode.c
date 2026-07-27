@@ -17,6 +17,7 @@
 #include "it/types.h"
 
 #include "lb/forward.h"
+#include <baselib/forward.h>
 
 #include <common_structs.h>
 #include <baselib/gobj.h>

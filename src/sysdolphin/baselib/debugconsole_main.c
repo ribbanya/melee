@@ -2,6 +2,8 @@
 
 #include <platform.h>
 
+#include <baselib/forward.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <dolphin/os.h>

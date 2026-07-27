@@ -11,6 +11,7 @@
 #include "it/items/types.h"
 #include "it/itgroundcoll.h"
 
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 #include <melee/it/item.h>
 

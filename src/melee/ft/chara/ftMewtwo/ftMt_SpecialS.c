@@ -19,6 +19,8 @@
 #include "ftCommon/inlines.h"
 #include "ftMewtwo/types.h"
 
+#include <baselib/gobj.h>
+
 /// Flag values read during Confusion's reflect think function
 
 #define CONFUSION_REFLECT_NONE                                                \

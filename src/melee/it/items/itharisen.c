@@ -12,6 +12,8 @@
 
 #include <baselib/forward.h>
 
+#include <baselib/gobj.h>
+
 ItemStateTable it_803F5FF0[] = {
     { -1, itHarisen_UnkMotion0_Anim, itHarisen_UnkMotion0_Phys,
       itHarisen_UnkMotion0_Coll },

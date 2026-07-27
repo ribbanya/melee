@@ -15,6 +15,8 @@
 #include "ftCommon/types.h"
 #include "ftKirby/ftkirby.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 

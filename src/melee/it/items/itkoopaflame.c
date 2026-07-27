@@ -11,6 +11,7 @@
 #include "it/types.h"
 #include "lb/types.h"
 
+#include <baselib/forward.h>
 #include <melee/it/forward.h>
 
 #include <common_structs.h>

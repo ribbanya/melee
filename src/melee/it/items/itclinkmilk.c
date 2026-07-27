@@ -14,6 +14,7 @@
 #include "it/item.h"
 #include "it/types.h"
 
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 ItemStateTable it_803F7A28[] = {

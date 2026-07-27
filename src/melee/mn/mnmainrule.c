@@ -16,6 +16,8 @@
 
 #include "mn/mnmain.h"
 
+#include <baselib/forward.h>
+
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjplink.h>

@@ -2,6 +2,8 @@
 
 #include <placeholder.h>
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>

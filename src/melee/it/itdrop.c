@@ -14,6 +14,7 @@
 #include "it/itspawn.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 ItemKind it_8026F3AC(void)

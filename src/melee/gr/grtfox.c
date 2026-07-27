@@ -22,6 +22,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 struct grTFox_YakumonoParam {
     UNK_T unk0;

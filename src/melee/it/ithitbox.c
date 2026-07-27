@@ -9,6 +9,7 @@
 #include "lb/forward.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 void it_802753DC(Item_GObj* item_gobj)
 {

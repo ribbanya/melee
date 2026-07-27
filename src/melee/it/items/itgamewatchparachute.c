@@ -12,6 +12,8 @@
 #include "it/it_26B1.h"
 #include "it/item.h"
 
+#include <baselib/gobj.h>
+
 ItemStateTable it_803F78F8[] = {
     {
         0,

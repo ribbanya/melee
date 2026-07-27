@@ -5,6 +5,7 @@
 #include <platform.h>
 
 #include "baselib/debug.h"
+#include "gm/types.h"
 
 #include "mn/forward.h"
 

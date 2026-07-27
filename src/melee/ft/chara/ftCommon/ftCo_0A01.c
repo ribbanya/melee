@@ -67,6 +67,8 @@
 
 #include "pl/player.h"
 
+#include <baselib/forward.h>
+
 #include <math.h>
 #include <math_ppc.h>
 #include <dolphin/gx/GXStruct.h>

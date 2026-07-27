@@ -10,6 +10,8 @@
 
 #include "dolphin/gx/GXStruct.h"
 
+#include <baselib/forward.h>
+
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>
 

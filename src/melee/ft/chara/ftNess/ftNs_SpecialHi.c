@@ -34,6 +34,7 @@
 #include <math_ppc.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <MetroTRK/intrinsics.h>
 
 /// SpecialHi/SpecialAirHi (PK Thunder)

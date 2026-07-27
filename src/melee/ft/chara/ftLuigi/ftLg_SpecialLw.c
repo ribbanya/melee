@@ -23,6 +23,7 @@
 #include "lb/lbrefract.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 /// SpecialLw (Luigi Cyclone)
 #define FTLUIGI_SPECIALLW_FLAG                                                \

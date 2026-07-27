@@ -6,6 +6,7 @@
 
 #include "gr/forward.h"
 #include "pl/forward.h"
+#include <baselib/forward.h>
 #include <melee/ft/forward.h>
 
 #include <string.h>

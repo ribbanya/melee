@@ -12,6 +12,8 @@
 #include "ftCrazyHand/ftCh_CaptureWaitCrazyHand.h"
 #include "ftCrazyHand/ftCh_FingerBeam.h"
 
+#include <baselib/gobj.h>
+
 void ftCh_GrabUnk1_8015B670(HSD_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);

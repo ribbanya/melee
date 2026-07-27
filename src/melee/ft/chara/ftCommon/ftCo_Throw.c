@@ -9,6 +9,8 @@
 
 #include "mp/types.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <dolphin/mtx.h>
 #include <baselib/gobj.h>

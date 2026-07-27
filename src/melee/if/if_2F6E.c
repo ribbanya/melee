@@ -2,6 +2,8 @@
 
 #include "mn/types.h"
 
+#include <baselib/forward.h>
+
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjgxlink.h>
 #include <sysdolphin/baselib/gobjobject.h>

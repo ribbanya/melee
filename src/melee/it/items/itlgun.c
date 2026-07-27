@@ -11,6 +11,7 @@
 
 #include <baselib/forward.h>
 
+#include <baselib/gobj.h>
 #include <melee/it/item.h>
 
 /* 28E7D8 */ static void it_8028E7D8(Item_GObj*);

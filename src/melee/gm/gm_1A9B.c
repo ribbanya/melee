@@ -29,6 +29,8 @@
 #include "lb/lbmthp.h"
 #include "mn/inlines.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>
 #include <baselib/gobjobject.h>

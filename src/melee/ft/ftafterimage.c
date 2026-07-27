@@ -10,6 +10,7 @@
 
 #include "it/forward.h"
 #include "it/items/forward.h"
+#include <baselib/forward.h>
 
 #include <math_ppc.h>
 #include <stddef.h>

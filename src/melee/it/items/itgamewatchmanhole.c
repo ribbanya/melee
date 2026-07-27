@@ -15,6 +15,7 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbspdisplay.h"
 
+#include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
 bool itGamewatchmanhole_UnkMotion0_Anim(Item_GObj* gobj);

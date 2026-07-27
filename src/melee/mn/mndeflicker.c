@@ -8,6 +8,8 @@
 #include "mn/types.h"
 #include "sc/types.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjgxlink.h>

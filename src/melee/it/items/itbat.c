@@ -10,6 +10,8 @@
 #include "it/item.h"
 #include "it/itgroundcoll.h"
 
+#include <baselib/forward.h>
+
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 

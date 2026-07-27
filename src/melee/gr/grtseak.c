@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 223864 */ static void grTSeak_OnDemoInit(bool);
 /* 223868 */ static void grTSeak_OnInit(void);

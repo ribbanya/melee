@@ -34,6 +34,7 @@
 #include <math.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <MetroTRK/intrinsics.h>
 
 static MotionFlags const ftSk_MF_SpecialHi_Coll =

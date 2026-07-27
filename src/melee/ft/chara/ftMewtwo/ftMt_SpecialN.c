@@ -32,6 +32,7 @@
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 
 /// SpecialN/SpecialAirN
 

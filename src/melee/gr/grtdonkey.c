@@ -17,6 +17,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 220228 */ static void grTDonkey_80220228(bool);
 /* 22022C */ static void grTDonkey_8022022C(void);

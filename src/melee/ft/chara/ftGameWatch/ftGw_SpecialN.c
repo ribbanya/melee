@@ -21,6 +21,7 @@
 
 #include <common_structs.h>
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 static void ftGw_SpecialN_CreateSausage(HSD_GObj* gobj)

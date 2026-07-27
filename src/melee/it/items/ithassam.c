@@ -28,6 +28,8 @@
 #include "it/types.h"
 #include "lb/lbvector.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <trigf.h>
 #include <dolphin/mtx.h>

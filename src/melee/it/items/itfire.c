@@ -14,6 +14,7 @@
 #include "it/itgroundcoll.h"
 
 #include <common_structs.h>
+#include <baselib/gobj.h>
 
 ItemStateTable it_803F7C10[] = {
     { 0, itFire_UnkMotion0_Anim, itFire_UnkMotion0_Phys,

@@ -9,6 +9,7 @@
 #include "it/forward.h"
 #include <baselib/forward.h>
 
+#include <baselib/gobj.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/item.h>

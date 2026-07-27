@@ -29,6 +29,7 @@
 #include <baselib/forward.h>
 
 #include <dolphin/mtx.h>
+#include <baselib/gobj.h>
 #include <baselib/random.h>
 
 /* 11CE48 */ static ItemKind pickVeg(HSD_GObj* gobj);

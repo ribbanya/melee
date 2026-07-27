@@ -24,6 +24,8 @@
 #include "mn/mnstagesw.h"
 #include "sc/types.h"
 
+#include <baselib/forward.h>
+
 extern StaticModelDesc MenMainConRl_Top;
 extern StaticModelDesc MenMainCursorRl_Top;
 extern StaticModelDesc MenMainCursorTr01_Top;

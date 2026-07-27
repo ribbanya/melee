@@ -23,11 +23,12 @@
 #include "ftKirby/ftkirby.h"
 #include "it/items/itpikachutjoltground.h"
 
+#include <baselib/forward.h>
+
 #include <common_structs.h>
 #include <stddef.h>
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
-#include <baselib/gobj.h>
 
 void ftKb_SpecialNPk_800F9FD4(Fighter_GObj* gobj)
 {

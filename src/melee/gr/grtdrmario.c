@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 #include <dolphin/os.h>
+#include <baselib/gobj.h>
 
 /* 22050C */ static void grtDrMario_8022050C(bool);
 /* 220510 */ static void grtDrMario_80220510(void);
