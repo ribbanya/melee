@@ -7,7 +7,6 @@
 #include <placeholder.h>
 
 #include "baselib/debug.h"
-#include "baselib/displayfunc.h"
 
 #include "baselib/forward.h"
 
@@ -698,12 +697,6 @@ void lb_80012994(HSD_ImageDesc* img, u8 alpha, u8 blur_size, f32 x, f32 y,
     HSD_StateInvalidate(2);
 }
 
-static struct lb_803BA1C0_t {
-    u8 pad_0[0x28];
-    HSD_Chan chan0;
-    HSD_Chan chan1;
-} lb_803BA1C0;
-
 HSD_Chan chan0 = {
     NULL,
     GX_COLOR0,
@@ -735,7 +728,6 @@ HSD_Chan chan1 = {
 void fn_80013614(HSD_GObj* gobj)
 {
     struct CameraBlurData* data = gobj->user_data;
-    struct lb_803BA1C0_t* channels = &lb_803BA1C0;
     u8 pad8[8];
     Mtx view_mtx;
     Mtx view_mtx2;
@@ -772,8 +764,8 @@ void fn_80013614(HSD_GObj* gobj)
         GXLoadPosMtxImm(view_mtx, 0);
         GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3C, 0,
                           0x7D);
-        HSD_SetupChannel(&channels->chan0);
-        HSD_SetupChannel(&channels->chan1);
+        HSD_SetupChannel(&chan0);
+        HSD_SetupChannel(&chan1);
         HSD_StateSetNumChans(1);
 
         if (alpha != 0.0f) {
@@ -806,8 +798,8 @@ void fn_80013614(HSD_GObj* gobj)
         GXLoadPosMtxImm(view_mtx2, 0);
         GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3C, 0,
                           0x7D);
-        HSD_SetupChannel(&channels->chan0);
-        HSD_SetupChannel(&channels->chan1);
+        HSD_SetupChannel(&chan0);
+        HSD_SetupChannel(&chan1);
         HSD_StateSetNumChans(1);
 
         width = image->width;
