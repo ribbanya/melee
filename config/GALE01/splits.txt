@@ -56,6 +56,7 @@ melee/lb/lbspdisplay_1.c:
 	.rodata     start:0x803B7280 end:0x803B72A8
 	.data       start:0x803BA150 end:0x803BA1C0
 	.sdata      start:0x804D3740 end:0x804D3750
+	.sbss       start:0x804D63A0 end:0x804D63C0
 	.sdata2     start:0x804D7BA0 end:0x804D7C08
 
 melee/lb/lbspdisplay.c:
@@ -63,7 +64,6 @@ melee/lb/lbspdisplay.c:
 	.rodata     start:0x803B72A8 end:0x803B72C0
 	.data       start:0x803BA1C0 end:0x803BA248
 	.sdata      start:0x804D3750 end:0x804D3760
-	.sbss       start:0x804D63A0 end:0x804D63C0
 	.sdata2     start:0x804D7C08 end:0x804D7C50
 
 melee/lb/lbspdisplay_2.c:
