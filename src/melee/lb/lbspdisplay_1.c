@@ -22,6 +22,7 @@
 #include <trigf.h>
 #include <dolphin/mtx.h>
 #include <baselib/cobj.h>
+#include <baselib/displayfunc.h>
 #include <baselib/dobj.h>
 #include <baselib/gobj.h>
 #include <baselib/gobjobject.h>
@@ -1027,4 +1028,84 @@ void lb_80011710(DynamicsDesc* arg0, DynamicsDesc* arg1)
             data1->desc.lb_unk0.unk_8C = 0.0f;
         }
     }
+}
+
+bool lb_800117F4(DynamicsDesc* arg0, GXColor* arg1, GXColor* arg2, int arg3,
+                 u32 arg4)
+{
+    Mtx view_mtx;
+    struct DynamicsData* cur;
+    int i;
+    PAD_STACK(8 * 4);
+
+    if (arg1->a < 0xFF) {
+        if (arg4 != 2) {
+            return false;
+        }
+    } else if (arg4 != 0) {
+        return false;
+    }
+    HSD_StateInitDirect(0, 2);
+    HSD_CObjGetViewingMtx(HSD_CObjGetCurrent(), &view_mtx[0]);
+    GXLoadPosMtxImm(&view_mtx[0], 0);
+    GXSetLineWidth(12, GX_TO_ONE);
+    GXBegin(GX_LINESTRIP, GX_VTXFMT0, arg0->count);
+    for (cur = arg0->data, i = 0; cur != NULL; cur = cur->next, i++) {
+        HSD_JObjSetMtxDirtyInline(cur->desc.lb_unk0.jobj);
+        HSD_JObjSetupMatrix(cur->desc.lb_unk0.jobj);
+        {
+            float x = cur->desc.lb_unk0.jobj->mtx[0][3];
+            float y = cur->desc.lb_unk0.jobj->mtx[1][3];
+            float z = cur->desc.lb_unk0.jobj->mtx[2][3];
+            if (i < arg3) {
+                GXPosition3f32(x, y, z);
+                GXColor4u8(arg1->r / 2, arg1->g / 2, arg1->b / 2, arg1->a);
+            } else {
+                GXPosition3f32(x, y, z);
+                GXColor4u8(arg1->r, arg1->g, arg1->b, arg1->a);
+            }
+        }
+    }
+    return true;
+}
+
+void lb_800119DC(Vec3* arg0, int arg1, float arg2, float arg3, float arg4)
+{
+    struct lb_80011A50_t sp1C;
+    sp1C.x0 = 2;
+    sp1C.x1 = 0x64;
+    sp1C.x4 = *arg0;
+    sp1C.unk_scale = arg2;
+    sp1C.x24 = arg3;
+    sp1C.unk_count0 = arg1;
+    sp1C.unk_angle_float = arg4;
+    sp1C.x10 = -10000.0f;
+    sp1C.x14 = 10000.0f;
+    sp1C.x18 = 10000.0f;
+    sp1C.x1C = -10000.0f;
+    lb_800100B0(&sp1C, arg2);
+}
+
+struct lb_80011A50_t* lb_80011A50(Vec3* arg0, int arg1, float arg2, float arg3,
+                                  float arg4, float arg5, float arg6,
+                                  float arg7, float arg8)
+{
+    struct lb_80011A50_t x2C;
+    x2C.x0 = 1;
+    x2C.x1 = 0;
+    x2C.x4 = *arg0;
+    x2C.unk_scale = arg2;
+    x2C.x24 = arg3;
+    x2C.unk_count0 = arg1;
+    x2C.unk_angle_float = arg4;
+    x2C.x10 = arg5;
+    x2C.x14 = arg6;
+    x2C.x18 = arg7;
+    x2C.x1C = arg8;
+    return lb_800100B0(&x2C, arg2);
+}
+
+enum_t lb_80011ABC(void)
+{
+    return lb_804D63B4;
 }

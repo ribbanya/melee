@@ -63,86 +63,6 @@ struct CameraBlurData {
 /* 013FF0 */ static bool lb_80013FF0(ColorOverlay* arg);
 /* 014234 */ static bool lb_80014234(ColorOverlay* arg);
 
-bool lb_800117F4(DynamicsDesc* arg0, GXColor* arg1, GXColor* arg2, int arg3,
-                 u32 arg4)
-{
-    Mtx view_mtx;
-    struct DynamicsData* cur;
-    int i;
-    PAD_STACK(8 * 4);
-
-    if (arg1->a < 0xFF) {
-        if (arg4 != 2) {
-            return false;
-        }
-    } else if (arg4 != 0) {
-        return false;
-    }
-    HSD_StateInitDirect(0, 2);
-    HSD_CObjGetViewingMtx(HSD_CObjGetCurrent(), &view_mtx[0]);
-    GXLoadPosMtxImm(&view_mtx[0], 0);
-    GXSetLineWidth(12, GX_TO_ONE);
-    GXBegin(GX_LINESTRIP, GX_VTXFMT0, arg0->count);
-    for (cur = arg0->data, i = 0; cur != NULL; cur = cur->next, i++) {
-        HSD_JObjSetMtxDirtyInline(cur->desc.lb_unk0.jobj);
-        HSD_JObjSetupMatrix(cur->desc.lb_unk0.jobj);
-        {
-            float x = cur->desc.lb_unk0.jobj->mtx[0][3];
-            float y = cur->desc.lb_unk0.jobj->mtx[1][3];
-            float z = cur->desc.lb_unk0.jobj->mtx[2][3];
-            if (i < arg3) {
-                GXPosition3f32(x, y, z);
-                GXColor4u8(arg1->r / 2, arg1->g / 2, arg1->b / 2, arg1->a);
-            } else {
-                GXPosition3f32(x, y, z);
-                GXColor4u8(arg1->r, arg1->g, arg1->b, arg1->a);
-            }
-        }
-    }
-    return true;
-}
-
-void lb_800119DC(Vec3* arg0, int arg1, float arg2, float arg3, float arg4)
-{
-    struct lb_80011A50_t sp1C;
-    sp1C.x0 = 2;
-    sp1C.x1 = 0x64;
-    sp1C.x4 = *arg0;
-    sp1C.unk_scale = arg2;
-    sp1C.x24 = arg3;
-    sp1C.unk_count0 = arg1;
-    sp1C.unk_angle_float = arg4;
-    sp1C.x10 = -10000.0f;
-    sp1C.x14 = 10000.0f;
-    sp1C.x18 = 10000.0f;
-    sp1C.x1C = -10000.0f;
-    lb_800100B0(&sp1C, arg2);
-}
-
-struct lb_80011A50_t* lb_80011A50(Vec3* arg0, int arg1, float arg2, float arg3,
-                                  float arg4, float arg5, float arg6,
-                                  float arg7, float arg8)
-{
-    struct lb_80011A50_t x2C;
-    x2C.x0 = 1;
-    x2C.x1 = 0;
-    x2C.x4 = *arg0;
-    x2C.unk_scale = arg2;
-    x2C.x24 = arg3;
-    x2C.unk_count0 = arg1;
-    x2C.unk_angle_float = arg4;
-    x2C.x10 = arg5;
-    x2C.x14 = arg6;
-    x2C.x18 = arg7;
-    x2C.x1C = arg8;
-    return lb_800100B0(&x2C, arg2);
-}
-
-enum_t lb_80011ABC(void)
-{
-    return lb_804D63B4;
-}
-
 HSD_LObj* lb_80011AC4(LightList** list)
 {
     HSD_LObj* prev;
@@ -777,11 +697,40 @@ void lb_80012994(HSD_ImageDesc* img, u8 alpha, u8 blur_size, f32 x, f32 y,
 
     HSD_StateInvalidate(2);
 }
+
 static struct lb_803BA1C0_t {
     u8 pad_0[0x28];
     HSD_Chan chan0;
     HSD_Chan chan1;
 } lb_803BA1C0;
+
+HSD_Chan chan0 = {
+    NULL,
+    GX_COLOR0,
+    0,
+    { 0x00, 0x00, 0x00, 0x00 },
+    { 0xFF, 0xFF, 0xFF, 0x00 },
+    GX_FALSE,
+    GX_SRC_REG,
+    GX_SRC_REG,
+    GX_LIGHT_NULL,
+    GX_DF_CLAMP,
+    GX_AF_NONE,
+};
+
+HSD_Chan chan1 = {
+    NULL,
+    GX_ALPHA0,
+    0,
+    { 0x00, 0x00, 0x00, 0xFF },
+    { 0x00, 0x00, 0x00, 0xFF },
+    GX_FALSE,
+    GX_SRC_REG,
+    GX_SRC_REG,
+    GX_LIGHT_NULL,
+    GX_DF_CLAMP,
+    GX_AF_NONE,
+};
 
 void fn_80013614(HSD_GObj* gobj)
 {
@@ -984,23 +933,4 @@ HSD_CObj* lb_80013B14(HSD_CameraDescPerspective* desc)
     }
     HSD_CObjSetScissor(cobj, &scissor);
     return cobj;
-}
-
-bool lb_80013BB0(ColorOverlay* arg)
-{
-    return true;
-}
-
-bool lb_80013BB8(ColorOverlay* arg0)
-{
-    arg0->x0_timer += arg0->x8_ptr1->unk.timer;
-    ++arg0->x8_ptr1;
-    return false;
-}
-
-bool lb_80013BE4(ColorOverlay* arg0)
-{
-    arg0->x7C_color_enable = arg0->x7C_flag2 = false;
-    ++arg0->x8_ptr1;
-    return false;
 }
