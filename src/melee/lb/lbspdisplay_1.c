@@ -1,7 +1,5 @@
 #include "lbspdisplay_1.h"
 
-#include "lbspdisplay.static.h"
-
 #include "math.h"
 #include "platform.h"
 #include "stddef.h"

@@ -1,10 +1,16 @@
-#include "lbspdisplay.static.h"
+#include "lbspdisplay.h"
 
+#include "platform.h"
 #include "stdarg.h"
 #include "stddef.h"
 
+#include <placeholder.h>
+
 #include "baselib/debug.h"
 #include "baselib/displayfunc.h"
+
+#include "baselib/forward.h"
+
 #include "baselib/psstructs.h"
 #include "baselib/tobj.h"
 #include "dolphin/gx/GXCull.h"
@@ -18,6 +24,7 @@
 #include "lb/forward.h"
 
 #include "lb/lbdvd.h"
+#include "lb/lbspdisplay_1.h"
 #include "lb/types.h"
 
 #include <math_ppc.h>
@@ -48,6 +55,13 @@ struct CameraBlurData {
     /* 0x1C */ HSD_ImageDesc* x1C;
     /* 0x20 */ f32 x20;
 };
+
+/* 0103D8 */ static bool lb_800103D8(Vec3* vec, float x0, float x1, float x2,
+                                     float x3, float offset);
+/* 013BB8 */ static bool lb_80013BB8(ColorOverlay* arg);
+/* 013BE4 */ static bool lb_80013BE4(ColorOverlay* arg);
+/* 013FF0 */ static bool lb_80013FF0(ColorOverlay* arg);
+/* 014234 */ static bool lb_80014234(ColorOverlay* arg);
 
 bool lb_800117F4(DynamicsDesc* arg0, GXColor* arg1, GXColor* arg2, int arg3,
                  u32 arg4)

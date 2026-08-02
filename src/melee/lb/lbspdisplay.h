@@ -16,6 +16,7 @@
 
 #include <dolphin/mtx.h>
 
+/* 013BB0 */ bool lb_80013BB0(ColorOverlay* arg);
 /* 00F9F8 */ void lb_8000F9F8(HSD_JObj* jobj);
 /* 00FA94 */ void lb_8000FA94(void);
 /* 00FCDC */ void lb_8000FCDC(void);
