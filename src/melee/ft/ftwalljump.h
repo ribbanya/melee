@@ -1,8 +1,8 @@
-#ifndef MELEE_FT_FTWALLJUMP_H
-#define MELEE_FT_FTWALLJUMP_H
+#ifndef GALE01_08169C
+#define GALE01_08169C
 
-#include <sysdolphin/baselib/gobj.h>
+#include <baselib/forward.h>
 
-BOOL func_8008169C(HSD_GObj* pPlayerEntityStruct /*r3*/);
+/* 08169C */ bool ftWallJump_8008169C(HSD_GObj* gobj);
 
 #endif

@@ -1,50 +1,47 @@
-#ifndef _lbvector_h_
-#define _lbvector_h_
+#ifndef GALE01_00D2EC
+#define GALE01_00D2EC
 
-#include <dolphin/mtx/mtxtypes.h>
-#include <dolphin/gx/GXTransform.h>
-#include <melee/lb/lbrefract.h>
+#include <baselib/forward.h>
 
-#include <sysdolphin/baselib/cobj.h>
+#include <dolphin/mtx.h>
+#include <MetroTRK/intrinsics.h>
 
-extern inline float sqrtf_accurate(float x);
+static float lbVector_Len(Vec3* vec);
+static float lbVector_Len_xy(Vec3* vec);
 
-static float lbvector_Len(Vec *vec);
-static float lbvector_Len_xy(Vec *vec);
+float lbVector_Normalize(Vec3* vec);
+float lbVector_NormalizeXY(Vec3* a);
+Vec3* lbVector_Add(Vec3* a, Vec3* b);
+Vec3* lbVector_Add_xy(Vec3* a, Vec3* b);
+Vec3* lbVector_Sub(Vec3* a, Vec3* b);
+Vec3* lbVector_Diff(Vec3* a, Vec3* b, Vec3* result);
+Vec3* lbVector_CrossprodNormalized(Vec3* a, Vec3* b, Vec3* result);
 
-float lbvector_Normalize(Vec *vec);
-float lbvector_NormalizeXY(Vec *a);
-Vec *lbvector_Add(Vec *a, Vec *b);
-Vec *lbvector_Add_xy(Vec *a, Vec *b);
-Vec *lbvector_Sub(Vec *a, Vec *b);
-Vec *lbvector_Diff(Vec *a, Vec *b, Vec *result);
-Vec *lbvector_CrossprodNormalized(Vec *a, Vec *b, Vec *result);
-
-float lbvector_Angle(Vec *a, Vec *b);
-float lbvector_AngleXY(Vec *a, Vec *b);
+float lbVector_Angle(Vec3* a, Vec3* b);
+float lbVector_AngleXY(Vec3* a, Vec3* b);
 
 static float sin(float angle);
 static float cos(float angle);
 
-void lbvector_RotateAboutUnitAxis(Vec *v, Vec *axis, float angle);
-void lbvector_Rotate(Vec *v, int axis, float angle);
+void lbVector_RotateAboutUnitAxis(Vec3* v, Vec3* axis, float angle);
+void lbVector_Rotate(Vec3* v, int axis, float angle);
 
 float dummy(void);
-void lbvector_Mirror(Vec *a, Vec *b);
-float lbvector_CosAngle(Vec *a, Vec *b);
-Vec *lbvector_Lerp(Vec *a, Vec *b, Vec *result, float f);
-Vec *func_8000DE38(Mtx m, Vec *v, float c);
+void lbVector_Mirror(Vec3* a, Vec3* b);
+float lbVector_CosAngle(Vec3* a, Vec3* b);
+Vec3* lbVector_Lerp(Vec3* a, Vec3* b, Vec3* result, float f);
+Vec3* lbVector_8000DE38(Mtx m, Vec3* v, float c);
 
-Vec *lbvector_EulerAnglesFromONB(Vec *result_angles, Vec *a, Vec *b, Vec *c);
-Vec *lbvector_EulerAnglesFromPartialONB(Vec *result_angles, Vec *a, Vec *c);
-Vec *lbvector_ApplyEulerRotation(Vec *v, Vec *angles);
-float lbvector_sqrtf_accurate(float x);
+Vec3* lbVector_EulerAnglesFromONB(Vec3* result_angles, Vec3* a, Vec3* b,
+                                  Vec3* c);
+Vec3* lbVector_EulerAnglesFromPartialONB(Vec3* result_angles, Vec3* a,
+                                         Vec3* c);
+Vec3* lbVector_ApplyEulerRotation(Vec3* v, Vec3* angles);
+float lbVector_sqrtf_accurate(float x);
 
-extern MtxPtr func_80369688(HSD_CObj *);
-
-Vec *lbvector_WorldToScreen(HSD_CObj *cobj, const Point3d *pos3d, Point3d *screenCoords, int d);
-void lbvector_CreateEulerMatrix(Mtx m, Vec *angles);
-float lbvector_8000E838(Vec *a, Vec *b, Vec *c, Vec *d);
-
+Vec3* lbVector_WorldToScreen(HSD_CObj* cobj, const Vec3* pos3d,
+                             Vec3* screenCoords, int d);
+void lbVector_CreateEulerMatrix(Mtx m, Quaternion* angles);
+float lbVector_8000E838(Vec3* a, Vec3* b, Vec3* c, Vec3* d);
 
 #endif

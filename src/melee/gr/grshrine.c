@@ -1,188 +1,192 @@
-#include <melee/gr/grshrine.h>
+#include "grshrine.h"
+
+#include "granime.h"
+#include "ground.h"
+#include "grzakogenerator.h"
+#include "inlines.h"
+#include "types.h"
+
+#include <platform.h>
+
+#include "lb/lb_00B0.h"
+#include "lb/lb_00F9.h"
+
 #include <math.h>
+#include <dolphin/mtx.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjproc.h>
 
-static void* lbl_804D6A18;
+static void grShrine_80201C60(bool);
+static void grShrine_80201C64(void);
+static void grShrine_UnkStage0_OnLoad(void);
+static void grShrine_UnkStage0_OnStart(void);
+static bool grShrine_80201D18(void);
+static HSD_GObj* grShrine_80201D20(s32);
+static void grShrine_80201E08(Ground_GObj*);
+static bool grShrine_80201E34(Ground_GObj*);
+static void grShrine_80201E3C(Ground_GObj*);
+static void grShrine_80201E40(Ground_GObj*);
+static void grShrine_80201E44(Ground_GObj*);
+static bool grShrine_80201E88(Ground_GObj*);
+static void grShrine_80201E90(Ground_GObj*);
+static void grShrine_80201E94(Ground_GObj*);
+static void grShrine_80201E98(HSD_GObj*);
+static void grShrine_80201E9C(Ground_GObj*);
+static bool grShrine_80201F14(Ground_GObj*);
+static void grShrine_80201F1C(Ground_GObj*);
+static void grShrine_80201F40(Ground_GObj*);
+static DynamicsDesc* grShrine_80201F44(enum_t);
+static bool grShrine_80201F4C(Vec3*, int, HSD_JObj*);
 
-static StageCallbacks lbl_803E50E8[3] = {
-    {
-        func_80201E08,
-        func_80201E34,
-        func_80201E3C,
-        func_80201E40,
-    }, {
-        func_80201E44,
-        func_80201E88,
-        func_80201E90,
-        func_80201E94,
-    }, {
-        func_80201E9C,
-        func_80201F14,
-        func_80201F1C,
-        func_80201F40,
-        0xC0000000,
-    },
+static void* yakumono_param;
+
+static StageCallbacks grSh_StageCallbacks[3] = {
+    { grShrine_80201E08, grShrine_80201E34, grShrine_80201E3C,
+      grShrine_80201E40, 0 },
+    { grShrine_80201E44, grShrine_80201E88, grShrine_80201E90,
+      grShrine_80201E94, 0 },
+    { grShrine_80201E9C, grShrine_80201F14, grShrine_80201F1C,
+      grShrine_80201F40, (1 << 30) | (1 << 31) },
 };
 
-StageData lbl_803E5130 = {
-    0x00000007,
-    lbl_803E50E8,
+StageData grSh_StageData = {
+    Gr_Kind_Shrine,
+    grSh_StageCallbacks,
     "/GrSh.dat",
-    func_80201C64,
-    func_80201C60,
-    func_80201CF0,
-    func_80201CF4,
-    func_80201D18,
-    func_80201F44,
-    func_80201F4C,
-    0x00000001,
+    grShrine_80201C64,
+    grShrine_80201C60,
+    grShrine_UnkStage0_OnLoad,
+    grShrine_UnkStage0_OnStart,
+    grShrine_80201D18,
+    grShrine_80201F44,
+    grShrine_80201F4C,
+    (1 << 0),
+    NULL,
+    0,
 };
 
-static void func_80201C60()
-{
-}
+static void grShrine_80201C60(bool arg0) {}
 
-static void func_80201C64()
+static void grShrine_80201C64(void)
 {
-    u32 unused1[2];
+    u8 unused0[8];
 
-    lbl_804D6A18 = func_801C49F8();
-    func_80201D20(0);
-    func_80201D20(1);
-    func_80201D20(2);
-    func_801C39C0();
-    func_801C3BB4();
+    yakumono_param = Ground_GetYakumonoParam();
+    grShrine_80201D20(0);
+    grShrine_80201D20(1);
+    grShrine_80201D20(2);
+    Ground_801C39C0();
+    Ground_801C3BB4();
+
     {
-        Vec3 v = { 0.5f, 0.0f, 0.0f };
-        u32 unused2;
-        func_80011A50(&v, -1, 0.5f, 0.0f, M_PI/3,
-            -10000.0f, 10000.0f, 10000.0f, -10000.0f);
+        Vec3 v = { 0.5F, 0.0F, 0.0F };
+
+        u8 unused1[4];
+
+        lb_80011A50(&v, -1, 0.5f, 0.0f, M_PI / 3, -10000.0f, 10000.0f,
+                    10000.0f, -10000.0f);
     }
 }
 
-static void func_80201CF0()
+static void grShrine_UnkStage0_OnLoad(void) {}
+
+static void grShrine_UnkStage0_OnStart(void)
 {
+    grZakoGenerator_801CAE04(NULL);
 }
 
-static void func_80201CF4()
+static bool grShrine_80201D18(void)
 {
-    func_801CAE04(0);
+    return false;
 }
 
-static s32 func_80201D18()
-{
-    return 0;
-}
-
-static HSD_GObj* func_80201D20(s32 arg0)
+static HSD_GObj* grShrine_80201D20(s32 arg0)
 {
     HSD_GObj* gobj;
-    StageCallbacks* callbacks = &lbl_803E50E8[arg0];
+    StageCallbacks* callbacks = &grSh_StageCallbacks[arg0];
 
-    gobj = func_801C14D0(arg0);
+    gobj = Ground_GetStageGObj(arg0);
+
     if (gobj != NULL) {
-        Map* map;
-        map = gobj->user_data;
-        map->x8_callback = NULL;
-        map->xC_callback = NULL;
-        GObj_SetupGXLink(gobj, func_801C5DB0, 3, 0);
-        if (callbacks->callback3 != NULL) {
-            map->x1C_callback = callbacks->callback3;
-        }
-        if (callbacks->callback0 != NULL) {
-            callbacks->callback0(gobj);
-        }
-        if (callbacks->callback2 != NULL) {
-            func_8038FD54(gobj, callbacks->callback2, 4);
-        }
+        Ground_SetupStageCallbacks(gobj, callbacks);
     } else {
-        OSReport("%s:%d: couldn t get gobj(id=%d)\n",
-            "grshrine.c", 205, arg0);
+        OSReport("%s:%d: couldn t get gobj(id=%d)\n", __FILE__, 205, arg0);
     }
+
     return gobj;
 }
 
-static void func_80201E08(HSD_GObj* gobj)
+static void grShrine_80201E08(Ground_GObj* gobj)
 {
-    Map* map = gobj->user_data;
-    func_801C8138(gobj, map->map_id, 0);
+    Ground* gp = gobj->user_data;
+    grAnime_801C8138(gobj, gp->map_id, 0);
 }
 
-static s32 func_80201E34()
+static bool grShrine_80201E34(Ground_GObj* arg0)
 {
-    return 0;
+    return false;
 }
 
-static void func_80201E3C()
+static void grShrine_80201E3C(Ground_GObj* arg0) {}
+
+static void grShrine_80201E40(Ground_GObj* arg0) {}
+
+static void grShrine_80201E44(Ground_GObj* gobj)
 {
+    Ground* gp = gobj->user_data;
+    grAnime_801C8138(gobj, gp->map_id, 0);
+    gp->x11_flags.b012 = 2;
 }
 
-static void func_80201E40()
+static bool grShrine_80201E88(Ground_GObj* arg0)
 {
+    return false;
 }
 
-static void func_80201E44(HSD_GObj* gobj)
+static void grShrine_80201E90(Ground_GObj* arg0) {}
+
+static void grShrine_80201E94(Ground_GObj* arg0) {}
+
+static void grShrine_80201E98(HSD_GObj* arg0) {}
+
+static void grShrine_80201E9C(Ground_GObj* gobj)
 {
-    Map* map = gobj->user_data;
-    func_801C8138(gobj, map->map_id, 0);
-    map->x11_flags.b012 = 2;
+    u8 _[8];
+
+    Ground* gp = gobj->user_data;
+    Ground_801C2ED0(gobj->hsd_obj, gp->map_id);
+    grAnime_801C8138(gobj, gp->map_id, 0);
+    Ground_801C10B8(gobj, grShrine_80201E98);
+    Ground_801C2FE0(gobj);
+    gp->x10_flags.b5 = true;
 }
 
-static s32 func_80201E88()
+static bool grShrine_80201F14(Ground_GObj* arg0)
 {
-    return 0;
+    return false;
 }
 
-static void func_80201E90()
+static void grShrine_80201F1C(Ground_GObj* arg0)
 {
+    Ground_801C2FE0(arg0);
+    lb_800115F4();
 }
 
-static void func_80201E94()
+static void grShrine_80201F40(Ground_GObj* arg0) {}
+
+static DynamicsDesc* grShrine_80201F44(enum_t arg0)
 {
+    return NULL;
 }
 
-static void func_80201E98()
-{
-}
-
-static void func_80201E9C(HSD_GObj* gobj)
-{
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    func_801C2ED0(gobj->hsd_obj, map->map_id);
-    func_801C8138(gobj, map->map_id, 0);
-    func_801C10B8(gobj, func_80201E98);
-    func_801C2FE0(gobj);
-    map->x10_flags.b5 = 1;
-}
-
-static s32 func_80201F14()
-{
-    return 0;
-}
-
-static void func_80201F1C()
-{
-    func_801C2FE0();
-    func_800115F4();
-}
-
-static void func_80201F40()
-{
-}
-
-static BOOL func_80201F44(s32)
-{
-    return FALSE;
-}
-
-static s32 func_80201F4C(Vec3* a, s32 unused, struct _HSD_JObj* joint)
+static bool grShrine_80201F4C(Vec3* a, int _, HSD_JObj* joint)
 {
     Vec3 b;
-    func_8000B1CC(joint, 0, &b);
+    lb_8000B1CC(joint, 0, &b);
 
     if (a->y > b.y) {
-        return TRUE;
+        return true;
     } else {
-        return FALSE;
+        return false;
     }
 }

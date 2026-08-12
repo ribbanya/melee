@@ -1,103 +1,124 @@
-#include <functions.h>
-#include <sysdolphin/baselib/gobj.h>
-#include <melee/ft/fighter.h>
+#include "ftwalljump.h"
 
-extern ftCommonData* p_ftCommonData; // defined in fighter.s
-#define p_ftcommon_r4 p_ftCommonData
+#include "fighter.h"
 
-#define MAX_WALLJUMP_INPUT_FRAMES 254
+#include <platform.h>
 
-// https://decomp.me/scratch/f74Cl
-// UnclePunch Map file: Interrupt_Walljump
-// @Returns: true if this function started a walljump
-BOOL func_8008169C(HSD_GObj* pPlayerEntityStruct/*r3*/)
+#include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
+#include "ftCommon/ftCo_PassiveWall.h"
+#include "mp/mplib.h"
+
+#include <dolphin/mtx.h>
+
+static int const max_input_frames = 254;
+
+/// UnclePunch Map file: Interrupt_Walljump
+/// @returns: @c true if this function started a walljump, otherwise @c false.
+bool ftWallJump_8008169C(HSD_GObj* gobj)
 {
-    Fighter* fp_r31 = (Fighter*) pPlayerEntityStruct->user_data;
-    CollData* pCollData_r6;
-    s32 wallSideFlag_r0;
-    f32 deltaX_f1;
-    f32 wallSide_f31;
+    Fighter* fp0 = GET_FIGHTER(gobj);
 
-    Vec wallPos_sp24;
-    Vec ecb_sp18;
-    s32 dummy3[3];
-
-	// is a walljump character? is airborne?
-    if (fp_r31->x2224_flag.bits.b7)
-    {
-        pCollData_r6 = &fp_r31->x6F0_collData;
-        if ((fp_r31->x6F0_collData.x134_envFlags & 0x800) || (pCollData_r6->x134_envFlags & 0x20))
+    if (fp0->can_walljump) {
+        CollData* coll_data = &fp0->coll_data;
+        if ((fp0->coll_data.env_flags & Collide_RightWallHug) ||
+            (coll_data->env_flags & Collide_LeftWallHug))
         {
-            wallSideFlag_r0 = pCollData_r6->x134_envFlags & 0x800;
-            wallSide_f31 = wallSideFlag_r0 ? -1.0f : 1.0f; // side of the collision?
+            s32 env_flags = coll_data->env_flags & Collide_RightWallHug;
 
-			// x210C_walljumpInputTimer = some walljump animation/input timer?
-			// is initialized in the else-block when the user does the right inputs.
-			// gets incremented here every frame.
-            if ((fp_r31->x210C_walljumpInputTimer < MAX_WALLJUMP_INPUT_FRAMES) && (wallSide_f31 == fp_r31->x2110_walljumpWallSide))
+            // side of the collision?
+            float wall_dir = env_flags ? -1.f : +1.f;
+
+            // wall_jump_input_timer = some walljump animation/input timer?
+            // is initialized in the else-block when the user does the right
+            // inputs. gets incremented here every frame.
+            if ((fp0->wall_jump_input_timer < max_input_frames) &&
+                (wall_dir == fp0->x2110_walljumpWallSide))
             {
-                fp_r31->x210C_walljumpInputTimer++;
+                fp0->wall_jump_input_timer++;
+            } else {
+                Vec3 wall_pos, ecb;
+
+                u8 _[8];
+
+                if (env_flags) {
+                    // compute absolte position of the ECB's left vertex?
+                    ecb.x = coll_data->ecb.left.x;
+                    ecb.y = coll_data->ecb.left.y;
+                    ecb.z = 0.0f;
+                    ecb.x += fp0->cur_pos.x;
+                    ecb.y += fp0->cur_pos.y;
+                    ecb.z += fp0->cur_pos.z;
+                    // compute distance to the wall?
+                    if (!mpGetSpeed(coll_data->right_facing_wall.index, &ecb,
+                                    &wall_pos))
+                    {
+                        wall_pos.x = 0.0f;
+                    }
+                } else {
+                    // compute absolte position of the ECB's right vertex?
+                    ecb.x = coll_data->ecb.right.x;
+                    ecb.y = coll_data->ecb.right.y;
+                    ecb.z = 0.0f;
+                    ecb.x += fp0->cur_pos.x;
+                    ecb.y += fp0->cur_pos.y;
+                    ecb.z += fp0->cur_pos.z;
+                    // compute distance to the wall?
+                    if (!mpGetSpeed(coll_data->left_facing_wall.index, &ecb,
+                                    &wall_pos))
+                    {
+                        wall_pos.x = 0.0f;
+                    }
+                }
+
+                {
+                    // not sure what this computes, I guess it checks if we are
+                    // close to the wall and move towards it with sufficent
+                    // speed
+                    float x_diff = fp0->pos_delta.x - wall_pos.x;
+                    x_diff = x_diff < 0 ? -x_diff : x_diff;
+
+                    if (x_diff > fp0->co_attrs.x148) {
+                        // walljump input phase one completed, now start the
+                        // walljump input timer and check for the control stick
+                        // movement away from the wall in the next phase
+                        fp0->x2110_walljumpWallSide = wall_dir;
+                        fp0->wall_jump_input_timer = 0U;
+                    }
+                }
             }
-            else
-            {
-                if (wallSideFlag_r0)
-                {
-					// compute absolte position of the ECB's left vertex?
-                    ecb_sp18.x = pCollData_r6->xA4_ecbCurrCorrect.left.x;
-                    ecb_sp18.y = pCollData_r6->xA4_ecbCurrCorrect.left.y;
-                    ecb_sp18.z = 0.0f;
-                    ecb_sp18.x += fp_r31->xB0_pos.x;
-                    ecb_sp18.y += fp_r31->xB0_pos.y;
-                    ecb_sp18.z += fp_r31->xB0_pos.z;
-					// compute distance to the wall?
-                    if (!func_800567C0(pCollData_r6->x174_leftwall.index, &ecb_sp18, &wallPos_sp24))
-                        wallPos_sp24.x = 0.0f;
-                }
-                else
-                {
-					// compute absolte position of the ECB's right vertex?
-                    ecb_sp18.x = pCollData_r6->xA4_ecbCurrCorrect.right.x;
-                    ecb_sp18.y = pCollData_r6->xA4_ecbCurrCorrect.right.y;
-                    ecb_sp18.z = 0.0f;
-                    ecb_sp18.x += fp_r31->xB0_pos.x;
-                    ecb_sp18.y += fp_r31->xB0_pos.y;
-                    ecb_sp18.z += fp_r31->xB0_pos.z;
-					// compute distance to the wall?
-                    if (!func_800567C0(pCollData_r6->x160_rightwall.index, &ecb_sp18, &wallPos_sp24))
-                        wallPos_sp24.x = 0.0f;
-                }
-				// not sure what this computes, I guess it checks if we are close to the wall and move towards it with sufficent speed
-                deltaX_f1 = fp_r31->xC8_pos_delta.x - wallPos_sp24.x;
-                deltaX_f1 = (deltaX_f1 < 0.0f) ? -deltaX_f1 : deltaX_f1;
-                if (deltaX_f1 > fp_r31->x110_attr.x258)
-                {
-					// walljump input phase one completed, now start the walljump input timer
-					// and check for the control stick movement away from the wall in the next phase
-                    fp_r31->x2110_walljumpWallSide = wallSide_f31;
-                    fp_r31->x210C_walljumpInputTimer = 0U;
-                }
-            }
+
             if (
-                    (f32)fp_r31->x210C_walljumpInputTimer < p_ftcommon_r4->x768 && // walljump timer within limits?
-                    (
-                        (fp_r31->x2110_walljumpWallSide == -1.0f && fp_r31->input.x620_lstick_x >=  p_ftcommon_r4->x76C) || // left wall & control stick right?
-                        (fp_r31->x2110_walljumpWallSide ==  1.0f && fp_r31->input.x620_lstick_x <= -p_ftcommon_r4->x76C)    // right wal & control stick left?
-                    )
-                    && (f32)fp_r31->x670_timer_lstick_tilt_x < p_ftcommon_r4->x770 // control stick didn't stay too long in the tilt area?
-                )
+                // walljump timer within limits?
+                fp0->wall_jump_input_timer < p_ftCommonData->x768 &&
+                ((
+                     // left wall & control stick right?
+                     fp0->x2110_walljumpWallSide == -1 &&
+                     fp0->input.lstick.x >= p_ftCommonData->x76C) ||
+                 (
+                     // right wall & control stick left?
+                     fp0->x2110_walljumpWallSide == +1 &&
+                     fp0->input.lstick.x <= -p_ftCommonData->x76C)) &&
+                // control stick didn't stay too long in the tilt area?
+                fp0->x670_timer_lstick_tilt_x < p_ftCommonData->x770)
             {
-				// do a walljump!
-                func_800C1E64(pPlayerEntityStruct, 0xCB, p_ftcommon_r4->x774, fp_r31->x1969_walljumpUsed, fp_r31->x2110_walljumpWallSide);
-                fp_r31->x210C_walljumpInputTimer = MAX_WALLJUMP_INPUT_FRAMES;
-                if (fp_r31->x1969_walljumpUsed < 255)
-                    fp_r31->x1969_walljumpUsed++;
-                return 1;
+                // do a walljump!
+                ftCo_800C1E64(gobj, ftCo_MS_PassiveWallJump,
+                              p_ftCommonData->x774, fp0->x1969_walljumpUsed,
+                              fp0->x2110_walljumpWallSide);
+
+                fp0->wall_jump_input_timer = max_input_frames;
+                if (fp0->x1969_walljumpUsed < 255) {
+                    fp0->x1969_walljumpUsed++;
+                }
+                return true;
             }
-        }
-        else
-        {
-            fp_r31->x210C_walljumpInputTimer = MAX_WALLJUMP_INPUT_FRAMES;
+        } else {
+            fp0->wall_jump_input_timer = max_input_frames;
         }
     }
-    return 0;
+
+    return false;
 }

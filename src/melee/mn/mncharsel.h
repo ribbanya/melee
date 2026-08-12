@@ -1,173 +1,34 @@
-#ifndef _mncharsel_h_
-#define _mncharsel_h_
+#ifndef GALE01_25BC20
+#define GALE01_25BC20
 
-#include <common_structs.h>
-#include <dolphin/types.h>
-#include <global.h>
+#include <placeholder.h>
 
-typedef enum _Mode {
-    Mode_Time,
-    Mode_Stock,
-    Mode_Coin,
-    Mode_Bonus
-} Mode;
+#include <baselib/forward.h>
 
-typedef enum _StageSelectMode {
-    StageSelectMode_On,
-    StageSelectMode_Random,
-    StageSelectMode_Ordered,
-    StageSelectMode_Turns,
-    StageSelectMode_Loser
-} StageSelectMode;
-
-typedef struct _GameRules {
-    /*0x00*/ u8 unk_x0;
-    /*0x01*/ u8 unk_x1;
-    /*0x02*/ u8 mode;
-    /*0x03*/ u8 time_limit;
-    /*0x04*/ u8 stock_count;
-    /*0x05*/ u8 handicap;
-    /*0x06*/ u8 damage_ratio;
-    /*0x07*/ u8 unk_x7;
-    /*0x08*/ u8 stock_time_limit;
-    /*0x09*/ u8 friendly_fire;
-    /*0x0A*/ u8 pause;
-    /*0x0B*/ u8 score_display;
-    /*0x0C*/ u8 unk_xc;
-    /*0x0D*/ u8 unk_xd[3];
-    /*0x10*/ u8 unk_x10;
-    /*0x11*/ u8 unk_x11[7];
-} GameRules;
-
-typedef struct _PlayerInitData {
-    /*0x00*/ u8 character_kind;
-    /*0x01*/ u8 slot_type;
-    /*0x02*/ u8 stocks;
-    /*0x03*/ u8 color;
-    /*0x04*/ u8 port;
-    /*0x05*/ s8 spawnpos32;
-    /*0x06*/ u8 spawn_direction;
-    /*0x07*/ u8 subcolor;
-    /*0x08*/ u8 handicap;
-    /*0x09*/ u8 team;
-    /*0x0A*/ u8 nametag;
-    /*0x0B*/ u8 unk_0xb;
-    /*0x0C*/ u8 unk_0xc;
-    /*0x0D*/ u8 unk_0xd;
-    /*0x0E*/ u8 unk_0xe;
-    /*0x0F*/ u8 cpu_level;
-    /*0x10*/ u8 unk_0x10;
-    /*0x11*/ u8 unk_0x11;
-    /*0x12*/ u16 unk_0x12;
-    /*0x14*/ u8 unk_0x14;
-    /*0x15*/ u8 unk_0x15;
-    /*0x16*/ u8 unk_0x16;
-    /*0x17*/ u8 unk_0x17;
-    /*0x18*/ f32 offense_ratio;
-    /*0x1C*/ f32 defense_ratio;
-    /*0x20*/ u8 unk_0x20;
-    /*0x21*/ u8 unk_0x21;
-    /*0x22*/ u8 unk_0x22;
-    /*0x23*/ u8 unk_0x23;
-} PlayerInitData;
-
-typedef struct _StartMeleeRules {
-    u8 flags1;
-    u8 flags2;
-    u8 flags3;
-    u8 flags4;
-    u8 flags5;
-    u8 flags6;
-    u8 unk_0x6;
-    u8 unk_0x7;
-    u8 is_teams;
-    u8 unk_0x9;
-    u8 unk_0xa;
-    s8 item_frequency;
-    s8 sd_penalty;
-    u8 unk_0xd;
-    u32 stage_id;
-    s32 time_limit;
-    u8 unk_0x14;
-    u8 unk_0x15;
-    u8 unk_0x16;
-    u8 unk_0x17;
-    u8 unk_0x18;
-    u8 unk_0x19;
-    u8 unk_0x1a;
-    u8 unk_0x1b;
-    u8 unk_0x1c;
-    u8 unk_0x1d;
-    u8 unk_0x1e;
-    u8 unk_0x1f;
-    u64 item_mask;
-    u8 unk_0x28;
-    u8 unk_0x29;
-    u8 unk_0x2a;
-    u8 unk_0x2b;
-    u8 unk_0x2c;
-    u8 unk_0x2d;
-    u8 unk_0x2e;
-    u8 unk_0x2f;
-    f32 damage_ratio;
-    f32 game_speed;
-    u8 unk_0x38;
-    u8 unk_0x39;
-    u8 unk_0x3a;
-    u8 unk_0x3b;
-    u8 unk_0x3c;
-    u8 unk_0x3d;
-    u8 unk_0x3e;
-    u8 unk_0x3f;
-    void* pause_check_callback;
-    u8 unk_0x44;
-    u8 unk_0x45;
-    u8 unk_0x46;
-    u8 unk_0x47;
-    u8 unk_0x48;
-    u8 unk_0x49;
-    u8 unk_0x4a;
-    u8 unk_0x4b;
-    u8 unk_0x4c;
-    u8 unk_0x4d;
-    u8 unk_0x4e;
-    u8 unk_0x4f;
-    void* match_end_callback;
-    s32 unk_0x54;
-    u8 unk_0x58;
-    u8 unk_0x59;
-    u8 unk_0x5a;
-    u8 unk_0x5b;
-    u8 unk_0x5c;
-    u8 unk_0x5d;
-    u8 unk_0x5e;
-    u8 unk_0x5f;
-} StartMeleeRules;
-
-typedef struct _StartMeleeData {
-    StartMeleeRules rules;
-    PlayerInitData players[6];
-} StartMeleeData;
-
-typedef struct _VsModeData {
-    s8 loser;
-    u32 ordered_stage_index;
-    s8 winner;
-    u8 unk_0x3;
-    u8 unk_0x4;
-    u8 unk_0x5;
-    u8 unk_0x6;
-    u8 unk_0x7;
-    StartMeleeData data;
-} VsModeData;
-
-typedef struct _CSSData {
-    u8 unk_0x0;
-    u8 unk_0x1;
-    u8 match_type;
-    u8 pending_scene_change;
-    u8* ko_star_counts;
-    VsModeData data;
-} CSSData;
+/* 25BC20 */ TextKerning* mnCharSel_8025BC20(TextKerning* arg0, u32 arg1);
+/* 25BD30 */ void mnCharSel_8025BD30(void);
+/* 25C020 */ void mnCharSel_8025C020(int);
+/* 25D1C4 */ void mnCharSel_8025D1C4(int, int);
+/* 25D5AC */ void mnCharSel_8025D5AC(int door, int, bool hidden);
+/* 25DAA0 */ bool mnCharSel_8025DAA0(int door);
+/* 25DB34 */ void mnCharSel_8025DB34(u8);
+/* 25EE8C */ void mnCharSel_8025EE8C(u8 idx);
+/* 25F0E0 */ void fn_8025F0E0(HSD_GObj*);
+/* 25FAC0 */ void fn_8025FAC0(HSD_GObj*);
+/* 25FB2C */ void fn_8025FB2C(HSD_GObj*);
+/* 25FB50 */ void mnCharSel_8025FB50(u8 door, s32 arg1);
+/* 25FDEC */ s32 mnCharSel_8025FDEC(u8 door);
+/* 260094 */ void mnCharSel_CostumeChange(int door, u32 input);
+/* 2602A0 */ void mnCharSel_CursorThink(HSD_GObj* gobj);
+/* 262648 */ void fn_80262648(HSD_GObj*);
+/* 262F44 */ void fn_80262F44(HSD_GObj*);
+/* 263354 */ void fn_80263354(HSD_GObj*);
+/* 2633B0 */ void fn_802633B0(HSD_GObj*);
+/* 264070 */ void mnCharSel_80264070(void);
+/* 26407C */ void fn_8026407C(HSD_GObj*);
+/* 2640A0 */ s32 mnCharSel_802640A0(void);
+/* 26688C */ void mnCharSel_8026688C_OnEnter(void*);
+/* 2669F4 */ void mnCharSel_802669F4_OnFrame(void);
+/* 266D70 */ void mnCharSel_80266D70_OnLeave(void*);
 
 #endif

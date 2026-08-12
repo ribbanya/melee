@@ -1,392 +1,438 @@
-#include <melee/gr/grbattle.h>
+#include "granime.h"
+#include "grdisplay.h"
+#include "grlib.h"
+#include "grmaterial.h"
+#include "ground.h"
+#include "grzakogenerator.h"
+#include "inlines.h"
+#include "stage.h"
+#include "types.h"
 
-#include <sysdolphin/baselib/jobj.h>
-#include <sysdolphin/baselib/random.h>
+#include "gm/gm_16AE.h"
+#include "lb/lb_00F9.h"
 
-extern StageInfo stage_info;
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/mtx.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/gobjgxlink.h>
+#include <baselib/gobjproc.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
 
-struct {
-    s32 unk0;
-    s32 unk4;
-}* lbl_804D6ACC;
+/** @var ::grBattle_YakumonoParam::bg_curr_color_overlay
+ * @todo ::ColorOverlay_x8_t, from ::grMaterial_801C9604
+ * @var ::grBattle_YakumonoParam::bg_prev_color_overlay
+ * @copydoc ::grBattle_YakumonoParam::bg_curr_color_overlay
+ */
+struct grBattle_YakumonoParam {
+    int bg_curr_color_overlay;
+    int bg_prev_color_overlay;
+};
 
-static u8 lbl_804D6AC8;
+/* 219C98 */ static void grBattle_OnDemoInit(bool);
+/* 219CA4 */ static void grBattle_OnInit(void);
+/* 219D54 */ static void grBattle_OnLoad(void);
+/* 219D58 */ static void grBattle_OnStart(void);
+/* 219D7C */ static bool grBattle_80219D7C(void);
+/* 219D84 */ static Ground_GObj* grBattle_80219D84(int gobj_id);
+/* 219E6C */ static void grBattle_GObj0_Callback0(Ground_GObj* gobj);
+/* 21A10C */ static bool grBattle_GObj0_Callback1(Ground_GObj* gobj);
+/* 21A114 */ static void grBattle_GObj0_Callback2(Ground_GObj* gobj);
+/* 21A118 */ static void grBattle_GObj0_Callback3(Ground_GObj* gobj);
+/* 21A11C */ static void grBattle_GObj6_Callback0(Ground_GObj* gobj);
+/* 21A16C */ static bool grBattle_GObj6_Callback1(Ground_GObj* gobj);
+/* 21A174 */ static void grBattle_GObj6_Callback2(Ground_GObj* gobj);
+/* 21A198 */ static void grBattle_GObj6_Callback3(Ground_GObj* gobj);
+/* 21A19C */ static void grBattle_GObj5_Callback0(Ground_GObj* gobj);
+/* 21A1FC */ static bool grBattle_GObj5_Callback1(Ground_GObj* gobj);
+/* 21A204 */ static void grBattle_GObj5_Callback2(Ground_GObj* gobj);
+/* 21A208 */ static void grBattle_GObj5_Callback3(Ground_GObj* gobj);
+/* 21A20C */ static void grBattle_GObj1_Callback0(Ground_GObj* gobj);
+/* 21A264 */ static bool grBattle_GObj1_Callback1(Ground_GObj* gobj);
+/* 21A26C */ static void grBattle_GObj1_Callback2(Ground_GObj* gobj);
+/* 21A270 */ static void grBattle_GObj1_Callback3(Ground_GObj* gobj);
+/* 21A274 */ static void grBattle_GObj2_Callback0(Ground_GObj* gobj);
+/* 21A2CC */ static bool grBattle_GObj2_Callback1(Ground_GObj* gobj);
+/* 21A2D4 */ static void grBattle_GObj2_Callback2(Ground_GObj* gobj);
+/* 21A2D8 */ static void grBattle_GObj2_Callback3(Ground_GObj* gobj);
+/* 21A2DC */ static void grBattle_GObj4_Callback0(Ground_GObj* gobj);
+/* 21A334 */ static bool grBattle_GObj4_Callback1(Ground_GObj* gobj);
+/* 21A33C */ static void grBattle_GObj4_Callback2(Ground_GObj* gobj);
+/* 21A340 */ static void grBattle_GObj4_Callback3(Ground_GObj* gobj);
+/* 21A344 */ static void grBattle_BG_Callback0(Ground_GObj* gobj);
+/* 21A3B4 */ static bool grBattle_BG_Callback1(Ground_GObj* gobj);
+/* 21A3BC */ static void grBattle_BG_Callback2(Ground_GObj* gobj);
+/* 21A60C */ static void grBattle_BG_Callback3(Ground_GObj* gobj);
+/* 21A610 */ static DynamicsDesc* grBattle_OnTouchLine(enum_t);
+/* 21A618 */ static bool grBattle_OnCheckShadowRender(Vec3*, int, HSD_JObj*);
 
-static const int BATTLE_BG_MAX = 3;
+/* 4D6AC8 */ static GXBool isDemoFight;
+/* 4D6ACC */ static struct grBattle_YakumonoParam* yakumono_param;
 
-static StageCallbacks lbl_803E7DA0[7] = {
+static StageCallbacks grNBa_StageCallbacks[] = {
     {
-        func_80219E6C,
-        func_8021A10C,
-        func_8021A114,
-        func_8021A118,
+        grBattle_GObj0_Callback0,
+        grBattle_GObj0_Callback1,
+        grBattle_GObj0_Callback2,
+        grBattle_GObj0_Callback3,
         0,
     },
     {
-        func_8021A20C,
-        func_8021A264,
-        func_8021A26C,
-        func_8021A270,
+        grBattle_GObj1_Callback0,
+        grBattle_GObj1_Callback1,
+        grBattle_GObj1_Callback2,
+        grBattle_GObj1_Callback3,
         0,
     },
     {
-        func_8021A274,
-        func_8021A2CC,
-        func_8021A2D4,
-        func_8021A2D8,
+        grBattle_GObj2_Callback0,
+        grBattle_GObj2_Callback1,
+        grBattle_GObj2_Callback2,
+        grBattle_GObj2_Callback3,
         0,
     },
     {
-        func_8021A344,
-        func_8021A3B4,
-        func_8021A3BC,
-        func_8021A60C,
+        grBattle_BG_Callback0,
+        grBattle_BG_Callback1,
+        grBattle_BG_Callback2,
+        grBattle_BG_Callback3,
         0,
     },
     {
-        func_8021A2DC,
-        func_8021A334,
-        func_8021A33C,
-        func_8021A340,
+        grBattle_GObj4_Callback0,
+        grBattle_GObj4_Callback1,
+        grBattle_GObj4_Callback2,
+        grBattle_GObj4_Callback3,
         0,
     },
     {
-        func_8021A19C,
-        func_8021A1FC,
-        func_8021A204,
-        func_8021A208,
+        grBattle_GObj5_Callback0,
+        grBattle_GObj5_Callback1,
+        grBattle_GObj5_Callback2,
+        grBattle_GObj5_Callback3,
         0,
     },
     {
-        func_8021A11C,
-        func_8021A16C,
-        func_8021A174,
-        func_8021A198,
-        0xC0000000,
+        grBattle_GObj6_Callback0,
+        grBattle_GObj6_Callback1,
+        grBattle_GObj6_Callback2,
+        grBattle_GObj6_Callback3,
+        (1 << 30) | (1 << 31),
     },
 };
 
-StageData lbl_803E7E38 = {
-    0x00000024,
-    lbl_803E7DA0,
+StageData grNBa_StageData = {
+    Gr_Kind_Battle,
+    grNBa_StageCallbacks,
     "/GrNBa.dat",
-    func_80219CA4,
-    func_80219C98,
-    func_80219D54,
-    func_80219D58,
-    func_80219D7C,
-    func_8021A610,
-    func_8021A618,
-    0x00000001,
+    grBattle_OnInit,
+    grBattle_OnDemoInit,
+    grBattle_OnLoad,
+    grBattle_OnStart,
+    grBattle_80219D7C,
+    grBattle_OnTouchLine,
+    grBattle_OnCheckShadowRender,
+    (1 << 0),
+    NULL,
+    0,
 };
 
-
-static void func_80219C98()
+void grBattle_OnDemoInit(bool arg0)
 {
-    lbl_804D6AC8 = 1;
+    isDemoFight = true;
 }
 
-static void func_80219CA4()
+void grBattle_OnInit(void)
 {
-    lbl_804D6ACC = func_801C49F8();
+    yakumono_param = Ground_GetYakumonoParam();
     stage_info.unk8C.b4 = 1;
     stage_info.unk8C.b5 = 1;
 
-    func_80219D84(0);
-    if (func_8016B3D8() != 0 || Stage_80225194() == 0x111 ||
-        Stage_80225194() == 0xF5) {
-        func_80219D84(5);
+    grBattle_80219D84(0);
+    if (gm_8016B3D8() || Stage_80225194() == 273 || Stage_80225194() == 245) {
+        grBattle_80219D84(5);
     } else {
-        func_80219D84(3);
-        func_80219D84(1);
+        grBattle_80219D84(3);
+        grBattle_80219D84(1);
     }
-    func_80219D84(6);
-    func_801C39C0();
-    func_801C3BB4();
-    func_801C9A10();
-    lbl_804D6AC8 = 0;
+    grBattle_80219D84(6);
+    Ground_801C39C0();
+    Ground_801C3BB4();
+    grLib_801C9A10();
+    isDemoFight = 0;
 }
 
-static void func_80219D54()
+void grBattle_OnLoad(void) {}
+
+void grBattle_OnStart(void)
 {
+    grZakoGenerator_801CAE04(NULL);
 }
 
-static void func_80219D58()
+bool grBattle_80219D7C(void)
 {
-    func_801CAE04(0);
+    return false;
 }
 
-static s32 func_80219D7C()
-{
-    return 0;
-}
-
-static HSD_GObj* func_80219D84(s32 arg0)
+Ground_GObj* grBattle_80219D84(int gobj_id)
 {
     HSD_GObj* gobj;
-    StageCallbacks* callbacks = &lbl_803E7DA0[arg0];
+    StageCallbacks* callbacks = &grNBa_StageCallbacks[gobj_id];
 
-    gobj = func_801C14D0(arg0);
+    gobj = Ground_GetStageGObj(gobj_id);
+
     if (gobj != NULL) {
-        Map* map = gobj->user_data;
-        map->x8_callback = NULL;
-        map->xC_callback = NULL;
-        GObj_SetupGXLink(gobj, func_801C5DB0, 3, 0);
+        Ground* gp = GET_GROUND(gobj);
+        gp->x8_callback = NULL;
+        gp->xC_callback = NULL;
+        GObj_SetupGXLink(gobj, grDisplay_801C5DB0, 3, 0);
+
         if (callbacks->callback3 != NULL) {
-            map->x1C_callback = callbacks->callback3;
+            gp->x1C_callback = callbacks->callback3;
         }
-        if (callbacks->callback0 != NULL) {
-            callbacks->callback0(gobj);
+
+        if (callbacks->on_init != NULL) {
+            callbacks->on_init(gobj);
         }
-        if (callbacks->callback2 != NULL) {
-            func_8038FD54(gobj, callbacks->callback2, 4);
+
+        if (callbacks->gobj_proc != NULL) {
+            HSD_GObj_SetupProc(gobj, callbacks->gobj_proc, 4);
         }
+
     } else {
-        OSReport("%s:%d: couldn t get gobj(id=%d)\n", __FILE__, 232, arg0);
+        OSReport("%s:%d: couldn t get gobj(id=%d)\n", __FILE__, 232, gobj_id);
     }
+
     return gobj;
 }
 
-static void func_80219E6C(HSD_GObj* gobj)
+void grBattle_GObj0_Callback0(Ground_GObj* gobj)
 {
     Vec3 v;
-    Map* map = gobj->user_data;
-    int id = map->map_id;
+    Ground* gp = GET_GROUND(gobj);
 
-    func_801C8138(gobj, id, 0);
-    if (lbl_804D6AC8 == 0) {
-        return;
+    grAnime_801C8138(gobj, gp->map_id, 0);
+
+    if (isDemoFight) {
+        grLib_801C9A70(0, &v);
+        HSD_JObjSetTranslate(Ground_801C2CF4(0), &v);
+
+        grLib_801C9A70(1, &v);
+        HSD_JObjSetTranslate(Ground_801C2CF4(1), &v);
+
+        grLib_801C9A70(2, &v);
+        HSD_JObjSetTranslate(Ground_801C2CF4(2), &v);
+
+        grLib_801C9A70(3, &v);
+        HSD_JObjSetTranslate(Ground_801C2CF4(3), &v);
     }
-
-    func_801C9A70(0, &v);
-    HSD_JObjSetTranslate(func_801C2CF4(0), &v);
-
-    func_801C9A70(1, &v);
-    HSD_JObjSetTranslate(func_801C2CF4(1), &v);
-
-    func_801C9A70(2, &v);
-    HSD_JObjSetTranslate(func_801C2CF4(2), &v);
-
-    func_801C9A70(3, &v);
-    HSD_JObjSetTranslate(func_801C2CF4(3), &v);
 }
 
-static s32 func_8021A10C()
+bool grBattle_GObj0_Callback1(Ground_GObj* arg0)
 {
-    return 0;
+    return false;
 }
 
-static void func_8021A114()
+void grBattle_GObj0_Callback2(Ground_GObj* arg0) {}
+
+void grBattle_GObj0_Callback3(Ground_GObj* arg0) {}
+
+void grBattle_GObj6_Callback0(Ground_GObj* gobj)
 {
+    Ground_JObjInline1(gobj);
 }
 
-static void func_8021A118()
+bool grBattle_GObj6_Callback1(Ground_GObj* arg0)
 {
+    return false;
 }
 
-static void func_8021A11C(HSD_GObj* gobj)
+void grBattle_GObj6_Callback2(Ground_GObj* gobj)
 {
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    func_801C2ED0(gobj->hsd_obj, map->map_id);
-    func_801C8138(gobj, map->map_id, 0);
+    Ground_801C2FE0(gobj);
+    lb_800115F4();
 }
 
-static s32 func_8021A16C()
+void grBattle_GObj6_Callback3(Ground_GObj* arg0) {}
+
+void grBattle_GObj5_Callback0(Ground_GObj* gobj)
 {
-    return 0;
+    Ground* gp = GET_GROUND(gobj);
+    Ground_JObjInline1(gobj);
+    gp->x11_flags.b012 = 2;
 }
 
-static void func_8021A174(HSD_GObj* gobj)
+bool grBattle_GObj5_Callback1(Ground_GObj* gobj)
 {
-    func_801C2FE0(gobj);
-    func_800115F4();
+    return false;
 }
 
-static void func_8021A198()
+void grBattle_GObj5_Callback2(Ground_GObj* gobj) {}
+
+void grBattle_GObj5_Callback3(Ground_GObj* gobj) {}
+
+void grBattle_GObj1_Callback0(Ground_GObj* gobj)
 {
+    /// @todo ::grBattle_GObj5_Callback0
+    Ground* gp = GET_GROUND(gobj);
+    HSD_JObj* jobj = GET_JOBJ(gobj);
+
+    grAnime_801C8138(gobj, gp->map_id, 0);
+    grMaterial_801C94D8(jobj);
+    gp->x11_flags.b012 = 2;
 }
 
-static void func_8021A19C(HSD_GObj* gobj)
+bool grBattle_GObj1_Callback1(Ground_GObj* gobj)
 {
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    func_801C2ED0(gobj->hsd_obj, map->map_id);
-    func_801C8138(gobj, map->map_id, 0);
-    map->x11_flags.b012 = 2;
+    return false;
 }
 
-static s32 func_8021A1FC()
+void grBattle_GObj1_Callback2(Ground_GObj* gobj) {}
+
+void grBattle_GObj1_Callback3(Ground_GObj* gobj) {}
+
+static void setup_unk_gobj(Ground_GObj* gobj)
 {
-    return 0;
+    HSD_JObj* jobj;
+    Ground* gp = GET_GROUND(gobj);
+    jobj = GET_JOBJ(gobj);
+    grAnime_801C8138(gobj, gp->map_id, 0);
+    grMaterial_801C94D8(jobj);
+    gp->x11_flags.b012 = 2;
 }
 
-static void func_8021A204()
+void grBattle_GObj2_Callback0(Ground_GObj* gobj)
 {
+    setup_unk_gobj(gobj);
 }
 
-static void func_8021A208()
+bool grBattle_GObj2_Callback1(Ground_GObj* gobj)
 {
+    return false;
 }
 
-static void func_8021A20C(HSD_GObj* gobj)
+void grBattle_GObj2_Callback2(Ground_GObj* gobj) {}
+
+void grBattle_GObj2_Callback3(Ground_GObj* gobj) {}
+
+void grBattle_GObj4_Callback0(Ground_GObj* gobj)
 {
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    void* hsd_obj = gobj->hsd_obj;
-    func_801C8138(gobj, map->map_id, 0);
-    func_801C94D8(hsd_obj);
-    map->x11_flags.b012 = 2;
+    setup_unk_gobj(gobj);
 }
 
-static s32 func_8021A264()
+bool grBattle_GObj4_Callback1(Ground_GObj* gobj)
 {
-    return 0;
+    return false;
 }
 
-static void func_8021A26C()
+void grBattle_GObj4_Callback2(Ground_GObj* gobj) {}
+
+void grBattle_GObj4_Callback3(Ground_GObj* gobj) {}
+
+inline void reset_bg_timer(Ground* gp)
 {
+    gp->u.battle_bg.timer = HSD_Randi(1200) + 2400;
 }
 
-static void func_8021A270()
+enum grBattle_BG_State {
+    BG_Waiting,
+    BG_Transitioning,
+    BG_Done,
+};
+
+void grBattle_BG_Callback0(Ground_GObj* gobj)
 {
+    Ground* gp = GET_GROUND(gobj);
+    HSD_JObj* jobj = GET_JOBJ(gobj);
+    PAD_STACK(4 * 4);
+    gp->x11_flags.b012 = 2;
+    gp->u.battle_bg.state = BG_Waiting;
+    reset_bg_timer(gp);
+    gp->u.battle_bg.curr = -1;
+    HSD_JObjSetFlagsAll(jobj, JOBJ_HIDDEN);
 }
 
-static void func_8021A274(HSD_GObj* gobj)
+bool grBattle_BG_Callback1(Ground_GObj* arg0)
 {
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    void* hsd_obj = gobj->hsd_obj;
-    func_801C8138(gobj, map->map_id, 0);
-    func_801C94D8(hsd_obj);
-    map->x11_flags.b012 = 2;
+    return false;
 }
 
-static s32 func_8021A2CC()
+void grBattle_BG_Callback2(Ground_GObj* gobj)
 {
-    return 0;
-}
-
-static void func_8021A2D4()
-{
-}
-
-static void func_8021A2D8()
-{
-}
-
-static void func_8021A2DC(HSD_GObj* gobj)
-{
-    u32 unused[2];
-    Map* map = gobj->user_data;
-    void* hsd_obj = gobj->hsd_obj;
-    func_801C8138(gobj, map->map_id, 0);
-    func_801C94D8(hsd_obj);
-    gobj;
-    map->x11_flags.b012 = 2;
-}
-
-static s32 func_8021A334()
-{
-    return 0;
-}
-
-static void func_8021A33C()
-{
-}
-
-static void func_8021A340()
-{
-}
-
-static void func_8021A344(HSD_GObj* gobj)
-{
-    u32 unused[6];
-    Map* map = gobj->user_data;
-    HSD_JObj* jobj = gobj->hsd_obj;
-    map->x11_flags.b012 = 2;
-    map->xC4 = 0;
-    map->xD0 = HSD_Randi(1200) + 2400;
-    map->xC8 = -1;
-    HSD_JObjSetFlagsAll(jobj, 0x10);
-}
-
-static s32 func_8021A3B4()
-{
-    return 0;
-}
-
-static void func_8021A3BC(HSD_GObj* gobj)
-{
-    Map* map = gobj->user_data;
-    HSD_JObj* jobj = gobj->hsd_obj;
+    Ground* gp = GET_GROUND(gobj);
+    HSD_JObj* jobj = GET_JOBJ(gobj);
     HSD_GObj* bg_gobj;
-    s32 temp_r0_2;
-    s16 sp28[BATTLE_BG_MAX] = {1, 2, 4};
-    s32 tmp;
-    u32 unused[7];
+    int bg_idx;
+    s16 indices[] = { 1, 2, 4 };
+    size_t const BATTLE_BG_MAX = ARRAY_SIZE(indices);
+    PAD_STACK(4 * 5);
 
-    switch (map->xC4) {
-        case 0:
-            if (map->xD0-- < 0) {
-                map->xC4 = 1;
-                func_801C8138(gobj, map->map_id, 0);
-            }
-            break;
-        case 1:
-            if (HSD_JObjGetFlags(jobj) & 0x10) {
-                HSD_JObjClearFlagsAll(jobj, 0x10);
-            }
-            if (func_801C83D0(gobj, 0, 7)) {
-                if (map->xC8 == -1) {
-                    u32 i;
-                    for (i = 0; i < BATTLE_BG_MAX; i++) {
-                        if (func_801C2BA4(sp28[i])) {
-                            map->xC8 = sp28[i];
-                            break;
-                        }
+    switch (gp->u.battle_bg.state) {
+    case BG_Waiting:
+        if (gp->u.battle_bg.timer-- < 0) {
+            gp->u.battle_bg.state = BG_Transitioning;
+            grAnime_801C8138(gobj, gp->map_id, 0);
+        }
+        break;
+
+    case BG_Transitioning:
+        if (HSD_JObjGetFlags(jobj) & JOBJ_HIDDEN) {
+            HSD_JObjClearFlagsAll(jobj, JOBJ_HIDDEN);
+        }
+        if (grAnime_801C83D0(gobj, 0, 7)) {
+            if (gp->u.battle_bg.curr == -1) {
+                int i;
+                for (i = 0; i < BATTLE_BG_MAX; i++) {
+                    if (Ground_GetMapGObj(indices[i])) {
+                        gp->u.battle_bg.curr = indices[i];
+                        break;
                     }
-                    assert_line(527, i<BATTLE_BG_MAX);
                 }
-                map->xCC = map->xC8;
-                do {
-                    temp_r0_2 = sp28[HSD_Randi(BATTLE_BG_MAX)];
-                } while ((tmp = map->xCC) == (map->xC8 = temp_r0_2));
-
-                bg_gobj = func_801C2BA4(tmp);
-                assert_line(535, bg_gobj);
-                func_801C9604(bg_gobj, lbl_804D6ACC->unk4, 0);
-
-                bg_gobj = func_80219D84(map->xC8);
-                assert_line(539, bg_gobj);
-                func_801C9604(bg_gobj, lbl_804D6ACC->unk0, 0);
-
-                map->xC4 = 2;
+                HSD_ASSERT(527, i<BATTLE_BG_MAX);
             }
-            break;
-        case 2:
-            bg_gobj = func_801C2BA4(map->xCC);
-            assert_line(546, bg_gobj);
-            if (func_801C96E8(bg_gobj)) {
-                func_801C4A08(bg_gobj);
-                HSD_JObjSetFlagsAll(jobj, 0x10);
-                map->xC4 = 0;
-                map->xD0 = HSD_Randi(1200) + 2400;
-            }
-            break;
+
+            // Pick a random different background to transition to
+            gp->u.battle_bg.prev = gp->u.battle_bg.curr;
+            do {
+                bg_idx = indices[HSD_Randi(BATTLE_BG_MAX)];
+            } while ((gp->u.battle_bg.curr = bg_idx) == gp->u.battle_bg.prev);
+
+            bg_gobj = Ground_GetMapGObj(gp->u.battle_bg.prev);
+            HSD_ASSERT(535, bg_gobj);
+            grMaterial_801C9604(bg_gobj, yakumono_param->bg_prev_color_overlay,
+                                0);
+
+            bg_gobj = grBattle_80219D84(gp->u.battle_bg.curr);
+            HSD_ASSERT(539, bg_gobj);
+            grMaterial_801C9604(bg_gobj, yakumono_param->bg_curr_color_overlay,
+                                0);
+
+            gp->u.battle_bg.state = BG_Done;
+        }
+        break;
+
+    case BG_Done:
+        bg_gobj = Ground_GetMapGObj(gp->u.battle_bg.prev);
+        HSD_ASSERT(546, bg_gobj);
+        if (grLib_801C96E8(bg_gobj)) {
+            Ground_801C4A08(bg_gobj);
+            HSD_JObjSetFlagsAll(jobj, JOBJ_HIDDEN);
+            gp->u.battle_bg.state = BG_Waiting;
+            reset_bg_timer(gp);
+        }
+        break;
     }
 }
 
-static void func_8021A60C()
+void grBattle_BG_Callback3(Ground_GObj* gobj) {}
+
+DynamicsDesc* grBattle_OnTouchLine(enum_t arg0)
 {
+    return NULL;
 }
 
-static BOOL func_8021A610(s32)
+bool grBattle_OnCheckShadowRender(Vec3* arg0, int arg1, HSD_JObj* arg2)
 {
-    return FALSE;
-}
-
-static s32 func_8021A618()
-{
-    return 1;
+    return true;
 }

@@ -1,43 +1,49 @@
-#include <dolphin/types.h>
+#include <platform.h>
 
-void _ExitProcess(void);
+#include <dolphin/os/init/__ppc_eabi_init.h>
+#include <MSL/abort_exit.h>
+
 void __destroy_global_chain(void);
 void __kill_critical_regions(void);
+extern void __fini_cpp_exceptions(void);
 
-extern void (*lbl_803B7260[])(void);
+extern void (*_dtors[])(void);
 
-void (*lbl_804A2F48[64])(void);
-void (*lbl_804A3048[64])(void);
-void (*lbl_804D7070)(void);
-void (*lbl_804D706C)(void);
-s32 lbl_804D7068;
-s32 lbl_804D7064;
-s32 lbl_804D7060;
+static void (*atexit_funcs[64])(void);
+static void (*__atexit_funcs[64])(void);
 
-void exit(int) {
-    void (**dtor)();
+static int __aborting;
+static int atexit_curr_func;
+static int __atexit_curr_func;
+static void (*__stdio_exit)(void);
+static void (*__console_exit)(void);
 
-    if (lbl_804D7060 == 0) {
-        while (lbl_804D7064 > 0) {
-            lbl_804A2F48[--lbl_804D7064 ]();
+void exit(int code)
+{
+    void (**dtor)(void);
+
+    if (__aborting == 0) {
+        while (atexit_curr_func > 0) {
+            atexit_funcs[--atexit_curr_func]();
         }
         __destroy_global_chain();
-        for (dtor = lbl_803B7260; *dtor != NULL; dtor += 1) {
+        dtor = _dtors;
+        while (*dtor != NULL) {
             (*dtor)();
+            dtor++;
         }
-        if (lbl_804D706C != NULL) {
-            lbl_804D706C();
-            lbl_804D706C = NULL;
+        if (__stdio_exit != NULL) {
+            __stdio_exit();
+            __stdio_exit = NULL;
         }
     }
-    while (lbl_804D7068 > 0) {
-        lbl_804A3048[--lbl_804D7068]();
+    while (__atexit_curr_func > 0) {
+        __atexit_funcs[--__atexit_curr_func]();
     }
     __kill_critical_regions();
-    if (lbl_804D7070 != NULL) {
-        lbl_804D7070();
-        lbl_804D7070 = NULL;
+    if (__console_exit != NULL) {
+        __console_exit();
+        __console_exit = NULL;
     }
     _ExitProcess();
 }
-
