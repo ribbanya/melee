@@ -243,7 +243,8 @@ jobs:
   build-nix:
     name: Nix
     runs-on: ubuntu-latest
-    if: github.repository == 'MeleeWorkshop/melee'
+    if: false
+    # if: github.repository == 'MeleeWorkshop/melee'
     env:
       REGISTRY: ghcr.io
       IMAGE: meleeworkshop/melee-build:main
