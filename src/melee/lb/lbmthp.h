@@ -9,7 +9,7 @@
 
 #include <stddef.h>
 #include <dolphin/gx/GXStruct.h>
-#include <dolphin/thp/thp.h>
+#include <dolphin/thp.h>
 
 /* THPDec function declarations */
 BOOL THPInit(void);
