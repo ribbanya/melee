@@ -1,165 +1,183 @@
-#include <melee/gr/stage.h>
+#include "gr/stage.h"
 
-#include <melee/lb/lbvector.h>
+#include "gm/gm_unsplit.h"
+#include "gr/ground.h"
+#include "gr/types.h"
+#include "lb/lbaudio_ax.h"
+#include "lb/lbvector.h"
+#include "mp/mplib.h"
 
-extern struct _StageInfo stage_info;
+#include <baselib/debug.h>
+#include <baselib/random.h>
 
-struct StructStageIDWithUnks {
-    s32 stage_id;
+extern struct StageInfo stage_info;
+
+/// One #stage_id_map entry: the #GrKind for a #StKind.
+struct StageIdMapEntry {
+    GrKind grkind;
     s32 unk1;
     s32 unk2;
 };
-struct StructNumberAndStage {
-    s32 list_idx;
-    struct StructStageIDWithUnks* unk_struct;
+struct StageSelection {
+    StKind stkind;
+    struct StageIdMapEntry* entry;
 };
 
-struct StructNumberAndStage unk_struct_804D49E8 = { 2, NULL };
-StructPairWithStageID unk_struct_804D49F0 = { 12, 2 };
-extern struct StructStageIDWithUnks unk_arr_803E9960[];
+struct StageSelection selected_stage = { St_Kind_Izumi, NULL };
+StageIdPair default_stage_pair = { Gr_Kind_Izumi, St_Kind_Izumi };
 
-f32 Stage_GetCamBoundsLeftOffset()
+f32 Stage_GetCamBoundsLeftOffset(void)
 {
-    return stage_info.cam_info.cam_bounds_left + stage_info.cam_info.cam_x_offset;
+    return stage_info.cam_info.cam_bounds.left +
+           stage_info.cam_info.cam_x_offset;
 }
 
-f32 Stage_GetCamBoundsRightOffset()
+f32 Stage_GetCamBoundsRightOffset(void)
 {
-    return stage_info.cam_info.cam_bounds_right + stage_info.cam_info.cam_x_offset;
+    return stage_info.cam_info.cam_bounds.right +
+           stage_info.cam_info.cam_x_offset;
 }
 
-f32 Stage_GetCamBoundsTopOffset()
+f32 Stage_GetCamBoundsTopOffset(void)
 {
-    return stage_info.cam_info.cam_bounds_top + stage_info.cam_info.cam_y_offset;
+    return stage_info.cam_info.cam_bounds.top +
+           stage_info.cam_info.cam_y_offset;
 }
 
-f32 Stage_GetCamBoundsBottomOffset()
+f32 Stage_GetCamBoundsBottomOffset(void)
 {
-    return stage_info.cam_info.cam_bounds_bottom + stage_info.cam_info.cam_y_offset;
+    return stage_info.cam_info.cam_bounds.bottom +
+           stage_info.cam_info.cam_y_offset;
 }
 
-f32 Stage_GetCamPanAngleRadians()
+f32 Stage_GetCamPanAngleRadians(void)
 {
     return 0.0174532923847F * stage_info.cam_info.cam_pan_degrees;
 }
 
-f32 Stage_GetCamMaxDepth()
+f32 Stage_GetCamMaxDepth(void)
 {
     return stage_info.cam_info.cam_max_depth;
 }
 
-f32 Stage_GetCamZoomRate()
+f32 Stage_GetCamZoomRate(void)
 {
     return stage_info.cam_info.cam_zoom_rate;
 }
 
-f32 Stage_GetCamInfoX20()
+f32 Stage_GetCamInfoX20(void)
 {
     return stage_info.cam_info.x20;
 }
 
-f32 Stage_GetCamInfoX24()
+f32 Stage_GetCamInfoX24(void)
 {
     return stage_info.cam_info.x24;
 }
 
-f32 Stage_GetCamFixedZoom()
+f32 Stage_GetCamFixedZoom(void)
 {
     return stage_info.cam_info.cam_fixed_zoom;
 }
 
-f32 Stage_GetCamTrackRatio()
+f32 Stage_GetCamTrackRatio(void)
 {
     return stage_info.cam_info.cam_track_ratio;
 }
 
-f32 Stage_GetCamTrackSmooth()
+f32 Stage_GetCamTrackSmooth(void)
 {
     return stage_info.cam_info.cam_track_smooth;
 }
 
-f32 Stage_GetBlastZoneRightOffset()
+f32 Stage_GetBlastZoneRightOffset(void)
 {
     return stage_info.blast_zone.right + stage_info.cam_info.cam_x_offset;
 }
 
-f32 Stage_GetBlastZoneLeftOffset()
+f32 Stage_GetBlastZoneLeftOffset(void)
 {
     return stage_info.blast_zone.left + stage_info.cam_info.cam_x_offset;
 }
 
-// named stGetPlyDeadUp according to an assert in ftcamera.c
-f32 Stage_GetBlastZoneTopOffset()
+/// named stGetPlyDeadUp according to an assert in ftcamera.c
+f32 Stage_GetBlastZoneTopOffset(void)
 {
     return stage_info.blast_zone.top + stage_info.cam_info.cam_y_offset;
 }
 
-f32 Stage_GetBlastZoneBottomOffset()
+f32 Stage_GetBlastZoneBottomOffset(void)
 {
     return stage_info.blast_zone.bottom + stage_info.cam_info.cam_y_offset;
 }
 
-f32 Stage_CalcUnkCamY()
+f32 Stage_CalcUnkCamY(void)
 {
     f32 cam_y_offset = stage_info.cam_info.cam_y_offset;
-    f32 y_pos = stage_info.cam_info.cam_bounds_bottom + cam_y_offset + (stage_info.blast_zone.bottom + cam_y_offset);
+    f32 y_pos = stage_info.cam_info.cam_bounds.bottom + cam_y_offset +
+                (stage_info.blast_zone.bottom + cam_y_offset);
     return 0.5F * y_pos;
 }
 
-f32 Stage_CalcUnkCamYBounds()
+f32 Stage_CalcUnkCamYBounds(void)
 {
-    f32 cam_offset = (stage_info.cam_info.cam_bounds_bottom + stage_info.cam_info.cam_y_offset);
-    f32 y_pos_product = 0.5F * ((stage_info.cam_info.cam_bounds_bottom + stage_info.cam_info.cam_y_offset) + (stage_info.blast_zone.bottom + stage_info.cam_info.cam_y_offset));
+    f32 cam_offset = (stage_info.cam_info.cam_bounds.bottom +
+                      stage_info.cam_info.cam_y_offset);
+    f32 y_pos_product =
+        0.5F *
+        ((stage_info.cam_info.cam_bounds.bottom +
+          stage_info.cam_info.cam_y_offset) +
+         (stage_info.blast_zone.bottom + stage_info.cam_info.cam_y_offset));
 
     return 0.5F * (cam_offset + y_pos_product);
 }
 
-void Stage_UnkSetVec3TCam_Offset(Vec* vec3)
+void Stage_UnkSetVec3TCam_Offset(Vec3* vec3)
 {
     vec3->x = stage_info.cam_info.cam_x_offset;
     vec3->y = stage_info.cam_info.cam_y_offset;
     vec3->z = 0.0F;
 }
 
-f32 Stage_GetPauseCamZPosMin()
+f32 Stage_GetPauseCamZPosMin(void)
 {
     return stage_info.cam_info.pausecam_zpos_min;
 }
 
-f32 Stage_GetPauseCamZPosInit()
+f32 Stage_GetPauseCamZPosInit(void)
 {
     return stage_info.cam_info.pausecam_zpos_init;
 }
 
-f32 Stage_GetPauseCamZPosMax()
+f32 Stage_GetPauseCamZPosMax(void)
 {
     return stage_info.cam_info.pausecam_zpos_max;
 }
 
-f32 Stage_GetCamAngleRadiansUp()
+f32 Stage_GetCamAngleRadiansUp(void)
 {
     return 0.0174532923847F * stage_info.cam_info.cam_angle_up;
 }
 
-f32 Stage_GetCamAngleRadiansDown()
+f32 Stage_GetCamAngleRadiansDown(void)
 {
     return 0.0174532923847F * stage_info.cam_info.cam_angle_down;
 }
 
-f32 Stage_GetCamAngleRadiansLeft()
+f32 Stage_GetCamAngleRadiansLeft(void)
 {
     return 0.0174532923847F * stage_info.cam_info.cam_angle_left;
 }
 
-f32 Stage_GetCamAngleRadiansRight()
+f32 Stage_GetCamAngleRadiansRight(void)
 {
     return 0.0174532923847F * stage_info.cam_info.cam_angle_right;
 }
 
-void Stage_80224CAC(Vec* arg0)
+void Stage_80224CAC(Vec3* arg0)
 {
-    Vec another_vec = { 0, 0, -100.0F };
-    Vec rot_vec;
+    Vec3 another_vec = { 0, 0, -100.0F };
+    Vec3 rot_vec;
 
     *arg0 = stage_info.cam_info.fixed_cam_pos;
 
@@ -167,10 +185,10 @@ void Stage_80224CAC(Vec* arg0)
     rot_vec.y = 0.0174532923847F * stage_info.cam_info.fixed_cam_horz_angle;
     rot_vec.z = 0.0F;
 
-    lbvector_ApplyEulerRotation(&another_vec, &rot_vec);
+    lbVector_ApplyEulerRotation(&another_vec, &rot_vec);
 
     {
-        Vec last_vec;
+        Vec3 last_vec;
         f32 temp_f4 = (arg0->z / -another_vec.z);
 
         last_vec.x = (another_vec.x * temp_f4) + arg0->x;
@@ -180,41 +198,45 @@ void Stage_80224CAC(Vec* arg0)
     }
 }
 
-void Stage_SetVecToFixedCamPos(Vec* arg0)
+void Stage_SetVecToFixedCamPos(Vec3* arg0)
 {
     *arg0 = stage_info.cam_info.fixed_cam_pos;
 }
 
-f32 Stage_GetCamFixedFov()
+f32 Stage_GetCamFixedFov(void)
 {
     return stage_info.cam_info.fixed_cam_fov;
 }
 
-BOOL Stage_80224DC8(s32 arg)
+bool Stage_80224DC8(s32 arg)
 {
-    return (arg == 0x3b || arg == 0x3f || arg == 0x42 || arg == 0x49 || arg == 0x4c) != 0;
+    return (arg == 0x3b || arg == 0x3f || arg == 0x42 || arg == 0x49 ||
+            arg == 0x4c) != 0;
 }
 
-void Stage_80224E38(Vec* arg0, s32 arg1)
+void Stage_80224E38(Vec3* arg0, s32 arg1)
 {
-    func_801C2D24(arg1 + 4, arg0);
+    Ground_801C2D24(arg1 + 4, arg0);
 }
 
-void Stage_80224E64(s32 arg0, Vec* arg_vec)
+void Stage_80224E64(enum_t arg0, Vec3* arg_vec)
 {
-    BOOL bool1;
+    bool bool1;
 
     f32 counter_f;
-    Vec internal_vec;
+    Vec3 internal_vec;
 
     if (arg0 == -1) {
-        __assert(__FILE__, 360, "no!=St_Player_InitPos_None\0");
+        /// @todo Needs to be #HSD_ASSERT. Also remove fake zero-byte padding.
+        __assert("stage.c", 360, "no!=St_Player_InitPos_None\0\0\0\0");
     }
 
     if (arg0 == 4) {
         bool1 = 0;
         for (counter_f = -10.0F; counter_f < 100.0f; counter_f += 10.0f) {
-            s32 temp_ret = func_80051EC8(&internal_vec, 0, 0, 0, 1, -1, -1, 0.0F, 10.0f + counter_f, 0.0F, counter_f);
+            s32 temp_ret =
+                mpCheckMultiple(0.0F, 10.0F + counter_f, 0.0F, counter_f,
+                                &internal_vec, 0, 0, 0, 1, -1, -1);
             if (temp_ret != 0) {
                 bool1 = 1;
                 break;
@@ -223,7 +245,9 @@ void Stage_80224E64(s32 arg0, Vec* arg_vec)
 
         if (bool1 == 0) {
             for (counter_f = -10.0F; counter_f > -100.0f; counter_f -= 10.0f) {
-                s32 temp_ret = func_80051EC8(&internal_vec, 0, 0, 0, 1, -1, -1, 0.0F, counter_f, 0.0F, counter_f - 10.0f);
+                s32 temp_ret =
+                    mpCheckMultiple(0.0F, counter_f, 0.0F, counter_f - 10.0F,
+                                    &internal_vec, 0, 0, 0, 1, -1, -1);
 
                 if (temp_ret != 0) {
                     bool1 = 1;
@@ -241,18 +265,18 @@ void Stage_80224E64(s32 arg0, Vec* arg_vec)
         arg_vec->x = 0.0F;
         return;
     }
-    func_801C2D24(arg0, arg_vec);
+    Ground_801C2D24(arg0, arg_vec);
 }
 
-s32 Stage_80224FDC(Vec* arg0)
+bool Stage_80224FDC(Vec3* arg0)
 {
     s32 rand_output;
     s32 counter = 0x15;
     s32 counter2;
 
     while (counter != 0) {
-        if (func_801C2D24(HSD_Randi(counter) + 0x7F, arg0)) {
-            return 1;
+        if (Ground_801C2D24(HSD_Randi(counter) + 0x7F, arg0)) {
+            return true;
         }
         counter += -1;
     }
@@ -260,31 +284,30 @@ s32 Stage_80224FDC(Vec* arg0)
     counter2 = 4;
     while (counter2 != 0) {
         rand_output = HSD_Randi(counter2);
-        counter2 = func_801C2D24(rand_output, arg0);
+        counter2 = Ground_801C2D24(rand_output, arg0);
 
         if (counter2 != 0) {
-            return 1;
+            return true;
         }
         counter2 = rand_output;
     }
 
-    return 0;
+    return false;
 }
 
 s32 Stage_80225074(s32 arg0)
 {
-
     s32 r31;
     s32 spC;
-    BOOL tmp;
+    bool tmp;
 
-    if (func_8016B238() != 0) {
+    if (gm_8016B238() != 0) {
         if (stage_info.unk8C.b0 || arg0 == 2) {
             r31 = 0x12;
         } else {
             r31 = 0x11;
         }
-    } else if (func_8016B3A0() != 0) {
+    } else if (gm_8016B3A0() != 0) {
         if (arg0 == 2) {
             r31 = 0x22;
         } else if (arg0 == 1) {
@@ -301,90 +324,237 @@ s32 Stage_80225074(s32 arg0)
     } else if (arg0 == 1) {
         r31 = 0x44;
     } else {
-        __assert(__FILE__, 526, "0");
+        HSD_ASSERT(526, 0);
     }
 
-    tmp = func_801C28AC(unk_struct_804D49E8.list_idx, r31, &spC);
-    func_80023F28(spC);
-    func_801C5A84(spC);
-    func_801C5AA4(tmp);
+    tmp = Ground_801C28AC(selected_stage.stkind, r31, &spC);
+    lbAudioAx_80023F28(spC);
+    Ground_801C5A84(spC);
+    Ground_801C5AA4(tmp);
     return arg0;
 }
 
-s32 Stage_80225194()
+StKind Stage_80225194(void)
 {
-    return unk_struct_804D49E8.list_idx;
+    return selected_stage.stkind;
 }
 
-s32 Stage_8022519C(s32 idx)
+/// Indexed by #StKind.
+struct StageIdMapEntry stage_id_map[] = {
+    { Gr_Kind_Unk00, 0, 0 },        { Gr_Kind_Test, 0, 0 },
+    { Gr_Kind_Izumi, 0, 0 },        { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Kongo, 0, 0 },
+    { Gr_Kind_Zebes, 0, 0 },        { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_Story, 0, 0 },        { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_MuteCity, 0, 0 },     { Gr_Kind_RCruise, 0, 0 },
+    { Gr_Kind_Garden, 0, 0 },       { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Kraid, 0, 0 },
+    { Gr_Kind_Yorster, 0, 0 },      { Gr_Kind_Greens, 0, 0 },
+    { Gr_Kind_Fourside, 0, 0 },     { Gr_Kind_Inishie1, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_Unk26, 0, 0 },
+    { Gr_Kind_Venom, 0, 0 },        { Gr_Kind_Pura, 0, 0 },
+    { Gr_Kind_BigBlue, 0, 0 },      { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Icemt, 0, 0 },        { Gr_Kind_Flatzone, 0, 0 },
+    { Gr_Kind_OldPupupu, 0, 0 },    { Gr_Kind_OldYoshi, 0, 0 },
+    { Gr_Kind_OldKongo, 0, 0 },     { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_TMario, 0, 0 },
+    { Gr_Kind_TCaptain, 0, 0 },     { Gr_Kind_TClink, 0, 0 },
+    { Gr_Kind_TDonkey, 0, 0 },      { Gr_Kind_TDrmario, 0, 0 },
+    { Gr_Kind_TFalco, 0, 0 },       { Gr_Kind_TFox, 0, 0 },
+    { Gr_Kind_TIceclimber, 0, 0 },  { Gr_Kind_TKirby, 0, 0 },
+    { Gr_Kind_TKoopa, 0, 0 },       { Gr_Kind_TLink, 0, 0 },
+    { Gr_Kind_TLuigi, 0, 0 },       { Gr_Kind_TMars, 0, 0 },
+    { Gr_Kind_TMewtwo, 0, 0 },      { Gr_Kind_TNess, 0, 0 },
+    { Gr_Kind_TPeach, 0, 0 },       { Gr_Kind_TPichu, 0, 0 },
+    { Gr_Kind_TPikachu, 0, 0 },     { Gr_Kind_TPurin, 0, 0 },
+    { Gr_Kind_TSamus, 0, 0 },       { Gr_Kind_TSeak, 0, 0 },
+    { Gr_Kind_TYoshi, 0, 0 },       { Gr_Kind_TZelda, 0, 0 },
+    { Gr_Kind_TGamewatch, 0, 0 },   { Gr_Kind_TEmblem, 0, 0 },
+    { Gr_Kind_TGanon, 0, 0 },       { Gr_Kind_KinokoRoute, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Kongo, 0, 0 },
+    { Gr_Kind_Garden, 0, 0 },       { Gr_Kind_ShrineRoute, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Zebes, 0, 0 },
+    { Gr_Kind_ZebesRoute, 0, 0 },   { Gr_Kind_Greens, 0, 0 },
+    { Gr_Kind_Greens, 0, 0 },       { Gr_Kind_Greens, 0, 0 },
+    { Gr_Kind_Corneria, 0, 0 },     { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_BigBlueRoute, 0, 0 },
+    { Gr_Kind_MuteCity, 0, 0 },     { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_Icemt, 0, 0 },        { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_Last, 0, 0 },
+    { Gr_Kind_Pushon, 0, 0 },       { Gr_Kind_FigureGet, 0, 0 },
+    { Gr_Kind_Homerun, 0, 0 },      { Gr_Kind_Heal, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_RCruise, 0, 0 },
+    { Gr_Kind_Kongo, 0, 0 },        { Gr_Kind_Garden, 0, 0 },
+    { Gr_Kind_GreatBay, 0, 0 },     { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Zebes, 0, 0 },        { Gr_Kind_Kraid, 0, 0 },
+    { Gr_Kind_Story, 0, 0 },        { Gr_Kind_Yorster, 0, 0 },
+    { Gr_Kind_Izumi, 0, 0 },        { Gr_Kind_Greens, 0, 0 },
+    { Gr_Kind_Corneria, 0, 0 },     { Gr_Kind_Venom, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Inishie1, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_MuteCity, 0, 0 },
+    { Gr_Kind_BigBlue, 0, 0 },      { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_Fourside, 0, 0 },     { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Inishie2, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Icemt, 0, 0 },        { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Inishie1, 0, 0 },     { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_Venom, 0, 0 },        { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_Kongo, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Inishie1, 0, 0 },     { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_BigBlue, 0, 0 },      { Gr_Kind_Zebes, 0, 0 },
+    { Gr_Kind_Story, 0, 0 },        { Gr_Kind_Yorster, 0, 0 },
+    { Gr_Kind_Greens, 0, 0 },       { Gr_Kind_Izumi, 0, 0 },
+    { Gr_Kind_Greens, 0, 0 },       { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Corneria, 0, 0 },     { Gr_Kind_MuteCity, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Inishie1, 0, 0 },     { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_Fourside, 0, 0 },     { Gr_Kind_BigBlue, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_GreatBay, 0, 0 },     { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_GreatBay, 0, 0 },     { Gr_Kind_Castle, 0, 0 },
+    { Gr_Kind_Kongo, 0, 0 },        { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Story, 0, 0 },        { Gr_Kind_Inishie2, 0, 0 },
+    { Gr_Kind_MuteCity, 0, 0 },     { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Izumi, 0, 0 },        { Gr_Kind_Inishie1, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_RCruise, 0, 0 },
+    { Gr_Kind_Garden, 0, 0 },       { Gr_Kind_Izumi, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Flatzone, 0, 0 },
+    { Gr_Kind_MuteCity, 0, 0 },     { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_RCruise, 0, 0 },
+    { Gr_Kind_Kongo, 0, 0 },        { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Zebes, 0, 0 },        { Gr_Kind_Story, 0, 0 },
+    { Gr_Kind_Greens, 0, 0 },       { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Inishie1, 0, 0 },
+    { Gr_Kind_MuteCity, 0, 0 },     { Gr_Kind_Onett, 0, 0 },
+    { Gr_Kind_Pura, 0, 0 },         { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Izumi, 0, 0 },        { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Yorster, 0, 0 },      { Gr_Kind_Inishie2, 0, 0 },
+    { Gr_Kind_Garden, 0, 0 },       { Gr_Kind_Venom, 0, 0 },
+    { Gr_Kind_Fourside, 0, 0 },     { Gr_Kind_Last, 0, 0 },
+    { Gr_Kind_Flatzone, 0, 0 },     { Gr_Kind_Kraid, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Story, 0, 0 },
+    { Gr_Kind_Onett, 0, 0 },        { Gr_Kind_Izumi, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Zebes, 0, 0 },
+    { Gr_Kind_GreatBay, 0, 0 },     { Gr_Kind_Yorster, 0, 0 },
+    { Gr_Kind_Icemt, 0, 0 },        { Gr_Kind_MuteCity, 0, 0 },
+    { Gr_Kind_RCruise, 0, 0 },      { Gr_Kind_Figure1, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_Garden, 0, 0 },       { Gr_Kind_Kongo, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_Zebes, 0, 0 },
+    { Gr_Kind_Castle, 0, 0 },       { Gr_Kind_Inishie2, 0, 0 },
+    { Gr_Kind_Kraid, 0, 0 },        { Gr_Kind_Yorster, 0, 0 },
+    { Gr_Kind_Fourside, 0, 0 },     { Gr_Kind_Figure2, 0, 0 },
+    { Gr_Kind_Venom, 0, 0 },        { Gr_Kind_Greens, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Izumi, 0, 0 },
+    { Gr_Kind_Inishie1, 0, 0 },     { Gr_Kind_Corneria, 0, 0 },
+    { Gr_Kind_BigBlueRoute, 0, 0 }, { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_OldPupupu, 0, 0 },    { Gr_Kind_Fourside, 0, 0 },
+    { Gr_Kind_Izumi, 0, 0 },        { Gr_Kind_Inishie2, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Pura, 0, 0 },
+    { Gr_Kind_BigBlue, 0, 0 },      { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_Flatzone, 0, 0 },     { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Figure3, 0, 0 },      { Gr_Kind_Story, 0, 0 },
+    { Gr_Kind_Inishie1, 0, 0 },     { Gr_Kind_Last, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_Garden, 0, 0 },
+    { Gr_Kind_Story, 0, 0 },        { Gr_Kind_Castle, 0, 0 },
+    { Gr_Kind_RCruise, 0, 0 },      { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_MuteCity, 0, 0 },
+    { Gr_Kind_Corneria, 0, 0 },     { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Onett, 0, 0 },        { Gr_Kind_Icemt, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_Pura, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_Flatzone, 0, 0 },
+    { Gr_Kind_Venom, 0, 0 },        { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_GreatBay, 0, 0 },     { Gr_Kind_Shrine, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_Battle, 0, 0 },
+    { Gr_Kind_PStadium, 0, 0 },     { Gr_Kind_Last, 0, 0 },
+    { Gr_Kind_Inishie2, 0, 0 },     { Gr_Kind_Izumi, 0, 0 },
+    { Gr_Kind_Flatzone, 0, 0 },     { Gr_Kind_Castle, 0, 0 },
+    { Gr_Kind_Last, 0, 0 },         { Gr_Kind_GreatBay, 0, 0 },
+    { Gr_Kind_Battle, 0, 0 },       { Gr_Kind_PStadium, 0, 0 },
+    { Gr_Kind_Shrine, 0, 0 },       { Gr_Kind_Battle, 0, 0 },
+};
+
+GrKind Stage_8022519C(StKind stkind)
 {
-    return unk_arr_803E9960[idx].stage_id;
+    return stage_id_map[stkind].grkind;
 }
 
-s32 Stage_802251B4(s32 idx, s32 arg1)
+void Stage_802251B4(StKind stkind)
 {
-    return func_801C06B8(unk_arr_803E9960[idx].stage_id);
+    Ground_801C06B8(stage_id_map[stkind].grkind);
 }
 
-void Stage_802251E8(s32 idx, s32* unused)
+void Stage_802251E8(StKind stkind, s32* _)
 {
-    StructPairWithStageID local_data;
+    StageIdPair local_data;
 
-    unk_struct_804D49E8.list_idx = idx;
-    unk_struct_804D49E8.unk_struct = &unk_arr_803E9960[idx];
+    selected_stage.stkind = stkind;
+    selected_stage.entry = &stage_id_map[stkind];
 
-    local_data = unk_struct_804D49F0;
+    local_data = default_stage_pair;
 
-    local_data.stage_id = unk_struct_804D49E8.unk_struct->stage_id;
-    local_data.list_idx = unk_struct_804D49E8.list_idx;
+    local_data.grkind = selected_stage.entry->grkind;
+    local_data.stkind = selected_stage.stkind;
 
-    func_801C0754(&local_data);
+    Ground_801C0754(&local_data);
 }
 
-void Stage_8022524C()
+void Stage_8022524C(void)
 {
-    StructPairWithStageID local_data;
+    StageIdPair local_data;
 
-    local_data = unk_struct_804D49F0;
+    local_data = default_stage_pair;
 
-    local_data.stage_id = unk_struct_804D49E8.unk_struct->stage_id;
-    local_data.list_idx = unk_struct_804D49E8.list_idx;
+    local_data.grkind = selected_stage.entry->grkind;
+    local_data.stkind = selected_stage.stkind;
 
-    func_801C0800(&local_data);
+    Ground_801C0800(&local_data);
 }
 
-void Stage_80225298()
+void Stage_80225298(void)
 {
-    StructPairWithStageID local_data;
+    StageIdPair local_data;
 
-    local_data = unk_struct_804D49F0;
+    local_data = default_stage_pair;
 
-    local_data.stage_id = unk_struct_804D49E8.unk_struct->stage_id;
-    local_data.list_idx = unk_struct_804D49E8.list_idx;
+    local_data.grkind = selected_stage.entry->grkind;
+    local_data.stkind = selected_stage.stkind;
 
-    func_801C0F78(&local_data);
+    Ground_OnLoad(&local_data);
 }
 
-void Stage_802252E4(s32 idx, s32 unused)
+void Stage_802252E4(StKind stkind, HSD_GObj* _)
 {
-    StructPairWithStageID local_data;
+    StageIdPair local_data;
 
-    local_data = unk_struct_804D49F0;
+    local_data = default_stage_pair;
 
-    local_data.stage_id = unk_struct_804D49E8.unk_struct->stage_id;
-    local_data.list_idx = idx;
+    local_data.grkind = selected_stage.entry->grkind;
+    local_data.stkind = stkind;
 
-    func_801C0FB8(&local_data);
+    Ground_801C0FB8(&local_data);
 }
 
-void Stage_8022532C(s32 idx, s32 arg1)
+void Stage_8022532C(StKind stkind, s32 arg1)
 {
-    StructPairWithStageID local_data;
+    StageIdPair local_data;
 
-    local_data = unk_struct_804D49F0;
+    local_data = default_stage_pair;
 
-    local_data.stage_id = unk_struct_804D49E8.unk_struct->stage_id;
-    local_data.list_idx = idx;
+    local_data.grkind = selected_stage.entry->grkind;
+    local_data.stkind = stkind;
 
-    func_801C1074(&local_data, arg1);
+    Ground_DemoInit(&local_data, arg1);
 }

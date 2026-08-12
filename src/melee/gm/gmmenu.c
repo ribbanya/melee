@@ -1,0 +1,65 @@
+#include "gmmenu.h"
+
+#include <dolphin/types.h>
+#include <melee/gm/gm_unsplit.h>
+#include <melee/gm/types.h>
+
+void gm_801A50B8_OnLoad(void)
+{
+    u8 var_r0;
+    UnkAllstarData* temp_r3;
+
+    temp_r3 = gm_GetAllStarData();
+    var_r0 = temp_r3->x0.ckind;
+    if (temp_r3->x0.ckind == CKIND_ZELDA && temp_r3->x0.xC.x12 != 0) {
+        var_r0 = CKIND_SEAK;
+    } else {
+        var_r0 = temp_r3->x0.ckind;
+    }
+    gm_801BEFA4(var_r0 & 0xFF);
+    gm_801BEFC0(temp_r3->x0.color);
+    gm_801BF000(temp_r3->x0.slot);
+    gm_801BEFE0(temp_r3->x0.x4);
+    gm_801BF020(1);
+}
+
+void gm_801A5130_OnLoad(void)
+{
+    u8 var_r0;
+    UnkAdventureData* temp_r3;
+
+    temp_r3 = gm_GetAdventureData();
+    var_r0 = temp_r3->x0.ckind;
+    if (temp_r3->x0.ckind == CKIND_ZELDA && temp_r3->x0.xC.x12 != 0) {
+        var_r0 = CKIND_SEAK;
+    } else {
+        var_r0 = temp_r3->x0.ckind;
+    }
+    gm_801BEFA4(var_r0 & 0xFF);
+    gm_801BEFC0(temp_r3->x0.color);
+    gm_801BF000(temp_r3->x0.slot);
+    gm_801BEFE0(temp_r3->x0.x4);
+    gm_801BF020(0);
+}
+
+void gm_801A51A8_OnLoad(void)
+{
+    UnkAllstarData* tmp = &gm_80473A18;
+    u8 var_r0;
+
+    if (tmp->x0.ckind == CKIND_ZELDA && tmp->x0.xC.x12 != 0) {
+        var_r0 = CKIND_SEAK;
+    } else {
+        var_r0 = tmp->x0.ckind;
+    }
+    gm_801BEFA4(var_r0 & 0xFF);
+    gm_801BEFC0(tmp->x0.color);
+    gm_801BF000(tmp->x0.slot);
+    gm_801BEFE0(tmp->x0.x4);
+    gm_801BF020(2);
+}
+
+void gm_801A5220_OnLoad(void)
+{
+    gm_SetSceneIndex(gm_801BF718());
+}

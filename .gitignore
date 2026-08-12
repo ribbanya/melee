@@ -3,11 +3,47 @@
 ctx.c
 ctx_includes.h
 *.s.c
+objdiff.json
+compile_commands.json
+
+# decompctx output
+ctx.*
+*.ctx
+
+# Build files
+build/
+.ninja_*
+build.ninja
+
+# IDE folders
+.idea/
+.vs/
+
+# Caches
+__pycache__
+.mypy_cache
+.cache/
+
+# Original files
+orig/*/*
+!orig/*/sys
+orig/*/sys/*
+!orig/*/sys/.gitkeep
+*.dol
+*.rel
+*.map
+*.MAP
 
 # Python
+.env
+.venv
+env/
 venv/
+ENV/
+env.bak/
+venv.bak/
 
-# .DS_Store
+# macOS
 .DS_Store
 
 # Compiler binaries
@@ -19,6 +55,8 @@ build/
 *.elf
 *.map
 *.dol
+*.pdb
+/result
 
 # Temporary files
 *.swp
@@ -29,14 +67,17 @@ build.bat
 clean.bat
 
 # Other
-src/m2ctx.py
-expected/
+/src/m2ctx.py
+/expected/
+/dump/
 *.log
+.aider*
 
 # Epilogue hack folder
 epilogue/
 
 __pycache__
+**/*.rs.bk
 *.exe
 *.dll
 *.bat

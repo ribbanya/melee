@@ -1,16 +1,15 @@
 #ifndef _lblanguage_h_
 #define _lblanguage_h_
 
+#include <platform.h>
 
-#include <dolphin/types.h>
-
-u8 lbLang_GetLanguageSetting(void);
-int lbLang_SetLanguageSetting(int language);
-int lbLang_IsSettingJP(void);
-int lbLang_IsSettingUS(void);
-u8 lbLang_GetSavedLanguage(void);
-void lbLang_SetSavedLanguage(int language);
-int lbLang_IsSavedLanguageJP(void);
-int lbLang_IsSavedLanguageUS(void);
+enum_t lbLang_GetLanguageSetting(void);
+enum_t lbLang_SetLanguageSetting(enum_t language);
+bool lbLang_IsSettingJP(void);
+bool lbLang_IsSettingUS(void);
+enum_t lbLang_GetSavedLanguage(void);
+void lbLang_SetSavedLanguage(enum_t language);
+bool lbLang_IsSavedLanguageJP(void);
+bool lbLang_IsSavedLanguageUS(void);
 
 #endif

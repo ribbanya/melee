@@ -1,411 +1,455 @@
-#include <dolphin/types.h>
-#include <melee/ft/fighter.h>
-#include <melee/lb/lbvector.h>
-#include <melee/ft/ftlib.h>
-#include <melee/ft/chara/ftMasterHand/ftMasterHand.h>
-#include <melee/ft/ftbosslib.h>
+#include "ftbosslib.h"
 
-typedef enum {
-    Gm_PKind_Human,
-    Gm_PKind_Cpu,
-    Gm_PKind_Demo,
-    Gm_PKind_NA,
-    Gm_PKind_Boss,
-} Gm_PKind;
+#include "ft_0877.h"
+#include "ftlib.h"
+#include "math.h"
 
-static float get_zero() { //float reorder hack until hopefully fixing sqrtf fixes it
+#include "cm/camera.h"
+#include "ft/inlines.h"
+#include "ft/types.h"
+
+#include "ftCommon/forward.h"
+
+#include "ftMasterHand/types.h"
+#include "it/it_26B1.h"
+#include "lb/lbvector.h"
+#include "mp/mplib.h"
+
+#include "pl/forward.h"
+
+#include "pl/player.h"
+
+#include <math_ppc.h>
+#include <dolphin/os/OSError.h>
+#include <baselib/debug.h>
+#include <baselib/gobj.h>
+#include <baselib/jobj.h>
+#include <baselib/random.h>
+#include <MetroTRK/intrinsics.h>
+
+/// @todo Float reorder hack
+static float get_zero(void)
+{
     return 0.0f;
 }
 
-void func_8015BD20(HSD_GObj* gobj) {
+void ftBossLib_8015BD20(HSD_GObj* gobj)
+{
     return;
 }
 
-void func_8015BD24(s32 arg0, f32* arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    *arg1 = ((arg3 / arg0) + HSD_Randi(arg4 - arg5) + arg5) / arg2;
-}
-
-void func_8015BDB4(HSD_GObj* arg0) {
-    Fighter *fp = arg0->user_data;
-    Gm_PKind kind = Player_GetPlayerSlotType(fp->xC_playerID);
-    { // TODO: assert macro
-        BOOL bad = (kind == Gm_PKind_Human || kind == Gm_PKind_Boss || kind == Gm_PKind_Cpu);
-        if (!bad) {
-            OSReport("boss is human or boss!\n");
-            __assert("ftbosslib.c", 103, "kind == Gm_PKind_Human || kind == Gm_PKind_Boss || kind == Gm_PKind_Cpu");
-        }
-    }
-}
-
-static inline float my_sqrtf(float x)
+void ftBossLib_8015BD24(s32 arg0, float* arg1, float arg2, s32 arg3, s32 arg4,
+                        s32 arg5)
 {
-static const double _half=.5;
-static const double _three=3.0;
-    s32 unused = 0; // fakematch
-volatile float y;
- if(x > 0.0f)
- {
-
-
-   double guess = __frsqrte((double)x);   // returns an approximation to
-   guess = _half*guess*(_three - guess*guess*x);  // now have 12 sig bits
-   guess = _half*guess*(_three - guess*guess*x);  // now have 24 sig bits
-   guess = _half*guess*(_three - guess*guess*x);  // now have 32 sig bits
-   y=(float)(x*guess);
-   return y ;
- }
-  return x ;
+    *arg1 = ((s32) (arg3 / arg0) + HSD_Randi(arg4 - arg5) + arg5) / arg2;
 }
 
-static inline float my_lbvector_Len(Vec3 *vec)
+void ftBossLib_8015BDB4(HSD_GObj* arg0)
 {
-    return my_sqrtf(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
-}
-
-void func_8015BE40(HSD_GObj* gobj, Point3d* arg1, f32* arg2, f32 arg3, f32 arg4) {
-    Fighter* fp;
-    Vec3 diff;
-    f32 distance;
-
-    fp = gobj->user_data;
-    lbvector_Diff(arg1, &fp->xB0_pos, &diff); // third argument is result
-    distance = my_lbvector_Len(&diff);
-    if (distance < arg3) {
-        *arg2 = 0.0f;
-    } else {
-        *arg2 = distance;
-        lbvector_Normalize(&diff);
-        diff.x *= distance * arg4;
-        diff.y *= distance * arg4;
-        diff.z *= distance * arg4;
-    }
-    fp->x80_self_vel.x = diff.x;
-    fp->x80_self_vel.y = diff.y;
-}
-
-void func_8015BF74(HSD_GObj* arg0, f32 arg1) {
-    Vec3 sp14;
-    Fighter* fp;
-    f32 temp_f1;
-    f32 phi_f0;
-    f32 phi_f1;
-
-    fp = arg0->user_data;
-    func_8015C208(arg0, &sp14);
-    temp_f1 = sp14.x - fp->xB0_pos.x;
-    phi_f0 = fabs_inline(temp_f1);
-    if (phi_f0 > arg1) {
-        if (temp_f1 > get_zero()) { //float reorder hack
-            phi_f1 = arg1;
-        } else {
-            phi_f1 = -arg1;
-        }
-        fp->x80_self_vel.x += phi_f1;
-    } else {
-        fp->x80_self_vel.x += temp_f1;
-    }
-}
-
-void func_8015C010(HSD_GObj* arg0, f32 arg1) {
-    Vec3 sp14;
-    Fighter* fp;
-    f32 temp_f1;
-    f32 phi_f0;
-    f32 phi_f0_2;
-
-    fp = arg0->user_data;
-    func_8015C208(arg0, &sp14);
-    temp_f1 = sp14.x - fp->xB0_pos.x;
-    phi_f0 = fabs_inline(temp_f1);
-    if (phi_f0 > arg1) {
-        if (temp_f1 > 0.0f) {
-            phi_f0_2 = arg1;
-        } else {
-            phi_f0_2 = -arg1;
-        }
-        fp->x80_self_vel.x = phi_f0_2;
-    } else {
-        fp->x80_self_vel.x = temp_f1;
-    }
-}
-
-void func_8015C09C(HSD_GObj* arg0, f32 arg1) {
-    HSD_JObj* jobj = arg0->hsd_obj;
     Fighter* fp = arg0->user_data;
-    Quaternion quat = {0};
-    s32 unused[2];
+    Gm_PKind kind = Player_GetPlayerSlotType(fp->player_id);
+    HSD_ASSERTREPORT(103,
+                     kind == Gm_PKind_Human || kind == Gm_PKind_Boss ||
+                         kind == Gm_PKind_Cpu,
+                     "boss is human or boss!\n");
+}
 
-    fp->x2C_facing_direction = arg1;
-    quat.y = M_PI/2 * fp->x2C_facing_direction;
+static inline float my_lbvector_Len(Vec3* vec)
+{
+    return sqrtf(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
+}
+
+void ftBossLib_8015BE40(HSD_GObj* gobj, Vec3* arg1, float* arg2, float arg3,
+                        float arg4)
+{
+    Fighter* fp = GET_FIGHTER(gobj);
+    Vec3 diff;
+
+    lbVector_Diff(arg1, &fp->cur_pos, &diff);
+
+    {
+        float distance = my_lbvector_Len(&diff);
+        if (distance < arg3) {
+            *arg2 = 0.0f;
+        } else {
+            *arg2 = distance;
+            lbVector_Normalize(&diff);
+            diff.x *= distance * arg4;
+            diff.y *= distance * arg4;
+            diff.z *= distance * arg4;
+        }
+    }
+
+    fp->self_vel.x = diff.x;
+    fp->self_vel.y = diff.y;
+}
+
+void ftBossLib_8015BF74(HSD_GObj* gobj, float x_diff_max)
+{
+    Fighter* fp = gobj->user_data;
+    Vec3 vec;
+
+    ftBossLib_8015C208(gobj, &vec);
+
+    {
+        float x_diff = vec.x - fp->cur_pos.x;
+        float abs_x_diff = ABS(x_diff);
+        if (abs_x_diff > x_diff_max) {
+            fp->self_vel.x += x_diff > 0 ? x_diff_max : -x_diff_max;
+        } else {
+            fp->self_vel.x += x_diff;
+        }
+    }
+}
+
+void ftBossLib_8015C010(HSD_GObj* gobj, float x_diff_max)
+{
+    Vec3 vec;
+    Fighter* fp = gobj->user_data;
+    ftBossLib_8015C208(gobj, &vec);
+
+    {
+        float x_diff = vec.x - fp->cur_pos.x;
+        float abs_x_diff = ABS(x_diff);
+        if (abs_x_diff > x_diff_max) {
+            fp->self_vel.x = x_diff > 0 ? x_diff_max : -x_diff_max;
+        } else {
+            fp->self_vel.x = x_diff;
+        }
+    }
+}
+
+void ftBossLib_8015C09C(HSD_GObj* gobj, float facing_dir)
+{
+    HSD_JObj* jobj = GET_JOBJ(gobj);
+    Fighter* fp = GET_FIGHTER(gobj);
+    Quaternion quat = { 0 };
+
+    fp->facing_dir = facing_dir;
+    quat.y = M_PI_2 * fp->facing_dir;
     HSD_JObjSetRotation(jobj, &quat);
 }
 
-void func_8015C190(HSD_GObj* arg0) {
-    Fighter* fp;
-    s32 unused1;
-    Vec3 sp10;
-    s32 unused2;
+void ftBossLib_8015C190(HSD_GObj* arg0)
+{
+    Fighter* fp = GET_FIGHTER(arg0);
+    Vec3 vec;
 
-    fp = arg0->user_data;
-    func_80053FF4(0, &sp10);
-    if (fp->xB0_pos.x > sp10.x) {
-        fp->xB0_pos.x = sp10.x;
-        fp->x80_self_vel.x = 0.0f;
+    mpFloorGetRight(0, &vec);
+    if (fp->cur_pos.x > vec.x) {
+        fp->cur_pos.x = vec.x;
+        fp->self_vel.x = 0;
     }
-    func_80054158(0, &sp10);
-    if (fp->xB0_pos.x < sp10.x) {
-        fp->xB0_pos.x = sp10.x;
-        fp->x80_self_vel.x = 0.0f;
+
+    mpFloorGetLeft(0, &vec);
+    if (fp->cur_pos.x < vec.x) {
+        fp->cur_pos.x = vec.x;
+        fp->self_vel.x = 0;
     }
 }
 
-void func_8015C208(HSD_GObj* arg0, Vec3* arg1) {
-    s32 unused;
-    Fighter* fp = arg0->user_data;
-    HSD_GObj* gobj = func_8015C244(arg0, &fp->xB0_pos);
-    func_80086644(gobj, arg1);
+void ftBossLib_8015C208(HSD_GObj* arg0, Vec3* arg1)
+{
+    Fighter* fp = GET_FIGHTER(arg0);
+    HSD_GObj* gobj = ftBossLib_8015C244(arg0, &fp->cur_pos);
+    ftLib_80086644(gobj, arg1);
 }
 
-HSD_GObj* func_8015C244(HSD_GObj* arg0, Point3d* arg1) {
-    return func_8008627C(arg1, arg0);
+HSD_GObj* ftBossLib_8015C244(HSD_GObj* arg0, Vec3* arg1)
+{
+    return ftLib_8008627C(arg1, arg0);
 }
 
-BOOL func_8015C270(void) {
-    if (func_8015C44C(FTKIND_MASTERH) == 0x157) {
+bool ftBossLib_8015C270(void)
+{
+    /// @todo Get msid
+    if (ftBossLib_8015C44C(FTKIND_MASTERH) == 0x157) {
         return 1;
     }
+
     return 0;
 }
 
-BOOL func_8015C2A8(void) {
-    if (func_8015C44C(FTKIND_CREZYH) == 0x183) {
-        return 1;
+bool ftBossLib_8015C2A8(void)
+{
+    /// @todo Get msid
+    if (ftBossLib_8015C44C(FTKIND_CREZYH) == 0x183) {
+        return true;
     }
-    return 0;
+
+    return false;
 }
 
-BOOL func_8015C2E0(void) {
-    s32 x = func_8015C44C(FTKIND_MASTERH);
-    if (x == 0x158 || x == 0x159) {
-        return 1;
+bool ftBossLib_8015C2E0(void)
+{
+    /// @todo Get ASIDs
+    enum_t msid = ftBossLib_8015C44C(FTKIND_MASTERH);
+    if (msid == 0x158 || msid == 0x159) {
+        return true;
     }
-    return 0;
+
+    return false;
 }
 
-BOOL func_8015C31C(void) {
-    s32 x = func_8015C44C(FTKIND_CREZYH);
-    if (x == 0x181 || x == 0x182) {
-        return 1;
+bool ftBossLib_8015C31C(void)
+{
+    /// @todo Get ASIDs
+    enum_t msid = ftBossLib_8015C44C(FTKIND_CREZYH);
+    if (msid == 0x181 || msid == 0x182) {
+        return true;
     }
-    return 0;
+
+    return false;
 }
 
-BOOL func_8015C358(void) {
-    HSD_GObj* gobj = func_8015C3E8(FTKIND_MASTERH);
-    if (gobj && ((Fighter*)gobj->user_data)->x221F_flag.bits.b3) {
-        return 1;
+bool ftBossLib_8015C358(void)
+{
+    HSD_GObj* gobj = ftBossLib_8015C3E8(FTKIND_MASTERH);
+    if (gobj && GET_FIGHTER(gobj)->x221F_b3) {
+        return true;
     }
-    return 0;
+
+    return false;
 }
 
-BOOL func_8015C3A0(void) {
-    HSD_GObj* gobj = func_8015C3E8(FTKIND_CREZYH);
-    if (gobj && ((Fighter*)gobj->user_data)->x221F_flag.bits.b3) {
-        return 1;
+bool ftBossLib_8015C3A0(void)
+{
+    HSD_GObj* gobj = ftBossLib_8015C3E8(FTKIND_CREZYH);
+    if (gobj && GET_FIGHTER(gobj)->x221F_b3) {
+        return true;
     }
-    return 0;
+
+    return false;
 }
 
-HSD_GObj* func_8015C3E8(s32 arg0) { // get_fighter_gobj(FighterKind)
-    HSD_GObj* phi_r31;
-    s32 unused[2];
+/// get_fighter_gobj(FighterKind)
+HSD_GObj* ftBossLib_8015C3E8(FighterKind kind)
+{
+    HSD_GObj* cur;
 
-    for (phi_r31 = lbl_804D782C->x20_fighters; phi_r31; phi_r31 = phi_r31->next) {
-        if (arg0 == func_800872A4(phi_r31)) {
-            return phi_r31;
+    u8 _[8];
+
+    for (cur = HSD_GObj_Entities->fighters; cur; cur = cur->next) {
+        if (kind == ftLib_GetKind(cur)) {
+            return cur;
         }
     }
 
+    return NULL;
+}
+
+enum_t ftBossLib_8015C44C(FighterKind kind)
+{
+    HSD_GObj* gobj = ftBossLib_8015C3E8(kind);
+
+    u8 _[16];
+
+    if (gobj != NULL) {
+        // DataOffset_MotionStateLoad
+        return ftLib_GetMotionId(gobj);
+    } else {
+        return ftCo_MS_DeadDown;
+    }
+}
+
+enum_t ftBossLib_8015C4C4(void)
+{
+    HSD_GObj* gobj = ftBossLib_8015C3E8(FTKIND_CREZYH);
+
+    u8 _[24];
+
+    if (gobj) {
+        return GET_FIGHTER(gobj)->u.mh.x2250;
+    }
+
     return 0;
 }
 
-s32 func_8015C44C(s32 arg0) { // Fighter_GetState(FighterKind)
-    HSD_GObj* gobj;
-    s32 unused[4];
+s32 ftBossLib_8015C530(int cpu_level)
+{
+    HSD_GObj* gobj = ftBossLib_8015C3E8(FTKIND_MASTERH);
 
-    gobj = func_8015C3E8(arg0);
-    if (gobj) {
-        return func_80086C0C(gobj); // DataOffset_ActionStateLoad
+    u8 _[16];
+
+    if (gobj != NULL) {
+        ftMasterHand_SpecialAttrs* ftCo_DatAttrs =
+            GET_FIGHTER(gobj)->ft_data->ext_attr;
+        switch (cpu_level) {
+        case 0:
+            return ftCo_DatAttrs->x0;
+        case 1:
+            return ftCo_DatAttrs->x4;
+        case 2:
+            return ftCo_DatAttrs->x8;
+        case 3:
+            return ftCo_DatAttrs->xC;
+        case 4:
+            return ftCo_DatAttrs->x10;
+        case 6:
+        default:
+            return ftCo_DatAttrs->x14;
+        }
     } else {
         return 0;
     }
 }
 
-s32 func_8015C4C4(void) {
-    HSD_GObj* gobj;
-    s32 unused[6];
-    gobj = func_8015C3E8(FTKIND_CREZYH);
-    if (gobj) {
-        return ((Fighter*)gobj->user_data)->sa.masterhand.x2250;
-    }
-    return 0;
-}
-
-s32 func_8015C530(u32 arg0) {
-    MasterHandAttributes* attr;
-    HSD_GObj* gobj;
-    s32 unused[4];
-
-    gobj = func_8015C3E8(FTKIND_MASTERH);
-    if (gobj) {
-        attr = getFighter(gobj)->x10C_ftData->ext_attr;
-        switch (arg0) {
-            case 0:
-                return attr->x0;
-            case 1:
-                return attr->x4;
-            case 2:
-                return attr->x8;
-            case 3:
-                return attr->xC;
-            case 4:
-                return attr->x10;
-            case 6:
-            default:
-                return attr->x14;
-        }
-    } else {
-        return 0;
-    }
-}
-
-void func_8015C5F8(HSD_GObj* gobj) {
-    Fighter* fp = gobj->user_data;
+void ftBossLib_8015C5F8(HSD_GObj* gobj)
+{
+    Fighter* fp = GET_FIGHTER(gobj);
     switch (HSD_Randi(4)) {
     case 0:
-        func_80088148(fp, 0x4E21A, 0x7F, 0x40); // SFX_PlayCharacterSFX
+        ft_PlaySFX(fp, 0x4E21A, 0x7F, 0x40);
         return;
     case 1:
-        func_80088148(fp, 0x4E21B, 0x7F, 0x40); // SFX_PlayCharacterSFX
+        ft_PlaySFX(fp, 0x4E21B, 0x7F, 0x40);
         return;
     case 2:
-        func_80088148(fp, 0x4E21C, 0x7F, 0x40); // SFX_PlayCharacterSFX
+        ft_PlaySFX(fp, 0x4E21C, 0x7F, 0x40);
         return;
     case 3:
-        func_80088148(fp, 0x4E21D, 0x7F, 0x40); // SFX_PlayCharacterSFX
+        ft_PlaySFX(fp, 0x4E21D, 0x7F, 0x40);
         return;
     }
 }
 
-MasterHandAttributes* func_8015C6BC(void) {
-    HSD_GObj* gobj = func_8015C3E8(FTKIND_MASTERH);
-    Fighter* fp;
-    MasterHandAttributes* attr;
-    s32 unused[4];
+ftMasterHand_SpecialAttrs* ftBossLib_8015C6BC(void)
+{
+    u8 _[16];
 
-    if (!gobj) {
-        return 0;
+    {
+        HSD_GObj* gobj = ftBossLib_8015C3E8(FTKIND_MASTERH);
+        if (gobj == NULL) {
+            return NULL;
+        }
+
+        {
+            /// @todo Can be #GET_FIGHTER when inlines are fixed.
+            Fighter* fp = gobj->user_data;
+            if (fp == NULL) {
+                return NULL;
+            }
+
+            {
+                ftMasterHand_SpecialAttrs* ftCo_DatAttrs =
+                    fp->ft_data->ext_attr;
+                if (ftCo_DatAttrs == NULL) {
+                    return NULL;
+                }
+
+                return ftCo_DatAttrs;
+            }
+        }
     }
-    fp = gobj->user_data;
-    if (!fp) {
-        return 0;
-    }
-    attr = fp->x10C_ftData->ext_attr;
-    if (!attr) {
-        return 0;
-    }
-    return attr;
 }
 
-s32 func_8015C74C(void) {
-    s32 unused[6];
-    MasterHandAttributes* attr = func_8015C6BC();
-    if (attr == 0U) {
+s32 ftBossLib_8015C74C(void)
+{
+    u8 _[24];
+
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    if (da == NULL) {
         return -1;
     }
-    return attr->x164;
+
+    return da->x164;
 }
 
-s32 func_8015C7EC(void) {
-    s32 unused[6];
-    MasterHandAttributes* attr = func_8015C6BC();
-    if (attr == 0U) {
+s32 ftBossLib_8015C7EC(void)
+{
+    u8 _[24];
+
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    if (da == NULL) {
         return -1;
     }
-    return attr->x168;
+
+    return da->x168;
 }
 
-s32 func_8015C88C(void) {
-    MasterHandAttributes* attr = func_8015C6BC();
-    s32 unused[6];
-    if (attr == 0) {
+s32 ftBossLib_8015C88C(void)
+{
+    u8 _[24];
+
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    if (da == NULL) {
         return -1;
     }
-    return attr->x16C;
+
+    return da->x16C;
 }
 
-s32 func_8015C92C(void) {
-    MasterHandAttributes* attr = func_8015C6BC();
-    s32 unused[6];
-    if (attr == 0) {
+s32 ftBossLib_8015C92C(void)
+{
+    u8 _[24];
+
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    if (da == NULL) {
         return -1;
     }
-    return attr->x170;
+
+    return da->x170;
 }
 
-s32 func_8015C9CC(void) {
-    MasterHandAttributes* attr = func_8015C6BC();
-    s32 unused[6];
-    if (attr == 0) {
+s32 ftBossLib_8015C9CC(void)
+{
+    u8 _[24];
+
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    if (da == NULL) {
         return -1;
     }
-    return attr->x174;
+
+    return da->x174;
 }
 
-void func_8015CA6C_inline(s32 arg0) {
-    HSD_GObj* crazy_hand = func_8015C3E8(FTKIND_CREZYH);
-    if (crazy_hand) {
-        func_80086A4C(crazy_hand, arg0);
+static void func_8015CA6C_inline(s32 arg0)
+{
+    HSD_GObj* ch_gobj = ftBossLib_8015C3E8(FTKIND_CREZYH);
+    if (ch_gobj) {
+        ftLib_80086A4C(ch_gobj, arg0);
     }
 }
-void func_8015CA6C(s32 arg0) {
-    HSD_GObj* master_hand;
-    s32 unused[8];
+
+void ftBossLib_8015CA6C(s32 arg0)
+{
+    u8 _[32];
 
     Player_80036790(0, arg0);
-    master_hand = func_8015C3E8(FTKIND_MASTERH);
-    if (master_hand) {
-        func_80086A4C(master_hand, arg0);
+
+    {
+        HSD_GObj* mh_gobj = ftBossLib_8015C3E8(FTKIND_MASTERH);
+        if (mh_gobj) {
+            ftLib_80086A4C(mh_gobj, arg0);
+        }
     }
+
     func_8015CA6C_inline(arg0);
-    func_8026C3FC();
+    it_8026C3FC();
 }
 
-void func_8015CB7C(void) {
-    func_8026C42C();
+void ftBossLib_8015CB7C(void)
+{
+    it_8026C42C();
 }
 
-void func_8015CB9C_inline(Vec3 spC) {
-    f32 phi_f1;
-    MasterHandAttributes* attr;
-    attr = func_8015C6BC();
-    if (attr == 0) {
-        phi_f1 = -1.0f;
-    } else {
-        phi_f1 = attr->x178;
-    }
-    spC.z += phi_f1;
-    func_8002EA64(&spC);
-    func_8002F0E4(0xA);
-}
-void func_8015CB9C(s32 arg0) {
-    Vec3 sp18;
-
-    Player_LoadPlayerCoords(arg0, &sp18);
-    func_8002E818(&sp18);
-    func_8015CB9C_inline(sp18);
+static void func_8015CB9C_inline(Vec3 spC)
+{
+    ftMasterHand_SpecialAttrs* da = ftBossLib_8015C6BC();
+    spC.z += da == NULL ? -1 : da->x178;
+    Camera_8002EA64(&spC);
+    Camera_8002F0E4(0xA);
 }
 
-void func_8015CC14(void) {
-    func_8002F474();
+void ftBossLib_8015CB9C(s32 arg0)
+{
+    Vec3 vec;
+    Player_LoadPlayerCoords(arg0, &vec);
+    Camera_8002E818(&vec);
+    func_8015CB9C_inline(vec);
+}
+
+void ftBossLib_8015CC14(void)
+{
+    Camera_SetModeToStandard();
 }

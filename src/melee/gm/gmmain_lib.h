@@ -1,178 +1,172 @@
-#ifndef _gmmain_lib_h_
-#define _gmmain_lib_h_
+#ifndef GALE01_15CC34
+#define GALE01_15CC34
 
-#include <global.h>
+#include <placeholder.h>
+#include <platform.h>
 
-struct gmm_x1CB0 {
-                      u8 padding_x0[0x16 - 0x0];
-    /* 0x1CC6 0x16 */ u8 saved_language;
-                      u8 padding_x16[0x20 - 0x16 - 1];
-};
+#include "ft/forward.h"
+#include <melee/gm/forward.h>
 
-typedef union _UnkFlagStruct {
-    struct {
-        u8 b0 : 1;
-        u8 b1 : 1;
-        u8 b2 : 1;
-        u8 b3 : 1;
-        u8 b4 : 1;
-        u8 b5 : 1;
-        u8 b6 : 1;
-        u8 b7 : 1;
-    } bits;
-    u8 flags;
-} UnkFlagStruct;
+#include <melee/gm/types.h>
 
-typedef union _UnkFlagStruct2 {
-    struct {
-        u16 b0 : 1;
-        u16 b1 : 1;
-        u16 b2 : 1;
-        u16 b3 : 1;
-        u16 b4 : 1;
-        u16 b5 : 1;
-        u16 b6 : 1;
-        u16 b789 : 3;
-        u16 b10_to_12 : 3;
-        u16 b13_to_15 : 3;
-    } bits;
-    u16 flags;
-} UnkFlagStruct2;
-
-struct gmm_x1F2C {
-    u8 padding_x0[0x78];
-    s8 x78;
-    s8 x79;
-    UnkFlagStruct x7A;
-    s8 x7B;
-    UnkFlagStruct2 x7C;
-    s16 x7E;
-    s8 x80;
-    s8 x81;
-    s8 x82;
-    s8 x83;
-    s32 x84;
-    s32 x88;
-    s32 x8C;
-    s32 x90;
-    s32 x94;
-    s32 x98;
-    s32 x9C;
-    s16 xA0;
-    s16 xA2;
-    s32 xA4;
-    s32 xA8;
-};
-
-struct gmm_x2FF8_inner {
-    u8 padding[0x1A2];
-    s8 x1A2;
-    u8 padding_x1A2;
-};
-
-struct gmm_x2FF8 {
-    struct gmm_x2FF8_inner inner[19];
-};
-
-struct gmm_x1868 {
-    /* 0x1868 */ s32 x1868;
-                 u8 padding_x1868[0x1A18 - 0x1868 - 4];
-    /* 0x1A18 */ s32 x1A18;
-    /* 0x1A1C */ s32 x1A1C;
-    /* 0x1A20 */ s32 x1A20;
-    /* 0x1A24 */ s32 x1A24;
-    /* 0x1A28 */ s32 x1A28;
-    /* 0x1A2C */ s32 x1A2C;
-    /* 0x1A30 */ s32 x1A30;
-    /* 0x1A34 */ s32 x1A34;
-    /* 0x1A38 */ s32 x1A38;
-    /* 0x1A3C */ s32 x1A3C;
-    /* 0x1A40 */ s32 x1A40;
-    /* 0x1A44 */ s32 x1A44;
-    /* 0x1A48 */ s32 x1A48;
-    /* 0x1A4C */ s32 x1A4C;
-    /* 0x1A50 */ s32 x1A50;
-    /* 0x1A54 */ s32 x1A54;
-    /* 0x1A58 */ s32 x1A58;
-    /* 0x1A5C */ s32 x1A5C;
-    /* 0x1A60 */ s32 x1A60;
-    /* 0x1A64 */ s32 x1A64;
-    /* 0x1A68 */ s64 x1A68;
-    /* 0x1A70 */ s32 x1A70[4];
-                 u8 padding_x1A70[0x1B3C - 0x1A70 - 16];
-    /* 0x1B3C */ u8 x1B3C;
-    /* 0x1B40 */ u32 x1B40[3];
-    /* 0x1B4C */ u32 x1B4C[3];
-    /* 0x1B58 */ u32 x1B58[3];
-                 u8 padding_x1B58[0x1B80 - 0x1B58 - 3*4];
-    /* 0x1B80 */ u32 x1B80[4];
-                 u8 padding_x1B80[0x1C88 - 0x1B80 - 4*4];
-    /* 0x1C88 */ u32 x1C88[3];
-                 u8 padding_x1C88[0x1CB0 - 0x1C88 - 3*4];
-    /* 0x1CB0 */ struct gmm_x1CB0 x1CB0;
-    /* 0x1CD0 */ s16 x1CD0;
-    /* 0x1CD2 */ s16 x1CD2;
-    /* 0x1CD4 */ s32 x1CD4;
-                 u8 padding_x1CD4[0x1F2C - 0x1CD4 - 4];
-    /* 0x1F2C */ struct gmm_x1F2C x1F2C[25];
-    /* 0x2FF8 */ struct gmm_x2FF8 x2FF8[2];
-                //  u8 padding_x2FF8[0x7000 - 0x2FF8 - 0x1A4*19*2];
-};
-
-extern struct gmm_x0 {
-    /* 0x0000 */ u8 language;
-    /* 0x0001 */ u8 x1;
-                 u8 padding_x1[0x39 - 0x1 - 1];
-    /* 0x0039 */ u8 x39[11];
-    /* 0x0044 */ s32 x44;
-                 u8 padding_x44[0x6C - 0x44 - 4];
-    /* 0x006C */ s32 x6C[4];
-                 u8 padding_x6C[0x51C - 0x6C - 4*4];
-    /* 0x051C */ s32 x51C;
-    /* 0x0520 */ s16 x520;
-    /* 0x0522 */ s16 x522;
-    /* 0x0524 */ s16 x524;
-    /* 0x0526 */ s16 x526;
-    /* 0x0528 */ s32 x528;
-    /* 0x052C */ s32 x52C;
-                 u8 padding_x52C[0x57C - 0x52C - 4];
-    /* 0x057C */ s32 x57C;
-                 u8 padding_x57C[0x586 - 0x57C - 4];
-    /* 0x0586 */ s16 x586;
-    /* 0x0588 */ s8 x588[4];
-                 u8 padding_x588[0x1850 - 0x588 - 4];
-    /* 0x1850 */ s32 x1850;
-                 u8 padding_x1850[0x1868 - 0x1850 - 4];
-    struct gmm_x1868 thing;
-} *lbl_804D3EE0;
-
-struct gmm_retval_ED98 {
-    u8 padding[0xC];
-    s32 xC;
-    s32 x10;
-    s32 x14;
-    s32 x18;
-    s32 x1C;
-};
-
-struct gmm_retval_EDBC {
-    s32 x0;
-    s32 x4;
-    s32 x8;
-    u8 padding[0x4C - 0x8 - 4];
-    s32 x4C[4];
-    u8 padding_x4C[0xB0 - 0x4C - 4*4];
-    s32 xB0[4];
-};
-
-struct gmm_retval_EDB0 {
-    s32 x0;
-    s32 x4;
-};
-
-struct gmm_retval_EDBC *func_8015EDBC(void);
-struct gmm_x1CB0 *func_8015CC58(void);
-struct gmm_retval_ED98 *func_8015ED98(void);
-struct gmm_retval_EDB0 *func_8015EDB0(void);
+/* 15CC34 */ GameRules* gmMainLib_GetGameRules(void);
+/* 15CC40 */ struct gmm_x1868* gmMainLib_GetSaveData(void);
+/* 15CC4C */ void* gmMainLib_8015CC4C(void);
+/* 15CC58 */ struct gmm_x1CB0* gmMainLib_8015CC58(void);
+/* 15CC64 */ struct FighterData*
+    GetPersistentFighterData(SelectableCharacterKind);
+/* 15CC78 */ void* gmMainLib_GetTrophyFlags(void);
+/* 15CC84 */ void* gmMainLib_GetTrophyCategoryFlags(void);
+/* 15CC90 */ s16* gmMainLib_GetTrophyCount(void);
+/* 15CC9C */ struct NameTagData* GetPersistentNameData(s32);
+/* 15CCE4 */ void* gmMainLib_8015CCE4(void);
+/* 15CCF0 */ u32* gmMainLib_8015CCF0(void);
+/* 15CCFC */ void* gmMainLib_8015CCFC(void);
+/* 15CD08 */ void* gmMainLib_GetVsPlayContestants(void);
+/* 15CD14 */ void* gmMainLib_GetVsPlayTime(void);
+/* 15CD20 */ void* gmMainLib_GetCombinedVSPlayTime(void);
+/* 15CD2C */ void* gmMainLib_GetTimeMatchTotal(void);
+/* 15CD38 */ void* gmMainLib_GetStockMatchTotal(void);
+/* 15CD44 */ void* gmMainLib_GetCoinMatchTotal(void);
+/* 15CD50 */ void* gmMainLib_GetBonusMatchTotal(void);
+/* 15CD5C */ void* gmMainLib_GetStaminaMatchTotal(void);
+/* 15CD68 */ void* gmMainLib_GetMatchResetCounter(void);
+/* 15CD74 */ void* gmMainLib_GetSingleplayerTime(void);
+/* 15CD80 */ void* gmMainLib_8015CD80(void);
+/* 15CD8C */ void* gmMainLib_GetPowerCount(void);
+/* 15CD98 */ int* gm_GetPowerTime(void);
+/* 15CDA4 */ void* gmMainLib_GetTotalDamage(void);
+/* 15CDB0 */ s32* gmMainLib_GetKOTotal(void);
+/* 15CDBC */ void* gmMainLib_GetSelfDestructTotal(void);
+/* 15CDC8 */ struct gmm_x0_528_t* gmMainLib_8015CDC8(void);
+/* 15CDD4 */ struct gmm_x0_528_t* gmMainLib_8015CDD4(void);
+/* 15CDE0 */ struct gmm_x0_528_t* gmMainLib_8015CDE0(void);
+/* 15CDEC */ void gmMainLib_8015CDEC(void);
+/* 15CE44 */ s8* gmMainLib_8015CE44(s32, s32);
+/* 15CEB4 */ void gmMainLib_8015CEB4(s32);
+/* 15CEFC */ bool gmMainLib_8015CEFC(int);
+/* 15CF5C */ s32 gmMainLib_8015CF5C(s32);
+/* 15CF70 */ void gmMainLib_8015CF70(s32, s32);
+/* 15CF84 */ void gmMainLib_8015CF84(void);
+/* 15CF94 */ bool gmMainLib_8015CF94(void);
+/* 15CFAC */ s32 func_8015CFAC(void);
+/* 15CFB4 */ s8* gmMainLib_8015CFB4(u8);
+/* 15CFCC */ s32 gmMainLib_8015CFCC(u8);
+/* 15D00C */ void gmMainLib_8015D00C(u8);
+/* 15D06C */ s32* gmMainLib_8015D06C(u8);
+/* 15D084 */ s32* gmMainLib_8015D084(u8);
+/* 15D0C0 */ s32* gmMainLib_8015D0C0(u8);
+/* 15D0D8 */ bool gmMainLib_8015D0D8(u8);
+/* 15D0F4 */ s32 gmMainLib_8015D0F4(u8);
+/* 15D134 */ void gmMainLib_8015D134(u8);
+/* 15D194 */ u8* gmMainLib_8015D194(u8); ///< returns a CPU level pointer
+/* 15D1AC */ s32 gmMainLib_8015D1AC(u8);
+/* 15D1C8 */ void gmMainLib_8015D1C8(u8, int stocks);
+/* 15D1E8 */ s32* gmMainLib_8015D1E8(u8);
+/* 15D200 */ bool gmMainLib_8015D200(u8);
+/* 15D21C */ s32 gmMainLib_8015D21C(u8);
+/* 15D25C */ void gmMainLib_8015D25C(u8);
+/* 15D2BC */ u8* gmMainLib_8015D2BC(u8);
+/* 15D2D4 */ s32 gmMainLib_8015D2D4(u8);
+/* 15D2F0 */ void gmMainLib_8015D2F0(u8, int stocks);
+/* 15D310 */ s32* gmMainLib_8015D310(u8);
+/* 15D328 */ bool gmMainLib_8015D328(u8);
+/* 15D344 */ s32 gmMainLib_8015D344(u8);
+/* 15D384 */ void gmMainLib_8015D384(u8);
+/* 15D3E4 */ u8* gmMainLib_8015D3E4(u8);
+/* 15D3FC */ s32 gmMainLib_8015D3FC(u8);
+/* 15D418 */ void gmMainLib_8015D418(u8, int stocks);
+/* 15D438 */ u32* gmMainLib_8015D438(u8);
+/* 15D450 */ s32* gmMainLib_8015D450(u8);
+/* 15D48C */ bool gmMainLib_8015D48C(u8);
+/* 15D4A8 */ s32 gmMainLib_8015D4A8(u8);
+/* 15D4E8 */ void gmMainLib_8015D4E8(u8, s32);
+/* 15D508 */ bool gmMainLib_8015D508(void);
+/* 15D5DC */ bool gmMainLib_8015D5DC(void);
+/* 15D640 */ bool gmMainLib_8015D640(void);
+/* 15D6A4 */ s32* gmMainLib_8015D6A4(u8);
+/* 15D6BC */ bool gmMainLib_8015D6BC(u8);
+/* 15D6D8 */ void gmMainLib_8015D6D8(u8, s32);
+/* 15D6F8 */ s32* gmMainLib_8015D6F8(u8);
+/* 15D710 */ bool gmMainLib_8015D710(u8);
+/* 15D72C */ void gmMainLib_8015D72C(u8, s32);
+/* 15D74C */ u16* gmMainLib_8015D74C(u8);
+/* 15D764 */ bool gmMainLib_8015D764(u8);
+/* 15D780 */ void gmMainLib_8015D780(u8);
+/* 15D7A4 */ u16* gmMainLib_8015D7A4(u8);
+/* 15D7BC */ s32* gmMainLib_8015D7BC(u8);
+/* 15D7D4 */ s32* gmMainLib_8015D7D4(u8);
+/* 15D7EC */ u16* gmMainLib_8015D7EC(u8);
+/* 15D804 */ u32* gmMainLib_8015D804(s32);
+/* 15D818 */ s32 gmMainLib_8015D818(u32);
+/* 15D8B0 */ void gmMainLib_8015D8B0(u32);
+/* 15D8D8 */ s32 gmMainLib_8015D8D8(u32);
+/* 15D8FC */ void gmMainLib_8015D8FC(u32);
+/* 15D924 */ void gmMainLib_8015D924(u32);
+/* 15D94C */ int gmMainLib_8015D94C(u32);
+/* 15D970 */ u32* gmMainLib_8015D970(ssize_t idx);
+/* 15D984 */ bool gmMainLib_8015D984(u32);
+/* 15D9F4 */ void gmMainLib_8015D9F4(u32);
+/* 15DA1C */ s32 gmMainLib_8015DA1C(u32);
+/* 15DA40 */ void gmMainLib_8015DA40(u32);
+/* 15DA68 */ void gmMainLib_8015DA68(u32);
+/* 15DA90 */ int gmMainLib_8015DA90(u32);
+/* 15DAB4 */ void gmMainLib_8015DAB4(u32);
+/* 15DADC */ bool gmMainLib_8015DADC(u32);
+/* 15DB00 */ u8 gmMainLib_8015DB00(void);
+/* 15DB0C */ void gmMainLib_8015DB0C(u8);
+/* 15DB18 */ void gmMainLib_8015DB18(void);
+/* 15DB2C */ void gmMainLib_8015DB2C(u8);
+/* 15DB6C */ u8 gmMainLib_8015DB6C(u8);
+/* 15DB80 */ void gmMainLib_8015DB80(void);
+/* 15DBF4 */ s32 gmMainLib_8015DBF4(s32);
+/* 15EA80 */ void gmMainLib_8015EA80(void);
+/* 15ECB0 */ int gmMainLib_8015ECB0(void);
+/* 15ECBC */ void gmMainLib_8015ECBC(void);
+/* 15ED30 */ int gmMainLib_8015ED30(void);
+/* 15ED3C */ int GetRumbleSettingOfPort(s32 arg0);
+/* 15ED4C */ void gmMainLib_8015ED4C(s32 arg0, s8 arg1);
+/* 15ED5C */ s32 gmMainLib_8015ED5C(void);
+/* 15ED68 */ void gmMainLib_8015ED68(s32 arg0);
+/* 15ED74 */ u8 gmMainLib_8015ED74(void);
+/* 15ED80 */ void gmMainLib_8015ED80(u8);
+/* 15ED8C */ u16* gmMainLib_GetUnlockedCharactersBitmaskPtr(void);
+/* 15ED98 */ struct gmm_retval_ED98* gmMainLib_8015ED98(void);
+/* 15EDA4 */ u16* gmMainLib_8015EDA4(void);
+/* 15EDB0 */ struct gmm_retval_EDB0* gmMainLib_8015EDB0(void);
+/* 15EDBC */ struct gmm_retval_EDBC* gmMainLib_8015EDBC(void);
+/* 15EDC8 */ struct gmm_x1868_1A8_t* gmMainLib_8015EDC8(void);
+/* 15EDD4 */ s32 gmMainLib_8015EDD4(void);
+/* 15EDE4 */ void gmMainLib_8015EDE4(void);
+/* 15EDF8 */ void gmMainLib_8015EDF8(void);
+/* 15EE0C */ s32 gmMainLib_8015EE0C(void);
+/* 15EE1C */ void gmMainLib_8015EE1C(void);
+/* 15EE30 */ void gmMainLib_8015EE30(void);
+/* 15EE44 */ s32 gmMainLib_8015EE44(void);
+/* 15EE54 */ void gmMainLib_8015EE54(void);
+/* 15EE68 */ void gmMainLib_8015EE68(void);
+/* 15EE90 */ s32 gmMainLib_8015EE90(void);
+/* 15EEA0 */ void gmMainLib_8015EEA0(void);
+/* 15EEB4 */ void gmMainLib_8015EEB4(void);
+/* 15EEC8 */ void gmMainLib_8015EEC8(void);
+/* 15EF30 */ void gmMainLib_8015EF30(struct gmMainLib_8015EF30_s* arg0);
+/* 15EF84 */ void InitializePersistentNameData(s32);
+/* 15F150 */ void gmMainLib_8015F150(void);
+/* 15F260 */ void gmMainLib_8015F260(void);
+/* 15F464 */ void gmMainLib_8015F464(void);
+/* 15F490 */ void gmMainLib_8015F490(void);
+/* 15F4BC */ void gmMainLib_8015F4BC(void);
+/* 15F4E8 */ u32 gmMainLib_8015F4E8(void);
+/* 15F4F4 */ void gmMainLib_8015F4F4(u8 arg0);
+/* 15F500 */ void gmMainLib_8015F500(void);
+/* 15F588 */ void gmMainLib_8015F588(bool);
+/* 15F600 */ void gmMainLib_8015F600(int, int);
+/* 15FA34 */ void gmMainLib_8015FA34(s32);
+/* 15FB68 */ void gmMainLib_8015FB68(void);
+/* 15FBA4 */ void gmMainLib_8015FBA4(void);
+/* 15FC74 */ int gmMainLib_8015FC74(void);
+/* 15FCC0 */ void gmMainLib_8015FCC0(void);
+/* 46B0F0 */ extern struct gmMainLib_8046B0F0_t gmMainLib_8046B0F0;
+/* 4D3EE0 */ extern struct gmm_x0* gmMainLib_804D3EE0;
 
 #endif
