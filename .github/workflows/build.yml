@@ -4,7 +4,7 @@ run-name: Build Melee & publish GitHub Pages
 on: [push, pull_request]
 
 env:
-  IMAGE_REPO: MeleeWorkshop/melee
+  IMAGE_REPO: meleeworkshop/melee
 
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
     name: Ninja
     runs-on: ubuntu-latest
     if: github.repository == 'MeleeWorkshop/melee'
-    container: ghcr.io/MeleeWorkshop/melee-build:main
+    container: ghcr.io/meleeworkshop/melee-build:main
     strategy:
       fail-fast: false
       matrix:
@@ -246,7 +246,7 @@ jobs:
     if: github.repository == 'MeleeWorkshop/melee'
     env:
       REGISTRY: ghcr.io
-      IMAGE: MeleeWorkshop/melee-build:main
+      IMAGE: meleeworkshop/melee-build:main
     steps:
     - uses: actions/checkout@v6
       with:
