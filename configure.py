@@ -331,10 +331,12 @@ cflags_trk = [
     "-rostr",
 ]
 
-includes_base = [
+includes_nodolphin = [
     "src",
     "src/MSL",
     "src/Runtime",
+]
+includes_base = includes_nodolphin + [
     "extern/dolphin/include",
 ]
 
@@ -415,7 +417,8 @@ def SysdolphinLib(lib_name: str, objects: Objects) -> Library:
         lib_name,
         objects,
         includes=[
-            *includes_base,
+            "extern/aurora/include",
+            *includes_nodolphin,
             "src/sysdolphin",
         ],
         category="hsd",
