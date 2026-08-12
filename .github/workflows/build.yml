@@ -4,7 +4,7 @@ run-name: Build Melee & publish GitHub Pages
 on: [push, pull_request]
 
 env:
-  IMAGE_REPO: doldecomp/melee
+  IMAGE_REPO: MeleeWorkshop/melee
 
 permissions:
   contents: read
@@ -16,8 +16,8 @@ jobs:
   build-ninja:
     name: Ninja
     runs-on: ubuntu-latest
-    if: github.repository == 'doldecomp/melee'
-    container: ghcr.io/doldecomp/build-melee:main
+    if: github.repository == 'MeleeWorkshop/melee'
+    container: ghcr.io/MeleeWorkshop/melee-build:main
     strategy:
       fail-fast: false
       matrix:
@@ -243,10 +243,10 @@ jobs:
   build-nix:
     name: Nix
     runs-on: ubuntu-latest
-    if: github.repository == 'doldecomp/melee'
+    if: github.repository == 'MeleeWorkshop/melee'
     env:
       REGISTRY: ghcr.io
-      IMAGE: doldecomp/build-melee:main
+      IMAGE: MeleeWorkshop/melee-build:main
     steps:
     - uses: actions/checkout@v6
       with:
@@ -274,7 +274,7 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - uses: cachix/cachix-action@v17
       with:
-        name: doldecomp-melee
+        name: MeleeWorkshop-melee
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build
     - run: nix-shell --run "echo OK"
@@ -286,7 +286,7 @@ jobs:
     if: >-
       github.event_name == 'push' &&
       github.ref_name == github.event.repository.default_branch &&
-      github.repository == 'doldecomp/melee'
+      github.repository == 'MeleeWorkshop/melee'
     permissions:
       contents: write
       actions: read
