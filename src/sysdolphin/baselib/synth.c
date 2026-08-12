@@ -1,5 +1,7 @@
 #include "synth.h"
 
+#include <dolphin/ax.h>
+
 #include "synth.static.h"
 
 #include <math_ppc.h>
