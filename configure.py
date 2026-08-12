@@ -430,7 +430,9 @@ def MeleeLib(lib_name: str, objects: Objects) -> Library:
         lib_name,
         objects,
         includes=[
-            *includes_base,
+            "extern/aurora/include",
+            *includes_nodolphin,
+            "src/sysdolphin",
             "src/melee",
             "src/melee/ft/chara",
             "src/sysdolphin",
