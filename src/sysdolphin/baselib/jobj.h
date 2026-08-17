@@ -255,14 +255,6 @@ inline void HSD_JObjSetupMatrix(HSD_JObj* jobj)
     HSD_JObjSetupMatrixSub(jobj);
 }
 
-/// Why does this seem to be a define while the others are inline functions?
-#define HSD_JObjSetMtxDirty(jobj)                                             \
-    {                                                                         \
-        if (jobj != NULL && !HSD_JObjMtxIsDirty(jobj)) {                      \
-            HSD_JObjSetMtxDirtySub(jobj);                                     \
-        }                                                                     \
-    }
-
 /// @todo See #lb_800117F4
 static inline void HSD_JObjSetMtxDirtyInline(HSD_JObj* jobj)
 {
@@ -270,6 +262,18 @@ static inline void HSD_JObjSetMtxDirtyInline(HSD_JObj* jobj)
         HSD_JObjSetMtxDirtySub(jobj);
     }
 }
+
+/// @todo Reimplement as function
+#ifndef BUGFIX
+#define HSD_JObjSetMtxDirty(jobj)                                             \
+    {                                                                         \
+        if (jobj != NULL && !HSD_JObjMtxIsDirty(jobj)) {                      \
+            HSD_JObjSetMtxDirtySub(jobj);                                     \
+        }                                                                     \
+    }
+#else
+#define HSD_JObjSetMtxDirty(jobj) HSD_JObjSetMtxDirtyInline((jobj))
+#endif
 
 static inline void HSD_JObjSetRotation(HSD_JObj* jobj, Quaternion* rotate)
 {
