@@ -422,7 +422,7 @@ void JObjUpdateFunc(void* obj, enum_t type, HSD_ObjData* val)
             if (val->fv > 0.5) {
                 HSD_JObjClearFlagsAll(jobj, JOBJ_HIDDEN);
             } else {
-                HSD_JObjSetFlagsAll(jobj, 0x10);
+                HSD_JObjSetFlagsAll(jobj, JOBJ_HIDDEN);
             }
             break;
         case HSD_A_J_NODE:
