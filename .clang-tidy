@@ -5,8 +5,11 @@ Checks: >
   readability-redundant-casting,
   readability-redundant-declaration,
   readability-duplicate-include,
+  readability-redundant-parentheses,
 WarningsAsErrors: '*'
 CheckOptions:
   - key: portability-restrict-system-includes.Includes
     value: '*,-MSL/*'
+  - key: readability-redundant-parentheses.AllowedDecls
+    value: 'HSD_JObjMtxSetDirty'
 ---
