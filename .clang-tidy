@@ -1,4 +1,4 @@
 ---
-Checks: 'readability-redundant-casting,readability-redundant-declaration,readability-duplicate-include'
+Checks: 'readability-redundant-casting,readability-redundant-declaration,readability-duplicate-include,readability-redundant-parentheses'
 WarningsAsErrors: '*'
 ---

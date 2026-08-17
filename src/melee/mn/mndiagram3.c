@@ -427,7 +427,7 @@ static inline void HSD_JObjSetTranslateX_Fake(HSD_JObj* jobj, f32 x)
     HSD_ASSERT(932, jobj);
     jobj->translate.x = x;
     if (!(jobj->flags & JOBJ_MTX_INDEP_SRT)) {
-        (HSD_JObjSetMtxDirty)(jobj);
+        HSD_JObjSetMtxDirty(jobj);
     }
 }
 
@@ -436,7 +436,7 @@ static inline void HSD_JObjSetTranslateY_Fake(HSD_JObj* jobj, f32 y)
     HSD_ASSERT(947, jobj);
     jobj->translate.y = y;
     if (!(jobj->flags & JOBJ_MTX_INDEP_SRT)) {
-        (HSD_JObjSetMtxDirty)(jobj);
+        HSD_JObjSetMtxDirty(jobj);
     }
 }
 
@@ -445,7 +445,7 @@ static inline void HSD_JObjSetTranslateZ_Fake(HSD_JObj* jobj, f32 z)
     HSD_ASSERT(962, jobj);
     jobj->translate.z = z;
     if (!(jobj->flags & JOBJ_MTX_INDEP_SRT)) {
-        (HSD_JObjSetMtxDirty)(jobj);
+        HSD_JObjSetMtxDirty(jobj);
     }
 }
 #undef __FILE__
