@@ -11,5 +11,5 @@ CheckOptions:
   - key: portability-restrict-system-includes.Includes
     value: '*,-MSL/*'
   - key: readability-redundant-parentheses.AllowedDecls
-    value: 'HSD_JObjSetMtxDirty'
+    value: '::HSD_JObjSetMtxDirty'
 ---
