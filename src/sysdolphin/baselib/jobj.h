@@ -166,7 +166,7 @@ void HSD_JObjReqAnimAll(HSD_JObj*, f32);
 void HSD_JObjResetRST(HSD_JObj* jobj, HSD_Joint* joint);
 void HSD_JObjSetupMatrixSub(HSD_JObj*);
 void HSD_JObjSetMtxDirtySub(HSD_JObj*);
-void(HSD_JObjSetMtxDirty)(HSD_JObj* jobj);
+void HSD_JObjSetMtxDirty(HSD_JObj* jobj);
 void HSD_JObjUnref(HSD_JObj* jobj);
 HSD_JObj* HSD_JObjRemove(HSD_JObj* jobj);
 void HSD_JObjRemoveAll(HSD_JObj*);
@@ -266,13 +266,14 @@ static inline void HSD_JObjSetMtxDirtyInline(HSD_JObj* jobj)
 /// @todo Reimplement as function
 #ifndef BUGFIX
 #define HSD_JObjSetMtxDirty(jobj)                                             \
-    {                                                                         \
+    do {                                                                      \
         if (jobj != NULL && !HSD_JObjMtxIsDirty(jobj)) {                      \
             HSD_JObjSetMtxDirtySub(jobj);                                     \
         }                                                                     \
-    }
+    } while (0)
+
 #else
-#define HSD_JObjSetMtxDirty(jobj) HSD_JObjSetMtxDirtyInline((jobj))
+#define HSD_JObjSetMtxDirty(jobj) HSD_JObjSetMtxDirtyInline(jobj)
 #endif
 
 static inline void HSD_JObjSetRotation(HSD_JObj* jobj, Quaternion* rotate)
@@ -281,7 +282,7 @@ static inline void HSD_JObjSetRotation(HSD_JObj* jobj, Quaternion* rotate)
     HSD_ASSERT(619, rotate);
     jobj->rotate = *rotate;
     if (!(jobj->flags & JOBJ_MTX_INDEP_SRT)) {
-        HSD_JObjSetMtxDirty(jobj);
+        (HSD_JObjSetMtxDirty)(jobj);
     }
 }
 
