@@ -354,6 +354,57 @@ cflags_melee = [
 config.linker_version = "GC/1.3.2"
 
 # Native compiler flags
+
+clang_includes = [
+    "src/melee",
+    "src/melee/ft/chara",
+]
+
+clang_system_includes = [
+    "src",
+    "src/MSL",
+    "src/Runtime",
+    "src/sysdolphin",
+    "extern/dolphin/include",
+    "extern/dolphin/src",
+    f"build/{config.version}/include",
+]
+
+clang_warnings = [
+    "all",
+    "extra",
+    "error",
+    "c2x-extensions",
+    "implicit-function-declaration",
+    "implicit-int",
+    "incompatible-pointer-types",
+    "pointer-type-mismatch",
+    "strict-prototypes",
+    "typedef-redefinition",
+]
+
+clang_disabled_warnings = [
+    "bitfield-constant-conversion",
+    "fortify-source",
+    "gnu-folding-constant",
+    "integer-overflow",
+    "missing-braces",
+    "missing-field-initializers",
+    "return-type",
+    "self-assign",
+    "sign-compare",
+    "sometimes-uninitialized",
+    "tautological-bitwise-compare",
+    "undefined-internal",
+    "uninitialized",
+    "unused-but-set-variable",
+    "unused-function",
+    "unused-parameter",
+    "unused-value",
+    "unused-variable",
+]
+
+
 clang_flags_base = [
     "-xc",
     "-std=c99",
@@ -362,58 +413,10 @@ clang_flags_base = [
     "--target=ppc32-none-eabi",
     "-DLINT",
     "-fno-short-enums",
-    "-Isrc/melee",
-    "-Isrc/melee/ft/chara",
-    *[
-        f"-isystem{s}"
-        for s in [
-            "src",
-            "src/MSL",
-            "src/Runtime",
-            "src/sysdolphin",
-            "extern/dolphin/include",
-            "extern/dolphin/src",
-            f"build/{config.version}/include",
-        ]
-    ],
-    *[
-        f"-W{s}"  # Warnings
-        for s in [
-            "all",
-            "extra",
-            "error",
-            "c2x-extensions",
-            "implicit-function-declaration",
-            "implicit-int",
-            "incompatible-pointer-types",
-            "pointer-type-mismatch",
-            "strict-prototypes",
-            "typedef-redefinition",
-            *[
-                f"no-{s}"  # Disabled warnings
-                for s in [
-                    "bitfield-constant-conversion",
-                    "fortify-source",
-                    "gnu-folding-constant",
-                    "integer-overflow",
-                    "missing-braces",
-                    "missing-field-initializers",
-                    "return-type",
-                    "self-assign",
-                    "sign-compare",
-                    "sometimes-uninitialized",
-                    "tautological-bitwise-compare",
-                    "undefined-internal",
-                    "uninitialized",
-                    "unused-but-set-variable",
-                    "unused-function",
-                    "unused-parameter",
-                    "unused-value",
-                    "unused-variable",
-                ]
-            ],
-        ]
-    ],
+    *[f"-I{s}" for s in clang_includes],
+    *[f"-isystem{s}" for s in clang_system_includes],
+    *[f"-W{s}" for s in clang_warnings],
+    *[f"-Wno-{s}" for s in clang_disabled_warnings],
 ]
 
 
