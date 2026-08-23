@@ -113,7 +113,7 @@
 #include "ftSeak/ftSk_SpecialN.h"
 #include "ftSeak/ftSk_SpecialS.h"
 #include "ftYoshi/ftYs_Guard.h"
-#include "ftYoshi/ftYs_Init.h"
+#include "ftYoshi/ftyoshi.h"
 #include "ftYoshi/ftYs_SpecialHi.h"
 #include "ftYoshi/ftYs_SpecialN.h"
 #include "ftYoshi/ftYs_SpecialS.h"

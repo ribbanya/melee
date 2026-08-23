@@ -1,4 +1,4 @@
-#include "ftYs_Init.h"
+#include "ftyoshi.h"
 
 #include "ftYs_Guard.h"
 #include "ftYs_SpecialN.h"

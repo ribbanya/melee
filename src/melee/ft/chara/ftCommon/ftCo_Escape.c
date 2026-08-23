@@ -23,7 +23,7 @@
 #include "ftSamus/ftSs_SpecialLw_1.h"
 #include "ftSamus/types.h"
 #include "ftYoshi/ftYs_Guard.h"
-#include "ftYoshi/ftYs_Init.h"
+#include "ftYoshi/ftyoshi.h"
 
 #include <dolphin/mtx.h>
 

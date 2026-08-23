@@ -2,7 +2,7 @@
 
 #include "ftYoshi/ftYs_SpecialS.static.h"
 
-#include "ftYs_Init.h"
+#include "ftyoshi.h"
 #include "placeholder.h"
 
 #include "baselib/forward.h"
