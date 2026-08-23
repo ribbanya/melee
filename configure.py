@@ -384,7 +384,6 @@ clang_flags_base = [
     "-Wno-bitfield-constant-conversion",
     "-Wno-builtin-macro-redefined",
     "-Wno-for-loop-analysis",
-    "-Wno-format",
     "-Wno-fortify-source",
     "-Wno-gnu-folding-constant",
     "-Wno-incompatible-library-redeclaration",
