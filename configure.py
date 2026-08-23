@@ -394,7 +394,6 @@ clang_disabled_warnings = [
     "sometimes-uninitialized",
     "tautological-bitwise-compare",
     "undefined-internal",
-    "uninitialized",
     "unused-but-set-variable",
     "unused-function",
     "unused-parameter",

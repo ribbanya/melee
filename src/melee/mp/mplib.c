@@ -3940,14 +3940,13 @@ int mpLib_800534FC_Floor(int line_id)
             new_id = -1;
         } else if (new_id != groundCollLine[line_id].x0->next_id1) {
             line_id = new_id;
-            new_id = mpLineGetNextCheckResultFirst(
-                (
 #ifdef MUST_MATCH
-                    line =
+            new_id = mpLineGetNextCheckResultFirst(
+                (line = groundCollLine[new_id].x0)->next_id1, line);
+#else
+            line = groundCollLine[new_id].x0;
+            new_id = mpLineGetNextCheckResultFirst(line->next_id1, line);
 #endif
-                        groundCollLine[new_id].x0)
-                    ->next_id1,
-                line);
             continue;
         }
         break;
