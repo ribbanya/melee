@@ -24,7 +24,6 @@
 #include "lb/lb_00B0.h"
 #include "lb/lbvector.h"
 
-#include <baselib/debug.h>
 #include <baselib/gobj.h>
 #include <baselib/jobj.h>
 
