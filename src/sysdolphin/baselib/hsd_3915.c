@@ -750,9 +750,12 @@ void hsd_8039254C(void)
             }
             switch (item->type) {
             case 0:
+#ifdef MUST_MATCH
                 if ((&item->content) == NULL) {
                     char_count = 0;
-                } else {
+                } else
+#endif
+                {
                     char_count = 0;
                     {
                         s32 j = 0;
