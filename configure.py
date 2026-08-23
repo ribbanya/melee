@@ -385,7 +385,6 @@ clang_warnings = [
 
 clang_disabled_warnings = [
     "bitfield-constant-conversion",
-    "fortify-source",
     "integer-overflow",
     "missing-braces",
     "missing-field-initializers",
