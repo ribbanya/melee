@@ -383,7 +383,6 @@ clang_flags_base = [
     "-Werror=typedef-redefinition",
     "-Wno-bitfield-constant-conversion",
     "-Wno-builtin-macro-redefined",
-    "-Wno-for-loop-analysis",
     "-Wno-fortify-source",
     "-Wno-gnu-folding-constant",
     "-Wno-incompatible-library-redeclaration",
