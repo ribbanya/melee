@@ -462,17 +462,20 @@ void it_8029F18C(HSD_GObj* gobj)
     item = gobj->user_data;
 
     temp_r0 = item->msid;
-    if ((temp_r0 != 6) || (temp_r0 != 4)) {
+#ifdef MUST_MATCH
+    if (temp_r0 != 6 || temp_r0 != 4) {
+#endif
         item->xDD4_itemVar.linkbomb.x4 = fsign_inline(item->x40_vel.x);
         mpCollSetFacingDir(
             &item->x378_itemColl,
             float_sign_int_inline(item->xDD4_itemVar.linkbomb.x4));
         item->xDD4_itemVar.linkbomb.x0.b1 = true;
+#ifdef MUST_MATCH
     } else {
         item->xDD4_itemVar.linkbomb.x0.b1 = false;
         itResetVelocity(item);
     }
-
+#endif
     it_8029D9A4(gobj, 4, 0);
 }
 
