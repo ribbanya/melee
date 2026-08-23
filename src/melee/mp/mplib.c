@@ -3941,7 +3941,13 @@ int mpLib_800534FC_Floor(int line_id)
         } else if (new_id != groundCollLine[line_id].x0->next_id1) {
             line_id = new_id;
             new_id = mpLineGetNextCheckResultFirst(
-                (line = groundCollLine[new_id].x0)->next_id1, line);
+                (
+#ifdef MUST_MATCH
+                    line =
+#endif
+                        groundCollLine[new_id].x0)
+                    ->next_id1,
+                line);
             continue;
         }
         break;
@@ -4006,7 +4012,13 @@ int mpLib_800536CC_Floor(int line_id)
         } else if (new_id != groundCollLine[line_id].x0->prev_id1) {
             line_id = new_id;
             new_id = mpLineGetPrevCheckResultFirst(
-                (line = groundCollLine[new_id].x0)->prev_id1, line);
+                (
+#ifdef MUST_MATCH
+                    line =
+#endif
+                        groundCollLine[new_id].x0)
+                    ->prev_id1,
+                line);
             continue;
         }
         break;
@@ -4044,7 +4056,13 @@ int mpLib_80053A04_Ceiling(int line_id)
         } else if (new_id != groundCollLine[line_id].x0->prev_id1) {
             line_id = new_id;
             new_id = mpLineGetPrevCheckResultFirst(
-                (line = groundCollLine[new_id].x0)->prev_id1, line);
+                (
+#ifdef MUST_MATCH
+                    line =
+#endif
+                        groundCollLine[new_id].x0)
+                    ->prev_id1,
+                line);
             continue;
         }
         break;

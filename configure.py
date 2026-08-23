@@ -394,7 +394,6 @@ clang_flags_base = [
     "-Wno-tautological-bitwise-compare",
     "-Wno-undefined-internal",
     "-Wno-uninitialized",
-    "-Wno-unsequenced",
     "-Wno-unused-but-set-variable",
     "-Wno-unused-function",
     "-Wno-unused-parameter",
