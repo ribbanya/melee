@@ -389,7 +389,6 @@ void it_8029EC34(HSD_GObj* gobj)
 static inline void itLinkbomb_UnkMotion3_Anim_inline1(HSD_GObj* gobj)
 {
     Item* item = GET_ITEM(gobj);
-    s32 slop;
     it_80275414(gobj);
     it_802754A4(gobj);
     if (item->msid != 3) {
@@ -397,8 +396,13 @@ static inline void itLinkbomb_UnkMotion3_Anim_inline1(HSD_GObj* gobj)
     } else {
         it_8029D9A4(gobj, 3, ITEM_HIT_PRESERVE | ITEM_DROP_UPDATE);
     }
-    if (slop != 0) {
+#ifdef MUST_MATCH
+    {
+        s32 slop;
+        if (slop != 0) {
+        }
     }
+#endif
 }
 
 static inline void itLinkbomb_UnkMotion3_Anim_inline2(HSD_GObj* gobj)

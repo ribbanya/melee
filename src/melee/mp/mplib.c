@@ -4053,14 +4053,13 @@ int mpLib_80053A04_Ceiling(int line_id)
             new_id = -1;
         } else if (new_id != groundCollLine[line_id].x0->prev_id1) {
             line_id = new_id;
-            new_id = mpLineGetPrevCheckResultFirst(
-                (
 #ifdef MUST_MATCH
-                    line =
+            new_id = mpLineGetPrevCheckResultFirst(
+                (line = groundCollLine[new_id].x0)->prev_id1, line);
+#else
+            line = groundCollLine[new_id].x0;
+            new_id = mpLineGetPrevCheckResultFirst(line->prev_id1, line);
 #endif
-                        groundCollLine[new_id].x0)
-                    ->prev_id1,
-                line);
             continue;
         }
         break;
