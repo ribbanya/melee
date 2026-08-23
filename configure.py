@@ -386,12 +386,10 @@ clang_warnings = [
 clang_disabled_warnings = [
     "bitfield-constant-conversion",
     "fortify-source",
-    "gnu-folding-constant",
     "integer-overflow",
     "missing-braces",
     "missing-field-initializers",
     "return-type",
-    "self-assign",
     "sign-compare",
     "sometimes-uninitialized",
     "tautological-bitwise-compare",

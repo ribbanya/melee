@@ -855,7 +855,9 @@ void Exception_ReportCodeline(u16 error, int dsisr, int dar, OSContext* ctx)
 
     OSReport("- UNHANDLED EXCEPTION -------------------------------\n");
     OSReport("DSISR=%08X DAR=%08X\n", dsisr, dar);
+#ifdef MUST_MATCH
     error = error;
+#endif
     OSReport("ERROR %d: ", error);
 
     switch (error) {
