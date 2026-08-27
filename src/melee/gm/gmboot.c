@@ -51,6 +51,7 @@ GameScene gmBoot_BootScenes[] = {
 void bootOnLoad(GameScene* scene)
 {
     struct loadData* scene_data = gm_GetGameSceneLoadData(scene);
+    gmMainLib_8046B0F0.skip_intro = true;
     scene_data->x4 = 0;
     scene_data->x0 = 0;
     if (gmMainLib_8046B0F0.skip_intro == true) {

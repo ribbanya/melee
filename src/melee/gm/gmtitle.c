@@ -270,7 +270,7 @@ void gmTitle_OnFrame(void)
         return;
     }
     frame_count++;
-    if (frame_count > 600) {
+    if (frame_count > 0) {
         tmp = gm_GetCurrentSceneExitData();
         *tmp = 0;
         gm_801A4B60();
