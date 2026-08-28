@@ -1,7 +1,6 @@
 #include "gmboot.h"
 
 #include "gm_unsplit.h"
-#include "gmmain_lib.h"
 #include "types.h"
 #include <melee/lb/lbcardgame.h>
 #include <melee/lb/lbcardnew.h>
@@ -52,12 +51,7 @@ void bootOnLoad(GameModeState* scene)
     struct loadData* scene_data = gm_GetGameModeStateEnterData(scene);
     scene_data->x4 = 0;
     scene_data->x0 = 0;
-    if (gmMainLib_8046B0F0.skip_intro == true) {
-        scene_data->mode_id = GM_TITLE;
-    } else {
-        gm_801BF708(0);
-        scene_data->mode_id = GM_OPENING_MV;
-    }
+    scene_data->mode_id = GM_DEBUG_VS;
 }
 
 void bootOnLeave(GameModeState* data)
