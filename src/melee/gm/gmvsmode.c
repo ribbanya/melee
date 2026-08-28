@@ -2,6 +2,7 @@
 
 #include "gm/forward.h"
 
+#include "gm/gm_1601.h"
 #include "gm/gm_1A3F.h"
 #include "gm/gmmovieend.h"
 #include "if/if_2FD9.h"
@@ -179,10 +180,12 @@ void onEnterDebugVs(GameModeState* state)
     ssize_t i;
 
     gm_SetupRulesDefaults(&start->rules);
-    start->rules.stkind = St_Kind_Last;
+    start->rules.stkind = St_Kind_Battle;
     start->rules.xB = -1;
     start->rules.xC = -1;
     start->rules.match_kind = MatchKind_Time;
+    start->rules.is_teams = true;
+    start->rules.friendly_fire = true;
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
         gm_SetupPlayerDefaults(&start->players[i]);
@@ -190,15 +193,25 @@ void onEnterDebugVs(GameModeState* state)
         start->players[i].xE = 4;
     }
 
-    start->players[0].ckind = CKIND_LINK;
-    start->players[1].ckind = CKIND_MARIO;
-    start->players[2].ckind = CKIND_LINK;
-    start->players[3].ckind = CKIND_LINK;
+    start->players[0].ckind = CKIND_MARS;
+    start->players[1].ckind = CKIND_SEAK;
+    start->players[2].ckind = CKIND_FOX;
+    start->players[3].ckind = CKIND_PURIN;
 
-    start->players[0].slot_type = Gm_PKind_Human;
-    start->players[1].slot_type = Gm_PKind_Human;
-    start->players[2].slot_type = Gm_PKind_NA;
-    start->players[3].slot_type = Gm_PKind_NA;
+    start->players[0].slot_type = Gm_PKind_Cpu;
+    start->players[1].slot_type = Gm_PKind_Cpu;
+    start->players[2].slot_type = Gm_PKind_Cpu;
+    start->players[3].slot_type = Gm_PKind_Cpu;
+
+    start->players[0].cpu_level = 9;
+    start->players[1].cpu_level = 9;
+    start->players[2].cpu_level = 9;
+    start->players[3].cpu_level = 9;
+
+    start->players[0].team = 1;
+    start->players[1].team = 1;
+    start->players[2].team = 2;
+    start->players[3].team = 2;
 
     start->players[0].rumble_enabled = false;
     start->players[1].rumble_enabled = false;
