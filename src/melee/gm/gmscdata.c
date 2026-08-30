@@ -348,9 +348,9 @@ static GameScene scenes[] = {
     },
     {
         GS_APPROACH,
-        gm_Scene_ProgScan_OnFrame,
-        gm_Scene_ProgScan_OnEnter,
-        gm_Scene_ProgScan_OnExit,
+        gm_Scene_Approach_OnFrame,
+        gm_Scene_Approach_OnEnter,
+        gm_Scene_Approach_OnExit,
         NULL,
     },
     {
