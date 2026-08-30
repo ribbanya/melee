@@ -54,7 +54,7 @@ enum {
     ADVENTURE_BACK_TO_CSS = 0x70,
 };
 
-GameScene gm_803DE1B8_Scenes[] = {
+GameModeState gm_803DE1B8_Scenes[] = {
     {
         ADVENTURE_INTRO,
         2,
@@ -1200,7 +1200,7 @@ static inline void setValUnk(int scene_id, bool temp_r30)
     }
 }
 
-void gm_801B3F40(GameScene* arg0)
+void gm_801B3F40(GameModeState* arg0)
 {
     struct gm_803DE650_t* temp_r31;
     UnkAdventureData* temp_r3;
@@ -1237,7 +1237,7 @@ void gm_801B3F40(GameScene* arg0)
     lbAudioAx_80027168();
 }
 
-void gm_801B4064(GameScene* arg0)
+void gm_801B4064(GameModeState* arg0)
 {
     struct gm_803DE650_t* temp_r31;
     int var_r30;
@@ -1272,7 +1272,7 @@ void gm_801B4064(GameScene* arg0)
     }
 }
 
-void gm_801B4170(GameScene* arg0)
+void gm_801B4170(GameModeState* arg0)
 {
     MatchExitInfo* temp_r28 = gm_GetGameSceneLeaveData(arg0);
     UnkAdventureData* temp_r31 = gm_GetAdventureData();
@@ -1284,19 +1284,19 @@ void gm_801B4170(GameScene* arg0)
     }
 }
 
-void gm_801B4254(GameScene* scene)
+void gm_801B4254(GameModeState* scene)
 {
     DebugGameOverData* data = gm_GetGameSceneLoadData(scene);
     gm_8017C9A8(data, &gm_GetAdventureData()->x0, 0);
 }
 
-void gm_801B4294(GameScene* scene)
+void gm_801B4294(GameModeState* scene)
 {
     DebugGameOverData* data = gm_GetGameSceneLeaveData(scene);
     gm_8017CA38(data, &gm_GetAdventureData()->x0, gmMainLib_8015CDD4(), 0);
 }
 
-void gm_801B42E8(GameScene* scene)
+void gm_801B42E8(GameModeState* scene)
 {
     CSSData* css = gm_GetGameSceneLoadData(scene);
     struct gmm_x0_528_t* temp_r31 = gmMainLib_8015CDD4();
@@ -1305,7 +1305,7 @@ void gm_801B42E8(GameScene* scene)
                 gm_GetAdventureData()->x0.slot);
 }
 
-void gm_801B4350(GameScene* scene)
+void gm_801B4350(GameModeState* scene)
 {
     CSSData* css = gm_GetGameSceneLeaveData(scene);
     struct gmm_x0_528_t* temp_r29 = gmMainLib_8015CDD4();
@@ -1326,13 +1326,13 @@ void gm_801B4350(GameScene* scene)
     gm_80168F88();
 }
 
-void gm_801B4408(GameScene* scene)
+void gm_801B4408(GameModeState* scene)
 {
     gm_SetPendingGameMode(GM_MENU);
     gm_SetNewGameModePending();
 }
 
-void gm_801B4430(GameScene* scene)
+void gm_801B4430(GameModeState* scene)
 {
     CutsceneData* temp_r30 = gm_GetGameSceneLoadData(scene);
     struct gmm_x0_528_t* temp_r31 = gmMainLib_8015CDD4();
@@ -1348,7 +1348,7 @@ void gm_801B4430(GameScene* scene)
     temp_r30->x1 = temp_r31->color;
 }
 
-void gm_801B44A0(GameScene* scene)
+void gm_801B44A0(GameModeState* scene)
 {
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
@@ -1369,7 +1369,7 @@ void gm_801B44A0(GameScene* scene)
     }
 }
 
-void gm_801B45A4(GameScene* scene)
+void gm_801B45A4(GameModeState* scene)
 {
     CutsceneData* temp_r31 = gm_GetGameSceneLoadData(scene);
     UnkAdventureData* temp_r7 = gm_GetAdventureData();
@@ -1382,7 +1382,7 @@ void gm_801B45A4(GameScene* scene)
     temp_r31->x3 = colors[1];
 }
 
-void gm_801B461C(GameScene* scene)
+void gm_801B461C(GameModeState* scene)
 {
     gm_801B4064(scene);
 
@@ -1396,7 +1396,7 @@ void gm_801B461C(GameScene* scene)
     }
 }
 
-void gm_801B4684(GameScene* scene)
+void gm_801B4684(GameModeState* scene)
 {
     MatchExitInfo* temp_r29 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r31 = gm_GetAdventureData();
@@ -1413,7 +1413,7 @@ void gm_801B4684(GameScene* scene)
     }
 }
 
-void gm_801B4768(GameScene* scene)
+void gm_801B4768(GameModeState* scene)
 {
     StartMeleeData* data = gm_GetGameSceneLoadData(scene);
     int i;
@@ -1425,7 +1425,7 @@ void gm_801B4768(GameScene* scene)
     }
 }
 
-void gm_801B47FC(GameScene* scene)
+void gm_801B47FC(GameModeState* scene)
 {
     UnkAdventureData* temp_r31;
     StartMeleeData* temp_r30;
@@ -1437,7 +1437,7 @@ void gm_801B47FC(GameScene* scene)
     temp_r31->x0.x7 = 0x20;
 }
 
-static inline void gm_801B4860_inline0(GameScene* scene)
+static inline void gm_801B4860_inline0(GameModeState* scene)
 {
     MatchExitInfo* exit_info = gm_GetGameSceneLeaveData(scene);
     if (exit_info->match_end.result != OUTCOME_TIMEOUT) {
@@ -1448,7 +1448,7 @@ static inline void gm_801B4860_inline0(GameScene* scene)
     }
 }
 
-static inline void gm_801B4860_inline1(GameScene* scene)
+static inline void gm_801B4860_inline1(GameModeState* scene)
 {
     MatchExitInfo* exit_info = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* adv_data = gm_GetAdventureData();
@@ -1462,13 +1462,13 @@ static inline void gm_801B4860_inline1(GameScene* scene)
     }
 }
 
-void gm_801B4860(GameScene* scene)
+void gm_801B4860(GameModeState* scene)
 {
     gm_801B4860_inline0(scene);
     gm_801B4860_inline1(scene);
 }
 
-static void gm_8016A22C_inline(GameScene* arg0, UnkAdventureData* temp_r29)
+static void gm_8016A22C_inline(GameModeState* arg0, UnkAdventureData* temp_r29)
 {
     u8 count = gm_8017E48C(arg0);
     struct gm_803DE650_t* temp_r25_2 = gm_8017E4C4(arg0->idx);
@@ -1482,7 +1482,7 @@ static void gm_8016A22C_inline(GameScene* arg0, UnkAdventureData* temp_r29)
     temp_r29->x0.xC.x11 = 1;
 }
 
-void gm_801B4974(GameScene* arg0)
+void gm_801B4974(GameModeState* arg0)
 {
     u8 count;
     UnkAdventureData* temp_r29;
@@ -1519,7 +1519,7 @@ void gm_801B4974(GameScene* arg0)
     temp_r28->x6 = temp_r31[temp_r30->x4 - 3];
 }
 
-static inline void inline0(GameScene* scene)
+static inline void inline0(GameModeState* scene)
 {
     UnkAdventureData* adv_data = gm_GetAdventureData();
     if (adv_data->x0.xC.x11 != 1) {
@@ -1529,13 +1529,13 @@ static inline void inline0(GameScene* scene)
     }
 }
 
-void gm_801B4B28(GameScene* scene)
+void gm_801B4B28(GameModeState* scene)
 {
     inline0(scene);
     gm_801B4064(scene);
 }
 
-void gm_801B4C5C(GameScene* scene)
+void gm_801B4C5C(GameModeState* scene)
 {
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
@@ -1551,7 +1551,7 @@ void gm_801B4C5C(GameScene* scene)
     }
 }
 
-void gm_801B4D34(GameScene* scene)
+void gm_801B4D34(GameModeState* scene)
 {
     UnkAdventureData* temp_r30 = gm_GetAdventureData();
     struct gm_803DE650_t* temp_r31 = gm_8017E4C4(scene->idx);
@@ -1567,7 +1567,7 @@ void gm_801B4D34(GameScene* scene)
     }
 }
 
-void gm_801B4DAC(GameScene* scene)
+void gm_801B4DAC(GameModeState* scene)
 {
     UnkAdventureData* temp_r30 = gm_GetAdventureData();
     StartMeleeData* data = gm_GetGameSceneLoadData(scene);
@@ -1583,7 +1583,7 @@ void gm_801B4DAC(GameScene* scene)
     }
 }
 
-void gm_801B4E58(GameScene* scene)
+void gm_801B4E58(GameModeState* scene)
 {
     StartMeleeData* data;
     gm_GetAdventureData();
@@ -1593,7 +1593,7 @@ void gm_801B4E58(GameScene* scene)
     data->rules.xB = 4;
 }
 
-void gm_801B4EB8(GameScene* scene)
+void gm_801B4EB8(GameModeState* scene)
 {
     StartMeleeData* data = gm_GetGameSceneLoadData(scene);
     int i;
@@ -1609,7 +1609,7 @@ void gm_801B4EB8(GameScene* scene)
     }
 }
 
-void gm_801B4F44(GameScene* scene)
+void gm_801B4F44(GameModeState* scene)
 {
     StartMeleeData* data = gm_GetGameSceneLoadData(scene);
     int i;
@@ -1622,7 +1622,7 @@ void gm_801B4F44(GameScene* scene)
     data->rules.x50 = gm_8017E7FC;
 }
 
-void gm_801B4FCC(GameScene* scene)
+void gm_801B4FCC(GameModeState* scene)
 {
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
@@ -1630,7 +1630,7 @@ void gm_801B4FCC(GameScene* scene)
     gm_8017D7AC(temp_r30, &temp_r29->x0, 0x69);
 }
 
-void gm_801B5078(GameScene* scene)
+void gm_801B5078(GameModeState* scene)
 {
     UnkAdventureData* temp_r3 = gm_GetAdventureData();
     if (temp_r3->x77 == 0) {
@@ -1638,7 +1638,7 @@ void gm_801B5078(GameScene* scene)
     }
 }
 
-void gm_801B50C4(GameScene* scene)
+void gm_801B50C4(GameModeState* scene)
 {
     MatchExitInfo* temp_r31 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r30 = gm_GetAdventureData();
@@ -1653,7 +1653,7 @@ void gm_801B50C4(GameScene* scene)
     gm_8017D7AC(temp_r31, &temp_r30->x0, 0x69);
 }
 
-void gm_801B518C(GameScene* scene)
+void gm_801B518C(GameModeState* scene)
 {
     UnkAdventureData* data = gm_GetAdventureData();
     gm_8017CBAC(data, gmMainLib_8015CDD4(), 0x16);

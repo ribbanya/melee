@@ -2,14 +2,14 @@
  * @brief Runs one game-mode scene transition and invokes the run loop for a
  * given scene
  *
- * Finds the current #GameScene in @p mode, runs its @c Prep handler, loads
+ * Finds the current #GameModeState in @p mode, runs its @c Prep handler, loads
  * the scene via #gm_FindGameSceneHandler / #gm_801A4D34, then advances
  * #GameRouting::curr_scene_idx when the scene loop exits.
  */
 /* 1A4014 */ void gm_801A4014(GameMode* mode);
 
-/* 1A427C */ void* gm_GetGameSceneLoadData(GameScene*);
-/* 1A4284 */ void* gm_GetGameSceneLeaveData(GameScene*);
+/* 1A427C */ void* gm_GetGameSceneLoadData(GameModeState*);
+/* 1A4284 */ void* gm_GetGameSceneLeaveData(GameModeState*);
 
 /**
  * @brief Sets the scene index for both the current and previous scene.
@@ -17,7 +17,7 @@
  * Sets #GameRouting::curr_scene_idx and #GameRouting::prev_scene_idx on
  * #gm_80479D30.
  *
- * See docs related to #GameScene.
+ * See docs related to #GameModeState.
  *
  * @param arg0 The index of the scene to use. Not to be confused with the scene
  * class_id, which is defined as a GameSceneKind.
@@ -29,7 +29,7 @@
  *
  * Sets #GameRouting::pending_scene_idx on #gm_80479D30 to @c arg0 + 1
  *
- * See docs related to #GameScene.
+ * See docs related to #GameModeState.
  *
  * @param arg0 The scene index of the scene preceding the desired pending
  * scene. The method adds +1 to the input. Not to be confused with the scene

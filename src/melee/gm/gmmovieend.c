@@ -21,7 +21,7 @@
 #include <sysdolphin/baselib/gobjobject.h>
 #include <sysdolphin/baselib/sobjlib.h>
 
-void gm_801A6254(GameScene* arg0)
+void gm_801A6254(GameModeState* arg0)
 {
     u8 temp_ret;
     u8 temp_r0;
@@ -48,7 +48,7 @@ void gm_801A6254(GameScene* arg0)
     }
 }
 
-void gm_801A6308(GameScene* arg0)
+void gm_801A6308(GameModeState* arg0)
 {
     gm_SetPendingSceneIndex(0);
 }

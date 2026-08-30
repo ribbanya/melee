@@ -1481,7 +1481,7 @@ u8 gm_8017E440(void)
     return r31->x0.slot;
 }
 
-u8 gm_8017E48C(GameScene* scene)
+u8 gm_8017E48C(GameModeState* scene)
 {
     u8 count = 0;
     int i;

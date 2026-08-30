@@ -5,12 +5,12 @@
 
 #include <melee/gm/forward.h>
 
-/* 1B91C8 */ void gm_801B91C8(GameScene*);
-/* 1B922C */ void gm_801B922C(GameScene*);
-/* 1B9254 */ void gm_801B9254(GameScene*);
-/* 1B927C */ void gm_801B927C(GameScene*);
-/* 1B931C */ void gm_801B931C(GameScene*);
-/* 1B9560 */ void gm_801B9560(GameScene*);
+/* 1B91C8 */ void gm_801B91C8(GameModeState*);
+/* 1B922C */ void gm_801B922C(GameModeState*);
+/* 1B9254 */ void gm_801B9254(GameModeState*);
+/* 1B927C */ void gm_801B927C(GameModeState*);
+/* 1B931C */ void gm_801B931C(GameModeState*);
+/* 1B9560 */ void gm_801B9560(GameModeState*);
 /* 1B95B0 */ void gm_801B95B0_OnInit(void);
 /* 1B95D8 */ void gm_801B95D8_OnLoad(void);
 /* 1B9600 */ int gm_801B9600(void);

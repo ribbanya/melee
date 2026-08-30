@@ -19,7 +19,7 @@ extern DebugGameOverData gmClassic_80470850;
 extern MatchExitInfo gmClassic_8047086C;
 extern StartMeleeData gmClassic_80472AF8;
 
-GameScene gm_803DE930_Scenes[] = {
+GameModeState gm_803DE930_Scenes[] = {
     {
         0,
         3,
@@ -470,7 +470,7 @@ void gm_801B5324(UnkAllstarData* arg0, s32 arg1)
     lbAudioAx_80027168();
 }
 
-void gm_801B5624(GameScene* arg0)
+void gm_801B5624(GameModeState* arg0)
 {
     s8 chars[3];
     StartMeleeData* data;
@@ -554,7 +554,7 @@ void gm_801B5624(GameScene* arg0)
     allstar->x0.x7 = arg0->idx;
 }
 
-void gm_801B59AC(GameScene* arg0)
+void gm_801B59AC(GameModeState* arg0)
 {
     u8* base = (u8*) gm_803DE930_Scenes;
     MatchExitInfo* exit = gm_GetGameSceneLeaveData(arg0);
@@ -583,7 +583,7 @@ void fn_801B5AA8(int arg0)
     lbBgFlash_8002063C(0x78);
 }
 
-void gm_801B5ACC(GameScene* arg0)
+void gm_801B5ACC(GameModeState* arg0)
 {
     u8 operand_pad[8];
     s8 chars[3];
@@ -671,20 +671,20 @@ void gm_801B5ACC(GameScene* arg0)
     data->rules.x50 = (void (*)(u8))(Event) fn_801B5AA8;
 }
 
-void gm_801B5E7C(GameScene* arg0)
+void gm_801B5E7C(GameModeState* arg0)
 {
     MatchExitInfo* exit = gm_GetGameSceneLeaveData(arg0);
     gm_80473A18.x74 = exit->match_end.player_standings[0].percent;
     gm_8017D7AC(exit, &gm_80473A18.x0, 0x69);
 }
 
-void gm_801B5EB4(GameScene* arg0)
+void gm_801B5EB4(GameModeState* arg0)
 {
     DebugGameOverData* data = gm_GetGameSceneLoadData(arg0);
     gm_8017C9A8(data, &gm_80473A18.x0, 2);
 }
 
-void gm_801B5EE4(GameScene* arg0)
+void gm_801B5EE4(GameModeState* arg0)
 {
     DebugGameOverData* data = gm_GetGameSceneLeaveData(arg0);
     UnkAllstarData* r30 = &gm_80473A18;
@@ -694,7 +694,7 @@ void gm_801B5EE4(GameScene* arg0)
     }
 }
 
-void gm_801B5F50(GameScene* arg0)
+void gm_801B5F50(GameModeState* arg0)
 {
     CSSData* temp_r31;
     struct gmm_x0_528_t* temp_r3;
@@ -709,7 +709,7 @@ void gm_801B5F50(GameScene* arg0)
 
 /// #gm_801B5F50
 
-void gm_801B5FB4(GameScene* arg0)
+void gm_801B5FB4(GameModeState* arg0)
 {
     CSSData* temp_r31 = gm_GetGameSceneLeaveData(arg0);
     struct gmm_x0_528_t* temp_r30 = gmMainLib_8015CDE0();
@@ -731,7 +731,7 @@ void gm_801B5FB4(GameScene* arg0)
     gm_801B5324(r29, temp_r30->x5);
 }
 
-void gm_801B607C(GameScene* unused)
+void gm_801B607C(GameModeState* unused)
 {
     gm_SetPendingGameMode(GM_MENU);
     gm_SetNewGameModePending();

@@ -25,10 +25,10 @@
 #include <melee/lb/lbcardnew.h>
 #include <melee/ty/tydisplay.h>
 
-/* 1A3F48 */ static void gm_801A3F48(GameScene*);
+/* 1A3F48 */ static void gm_801A3F48(GameModeState*);
 /* 479D30 */ static GameState gm_80479D30;
 
-void gm_801A3F48(GameScene* scene)
+void gm_801A3F48(GameModeState* scene)
 {
     PreloadCacheScene* temp_r31;
 
@@ -60,7 +60,7 @@ void gm_801A3F48(GameScene* scene)
     tyDisplay_8031C8B8();
 }
 
-static inline u8 firstScene(GameScene* scene, u8 sentinel)
+static inline u8 firstScene(GameModeState* scene, u8 sentinel)
 {
     for (; scene->idx != 0xFF; scene++) {
         do {
@@ -73,13 +73,13 @@ static inline u8 firstScene(GameScene* scene, u8 sentinel)
     return 0;
 }
 
-static inline u8 nextScene(GameScene* scenes)
+static inline u8 nextScene(GameModeState* scenes)
 {
-    GameScene* it = scenes;
+    GameModeState* it = scenes;
     u8 current = gm_80479D30.routing.curr_scene_idx;
     int i;
     u8 next_scene;
-    GameScene* cur = scenes;
+    GameModeState* cur = scenes;
 
     for (i = 0; (next_scene = it->idx) != 0xFF; i++) {
         if (cur->idx > current) {
@@ -92,7 +92,7 @@ static inline u8 nextScene(GameScene* scenes)
     return firstScene(scenes, next_scene);
 }
 
-static inline GameScene* findScene(GameScene* scene)
+static inline GameModeState* findScene(GameModeState* scene)
 {
     int i, j;
     for (i = gm_80479D30.routing.curr_scene_idx; i < 0xFF; i++) {
@@ -108,7 +108,7 @@ static inline GameScene* findScene(GameScene* scene)
 void gm_801A4014(GameMode* mode)
 {
     GameSceneHandler* handler;
-    GameScene* scene;
+    GameModeState* scene;
     GameState* gm;
     struct GameSceneInfo* info;
     u32 dead;
@@ -175,12 +175,12 @@ void gm_801A4014(GameMode* mode)
     }
 }
 
-void* gm_GetGameSceneLoadData(GameScene* scene)
+void* gm_GetGameSceneLoadData(GameModeState* scene)
 {
     return scene->info.load_data;
 }
 
-void* gm_GetGameSceneLeaveData(GameScene* scene)
+void* gm_GetGameSceneLeaveData(GameModeState* scene)
 {
     return scene->info.leave_data;
 }

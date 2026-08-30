@@ -21,14 +21,14 @@ struct DebugSoundTestData {
     u32 x4;
 };
 
-/* 1B0FB8 */ static void onEnterDebug(GameScene*);
-/* 1B0FF8 */ static void onEnter(GameScene*);
-/* 1B138C */ static void onExit(GameScene*);
+/* 1B0FB8 */ static void onEnterDebug(GameModeState*);
+/* 1B0FF8 */ static void onEnter(GameModeState*);
+/* 1B138C */ static void onExit(GameModeState*);
 /* 4D68B0 */ static struct DebugSoundTestData debug_enter_data;
 /* 4D68B8 */ static MenuEnterData* enter_data;
 /* 4D68BC */ static MenuExitData* exit_data;
 
-GameScene gm_803DD888_Scenes[] = {
+GameModeState gm_803DD888_Scenes[] = {
     {
         0,
         lbDvdPreload_2,
@@ -44,7 +44,7 @@ GameScene gm_803DD888_Scenes[] = {
     { -1 },
 };
 
-GameScene gm_803DD8B8_Scenes[] = {
+GameModeState gm_803DD8B8_Scenes[] = {
     {
         0,
         lbDvdPreload_2,
@@ -60,7 +60,7 @@ GameScene gm_803DD8B8_Scenes[] = {
     { -1 },
 };
 
-void onEnterDebug(GameScene* arg0)
+void onEnterDebug(GameModeState* arg0)
 {
     struct DebugSoundTestData* data;
 
@@ -71,7 +71,7 @@ void onEnterDebug(GameScene* arg0)
     un_802FF884("/audio");
 }
 
-void onEnter(GameScene* scene)
+void onEnter(GameModeState* scene)
 {
     GameRules* rules;
     MenuEnterData* data;
@@ -242,7 +242,7 @@ void onEnter(GameScene* scene)
     }
 }
 
-void onExit(GameScene* arg0)
+void onExit(GameModeState* arg0)
 {
     MenuExitData* data = arg0->info.leave_data;
 
