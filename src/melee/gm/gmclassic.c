@@ -82,7 +82,7 @@ ASSERT_SIZE(gmClassicSceneData, 0x560);
 
 static gmClassic_80490880Data gmClassic_80490880;
 
-GameModeState gm_803DDC58_Scenes[] = {
+GameModeState gm_Mode_Classic_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -584,7 +584,7 @@ static gm_803DDEC8Struct* gmClassic_801B2D54(gm_803DDEC8Struct* arg0)
 {
     gmClassic_80490880Data* o = &gmClassic_80490880;
     gm_803DDEC8Struct* ptr;
-    gmClassicSceneData* scene_data = (gmClassicSceneData*) gm_803DDC58_Scenes;
+    gmClassicSceneData* scene_data = (gmClassicSceneData*) gm_Mode_Classic_States;
 
     for (ptr = arg0; ptr->x0 != 0xD; ptr++) {
         if (ptr->x1 & 8) {
@@ -670,7 +670,7 @@ static gm_803DDEC8Struct* gmClassic_801B2D54(gm_803DDEC8Struct* arg0)
 void gm_Mode_Classic_OnLoad(void)
 {
     UnkAllstarData* data;
-    gmClassicSceneData* scene_data = (gmClassicSceneData*) gm_803DDC58_Scenes;
+    gmClassicSceneData* scene_data = (gmClassicSceneData*) gm_Mode_Classic_States;
     gmClassic_80490880Data* o = &gmClassic_80490880;
     gm_803DDEC8Struct* entry;
     s32 i;

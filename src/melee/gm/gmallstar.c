@@ -19,7 +19,7 @@ extern DebugGameOverData gmClassic_80470850;
 extern MatchExitInfo gmClassic_8047086C;
 extern StartMeleeData gmClassic_80472AF8;
 
-GameModeState gm_803DE930_Scenes[] = {
+GameModeState gm_Mode_AllStar_States[] = {
     {
         0,
         3,
@@ -396,7 +396,7 @@ void gm_801B5324(UnkAllstarData* arg0, s32 arg1)
     s32 i;
     PAD_STACK(12);
 
-    base = (u8*) gm_803DE930_Scenes;
+    base = (u8*) gm_Mode_AllStar_States;
     is_last_round = 0;
     chars_ptr = chars;
 
@@ -410,7 +410,7 @@ void gm_801B5324(UnkAllstarData* arg0, s32 arg1)
     chars_ptr[2] = 0x21;
 
     count =
-        ((AllstarRoundInfo*) ((u8*) gm_803DE930_Scenes + 0x31C))[arg1].count;
+        ((AllstarRoundInfo*) ((u8*) gm_Mode_AllStar_States + 0x31C))[arg1].count;
     for (count_processed = 0; count_processed < count; count_processed++) {
         chars[count_processed] = opp_data[count_processed].x3;
     }
@@ -483,7 +483,7 @@ void gm_801B5624(GameModeState* arg0)
     u8 color;
     PAD_STACK(16);
 
-    base = (u8*) gm_803DE930_Scenes;
+    base = (u8*) gm_Mode_AllStar_States;
     data = gm_GetGameSceneLoadData(arg0);
     allstar = &gm_80473A18;
     round = gm_8017BE84(arg0->id);
@@ -556,7 +556,7 @@ void gm_801B5624(GameModeState* arg0)
 
 void gm_801B59AC(GameModeState* arg0)
 {
-    u8* base = (u8*) gm_803DE930_Scenes;
+    u8* base = (u8*) gm_Mode_AllStar_States;
     MatchExitInfo* exit = gm_GetGameSceneLeaveData(arg0);
     u8 idx = arg0->id;
     s32 result = exit->x8;
@@ -599,7 +599,7 @@ void gm_801B5ACC(GameModeState* arg0)
     chars[0] = 0x21;
     chars[1] = 0x21;
     chars[2] = 0x21;
-    base = (u8*) gm_803DE930_Scenes;
+    base = (u8*) gm_Mode_AllStar_States;
     data = gm_GetGameSceneLoadData(arg0);
     allstar = &gm_80473A18;
     allstar->x0.x8 |= 0x80;

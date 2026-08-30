@@ -286,7 +286,7 @@ struct PreloadCache {
     PreloadedGameModeState new_scene;
     PreloadEntry entries[80];
     s32 persistent_heap;
-    int preloaded;
+    bool preloaded;
     UNK_T x974;
 };
 

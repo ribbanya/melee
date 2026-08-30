@@ -28,7 +28,7 @@ struct DebugSoundTestData {
 /* 4D68B8 */ static MenuEnterData* enter_data;
 /* 4D68BC */ static MenuExitData* exit_data;
 
-GameModeState gm_803DD888_Scenes[] = {
+GameModeState gm_Mode_DebugMenu_States[] = {
     {
         0,
         lbDvdPreload_2,

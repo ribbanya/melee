@@ -385,7 +385,7 @@ static GameScene scenes[] = {
 
 static GameMode modes[] = {
     {
-        1,
+        true,
         GM_TITLE,
         NULL,
         NULL,
@@ -393,55 +393,55 @@ static GameMode modes[] = {
         gm_Mode_Title_States,
     },
     {
-        0,
+        false,
         GM_VS,
         gm_Mode_Vs_OnLoad,
         gm_Mode_Vs_OnUnload,
         gm_Mode_Vs_OnInit,
-        gm_803DD9A0_Scenes,
+        gm_Mode_Vs_States,
     },
     {
-        1,
+        true,
         GM_CLASSIC,
         gm_Mode_Classic_OnLoad,
         NULL,
         gm_Mode_Classic_OnInit,
-        gm_803DDC58_Scenes,
+        gm_Mode_Classic_States,
     },
     {
-        0,
+        false,
         GM_ADVENTURE,
         gm_Mode_Adventure_OnLoad,
         NULL,
         gm_Mode_Adventure_OnInit,
-        gm_803DE1B8_Scenes,
+        gm_Mode_Adventure_States,
     },
     {
-        1,
+        true,
         GM_ALLSTAR,
         gm_Mode_AllStar_OnLoad,
         NULL,
         gm_Mode_AllStar_OnInit,
-        gm_803DE930_Scenes,
+        gm_Mode_AllStar_States,
     },
     {
-        0,
+        false,
         GM_DEBUG,
         NULL,
         NULL,
         NULL,
-        gm_803DD6D0_Scenes,
+        gm_Mode_Debug_States,
     },
     {
-        0,
+        false,
         GM_DEBUG_SOUND_TEST,
         NULL,
         NULL,
         NULL,
-        gm_803DD888_Scenes,
+        gm_Mode_DebugMenu_States,
     },
     {
-        0,
+        false,
         GM_HANYU_CSS,
         NULL,
         NULL,
@@ -449,7 +449,7 @@ static GameMode modes[] = {
         gm_803DFAA8_Scenes,
     },
     {
-        0,
+        false,
         GM_HANYU_SSS,
         NULL,
         NULL,
@@ -457,7 +457,7 @@ static GameMode modes[] = {
         gm_803DFAD8_Scenes,
     },
     {
-        1,
+        true,
         GM_CAMERA_MODE,
         NULL,
         NULL,
@@ -465,7 +465,7 @@ static GameMode modes[] = {
         gm_CameraModeScenes,
     },
     {
-        0,
+        false,
         GM_TOY_GALLERY,
         NULL,
         NULL,
@@ -473,7 +473,7 @@ static GameMode modes[] = {
         gm_803DFA18_Scenes,
     },
     {
-        0,
+        false,
         GM_TOY_LOTTERY,
         NULL,
         NULL,
@@ -481,7 +481,7 @@ static GameMode modes[] = {
         gm_803DFA48_Scenes,
     },
     {
-        0,
+        false,
         GM_TOY_COLLECTION,
         NULL,
         NULL,
@@ -489,7 +489,7 @@ static GameMode modes[] = {
         gm_803DFA78_Scenes,
     },
     {
-        0,
+        false,
         GM_DEBUG_VS,
         NULL,
         NULL,
@@ -497,7 +497,7 @@ static GameMode modes[] = {
         gm_803DDA78_Scenes,
     },
     {
-        1,
+        true,
         GM_TARGET_TEST,
         gm_801B6808_OnLoad,
         NULL,
@@ -505,7 +505,7 @@ static GameMode modes[] = {
         gm_803DECB8_Scenes,
     },
     {
-        0,
+        false,
         GM_SUPER_SUDDEN_DEATH_VS,
         gm_801B8D88_OnLoad,
         NULL,
@@ -513,7 +513,7 @@ static GameMode modes[] = {
         gm_803DEEB0_Scenes,
     },
     {
-        0,
+        false,
         GM_INVISIBLE_VS,
         gm_801BA4EC_OnLoad,
         NULL,
@@ -521,7 +521,7 @@ static GameMode modes[] = {
         gm_803DF390_Scenes,
     },
     {
-        0,
+        false,
         GM_SLOMO_VS,
         gm_801BA6E4_OnLoad,
         NULL,
@@ -529,7 +529,7 @@ static GameMode modes[] = {
         gm_803DF468_Scenes,
     },
     {
-        0,
+        false,
         GM_LIGHTNING_VS,
         gm_801BA8DC_OnLoad,
         NULL,
@@ -537,7 +537,7 @@ static GameMode modes[] = {
         gm_803DF540_Scenes,
     },
     {
-        0,
+        false,
         GM_CHALLENGER_APPROACH,
         gm_801737E8_OnLoad,
         NULL,
@@ -545,7 +545,7 @@ static GameMode modes[] = {
         gm_803DFE48_Scenes,
     },
     {
-        1,
+        true,
         GM_MENU,
         NULL,
         NULL,
@@ -553,7 +553,7 @@ static GameMode modes[] = {
         gm_803DD8B8_Scenes,
     },
     {
-        0,
+        false,
         GM_CLASSIC_GOVER,
         gm_801A50B8_OnLoad,
         NULL,
@@ -561,7 +561,7 @@ static GameMode modes[] = {
         gm_803DFB08,
     },
     {
-        0,
+        false,
         GM_ADVENTURE_GOVER,
         gm_801A5130_OnLoad,
         NULL,
@@ -569,7 +569,7 @@ static GameMode modes[] = {
         gm_803DFB08,
     },
     {
-        0,
+        false,
         GM_ALLSTAR_GOVER,
         gm_801A51A8_OnLoad,
         NULL,
@@ -577,7 +577,7 @@ static GameMode modes[] = {
         gm_803DFB08,
     },
     {
-        1,
+        true,
         GM_OPENING_MV,
         gm_801A5220_OnLoad,
         NULL,
@@ -585,7 +585,7 @@ static GameMode modes[] = {
         gm_803DFBC8_Scenes,
     },
     {
-        0,
+        false,
         GM_DEBUG_CUTSCENE,
         NULL,
         NULL,
@@ -593,7 +593,7 @@ static GameMode modes[] = {
         gm_803DFC70_Scenes,
     },
     {
-        0,
+        false,
         GM_DEBUG_GOVER,
         NULL,
         NULL,
@@ -601,7 +601,7 @@ static GameMode modes[] = {
         gm_803DFB80_Scenes,
     },
     {
-        1,
+        true,
         GM_TOURNAMENT,
         NULL,
         NULL,
@@ -609,7 +609,7 @@ static GameMode modes[] = {
         gm_803DDAC0_Scenes,
     },
     {
-        1,
+        true,
         GM_TRAINING,
         gm_801B23C4_OnLoad,
         NULL,
@@ -617,7 +617,7 @@ static GameMode modes[] = {
         gm_803DDB80_Scenes,
     },
     {
-        0,
+        false,
         GM_TINY_VS,
         gm_801B8F98_OnLoad,
         NULL,
@@ -625,7 +625,7 @@ static GameMode modes[] = {
         gm_803DEF88_Scenes,
     },
     {
-        0,
+        false,
         GM_GIANT_VS,
         gm_801B91A8_OnLoad,
         NULL,
@@ -633,7 +633,7 @@ static GameMode modes[] = {
         gm_803DF060_Scenes,
     },
     {
-        1,
+        true,
         GM_STAMINA_VS,
         gm_801B95D8_OnLoad,
         NULL,
@@ -641,7 +641,7 @@ static GameMode modes[] = {
         gm_803DF138_Scenes,
     },
     {
-        1,
+        true,
         GM_HOME_RUN_CONTEST,
         gm_801B9EE4_OnLoad,
         NULL,
@@ -649,7 +649,7 @@ static GameMode modes[] = {
         gm_803DF198_Scenes,
     },
     {
-        1,
+        true,
         GM_10MAN_VS,
         gm_801B685C,
         NULL,
@@ -657,7 +657,7 @@ static GameMode modes[] = {
         gm_803DED00_Scenes,
     },
     {
-        1,
+        true,
         GM_100MAN_VS,
         gm_801B685C,
         NULL,
@@ -665,7 +665,7 @@ static GameMode modes[] = {
         gm_803DED48_Scenes,
     },
     {
-        1,
+        true,
         GM_3MIN_VS,
         gm_801B685C,
         NULL,
@@ -673,7 +673,7 @@ static GameMode modes[] = {
         gm_803DED90_Scenes,
     },
     {
-        1,
+        true,
         GM_15MIN_VS,
         gm_801B685C,
         NULL,
@@ -681,7 +681,7 @@ static GameMode modes[] = {
         gm_803DEDD8_Scenes,
     },
     {
-        1,
+        true,
         GM_ENDLESS_VS,
         gm_801B685C,
         NULL,
@@ -689,7 +689,7 @@ static GameMode modes[] = {
         gm_803DEE20_Scenes,
     },
     {
-        1,
+        true,
         GM_CRUEL_VS,
         gm_801B685C,
         NULL,
@@ -697,7 +697,7 @@ static GameMode modes[] = {
         gm_803DEE68_Scenes,
     },
     {
-        0,
+        false,
         GM_PROGRESSIVE_SCAN,
         NULL,
         NULL,
@@ -705,7 +705,7 @@ static GameMode modes[] = {
         gm_803DFDA8_Scenes,
     },
     {
-        1,
+        true,
         GM_BOOT,
         NULL,
         NULL,
@@ -713,7 +713,7 @@ static GameMode modes[] = {
         gmBoot_BootScenes,
     },
     {
-        1,
+        true,
         GM_MEMCARD,
         NULL,
         NULL,
@@ -721,7 +721,7 @@ static GameMode modes[] = {
         gmBoot_MemCardScenes,
     },
     {
-        0,
+        false,
         GM_FIXED_CAMERA_VS,
         gm_801BA0EC_OnLoad,
         NULL,
@@ -729,7 +729,7 @@ static GameMode modes[] = {
         gm_803DF1E0_Scenes,
     },
     {
-        1,
+        true,
         GM_EVENT,
         gm_801BBEA8_OnLoad,
         gm_801BBFE4_OnUnload,
@@ -737,7 +737,7 @@ static GameMode modes[] = {
         gm_803DF618_Scenes,
     },
     {
-        0,
+        false,
         GM_SINGLE_BUTTON_VS,
         gm_801BA2EC_OnLoad,
         NULL,
@@ -745,7 +745,7 @@ static GameMode modes[] = {
         gm_803DF2B8_Scenes,
     },
     {
-        0,
+        false,
         GM_COUNT,
         NULL,
         NULL,

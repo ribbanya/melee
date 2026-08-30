@@ -54,7 +54,7 @@ enum {
     ADVENTURE_BACK_TO_CSS = 0x70,
 };
 
-GameModeState gm_803DE1B8_Scenes[] = {
+GameModeState gm_Mode_Adventure_States[] = {
     {
         ADVENTURE_INTRO,
         2,

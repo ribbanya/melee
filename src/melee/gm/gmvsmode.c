@@ -26,7 +26,7 @@
 /* 1B16A8 */ static void onEnterResults(GameModeState*);
 /* 1B16C8 */ static void onExitResults(GameModeState*);
 
-GameModeState gm_803DD9A0_Scenes[] = {
+GameModeState gm_Mode_Vs_States[] = {
     {
         0,
         lbDvdPreload_3,

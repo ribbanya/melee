@@ -299,7 +299,7 @@ u8 runGameMode(u8 mode_kind)
     state_machine.routing.curr_state_id = 0;
     state_machine.routing.prev_state_id = 0;
     state_machine.routing.next_state_id = 0;
-    lbDvd_80018F58(mode->preload);
+    lbDvd_80018F58(mode->preloaded);
     if (mode->on_load != NULL) {
         mode->on_load();
     }

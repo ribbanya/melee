@@ -77,7 +77,7 @@ ASSERT_SIZE(struct exitIntroData, 0x4);
 /* 4D689C */ static struct DebugMemcardData memcard_enter_data;
 /* 4D68A4 */ static struct DebugMemcardData memcard_exit_data;
 
-/* 3DD6D0 */ GameModeState gm_803DD6D0_Scenes[] = {
+/* 3DD6D0 */ GameModeState gm_Mode_Debug_States[] = {
     {
         0,
         lbDvdPreload_2,
