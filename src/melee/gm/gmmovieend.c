@@ -105,7 +105,7 @@ static int gm_803DB25C[0x1A] = {
     // clang-format on
 };
 
-void gm_801A637C_OnEnter(void* arg0)
+void gm_Scene_MovieEnd_OnEnter(void* arg0)
 {
     HSD_GObj* temp_r3;
     HSD_GObj* temp_r3_2;
@@ -132,7 +132,7 @@ void gm_801A637C_OnEnter(void* arg0)
     gm_804D6724 = fn_801AA0E8;
 }
 
-void gm_801A64A8_OnFrame(void)
+void gm_Scene_MovieEnd_OnFrame(void)
 {
     int temp_r31;
     bool var_r30;

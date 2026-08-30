@@ -610,7 +610,7 @@ void fn_8019F9C4(u32 arg0)
     }
 }
 
-void gm_801A0A10_OnEnter(void* arg0_)
+void gm_Scene_GOver_OnEnter(void* arg0_)
 {
     DebugGameOverData* arg0 = arg0_;
 
@@ -638,7 +638,7 @@ void gm_801A0A10_OnEnter(void* arg0_)
     fn_8019F9C4(arg0->ckind);
 }
 
-void gm_801A0B18_OnLeave(void* arg0_)
+void gm_Scene_GOver_OnExit(void* arg0_)
 {
     DebugGameOverData* arg0 = arg0_;
     arg0->x4 = lbl_80479A98.x8;

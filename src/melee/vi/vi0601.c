@@ -36,7 +36,7 @@ void vi_8031E6EC(HSD_GObj* gobj)
     HSD_JObjAnimAll(GET_JOBJ(gobj));
 }
 
-static void vi0601_CameraCallback(HSD_GObj* gobj, UNUSED int code)
+static void vi0601_GObj_OnRender(HSD_GObj* gobj, UNUSED int code)
 {
     HSD_CObj* cobj;
     cobj = GET_COBJ(gobj);
@@ -136,7 +136,7 @@ void vi0601_RunFrame(HSD_GObj* gobj)
     }
 }
 
-void un_8031EBBC_OnEnter(UNUSED void* enter_data)
+void vi0601_Scene_OnEnter(UNUSED void* enter_data)
 {
     HSD_CObj* cobj;
     HSD_GObj* gobj;
@@ -155,7 +155,7 @@ void un_8031EBBC_OnEnter(UNUSED void* enter_data)
     cobj =
         lb_80013B14((HSD_CameraDescPerspective*) un_804D6FB0->cameras->desc);
     HSD_GObjObject_80390A70(gobj, HSD_GObj_CameraKind, cobj);
-    GObj_SetupGXLinkMax(gobj, vi0601_CameraCallback, 2);
+    GObj_SetupGXLinkMax(gobj, vi0601_GObj_OnRender, 2);
     HSD_CObjAddAnim(cobj, un_804D6FB0->cameras->anims[0]);
     HSD_CObjReqAnim(cobj, 0.0f);
     HSD_CObjAnim(cobj);
@@ -183,7 +183,7 @@ void un_8031EBBC_OnEnter(UNUSED void* enter_data)
     lbAudioAx_80024E50(0);
 }
 
-void vi_8031ED50_OnFrame(void)
+void vi0601_Scene_OnFrame(void)
 {
     vi_8031CAAC();
 }
