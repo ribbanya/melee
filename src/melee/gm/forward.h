@@ -46,7 +46,7 @@ typedef enum GameModeKind {
     /* 27 */ GM_PROGRESSIVE_SCAN,
     /* 28 */ GM_BOOT,
     /* 29 */ GM_MEMCARD,
-    /* 2A */ GM_FIXED_CAMERA_VS,
+    /* 2A */ GM_CAMERA_VS,
     /* 2B */ GM_EVENT,
     /* 2C */ GM_SINGLE_BUTTON_VS,
     /* 2D */ GM_COUNT,

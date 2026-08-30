@@ -32,7 +32,7 @@ struct leaveData {
 static struct loadData load_data;
 static struct leaveData leave_data;
 
-GameModeState gmBoot_BootScenes[] = {
+GameModeState gm_Mode_Boot_States[] = {
     {
         0,
         1,
@@ -83,7 +83,7 @@ void bootOnLeave(GameModeState* data)
     gm_ChangeGameModeAfterCurrentScene(scene_data->mode_id);
 }
 
-GameModeState gmBoot_MemCardScenes[] = {
+GameModeState gm_Mode_MemCard_States[] = {
     {
         0,
         3,

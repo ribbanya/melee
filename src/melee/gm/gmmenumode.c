@@ -211,7 +211,7 @@ void onEnter(GameModeState* scene)
         data->menu_kind = MENU_KIND_SPECIAL;
         data->hovered_selection = SEL_SPECIAL_VS_LIGHTNING;
         return;
-    case GM_FIXED_CAMERA_VS:
+    case GM_CAMERA_VS:
         data->menu_kind = MENU_KIND_SPECIAL;
         data->hovered_selection = SEL_SPECIAL_VS_FIXED_CAMERA;
         return;

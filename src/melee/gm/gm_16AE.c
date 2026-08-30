@@ -2061,7 +2061,7 @@ static inline bool gm_8016E9C8_inline(void)
     case GM_TINY_VS:
     case GM_GIANT_VS:
     case GM_STAMINA_VS:
-    case GM_FIXED_CAMERA_VS:
+    case GM_CAMERA_VS:
     case GM_SINGLE_BUTTON_VS:
         return true;
     default:

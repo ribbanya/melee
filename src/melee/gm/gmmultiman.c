@@ -90,7 +90,7 @@ GameModeState gm_Mode_10ManVs_States[] = {
     { -1 },
 };
 
-GameModeState gm_803DED48_Scenes[] = {
+GameModeState gm_Mode_100ManVs_States[] = {
     {
         0,
         3,
@@ -118,7 +118,7 @@ GameModeState gm_803DED48_Scenes[] = {
     { -1 },
 };
 
-GameModeState gm_803DED90_Scenes[] = {
+GameModeState gm_Mode_3Min_States[] = {
     {
         0,
         3,
@@ -146,7 +146,7 @@ GameModeState gm_803DED90_Scenes[] = {
     { 0xFF },
 };
 
-GameModeState gm_803DEDD8_Scenes[] = {
+GameModeState gm_Mode_15Min_States[] = {
     {
         0,
         3,
@@ -174,7 +174,7 @@ GameModeState gm_803DEDD8_Scenes[] = {
     { 0xFF },
 };
 
-GameModeState gm_803DEE20_Scenes[] = {
+GameModeState gm_Mode_EndlessVs_States[] = {
     {
         0,
         3,
@@ -202,7 +202,7 @@ GameModeState gm_803DEE20_Scenes[] = {
     { -1 },
 };
 
-GameModeState gm_803DEE68_Scenes[] = {
+GameModeState gm_Mode_CruelVs_States[] = {
     {
         0,
         3,

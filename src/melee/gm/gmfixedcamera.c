@@ -10,7 +10,7 @@
 #include "if/if_2FD9.h"
 #include "mn/types.h"
 
-GameModeState gm_803DF1E0_Scenes[] = {
+GameModeState gm_Mode_CameraVs_States[] = {
     {
         0,
         3,
@@ -168,12 +168,12 @@ void gm_801BA098(GameModeState* scene)
     gm_801A5F64(scene, data, 0);
 }
 
-void gm_801BA0C4_OnInit(void)
+void gm_Mode_CameraVs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_A90);
 }
 
-void gm_801BA0EC_OnLoad(void)
+void gm_Mode_CameraVs_OnLoad(void)
 {
     gm_801A55C4();
 }

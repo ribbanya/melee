@@ -15,7 +15,7 @@
 /* 1BA258 */ void gm_801BA258(GameModeState*);
 /* 1BA278 */ void gm_801BA278(GameModeState*);
 /* 1BA298 */ void gm_801BA298(GameModeState*);
-/* 1BA2C4 */ void gm_801BA2C4_OnInit(void);
-/* 1BA2EC */ void gm_801BA2EC_OnLoad(void);
+/* 1BA2C4 */ void gm_Mode_SingleButtonVs_OnInit(void);
+/* 1BA2EC */ void gm_Mode_SingleButtonVs_OnLoad(void);
 
 #endif

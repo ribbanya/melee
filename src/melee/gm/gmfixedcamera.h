@@ -15,7 +15,7 @@
 /* 1BA058 */ void gm_801BA058(GameModeState*);
 /* 1BA078 */ void gm_801BA078(GameModeState*);
 /* 1BA098 */ void gm_801BA098(GameModeState*);
-/* 1BA0C4 */ void gm_801BA0C4_OnInit(void);
-/* 1BA0EC */ void gm_801BA0EC_OnLoad(void);
+/* 1BA0C4 */ void gm_Mode_CameraVs_OnInit(void);
+/* 1BA0EC */ void gm_Mode_CameraVs_OnLoad(void);
 
 #endif

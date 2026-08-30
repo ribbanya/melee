@@ -7,7 +7,7 @@
 /* 4D6938 */ static UNK_T gm_804D6938;
 /* 4D693C */ static UNK_T gm_804D693C;
 
-GameModeState gm_803DFDA8_Scenes[] = {
+GameModeState gm_Mode_ProgScan_States[] = {
     {
         0,
         lbDvdPreload_2,

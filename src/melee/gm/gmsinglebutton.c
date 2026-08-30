@@ -14,7 +14,7 @@
 extern void gm_801A6254(GameModeState*);
 extern void gm_801A6308(GameModeState*);
 
-GameModeState gm_803DF2B8_Scenes[] = {
+GameModeState gm_Mode_SingleButtonVs_States[] = {
     {
         0,
         3,
@@ -176,12 +176,12 @@ void gm_801BA298(GameModeState* scene)
     gm_801A5F64(scene, data, 0);
 }
 
-void gm_801BA2C4_OnInit(void)
+void gm_Mode_SingleButtonVs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_BD0);
 }
 
-void gm_801BA2EC_OnLoad(void)
+void gm_Mode_SingleButtonVs_OnLoad(void)
 {
     gm_801A55C4();
 }

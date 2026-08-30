@@ -177,7 +177,7 @@ struct gm_804D6900_t {
 /* 4979D8 */ static MatchExitInfo vs_exit_data[2];
 /* 4D6900 */ static struct gm_804D6900_t** gm_804D6900[2];
 
-GameModeState gm_803DF618_Scenes[] = {
+GameModeState gm_Mode_Event_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -742,7 +742,7 @@ void onExitVs(GameModeState* arg0)
     }
 }
 
-void gm_801BBA60_OnInit(void)
+void gm_Mode_Event_OnInit(void)
 {
     struct EventData* temp_r6;
     int i;
@@ -900,7 +900,7 @@ void gm_801BBB64(void)
     }
 }
 
-void gm_801BBEA8_OnLoad(void)
+void gm_Mode_Event_OnLoad(void)
 {
     struct EventData* temp_r30;
     struct gm_804D6900_t** temp_r29;
@@ -944,7 +944,7 @@ void gm_801BBEA8_OnLoad(void)
     }
 }
 
-void gm_801BBFE4_OnUnload(void) {}
+void gm_Mode_Event_OnUnload(void) {}
 
 void fn_801BBFE8(void)
 {
