@@ -15,7 +15,7 @@ void gm_801BA424(GameModeState* scene);
 void gm_801BA458(GameModeState* scene);
 void gm_801BA478(GameModeState* scene);
 void gm_801BA498(GameModeState* scene);
-void gm_801BA4C4_OnInit(void);
-void gm_801BA4EC_OnLoad(void);
+void gm_Mode_InvisibleVs_OnInit(void);
+void gm_Mode_InvisibleVs_OnLoad(void);
 
 #endif

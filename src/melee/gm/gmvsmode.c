@@ -126,7 +126,7 @@ GameModeState gm_Mode_Vs_States[] = {
     { -1 },
 };
 
-GameModeState gm_803DDA78_Scenes[] = {
+GameModeState gm_Mode_DebugVs_States[] = {
     {
         1,
         lbDvdPreload_2,

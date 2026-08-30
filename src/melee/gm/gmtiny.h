@@ -15,7 +15,7 @@
 /* 1B8F04 */ void gm_801B8F04(GameModeState*);
 /* 1B8F24 */ void gm_801B8F24(GameModeState*);
 /* 1B8F44 */ void gm_801B8F44(GameModeState*);
-/* 1B8F70 */ void gm_801B8F70_OnInit(void);
-/* 1B8F98 */ void gm_801B8F98_OnLoad(void);
+/* 1B8F70 */ void gm_Mode_TinyVs_OnInit(void);
+/* 1B8F98 */ void gm_Mode_TinyVs_OnLoad(void);
 
 #endif

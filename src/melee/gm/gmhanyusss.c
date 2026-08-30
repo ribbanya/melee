@@ -9,7 +9,7 @@
 /* 1BEE58 */ static void gm_801BEE58(GameModeState*);
 /* 49C030 */ static CSSData gm_8049C030;
 
-GameModeState gm_803DFAD8_Scenes[] = {
+GameModeState gm_Mode_HanyuSss_States[] = {
     {
         0,
         lbDvdPreload_2,

@@ -11,7 +11,7 @@
 /* 1BECD0 */ static void onExit(GameModeState*);
 /* 4D6910 */ static UNK_T exit_data[2];
 
-GameModeState gm_803DFA48_Scenes[] = {
+GameModeState gm_Mode_ToyLottery_States[] = {
     {
         0,
         lbDvdPreload_2,

@@ -9,7 +9,7 @@
 
 #include "if/if_2FD9.h"
 
-GameModeState gm_803DEF88_Scenes[] = {
+GameModeState gm_Mode_TinyVs_States[] = {
     {
         0,
         3,
@@ -169,12 +169,12 @@ void gm_801B8F44(GameModeState* scene)
     gm_801A5F64(scene, &gmMainLib_804D3EE0->unk_E50, 0);
 }
 
-void gm_801B8F70_OnInit(void)
+void gm_Mode_TinyVs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_E50);
 }
 
-void gm_801B8F98_OnLoad(void)
+void gm_Mode_TinyVs_OnLoad(void)
 {
     gm_801A55C4();
 }

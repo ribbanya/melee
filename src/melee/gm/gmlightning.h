@@ -13,7 +13,7 @@
 /* 1BA848 */ void gm_801BA848(GameModeState*);
 /* 1BA868 */ void gm_801BA868(GameModeState*);
 /* 1BA888 */ void gm_801BA888(GameModeState*);
-/* 1BA8B4 */ void gm_801BA8B4_OnInit(void);
-/* 1BA8DC */ void gm_801BA8DC_OnLoad(void);
+/* 1BA8B4 */ void gm_Mode_LightningVs_OnInit(void);
+/* 1BA8DC */ void gm_Mode_LightningVs_OnLoad(void);
 
 #endif

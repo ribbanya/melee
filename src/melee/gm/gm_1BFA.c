@@ -18,7 +18,7 @@ extern UNK_T gm_804D6860[];
 extern StartMeleeData gm_80480530;
 extern MatchExitInfo gm_80479D98;
 
-GameModeState gm_803DFE48_Scenes[] = {
+GameModeState gm_Mode_ChallengerApproach_States[] = {
     {
         0,
         2,

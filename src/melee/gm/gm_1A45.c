@@ -247,7 +247,7 @@ void gm_801A4BD4(void)
 GameScene* gm_FindGameSceneHandler(u8 kind)
 {
     GameScene* cur;
-    for (cur = gm_GetAllGameSceneHandlers(); cur->kind != GS_COUNT; cur++) {
+    for (cur = gm_GetAllGameScenes(); cur->kind != GS_COUNT; cur++) {
         if (cur->kind == kind) {
             return cur;
         }

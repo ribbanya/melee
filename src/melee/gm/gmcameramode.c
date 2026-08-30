@@ -31,7 +31,7 @@
 /* 1B2AF8 */ static void gm_801B2AF8(GameModeState*);
 /* 4D68C8 */ static s64 gm_804D68C8;
 
-GameModeState gm_CameraModeScenes[] = {
+GameModeState gm_Mode_Camera_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -249,7 +249,7 @@ void gm_801B2AF8(GameModeState* arg0)
     gm_SetPendingSceneIndex(1);
 }
 
-void gm_801B2B7C_OnInit(void)
+void gm_Mode_Camera_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_950);
 }

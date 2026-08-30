@@ -30,7 +30,7 @@
 /* 48BD20 */ static UNK_T gm_8048BD20[0x148 / 4];
 /* 48BE68 */ static UNK_T gm_8048BE68[0x23C8 / 4];
 
-GameModeState gm_803DDAC0_Scenes[] = {
+GameModeState gm_Mode_Tournament_States[] = {
     {
         0,
         lbDvdPreload_3,

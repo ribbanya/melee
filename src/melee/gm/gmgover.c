@@ -16,7 +16,7 @@
 /* 49C178 */ static u8 gm_8049C178[16];
 /* 4D6920 */ static UNK_T gm_804D6920[2];
 
-GameModeState gm_803DFB08[] = {
+GameModeState gm_Mode_GOver_States[] = {
     {
         0,
         lbDvdPreload_2,
@@ -68,7 +68,7 @@ GameModeState gm_803DFB08[] = {
     { -1 },
 };
 
-GameModeState gm_803DFB80_Scenes[] = {
+GameModeState gm_Mode_DebugGOver_States[] = {
     {
         0,
         lbDvdPreload_2,

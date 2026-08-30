@@ -61,7 +61,7 @@ struct gm_random_history {
 /* 4D6930 */ static UNK_T title_exit_data[2];
 /* 49E548 */ static struct gm_8049E548_t gm_8049E548;
 
-GameModeState gm_803DFBC8_Scenes[] = {
+GameModeState gm_Mode_Opening_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -137,7 +137,7 @@ GameModeState gm_803DFBC8_Scenes[] = {
     { -1 },
 };
 
-GameModeState gm_803DFC70_Scenes[] = {
+GameModeState gm_Mode_DebugCutscene_States[] = {
     {
         0,
         lbDvdPreload_2,

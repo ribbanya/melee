@@ -44,7 +44,7 @@ GameModeState gm_Mode_DebugMenu_States[] = {
     { -1 },
 };
 
-GameModeState gm_803DD8B8_Scenes[] = {
+GameModeState gm_Mode_Menu_States[] = {
     {
         0,
         lbDvdPreload_2,

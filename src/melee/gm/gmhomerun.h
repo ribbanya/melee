@@ -7,7 +7,7 @@
 /* 1B999C */ void gm_801B999C(GameModeState*);
 /* 1B9A3C */ void gm_801B9A3C(GameModeState*);
 /* 1B9DD8 */ void gm_801B9DD8(GameModeState*);
-/* 1B9EB8 */ void gm_801B9EB8_OnInit(void);
-/* 1B9EE4 */ void gm_801B9EE4_OnLoad(void);
+/* 1B9EB8 */ void gm_Mode_Homerun_OnInit(void);
+/* 1B9EE4 */ void gm_Mode_Homerun_OnLoad(void);
 
 #endif

@@ -15,7 +15,7 @@ void gm_801BA61C(GameModeState* scene);
 void gm_801BA650(GameModeState* scene);
 void gm_801BA670(GameModeState* scene);
 void gm_801BA690(GameModeState* scene);
-void gm_801BA6BC_OnInit(void);
-void gm_801BA6E4_OnLoad(void);
+void gm_Mode_SlowMo_OnInit(void);
+void gm_Mode_SlowMo_OnLoad(void);
 
 #endif

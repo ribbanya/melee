@@ -4,6 +4,6 @@
 #include "gm/types.h"
 
 /* 3DD888 */ extern GameModeState gm_Mode_DebugMenu_States[];
-/* 3DD8B8 */ extern GameModeState gm_803DD8B8_Scenes[];
+/* 3DD8B8 */ extern GameModeState gm_Mode_Menu_States[];
 
 #endif

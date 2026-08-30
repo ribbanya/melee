@@ -6109,7 +6109,7 @@ void _Toy_80312050(HSD_GObj* gobj, int code)
     }
 }
 
-void Toy_OnInit_803122D0(void)
+void Toy_Mode_OnInit(void)
 {
     Toy* userData = (Toy*) &_Toy_804A26B8;
     void* targetPtr;

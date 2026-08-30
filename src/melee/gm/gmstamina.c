@@ -15,7 +15,7 @@
 #include <melee/mn/types.h>
 #include <melee/pl/player.h>
 
-GameModeState gm_803DF138_Scenes[] = {
+GameModeState gm_Mode_StaminaVs_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -132,12 +132,12 @@ void gm_801B9560(GameModeState* scene)
     gm_801A5AF0(scene, 0, 0);
 }
 
-void gm_801B95B0_OnInit(void)
+void gm_Mode_StaminaVs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_10D0);
 }
 
-void gm_801B95D8_OnLoad(void)
+void gm_Mode_StaminaVs_OnLoad(void)
 {
     gm_SetGameSpeed(1.0F);
     gm_801A55C4();

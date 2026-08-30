@@ -33,7 +33,7 @@
 /* 48E4C0 */ static StartMeleeData training_enter_data;
 /* 48E5F8 */ static UNK_T training_exit_data[0x2288 / 4];
 
-GameModeState gm_803DDB80_Scenes[] = {
+GameModeState gm_Mode_Training_States[] = {
     {
         0,
         lbDvdPreload_3,
@@ -271,7 +271,7 @@ void gm_801B2204(GameModeState* arg0)
     sfxForward();
 }
 
-void gm_801B2298_OnInit(void)
+void gm_Mode_Training_OnInit(void)
 {
     VsModeData* temp_r31 = &gmMainLib_804D3EE0->unk_D10;
     int i;
@@ -288,7 +288,7 @@ void gm_801B2298_OnInit(void)
     }
 }
 
-void gm_801B23C4_OnLoad(void)
+void gm_Mode_Training_OnLoad(void)
 {
     gm_804D68C0 = gm_801677F0();
     gm_804D68C1 = 0;

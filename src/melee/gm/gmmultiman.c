@@ -34,7 +34,7 @@ static u32 pad;
 static u8 gm_804D68F0;
 static s8 gm_804D68F1;
 
-GameModeState gm_803DECB8_Scenes[] = {
+GameModeState gm_Mode_TargetTest_States[] = {
     {
         0,
         3,
@@ -62,7 +62,7 @@ GameModeState gm_803DECB8_Scenes[] = {
     { 0xFF },
 };
 
-GameModeState gm_803DED00_Scenes[] = {
+GameModeState gm_Mode_10ManVs_States[] = {
     {
         0,
         3,
@@ -406,7 +406,7 @@ block_22:
     }
 }
 
-void gm_801B67E8_OnInit(void)
+void gm_Mode_TargetTest_OnInit(void)
 {
     struct gmm_x0_584_t* temp_r4 = &gmMainLib_804D3EE0->unk_530.unk_584;
     gmMainLib_804D3EE0->unk_530.unk_584.unk_584 = 0x21;
@@ -414,18 +414,18 @@ void gm_801B67E8_OnInit(void)
     temp_r4->unk_586 = 0x78;
 }
 
-void gm_801B6808_OnLoad(void)
+void gm_Mode_TargetTest_OnLoad(void)
 {
     gm_804D68E8 = gm_801677F0();
     gm_804D68E9 = 0;
 }
 
-void gm_801B6834(void)
+void gm_Mode_10ManVs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_1490);
 }
 
-void gm_801B685C(void)
+void gm_Mode_10ManVs_OnLoad(void)
 {
     gm_804D68F0 = gm_801677F0();
     gm_804D68F1 = 0;

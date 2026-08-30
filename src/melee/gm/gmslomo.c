@@ -9,7 +9,7 @@
 
 #include "if/if_2FD9.h"
 
-GameModeState gm_803DF468_Scenes[] = {
+GameModeState gm_Mode_SlowMo_States[] = {
     {
         0,
         3,
@@ -167,12 +167,12 @@ void gm_801BA690(GameModeState* scene)
     gm_801A5F64(scene, &gmMainLib_804D3EE0->unk_1210, 0);
 }
 
-void gm_801BA6BC_OnInit(void)
+void gm_Mode_SlowMo_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_1210);
 }
 
-void gm_801BA6E4_OnLoad(void)
+void gm_Mode_SlowMo_OnLoad(void)
 {
     gm_801A55C4();
 }

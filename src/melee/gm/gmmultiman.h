@@ -11,10 +11,10 @@
 /* 1B63C4 */ void gm_801B63C4(GameModeState*);
 /* 1B6428 */ void gm_801B6428(GameModeState*);
 /* 1B65D4 */ void gm_801B65D4(GameModeState*);
-/* 1B67E8 */ void gm_801B67E8_OnInit(void);
-/* 1B6808 */ void gm_801B6808_OnLoad(void);
-/* 1B6834 */ void gm_801B6834(void);
-/* 1B685C */ void gm_801B685C(void);
+/* 1B67E8 */ void gm_Mode_TargetTest_OnInit(void);
+/* 1B6808 */ void gm_Mode_TargetTest_OnLoad(void);
+/* 1B6834 */ void gm_Mode_10ManVs_OnInit(void);
+/* 1B685C */ void gm_Mode_10ManVs_OnLoad(void);
 /* 1B688C */ bool gm_801B688C(bool);
 /* 1B69C0 */ void gm_801B69C0(StartMeleeData*);
 /* 1B6AD8 */ void gm_801B6AD8(GameModeState*);

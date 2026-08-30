@@ -25,7 +25,7 @@
 /**
  * @brief Finds the #GameScene for a given scene kind.
  *
- * Walks the global #GameScene table (from #gm_GetAllGameSceneHandlers)
+ * Walks the global #GameScene table (from #gm_GetAllGameScenes)
  * comparing each entry's #GameScene::class_id against @p kind until a
  * match is found or the @c GS_COUNT value is reached.
  *

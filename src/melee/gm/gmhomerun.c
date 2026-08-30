@@ -15,7 +15,7 @@
 #include <melee/lb/types.h>
 #include <melee/mn/types.h>
 
-GameModeState gm_803DF198_Scenes[] = {
+GameModeState gm_Mode_Homerun_States[] = {
     {
         0,
         3,
@@ -172,13 +172,13 @@ void gm_801B9DD8(GameModeState* arg0)
     }
 }
 
-void gm_801B9EB8_OnInit(void)
+void gm_Mode_Homerun_OnInit(void)
 {
     VsModeData* data = &gm_80497618;
     gm_80167B50(data);
 }
 
-void gm_801B9EE4_OnLoad(void)
+void gm_Mode_Homerun_OnLoad(void)
 {
     gm_804D68F8 = gm_801677F0();
     gm_804D68F9 = 0;

@@ -60,7 +60,7 @@
 /* 311960 */ void Toy_80311960(void);
 /* 311AB0 */ void Toy_Scene_OnEnter(void*);
 /* 312018 */ void Toy_Scene_OnFrame(void);
-/* 3122D0 */ void Toy_OnInit_803122D0(void);
+/* 3122D0 */ void Toy_Mode_OnInit(void);
 /* 31234C */ void Toy_8031234C(s32);
 /* 3124BC */ void Toy_803124BC(void);
 /* 31263C */ void Toy_8031263C(void);
