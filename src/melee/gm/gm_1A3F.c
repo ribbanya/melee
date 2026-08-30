@@ -116,7 +116,7 @@ void gm_801A4014(GameMode* mode)
 
     gm = &gm_80479D30;
 
-    scene = findScene(mode->scenes);
+    scene = findScene(mode->states);
 
     gm->routing.curr_scene_idx = scene->idx;
 
@@ -148,7 +148,7 @@ void gm_801A4014(GameMode* mode)
             gm->routing.curr_scene_idx = gm->routing.pending_scene_idx - 1;
             gm->routing.pending_scene_idx = 0;
         } else {
-            gm->routing.curr_scene_idx = nextScene(mode->scenes);
+            gm->routing.curr_scene_idx = nextScene(mode->states);
         }
     }
     lb_8001CDB4();

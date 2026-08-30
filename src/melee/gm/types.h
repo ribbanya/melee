@@ -84,7 +84,7 @@ struct GameMode {
     void (*on_unload)(void);
     void (*on_init)(void);
 
-    GameScene* scenes;
+    GameScene* states;
 }; // 803DACA4
 
 struct GameSceneHandler {
