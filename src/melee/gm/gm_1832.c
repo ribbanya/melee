@@ -1858,19 +1858,19 @@ static inline void gm_80187F48_OnEnter_inline(gm_80187F48_EnterData* arg0)
     lbAudioAx_80023F28(0x2E);
 }
 
-void gm_80187F48_OnEnter(void* arg0)
+void gm_Scene_IntroNormal_OnEnter(void* arg0)
 {
     PAD_STACK(32);
     gm_80187F48_OnEnter_inline(arg0);
 }
 
-void gm_80188364_OnLeave(void* arg0)
+void gm_Scene_IntroNormal_OnLeave(void* arg0)
 {
     HSD_Archive** var = &lbl_804D6620;
     lbArchive_80016EFC(*var);
 }
 
-void gm_8018838C_OnFrame(void)
+void gm_Scene_IntroNormal_OnFrame(void)
 {
     if (lbl_804736C0.x36.done) {
         gm_801A4B60();
