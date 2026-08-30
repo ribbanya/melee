@@ -10,9 +10,9 @@
 /// @note Colloquially known as "Minor Scene"
 ///
 /// A single entry in a #GameMode's scene graph. Each scene is looked up by
-/// its #GameModeState::idx during scene graph traversal. The scene graph is walked
-/// comparing each entry's @c idx against #GameRouting::curr_scene_idx, and
-/// #nextScene advances to the next scene whose @c idx is greater than the
+/// its #GameModeState::idx during scene graph traversal. The scene graph is
+/// walked comparing each entry's @c idx against #GameRouting::curr_scene_idx,
+/// and #nextScene advances to the next scene whose @c idx is greater than the
 /// current one. An @c idx value of @c 0xFF terminates a collection of
 /// GameModeState.
 
@@ -27,4 +27,5 @@
 /// #gm_FindGameSceneHandler to look up the corresponding #GameScene
 /// supplying the #GameScene::OnLoad, #GameScene::OnLeave, and
 /// #GameScene::OnFrame callbacks invoked for this scene. Not to be
-/// confused with #GameModeState::idx, which is the scene graph traversal index.
+/// confused with #GameModeState::idx, which is the scene graph traversal
+/// index.

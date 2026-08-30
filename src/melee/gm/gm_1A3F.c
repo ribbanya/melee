@@ -178,14 +178,12 @@ void gm_801A4014(GameMode* mode)
     if (gmMainLib_8046B0F0.resetting) {
         lbAudioAx_80027DBC();
         HSD_PadReset();
-        while (lb_8001B6F8() == 11)
-            ;
+        while (lb_8001B6F8() == 11);
         if (DVDCheckDisk() == 0) {
             OSResetSystem(1, 0, 0);
         }
         lbMthp_8001F800();
-        while (HSD_DevComIsBusy(1))
-            ;
+        while (HSD_DevComIsBusy(1));
         gmMainLib_8015FBA4();
         gm_GetAllGameModes();
         memzero(&state_machine, sizeof(state_machine));
