@@ -134,7 +134,7 @@ void gm_801A4014(GameMode* mode)
     GameModeState* state;
     GameModeStateMachine* sm;
     struct GameSceneInfo* info;
-    u32 dead;
+    u32 dead; ///< @todo regswap hack
     PAD_STACK(2 * 4);
 
     sm = &state_machine;
@@ -173,12 +173,12 @@ void gm_801A4014(GameMode* mode)
         }
     }
     lb_8001CDB4();
-    lb_8001B760(0xB);
+    lb_8001B760(11);
     lbMthp_8001F800();
     if (gmMainLib_8046B0F0.resetting) {
         lbAudioAx_80027DBC();
         HSD_PadReset();
-        while (lb_8001B6F8() == 0xB)
+        while (lb_8001B6F8() == 11)
             ;
         if (DVDCheckDisk() == 0) {
             OSResetSystem(1, 0, 0);
