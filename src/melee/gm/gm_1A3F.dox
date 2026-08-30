@@ -15,7 +15,7 @@
  * @brief Sets the scene index for both the current and previous scene.
  *
  * Sets #GameRouting::curr_scene_idx and #GameRouting::prev_scene_idx on
- * #gm_80479D30.
+ * #state_machine.
  *
  * See docs related to #GameModeState.
  *
@@ -27,7 +27,7 @@
 /**
  * @brief Sets the scene index for the pending scene
  *
- * Sets #GameRouting::pending_scene_idx on #gm_80479D30 to @c arg0 + 1
+ * Sets #GameRouting::pending_scene_idx on #state_machine to @c arg0 + 1
  *
  * See docs related to #GameModeState.
  *
@@ -41,7 +41,7 @@
 /* 1A42C4 */ u8 gm_GetCurrentSceneIndex(void);
 
 /**
- * @brief Sets #gm_80479D30's #GameState::pending value to @c true (1).
+ * @brief Sets #state_machine's #GameState::pending value to @c true (1).
  * Signaling that the game mode should change after the current scene exits.
  *
  * See also: ::gm_ChangeGameModeAfterCurrentScene, ::gm_SetPendingGameMode,
@@ -50,10 +50,10 @@
 /* 1A42D4 */ void gm_SetNewGameModePending(void);
 
 /**
- * @brief Sets #GameRouting::pending_mode on #gm_80479D30 to @c pending_mode
+ * @brief Sets #GameRouting::pending_mode on #state_machine to @c pending_mode
  * for use after the current mode exits.
  *
- * Sets the #gm_80479D30 #GameRouting::pending_mode to the provided value.
+ * Sets the #state_machine #GameRouting::pending_mode to the provided value.
  * The @c pending_mode is read when ::gm_RunGameMode exits, ultimately passing
  * the
  * @c pending_mode on to the next invocation of ::gm_RunGameMode.
@@ -72,10 +72,10 @@
 
 /**
  * @brief Sets #GameRouting::pending_mode and #GameState::pending on
- * #gm_80479D30 to @c pending_mode and @c true (1) for use after the current
+ * #state_machine to @c pending_mode and @c true (1) for use after the current
  * scene exits,
  *
- * Sets the #gm_80479D30 #GameRouting::pending_mode to the provided
+ * Sets the #state_machine #GameRouting::pending_mode to the provided
  * value, setting #GameState::pending to true (1) in the process.
  * The @c pending_mode is read when ::gm_RunGameMode exits, ultimately passing
  * the
