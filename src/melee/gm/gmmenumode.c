@@ -77,7 +77,7 @@ void onEnter(GameModeState* scene)
     MenuEnterData* data;
     GameModeKind previous_mode;
 
-    data = scene->info.load_data;
+    data = scene->info.enter_data;
     lb_8001C550();
     lb_8001D164(0);
     lbSnap_8001E218(HSD_MemAlloc(lbSnap_8001E204()),
@@ -244,7 +244,7 @@ void onEnter(GameModeState* scene)
 
 void onExit(GameModeState* arg0)
 {
-    MenuExitData* data = arg0->info.leave_data;
+    MenuExitData* data = arg0->info.exit_data;
 
     gm_SetPendingGameMode(data->pending_mode);
     gm_SetNewGameModePending();

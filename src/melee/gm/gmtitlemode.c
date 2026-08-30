@@ -32,7 +32,7 @@ struct exitData {
     { -1 },
 };
 
-void gmTitleMode_OnEnter(GameModeState* arg0)
+void gmTitleMode_OnEnter(UNUSED GameModeState* state)
 {
     lbDvd_800174BC();
 }

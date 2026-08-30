@@ -61,23 +61,23 @@ ASSERT_SIZE(struct un_804A1F48_t, 0xC);
 
 struct GameModeState {
     /* 00 */ u8 id;
-    /* 01 */ u8 preload;
+    /* 01 */ u8 preload; ///< ::lbDvdPreloadKind
     /* 02 */ u16 flags;
 
     /* 04 */ void (*on_enter)(GameModeState*);
     /* 08 */ void (*on_exit)(GameModeState*);
 
     struct GameSceneInfo {
-        /* 0C */ u8 scene_id;
-        /* 10 */ void* load_data;  ///< data passed to GameModeState::on_enter
-        /* 14 */ void* leave_data; ///< data passed to GameModeState::on_exit
+        /* 0C */ u8 scene_id;      ///< ::GameSceneKind
+        /* 10 */ void* enter_data; ///< data passed to GameScene::on_enter
+        /* 14 */ void* exit_data;  ///< data passed to GameScene::on_exit
     } info;
 };
 
 /// @note Colloquially known as "Major Scene"
 struct GameMode {
     u8 preload;
-    u8 kind; ///< GameModeKind
+    u8 kind; ///< ::GameModeKind
 
     void (*on_load)(void);
     void (*on_unload)(void);
@@ -88,11 +88,11 @@ struct GameMode {
 
 /// @note Colloquially known as "Minor Scene"
 struct GameScene {
-    u8 class_id;
+    u8 kind; ///< ::GameSceneKind
     void (*on_frame)(void);
-    void (*on_load)(void*);
-    void (*on_leave)(void*);
-    void (*unk_func)(void);
+    void (*on_enter)(void*);
+    void (*on_exit)(void*);
+    UNK_T x10;
 };
 
 struct gmm_x1CB0 {

@@ -383,7 +383,7 @@ static GameScene scenes[] = {
     },
 };
 
-static GameMode game_modes[] = {
+static GameMode modes[] = {
     {
         1,
         GM_TITLE,
@@ -761,5 +761,5 @@ GameScene* gm_GetAllGameSceneHandlers(void)
 
 GameMode* gm_GetAllGameModes(void)
 {
-    return game_modes;
+    return modes;
 }

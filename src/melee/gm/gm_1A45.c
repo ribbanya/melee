@@ -189,13 +189,13 @@ void gm_801A4B88(struct GameSceneInfo* info)
 /// @brief returns a pointer to the current scenes enter data
 void* gm_GetCurrentSceneEnterData(void)
 {
-    return gm_804D6720->load_data;
+    return gm_804D6720->enter_data;
 }
 
 /// @brief returns a pointer to the current scenes exit data
 void* gm_GetCurrentSceneExitData(void)
 {
-    return gm_804D6720->leave_data;
+    return gm_804D6720->exit_data;
 }
 
 u32 gm_801A4BA8(void)
@@ -247,9 +247,8 @@ void gm_801A4BD4(void)
 GameScene* gm_FindGameSceneHandler(u8 kind)
 {
     GameScene* cur;
-    for (cur = gm_GetAllGameSceneHandlers(); cur->class_id != GS_COUNT; cur++)
-    {
-        if (cur->class_id == kind) {
+    for (cur = gm_GetAllGameSceneHandlers(); cur->kind != GS_COUNT; cur++) {
+        if (cur->kind == kind) {
             return cur;
         }
     }
