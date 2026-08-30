@@ -46,12 +46,12 @@ typedef struct {
 } GameModeStateMachine;
 ASSERT_SIZE(GameModeStateMachine, 0x14);
 
-/* 1A3F48 */ static void gm_801A3F48(GameModeState*);
+/* 1A3F48 */ static void preloadState(GameModeState*);
 /* 1A4014 */ static void gm_801A4014(GameMode*);
 /* 1A43A0 */ static u8 runGameMode(u8 mode);
 /* 479D30 */ static GameModeStateMachine state_machine;
 
-void gm_801A3F48(GameModeState* state)
+void preloadState(GameModeState* state)
 {
     PreloadedGameModeState* preloaded_state;
 
@@ -130,7 +130,7 @@ static inline GameModeState* findState(GameModeState* state)
 
 void gm_801A4014(GameMode* mode)
 {
-    GameSceneHandler* handler;
+    GameSceneHandler* scene;
     GameModeState* state;
     GameModeStateMachine* sm;
     struct GameSceneInfo* info;
@@ -141,22 +141,22 @@ void gm_801A4014(GameMode* mode)
     state = findState(mode->states);
     sm->routing.curr_scene_idx = state->id;
 
-    gm_801A3F48(state);
+    preloadState(state);
     if (state->on_enter != NULL) {
         state->on_enter(state);
     }
     info = &state->info;
-    handler = (GameSceneHandler*) ((uintptr_t) gm_FindGameSceneHandler(
-                                       info->scene_id) |
-                                   (dead = 0));
+    scene = (GameSceneHandler*) ((uintptr_t) gm_FindGameSceneHandler(
+                                     info->scene_id) |
+                                 (dead = 0));
     gm_801A4BD4();
     gm_801A4B88(info);
-    if (handler->on_load != NULL) {
-        handler->on_load(info->enter_data);
+    if (scene->on_load != NULL) {
+        scene->on_load(info->enter_data);
     }
-    gm_801A4D34(handler->on_frame, info);
-    if (!gmMainLib_8046B0F0.resetting && handler->on_leave != NULL) {
-        handler->on_leave(info->exit_data);
+    gm_801A4D34(scene->on_frame, info);
+    if (!gmMainLib_8046B0F0.resetting && scene->on_leave != NULL) {
+        scene->on_leave(info->exit_data);
     }
     if (!gmMainLib_8046B0F0.resetting) {
         if (state->on_exit != NULL) {
