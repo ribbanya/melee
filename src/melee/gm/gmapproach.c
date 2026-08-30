@@ -121,7 +121,7 @@ static void gm_801ADB04(void)
     HSD_GObj_SetupProc(gobj, fn_801AD920, 1);
 }
 
-void gm_801ADC88_OnFrame(void)
+void gm_Scene_ProgScan_OnFrame(void)
 {
     if (gm_80480D98.xC++ >= 0xB4 &&
         (HSD_PadCopyStatus[gm_80480D98.xE].trigger &
@@ -131,7 +131,7 @@ void gm_801ADC88_OnFrame(void)
     }
 }
 
-void gm_801ADCE4_OnEnter(void* arg0_)
+void gm_Scene_ProgScan_OnEnter(void* arg0_)
 {
     s8* arg0 = arg0_;
     int var_r0;
@@ -153,7 +153,7 @@ void gm_801ADCE4_OnEnter(void* arg0_)
     lbAudioAx_80023F28(0x48);
 }
 
-void gm_801ADDA8_OnLeave(void* unused)
+void gm_Scene_ProgScan_OnExit(void* unused)
 {
     lbArchive_80016EFC(gm_80480D98.x0);
     lbAudioAx_800236DC();

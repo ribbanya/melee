@@ -65,7 +65,7 @@ GameModeState gm_803DDB80_Scenes[] = {
         gm_801B1F70,
         gm_801B2204,
         {
-            GS_TRAINING_MODE,
+            GS_TRAINING,
             &training_enter_data,
             &training_exit_data,
         },

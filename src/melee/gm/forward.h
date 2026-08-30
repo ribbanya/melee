@@ -57,7 +57,7 @@ typedef enum GameSceneKind {
     /* +01 */ GS_MENU,
     /* +02 */ GS_VS,
     /* +03 */ GS_SUDDEN_DEATH,
-    /* +04 */ GS_TRAINING_MODE,
+    /* +04 */ GS_TRAINING,
     /* +05 */ GS_RESULTS,
     /* +06 */ GS_0x6, ///< Unused? It is skipped in the table entirely
     /* +07 */ GS_DEBUG_MENU,

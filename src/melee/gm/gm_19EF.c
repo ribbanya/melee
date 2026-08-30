@@ -670,7 +670,7 @@ static void fn_801A0B60(HSD_GObj* gobj)
     }
 }
 
-void gm_801A0C6C_OnEnter(void* unused)
+void gm_Scene_ComingSoon_OnEnter(void* unused)
 {
     SceneDesc* sp10;
     HSD_GObj* temp_r30;
@@ -706,7 +706,7 @@ void gm_801A0C6C_OnEnter(void* unused)
     lb_80011E24(temp_r3, &lbl_804D66F4, 1, -1);
 }
 
-void gm_801A0E0C_OnLeave(void* unused)
+void gm_Scene_ComingSoon_OnExit(void* unused)
 {
     lbArchive_80016EFC(lbl_804D66F0);
     lbAudioAx_800236DC();
