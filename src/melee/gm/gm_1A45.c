@@ -265,7 +265,7 @@ static inline u64 maybe_gm_801A48A4(u8 i)
     }
 }
 
-void gm_801A4D34(void (*on_frame)(void), GameSceneInfo* arg1)
+void gm_801A4D34(void (*on_frame)(void), UNUSED GameSceneInfo* info)
 {
     int pad_queue_count;
     int i;
@@ -312,7 +312,7 @@ void gm_801A4D34(void (*on_frame)(void), GameSceneInfo* arg1)
                 if (lb_80019A30(0)) {
                     gm_EvaluateAllControllerInputs();
                 }
-                if (lb_80019A30(0) && (on_frame != NULL)) {
+                if (lb_80019A30(0) && on_frame != NULL) {
                     on_frame();
                 }
             }
