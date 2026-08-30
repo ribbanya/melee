@@ -39,9 +39,6 @@ struct stateMachine {
     struct routingInfo routing;
     struct routingInfo backup_routing;
     u8 pending_mode_change; ///< ::bool
-    u8 xD;
-    u8 xE;
-    u8 xF;
     u8 (*get_override)(void);
 };
 ASSERT_SIZE(struct stateMachine, 0x14);
@@ -83,11 +80,11 @@ void preloadState(GameModeState* state)
     tyDisplay_8031C8B8();
 }
 
-static inline u8 firstState(GameModeState* state, u8 sentinel)
+static inline u8 firstState(GameModeState* state, u8 next_id)
 {
     for (; state->id != (u8) -1; state++) {
         do {
-            if (state->id == sentinel) {
+            if (state->id == next_id) {
                 break;
             }
         } while (0);

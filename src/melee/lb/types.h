@@ -270,10 +270,10 @@ struct PreloadEntry {
 struct PreloadedGameModeState {
     bool is_heap_persistent[2];
     struct GameCache {
-        u8 mode_id;
-        u8 field2_0x9;
-        u8 field3_0xa;
-        u8 field4_0xb;
+        u8 mode_kind; ///< ::GameModeKind
+        u8 x1;
+        u8 x2;
+        u8 x3;
         StKind stkind;
         PreloadCacheSceneEntry entries[8];
     } game_cache;

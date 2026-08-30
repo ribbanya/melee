@@ -92,8 +92,9 @@ struct GameScene {
     void (*on_frame)(void);
     void (*on_enter)(void*);
     void (*on_exit)(void*);
-    UNK_T x10;
+    UNUSED UNK_T unused;
 };
+ASSERT_SIZE(struct GameScene, 0x14);
 
 struct gmm_x1CB0 {
     /* +0 */ u8 item_freq;

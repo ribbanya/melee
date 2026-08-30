@@ -183,8 +183,8 @@ void lbDvd_80017960(void)
     int i;
     u8 _[4];
 
-    if (preloadCache.new_scene.game_cache.mode_id != GM_COUNT) {
-        switch (preloadCache.new_scene.game_cache.mode_id) {
+    if (preloadCache.new_scene.game_cache.mode_kind != GM_COUNT) {
+        switch (preloadCache.new_scene.game_cache.mode_kind) {
         case GM_CAMERA_MODE:
             gm_801B23F0();
             break;

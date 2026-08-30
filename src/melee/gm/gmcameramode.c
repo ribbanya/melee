@@ -98,7 +98,7 @@ void gm_801B24B4(GameModeState* arg0)
 
     temp_r31 = &lbDvd_GetPreloadCacheScene()->game_cache;
     lbDvd_800174BC();
-    temp_r31->mode_id = GM_CAMERA_MODE;
+    temp_r31->mode_kind = GM_CAMERA_MODE;
     lbDvd_80018254();
     lb_8001C550();
     temp_r31_2 = lbDvd_GetPreloadedArchive(0x7D8);
@@ -132,7 +132,7 @@ void gm_801B254C(GameModeState* arg0)
 
     temp_r30_2 = &lbDvd_GetPreloadCacheScene()->game_cache;
     lbDvd_800174BC();
-    temp_r30_2->mode_id = GM_CAMERA_MODE;
+    temp_r30_2->mode_kind = GM_CAMERA_MODE;
     lbDvd_80018254();
 }
 
