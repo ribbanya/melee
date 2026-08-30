@@ -409,8 +409,8 @@ void gm_801B5324(UnkAllstarData* arg0, s32 arg1)
     chars_ptr[1] = 0x21;
     chars_ptr[2] = 0x21;
 
-    count =
-        ((AllstarRoundInfo*) ((u8*) gm_Mode_AllStar_States + 0x31C))[arg1].count;
+    count = ((AllstarRoundInfo*) ((u8*) gm_Mode_AllStar_States + 0x31C))[arg1]
+                .count;
     for (count_processed = 0; count_processed < count; count_processed++) {
         chars[count_processed] = opp_data[count_processed].x3;
     }
