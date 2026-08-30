@@ -70,8 +70,8 @@ struct GameModeState {
 
     struct GameSceneInfo {
         /* 0C */ u8 scene_id;
-        /* 10 */ void* load_data;  ///< data passed to OnLoad callback
-        /* 14 */ void* leave_data; ///< data passed to OnLeave callback
+        /* 10 */ void* load_data; ///< data passed to GameModeState::on_enter
+        /* 14 */ void* exit_data; ///< data passed to GameModeState::on_exit
     } info;
 };
 
@@ -95,26 +95,6 @@ struct GameSceneHandler {
     void (*on_leave)(void*);
     void (*unk_func)(void);
 }; // 803DA920
-
-typedef struct {
-    u8 curr_mode;         ///< GameModeKind
-    u8 pending_mode;      ///< GameModeKind
-    u8 prev_mode;         ///< GameModeKind
-    u8 curr_scene_idx;    ///< scene graph scene index for associated GameMode
-    u8 prev_scene_idx;    ///< scene graph scene index for associated GameMode
-    u8 pending_scene_idx; ///< scene graph scene index for associated GameMode
-} GameRouting;
-
-typedef struct {
-    GameRouting routing;
-    GameRouting backup;
-    u8 pending;
-    u8 x0D;
-    u8 x0E;
-    u8 x0F;
-    u8 (*game_mode_override)(void);
-} GameState;
-ASSERT_SIZE(GameState, 0x14);
 
 struct gmm_x1CB0 {
     /* +0 */ u8 item_freq;

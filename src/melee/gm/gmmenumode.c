@@ -244,7 +244,7 @@ void onEnter(GameModeState* scene)
 
 void onExit(GameModeState* arg0)
 {
-    MenuExitData* data = arg0->info.leave_data;
+    MenuExitData* data = arg0->info.exit_data;
 
     gm_SetPendingGameMode(data->pending_mode);
     gm_SetNewGameModePending();

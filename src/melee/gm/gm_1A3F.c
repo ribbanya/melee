@@ -25,6 +25,26 @@
 #include <melee/lb/lbcardnew.h>
 #include <melee/ty/tydisplay.h>
 
+typedef struct {
+    u8 curr_mode;         ///< GameModeKind
+    u8 pending_mode;      ///< GameModeKind
+    u8 prev_mode;         ///< GameModeKind
+    u8 curr_scene_idx;    ///< scene graph scene index for associated GameMode
+    u8 prev_scene_idx;    ///< scene graph scene index for associated GameMode
+    u8 pending_scene_idx; ///< scene graph scene index for associated GameMode
+} GameRouting;
+
+typedef struct {
+    GameRouting routing;
+    GameRouting backup;
+    u8 pending;
+    u8 xD;
+    u8 xE;
+    u8 xF;
+    u8 (*game_mode_override)(void);
+} GameState;
+ASSERT_SIZE(GameState, 0x14);
+
 /* 1A3F48 */ static void gm_801A3F48(GameModeState*);
 /* 479D30 */ static GameState gm_80479D30;
 
@@ -73,23 +93,23 @@ static inline u8 firstScene(GameModeState* scene, u8 sentinel)
     return 0;
 }
 
-static inline u8 nextScene(GameModeState* scenes)
+static inline u8 nextScene(GameModeState* states)
 {
-    GameModeState* it = scenes;
+    GameModeState* it = states;
     u8 current = gm_80479D30.routing.curr_scene_idx;
     int i;
     u8 next_scene;
-    GameModeState* cur = scenes;
+    GameModeState* cur = states;
 
-    for (i = 0; (next_scene = it->idx) != 0xFF; i++) {
+    for (i = 0; (next_scene = it->idx) != (u8) -1; i++) {
         if (cur->idx > current) {
-            return scenes[i].idx;
+            return states[i].idx;
         }
         cur++;
         it++;
     }
 
-    return firstScene(scenes, next_scene);
+    return firstScene(states, next_scene);
 }
 
 static inline GameModeState* findScene(GameModeState* scene)
@@ -135,7 +155,7 @@ void gm_801A4014(GameMode* mode)
     }
     gm_801A4D34(handler->on_frame, info);
     if (!gmMainLib_8046B0F0.resetting && handler->on_leave != NULL) {
-        handler->on_leave(info->leave_data);
+        handler->on_leave(info->exit_data);
     }
     if (!gmMainLib_8046B0F0.resetting) {
         if (scene->on_exit != NULL) {
@@ -182,7 +202,7 @@ void* gm_GetGameSceneLoadData(GameModeState* scene)
 
 void* gm_GetGameSceneLeaveData(GameModeState* scene)
 {
-    return scene->info.leave_data;
+    return scene->info.exit_data;
 }
 
 void gm_SetSceneIndex(u8 arg0)

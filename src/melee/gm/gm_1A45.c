@@ -195,7 +195,7 @@ void* gm_GetCurrentSceneEnterData(void)
 /// @brief returns a pointer to the current scenes exit data
 void* gm_GetCurrentSceneExitData(void)
 {
-    return gm_804D6720->leave_data;
+    return gm_804D6720->exit_data;
 }
 
 u32 gm_801A4BA8(void)
