@@ -124,7 +124,7 @@ void vi0502_8031E304(HSD_GObj* gobj)
     HSD_JObjAnimAll(GET_JOBJ(gobj));
 }
 
-static void vi0502_8031E328(HSD_GObj* gobj, int unused)
+static void vi0502_8031E328(HSD_GObj* gobj, UNUSED int code)
 {
     PAD_STACK(8);
     lbShadow_8000F38C(0);
@@ -219,6 +219,11 @@ void un_8031E444_OnEnter(void* arg)
     costume1 = desc->p1_costume_index;
     costume2 = desc->p2_costume_index;
     vi0502_8031E124(char_index, costume1, costume2);
+}
+
+void vi_8031E6CC_OnFrame(void)
+{
+    vi_8031CAAC();
 }
 
 Vi0502Data un_804000D0 = {

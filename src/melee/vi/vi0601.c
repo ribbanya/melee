@@ -31,17 +31,12 @@
 static SceneDesc* un_804D6FB0;
 static GXColor erase_colors_vi0601;
 
-void vi_8031E6CC_OnFrame(void)
-{
-    vi_8031CAAC();
-}
-
 void vi_8031E6EC(HSD_GObj* gobj)
 {
     HSD_JObjAnimAll(GET_JOBJ(gobj));
 }
 
-static void vi0601_CameraCallback(HSD_GObj* gobj, int unused)
+static void vi0601_CameraCallback(HSD_GObj* gobj, UNUSED int code)
 {
     HSD_CObj* cobj;
     cobj = GET_COBJ(gobj);
@@ -90,7 +85,7 @@ void un_8031E9B8(void)
     HSD_GObj* gobj;
     HSD_JObj* jobj;
     s32 i;
-    char pad[8];
+    PAD_STACK(2 * 4);
 
     gobj = GObj_Create(0xE, 0xF, 0);
     jobj = HSD_JObjLoadJoint((*un_804D6FB0->models)->joint);
@@ -141,7 +136,7 @@ void vi0601_RunFrame(HSD_GObj* gobj)
     }
 }
 
-void un_8031EBBC_OnEnter(void* unused)
+void un_8031EBBC_OnEnter(UNUSED void* enter_data)
 {
     HSD_CObj* cobj;
     HSD_GObj* gobj;
