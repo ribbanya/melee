@@ -42,7 +42,7 @@ struct stateMachine {
     u8 xD;
     u8 xE;
     u8 xF;
-    u8 (*game_mode_override)(void);
+    u8 (*get_override)(void);
 };
 ASSERT_SIZE(struct stateMachine, 0x14);
 
@@ -199,9 +199,9 @@ void* gm_GetGameSceneLoadData(GameModeState* scene)
     return scene->info.enter_data;
 }
 
-void* gm_GetGameSceneLeaveData(GameModeState* scene)
+void* gm_GetGameSceneLeaveData(GameModeState* state)
 {
-    return scene->info.exit_data;
+    return state->info.exit_data;
 }
 
 void gm_SetSceneIndex(u8 arg0)
@@ -231,7 +231,7 @@ void gm_SetNewGameModePending(void)
     state_machine.pending_mode_change = true;
 }
 
-void gm_SetPendingGameMode(s8 pending_mode)
+void gm_SetPendingGameMode(u8 pending_mode)
 {
     state_machine.routing.pending_mode = pending_mode;
 }
@@ -254,7 +254,7 @@ u8 gm_GetPreviousGameMode(void)
 
 void gm_SetGameModeOverride(u8 (*mode)(void))
 {
-    state_machine.game_mode_override = mode;
+    state_machine.get_override = mode;
 }
 
 bool gm_Is1PMode(u8 mode)
@@ -278,11 +278,11 @@ bool gm_Is1PMode(u8 mode)
     return false;
 }
 
-static inline GameMode* findMode(u8 idx)
+static inline GameMode* findMode(u8 kind)
 {
     GameMode* cur;
     for (cur = gm_GetAllGameModes(); cur->kind != GM_COUNT; cur++) {
-        if (cur->kind == idx) {
+        if (cur->kind == kind) {
             return cur;
         }
     }
@@ -307,9 +307,8 @@ u8 runGameMode(u8 mode_kind)
         mode->on_load();
     }
     while (!sm->pending_mode_change) {
-        if (state_machine.game_mode_override != NULL &&
-            (override = state_machine.game_mode_override(),
-             override != GM_COUNT))
+        if (state_machine.get_override != NULL &&
+            (override = state_machine.get_override(), override != GM_COUNT))
         {
             state_machine.backup_routing = state_machine.routing;
             sm->pending_mode_change = false;
