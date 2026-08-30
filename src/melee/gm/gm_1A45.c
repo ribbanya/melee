@@ -189,7 +189,7 @@ void gm_801A4B88(struct GameSceneInfo* info)
 /// @brief returns a pointer to the current scenes enter data
 void* gm_GetCurrentSceneEnterData(void)
 {
-    return gm_804D6720->load_data;
+    return gm_804D6720->enter_data;
 }
 
 /// @brief returns a pointer to the current scenes exit data

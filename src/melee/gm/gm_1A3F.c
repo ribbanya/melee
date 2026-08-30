@@ -26,9 +26,9 @@
 #include <melee/ty/tydisplay.h>
 
 typedef struct {
-    u8 curr_mode;    ///< GameModeKind
-    u8 pending_mode; ///< GameModeKind
-    u8 prev_mode;    ///< GameModeKind
+    u8 curr_mode;    ///< ::GameModeKind
+    u8 pending_mode; ///< ::GameModeKind
+    u8 prev_mode;    ///< ::GameModeKind
     u8 curr_scene_idx;
     u8 prev_scene_idx;
     u8 pending_scene_idx;
@@ -38,7 +38,7 @@ ASSERT_SIZE(GameRouting, 0x6);
 typedef struct {
     GameRouting routing;
     GameRouting backup;
-    u8 pending;
+    u8 pending; ///< `bool`
     u8 xD;
     u8 xE;
     u8 xF;
@@ -129,47 +129,45 @@ static inline GameModeState* findState(GameModeState* state)
 void gm_801A4014(GameMode* mode)
 {
     GameSceneHandler* handler;
-    GameModeState* scene;
-    GameModeStateMachine* gm;
+    GameModeState* state;
+    GameModeStateMachine* sm;
     struct GameSceneInfo* info;
     u32 dead;
     PAD_STACK(2 * 4);
 
-    gm = &state_machine;
+    sm = &state_machine;
+    state = findState(mode->states);
+    sm->routing.curr_scene_idx = state->idx;
 
-    scene = findState(mode->states);
-
-    gm->routing.curr_scene_idx = scene->idx;
-
-    gm_801A3F48(scene);
-    if (scene->on_enter != NULL) {
-        scene->on_enter(scene);
+    gm_801A3F48(state);
+    if (state->on_enter != NULL) {
+        state->on_enter(state);
     }
-    info = &scene->info;
+    info = &state->info;
     handler = (GameSceneHandler*) ((uintptr_t) gm_FindGameSceneHandler(
                                        info->scene_id) |
                                    (dead = 0));
     gm_801A4BD4();
     gm_801A4B88(info);
     if (handler->on_load != NULL) {
-        handler->on_load(info->load_data);
+        handler->on_load(info->enter_data);
     }
     gm_801A4D34(handler->on_frame, info);
     if (!gmMainLib_8046B0F0.resetting && handler->on_leave != NULL) {
         handler->on_leave(info->exit_data);
     }
     if (!gmMainLib_8046B0F0.resetting) {
-        if (scene->on_exit != NULL) {
-            scene->on_exit(scene);
+        if (state->on_exit != NULL) {
+            state->on_exit(state);
         }
 
-        state_machine.routing.prev_scene_idx = gm->routing.curr_scene_idx;
+        state_machine.routing.prev_scene_idx = sm->routing.curr_scene_idx;
 
-        if (gm->routing.pending_scene_idx) {
-            gm->routing.curr_scene_idx = gm->routing.pending_scene_idx - 1;
-            gm->routing.pending_scene_idx = 0;
+        if (sm->routing.pending_scene_idx) {
+            sm->routing.curr_scene_idx = sm->routing.pending_scene_idx - 1;
+            sm->routing.pending_scene_idx = 0;
         } else {
-            gm->routing.curr_scene_idx = nextState(mode->states);
+            sm->routing.curr_scene_idx = nextState(mode->states);
         }
     }
     lb_8001CDB4();
@@ -198,7 +196,7 @@ void gm_801A4014(GameMode* mode)
 
 void* gm_GetGameSceneLoadData(GameModeState* scene)
 {
-    return scene->info.load_data;
+    return scene->info.enter_data;
 }
 
 void* gm_GetGameSceneLeaveData(GameModeState* scene)
@@ -293,10 +291,9 @@ static inline GameMode* findMode(u8 idx)
 
 u8 gm_RunGameMode(u8 mode_kind)
 {
-    u8 temp_r3;
+    u8 override;
     GameMode* mode;
-    GameMode* var_r3_2;
-    GameModeStateMachine* gamestate = &state_machine;
+    GameModeStateMachine* sm = &state_machine;
     PAD_STACK(2 * 4);
 
     mode = findMode(mode_kind);
@@ -309,20 +306,18 @@ u8 gm_RunGameMode(u8 mode_kind)
     if (mode->on_load != NULL) {
         mode->on_load();
     }
-    while (!gamestate->pending) {
+    while (!sm->pending) {
         if (state_machine.game_mode_override != NULL &&
-            (temp_r3 = state_machine.game_mode_override(),
-             temp_r3 != GM_COUNT))
+            (override = state_machine.game_mode_override(),
+             override != GM_COUNT))
         {
             state_machine.backup = state_machine.routing;
-            gamestate->pending = 0;
-            gamestate->routing.curr_scene_idx = 0;
-            gamestate->routing.prev_scene_idx = 0;
-            gamestate->routing.pending_scene_idx = 0;
+            sm->pending = 0;
+            sm->routing.curr_scene_idx = 0;
+            sm->routing.prev_scene_idx = 0;
+            sm->routing.pending_scene_idx = 0;
 
-            var_r3_2 = findMode(temp_r3);
-
-            gm_801A4014(var_r3_2);
+            gm_801A4014(findMode(override));
             if (!gmMainLib_8046B0F0.resetting) {
                 state_machine.routing = state_machine.backup;
             }
@@ -339,10 +334,10 @@ u8 gm_RunGameMode(u8 mode_kind)
 /// UnclePunch: Scene_Main
 void gm_801A4510(void)
 {
-    u32 unused;
     GameMode* modes;
     GameModeStateMachine* gamestate = &state_machine;
     int i;
+    PAD_STACK(2 * 4);
 
     gm_GetAllGameModes();
     memzero(&state_machine, sizeof(GameModeStateMachine));
