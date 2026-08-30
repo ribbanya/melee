@@ -153,7 +153,7 @@ void gm_Scene_Approach_OnEnter(void* arg0_)
     lbAudioAx_80023F28(0x48);
 }
 
-void gm_Scene_ProgScan_OnExit(UNUSED void* exit_data)
+void gm_Scene_Approach_OnExit(UNUSED void* exit_data)
 {
     lbArchive_80016EFC(gm_80480D98.x0);
     lbAudioAx_800236DC();
