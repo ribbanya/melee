@@ -651,7 +651,7 @@ void onExitRegendCongrats(GameModeState* arg)
 
 void onEnterMovie(GameModeState* arg)
 {
-    PreloadCacheScene* temp_r31 = lbDvd_GetPreloadCacheScene();
+    PreloadedGameModeState* temp_r31 = lbDvd_GetPreloadCacheScene();
     PAD_STACK(4);
     lbDvd_800174BC();
     temp_r31->is_heap_persistent[1] = false;

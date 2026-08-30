@@ -474,7 +474,7 @@ HSD_Archive* lbDvd_8001819C(const char* basename)
     return archive;
 }
 
-PreloadCacheScene* lbDvd_GetPreloadCacheScene(void)
+PreloadedGameModeState* lbDvd_GetPreloadCacheScene(void)
 {
     return &preloadCache.scene;
 }
@@ -537,7 +537,7 @@ void lbDvd_80018254(void)
     bool enabled;
 
     if (memcmp(&preloadCache.new_scene, &preloadCache.scene,
-               sizeof(PreloadCacheScene)) == 0)
+               sizeof(PreloadedGameModeState)) == 0)
     {
         return;
     }

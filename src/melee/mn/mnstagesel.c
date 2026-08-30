@@ -850,7 +850,7 @@ void mnStageSel_8025BB5C_OnLeave(UNK_T unused)
     tmp = mnStageSel_804D6C90;
     tmp->start_game = mnStageSel_804D6CAF == 2 ? true : false;
     if (tmp->start_game) {
-        PreloadCacheScene* cache = lbDvd_GetPreloadCacheScene();
+        PreloadedGameModeState* cache = lbDvd_GetPreloadCacheScene();
         cache->game_cache.stkind = tmp->data.data.rules.stkind;
         lbDvd_80018254();
     }

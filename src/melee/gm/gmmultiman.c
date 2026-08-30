@@ -310,7 +310,7 @@ void gm_801B6428(GameModeState* arg0)
     temp_r3->players[0].xC_b1 = false;
     temp_r3->rules.stkind = gm_801647F8(temp_r3->players[0].c_kind);
     {
-        PreloadCacheScene* scene = lbDvd_GetPreloadCacheScene();
+        PreloadedGameModeState* scene = lbDvd_GetPreloadCacheScene();
         scene->game_cache.stkind = temp_r3->rules.stkind;
     }
     lbDvd_80018254();

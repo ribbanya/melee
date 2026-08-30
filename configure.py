@@ -163,6 +163,11 @@ parser.add_argument(
     help="warning level (default 'off')",
 )
 parser.add_argument(
+    "--lint-all",
+    action="store_true",
+    help="do not disable any clang warnings",
+)
+parser.add_argument(
     "--require-protos",
     dest="require_protos",
     action="store_true",
@@ -409,9 +414,10 @@ clang_flags_base = [
     *[f"-I{s}" for s in clang_includes],
     *[f"-isystem{s}" for s in clang_system_includes],
     *[f"-W{s}" for s in clang_warnings],
-    *[f"-Wno-{s}" for s in clang_disabled_warnings],
 ]
 
+if not args.lint_all:
+    clang_flags_base.extend(f"-Wno-{s}" for s in clang_disabled_warnings),
 
 config.extra_clang_flags.extend(clang_flags_base)
 

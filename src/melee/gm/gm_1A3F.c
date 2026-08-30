@@ -51,7 +51,7 @@ ASSERT_SIZE(GameModeStateMachine, 0x14);
 
 void gm_801A3F48(GameModeState* state)
 {
-    PreloadCacheScene* temp_r31;
+    PreloadedGameModeState* preloaded_state;
 
     lbDvd_80018CF4(state->preload);
     switch (state->info.scene_id) {
@@ -66,12 +66,12 @@ void gm_801A3F48(GameModeState* state)
         HSD_SisLib_803A6048(0x4800);
         break;
     }
-    temp_r31 = lbDvd_GetPreloadCacheScene();
+    preloaded_state = lbDvd_GetPreloadCacheScene();
     if (lbHeap_80015BB8(2) == 0) {
-        temp_r31->is_heap_persistent[0] = true;
+        preloaded_state->is_heap_persistent[0] = true;
     }
     if (lbHeap_80015BB8(3) == 0) {
-        temp_r31->is_heap_persistent[1] = true;
+        preloaded_state->is_heap_persistent[1] = true;
     }
     lbDvd_80018254();
     lb_8001C5A4();
@@ -113,13 +113,13 @@ static inline u8 nextState(GameModeState* states)
     return firstState(states, next_scene);
 }
 
-static inline GameModeState* findScene(GameModeState* scene)
+static inline GameModeState* findState(GameModeState* state)
 {
     int i, j;
-    for (i = state_machine.routing.curr_scene_idx; i < 0xFF; i++) {
-        for (j = 0; scene[j].idx != 0xFF; j++) {
-            if (i == scene[j].idx) {
-                return &scene[j];
+    for (i = state_machine.routing.curr_scene_idx; i < (u8) -1; i++) {
+        for (j = 0; state[j].idx != (u8) -1; j++) {
+            if (i == state[j].idx) {
+                return &state[j];
             }
         }
     }
@@ -133,11 +133,11 @@ void gm_801A4014(GameMode* mode)
     GameModeStateMachine* gm;
     struct GameSceneInfo* info;
     u32 dead;
-    u32 unused[2];
+    PAD_STACK(2 * 4);
 
     gm = &state_machine;
 
-    scene = findScene(mode->states);
+    scene = findState(mode->states);
 
     gm->routing.curr_scene_idx = scene->idx;
 
@@ -297,7 +297,7 @@ u8 gm_RunGameMode(u8 mode_kind)
     GameMode* mode;
     GameMode* var_r3_2;
     GameModeStateMachine* gamestate = &state_machine;
-    u64 unused;
+    PAD_STACK(2 * 4);
 
     mode = findMode(mode_kind);
 
@@ -311,7 +311,8 @@ u8 gm_RunGameMode(u8 mode_kind)
     }
     while (!gamestate->pending) {
         if (state_machine.game_mode_override != NULL &&
-            (temp_r3 = state_machine.game_mode_override(), temp_r3 != GM_COUNT))
+            (temp_r3 = state_machine.game_mode_override(),
+             temp_r3 != GM_COUNT))
         {
             state_machine.backup = state_machine.routing;
             gamestate->pending = 0;

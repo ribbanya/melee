@@ -267,7 +267,7 @@ struct PreloadEntry {
     s32 effect_index;
 };
 
-struct PreloadCacheScene {
+struct PreloadedGameModeState {
     bool is_heap_persistent[2];
     struct GameCache {
         u8 mode_id;
@@ -282,8 +282,8 @@ struct PreloadCacheScene {
 
 struct PreloadCache {
     s32 persistent_heaps;
-    PreloadCacheScene scene;
-    PreloadCacheScene new_scene;
+    PreloadedGameModeState scene;
+    PreloadedGameModeState new_scene;
     PreloadEntry entries[80];
     s32 persistent_heap;
     int preloaded;

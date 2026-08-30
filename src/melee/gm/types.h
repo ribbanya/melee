@@ -59,7 +59,6 @@ typedef struct un_804A1F48_t {
 } un_804A1F48_t;
 ASSERT_SIZE(struct un_804A1F48_t, 0xC);
 
-/// @note Colloquially known as "Minor Scene"
 struct GameModeState {
     /* 00 */ u8 idx;
     /* 01 */ u8 preload;
@@ -87,14 +86,14 @@ struct GameMode {
     GameModeState* states;
 }; // 803DACA4
 
+/// @note Colloquially known as "Minor Scene"
 struct GameSceneHandler {
     u8 class_id;
-
     void (*on_frame)(void);
     void (*on_load)(void*);
     void (*on_leave)(void*);
     void (*unk_func)(void);
-}; // 803DA920
+};
 
 struct gmm_x1CB0 {
     /* +0 */ u8 item_freq;

@@ -2382,7 +2382,7 @@ void fn_8019B458(s32* arg0)
             }
 
             {
-                PreloadCacheScene* scene = lbDvd_GetPreloadCacheScene();
+                PreloadedGameModeState* scene = lbDvd_GetPreloadCacheScene();
                 struct GameCache* gc = &scene->game_cache;
                 lbDvd_800174BC();
 
