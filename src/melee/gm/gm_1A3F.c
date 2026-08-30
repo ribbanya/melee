@@ -262,8 +262,8 @@ bool gm_Is1PMode(u8 mode)
 static inline GameMode* findMode(u8 idx)
 {
     GameMode* cur;
-    for (cur = gm_GetAllGameModes(); cur->idx != GM_COUNT; cur++) {
-        if (cur->idx == idx) {
+    for (cur = gm_GetAllGameModes(); cur->kind != GM_COUNT; cur++) {
+        if (cur->kind == idx) {
             return cur;
         }
     }
@@ -325,7 +325,7 @@ void gm_801A4510(void)
     gm_GetAllGameModes();
     memzero(&gm_80479D30, sizeof(GameState));
     modes = gm_GetAllGameModes();
-    for (i = 0; modes[i].idx != GM_COUNT; i++) {
+    for (i = 0; modes[i].kind != GM_COUNT; i++) {
         if (modes[i].on_init != NULL) {
             modes[i].on_init();
         }
