@@ -16,7 +16,7 @@ struct exitData {
 /* 1B089C */ static void onExit(GameModeState*);
 /* 4D6878 */ static struct exitData exit_data;
 
-/* 3DD6A0 */ GameModeState gm_803DD6A0_Scenes[] = {
+/* 3DD6A0 */ GameModeState gm_Mode_Title_States[] = {
     {
         0,
         lbDvdPreload_3,

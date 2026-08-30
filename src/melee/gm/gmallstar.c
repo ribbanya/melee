@@ -737,7 +737,7 @@ void gm_801B607C(GameModeState* unused)
     gm_SetNewGameModePending();
 }
 
-void gm_801B60A4_OnLoad(void)
+void gm_Mode_AllStar_OnLoad(void)
 {
     UnkAllstarData* data;
     u32 index;
@@ -805,7 +805,7 @@ void gm_801B60A4_OnLoad(void)
     Ground_801C5A28();
 }
 
-void gm_801B62D8_OnInit(void)
+void gm_Mode_AllStar_OnInit(void)
 {
     struct gmm_x0_528_t* temp_r3 = gmMainLib_8015CDE0();
     temp_r3->c_kind = CHKIND_NONE;

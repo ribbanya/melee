@@ -667,7 +667,7 @@ static gm_803DDEC8Struct* gmClassic_801B2D54(gm_803DDEC8Struct* arg0)
     return ptr;
 }
 
-void gmClassic_OnLoad(void)
+void gm_Mode_Classic_OnLoad(void)
 {
     UnkAllstarData* data;
     gmClassicSceneData* scene_data = (gmClassicSceneData*) gm_803DDC58_Scenes;
@@ -719,7 +719,7 @@ void gmClassic_OnLoad(void)
     Ground_801C5A28();
 }
 
-void gmClassic_OnInit(void)
+void gm_Mode_Classic_OnInit(void)
 {
     struct gmm_x0_528_t* temp_r3 = gmMainLib_8015CDC8();
     temp_r3->c_kind = CHKIND_NONE;

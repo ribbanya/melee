@@ -31,8 +31,8 @@
 /* 1B5078 */ void gm_801B5078(GameModeState*);
 /* 1B50C4 */ void gm_801B50C4(GameModeState*);
 /* 1B518C */ void gm_801B518C(GameModeState*);
-/* 1B51CC */ void gm_801B51CC_OnInit(void);
-/* 1B5214 */ void gm_801B5214_OnLoad(void);
+/* 1B51CC */ void gm_Mode_Adventure_OnInit(void);
+/* 1B5214 */ void gm_Mode_Adventure_OnLoad(void);
 /* 3DE1B8 */ extern GameModeState gm_803DE1B8_Scenes[49];
 /* 3DE650 */ extern struct gm_803DE650_t gm_803DE650[46];
 

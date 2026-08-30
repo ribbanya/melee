@@ -76,8 +76,8 @@ struct GameModeState {
 
 /// @note Colloquially known as "Major Scene"
 struct GameMode {
-    u8 preload;
-    u8 kind; ///< ::GameModeKind
+    u8 preload; ///< ::bool
+    u8 kind;    ///< ::GameModeKind
 
     void (*on_load)(void);
     void (*on_unload)(void);

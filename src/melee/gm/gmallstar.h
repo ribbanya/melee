@@ -14,7 +14,7 @@
 /* 1B5F50 */ void gm_801B5F50(GameModeState*);
 /* 1B5FB4 */ void gm_801B5FB4(GameModeState*);
 /* 1B607C */ void gm_801B607C(GameModeState*);
-/* 1B60A4 */ void gm_801B60A4_OnLoad(void);
-/* 1B62D8 */ void gm_801B62D8_OnInit(void);
+/* 1B60A4 */ void gm_Mode_AllStar_OnLoad(void);
+/* 1B62D8 */ void gm_Mode_AllStar_OnInit(void);
 
 #endif

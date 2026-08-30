@@ -90,7 +90,7 @@ u8 gm_801A5360(MatchEnd* match_end)
     return 0;
 }
 
-void gm_801A5598_OnInit(void)
+void gm_Mode_Vs_OnInit(void)
 {
     gm_80167B50(&gmMainLib_804D3EE0->unk_590);
     gmMainLib_8015CDEC();
@@ -101,12 +101,12 @@ void gm_801A55C4(void)
     memzero(&gm_804D6730, sizeof(gm_804D6730));
 }
 
-void gm_801A55EC_OnLoad(void)
+void gm_Mode_Vs_OnLoad(void)
 {
     memzero(&gm_804D6730, sizeof(gm_804D6730));
 }
 
-void gm_801A5614_OnUnload(void) {}
+void gm_Mode_Vs_OnUnload(void) {}
 
 void gm_801A5618(GameModeState* scene_data, VsModeData* vs_data,
                  int match_type)

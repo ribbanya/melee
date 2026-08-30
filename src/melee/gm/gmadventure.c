@@ -1659,7 +1659,7 @@ void gm_801B518C(GameModeState* scene)
     gm_8017CBAC(data, gmMainLib_8015CDD4(), 0x16);
 }
 
-void gm_801B51CC_OnInit(void)
+void gm_Mode_Adventure_OnInit(void)
 {
     struct gmm_x0_528_t* temp_r3;
 
@@ -1672,7 +1672,7 @@ void gm_801B51CC_OnInit(void)
     temp_r3->x5 = 0;
 }
 
-void gm_801B5214_OnLoad(void)
+void gm_Mode_Adventure_OnLoad(void)
 {
     int i;
     int j;

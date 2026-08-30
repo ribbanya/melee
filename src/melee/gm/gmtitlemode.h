@@ -4,6 +4,6 @@
 #include "melee/gm/types.h"
 
 /* 1B087C */ void gmTitleMode_OnEnter(GameModeState*);
-/* 3DD6A0 */ extern GameModeState gm_803DD6A0_Scenes[];
+/* 3DD6A0 */ extern GameModeState gm_Mode_Title_States[];
 
 #endif

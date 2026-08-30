@@ -11,10 +11,10 @@
 /* 1A5258 */ void gm_801A5258(u8*, MatchEnd*);
 /* 1A52D0 */ bool gm_801A52D0(MatchEnd*);
 /* 1A5360 */ u8 gm_801A5360(MatchEnd*);
-/* 1A5598 */ void gm_801A5598_OnInit(void);
+/* 1A5598 */ void gm_Mode_Vs_OnInit(void);
 /* 1A55C4 */ void gm_801A55C4(void); /// Zeroes KO Star Counts
-/* 1A55EC */ void gm_801A55EC_OnLoad(void);
-/* 1A5614 */ void gm_801A5614_OnUnload(void);
+/* 1A55EC */ void gm_Mode_Vs_OnLoad(void);
+/* 1A5614 */ void gm_Mode_Vs_OnUnload(void);
 /* 1A5618 */ void gm_801A5618(GameModeState*, struct VsModeData*,
                               int); /// CSS_Enter
 /* 1A5680 */ void gm_801A5680(GameModeState*, struct VsModeData*); /// CSS_Exit
