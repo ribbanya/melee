@@ -1,44 +1,44 @@
 #include "gm_1A3F.h"
 
+#include "gm_1A36.h"
 #include "gm_1A45.h"
 #include "gmmain_lib.h"
+#include "gmscdata.h"
+#include "types.h"
 
 #include "db/db.h"
-#include "gm/gm_1A36.h"
-#include "gm/gmscdata.h"
+#include "lb/lb_00B0.h"
 #include "lb/lbaudio_ax.h"
+#include "lb/lbcardgame.h"
+#include "lb/lbcardnew.h"
 #include "lb/lbdvd.h"
 #include "lb/lbheap.h"
 #include "lb/lbmthp.h"
 #include "lb/lbsnap.h"
 #include "lb/types.h"
 #include "ty/toy.h"
+#include "ty/tydisplay.h"
 
 #include <dolphin/vi.h>
 #include <baselib/controller.h>
 #include <baselib/devcom.h>
 #include <baselib/sislib.h>
 #include <baselib/video.h>
-#include <melee/gm/types.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/lb/lbcardgame.h>
-#include <melee/lb/lbcardnew.h>
-#include <melee/ty/tydisplay.h>
 
 struct routingInfo {
-    u8 curr_mode;    ///< ::GameModeKind
-    u8 pending_mode; ///< ::GameModeKind
-    u8 prev_mode;    ///< ::GameModeKind
-    u8 curr_scene_idx;
-    u8 prev_scene_idx;
-    u8 next_scene_idx;
+    u8 curr_mode;     ///< ::GameModeKind
+    u8 pending_mode;  ///< ::GameModeKind
+    u8 prev_mode;     ///< ::GameModeKind
+    u8 curr_state_id; ///< from ::GameModeState::id
+    u8 prev_state_id;
+    u8 next_state_id;
 };
 ASSERT_SIZE(struct routingInfo, 0x6);
 
 struct stateMachine {
     struct routingInfo routing;
     struct routingInfo backup_routing;
-    u8 pending_mode_change; ///< `bool`
+    u8 pending_mode_change; ///< ::bool
     u8 xD;
     u8 xE;
     u8 xF;
@@ -99,7 +99,7 @@ static inline u8 firstState(GameModeState* state, u8 sentinel)
 static inline u8 nextState(GameModeState* states)
 {
     GameModeState* next = states;
-    u8 curr_id = state_machine.routing.curr_scene_idx;
+    u8 curr_id = state_machine.routing.curr_state_id;
     int i;
     u8 next_id;
     GameModeState* cur = states;
@@ -118,7 +118,7 @@ static inline u8 nextState(GameModeState* states)
 static inline GameModeState* findState(GameModeState* state)
 {
     int i, j;
-    for (i = state_machine.routing.curr_scene_idx; i < U8_MAX; i++) {
+    for (i = state_machine.routing.curr_state_id; i < U8_MAX; i++) {
         for (j = 0; state[j].id != (u8) -1; j++) {
             if (i == state[j].id) {
                 return &state[j];
@@ -139,7 +139,7 @@ void gm_801A4014(GameMode* mode)
 
     sm = &state_machine;
     state = findState(mode->states);
-    sm->routing.curr_scene_idx = state->id;
+    sm->routing.curr_state_id = state->id;
 
     preloadState(state);
     if (state->on_enter != NULL) {
@@ -163,13 +163,13 @@ void gm_801A4014(GameMode* mode)
             state->on_exit(state);
         }
 
-        state_machine.routing.prev_scene_idx = sm->routing.curr_scene_idx;
+        state_machine.routing.prev_state_id = sm->routing.curr_state_id;
 
-        if (sm->routing.next_scene_idx) {
-            sm->routing.curr_scene_idx = sm->routing.next_scene_idx - 1;
-            sm->routing.next_scene_idx = 0;
+        if (sm->routing.next_state_id) {
+            sm->routing.curr_state_id = sm->routing.next_state_id - 1;
+            sm->routing.next_state_id = 0;
         } else {
-            sm->routing.curr_scene_idx = nextState(mode->states);
+            sm->routing.curr_state_id = nextState(mode->states);
         }
     }
     lb_8001CDB4();
@@ -208,24 +208,24 @@ void* gm_GetGameSceneLeaveData(GameModeState* scene)
 
 void gm_SetSceneIndex(u8 arg0)
 {
-    state_machine.routing.curr_scene_idx = arg0;
-    state_machine.routing.prev_scene_idx = arg0;
+    state_machine.routing.curr_state_id = arg0;
+    state_machine.routing.prev_state_id = arg0;
 }
 
 /// @note Actually sets the pending scene to the scene following the input
 void gm_SetPendingSceneIndex(u8 next_scene)
 {
-    state_machine.routing.next_scene_idx = next_scene + 1;
+    state_machine.routing.next_state_id = next_scene + 1;
 }
 
 u8 gm_GetPreviousSceneIndex(void)
 {
-    return state_machine.routing.prev_scene_idx;
+    return state_machine.routing.prev_state_id;
 }
 
 u8 gm_GetCurrentSceneIndex(void)
 {
-    return state_machine.routing.curr_scene_idx;
+    return state_machine.routing.curr_state_id;
 }
 
 void gm_SetNewGameModePending(void)
@@ -301,9 +301,9 @@ u8 runGameMode(u8 mode_kind)
     mode = findMode(mode_kind);
 
     state_machine.pending_mode_change = false;
-    state_machine.routing.curr_scene_idx = 0;
-    state_machine.routing.prev_scene_idx = 0;
-    state_machine.routing.next_scene_idx = 0;
+    state_machine.routing.curr_state_id = 0;
+    state_machine.routing.prev_state_id = 0;
+    state_machine.routing.next_state_id = 0;
     lbDvd_80018F58(mode->preload);
     if (mode->on_load != NULL) {
         mode->on_load();
@@ -315,9 +315,9 @@ u8 runGameMode(u8 mode_kind)
         {
             state_machine.backup_routing = state_machine.routing;
             sm->pending_mode_change = false;
-            sm->routing.curr_scene_idx = 0;
-            sm->routing.prev_scene_idx = 0;
-            sm->routing.next_scene_idx = 0;
+            sm->routing.curr_state_id = 0;
+            sm->routing.prev_state_id = 0;
+            sm->routing.next_state_id = 0;
 
             gm_801A4014(findMode(override));
             if (!gmMainLib_8046B0F0.resetting) {
