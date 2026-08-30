@@ -3,7 +3,7 @@
 
 #include "melee/gm/types.h"
 
-/* 1A50A0 */ GameSceneHandler* gm_GetAllGameSceneHandlers(void);
+/* 1A50A0 */ GameScene* gm_GetAllGameSceneHandlers(void);
 /* 1A50AC */ GameMode* gm_GetAllGameModes(void);
 /* 3DDC58 */ extern GameModeState gm_803DDC58_Scenes[];
 /* 3DE930 */ extern GameModeState gm_803DE930_Scenes[];

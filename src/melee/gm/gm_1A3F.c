@@ -130,7 +130,7 @@ static inline GameModeState* findState(GameModeState* state)
 
 void gm_801A4014(GameMode* mode)
 {
-    GameSceneHandler* scene;
+    GameScene* scene;
     GameModeState* state;
     GameModeStateMachine* sm;
     struct GameSceneInfo* info;
@@ -146,17 +146,16 @@ void gm_801A4014(GameMode* mode)
         state->on_enter(state);
     }
     info = &state->info;
-    scene = (GameSceneHandler*) ((uintptr_t) gm_FindGameSceneHandler(
-                                     info->scene_id) |
-                                 (dead = 0));
+    scene = (GameScene*) ((uintptr_t) gm_FindGameSceneHandler(info->scene_id) |
+                          (dead = 0));
     gm_801A4BD4();
     gm_801A4B88(info);
     if (scene->on_load != NULL) {
-        scene->on_load(info->enter_data);
+        scene->on_load(info->load_data);
     }
     gm_801A4D34(scene->on_frame, info);
     if (!gmMainLib_8046B0F0.resetting && scene->on_leave != NULL) {
-        scene->on_leave(info->exit_data);
+        scene->on_leave(info->leave_data);
     }
     if (!gmMainLib_8046B0F0.resetting) {
         if (state->on_exit != NULL) {
@@ -198,12 +197,12 @@ void gm_801A4014(GameMode* mode)
 
 void* gm_GetGameSceneLoadData(GameModeState* scene)
 {
-    return scene->info.enter_data;
+    return scene->info.load_data;
 }
 
 void* gm_GetGameSceneLeaveData(GameModeState* scene)
 {
-    return scene->info.exit_data;
+    return scene->info.leave_data;
 }
 
 void gm_SetSceneIndex(u8 arg0)

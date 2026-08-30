@@ -1,4 +1,4 @@
-/// @var GameSceneHandler::OnFrame
+/// @var GameScene::OnFrame
 /// Referenced from #gm_801A4014 when passed to #gm_801A4D34.
 
 /// @var GameState::game_mode_override
@@ -24,7 +24,7 @@
 
 /// @var GameModeState::GameSceneInfo::class_id
 /// The #GameSceneKind associated with this scene. This is the value matched by
-/// #gm_FindGameSceneHandler to look up the corresponding #GameSceneHandler
-/// supplying the #GameSceneHandler::OnLoad, #GameSceneHandler::OnLeave, and
-/// #GameSceneHandler::OnFrame callbacks invoked for this scene. Not to be
+/// #gm_FindGameSceneHandler to look up the corresponding #GameScene
+/// supplying the #GameScene::OnLoad, #GameScene::OnLeave, and
+/// #GameScene::OnFrame callbacks invoked for this scene. Not to be
 /// confused with #GameModeState::idx, which is the scene graph traversal index.

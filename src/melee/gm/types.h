@@ -69,8 +69,8 @@ struct GameModeState {
 
     struct GameSceneInfo {
         /* 0C */ u8 scene_id;
-        /* 10 */ void* enter_data; ///< data passed to GameModeState::on_enter
-        /* 14 */ void* exit_data;  ///< data passed to GameModeState::on_exit
+        /* 10 */ void* load_data;  ///< data passed to GameModeState::on_enter
+        /* 14 */ void* leave_data; ///< data passed to GameModeState::on_exit
     } info;
 };
 
@@ -87,7 +87,7 @@ struct GameMode {
 };
 
 /// @note Colloquially known as "Minor Scene"
-struct GameSceneHandler {
+struct GameScene {
     u8 class_id;
     void (*on_frame)(void);
     void (*on_load)(void*);

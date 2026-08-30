@@ -101,7 +101,7 @@ void gm_801BEE9C(GameModeState* arg0)
     s8* game_mode;
     u8 ckind;
 
-    game_mode = arg0->info.exit_data;
+    game_mode = arg0->info.leave_data;
     ckind = gm_80173224(gm_801BF030(), 1);
     if (gm_801BEFB0() == CKIND_GAMEWATCH && !gm_80164430(0x1B)) {
         gm_80164504(0x1B);

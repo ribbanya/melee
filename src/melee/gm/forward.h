@@ -137,7 +137,7 @@ typedef struct DebugGameOverData DebugGameOverData;
 typedef struct GameMode GameMode;
 typedef struct GameRules GameRules;
 typedef struct GameModeState GameModeState;
-typedef struct GameSceneHandler GameSceneHandler;
+typedef struct GameScene GameScene;
 typedef struct GameSceneInfo GameSceneInfo;
 typedef struct gm_8016A92C_arg0_t gm_8016A92C_arg0_t;
 typedef struct gm_8017DB6C_arg0_t gm_8017DB6C_arg0_t;

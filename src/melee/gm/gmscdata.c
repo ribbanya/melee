@@ -65,7 +65,7 @@
 #include "vi/vi1201v2.h"
 #include "vi/vi1202.h"
 
-static GameSceneHandler scenes[] = {
+static GameScene scenes[] = {
     {
         GS_TITLE,
         gmTitle_OnFrame,
@@ -754,7 +754,7 @@ static GameMode game_modes[] = {
     },
 };
 
-GameSceneHandler* gm_GetAllGameSceneHandlers(void)
+GameScene* gm_GetAllGameSceneHandlers(void)
 {
     return scenes;
 }
