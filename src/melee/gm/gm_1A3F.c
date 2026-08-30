@@ -56,7 +56,7 @@ void preloadState(GameModeState* state)
     PreloadedGameModeState* preloaded_state;
 
     lbDvd_80018CF4(state->preload);
-    switch (state->info.scene_id) {
+    switch (state->info.scene_kind) {
     case GS_STAFFROLL:
     case GS_RESULTS:
         HSD_SisLib_803A6048(0xC000);
@@ -146,8 +146,9 @@ void gm_801A4014(GameMode* mode)
         state->on_enter(state);
     }
     info = &state->info;
-    scene = (GameScene*) ((uintptr_t) gm_FindGameSceneHandler(info->scene_id) |
-                          (dead = 0));
+    scene =
+        (GameScene*) ((uintptr_t) gm_FindGameSceneHandler(info->scene_kind) |
+                      (dead = 0));
     gm_801A4BD4();
     gm_801A4B88(info);
     if (scene->on_enter != NULL) {

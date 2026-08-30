@@ -60,17 +60,17 @@ typedef struct un_804A1F48_t {
 ASSERT_SIZE(struct un_804A1F48_t, 0xC);
 
 struct GameModeState {
-    /* 00 */ u8 id;
-    /* 01 */ u8 preload; ///< ::lbDvdPreloadKind
-    /* 02 */ u16 flags;
+    /* +0 */ u8 id;      ///< locally defined by game mode
+    /* +1 */ u8 preload; ///< ::lbDvdPreloadKind
+    /* +2 */ u16 flags;
 
-    /* 04 */ void (*on_enter)(GameModeState*);
-    /* 08 */ void (*on_exit)(GameModeState*);
+    /* +4 */ void (*on_enter)(GameModeState*);
+    /* +8 */ void (*on_exit)(GameModeState*);
 
     struct GameSceneInfo {
-        /* 0C */ u8 scene_id;      ///< ::GameSceneKind
-        /* 10 */ void* enter_data; ///< data passed to GameScene::on_enter
-        /* 14 */ void* exit_data;  ///< data passed to GameScene::on_exit
+        /* +0 */ u8 scene_kind;    ///< ::GameSceneKind
+        /* +4 */ void* enter_data; ///< data passed to GameScene::on_enter
+        /* +8 */ void* exit_data;  ///< data passed to GameScene::on_exit
     } info;
 };
 
