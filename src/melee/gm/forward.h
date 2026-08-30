@@ -63,7 +63,7 @@ typedef enum GameSceneKind {
     /* +07 */ GS_DEBUG_MENU,
     /* +08 */ GS_CSS,
     /* +09 */ GS_SSS,
-    /* +0A */ GS_0xA, ///< Unused? Empty in the table
+    /* +0A */ GS_UNK10, ///< Unused? Empty in the table
     /* +0B */ GS_TOY_GALLERY,
     /* +0C */ GS_TOY_LOTTERY,
     /* +0D */ GS_TOY_COLLECTION,

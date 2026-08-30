@@ -53,7 +53,7 @@ void gm_801A6308(GameModeState* arg0)
     gm_SetPendingSceneIndex(0);
 }
 
-void gm_801A632C_OnEnter(void* arg0_)
+void gm_Scene_DebugMenu_OnEnter(void* arg0_)
 {
     struct {
         UNK_T unk0;

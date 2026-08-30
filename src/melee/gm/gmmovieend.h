@@ -5,7 +5,7 @@
 
 /* 1A6254 */ void gm_801A6254(GameModeState*);
 /* 1A6308 */ void gm_801A6308(GameModeState*);
-/* 1A632C */ void gm_801A632C_OnEnter(void*);
+/* 1A632C */ void gm_Scene_DebugMenu_OnEnter(void*);
 /* 1A637C */ void gm_801A637C_OnEnter(void*);
 /* 1A64A8 */ void gm_801A64A8_OnFrame(void);
 
