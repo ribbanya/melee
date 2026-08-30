@@ -47,6 +47,8 @@ typedef struct {
 ASSERT_SIZE(GameModeStateMachine, 0x14);
 
 /* 1A3F48 */ static void gm_801A3F48(GameModeState*);
+/* 1A4014 */ static void gm_801A4014(GameMode*);
+/* 1A43A0 */ static u8 runGameMode(u8 mode);
 /* 479D30 */ static GameModeStateMachine state_machine;
 
 void gm_801A3F48(GameModeState* state)
@@ -83,42 +85,42 @@ void gm_801A3F48(GameModeState* state)
 
 static inline u8 firstState(GameModeState* state, u8 sentinel)
 {
-    for (; state->idx != (u8) -1; state++) {
+    for (; state->id != (u8) -1; state++) {
         do {
-            if (state->idx == sentinel) {
+            if (state->id == sentinel) {
                 break;
             }
         } while (0);
-        return state->idx;
+        return state->id;
     }
     return 0;
 }
 
 static inline u8 nextState(GameModeState* states)
 {
-    GameModeState* it = states;
-    u8 current = state_machine.routing.curr_scene_idx;
+    GameModeState* next = states;
+    u8 curr_id = state_machine.routing.curr_scene_idx;
     int i;
-    u8 next_scene;
+    u8 next_id;
     GameModeState* cur = states;
 
-    for (i = 0; (next_scene = it->idx) != (u8) -1; i++) {
-        if (cur->idx > current) {
-            return states[i].idx;
+    for (i = 0; (next_id = next->id) != (u8) -1; i++) {
+        if (cur->id > curr_id) {
+            return states[i].id;
         }
         cur++;
-        it++;
+        next++;
     }
 
-    return firstState(states, next_scene);
+    return firstState(states, next_id);
 }
 
 static inline GameModeState* findState(GameModeState* state)
 {
     int i, j;
     for (i = state_machine.routing.curr_scene_idx; i < (u8) -1; i++) {
-        for (j = 0; state[j].idx != (u8) -1; j++) {
-            if (i == state[j].idx) {
+        for (j = 0; state[j].id != (u8) -1; j++) {
+            if (i == state[j].id) {
                 return &state[j];
             }
         }
@@ -137,7 +139,7 @@ void gm_801A4014(GameMode* mode)
 
     sm = &state_machine;
     state = findState(mode->states);
-    sm->routing.curr_scene_idx = state->idx;
+    sm->routing.curr_scene_idx = state->id;
 
     gm_801A3F48(state);
     if (state->on_enter != NULL) {
@@ -289,7 +291,7 @@ static inline GameMode* findMode(u8 idx)
     return NULL;
 }
 
-u8 gm_RunGameMode(u8 mode_kind)
+u8 runGameMode(u8 mode_kind)
 {
     u8 override;
     GameMode* mode;
@@ -357,7 +359,7 @@ void gm_801A4510(void)
     state_machine.routing.prev_mode = GM_COUNT;
 
     while (true) {
-        u8 next_mode = gm_RunGameMode(state_machine.routing.curr_mode);
+        u8 next_mode = runGameMode(state_machine.routing.curr_mode);
         if (gmMainLib_8046B0F0.resetting) {
             gmMainLib_8046B0F0.resetting = false;
         }

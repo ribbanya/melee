@@ -754,11 +754,11 @@ void gmClassic_801B3500(GameModeState* arg0)
     gm_803DDEC8Struct* new_var;
 
     sd = gm_GetGameSceneLoadData(arg0);
-    entry = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->idx)];
+    entry = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->id)];
     new_var = entry;
     ad = gm_GetAllStarData();
     enemy_count = 0;
-    ad->x0.x7 = arg0->idx;
+    ad->x0.x7 = arg0->id;
     sd->x0A = entry->x0 + 1;
     sd->x08 = ad->x0.slot;
 
@@ -817,7 +817,7 @@ void gmClassic_801B3500(GameModeState* arg0)
     sd->x13[0] = ad->x0.color;
 
     gm_8017DB88(ad->x0.xC.x24, entry->x1, ad->x0.cpu_level,
-                (u8) gm_8017BE84(arg0->idx), entry->xC->x02_u8, sd->x0D[0],
+                (u8) gm_8017BE84(arg0->id), entry->xC->x02_u8, sd->x0D[0],
                 (u8 (*)(s32, s32, u8))(Event) ad->x58,
                 (u8 (*)(s32, s32, u8))(Event) ad->x5C,
                 (u8 (*)(s32, s32, u8))(Event) ad->x60,
@@ -919,7 +919,7 @@ void gmClassic_801B3A34(GameModeState* arg0)
     PAD_STACK(8);
 
     temp_r30 = gm_GetGameSceneLoadData(arg0);
-    temp_r31 = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->idx)];
+    temp_r31 = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->id)];
     temp_r29 = gm_GetAllStarData();
     new_var = temp_r30;
     var_r27 = temp_r31->xC->x00;
@@ -933,9 +933,9 @@ void gmClassic_801B3A34(GameModeState* arg0)
     temp_r29->x0.x8 = flags;
     temp_r29->x0.x9 = temp_r31->x2;
     temp_r29->x0.xB = temp_r31->x8;
-    idx_val = (u16) gm_8017BE84(arg0->idx) - 1;
+    idx_val = (u16) gm_8017BE84(arg0->id) - 1;
     temp_r28 = gm_804908A0[idx_val];
-    sp8 = (u16) gm_8017BE84(arg0->idx);
+    sp8 = (u16) gm_8017BE84(arg0->id);
     spC = temp_r28;
     gm_8017CE34(new_var, (UnkAdventureData*) temp_r29, temp_r31->xC->x02,
                 temp_r31->x6, 1, 0, temp_r31->x4, var_r27, sp8, spC);
@@ -961,9 +961,9 @@ void gmClassic_801B3B40(GameModeState* arg0)
 
     mei = (MatchExitInfo*) gm_GetGameSceneLeaveData(arg0);
     asd = gm_GetAllStarData();
-    entry = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->idx)];
+    entry = &gmClassic_803DDEC8.x00[(u8) gm_8017BE84(arg0->id)];
     exit_result = mei->x8;
-    id = arg0->idx;
+    id = arg0->id;
     idx = ((u16) gm_8017BE84(id)) - 1;
     if (exit_result != 0) {
         gm_804908A0[idx] = 2;

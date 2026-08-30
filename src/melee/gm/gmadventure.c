@@ -1210,10 +1210,10 @@ void gm_801B3F40(GameModeState* arg0)
 
     temp_ret = 0;
     temp_r30 = gm_GetGameSceneLoadData(arg0);
-    temp_r31 = gm_8017E4C4(arg0->idx);
+    temp_r31 = gm_8017E4C4(arg0->id);
     temp_r3 = gm_GetAdventureData();
-    temp_r3->x0.x7 = arg0->idx;
-    temp_r30->x1 = gm_8017BE84(arg0->idx);
+    temp_r3->x0.x7 = arg0->id;
+    temp_r30->x1 = gm_8017BE84(arg0->id);
     temp_r30->x2 = temp_r31->x6;
     temp_r30->x0 = temp_r3->x0.slot;
     temp_ret |= lbAudioAx_80026E84(temp_r3->x0.ckind);
@@ -1249,7 +1249,7 @@ void gm_801B4064(GameModeState* arg0)
     PAD_STACK(8);
 
     temp_r28 = gm_GetGameSceneLoadData(arg0);
-    temp_r31 = gm_8017E4C4(arg0->idx);
+    temp_r31 = gm_8017E4C4(arg0->id);
     temp_r27 = gm_GetAdventureData();
     if (temp_r31->x4 != 0) {
         var_r30 = 1;
@@ -1262,7 +1262,7 @@ void gm_801B4064(GameModeState* arg0)
     temp_r27->x0.x9 = 0;
     temp_r27->x0.xB = temp_r31->x8;
     temp_r27->x0.xA = temp_r31->x9;
-    tmp = gm_80490910[getIndex(arg0->idx)];
+    tmp = gm_80490910[getIndex(arg0->id)];
 
     gm_8017CE34(temp_r28, temp_r27, temp_r31->xA, temp_r31->x4, var_r30,
                 var_r29, temp_r31->x2, temp_r31->x6, gm_8017E48C(arg0), tmp);
@@ -1276,9 +1276,9 @@ void gm_801B4170(GameModeState* arg0)
 {
     MatchExitInfo* temp_r28 = gm_GetGameSceneLeaveData(arg0);
     UnkAdventureData* temp_r31 = gm_GetAdventureData();
-    setValUnk(arg0->idx, temp_r28->x8);
+    setValUnk(arg0->id, temp_r28->x8);
     if (gm_8017D7AC(temp_r28, &temp_r31->x0, 0x69) &&
-        gm_8017E4C4(arg0->idx)[1].x0 == 0xFF)
+        gm_8017E4C4(arg0->id)[1].x0 == 0xFF)
     {
         gm_8017CBAC(temp_r31, gmMainLib_8015CDD4(), 0x16);
     }
@@ -1353,7 +1353,7 @@ void gm_801B44A0(GameModeState* scene)
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
 
-    setValUnk(scene->idx, temp_r30->x8);
+    setValUnk(scene->id, temp_r30->x8);
 
     if (gm_8017D7AC(temp_r30, &temp_r29->x0, 0x69)) {
         /**
@@ -1401,7 +1401,7 @@ void gm_801B4684(GameModeState* scene)
     MatchExitInfo* temp_r29 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r31 = gm_GetAdventureData();
 
-    setValUnk(scene->idx, temp_r29->x8);
+    setValUnk(scene->id, temp_r29->x8);
 
     if (gm_8017D7AC(temp_r29, &temp_r31->x0, 0x69)) {
         /// Unlock conditions for Luigi (match completed in under 1 minute)
@@ -1453,10 +1453,10 @@ static inline void gm_801B4860_inline1(GameModeState* scene)
     MatchExitInfo* exit_info = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* adv_data = gm_GetAdventureData();
 
-    setValUnk(scene->idx, exit_info->x8);
+    setValUnk(scene->id, exit_info->x8);
 
     if (gm_8017D7AC(exit_info, &adv_data->x0, 0x69) &&
-        gm_8017E4C4(scene->idx)[1].x0 == 0xFF)
+        gm_8017E4C4(scene->id)[1].x0 == 0xFF)
     {
         gm_8017CBAC(adv_data, gmMainLib_8015CDD4(), 0x16);
     }
@@ -1471,7 +1471,7 @@ void gm_801B4860(GameModeState* scene)
 static void gm_8016A22C_inline(GameModeState* arg0, UnkAdventureData* temp_r29)
 {
     u8 count = gm_8017E48C(arg0);
-    struct gm_803DE650_t* temp_r25_2 = gm_8017E4C4(arg0->idx);
+    struct gm_803DE650_t* temp_r25_2 = gm_8017E4C4(arg0->id);
     gm_8016A22C(temp_r25_2->xA[0], temp_r25_2->xA[1], temp_r25_2->xA[2],
                 temp_r25_2->xD, temp_r25_2->xE, temp_r25_2->xF, 1, 0, 1,
                 temp_r29->x0.ckind, temp_r29->x0.color,
@@ -1507,7 +1507,7 @@ void gm_801B4974(GameModeState* arg0)
     }
     temp_r25->x0 = var_r4;
     temp_r25->x1 = temp_r24->color;
-    temp_r30 = gm_8017E4C4(arg0->idx);
+    temp_r30 = gm_8017E4C4(arg0->id);
     temp_r24_2 = gm_80169520();
     temp_r31 = gm_80169540();
 
@@ -1540,7 +1540,7 @@ void gm_801B4C5C(GameModeState* scene)
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
 
-    setValUnk(scene->idx, temp_r30->x8);
+    setValUnk(scene->id, temp_r30->x8);
 
     /// If the player took longer than 30 seconds, skip the Giant Kirby battle.
     if (gm_8017D7AC(temp_r30, &temp_r29->x0, 0x69) &&
@@ -1554,7 +1554,7 @@ void gm_801B4C5C(GameModeState* scene)
 void gm_801B4D34(GameModeState* scene)
 {
     UnkAdventureData* temp_r30 = gm_GetAdventureData();
-    struct gm_803DE650_t* temp_r31 = gm_8017E4C4(scene->idx);
+    struct gm_803DE650_t* temp_r31 = gm_8017E4C4(scene->id);
 
     /**
      * If Falco is unlocked,
@@ -1626,7 +1626,7 @@ void gm_801B4FCC(GameModeState* scene)
 {
     MatchExitInfo* temp_r30 = gm_GetGameSceneLeaveData(scene);
     UnkAdventureData* temp_r29 = gm_GetAdventureData();
-    setValUnk(scene->idx, temp_r30->x8);
+    setValUnk(scene->id, temp_r30->x8);
     gm_8017D7AC(temp_r30, &temp_r29->x0, 0x69);
 }
 
@@ -1648,7 +1648,7 @@ void gm_801B50C4(GameModeState* scene)
         temp_r3->x78 = 1;
     }
 
-    setValUnk(scene->idx, temp_r31->x8);
+    setValUnk(scene->id, temp_r31->x8);
 
     gm_8017D7AC(temp_r31, &temp_r30->x0, 0x69);
 }

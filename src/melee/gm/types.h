@@ -60,7 +60,7 @@ typedef struct un_804A1F48_t {
 ASSERT_SIZE(struct un_804A1F48_t, 0xC);
 
 struct GameModeState {
-    /* 00 */ u8 idx;
+    /* 00 */ u8 id;
     /* 01 */ u8 preload;
     /* 02 */ u16 flags;
 

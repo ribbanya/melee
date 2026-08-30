@@ -108,7 +108,8 @@ void gm_801A55EC_OnLoad(void)
 
 void gm_801A5614_OnUnload(void) {}
 
-void gm_801A5618(GameModeState* scene_data, VsModeData* vs_data, int match_type)
+void gm_801A5618(GameModeState* scene_data, VsModeData* vs_data,
+                 int match_type)
 {
     CSSData* css_data = gm_GetGameSceneLoadData(scene_data);
     css_data->match_type = match_type;
@@ -289,7 +290,7 @@ void gm_801A5F64(GameModeState* scene_data, VsModeData* vs_data, u8 next_scene)
 
     if (gm_801A52D0(match_end)) {
         gm_8016247C(gm_801688AC(match_end));
-        if (scene_data[1].idx != 0xFF) {
+        if (scene_data[1].id != 0xFF) {
             gm_GetVsPlayMatchTotal();
             unk_bool = false;
             idx = gm_801A5360(match_end);

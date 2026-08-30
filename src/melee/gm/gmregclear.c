@@ -1485,7 +1485,7 @@ u8 gm_8017E48C(GameModeState* scene)
 {
     u8 count = 0;
     int i;
-    for (i = 0; scene->idx != gm_803DE1B8_Scenes[i].idx; i++) {
+    for (i = 0; scene->id != gm_803DE1B8_Scenes[i].id; i++) {
         if (gm_803DE1B8_Scenes[i].info.scene_id == GS_VS) {
             count++;
         }

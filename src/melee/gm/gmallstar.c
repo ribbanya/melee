@@ -486,7 +486,7 @@ void gm_801B5624(GameModeState* arg0)
     base = (u8*) gm_803DE930_Scenes;
     data = gm_GetGameSceneLoadData(arg0);
     allstar = &gm_80473A18;
-    round = gm_8017BE84(arg0->idx);
+    round = gm_8017BE84(arg0->id);
 
     {
         u32 start = ((AllstarRoundInfo*) (base + 0x31C))[round].start;
@@ -505,14 +505,14 @@ void gm_801B5624(GameModeState* arg0)
     allstar->x0.xB = 4;
     allstar->x0.x8 = 0;
 
-    round = gm_8017BE84(arg0->idx);
+    round = gm_8017BE84(arg0->id);
     {
         gm_803DEBE8_t* opp = (gm_803DEBE8_t*) (base + 0x2B8) +
                              ((AllstarRoundInfo*) (base + 0x31C))[round].start;
         color = ((u8*) gm_80490940)[((u32) opp - (u32) (base + 0x2B8)) >> 2];
     }
 
-    round = gm_8017BE84(arg0->idx);
+    round = gm_8017BE84(arg0->id);
 
     gm_8017CE34(data, (UnkAdventureData*) allstar, chars, 0, 0, 0, 0,
                 (s32) opp_data->x2, (s32) round, (s32) color);
@@ -524,13 +524,13 @@ void gm_801B5624(GameModeState* arg0)
     data->rules.x14 = ((s32) allstar->x9C % 60) + 1;
     data->rules.x20 &= 0xFFFFFFFFFFFBFCFFULL;
 
-    if (arg0->idx == 0) {
+    if (arg0->id == 0) {
         data->players[0].xC_b1 = 1;
     } else {
         data->players[0].xC_b1 = 0;
     }
 
-    if (arg0->idx == 0x60) {
+    if (arg0->id == 0x60) {
         u8* cpu_level = &allstar->x0.cpu_level;
         f32 f31;
         f32 f30;
@@ -551,14 +551,14 @@ void gm_801B5624(GameModeState* arg0)
 
     data->players[0].x10 = allstar->x74;
     gm_8016F088(data);
-    allstar->x0.x7 = arg0->idx;
+    allstar->x0.x7 = arg0->id;
 }
 
 void gm_801B59AC(GameModeState* arg0)
 {
     u8* base = (u8*) gm_803DE930_Scenes;
     MatchExitInfo* exit = gm_GetGameSceneLeaveData(arg0);
-    u8 idx = arg0->idx;
+    u8 idx = arg0->id;
     s32 result = exit->x8;
     UnkAllstarData* data = &gm_80473A18;
     u16 round = gm_8017BE84(idx);
@@ -573,7 +573,7 @@ void gm_801B59AC(GameModeState* arg0)
     }
     data->x74 = exit->match_end.player_standings[0].percent;
     data->x9C += exit->match_end.frame_count;
-    if (gm_8017D7AC(exit, &data->x0, 0x69) != 0 && arg0->idx == 0x60) {
+    if (gm_8017D7AC(exit, &data->x0, 0x69) != 0 && arg0->id == 0x60) {
         gm_8017CBAC((UnkAdventureData*) data, gmMainLib_8015CDE0(), 0x17);
     }
 }
@@ -604,7 +604,7 @@ void gm_801B5ACC(GameModeState* arg0)
     allstar = &gm_80473A18;
     allstar->x0.x8 |= 0x80;
 
-    round = gm_8017BE84(arg0->idx);
+    round = gm_8017BE84(arg0->id);
     {
         gm_803DEBE8_t* opp =
             (gm_803DEBE8_t*) (base + 0x2B8) + gm_803DEC4C[round].start;
@@ -624,7 +624,7 @@ void gm_801B5ACC(GameModeState* arg0)
     data->players[0].xD_b2 = 1;
     data->rules.x7 = 9;
 
-    round = gm_8017BE84(arg0->idx);
+    round = gm_8017BE84(arg0->id);
 
     {
         AllstarRoundInfo* ri = &gm_803DEC4C[round];
