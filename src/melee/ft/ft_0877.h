@@ -45,7 +45,6 @@
 /* 3C57DC */ extern char ftMr_Init_DataName[];
 /* 3C595C */ extern char ftMr_Init_AnimDatFilename[];
 /* 3C5A28 */ extern Fighter_CostumeStrings ftMr_Init_CostumeStrings[];
-/* 459B88 */ extern struct ft_80459B88_t ft_80459B88;
 /* 45A1E0 */ extern HSD_Joint* ft_8045A1E0[6];
 
 #endif
