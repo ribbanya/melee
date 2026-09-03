@@ -15,7 +15,6 @@
 
 /* 4599F0 */ extern UnkCostumeStruct lbl_804599F0[5];
 /* 459B28 */ extern UnkCostumeStruct ft_80459B28[4];
-/* 459A98 */ extern UnkCostumeStruct ft_80459A98[6];
 /* 459CA0 */ extern UnkCostumeStruct ft_80459CA0[5];
 /* 459C10 */ extern UnkCostumeStruct ft_80459C10[6];
 /* 45A090 */ extern UnkCostumeStruct ft_8045A090[4];

@@ -139,7 +139,7 @@
 /* 3C0EC0 */ struct UnkCostumeList CostumeListsForeachCharacter[FTKIND_MAX] = {
     { lbl_804599F0, ARRAY_SIZE(lbl_804599F0) },             // Mario
     { ft_80459B28, ARRAY_SIZE(ft_80459B28) },               // Fox
-    { ft_80459A98, ARRAY_SIZE(ft_80459A98) },               // Captain
+    { ftCa_CostumeList, ARRAY_SIZE(ftCa_CostumeList) },               // Captain
     { ft_80459CA0, ARRAY_SIZE(ft_80459CA0) },               // Donkey
     { ft_80459C10, ARRAY_SIZE(ft_80459C10) },               // Kirby
     { ft_8045A090, ARRAY_SIZE(ft_8045A090) },               // Koopa
