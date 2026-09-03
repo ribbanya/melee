@@ -1386,9 +1386,6 @@ melee/ft/kinds/ftKirby/ftkirby.c:
 	.sdata      start:0x804D3D98 end:0x804D3DAE
 	.sdata2     start:0x804D9350 end:0x804D9364
 
-melee/ft/ft_459A.c:
-	.bss        start:0x80459CA0 end:0x8045A6C0
-
 melee/ft/kinds/ftKirby/ftkirbydata.c:
 	.data       start:0x803CA308 end:0x803CB48D
 
@@ -1513,7 +1510,11 @@ melee/ft/kinds/ftKirby/ftkirbyspecialgamewatch.c:
 melee/ft/kinds/ftDonkey/ftDk_Init.c:
 	.text       start:0x8010D740 end:0x8010DC80
 	.data       start:0x803CB838 end:0x803CC060
+	.bss        start:0x80459CA0 end:0x80459D18
 	.sdata2     start:0x804D95B0 end:0x804D95C8
+
+melee/ft/ft_459A.c:
+	.bss        start:0x80459D18 end:0x8045A6C0
 
 melee/ft/kinds/ftDonkey/ftDk_SpecialLw.c:
 	.text       start:0x8010DC80 end:0x8010E1C4
