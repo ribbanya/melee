@@ -138,38 +138,38 @@
 
 /* 3C0EC0 */ struct UnkCostumeList CostumeListsForeachCharacter[FTKIND_MAX] = {
     { lbl_804599F0, ARRAY_SIZE(lbl_804599F0) },             // Mario
-    { ft_80459B28, ARRAY_SIZE(ft_80459B28) },               // Fox
-    { ftCa_CostumeList, ARRAY_SIZE(ftCa_CostumeList) },               // Captain
-    { ft_80459CA0, ARRAY_SIZE(ft_80459CA0) },               // Donkey
-    { ft_80459C10, ARRAY_SIZE(ft_80459C10) },               // Kirby
-    { ft_8045A090, ARRAY_SIZE(ft_8045A090) },               // Koopa
+    { ftFx_CostumeList, ARRAY_SIZE(ftFx_CostumeList) },     // Fox
+    { ftCa_CostumeList, ARRAY_SIZE(ftCa_CostumeList) },     // Captain
+    { ftDk_CostumeList, ARRAY_SIZE(ftDk_CostumeList) },     // Donkey
+    { ftKb_CostumeList, ARRAY_SIZE(ftKb_CostumeList) },     // Kirby
+    { ftKp_CostumeList, ARRAY_SIZE(ftKp_CostumeList) },     // Koopa
     { ftLk_Init_803C82EC, ARRAY_SIZE(ftLk_Init_803C82EC) }, // Link
-    { ft_80459D18, ARRAY_SIZE(ft_80459D18) },               // Seak
-    { ft_80459D90, ARRAY_SIZE(ft_80459D90) },               // Ness
-    { ft_80459DF0, ARRAY_SIZE(ft_80459DF0) },               // Peach
-    { ft_80459E68, ARRAY_SIZE(ft_80459E68) },               // Popo
-    { ft_80459EC8, ARRAY_SIZE(ft_80459EC8) },               // Nana
-    { ft_80459F28, ARRAY_SIZE(ft_80459F28) },               // Pikachu
-    { ft_80459F88, ARRAY_SIZE(ft_80459F88) },               // Samus
-    { ft_8045A000, ARRAY_SIZE(ft_8045A000) },               // Yoshi
-    { ft_8045A1F8, ARRAY_SIZE(ft_8045A1F8) },               // Purin
-    { ft_8045A2D0, ARRAY_SIZE(ft_8045A2D0) },               // Mewtwo
-    { ft_8045A270, ARRAY_SIZE(ft_8045A270) },               // Luigi
-    { ft_8045A0F0, ARRAY_SIZE(ft_8045A0F0) },               // Mars
-    { ft_8045A168, ARRAY_SIZE(ft_8045A168) },               // Zelda
-    { ft_8045A330, ARRAY_SIZE(ft_8045A330) },               // CLink
-    { ft_8045A3A8, ARRAY_SIZE(ft_8045A3A8) },               // DrMario
-    { ft_8045A420, ARRAY_SIZE(ft_8045A420) },               // Falco
-    { ft_8045A480, ARRAY_SIZE(ft_8045A480) },               // Pichu
-    { ft_8045A4E0, ARRAY_SIZE(ft_8045A4E0) },               // GameWatch
-    { ft_8045A540, ARRAY_SIZE(ft_8045A540) },               // Ganon
-    { ft_8045A5B8, ARRAY_SIZE(ft_8045A5B8) },               // Emblem
-    { ft_8045A690, ARRAY_SIZE(ft_8045A690) },               // MasterH
-    { ft_8045A6A8, ARRAY_SIZE(ft_8045A6A8) },               // CrezyH
-    { ft_8045A630, ARRAY_SIZE(ft_8045A630) },               // Boy
-    { ft_8045A648, ARRAY_SIZE(ft_8045A648) },               // Girl
-    { ft_8045A660, ARRAY_SIZE(ft_8045A660) },               // GKoops
-    { ft_8045A678, ARRAY_SIZE(ft_8045A678) }                // Sandbag
+    { ftSk_CostumeList, ARRAY_SIZE(ftSk_CostumeList) },     // Seak
+    { ftNs_CostumeList, ARRAY_SIZE(ftNs_CostumeList) },     // Ness
+    { ftPe_CostumeList, ARRAY_SIZE(ftPe_CostumeList) },     // Peach
+    { ftPp_CostumeList, ARRAY_SIZE(ftPp_CostumeList) },     // Popo
+    { ftNn_CostumeList, ARRAY_SIZE(ftNn_CostumeList) },     // Nana
+    { ftPk_CostumeList, ARRAY_SIZE(ftPk_CostumeList) },     // Pikachu
+    { ftSs_CostumeList, ARRAY_SIZE(ftSs_CostumeList) },     // Samus
+    { ftYs_CostumeList, ARRAY_SIZE(ftYs_CostumeList) },     // Yoshi
+    { ftPr_CostumeList, ARRAY_SIZE(ftPr_CostumeList) },     // Purin
+    { ftMt_CostumeList, ARRAY_SIZE(ftMt_CostumeList) },     // Mewtwo
+    { ftLg_CostumeList, ARRAY_SIZE(ftLg_CostumeList) },     // Luigi
+    { ftMs_CostumeList, ARRAY_SIZE(ftMs_CostumeList) },     // Mars
+    { ftZd_CostumeList, ARRAY_SIZE(ftZd_CostumeList) },     // Zelda
+    { ftCl_CostumeList, ARRAY_SIZE(ftCl_CostumeList) },     // CLink
+    { ftDr_CostumeList, ARRAY_SIZE(ftDr_CostumeList) },     // DrMario
+    { ftFc_CostumeList, ARRAY_SIZE(ftFc_CostumeList) },     // Falco
+    { ftPc_CostumeList, ARRAY_SIZE(ftPc_CostumeList) },     // Pichu
+    { ftGw_CostumeList, ARRAY_SIZE(ftGw_CostumeList) },     // GameWatch
+    { ftGn_CostumeList, ARRAY_SIZE(ftGn_CostumeList) },     // Ganon
+    { ftFe_CostumeList, ARRAY_SIZE(ftFe_CostumeList) },     // Emblem
+    { ftMh_CostumeList, ARRAY_SIZE(ftMh_CostumeList) },     // MasterH
+    { ftCh_CostumeList, ARRAY_SIZE(ftCh_CostumeList) },     // CrezyH
+    { ftBo_CostumeList, ARRAY_SIZE(ftBo_CostumeList) },     // Boy
+    { ftGl_CostumeList, ARRAY_SIZE(ftGl_CostumeList) },     // Girl
+    { ftGk_CostumeList, ARRAY_SIZE(ftGk_CostumeList) },     // GKoops
+    { ftSb_CostumeList, ARRAY_SIZE(ftSb_CostumeList) }      // Sandbag
 };
 
 ftData_UnkCountStruct ftData_Table_Unk0[FTKIND_MAX] = {
