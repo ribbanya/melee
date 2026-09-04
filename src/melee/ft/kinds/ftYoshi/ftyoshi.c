@@ -32,6 +32,7 @@
 
 /// @todo Belongs in #ftYs_Guard.c?
 /* 3B75C0 */ Vec3 const ftYs_Unk1_803B75C0 = { 0 };
+/* 45A000 */ UnkCostumeStruct ftYs_CostumeList[6];
 
 MotionState ftYs_Init_MotionStateTable[ftYs_MS_SelfCount] = {
     {

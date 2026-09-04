@@ -20,4 +20,3 @@
 /* 45A168 */ UnkCostumeStruct ftZd_CostumeList[5];
 /* 45A0F0 */ UnkCostumeStruct ftMs_CostumeList[5];
 /* 45A090 */ UnkCostumeStruct ftKp_CostumeList[4];
-/* 45A000 */ UnkCostumeStruct ftYs_CostumeList[6];
