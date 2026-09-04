@@ -1632,9 +1632,6 @@ melee/ft/kinds/ftPopo/ftPp_Init.c:
 	.bss        start:0x80459E68 end:0x80459EC8
 	.sdata2     start:0x804D9830 end:0x804D9838
 
-melee/ft/ft_459A.c:
-	.bss        start:0x80459EC8 end:0x8045A6C0
-
 melee/ft/kinds/ftPopo/ftPp_SpecialN.c:
 	.text       start:0x8011F1F8 end:0x8011F68C
 	.sdata2     start:0x804D9838 end:0x804D9848
@@ -1656,6 +1653,7 @@ melee/ft/kinds/ftPopo/ftPp_SpecialLw.c:
 melee/ft/kinds/ftNana/ftNn_Init.c:
 	.text       start:0x80122EDC end:0x801230D0
 	.data       start:0x803CD838 end:0x803CDD5C
+	.bss        start:0x80459EC8 end:0x80459F28
 	.sdata2     start:0x804D9898 end:0x804D98A0
 
 melee/ft/kinds/ftNana/ftNn_SpecialHi.c:
@@ -1670,6 +1668,7 @@ melee/ft/kinds/ftNana/ftNn_SpecialS.c:
 melee/ft/kinds/ftPikachu/ftPk_Init.c:
 	.text       start:0x801243AC end:0x80124830
 	.data       start:0x803CDD78 end:0x803CE2D0
+	.bss        start:0x80459F28 end:0x80459F88
 	.sdata2     start:0x804D98F0 end:0x804D9900
 
 melee/ft/kinds/ftPikachu/ftPk_SpecialN.c:
@@ -1692,8 +1691,12 @@ melee/ft/kinds/ftPikachu/ftPk_SpecialLw.c:
 melee/ft/kinds/ftSamus/ftSs_Init.c:
 	.text       start:0x8012832C end:0x80128944
 	.data       start:0x803CE2D0 end:0x803CE6B8
+	.bss        start:0x80459F88 end:0x8045A000
 	.sdata      start:0x804D3E30 end:0x804D3E40
 	.sdata2     start:0x804D9988 end:0x804D9998
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A000 end:0x8045A6C0
 
 melee/ft/kinds/ftSamus/ftSs_SpecialLw_0.c:
 	.text       start:0x80128944 end:0x801291F0

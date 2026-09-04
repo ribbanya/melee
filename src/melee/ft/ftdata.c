@@ -148,7 +148,7 @@
     { ftNs_CostumeList, ARRAY_SIZE(ftNs_CostumeList) },     // Ness
     { ftPe_CostumeList, ARRAY_SIZE(ftPe_CostumeList) },     // Peach
     { ftPp_CostumeList, ARRAY_SIZE(ftPp_CostumeList) },     // Popo
-    { ftNn_CostumeList, ARRAY_SIZE(ftNn_CostumeList) },     // Nana
+    { ftNn_CostumeList, FTNANA_COSTUME_COUNT },             // Nana
     { ftPk_CostumeList, ARRAY_SIZE(ftPk_CostumeList) },     // Pikachu
     { ftSs_CostumeList, ARRAY_SIZE(ftSs_CostumeList) },     // Samus
     { ftYs_CostumeList, ARRAY_SIZE(ftYs_CostumeList) },     // Yoshi

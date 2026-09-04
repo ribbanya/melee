@@ -15,9 +15,6 @@
 
 /* 4599F0 */ extern UnkCostumeStruct lbl_804599F0[5];
 /* 45A090 */ extern UnkCostumeStruct ftKp_CostumeList[4];
-/* 459EC8 */ extern UnkCostumeStruct ftNn_CostumeList[4];
-/* 459F28 */ extern UnkCostumeStruct ftPk_CostumeList[4];
-/* 459F88 */ extern UnkCostumeStruct ftSs_CostumeList[5];
 /* 45A000 */ extern UnkCostumeStruct ftYs_CostumeList[6];
 /* 45A1F8 */ extern UnkCostumeStruct ftPr_CostumeList[5];
 /* 45A2D0 */ extern UnkCostumeStruct ftMt_CostumeList[4];
