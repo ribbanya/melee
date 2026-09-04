@@ -1559,9 +1559,6 @@ melee/ft/kinds/ftNess/ftNs_Init.c:
 	.bss        start:0x80459D90 end:0x80459DF0
 	.sdata2     start:0x804D96B0 end:0x804D96B8
 
-melee/ft/ft_459A.c:
-	.bss        start:0x80459DF0 end:0x8045A6C0
-
 melee/ft/kinds/ftNess/ftNs_AttackS4.c:
 	.text       start:0x80114BF4 end:0x80114EB8
 	.sdata2     start:0x804D96B8 end:0x804D96C0
@@ -1594,7 +1591,11 @@ melee/ft/kinds/ftNess/ftNs_SpecialLw.c:
 melee/ft/kinds/ftPeach/ftPe_Init.c:
 	.text       start:0x8011B51C end:0x8011BA20
 	.data       start:0x803CCCB8 end:0x803CD2D0
+	.bss        start:0x80459DF0 end:0x80459E68
 	.sdata2     start:0x804D97B8 end:0x804D97C0
+
+melee/ft/ft_459A.c:
+	.bss        start:0x80459E68 end:0x8045A6C0
 
 melee/ft/kinds/ftPeach/ftPe_Float.c:
 	.text       start:0x8011BA20 end:0x8011BD6C
