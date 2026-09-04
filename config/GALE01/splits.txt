@@ -1535,9 +1535,6 @@ melee/ft/kinds/ftSeak/ftSk_Init.c:
 	.bss        start:0x80459D18 end:0x80459D90
 	.sdata2     start:0x804D95F0 end:0x804D95F8
 
-melee/ft/ft_459A.c:
-	.bss        start:0x80459D90 end:0x8045A6C0
-
 melee/ft/kinds/ftSeak/ftSk_SpecialS.c:
 	.text       start:0x80110490 end:0x80111FBC
 	.rodata     start:0x803B7588 end:0x803B7598
@@ -1559,7 +1556,11 @@ melee/ft/kinds/ftSeak/ftSk_SpecialLw.c:
 melee/ft/kinds/ftNess/ftNs_Init.c:
 	.text       start:0x801147C0 end:0x80114BF4
 	.data       start:0x803CC650 end:0x803CCCB8
+	.bss        start:0x80459D90 end:0x80459DF0
 	.sdata2     start:0x804D96B0 end:0x804D96B8
+
+melee/ft/ft_459A.c:
+	.bss        start:0x80459DF0 end:0x8045A6C0
 
 melee/ft/kinds/ftNess/ftNs_AttackS4.c:
 	.text       start:0x80114BF4 end:0x80114EB8
