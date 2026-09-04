@@ -24,4 +24,3 @@
 /* 459F88 */ UnkCostumeStruct ftSs_CostumeList[5];
 /* 459F28 */ UnkCostumeStruct ftPk_CostumeList[4];
 /* 459EC8 */ UnkCostumeStruct ftNn_CostumeList[4];
-/* 459E68 */ UnkCostumeStruct ftPp_CostumeList[4];

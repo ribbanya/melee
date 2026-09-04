@@ -1594,9 +1594,6 @@ melee/ft/kinds/ftPeach/ftPe_Init.c:
 	.bss        start:0x80459DF0 end:0x80459E68
 	.sdata2     start:0x804D97B8 end:0x804D97C0
 
-melee/ft/ft_459A.c:
-	.bss        start:0x80459E68 end:0x8045A6C0
-
 melee/ft/kinds/ftPeach/ftPe_Float.c:
 	.text       start:0x8011BA20 end:0x8011BD6C
 	.sdata2     start:0x804D97C0 end:0x804D97C8
@@ -1632,7 +1629,11 @@ melee/ft/kinds/ftPeach/ftPe_SpecialN.c:
 melee/ft/kinds/ftPopo/ftPp_Init.c:
 	.text       start:0x8011ED38 end:0x8011F1F8
 	.data       start:0x803CD2D0 end:0x803CD7F8
+	.bss        start:0x80459E68 end:0x80459EC8
 	.sdata2     start:0x804D9830 end:0x804D9838
+
+melee/ft/ft_459A.c:
+	.bss        start:0x80459EC8 end:0x8045A6C0
 
 melee/ft/kinds/ftPopo/ftPp_SpecialN.c:
 	.text       start:0x8011F1F8 end:0x8011F68C
