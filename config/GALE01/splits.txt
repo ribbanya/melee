@@ -1798,9 +1798,6 @@ melee/ft/kinds/ftZelda/ftZd_Init.c:
 	.bss        start:0x8045A168 end:0x8045A1E0
 	.sdata2     start:0x804D9B90 end:0x804D9B98
 
-melee/ft/ft_459A.c:
-	.bss        start:0x8045A1E0 end:0x8045A6C0
-
 melee/ft/kinds/ftZelda/ftZd_SpecialHi.c:
 	.text       start:0x801396AC end:0x8013A830
 	.sdata2     start:0x804D9B98 end:0x804D9BE0
@@ -1820,8 +1817,12 @@ melee/ft/kinds/ftZelda/ftZd_SpecialS.c:
 melee/ft/kinds/ftPurin/ftPr_Init.c:
 	.text       start:0x8013C2F8 end:0x8013C9C8
 	.data       start:0x803CFEF0 end:0x803D0628
+	.bss        start:0x8045A1E0 end:0x8045A270
 	.sdata      start:0x804D3E80 end:0x804D3E94
 	.sdata2     start:0x804D9C08 end:0x804D9C10
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A270 end:0x8045A6C0
 
 melee/ft/kinds/ftPurin/ftPr_SpecialHi.c:
 	.text       start:0x8013C9C8 end:0x8013CE8C

@@ -26109,6 +26109,7 @@ ftKp_CostumeList = .bss:0x8045A090; // type:object size:0x60 scope:global
 ftMs_CostumeList = .bss:0x8045A0F0; // type:object size:0x78 scope:global
 ftZd_CostumeList = .bss:0x8045A168; // type:object size:0x78 scope:global
 ft_8045A1E0 = .bss:0x8045A1E0; // type:object size:0x18 scope:global data:4byte
+...bss.0 = .bss:0x8045A1E0; // type:label scope:local
 ftPr_CostumeList = .bss:0x8045A1F8; // type:object size:0x78 scope:global
 ftLg_CostumeList = .bss:0x8045A270; // type:object size:0x60 scope:global
 ftMt_CostumeList = .bss:0x8045A2D0; // type:object size:0x60 scope:global
