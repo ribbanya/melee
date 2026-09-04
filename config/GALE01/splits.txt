@@ -1844,9 +1844,6 @@ melee/ft/kinds/ftLuigi/ftLg_Init.c:
 	.bss        start:0x8045A270 end:0x8045A2D0
 	.sdata2     start:0x804D9C98 end:0x804D9CA0
 
-melee/ft/ft_459A.c:
-	.bss        start:0x8045A330 end:0x8045A6C0
-
 melee/ft/kinds/ftLuigi/ftLg_SpecialN.c:
 	.text       start:0x8014267C end:0x80142A24
 	.sdata2     start:0x804D9CA0 end:0x804D9CA8
@@ -1866,8 +1863,8 @@ melee/ft/kinds/ftLuigi/ftLg_SpecialLw.c:
 
 melee/ft/kinds/ftMewtwo/ftMt_Init.c:
 	.text       start:0x80144DFC end:0x801450A0
-	.bss        start:0x8045A2D0 end:0x8045A330
 	.data       start:0x803D0B00 end:0x803D0F90
+	.bss        start:0x8045A2D0 end:0x8045A330
 	.sdata2     start:0x804D9D00 end:0x804D9D18
 
 melee/ft/kinds/ftMewtwo/ftMt_SpecialHi.c:
@@ -1891,7 +1888,11 @@ melee/ft/kinds/ftMewtwo/ftMt_SpecialN.c:
 melee/ft/kinds/ftCLink/ftCl_Init.c:
 	.text       start:0x80148C64 end:0x80149354
 	.data       start:0x803D0FA0 end:0x803D1498
+	.bss        start:0x8045A330 end:0x8045A3A8
 	.sdata2     start:0x804D9DA0 end:0x804D9DA8
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A3A8 end:0x8045A6C0
 
 melee/ft/kinds/ftCLink/ftCl_AppealS.c:
 	.text       start:0x80149354 end:0x8014949C

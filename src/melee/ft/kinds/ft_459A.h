@@ -14,7 +14,6 @@
 #include "ft/types.h"
 
 /* 4599F0 */ extern UnkCostumeStruct lbl_804599F0[5];
-/* 45A330 */ extern UnkCostumeStruct ftCl_CostumeList[5];
 /* 45A3A8 */ extern UnkCostumeStruct ftDr_CostumeList[5];
 /* 45A420 */ extern UnkCostumeStruct ftFc_CostumeList[4];
 /* 45A480 */ extern UnkCostumeStruct ftPc_CostumeList[4];
