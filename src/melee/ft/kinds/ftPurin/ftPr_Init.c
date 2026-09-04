@@ -33,8 +33,9 @@
 
 /* 45A1F8 */ UnkCostumeStruct ftPr_CostumeList[5];
 
-/// @todo Should be size 5, one for each costume
-/* 45A1E0 */ static HSD_Joint* ft_8045A1E0[6];
+/// @todo Should be size 5, one for each costume,
+/// so there is a split at 0x8045A1F8
+/* 45A1E0 */ static HSD_Joint* ft_8045A1E0[5];
 
 MotionState ftPr_Init_MotionStateTable[ftPr_MS_SelfCount] = {
     {
