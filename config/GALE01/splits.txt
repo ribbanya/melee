@@ -1891,9 +1891,6 @@ melee/ft/kinds/ftCLink/ftCl_Init.c:
 	.bss        start:0x8045A330 end:0x8045A3A8
 	.sdata2     start:0x804D9DA0 end:0x804D9DA8
 
-melee/ft/ft_459A.c:
-	.bss        start:0x8045A3A8 end:0x8045A6C0
-
 melee/ft/kinds/ftCLink/ftCl_AppealS.c:
 	.text       start:0x80149354 end:0x8014949C
 
@@ -1908,7 +1905,11 @@ melee/ft/kinds/ftDrMario/ftDr_AppealS.c:
 melee/ft/kinds/ftFalco/ftFc_Init.c:
 	.text       start:0x80149ACC end:0x80149E34
 	.data       start:0x803D1848 end:0x803D1EA8
+	.bss        start:0x8045A3A8 end:0x8045A480
 	.sdata2     start:0x804D9DB0 end:0x804D9DB8
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A480 end:0x8045A6C0
 
 melee/ft/kinds/ftPichu/ftPc_Init.c:
 	.text       start:0x80149E34 end:0x8014A250
