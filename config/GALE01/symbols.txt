@@ -21594,6 +21594,7 @@ ftSs_Init_DemoMotionFilenames = .data:0x803CE668; // type:object size:0x10 scope
 ftSs_Init_CostumeStrings = .data:0x803CE678; // type:object size:0x3C scope:global
 ftSs_Unk3_803CE6B8 = .data:0x803CE6B8; // type:object size:0x14 scope:global
 ftYs_Init_MotionStateTable = .data:0x803CE6D0; // type:object size:0x380 scope:global
+...data.0 = .data:0x803CE6D0; // type:label scope:local
 @242 = .data:0x803CEA50; // type:object size:0x1E scope:local data:string
 @243 = .data:0x803CEA70; // type:object size:0xA scope:local data:string
 @273 = .data:0x803CEA7C; // type:object size:0x1A scope:local data:string
