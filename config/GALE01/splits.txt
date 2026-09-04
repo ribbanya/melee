@@ -1821,9 +1821,6 @@ melee/ft/kinds/ftPurin/ftPr_Init.c:
 	.sdata      start:0x804D3E80 end:0x804D3E94
 	.sdata2     start:0x804D9C08 end:0x804D9C10
 
-melee/ft/ft_459A.c:
-	.bss        start:0x8045A270 end:0x8045A6C0
-
 melee/ft/kinds/ftPurin/ftPr_SpecialHi.c:
 	.text       start:0x8013C9C8 end:0x8013CE8C
 	.sdata2     start:0x804D9C10 end:0x804D9C1C
@@ -1844,7 +1841,11 @@ melee/ft/kinds/ftPurin/ftPr_SpecialN.c:
 melee/ft/kinds/ftLuigi/ftLg_Init.c:
 	.text       start:0x801422E8 end:0x8014267C
 	.data       start:0x803D0628 end:0x803D0AE8
+	.bss        start:0x8045A270 end:0x8045A2D0
 	.sdata2     start:0x804D9C98 end:0x804D9CA0
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A2D0 end:0x8045A6C0
 
 melee/ft/kinds/ftLuigi/ftLg_SpecialN.c:
 	.text       start:0x8014267C end:0x80142A24
