@@ -19,4 +19,3 @@
 /* 45A1E0 */ HSD_Joint* ft_8045A1E0[6]; ///< @todo size 5?
 /* 45A168 */ UnkCostumeStruct ftZd_CostumeList[5];
 /* 45A0F0 */ UnkCostumeStruct ftMs_CostumeList[5];
-/* 45A090 */ UnkCostumeStruct ftKp_CostumeList[4];

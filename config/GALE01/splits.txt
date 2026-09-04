@@ -1724,9 +1724,6 @@ melee/ft/kinds/ftYoshi/ftyoshi.c:
 	.sdata      start:0x804D3E40 end:0x804D3E58
 	.sdata2     start:0x804D9A18 end:0x804D9A28
 
-melee/ft/ft_459A.c:
-	.bss        start:0x8045A090 end:0x8045A6C0
-
 melee/ft/kinds/ftYoshi/ftYs_Guard.c:
 	.text       start:0x8012BDA0 end:0x8012CC6C
 	.sdata      start:0x804D3E58 end:0x804D3E68
@@ -1753,7 +1750,11 @@ melee/ft/kinds/ftYoshi/ftYs_SpecialS.c:
 melee/ft/kinds/ftKoopa/ftKp_Init.c:
 	.text       start:0x80132A0C end:0x80132EFC
 	.data       start:0x803CEDC0 end:0x803CF2A0
+	.bss        start:0x8045A090 end:0x8045A0F0
 	.sdata2     start:0x804D9AC8 end:0x804D9AD0
+
+melee/ft/ft_459A.c:
+	.bss        start:0x8045A0F0 end:0x8045A6C0
 
 melee/ft/kinds/ftKoopa/ftKp_SpecialS.c:
 	.text       start:0x80132EFC end:0x80134518
