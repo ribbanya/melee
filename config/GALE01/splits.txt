@@ -1845,7 +1845,7 @@ melee/ft/kinds/ftLuigi/ftLg_Init.c:
 	.sdata2     start:0x804D9C98 end:0x804D9CA0
 
 melee/ft/ft_459A.c:
-	.bss        start:0x8045A2D0 end:0x8045A6C0
+	.bss        start:0x8045A330 end:0x8045A6C0
 
 melee/ft/kinds/ftLuigi/ftLg_SpecialN.c:
 	.text       start:0x8014267C end:0x80142A24
@@ -1866,6 +1866,7 @@ melee/ft/kinds/ftLuigi/ftLg_SpecialLw.c:
 
 melee/ft/kinds/ftMewtwo/ftMt_Init.c:
 	.text       start:0x80144DFC end:0x801450A0
+	.bss        start:0x8045A2D0 end:0x8045A330
 	.data       start:0x803D0B00 end:0x803D0F90
 	.sdata2     start:0x804D9D00 end:0x804D9D18
 
