@@ -262,7 +262,7 @@ config.ldflags = [
     f"-warn {args.warn}",
 ]
 if args.debug:
-    config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
+    config.ldflags.append("-g")
 if args.map:
     config.ldflags.append("-mapunused")
     # config.ldflags.append("-listclosure") # For Wii linkers
@@ -308,8 +308,9 @@ cflags_base = [
 
 # Debug flags
 if args.debug:
-    # Or -sym dwarf-2 for Wii compilers
-    cflags_base.append("-DDEBUG=1")
+    # TODO fix dolphin debug build
+    # cflags_base.append("-DDEBUG=1")
+    pass
 else:
     cflags_base.append("-DNDEBUG=1")
 
