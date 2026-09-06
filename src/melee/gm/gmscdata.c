@@ -746,9 +746,9 @@ static GameMode modes[] = {
     {
         false,
         GM_REPLAY,
-        NULL,
-        NULL,
-        NULL,
+        Replay_Mode_OnLoad,
+        Replay_Mode_OnUnload,
+        Replay_Mode_OnInit,
         Replay_RecordStates,
     },
     {

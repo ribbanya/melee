@@ -1,6 +1,6 @@
-#include "melee/gm/forward.h"
-#include "melee/gm/gm_1601.h"
-#include "melee/gm/gm_1A3F.h"
+#include <dolphin/os.h>
+#include <melee/gm/gm_1601.h>
+#include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 
@@ -11,6 +11,18 @@ enum {
 };
 
 GameModeState Replay_RecordStates[] = {
+    {
+        1,
+        lbDvdPreload_2,
+        0,
+        NULL,
+        NULL,
+        {
+            GS_UNK10,
+            NULL,
+            NULL,
+        },
+    },
     {
         state_record_vs,
         lbDvdPreload_2,
@@ -25,6 +37,14 @@ GameModeState Replay_RecordStates[] = {
     },
     { GM_GAMEMODESTATE_TERMINATE },
 };
+
+void Replay_Mode_OnInit(void)
+{
+    OSReport("Welcome to %s!", __FILE__);
+}
+
+void Replay_Mode_OnLoad(void) {}
+void Replay_Mode_OnUnload(void) {}
 
 void onEnterRecordVs(GameModeState* state)
 {
