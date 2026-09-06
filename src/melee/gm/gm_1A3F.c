@@ -342,7 +342,7 @@ void gm_801A4510(void)
             modes[i].on_init();
         }
     }
-    state_machine.routing.prev_mode = GM_REPLAY;
+    state_machine.routing.curr_mode = GM_REPLAY;
     state_machine.routing.prev_mode = GM_COUNT;
 
     while (true) {
