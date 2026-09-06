@@ -285,7 +285,7 @@ int lbSnap_8001DC0C(u8* arg0)
     _p(x0)->x0 = 4;
     _p(x0)->x4 = 0x280;
     _p(x0)->x6 = 0x1E0;
-    _p(x0)->x10 = gm_8016B004();
+    _p(x0)->stkind = gm_GetStKind();
     it_8026C47C(&_p(x0)->x14);
     _p(x0)->x34 = ft_80087C1C();
     _p(x0)->x8 = 3;
