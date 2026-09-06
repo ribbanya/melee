@@ -2,6 +2,8 @@
 
 #include <melee/lb/forward.h>
 
+#include <abort_exit.h> // IWYU pragma: keep
+
 #include "forward.h"
 #include "gm_1A3F.h"
 #include "gm_unsplit.h"
@@ -9,12 +11,15 @@
 #include "gmresult.h"
 #include "gmvsmelee.h"
 #include "melee/ft/forward.h"
+#include "melee/lb/lbcardnew.h"
 #include "types.h"
+#include <dolphin/os.h>
 #include <melee/if/if_2FD9.h>
 #include <melee/lb/types.h>
 #include <melee/mn/types.h>
 
 /* 1B13B8 */ static void onEnterDebugVs(GameModeState*);
+/* 1B13B8 */ static void onExitDebugVs(GameModeState*);
 /* 1B14A0 */ static void onEnterCss(GameModeState*);
 /* 1B14DC */ static void onExitCss(GameModeState*);
 /* 1B1514 */ static void onEnterSss(GameModeState*);
@@ -137,23 +142,11 @@ GameModeState gm_Mode_DebugVs_States[] = {
         lbDvdPreload_2,
         0,
         onEnterDebugVs,
-        NULL,
+        onExitDebugVs,
         {
             GS_VS,
             &gmVsMelee_StartData,
             &gmVsMelee_VsExitInfo,
-        },
-    },
-    {
-        state_debug_results,
-        lbDvdPreload_2,
-        0,
-        onEnterResults,
-        NULL,
-        {
-            GS_RESULTS,
-            &gmVsMelee_ResultsEnterData,
-            NULL,
         },
     },
     { GM_GAMEMODESTATE_TERMINATE },
@@ -170,7 +163,7 @@ void onEnterDebugVs(GameModeState* state)
     start->rules.xC = -1;
     start->rules.match_kind = MatchKind_Stock;
     start->rules.x0_6 = false;
-    start->rules.game_speed = 1.0f;
+    start->rules.game_speed = 10.0f;
     start->rules.is_teams = false;
     start->rules.friendly_fire = true;
     start->rules.on_unpause_override = gm_80165290;
@@ -193,6 +186,15 @@ void onEnterDebugVs(GameModeState* state)
     }
 
     gm_LoadAnnouncer();
+    gm_SetPendingGameMode(GM_MENU);
+    gm_SetNewGameModePending();
+}
+
+void onExitDebugVs(GameModeState* state)
+{
+    OSReport("bye");
+    lb_8001B760(0xB);
+    // exit(0);
 }
 
 void onEnterCss(GameModeState* state)
