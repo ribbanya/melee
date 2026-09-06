@@ -23,7 +23,7 @@ struct Unk80433380_0 {
     u16 x6;
     u8 x8;
     s32 xC;
-    u16 x10;
+    u16 stkind;
     struct it_8026C47C_arg0_t x14;
     s32 x34;
     char x38[4];
