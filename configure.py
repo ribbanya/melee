@@ -293,7 +293,7 @@ cflags_base = [
     "-align powerpc",
     "-nosyspath",
     "-fp_contract on",
-    "-O4,p",
+    f"-O{0 if args.debug else 4},p",
     "-multibyte",
     "-enum int",
     "-nodefaults",
@@ -306,6 +306,12 @@ cflags_base = [
     f"-DVERSION_{config.version}",
 ]
 
+# Debug flags
+if args.debug:
+    # Or -sym dwarf-2 for Wii compilers
+    cflags_base.append("-DDEBUG=1")
+else:
+    cflags_base.append("-DNDEBUG=1")
 
 if args.sym in {"on", "off"}:
     cflags_base.append(f"-sym {args.sym}")
