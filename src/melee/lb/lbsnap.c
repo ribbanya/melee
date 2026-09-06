@@ -273,7 +273,7 @@ void lbSnap_8001DA5C(const u8* src)
 #pragma pop
 #endif
 
-int lbSnap_8001DC0C(u8* arg0)
+int lbSnap_8001DC0C(u8* image)
 {
     OSTime ticks;
     u32 seconds;
@@ -290,12 +290,12 @@ int lbSnap_8001DC0C(u8* arg0)
     _p(x0)->x34 = ft_80087C1C();
     _p(x0)->x8 = 3;
     hsd_803B5C2C(_p(x0)->x8);
-    _p(x0)->xC = hsd_803B51C8((int) arg0, _p(x0)->width, _p(x0)->height,
+    _p(x0)->xC = hsd_803B51C8((intptr_t) image, _p(x0)->width, _p(x0)->height,
                               _p(x0)->x38, 256000);
     if (_p(x0)->xC != 0) {
         ret = 1;
     }
-    lbSnap_8001DA5C(arg0);
+    lbSnap_8001DA5C(image);
     ticks = OSGetTime();
     seconds = OSTicksToSeconds(ticks);
     OSTicksToCalendarTime(OSSecondsToTicks((u64) seconds), &time);
