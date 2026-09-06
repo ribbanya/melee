@@ -1,19 +1,19 @@
+#include <placeholder.h>
+#include <stdio.h>
+
 #include "lbarchive.h"
 #include "lbcardnew.h"
 #include "lblanguage.h"
 #include "lbsnap.static.h"
-#include <melee/it/itspawn.h>
-
-#define _p(x) (lbSnap_80433380.x)
-#include <placeholder.h>
-#include <stdio.h>
-
 #include <dolphin/card.h>
 #include <dolphin/os.h>
 #include <melee/ft/ft_0877.h>
 #include <melee/gm/gm_unsplit.h>
+#include <melee/it/itspawn.h>
 #include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/hsd_3B34.h>
+
+#define _p(x) (lbSnap_80433380.x)
 
 void lbSnap_8001D2BC(void)
 {
@@ -273,7 +273,7 @@ void lbSnap_8001DA5C(const u8* src)
 #pragma pop
 #endif
 
-int lbSnap_8001DC0C(u8* arg0)
+int lbSnap_8001DC0C(u8* image)
 {
     OSTime ticks;
     u32 seconds;
@@ -283,31 +283,31 @@ int lbSnap_8001DC0C(u8* arg0)
     int ret = 0;
 
     _p(x0)->x0 = 4;
-    _p(x0)->x4 = 0x280;
-    _p(x0)->x6 = 0x1E0;
-    _p(x0)->x10 = gm_8016B004();
+    _p(x0)->width = 640;
+    _p(x0)->height = 480;
+    _p(x0)->stkind = gm_GetStKind();
     it_8026C47C(&_p(x0)->x14);
     _p(x0)->x34 = ft_80087C1C();
     _p(x0)->x8 = 3;
     hsd_803B5C2C(_p(x0)->x8);
-    _p(x0)->xC =
-        hsd_803B51C8((int) arg0, _p(x0)->x4, _p(x0)->x6, _p(x0)->x38, 256000);
+    _p(x0)->xC = hsd_803B51C8((intptr_t) image, _p(x0)->width, _p(x0)->height,
+                              _p(x0)->x38, 256000);
     if (_p(x0)->xC != 0) {
         ret = 1;
     }
-    lbSnap_8001DA5C(arg0);
+    lbSnap_8001DA5C(image);
     ticks = OSGetTime();
     seconds = OSTicksToSeconds(ticks);
     OSTicksToCalendarTime(OSSecondsToTicks((u64) seconds), &time);
-    for (i = 0; i < sizeof(_p(x4_string)); i++) {
-        _p(x4_string)[i] = 0;
+    for (i = 0; i < sizeof(_p(filename)); i++) {
+        _p(filename)[i] = 0;
     }
     if (lbLang_IsSettingJP()) {
         text = "大乱闘スマッシュブラザーズＤＸ  写真データ";
     } else {
         text = "Super Smash Bros. Melee         Snapshot";
     }
-    sprintf(_p(x4_string), "%s %02d/%02d %02d:%02d:%02d", text, time.mon + 1,
+    sprintf(_p(filename), "%s %02d/%02d %02d:%02d:%02d", text, time.mon + 1,
             time.mday, time.hour, time.min, time.sec);
     return ret;
 }
@@ -317,7 +317,7 @@ int lbSnap_8001DE8C(void* arg0)
     int ret = 0;
     if (_p(x0)->x0 == 4) {
         int temp = hsd_803B6BE4(_p(x0)->x38, _p(x0)->xC, arg0);
-        DCFlushRange(arg0, _p(x0)->x4 * _p(x0)->x6 * 2);
+        DCFlushRange(arg0, _p(x0)->width * _p(x0)->height * 2);
         if (temp != 0) {
             ret = 1;
         }
@@ -364,7 +364,7 @@ int lbSnap_8001DF6C(int chan)
         lbSnap_8001D4A4(chan_arg, text);
         desc->entries[0].file_size = lbSnap_GetSaveDataOffset(_p(x0));
         desc->entries[0].data = (u8*) _p(x0);
-        ret = lb_8001BB48(chan, text, desc->entries, desc, _p(x4_string),
+        ret = lb_8001BB48(chan, text, desc->entries, desc, _p(filename),
                           _p(x44_LbMcSnap_MemSnapIconData)[0].offset,
                           _p(x44_LbMcSnap_MemSnapIconData)[1].size, 0);
     }
@@ -385,7 +385,7 @@ int lbSnap_8001E058(int chan, int index)
     if (ret == 0) {
         lbSnap_FormatTime(chan, index, text);
         lbSnap_803BACC8.entries[0].data = (u8*) _p(x0);
-        ret = lb_8001BF04(chan, text, lbSnap_803BACC8.entries, _p(x4_string),
+        ret = lb_8001BF04(chan, text, lbSnap_803BACC8.entries, _p(filename),
                           _p(x44_LbMcSnap_MemSnapIconData)[0].offset,
                           _p(x44_LbMcSnap_MemSnapIconData)[1].size, 0);
     }
