@@ -1,10 +1,17 @@
+#include <abort_exit.h> // IWYU pragma: keep
+
+#include "melee/gm/forward.h"
 #include <fray/replaycard.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
+#include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
+static void onExitRecordVs(GameModeState* state);
+
+static u32 const fixed_seed = 0xDEADBEEF;
 
 typedef struct {
     CharacterKind ckind;
@@ -28,7 +35,7 @@ GameModeState Replay_RecordStates[] = {
         lbDvdPreload_2,
         0,
         onEnterRecordVs,
-        NULL,
+        onExitRecordVs,
         {
             GS_VS,
             &gmVsMelee_StartData,
@@ -40,12 +47,17 @@ GameModeState Replay_RecordStates[] = {
 
 void Replay_Mode_OnInit(void)
 {
-    HSD_See ReplayCard_Save();
+    ReplayCard_Save();
 }
 
 void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
+
+static void resetSeed(void)
+{
+    *seed_ptr = fixed_seed;
+}
 
 void onEnterRecordVs(GameModeState* state)
 {
@@ -85,5 +97,8 @@ void onEnterRecordVs(GameModeState* state)
         }
     }
 
+    resetSeed();
     gm_LoadAnnouncer();
 }
+
+void onExitRecordVs(UNUSED GameModeState* state) {}
