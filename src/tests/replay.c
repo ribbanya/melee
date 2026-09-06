@@ -12,18 +12,6 @@ enum {
 
 GameModeState Replay_RecordStates[] = {
     {
-        1,
-        lbDvdPreload_2,
-        0,
-        NULL,
-        NULL,
-        {
-            GS_UNK10,
-            NULL,
-            NULL,
-        },
-    },
-    {
         state_record_vs,
         lbDvdPreload_2,
         0,
@@ -38,12 +26,10 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
-void Replay_Mode_OnInit(void)
-{
-    OSReport("Welcome to %s!", __FILE__);
-}
+void Replay_Mode_OnInit(void) {}
 
 void Replay_Mode_OnLoad(void) {}
+
 void Replay_Mode_OnUnload(void) {}
 
 void onEnterRecordVs(GameModeState* state)
@@ -51,32 +37,38 @@ void onEnterRecordVs(GameModeState* state)
     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
     ssize_t i;
 
-    gm_SetupRulesDefaults(&start->rules);
-    start->rules.stkind = St_Kind_Last;
-    start->rules.xB = -1;
-    start->rules.xC = -1;
-    start->rules.match_kind = MatchKind_Time;
-
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        gm_SetupPlayerDefaults(&start->players[i]);
-        start->players[i].stocks = 0;
-        start->players[i].cpu_kind = 4;
+    {
+        StartMeleeRules* rules = &start->rules;
+        gm_SetupRulesDefaults(rules);
+        rules->stkind = St_Kind_Last;
+        rules->xB = -1;
+        rules->xC = -1;
+        rules->timer_enabled = true;
+        rules->time_limit = 10;
+        rules->match_kind = MatchKind_Stock;
+        rules->game_speed = 2.0f;
     }
 
-    start->players[0].ckind = CKIND_LINK;
-    start->players[1].ckind = CKIND_MARIO;
-    start->players[2].ckind = CKIND_LINK;
-    start->players[3].ckind = CKIND_LINK;
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        PlayerInitData* player = &start->players[i];
+        gm_SetupPlayerDefaults(player);
 
-    start->players[0].slot_type = Gm_PKind_Human;
-    start->players[1].slot_type = Gm_PKind_Human;
-    start->players[2].slot_type = Gm_PKind_NA;
-    start->players[3].slot_type = Gm_PKind_NA;
-
-    start->players[0].rumble_enabled = false;
-    start->players[1].rumble_enabled = false;
-    start->players[2].rumble_enabled = false;
-    start->players[3].rumble_enabled = false;
+        if (i < ARRAY_SIZE(fighters)) {
+            FighterSetup const* fighter = &fighters[i];
+            player->ckind = fighter->ckind;
+            player->color = fighter->color;
+            player->slot = fighter->slot;
+            player->x5 = fighter->spawn_pos;
+            player->slot_type = Gm_PKind_Cpu;
+            player->cpu_level = 9;
+            player->x10 = 300;
+            player->stocks = 1;
+        } else if (i < PAD_MAX_CONTROLLERS) {
+            player->cpu_kind = CpuKind_4;
+            player->slot_type = Gm_PKind_NA;
+            player->rumble_enabled = false;
+        }
+    }
 
     gm_LoadAnnouncer();
 }
