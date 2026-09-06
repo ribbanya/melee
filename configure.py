@@ -535,6 +535,13 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
         category="runtime",
     )
 
+def CustomLib(lib_name: str, objects: Objects) -> Library:
+    return Lib(
+        lib_name,
+        objects,
+        category="custom",
+    )
+
 
 Matching = True  # Object matches and should be linked
 NonMatching = False  # Object does not match and should not be linked
@@ -553,6 +560,12 @@ config.warn_missing_config = True
 config.warn_missing_source = True
 
 config.libs = [
+    CustomLib(
+        "Tests",
+        [
+            Object(True, "tests/replay.c"),
+        ],
+    ),
     MeleeLib(
         "lb (Library)",
         [
