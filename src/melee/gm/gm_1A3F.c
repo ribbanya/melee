@@ -4,6 +4,7 @@
 #include "gm_1A45.h"
 #include "gmmain_lib.h"
 #include "gmscdata.h"
+#include "melee/gm/forward.h"
 #include "types.h"
 #include <dolphin/vi.h>
 #include <melee/db/db.h>
@@ -341,13 +342,7 @@ void gm_801A4510(void)
             modes[i].on_init();
         }
     }
-    if (VIGetDTVStatus() != 0 &&
-        (db_gameLaunchButtonState & HSD_PAD_B || OSGetProgressiveMode() == 1))
-    {
-        state_machine.routing.curr_mode = GM_PROGRESSIVE_SCAN;
-    } else {
-        state_machine.routing.curr_mode = GM_BOOT;
-    }
+    state_machine.routing.prev_mode = GM_REPLAY;
     state_machine.routing.prev_mode = GM_COUNT;
 
     while (true) {

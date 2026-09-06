@@ -745,19 +745,11 @@ static GameMode modes[] = {
     },
     {
         false,
-        GM_REPLAY_RECORD,
+        GM_REPLAY,
         NULL,
         NULL,
         NULL,
         Replay_RecordStates,
-    },
-    {
-        false,
-        GM_REPLAY_PLAYBACK,
-        NULL,
-        NULL,
-        NULL,
-        NULL,
     },
     {
         false,
