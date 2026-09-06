@@ -262,7 +262,7 @@ config.ldflags = [
     f"-warn {args.warn}",
 ]
 if args.debug:
-    config.ldflags.append("-g")
+    config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
 if args.map:
     config.ldflags.append("-mapunused")
     # config.ldflags.append("-listclosure") # For Wii linkers
@@ -293,7 +293,7 @@ cflags_base = [
     "-align powerpc",
     "-nosyspath",
     "-fp_contract on",
-    f"-O{0 if args.debug else 4},p",
+    "-O4,p",
     "-multibyte",
     "-enum int",
     "-nodefaults",
@@ -306,13 +306,6 @@ cflags_base = [
     f"-DVERSION_{config.version}",
 ]
 
-# Debug flags
-if args.debug:
-    # TODO fix dolphin debug build
-    # cflags_base.append("-DDEBUG=1")
-    pass
-else:
-    cflags_base.append("-DNDEBUG=1")
 
 if args.sym in {"on", "off"}:
     cflags_base.append(f"-sym {args.sym}")
