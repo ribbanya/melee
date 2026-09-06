@@ -47,7 +47,7 @@ GameModeState Replay_RecordStates[] = {
 
 void Replay_Mode_OnInit(void)
 {
-    ReplayCard_Save();
+    ReplayCard_Init();
 }
 
 void Replay_Mode_OnLoad(void) {}
