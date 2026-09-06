@@ -129,7 +129,7 @@ bool GetMatchTimer(int* arg0)
     return false;
 }
 
-u16 gm_8016B004(void)
+u16 gm_GetStKind(void)
 {
     return gm_GetRules()->stkind;
 }
