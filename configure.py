@@ -568,6 +568,7 @@ config.libs = [
         "Tests",
         [
             Object(Equivalent, "tests/replay.c"),
+            Object(Equivalent, "tests/replaycard.c"),
         ],
     ),
     MeleeLib(
