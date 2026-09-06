@@ -167,11 +167,11 @@ void onEnterDebugVs(GameModeState* state)
     start->rules.stkind = St_Kind_Battle;
     start->rules.xB = -1;
     start->rules.xC = -1;
-    start->rules.match_kind = MatchKind_Time;
-    start->rules.time_limit = 1;
+    start->rules.match_kind = MatchKind_Stock;
+    start->rules.time_limit = 10;
     start->rules.is_teams = true;
     start->rules.friendly_fire = true;
-    start->rules.on_unpause_override = gm_80165290;
+    // start->rules.on_unpause_override = gm_80165290;
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
         gm_SetupPlayerDefaults(&start->players[i]);
