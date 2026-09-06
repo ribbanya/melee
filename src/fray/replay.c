@@ -1,8 +1,8 @@
+#include <fray/replaycard.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
-#include <tests/replaycard.h>
 
 static void onEnterRecordVs(GameModeState* state);
 
@@ -40,7 +40,7 @@ GameModeState Replay_RecordStates[] = {
 
 void Replay_Mode_OnInit(void)
 {
-    ReplayCard_Save();
+    HSD_See ReplayCard_Save();
 }
 
 void Replay_Mode_OnLoad(void) {}

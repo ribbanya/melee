@@ -44,6 +44,7 @@
 #include "gmvsmode.h"
 #include "melee/gm/forward.h"
 #include "types.h"
+#include <fray/replay.h>
 #include <melee/if/ifprize.h>
 #include <melee/mn/mncharsel.h>
 #include <melee/mn/mnmain.h>
@@ -62,7 +63,6 @@
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
 #include <melee/vi/vi1202.h>
-#include <tests/replay.h>
 
 static GameScene scenes[] = {
     {
