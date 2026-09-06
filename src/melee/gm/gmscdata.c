@@ -42,6 +42,7 @@
 #include "gmtrainingmode.h"
 #include "gmvsmelee.h"
 #include "gmvsmode.h"
+#include "melee/gm/forward.h"
 #include "types.h"
 #include <melee/if/ifprize.h>
 #include <melee/mn/mncharsel.h>
@@ -740,6 +741,22 @@ static GameMode modes[] = {
         NULL,
         gm_Mode_SingleButtonVs_OnInit,
         gm_Mode_SingleButtonVs_States,
+    },
+    {
+        false,
+        GM_REPLAY_RECORD,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+    },
+    {
+        false,
+        GM_REPLAY_PLAYBACK,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
     },
     {
         false,
