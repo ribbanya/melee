@@ -1,7 +1,10 @@
+#include "melee/gm/forward.h"
 #include "melee/gm/gm_1601.h"
 #include "melee/gm/gm_1A3F.h"
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
+
+static void onEnterRecordVs(GameModeState* state);
 
 enum {
     state_record_vs,
@@ -12,7 +15,7 @@ GameModeState Replay_RecordStates[] = {
         state_record_vs,
         lbDvdPreload_2,
         0,
-        NULL,
+        onEnterRecordVs,
         NULL,
         {
             GS_VS,
@@ -23,7 +26,7 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
-void onEnterDebugVs(GameModeState* state)
+void onEnterRecordVs(GameModeState* state)
 {
     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
     ssize_t i;
