@@ -62,6 +62,7 @@
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
 #include <melee/vi/vi1202.h>
+#include <tests/replay.h>
 
 static GameScene scenes[] = {
     {
@@ -748,7 +749,7 @@ static GameMode modes[] = {
         NULL,
         NULL,
         NULL,
-        NULL,
+        Replay_RecordStates,
     },
     {
         false,
