@@ -12,6 +12,7 @@
 #include "gmvsmelee.h"
 #include "melee/ft/forward.h"
 #include "melee/lb/lbcardnew.h"
+#include "melee/mn/mnmain.h"
 #include "types.h"
 #include <dolphin/os.h>
 #include <melee/if/if_2FD9.h>
@@ -185,17 +186,12 @@ void onEnterDebugVs(GameModeState* state)
         start->players[i].rumble_enabled = false;
     }
 
-    gm_LoadAnnouncer();
-    gm_SetPendingGameMode(GM_MENU);
+    gm_SetPendingGameMode(GM_MEMCARD);
     gm_SetNewGameModePending();
+    gm_LoadAnnouncer();
 }
 
-void onExitDebugVs(GameModeState* state)
-{
-    OSReport("bye");
-    lb_8001B760(0xB);
-    // exit(0);
-}
+void onExitDebugVs(GameModeState* state) {}
 
 void onEnterCss(GameModeState* state)
 {
