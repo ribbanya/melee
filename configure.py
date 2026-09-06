@@ -281,6 +281,8 @@ config.progress_data_fancy_item = "Event Matches"
 # Can be overridden in libraries or objects
 config.scratch_preset_id = 63
 
+custom_objects = list[str]()
+
 # GC/Wii compiler flags
 cflags_base = [
     "-nowraplines",
@@ -535,11 +537,13 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
         category="runtime",
     )
 
+
 def CustomLib(lib_name: str, objects: Objects) -> Library:
+    custom_objects.extend(o.name for o in objects)
     return Lib(
         lib_name,
         objects,
-        category="custom",
+        category=None,
     )
 
 
@@ -563,7 +567,7 @@ config.libs = [
     CustomLib(
         "Tests",
         [
-            Object(True, "tests/replay.c"),
+            Object(Equivalent, "tests/replay.c"),
         ],
     ),
     MeleeLib(
@@ -2001,12 +2005,12 @@ def link_order_callback(module_id: int, objects: list[str]) -> list[str]:
     if not config.non_matching:
         return objects
     if module_id == 0:  # DOL
-        return objects + ["dummy.c"]
+        return [*objects, *custom_objects]
     return objects
 
 
 # Uncomment to enable the link order callback.
-# config.link_order_callback = link_order_callback
+config.link_order_callback = link_order_callback
 
 
 # Extra categories for progress tracking

@@ -7,7 +7,7 @@ enum {
     state_record_vs,
 };
 
-GameModeState gm_Mode_DebugVs_States[] = {
+GameModeState Replay_RecordStates[] = {
     {
         state_record_vs,
         lbDvdPreload_2,
