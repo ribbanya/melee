@@ -538,7 +538,7 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
     )
 
 
-def CustomLib(lib_name: str, objects: Objects) -> Library:
+def FrayLib(lib_name: str, objects: Objects) -> Library:
     custom_objects.extend(o.name for o in objects)
     return Lib(
         lib_name,
@@ -564,11 +564,11 @@ config.warn_missing_config = True
 config.warn_missing_source = True
 
 config.libs = [
-    CustomLib(
+    FrayLib(
         "Tests",
         [
-            Object(Equivalent, "tests/replay.c"),
-            Object(Equivalent, "tests/replaycard.c"),
+            Object(Equivalent, "fray/replay.c"),
+            Object(Equivalent, "fray/replaycard.c"),
         ],
     ),
     MeleeLib(
