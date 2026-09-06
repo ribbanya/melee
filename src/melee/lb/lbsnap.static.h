@@ -36,12 +36,12 @@ typedef union LbMcSnapMemSnapIconData {
 } LbMcSnapMemSnapIconData;
 
 struct Unk80433380 {
-    /* 0x00 */ struct Unk80433380_0* x0;
+    /* 0x00 */ struct Unk80433380_0* snap;
     /* 0x04 */ char filename[64];
-    /* 0x44 */ LbMcSnapMemSnapIconData* x44_LbMcSnap_MemSnapIconData;
+    /* 0x44 */ LbMcSnapMemSnapIconData* icon_data;
     /* 0x48 */ struct Unk80433380_48* slot;
-    /* 0x4C */ int x4C_cardState[2];
-    /* 0x54 */ int x54_stateChanged[3];
+    /* 0x4C */ int card_state[2];
+    /* 0x54 */ int state_changed[3];
 }; /* size = 0x60 */
 ASSERT_SIZE(struct Unk80433380, 0x60);
 
