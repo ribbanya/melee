@@ -1,10 +1,22 @@
-#include <dolphin/os.h>
+#include "melee/ft/forward.h"
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 
 static void onEnterRecordVs(GameModeState* state);
+
+typedef struct {
+    CharacterKind ckind;
+    int color;
+    int slot;
+    int spawn_pos;
+} FighterSetup;
+
+static FighterSetup const fighters[] = {
+    { CKIND_FOX, 3, 2, 2 },
+    { CKIND_FOX, 3, 0, 4 },
+};
 
 enum {
     state_record_vs,
