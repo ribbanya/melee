@@ -197,6 +197,7 @@ void onEnterDebugVs(GameModeState* state)
     }
 
     gm_LoadAnnouncer();
+    onEnterSuddenDeath(state);
 }
 
 void onEnterCss(GameModeState* state)
