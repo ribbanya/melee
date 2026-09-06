@@ -168,36 +168,31 @@ void onEnterDebugVs(GameModeState* state)
     start->rules.stkind = St_Kind_Battle;
     start->rules.xB = -1;
     start->rules.xC = -1;
-    start->rules.match_kind = MatchKind_Time;
-    start->rules.x0_6 = true;
-    start->rules.time_limit = 10;
-    start->rules.game_speed = 100.0f;
-    start->rules.timer_counts_up = false;
+    start->rules.match_kind = MatchKind_Stock;
+    start->rules.x0_6 = false;
+    start->rules.game_speed = 1.0f;
     start->rules.is_teams = false;
     start->rules.friendly_fire = true;
     start->rules.on_unpause_override = gm_80165290;
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
-        static CharacterKind const ckinds[] = {
-            CKIND_FOX,
-            CKIND_FOX,
-        };
         int stocks = 0;
         gm_SetupPlayerDefaults(&start->players[i]);
-        if (i < ARRAY_SIZE(ckinds)) {
+        if (i < 2) {
             stocks = 1;
             start->players[i].slot_type = Gm_PKind_Cpu;
             start->players[i].cpu_level = 9;
-            start->players[i].team = i / 2 + 1;
-            start->players[i].rumble_enabled = false;
-            start->players[i].ckind = ckinds[i];
+            start->players[i].ckind = CKIND_FOX;
+            start->players[i].color = i;
+            start->players[i].x5 = 0;
+            start->players[i].x10 = 300;
         }
         start->players[i].stocks = stocks;
         start->players[i].cpu_kind = 4;
+        start->players[i].rumble_enabled = false;
     }
 
     gm_LoadAnnouncer();
-    onEnterSuddenDeath(state);
 }
 
 void onEnterCss(GameModeState* state)
