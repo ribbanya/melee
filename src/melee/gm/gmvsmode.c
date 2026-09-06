@@ -8,6 +8,7 @@
 #include "gmmovieend.h"
 #include "gmresult.h"
 #include "gmvsmelee.h"
+#include "melee/ft/forward.h"
 #include "types.h"
 #include <dolphin/pad.h>
 #include <melee/if/if_2FD9.h>
@@ -169,30 +170,34 @@ void onEnterDebugVs(GameModeState* state)
     start->rules.xB = -1;
     start->rules.xC = -1;
     start->rules.match_kind = MatchKind_Stock;
-    start->rules.time_limit = 60;
+    start->rules.x0_6 = true;
+    start->rules.time_limit = 5;
+    start->rules.game_speed = 2.0f;
     start->rules.timer_counts_up = false;
     start->rules.is_teams = true;
     start->rules.friendly_fire = true;
     start->rules.on_unpause_override = gm_80165290;
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
+        static CharacterKind const ckinds[PAD_MAX_CONTROLLERS] = {
+            CKIND_MARS,
+            CKIND_SEAK,
+            CKIND_FOX,
+            CKIND_PURIN,
+        };
         int stocks = 0;
         gm_SetupPlayerDefaults(&start->players[i]);
         if (i < PAD_MAX_CONTROLLERS) {
-            stocks = 4;
+            stocks = 1;
             start->players[i].slot_type = Gm_PKind_Cpu;
             start->players[i].cpu_level = 9;
             start->players[i].team = i / 2 + 1;
             start->players[i].rumble_enabled = false;
+            start->players[i].ckind = ckinds[i];
         }
         start->players[i].stocks = stocks;
         start->players[i].cpu_kind = 4;
     }
-
-    start->players[0].ckind = CKIND_MARS;
-    start->players[1].ckind = CKIND_SEAK;
-    start->players[2].ckind = CKIND_FOX;
-    start->players[3].ckind = CKIND_PURIN;
 
     gm_LoadAnnouncer();
 }
