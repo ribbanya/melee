@@ -20,10 +20,19 @@ from collections.abc import Iterator
 from pathlib import Path
 from typing import cast
 
-from tools.project import (BuildConfig, BuildConfigUnit, Library, Object,
-                           ProgressCategory, ProjectConfig, calculate_progress,
-                           file_is_c_cpp, generate_build, is_windows,
-                           load_build_config)
+from tools.project import (
+    BuildConfig,
+    BuildConfigUnit,
+    Library,
+    Object,
+    ProgressCategory,
+    ProjectConfig,
+    calculate_progress,
+    file_is_c_cpp,
+    generate_build,
+    is_windows,
+    load_build_config,
+)
 
 # Game versions
 DEFAULT_VERSION = 0
