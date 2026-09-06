@@ -287,7 +287,7 @@ int lbSnap_8001DC0C(u8* image)
     _p(snap)->height = 480;
     _p(snap)->stkind = gm_GetStKind();
     it_8026C47C(&_p(snap)->x14);
-    _p(snap)->x34 = ft_80087C1C();
+    _p(snap)->x34 = ft_GetFtKindMask();
     _p(snap)->x8 = 3;
     hsd_803B5C2C(_p(snap)->x8);
     _p(snap)->xC = hsd_803B51C8((intptr_t) image, _p(snap)->width,
