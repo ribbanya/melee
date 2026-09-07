@@ -565,7 +565,13 @@ config.warn_missing_source = True
 
 config.libs = [
     FrayLib(
-        "Tests",
+        "lb (Library)",
+        [
+            Object(Equivalent, "fray/lb/lbqol.c"),
+        ],
+    ),
+    FrayLib(
+        "rp (Replay)",
         [
             Object(Equivalent, "fray/rp/rprecord.c"),
             Object(Equivalent, "fray/rp/rpcard.c"),

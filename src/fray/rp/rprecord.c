@@ -7,19 +7,20 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include <melee/ft/types.h>
-#include <melee/gm/gm_16AE.h>
-#include <melee/gm/gm_1B03.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/pl/player.h>
 #include "rpcard.h"
 #include "rpdisplay.h"
-#include <sysdolphin/baselib/controller.h>
 #include <dolphin/types.h>
+#include <fray/lb/lbqol.h>
+#include <melee/ft/types.h>
 #include <melee/gm/gm_1601.h>
+#include <melee/gm/gm_16AE.h>
 #include <melee/gm/gm_1A3F.h>
+#include <melee/gm/gm_1B03.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
+#include <melee/lb/lb_00B0.h>
+#include <melee/pl/player.h>
+#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -54,22 +55,15 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
-static int shut_up(UNUSED __file_handle arg0, UNUSED unsigned char* arg1,
-                   UNUSED size_t* arg2, UNUSED __idle_proc arg3)
-{
-    return 0;
-}
-
 void Replay_Mode_OnInit(void)
 {
-    // Shut up character-by-character OSReport spam. Will crash if null.
-    stdout->write_proc = shut_up;
+    Qol_LogInit();
     ReplayCard_Init();
 }
 
 static void checkSlot(int slot)
 {
-    if (slot < 0 || !(slot < ARRAY_SIZE(fighter_replay))) {
+    if (slot < 0 || !((size_t) slot < ARRAY_SIZE(fighter_replay))) {
         HSD_ASSERTREPORT(__LINE__, 0, "Slot out of bounds! %d\n", slot);
     }
 }
