@@ -56,8 +56,6 @@ GameModeState Replay_RecordStates[] = {
 void Replay_Mode_OnInit(void)
 {
     ReplayCard_Init();
-    HSD_LogInit();
-    HSD_SetReportCallback(NULL);
 }
 
 void Replay_Mode_OnLoad(void) {}
