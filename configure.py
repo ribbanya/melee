@@ -122,7 +122,7 @@ parser.add_argument(
     "--reloc-diffs",
     type=str,
     choices=["none", "name_address", "data_value", "all"],
-    default="all",
+    default="data_value",
     help="how relocation targets will be diffed in the report (default 'data_value')",
 )
 parser.add_argument(
