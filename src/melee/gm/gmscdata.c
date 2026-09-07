@@ -1,5 +1,6 @@
 #include "gmscdata.h"
 
+#include "forward.h"
 #include "gm_1A33.h"
 #include "gm_unsplit.h"
 #include "gmadventure.h"
@@ -42,7 +43,6 @@
 #include "gmtrainingmode.h"
 #include "gmvsmelee.h"
 #include "gmvsmode.h"
-#include "melee/gm/forward.h"
 #include "types.h"
 #include <fray/replay.h>
 #include <melee/if/ifprize.h>

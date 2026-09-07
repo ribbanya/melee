@@ -1,13 +1,15 @@
+#include <Runtime/platform.h>
+
+#include <melee/gm/forward.h>
+#include <melee/pl/forward.h>
+
 #include <stdio.h>
 
-#include "melee/gm/forward.h"
-#include "melee/if/textdraw.h"
-#include "melee/if/textlib.h"
-#include "melee/if/types.h"
-#include "melee/pl/forward.h"
-#include "melee/pl/player.h"
-#include "Runtime/platform.h"
-#include "sysdolphin/baselib/debug.h"
+#include <melee/if/textdraw.h>
+#include <melee/if/textlib.h>
+#include <melee/if/types.h>
+#include <melee/pl/player.h>
+#include <sysdolphin/baselib/debug.h>
 
 #define TEXT_X 2
 #define TEXT_Y 2
@@ -43,8 +45,8 @@ void ReplayText_Update(void)
     HSD_GObj* gobj;
     Fighter* fp;
     HSD_Pad buttons;
-    s8 lstick_x, lstick_y;
-    s8 cstick_x, cstick_y;
+    S8Vec2 lstick;
+    S8Vec2 cstick;
     s8 triggers;
     size_t i;
 
@@ -67,18 +69,16 @@ void ReplayText_Update(void)
         HSD_ASSERT(__LINE__, fp);
 
         buttons = fp->cpu.buttons;
-        lstick_x = fp->cpu.lstickX;
-        lstick_y = fp->cpu.lstickY;
-        cstick_x = fp->cpu.cstickX;
-        cstick_y = fp->cpu.cstickY;
+        lstick = fp->cpu.lstick;
+        cstick = fp->cpu.cstick;
         triggers = MAX(fp->cpu.ltrigger, fp->cpu.rtrigger);
 
         if (i > 0) {
             DevText_Print(text, "\n");
         }
         DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %d %08x",
-                       fp->player_id, convertCpuCoord(lstick_x),
-                       convertCpuCoord(lstick_y), convertCpuCoord(cstick_x),
-                       convertCpuCoord(cstick_y), triggers, buttons);
+                       fp->player_id, convertCpuCoord(lstick.x),
+                       convertCpuCoord(lstick.y), convertCpuCoord(cstick.x),
+                       convertCpuCoord(cstick.y), triggers, buttons);
     }
 }

@@ -5,8 +5,8 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include <fray/replaycard.h>
-#include <fray/replaytext.h>
+#include "replaycard.h"
+#include "replaytext.h"
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
