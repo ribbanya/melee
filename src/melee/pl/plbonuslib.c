@@ -1115,7 +1115,8 @@ void pl_8003FAA8(int slot, int index, Vec3* pos, Vec3* prevPos)
     if (pl_Verify_gm_8016AEDC() && index == 0) {
         temp_r31 = ftLib_80087120(Player_GetEntityAtIndex(slot, index));
         temp_f30 =
-            temp_r30->x0_staleMoveTable.xC9C * (gm_GetFrameCount() - 1) + temp_r31;
+            temp_r30->x0_staleMoveTable.xC9C * (gm_GetFrameCount() - 1) +
+            temp_r31;
 
         temp_r30->x0_staleMoveTable.xC9C =
             pl_CalculateAverage(temp_f30, gm_GetFrameCount());
