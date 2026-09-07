@@ -20,7 +20,7 @@ static void onExitRecordVs(GameModeState* state);
 
 static u32 const fixed_seed = 0xDEADBEEF;
 
-static ReplayFighter const fighters[] = {
+static ReplayFighter fighters[] = {
     { CKIND_FOX, 0, 0, 2 },
     { CKIND_FOX, 2, 3, 4 },
 };

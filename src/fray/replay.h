@@ -4,12 +4,7 @@
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
 
-typedef struct {
-    u8 ckind; ///< ::CharacterKind
-    u8 color;
-    u8 slot;
-    u8 spawn_pos;
-} ReplayFighter;
+#define REPLAY_MAX_LENGTH (GM_FPS * 60)
 
 typedef struct {
     u8 a : 1;
@@ -24,6 +19,15 @@ typedef struct {
     S8Vec2 cstick;
     u8 trigger;
 } ReplayFrame;
+
+typedef struct {
+    u8 pkind; ///< ::Gm_PKind
+    u8 ckind; ///< ::CharacterKind
+    u8 color;
+    u8 slot;
+    u8 spawn_pos;
+    ReplayFrame frames[REPLAY_MAX_LENGTH];
+} ReplayFighter;
 
 void Replay_Mode_OnInit(void);
 void Replay_Mode_OnLoad(void);
