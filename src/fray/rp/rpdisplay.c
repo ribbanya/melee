@@ -41,7 +41,7 @@ static char fmtChar(bool btn, char chr)
     return btn ? chr : ' ';
 }
 
-static void fmtButtons(ReplayFrame* rf, char dst[9])
+static void fmtButtons(ReplayFrame* rf, char dst[8])
 {
     char const empty = ' ';
     dst[0] = rf->a ? 'A' : empty;
@@ -52,7 +52,6 @@ static void fmtButtons(ReplayFrame* rf, char dst[9])
     dst[5] = rf->r ? 'R' : empty;
     dst[6] = rf->z ? 'Z' : empty;
     dst[7] = rf->dpad_up ? '^' : empty;
-    dst[8] = '\0';
 }
 
 static float convertCoord(s8 val, bool is_cpu)
@@ -67,7 +66,7 @@ static float convertCoord(s8 val, bool is_cpu)
 void ReplayText_Update(void)
 {
     size_t i;
-    char buttons[9];
+    char buttons[8];
 
     DevText_Erase(text);
     DevText_SetCursorXY(text, 0, 0);
@@ -79,7 +78,7 @@ void ReplayText_Update(void)
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d %s",
+        DevText_Printf(text, "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d %.8s",
                        convertCoord(rf->lstick.x, true),
                        convertCoord(rf->lstick.y, true),
                        convertCoord(rf->cstick.x, true),
