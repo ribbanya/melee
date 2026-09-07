@@ -41,7 +41,7 @@ static char fmtChar(bool btn, char chr)
     return btn ? chr : ' ';
 }
 
-static void fmtButtons(ReplayFrame* rf, char dst[8])
+static void fmtButtons(ReplayFrame* rf, char dst[9])
 {
     char const empty = ' ';
     dst[0] = rf->a ? 'A' : empty;
@@ -52,6 +52,7 @@ static void fmtButtons(ReplayFrame* rf, char dst[8])
     dst[5] = rf->r ? 'R' : empty;
     dst[6] = rf->z ? 'Z' : empty;
     dst[7] = rf->dpad_up ? '^' : empty;
+    dst[8] = '\0';
 }
 
 static float convertCoord(s8 val, bool is_cpu)
@@ -65,32 +66,23 @@ static float convertCoord(s8 val, bool is_cpu)
 
 void ReplayText_Update(void)
 {
-    HSD_GObj* gobj;
-    ReplayFrame* rf;
-    S8Vec2 lstick;
-    S8Vec2 cstick;
-    s8 trigger;
     size_t i;
-    char buttons[8];
+    char buttons[9];
 
     DevText_Erase(text);
     DevText_SetCursorXY(text, 0, 0);
 
     for (i = 0; i < 2; i++) { /// @todo get len from lib
-        rf = Replay_GetCurrentFrame(i);
+        ReplayFrame* rf = Replay_GetCurrentFrame(i);
         fmtButtons(rf, buttons);
-        // buttons = fp->cpu.buttons;
-        // lstick = fp->cpu.lstick;
-        // cstick = fp->cpu.cstick;
-        // trigger = Replay_GetCpuTrigger(&fp->cpu);
 
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %.8s", i,
-                       convertCoord(lstick.x, true),
-                       convertCoord(lstick.y, true),
-                       convertCoord(cstick.x, true),
-                       convertCoord(cstick.y, true), buttons);
+        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %s", i,
+                       convertCoord(rf->lstick.x, true),
+                       convertCoord(rf->lstick.y, true),
+                       convertCoord(rf->cstick.x, true),
+                       convertCoord(rf->cstick.y, true), buttons);
     }
 }

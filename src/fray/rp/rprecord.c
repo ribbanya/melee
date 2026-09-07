@@ -119,14 +119,14 @@ s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
 
 static void rpFrameSetButtons(ReplayFrame* rf, HSD_Pad buttons)
 {
-    rf->a = buttons & HSD_PAD_A;
-    rf->b = buttons & HSD_PAD_B;
-    rf->x = buttons & HSD_PAD_X;
-    rf->y = buttons & HSD_PAD_Y;
-    rf->l = buttons & HSD_PAD_L;
-    rf->r = buttons & HSD_PAD_R;
-    rf->z = buttons & HSD_PAD_Z;
-    rf->dpad_up = buttons & HSD_PAD_DPADUP;
+    rf->a = (buttons & HSD_PAD_A) != 0;
+    rf->b = (buttons & HSD_PAD_B) != 0;
+    rf->x = (buttons & HSD_PAD_X) != 0;
+    rf->y = (buttons & HSD_PAD_Y) != 0;
+    rf->l = (buttons & HSD_PAD_L) != 0;
+    rf->r = (buttons & HSD_PAD_R) != 0;
+    rf->z = (buttons & HSD_PAD_Z) != 0;
+    rf->dpad_up = (buttons & HSD_PAD_DPADUP) != 0;
 }
 
 static void recordFrame(void)
