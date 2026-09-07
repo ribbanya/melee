@@ -1,6 +1,10 @@
 #include <abort_exit.h> // IWYU pragma: keep
 
 #include "melee/gm/forward.h"
+#include "melee/pl/forward.h"
+#include "melee/pl/player.h"
+#include "Runtime/platform.h"
+#include <dolphin/os.h>
 #include <fray/replaycard.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
@@ -59,6 +63,65 @@ static void resetSeed(void)
     *seed_ptr = fixed_seed;
 }
 
+static void recordInputs(void)
+{
+    FighterSetup const* fs;
+    int slot;
+    HSD_GObj* gobj;
+    Fighter* fp;
+    HSD_Pad buttons;
+    Gm_PKind pkind;
+    Vec2 lstick;
+    Vec2 cstick;
+    size_t i;
+
+    for (i = 0; i < 6; i++) {
+        OSReport("%d: %d", i, Player_GetPlayerSlotType(i));
+    }
+    return;
+
+    for (i = 0; i < ARRAY_SIZE(fighters); i++) {
+        fs = &fighters[i];
+        slot = fs->slot;
+
+        gobj = Player_GetEntity(slot);
+        if (!gobj) {
+            continue;
+        }
+
+        fp = gobj->user_data;
+        if (!fp) {
+            continue;
+        }
+
+        buttons = 0;
+        pkind = Player_GetPlayerSlotType(slot);
+        switch (pkind) {
+        case Gm_PKind_Human:
+            buttons = fp->input.held_inputs;
+            lstick = fp->input.lstick;
+            cstick = fp->input.cstick;
+            break;
+        case Gm_PKind_Cpu:
+            buttons = fp->x1A88.x0;
+            lstick.x = fp->x1A88.lstickX / (float) S8_MAX;
+            lstick.y = fp->x1A88.lstickY / (float) S8_MAX;
+            cstick.x = fp->x1A88.cstickX / (float) S8_MAX;
+            cstick.y = fp->x1A88.cstickY / (float) S8_MAX;
+            break;
+        case Gm_PKind_Demo:
+        case Gm_PKind_NA:
+        case Gm_PKind_Boss:
+            OSPanic(__FILE__, __LINE__, "Unexpected PKind %d!", pkind);
+        }
+
+        if (buttons) {
+            OSReport("%d: (%.2f,%.2f) (%.2f,%.2f) %08x", i, lstick.x, lstick.y,
+                     cstick.x, cstick.y, buttons);
+        }
+    }
+}
+
 void onEnterRecordVs(GameModeState* state)
 {
     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
@@ -74,6 +137,7 @@ void onEnterRecordVs(GameModeState* state)
         rules->time_limit = 10;
         rules->match_kind = MatchKind_Stock;
         rules->game_speed = 2.0f;
+        rules->on_frame_end = recordInputs;
     }
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
