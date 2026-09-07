@@ -7,14 +7,14 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "melee/ft/types.h"
-#include "melee/gm/gm_16AE.h"
-#include "melee/gm/gm_1B03.h"
-#include "melee/lb/lb_00B0.h"
-#include "melee/pl/player.h"
+#include <melee/ft/types.h>
+#include <melee/gm/gm_16AE.h>
+#include <melee/gm/gm_1B03.h>
+#include <melee/lb/lb_00B0.h>
+#include <melee/pl/player.h>
 #include "rpcard.h"
 #include "rpdisplay.h"
-#include "sysdolphin/baselib/controller.h"
+#include <sysdolphin/baselib/controller.h>
 #include <dolphin/types.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
