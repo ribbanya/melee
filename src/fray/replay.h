@@ -1,14 +1,28 @@
-#ifndef DOLDECOMP_TESTS_REPLAY_H
-#define DOLDECOMP_TESTS_REPLAY_H
+#ifndef FRAY_REPLAY_H
+#define FRAY_REPLAY_H
 
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
-#include <sysdolphin/baselib/controller.h>
 
 typedef struct {
-    HSD_Pad buttons;
+    u8 ckind; ///< ::CharacterKind
+    u8 color;
+    u8 slot;
+    u8 spawn_pos;
+} ReplayFighter;
+
+typedef struct {
+    u8 a : 1;
+    u8 b : 1;
+    u8 x : 1;
+    u8 y : 1;
+    u8 l : 1;
+    u8 r : 1;
+    u8 z : 1;
+    u8 dpad_up : 1;
     S8Vec2 lstick;
     S8Vec2 cstick;
+    u8 trigger;
 } ReplayFrame;
 
 void Replay_Mode_OnInit(void);

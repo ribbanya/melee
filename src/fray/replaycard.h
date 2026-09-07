@@ -1,5 +1,5 @@
-#ifndef DOLDECOMP_TESTS_REPLAY_H
-#define DOLDECOMP_TESTS_REPLAY_H
+#ifndef FRAY_REPLAYCARD_H
+#define FRAY_REPLAYCARD_H
 
 void ReplayCard_Init(void);
 

@@ -1,3 +1,5 @@
+#include "replay.h"
+
 #include <Runtime/platform.h>
 
 #include <melee/gm/forward.h>
@@ -6,7 +8,7 @@
 #include <abort_exit.h> // IWYU pragma: keep
 
 #include "replaycard.h"
-#include "replaytext.h"
+#include <fray/replaytext.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
@@ -18,14 +20,7 @@ static void onExitRecordVs(GameModeState* state);
 
 static u32 const fixed_seed = 0xDEADBEEF;
 
-typedef struct {
-    CharacterKind ckind;
-    int color;
-    int slot;
-    int spawn_pos;
-} FighterSetup;
-
-static FighterSetup const fighters[] = {
+static ReplayFighter const fighters[] = {
     { CKIND_FOX, 0, 0, 2 },
     { CKIND_FOX, 2, 3, 4 },
 };
@@ -105,7 +100,7 @@ void onEnterRecordVs(GameModeState* state)
         gm_SetupPlayerDefaults(player);
 
         if (i < ARRAY_SIZE(fighters)) {
-            FighterSetup const* fighter = &fighters[i];
+            ReplayFighter const* fighter = &fighters[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
