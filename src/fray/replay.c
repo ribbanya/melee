@@ -5,9 +5,9 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "sysdolphin/baselib/debug.h"
 #include <dolphin/os.h>
 #include <fray/replaycard.h>
+#include <fray/replaytext.h>
 #include <melee/ft/kinds/ftCommon/ftCo_0A01.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
@@ -78,8 +78,6 @@ static void resetSeed(void)
 
 static void recordInputs(void)
 {
-    FighterSetup const* fs;
-    int slot;
     HSD_GObj* gobj;
     Fighter* fp;
     HSD_Pad buttons;
@@ -88,22 +86,26 @@ static void recordInputs(void)
     Vec2 cstick;
     size_t i;
 
-    for (i = 0; i < ARRAY_SIZE(fighters); i++) {
-        fs = &fighters[i];
-        slot = fs->slot;
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        pkind = Player_GetPlayerSlotType(i);
 
-        gobj = Player_GetEntity(slot);
+        if (pkind == Gm_PKind_NA) {
+            continue;
+        }
+
+        gobj = Player_GetEntity(i);
         if (!gobj) {
+            OSReport("Can't get player %d!", i);
             continue;
         }
 
         fp = gobj->user_data;
         if (!fp) {
+            OSReport("Can't get fighter %d!", i);
             continue;
         }
 
         buttons = 0;
-        pkind = Player_GetPlayerSlotType(slot);
         switch (pkind) {
         case Gm_PKind_Human:
             buttons = fp->input.held_inputs;
@@ -117,8 +119,8 @@ static void recordInputs(void)
             cstick.x = ftCo_GetCpuCStickX(fp);
             cstick.y = ftCo_GetCpuCStickY(fp);
             break;
-        case Gm_PKind_Demo:
         case Gm_PKind_NA:
+        case Gm_PKind_Demo:
         case Gm_PKind_Boss:
             OSPanic(__FILE__, __LINE__, "Unexpected PKind %d!", pkind);
         }
@@ -128,6 +130,19 @@ static void recordInputs(void)
                      cstick.x, cstick.y, buttons);
         }
     }
+}
+
+static void onMatchStartRecordVs(void)
+{
+    ReplayText_Setup();
+}
+
+static void onFrameEndRecordVs(void)
+{
+    // recordInputs();
+    ReplayText_Update();
+    // DevText_ShowBackground(db_CpuHandicapInfo.text);
+    // DevText_ShowText(db_CpuHandicapInfo.text);
 }
 
 void onEnterRecordVs(GameModeState* state)
@@ -145,7 +160,8 @@ void onEnterRecordVs(GameModeState* state)
         rules->time_limit = 10;
         rules->match_kind = MatchKind_Stock;
         rules->game_speed = 2.0f;
-        rules->on_frame_end = recordInputs;
+        rules->on_match_start = onMatchStartRecordVs;
+        rules->on_frame_end = onFrameEndRecordVs;
     }
 
     for (i = 0; i < Gm_Player_NumMax; i++) {

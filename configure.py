@@ -569,6 +569,7 @@ config.libs = [
         [
             Object(Equivalent, "fray/replay.c"),
             Object(Equivalent, "fray/replaycard.c"),
+            Object(Equivalent, "fray/replaytext.c"),
         ],
     ),
     MeleeLib(
