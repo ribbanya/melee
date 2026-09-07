@@ -20,6 +20,10 @@ typedef struct {
     S8Vec2 lstick;
     S8Vec2 cstick;
     u8 trigger;
+    u8 facing_left : 1;
+    u8 airborne : 1;
+    u8 ecb_locked : 1;
+    u8 hit_this_frame : 1;
 } ReplayFrame;
 
 typedef struct {

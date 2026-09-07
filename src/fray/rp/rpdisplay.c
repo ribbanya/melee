@@ -54,6 +54,15 @@ static void fmtButtons(ReplayFrame* rf, char dst[8])
     dst[7] = rf->dpad_up ? '^' : empty;
 }
 
+static void fmtFlags(ReplayFrame* rf, char dst[4])
+{
+    char const empty = ' ';
+    dst[0] = rf->facing_left ? 'L' : empty;
+    dst[1] = rf->airborne ? 'A' : empty;
+    dst[2] = rf->ecb_locked ? 'E' : empty;
+    dst[3] = rf->hit_this_frame ? 'X' : empty;
+}
+
 static float convertCoord(s8 val, bool is_cpu)
 {
     float tmp = val;
@@ -67,6 +76,7 @@ void ReplayText_Update(void)
 {
     size_t i;
     char buttons[8];
+    char flags[4];
 
     DevText_Erase(text);
     DevText_SetCursorXY(text, 0, 0);
@@ -74,14 +84,17 @@ void ReplayText_Update(void)
     for (i = 0; i < 2; i++) { /// @todo get len from lib
         ReplayFrame* rf = Replay_GetCurrentFrame(i);
         fmtButtons(rf, buttons);
+        fmtFlags(rf, flags);
 
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d %.8s",
-                       convertCoord(rf->lstick.x, true),
-                       convertCoord(rf->lstick.y, true),
-                       convertCoord(rf->cstick.x, true),
-                       convertCoord(rf->cstick.y, true), rf->trigger, buttons);
+        DevText_Printf(
+            text,
+            "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d\n"
+            "%.8s | %.4s",
+            convertCoord(rf->lstick.x, true), convertCoord(rf->lstick.y, true),
+            convertCoord(rf->cstick.x, true), convertCoord(rf->cstick.y, true),
+            rf->trigger, buttons, flags);
     }
 }

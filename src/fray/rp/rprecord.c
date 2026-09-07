@@ -144,6 +144,10 @@ static void recordFrame(void)
         rf->lstick = fp->cpu.lstick;
         rf->cstick = fp->cpu.cstick;
         rf->trigger = Replay_GetCpuTrigger(&fp->cpu);
+        rf->facing_left = fp->facing_dir < 0.0f;
+        rf->airborne = fp->ground_or_air == GA_Air;
+        rf->ecb_locked = fp->ecb_lock != 0;
+        rf->hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
     }
 }
 
