@@ -67,6 +67,28 @@ void Replay_Mode_OnInit(void)
     ReplayCard_Init();
 }
 
+static void checkSlot(int slot)
+{
+    if (slot < 0 || !(slot < ARRAY_SIZE(fighter_replay))) {
+        HSD_ASSERTREPORT(__LINE__, 0, "Slot out of bounds! %d\n", slot);
+    }
+}
+
+static void checkFrame(u32 frame)
+{
+    if (!(frame < REPLAY_MAX_FRAMES)) {
+        HSD_ASSERTREPORT(__LINE__, 0, "Frame out of bounds! %d\n", frame);
+    }
+}
+
+ReplayFrame* Replay_GetCurrentFrame(int slot)
+{
+    u32 frame = gm_GetFrameCount();
+    checkSlot(slot);
+    checkFrame(frame);
+    return &fighter_replay[slot].frames[frame];
+}
+
 void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}

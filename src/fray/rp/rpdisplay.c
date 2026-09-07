@@ -36,7 +36,25 @@ void ReplayText_Setup(void)
     DevText_SetScale(text, TEXT_SCALE * TEXT_RATIO, TEXT_SCALE);
 }
 
-static inline float convertCpuCoord(s8 val)
+static char fmtChar(bool btn, char chr)
+{
+    return btn ? chr : ' ';
+}
+
+static void fmtButtons(ReplayFrame* rf, char dst[8])
+{
+    char const empty = ' ';
+    dst[0] = rf->a ? 'A' : empty;
+    dst[1] = rf->b ? 'B' : empty;
+    dst[2] = rf->x ? 'X' : empty;
+    dst[3] = rf->y ? 'Y' : empty;
+    dst[4] = rf->l ? 'L' : empty;
+    dst[5] = rf->r ? 'R' : empty;
+    dst[6] = rf->z ? 'Z' : empty;
+    dst[7] = rf->dpad_up ? '^' : empty;
+}
+
+static float convertCpuCoord(s8 val)
 {
     return ((s8) (val / 1.5875f)) / 80.0f;
 }
@@ -45,11 +63,11 @@ void ReplayText_Update(void)
 {
     HSD_GObj* gobj;
     Fighter* fp;
-    HSD_Pad buttons;
     S8Vec2 lstick;
     S8Vec2 cstick;
     s8 trigger;
     size_t i;
+    char buttons[8];
 
     DevText_Erase(text);
     DevText_SetCursorXY(text, 0, 0);
@@ -63,7 +81,6 @@ void ReplayText_Update(void)
             continue;
         }
 
-        buttons = 0;
         gobj = Player_GetEntity(i);
         HSD_ASSERT(__LINE__, gobj);
         fp = gobj->user_data;
@@ -77,7 +94,7 @@ void ReplayText_Update(void)
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %d %08x",
+        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %d %s",
                        fp->player_id, convertCpuCoord(lstick.x),
                        convertCpuCoord(lstick.y), convertCpuCoord(cstick.x),
                        convertCpuCoord(cstick.y), trigger, buttons);
