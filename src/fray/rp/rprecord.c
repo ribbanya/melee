@@ -7,8 +7,15 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/ft/types.h"
+#include "melee/gm/gm_16AE.h"
+#include "melee/gm/gm_1B03.h"
+#include "melee/lb/lb_00B0.h"
+#include "melee/pl/player.h"
 #include "rpcard.h"
-#include <fray/rpdisplay.h>
+#include "rpdisplay.h"
+#include "sysdolphin/baselib/controller.h"
+#include <dolphin/types.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
@@ -20,10 +27,12 @@ static void onExitRecordVs(GameModeState* state);
 
 static u32 const fixed_seed = 0xDEADBEEF;
 
-static ReplayFighter fighters[] = {
-    { CKIND_FOX, 0, 0, 2 },
-    { CKIND_FOX, 2, 3, 4 },
+static ReplayFighterInit const fighter_init[] = {
+    { CKIND_FOX, Gm_PKind_Cpu, 0, 0, 2 },
+    { CKIND_FOX, Gm_PKind_Cpu, 2, 3, 3 },
 };
+
+static ReplayFighter fighter_replay[ARRAY_SIZE(fighter_init)];
 
 enum {
     state_record_vs,
@@ -67,13 +76,60 @@ static void resetSeed(void)
     *seed_ptr = fixed_seed;
 }
 
+static void resetReplay(void)
+{
+    size_t i;
+    for (i = 0; i < ARRAY_SIZE(fighter_replay); i++) {
+        fighter_replay[i].init = fighter_init[i];
+        memzero(fighter_replay[i].frames, sizeof(fighter_replay[i].frames));
+    }
+}
+
 static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
 }
 
+s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
+{
+    return MAX(cpu->ltrigger, cpu->rtrigger);
+}
+
+static void rpFrameSetButtons(ReplayFrame* rf, HSD_Pad buttons)
+{
+    rf->a = buttons & HSD_PAD_A;
+    rf->b = buttons & HSD_PAD_B;
+    rf->x = buttons & HSD_PAD_X;
+    rf->y = buttons & HSD_PAD_Y;
+    rf->l = buttons & HSD_PAD_L;
+    rf->r = buttons & HSD_PAD_R;
+    rf->z = buttons & HSD_PAD_Z;
+    rf->dpad_up = buttons & HSD_PAD_DPADUP;
+}
+
+static void recordFrame(void)
+{
+    u32 f = gm_GetFrameCount();
+    size_t i;
+    for (i = 0; i < ARRAY_SIZE(fighter_replay); i++) {
+        ReplayFighter* rp = &fighter_replay[i];
+        HSD_GObj* gobj = Player_GetEntity(i);
+        Fighter* fp = gobj->user_data;
+        ReplayFrame rf = { 0 };
+
+        HSD_ASSERTMSG(__LINE__, !rp->init.is_cpu,
+                      "Human recording not implemented!");
+        rpFrameSetButtons(&rf, fp->cpu.buttons);
+        rf.lstick = fp->cpu.lstick;
+        rf.cstick = fp->cpu.cstick;
+        rf.trigger = Replay_GetCpuTrigger(&fp->cpu);
+        rp->frames[f] = rf;
+    }
+}
+
 static void onFrameEndRecordVs(void)
 {
+    recordFrame();
     ReplayText_Update();
 }
 
@@ -88,7 +144,8 @@ void onEnterRecordVs(GameModeState* state)
         rules->stkind = St_Kind_Last;
         rules->xB = -1;
         rules->xC = -1;
-        rules->timer_enabled = false;
+        rules->timer_enabled = true;
+        rules->time_limit = REPLAY_MAX_SECONDS;
         rules->match_kind = MatchKind_Stock;
         rules->game_speed = 0.25f;
         rules->on_match_start = onMatchStartRecordVs;
@@ -99,13 +156,14 @@ void onEnterRecordVs(GameModeState* state)
         PlayerInitData* player = &start->players[i];
         gm_SetupPlayerDefaults(player);
 
-        if (i < ARRAY_SIZE(fighters)) {
-            ReplayFighter const* fighter = &fighters[i];
+        if (i < ARRAY_SIZE(fighter_init)) {
+            ReplayFighterInit const* fighter = &fighter_init[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
             player->x5 = fighter->spawn_pos;
-            player->slot_type = Gm_PKind_Cpu;
+            player->slot_type =
+                fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
             player->cpu_level = 9;
             player->x10 = 300;
             player->stocks = 1;
@@ -117,7 +175,9 @@ void onEnterRecordVs(GameModeState* state)
     }
 
     resetSeed();
+    resetReplay();
     gm_LoadAnnouncer();
+    gm_SetupSubColors(start);
 }
 
 void onExitRecordVs(UNUSED GameModeState* state) {}

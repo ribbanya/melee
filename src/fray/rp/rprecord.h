@@ -1,10 +1,12 @@
 #ifndef FRAY_REPLAY_H
 #define FRAY_REPLAY_H
 
+#include <melee/ft/types.h>
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
 
-#define REPLAY_MAX_LENGTH (GM_FPS * 60)
+#define REPLAY_MAX_SECONDS 60
+#define REPLAY_MAX_FRAMES (GM_FPS * 60)
 
 typedef struct {
     u8 a : 1;
@@ -21,14 +23,19 @@ typedef struct {
 } ReplayFrame;
 
 typedef struct {
-    u8 pkind; ///< ::Gm_PKind
-    u8 ckind; ///< ::CharacterKind
-    u8 color;
-    u8 slot;
-    u8 spawn_pos;
-    ReplayFrame frames[REPLAY_MAX_LENGTH];
+    u8 ckind : 6; ///< ::CharacterKind
+    u8 is_cpu : 1;
+    u8 color : 3;
+    u8 slot : 2;
+    u8 spawn_pos : 2;
+} ReplayFighterInit;
+
+typedef struct {
+    ReplayFighterInit init;
+    ReplayFrame frames[REPLAY_MAX_FRAMES];
 } ReplayFighter;
 
+s8 Replay_GetCpuTrigger(struct CpuFighter* cpu);
 void Replay_Mode_OnInit(void);
 void Replay_Mode_OnLoad(void);
 void Replay_Mode_OnUnload(void);

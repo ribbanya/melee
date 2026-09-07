@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+#include "fray/rp/rprecord.h"
 #include <melee/if/textdraw.h>
 #include <melee/if/textlib.h>
 #include <melee/if/types.h>
@@ -47,7 +48,7 @@ void ReplayText_Update(void)
     HSD_Pad buttons;
     S8Vec2 lstick;
     S8Vec2 cstick;
-    s8 triggers;
+    s8 trigger;
     size_t i;
 
     DevText_Erase(text);
@@ -71,7 +72,7 @@ void ReplayText_Update(void)
         buttons = fp->cpu.buttons;
         lstick = fp->cpu.lstick;
         cstick = fp->cpu.cstick;
-        triggers = MAX(fp->cpu.ltrigger, fp->cpu.rtrigger);
+        trigger = Replay_GetCpuTrigger(&fp->cpu);
 
         if (i > 0) {
             DevText_Print(text, "\n");
@@ -79,6 +80,6 @@ void ReplayText_Update(void)
         DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %d %08x",
                        fp->player_id, convertCpuCoord(lstick.x),
                        convertCpuCoord(lstick.y), convertCpuCoord(cstick.x),
-                       convertCpuCoord(cstick.y), triggers, buttons);
+                       convertCpuCoord(cstick.y), trigger, buttons);
     }
 }
