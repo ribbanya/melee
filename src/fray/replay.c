@@ -139,7 +139,7 @@ static void onMatchStartRecordVs(void)
 
 static void onFrameEndRecordVs(void)
 {
-    // recordInputs();
+    recordInputs();
     ReplayText_Update();
     // DevText_ShowBackground(db_CpuHandicapInfo.text);
     // DevText_ShowText(db_CpuHandicapInfo.text);
