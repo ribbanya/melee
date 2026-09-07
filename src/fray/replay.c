@@ -1,15 +1,19 @@
+#include <Runtime/platform.h>
+
+#include <melee/gm/forward.h>
+#include <melee/pl/forward.h>
+
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "melee/gm/forward.h"
-#include "melee/pl/forward.h"
-#include "melee/pl/player.h"
-#include "Runtime/platform.h"
+#include "sysdolphin/baselib/debug.h"
 #include <dolphin/os.h>
 #include <fray/replaycard.h>
+#include <melee/ft/kinds/ftCommon/ftCo_0A01.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
+#include <melee/pl/player.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -52,6 +56,8 @@ GameModeState Replay_RecordStates[] = {
 void Replay_Mode_OnInit(void)
 {
     ReplayCard_Init();
+    HSD_LogInit();
+    HSD_SetReportCallback(NULL);
 }
 
 void Replay_Mode_OnLoad(void) {}
@@ -74,11 +80,6 @@ static void recordInputs(void)
     Vec2 lstick;
     Vec2 cstick;
     size_t i;
-
-    for (i = 0; i < 6; i++) {
-        OSReport("%d: %d", i, Player_GetPlayerSlotType(i));
-    }
-    return;
 
     for (i = 0; i < ARRAY_SIZE(fighters); i++) {
         fs = &fighters[i];
@@ -103,11 +104,11 @@ static void recordInputs(void)
             cstick = fp->input.cstick;
             break;
         case Gm_PKind_Cpu:
-            buttons = fp->x1A88.x0;
-            lstick.x = fp->x1A88.lstickX / (float) S8_MAX;
-            lstick.y = fp->x1A88.lstickY / (float) S8_MAX;
-            cstick.x = fp->x1A88.cstickX / (float) S8_MAX;
-            cstick.y = fp->x1A88.cstickY / (float) S8_MAX;
+            buttons = ftCo_GetCpuButtons(fp);
+            lstick.x = ftCo_GetCpuLStickX(fp);
+            lstick.y = ftCo_GetCpuLStickY(fp);
+            cstick.x = ftCo_GetCpuCStickX(fp);
+            cstick.y = ftCo_GetCpuCStickY(fp);
             break;
         case Gm_PKind_Demo:
         case Gm_PKind_NA:
