@@ -1,4 +1,4 @@
-#include "replay.h"
+#include "rprecord.h"
 
 #include <Runtime/platform.h>
 
@@ -7,8 +7,8 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "replaycard.h"
-#include <fray/replaytext.h>
+#include "rpcard.h"
+#include <fray/rpdisplay.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
