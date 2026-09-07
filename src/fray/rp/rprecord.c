@@ -144,8 +144,6 @@ static void recordFrame(void)
         rf->lstick = fp->cpu.lstick;
         rf->cstick = fp->cpu.cstick;
         rf->trigger = Replay_GetCpuTrigger(&fp->cpu);
-        OSReport("%d: Wrote %d %d %d %d %d", i, rf->lstick.x, rf->lstick.y,
-                 rf->cstick.x, rf->cstick.y, rf->trigger);
     }
 }
 

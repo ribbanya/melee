@@ -79,10 +79,10 @@ void ReplayText_Update(void)
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %s", i,
+        DevText_Printf(text, "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d %s",
                        convertCoord(rf->lstick.x, true),
                        convertCoord(rf->lstick.y, true),
                        convertCoord(rf->cstick.x, true),
-                       convertCoord(rf->cstick.y, true), buttons);
+                       convertCoord(rf->cstick.y, true), rf->trigger, buttons);
     }
 }
