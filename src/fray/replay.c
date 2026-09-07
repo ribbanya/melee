@@ -5,15 +5,12 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include <dolphin/os.h>
 #include <fray/replaycard.h>
 #include <fray/replaytext.h>
-#include <melee/ft/kinds/ftCommon/ftCo_0A01.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_1A3F.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
-#include <melee/pl/player.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -29,8 +26,8 @@ typedef struct {
 } FighterSetup;
 
 static FighterSetup const fighters[] = {
-    { CKIND_FOX, 3, 2, 2 },
-    { CKIND_FOX, 3, 0, 4 },
+    { CKIND_FOX, 0, 0, 2 },
+    { CKIND_FOX, 2, 3, 4 },
 };
 
 enum {
@@ -61,8 +58,7 @@ static int shut_up(UNUSED __file_handle arg0, UNUSED unsigned char* arg1,
 
 void Replay_Mode_OnInit(void)
 {
-    // Shut up character-by-character OSReport spam
-    // Can't be null or it will just get replaced in ::HSD_LogInit
+    // Shut up character-by-character OSReport spam. Will crash if null.
     stdout->write_proc = shut_up;
     ReplayCard_Init();
 }
@@ -84,8 +80,6 @@ static void onMatchStartRecordVs(void)
 static void onFrameEndRecordVs(void)
 {
     ReplayText_Update();
-    // DevText_ShowBackground(db_CpuHandicapInfo.text);
-    // DevText_ShowText(db_CpuHandicapInfo.text);
 }
 
 void onEnterRecordVs(GameModeState* state)
@@ -99,10 +93,9 @@ void onEnterRecordVs(GameModeState* state)
         rules->stkind = St_Kind_Last;
         rules->xB = -1;
         rules->xC = -1;
-        rules->timer_enabled = true;
-        rules->time_limit = 10;
+        rules->timer_enabled = false;
         rules->match_kind = MatchKind_Stock;
-        rules->game_speed = 2.0f;
+        rules->game_speed = 0.25f;
         rules->on_match_start = onMatchStartRecordVs;
         rules->on_frame_end = onFrameEndRecordVs;
     }
