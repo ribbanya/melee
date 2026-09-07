@@ -117,7 +117,7 @@ static void recordFrame(void)
         Fighter* fp = gobj->user_data;
         ReplayFrame rf = { 0 };
 
-        HSD_ASSERTMSG(__LINE__, !rp->init.is_cpu,
+        HSD_ASSERTMSG(__LINE__, rp->init.is_cpu,
                       "Human recording not implemented!");
         rpFrameSetButtons(&rf, fp->cpu.buttons);
         rf.lstick = fp->cpu.lstick;
