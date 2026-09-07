@@ -76,62 +76,6 @@ static void resetSeed(void)
     *seed_ptr = fixed_seed;
 }
 
-static void recordInputs(void)
-{
-    HSD_GObj* gobj;
-    Fighter* fp;
-    HSD_Pad buttons;
-    Gm_PKind pkind;
-    Vec2 lstick;
-    Vec2 cstick;
-    size_t i;
-
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        pkind = Player_GetPlayerSlotType(i);
-
-        if (pkind == Gm_PKind_NA) {
-            continue;
-        }
-
-        gobj = Player_GetEntity(i);
-        if (!gobj) {
-            OSReport("Can't get player %d!", i);
-            continue;
-        }
-
-        fp = gobj->user_data;
-        if (!fp) {
-            OSReport("Can't get fighter %d!", i);
-            continue;
-        }
-
-        buttons = 0;
-        switch (pkind) {
-        case Gm_PKind_Human:
-            buttons = fp->input.held_inputs;
-            lstick = fp->input.lstick;
-            cstick = fp->input.cstick;
-            break;
-        case Gm_PKind_Cpu:
-            buttons = ftCo_GetCpuButtons(fp);
-            lstick.x = ftCo_GetCpuLStickX(fp);
-            lstick.y = ftCo_GetCpuLStickY(fp);
-            cstick.x = ftCo_GetCpuCStickX(fp);
-            cstick.y = ftCo_GetCpuCStickY(fp);
-            break;
-        case Gm_PKind_NA:
-        case Gm_PKind_Demo:
-        case Gm_PKind_Boss:
-            OSPanic(__FILE__, __LINE__, "Unexpected PKind %d!", pkind);
-        }
-
-        if (buttons) {
-            OSReport("%d: (%.2f,%.2f) (%.2f,%.2f) %08x", i, lstick.x, lstick.y,
-                     cstick.x, cstick.y, buttons);
-        }
-    }
-}
-
 static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
@@ -139,7 +83,6 @@ static void onMatchStartRecordVs(void)
 
 static void onFrameEndRecordVs(void)
 {
-    recordInputs();
     ReplayText_Update();
     // DevText_ShowBackground(db_CpuHandicapInfo.text);
     // DevText_ShowText(db_CpuHandicapInfo.text);

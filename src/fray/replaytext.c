@@ -5,7 +5,6 @@
 #include "melee/if/types.h"
 #include "melee/pl/player.h"
 #include "sysdolphin/baselib/debug.h"
-#include <dolphin/os.h>
 
 #define TEXT_X 5
 #define TEXT_Y 5
@@ -37,8 +36,7 @@ void ReplayText_Update(void)
     Gm_PKind pkind;
     Vec2 lstick;
     Vec2 cstick;
-    float ltrigger;
-    float rtrigger;
+    float triggers;
     size_t i;
 
     DevText_Erase(text);
@@ -59,18 +57,19 @@ void ReplayText_Update(void)
 
         switch (pkind) {
         case Gm_PKind_Human:
-            buttons = fp->input.held_inputs;
-            lstick = fp->input.lstick;
-            cstick = fp->input.cstick;
-            // ltrigger = fp->input.
-            break;
         case Gm_PKind_Cpu:
-            buttons = ftCo_GetCpuButtons(fp);
-            lstick.x = ftCo_GetCpuLStickX(fp);
-            lstick.y = ftCo_GetCpuLStickY(fp);
-            cstick.x = ftCo_GetCpuCStickX(fp);
-            cstick.y = ftCo_GetCpuCStickY(fp);
+            buttons = fp->input.held_buttons[0];
+            lstick = fp->input.lstick[0];
+            cstick = fp->input.cstick[0];
+            triggers = fp->input.triggers[0];
             break;
+        //     buttons = ftCo_GetCpuButtons(fp);
+        //     lstick.x = ftCo_GetCpuLStickX(fp);
+        //     lstick.y = ftCo_GetCpuLStickY(fp);
+        //     cstick.x = ftCo_GetCpuCStickX(fp);
+        //     cstick.y = ftCo_GetCpuCStickY(fp);
+        //     // ftCo_GetCpuLTrigger(Fighter *fp)
+        //     break;
         case Gm_PKind_NA:
         case Gm_PKind_Demo:
         case Gm_PKind_Boss:
@@ -80,8 +79,7 @@ void ReplayText_Update(void)
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "%d: (%.2f,%.2f) (%.2f,%.2f) %08x", i, lstick.x,
-                       lstick.y, cstick.x, cstick.y, ltrigger, rtrigger,
-                       buttons);
+        DevText_Printf(text, "%d: (%.2f,%.2f) (%.2f) %08x", i, lstick.x,
+                       lstick.y, cstick.x, cstick.y, triggers, buttons);
     }
 }
