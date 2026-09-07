@@ -538,7 +538,7 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
     )
 
 
-def FrayLib(lib_name: str, objects: Objects) -> Library:
+def CustomLib(lib_name: str, objects: Objects) -> Library:
     custom_objects.extend(o.name for o in objects)
     return Lib(
         lib_name,
@@ -564,13 +564,13 @@ config.warn_missing_config = True
 config.warn_missing_source = True
 
 config.libs = [
-    FrayLib(
+    CustomLib(
         "lb (Library)",
         [
             Object(Equivalent, "fray/lb/lbqol.c"),
         ],
     ),
-    FrayLib(
+    CustomLib(
         "rp (Replay)",
         [
             Object(Equivalent, "fray/rp/rprecord.c"),

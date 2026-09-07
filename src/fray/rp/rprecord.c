@@ -7,6 +7,7 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/lb/forward.h"
 #include "rpcard.h"
 #include "rpdisplay.h"
 #include <dolphin/types.h>
@@ -31,8 +32,8 @@ static void onExitPlaybackVs(GameModeState* state);
 static u32 const fixed_seed = 0xDEEDBEEF;
 
 static ReplayFighterInit const fighter_init[] = {
-    { CKIND_FOX, Gm_PKind_Cpu, 0, 0, 2 },
-    { CKIND_FOX, Gm_PKind_Cpu, 2, 3, 3 },
+    { CKIND_FOX, true, 0, 0, 2 },
+    { CKIND_FOX, true, 2, 3, 3 },
 };
 
 static ReplayFighter fighter_replay[ARRAY_SIZE(fighter_init)];
@@ -67,7 +68,14 @@ GameModeState Replay_RecordStates[] = {
             &gmVsMelee_VsExitInfo,
         },
     },
-    { GM_GAMEMODESTATE_TERMINATE },
+    {
+        GM_GAMEMODESTATE_TERMINATE,
+        lbDvdPreload_0,
+        0,
+        NULL,
+        NULL,
+        { 0 },
+    },
 };
 
 void Replay_Mode_OnInit(void)
@@ -194,11 +202,11 @@ static void prepMatch(GameModeState* state)
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
-            player->x5 = fighter->spawn_pos;
+            player->spawn_pos = fighter->spawn_pos;
             player->slot_type =
                 fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
             player->cpu_level = 9;
-            player->x10 = 100;
+            player->damage = 100;
             player->stocks = 1;
         } else if (i < PAD_MAX_CONTROLLERS) {
             player->cpu_kind = CpuKind_4;
@@ -241,11 +249,11 @@ void onEnterRecordVs(GameModeState* state)
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
-            player->x5 = fighter->spawn_pos;
+            player->spawn_pos = fighter->spawn_pos;
             player->slot_type =
                 fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
             player->cpu_level = 9;
-            player->x10 = 100;
+            player->damage = 100;
             player->stocks = 1;
         } else if (i < PAD_MAX_CONTROLLERS) {
             player->cpu_kind = CpuKind_4;

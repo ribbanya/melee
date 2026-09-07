@@ -7,6 +7,9 @@
 
 #define REPLAY_MAX_SECONDS 60
 #define REPLAY_MAX_FRAMES (GM_FPS * 60)
+#define REPLAY_NUM_FIGHTERS 2
+#define REPLAY_VERSION 0
+#define REPLAY_SEED 0xDEEDBEEF
 
 typedef struct {
     u8 a : 1;
@@ -33,6 +36,11 @@ typedef struct {
     u8 slot : 2;
     u8 spawn_pos : 2;
 } ReplayFighterInit;
+
+typedef struct {
+    u8 replay_version;
+    u32 seed;
+} ReplayInit;
 
 typedef struct {
     ReplayFighterInit init;
