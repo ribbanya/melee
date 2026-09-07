@@ -53,8 +53,17 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
+static int shut_up(UNUSED __file_handle arg0, UNUSED unsigned char* arg1,
+                   UNUSED size_t* arg2, UNUSED __idle_proc arg3)
+{
+    return 0;
+}
+
 void Replay_Mode_OnInit(void)
 {
+    // Shut up character-by-character OSReport spam
+    // Can't be null or it will just get replaced in ::HSD_LogInit
+    stdout->write_proc = shut_up;
     ReplayCard_Init();
 }
 
