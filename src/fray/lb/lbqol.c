@@ -1,4 +1,3 @@
-
 #include <Runtime/platform.h>
 
 #include <sysdolphin/baselib/debug.h>
