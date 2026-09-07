@@ -35,6 +35,7 @@ typedef struct {
     ReplayFrame frames[REPLAY_MAX_FRAMES];
 } ReplayFighter;
 
+ReplayFrame* Replay_GetCurrentFrame(int slot);
 s8 Replay_GetCpuTrigger(struct CpuFighter* cpu);
 void Replay_Mode_OnInit(void);
 void Replay_Mode_OnLoad(void);

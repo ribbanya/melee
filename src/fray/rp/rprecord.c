@@ -25,7 +25,7 @@
 static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 
-static u32 const fixed_seed = 0xDEADBEEF;
+static u32 const fixed_seed = 0xDEEDBEEF;
 
 static ReplayFighterInit const fighter_init[] = {
     { CKIND_FOX, Gm_PKind_Cpu, 0, 0, 2 },
@@ -131,21 +131,21 @@ static void rpFrameSetButtons(ReplayFrame* rf, HSD_Pad buttons)
 
 static void recordFrame(void)
 {
-    u32 f = gm_GetFrameCount();
     size_t i;
     for (i = 0; i < ARRAY_SIZE(fighter_replay); i++) {
         ReplayFighter* rp = &fighter_replay[i];
         HSD_GObj* gobj = Player_GetEntity(i);
         Fighter* fp = gobj->user_data;
-        ReplayFrame rf = { 0 };
+        ReplayFrame* rf = Replay_GetCurrentFrame(i);
 
         HSD_ASSERTMSG(__LINE__, rp->init.is_cpu,
                       "Human recording not implemented!");
-        rpFrameSetButtons(&rf, fp->cpu.buttons);
-        rf.lstick = fp->cpu.lstick;
-        rf.cstick = fp->cpu.cstick;
-        rf.trigger = Replay_GetCpuTrigger(&fp->cpu);
-        rp->frames[f] = rf;
+        rpFrameSetButtons(rf, fp->cpu.buttons);
+        rf->lstick = fp->cpu.lstick;
+        rf->cstick = fp->cpu.cstick;
+        rf->trigger = Replay_GetCpuTrigger(&fp->cpu);
+        OSReport("%d: Wrote %d %d %d %d %d", i, rf->lstick.x, rf->lstick.y,
+                 rf->cstick.x, rf->cstick.y, rf->trigger);
     }
 }
 
@@ -187,7 +187,7 @@ void onEnterRecordVs(GameModeState* state)
             player->slot_type =
                 fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
             player->cpu_level = 9;
-            player->x10 = 300;
+            player->x10 = 100;
             player->stocks = 1;
         } else if (i < PAD_MAX_CONTROLLERS) {
             player->cpu_kind = CpuKind_4;

@@ -54,15 +54,19 @@ static void fmtButtons(ReplayFrame* rf, char dst[8])
     dst[7] = rf->dpad_up ? '^' : empty;
 }
 
-static float convertCpuCoord(s8 val)
+static float convertCoord(s8 val, bool is_cpu)
 {
-    return ((s8) (val / 1.5875f)) / 80.0f;
+    float tmp = val;
+    if (is_cpu) {
+        tmp = (s8) (tmp / 1.5875f);
+    }
+    return tmp / 80;
 }
 
 void ReplayText_Update(void)
 {
     HSD_GObj* gobj;
-    Fighter* fp;
+    ReplayFrame* rf;
     S8Vec2 lstick;
     S8Vec2 cstick;
     s8 trigger;
@@ -72,31 +76,21 @@ void ReplayText_Update(void)
     DevText_Erase(text);
     DevText_SetCursorXY(text, 0, 0);
 
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        Gm_PKind pkind = Player_GetPlayerSlotType(i);
-        /// @todo Look up ::HSD_PadStatus for humans
-        if (pkind != Gm_PKind_Cpu) {
-            HSD_ASSERTMSG(__LINE__, pkind != Gm_PKind_Human,
-                          "Human recording not implemented!");
-            continue;
-        }
-
-        gobj = Player_GetEntity(i);
-        HSD_ASSERT(__LINE__, gobj);
-        fp = gobj->user_data;
-        HSD_ASSERT(__LINE__, fp);
-
-        buttons = fp->cpu.buttons;
-        lstick = fp->cpu.lstick;
-        cstick = fp->cpu.cstick;
-        trigger = Replay_GetCpuTrigger(&fp->cpu);
+    for (i = 0; i < 2; i++) { /// @todo get len from lib
+        rf = Replay_GetCurrentFrame(i);
+        fmtButtons(rf, buttons);
+        // buttons = fp->cpu.buttons;
+        // lstick = fp->cpu.lstick;
+        // cstick = fp->cpu.cstick;
+        // trigger = Replay_GetCpuTrigger(&fp->cpu);
 
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %d %s",
-                       fp->player_id, convertCpuCoord(lstick.x),
-                       convertCpuCoord(lstick.y), convertCpuCoord(cstick.x),
-                       convertCpuCoord(cstick.y), trigger, buttons);
+        DevText_Printf(text, "%d: (%+.4f,%+.4f) (%+.4f,%+.4f) %.8s", i,
+                       convertCoord(lstick.x, true),
+                       convertCoord(lstick.y, true),
+                       convertCoord(cstick.x, true),
+                       convertCoord(cstick.y, true), buttons);
     }
 }
