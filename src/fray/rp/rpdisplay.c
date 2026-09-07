@@ -1,15 +1,11 @@
 #include <Runtime/platform.h>
 
-#include <melee/gm/forward.h>
-#include <melee/pl/forward.h>
-
 #include <stdio.h>
 
 #include "fray/rp/rprecord.h"
 #include <melee/if/textdraw.h>
 #include <melee/if/textlib.h>
 #include <melee/if/types.h>
-#include <melee/pl/player.h>
 #include <sysdolphin/baselib/debug.h>
 
 #define TEXT_X 2
@@ -34,11 +30,6 @@ void ReplayText_Setup(void)
     DevText_SetBGColor(text, bg);
     DevText_SetTextColor(text, fg);
     DevText_SetScale(text, TEXT_SCALE * TEXT_RATIO, TEXT_SCALE);
-}
-
-static char fmtChar(bool btn, char chr)
-{
-    return btn ? chr : ' ';
 }
 
 static void fmtButtons(ReplayFrame* rf, char dst[8])
