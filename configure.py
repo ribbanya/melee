@@ -567,9 +567,9 @@ config.libs = [
     FrayLib(
         "Tests",
         [
-            Object(Equivalent, "fray/rprecord.c"),
-            Object(Equivalent, "fray/rpcard.c"),
-            Object(Equivalent, "fray/rpdisplay.c"),
+            Object(Equivalent, "fray/rp/rprecord.c"),
+            Object(Equivalent, "fray/rp/rpcard.c"),
+            Object(Equivalent, "fray/rp/rpdisplay.c"),
         ],
     ),
     MeleeLib(
