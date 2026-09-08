@@ -79,6 +79,7 @@ typedef struct {
     ReplayFighter fighters[GM_MAX_PLAYERS];
 } Replay;
 
+HSD_GObj* Replay_GetGObj(void);
 void Replay_Init(void);
 void Replay_Load(void);
 

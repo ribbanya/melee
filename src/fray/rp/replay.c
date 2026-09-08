@@ -119,35 +119,35 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 static HSD_GObj* createReplayGObj(Replay const* desc)
 {
     HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
-    Replay* rp = HSD_MemAlloc(sizeof(*rp));
-    size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
-    size_t i;
+    // Replay* rp = HSD_MemAlloc(sizeof(*rp));
+    // size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
+    // size_t i;
 
-    /// @todo Figure out plink and prio
-    GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
-    HSD_GObj_SetupProc(gobj, recordProc, 4);
-    GObj_SetupGXLinkMax(gobj, renderFunc, 0);
+    // /// @todo Figure out plink and prio
+    // GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
+    // HSD_GObj_SetupProc(gobj, recordProc, 4);
+    // // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
 
-    rp->stkind = desc->stkind;
-    rp->mkind = desc->mkind;
-    rp->version = desc->version;
-    rp->state = desc->state;
-    rp->seed = desc->seed;
-    rp->num_frames = desc->num_frames;
+    // rp->stkind = desc->stkind;
+    // rp->mkind = desc->mkind;
+    // rp->version = desc->version;
+    // rp->state = desc->state;
+    // rp->seed = desc->seed;
+    // rp->num_frames = desc->num_frames;
 
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        ReplayFighter const* src = &desc->fighters[i];
-        ReplayFighter* dst = &rp->fighters[i];
+    // for (i = 0; i < Gm_Player_NumMax; i++) {
+    //     ReplayFighter const* src = &desc->fighters[i];
+    //     ReplayFighter* dst = &rp->fighters[i];
 
-        dst->ckind = src->ckind;
-        dst->pkind = src->ckind;
-        dst->cpu_kind = src->cpu_kind;
-        dst->color = src->color;
-        dst->slot = src->slot;
-        dst->spawn_pos = src->spawn_pos;
-        dst->frames = HSD_ObjAlloc(&frames_alloc_data);
-        memcpy(dst->frames, src->frames, frames_size);
-    }
+    //     dst->ckind = src->ckind;
+    //     dst->pkind = src->ckind;
+    //     dst->cpu_kind = src->cpu_kind;
+    //     dst->color = src->color;
+    //     dst->slot = src->slot;
+    //     dst->spawn_pos = src->spawn_pos;
+    //     dst->frames = HSD_ObjAlloc(&frames_alloc_data);
+    //     memcpy(dst->frames, src->frames, frames_size);
+    // }
 
     return gobj;
 };

@@ -34,7 +34,7 @@ GameModeState Replay_RecordStates[] = {
         lbDvdPreload_2,
         0,
         onEnterRecordVs,
-        onExitRecordVs,
+        NULL,
         {
             GS_VS,
             &gmVsMelee_StartData,
@@ -70,7 +70,10 @@ void Replay_Mode_OnInit(void)
     ReplayCard_Init();
 }
 
-void Replay_Mode_OnLoad(void) {}
+void Replay_Mode_OnLoad(void)
+{
+    Replay_Load();
+}
 
 void Replay_Mode_OnUnload(void) {}
 
@@ -81,7 +84,6 @@ static void setSeed(u32 seed)
 
 static void onMatchStartRecordVs(void)
 {
-    Replay_Load();
     ReplayText_Setup();
 }
 
@@ -137,7 +139,9 @@ static void onMatchStartRecordVs(void)
 
 void onEnterRecordVs(GameModeState* state)
 {
+#if 0
     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
+    Replay* rp = Replay_GetGObj()->user_data;
     size_t i;
 
     {
@@ -156,19 +160,19 @@ void onEnterRecordVs(GameModeState* state)
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
         PlayerInitData* player = &start->players[i];
+        ReplayFighter* fighter = &rp->fighters[i];
         gm_SetupPlayerDefaults(player);
 
         //     if (i < ARRAY_SIZE(fighter_init)) {
         //         ReplayFighterDesc const* fighter = &fighter_init[i];
-        //         player->ckind = fighter->ckind;
-        //         player->color = fighter->color;
-        //         player->slot = fighter->slot;
-        //         player->spawn_pos = fighter->spawn_pos;
-        //         player->slot_type =
-        //             fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
-        //         player->cpu_level = 9;
-        //         player->damage = 100;
-        //         player->stocks = 1;
+        player->ckind = fighter->ckind;
+        player->color = fighter->color;
+        player->slot = fighter->slot;
+        player->spawn_pos = fighter->spawn_pos;
+        player->slot_type = fighter->pkind;
+        player->cpu_level = 9;
+        player->damage = 100;
+        player->stocks = 1;
         //     } else if (i < PAD_MAX_CONTROLLERS) {
         //         player->cpu_kind = CpuKind_4;
         //         player->slot_type = Gm_PKind_NA;
@@ -178,6 +182,7 @@ void onEnterRecordVs(GameModeState* state)
 
     // clearReplay();
     // setSeed(REPLAY_SEED);
+#endif
     gm_LoadAnnouncer();
     // gm_SetupSubColors(start);
 }
