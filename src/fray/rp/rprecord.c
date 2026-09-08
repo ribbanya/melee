@@ -8,6 +8,7 @@
 #include <abort_exit.h> // IWYU pragma: keep
 
 #include "melee/lb/forward.h"
+#include "replay.h"
 #include "rpcard.h"
 #include "rpdisplay.h"
 #include <dolphin/types.h>
@@ -28,13 +29,6 @@ static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 static void onEnterPlaybackVs(GameModeState* state);
 static void onExitPlaybackVs(GameModeState* state);
-
-static u32 const fixed_seed = 0xDEEDBEEF;
-
-static ReplayFighterInit const fighter_init[] = {
-    { CKIND_FOX, true, 0, 0, 2 },
-    { CKIND_FOX, true, 2, 3, 3 },
-};
 
 static ReplayFighter fighter_replay[ARRAY_SIZE(fighter_init)];
 
@@ -110,9 +104,9 @@ void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
 
-static void resetSeed(void)
+static void setSeed(u32 seed)
 {
-    *seed_ptr = fixed_seed;
+    *seed_ptr = seed;
 }
 
 static void clearReplay(void)
@@ -189,6 +183,8 @@ static void prepMatch(GameModeState* state)
         rules->time_limit = REPLAY_MAX_SECONDS;
         rules->match_kind = MatchKind_Stock;
         rules->game_speed = 0.25f;
+
+        /// @todo Handle via replay gobj, ::fighter_alloc_data
         rules->on_match_start = onMatchStartRecordVs;
         rules->on_frame_end = onFrameEndRecordVs;
     }
@@ -198,7 +194,7 @@ static void prepMatch(GameModeState* state)
         gm_SetupPlayerDefaults(player);
 
         if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterInit const* fighter = &fighter_init[i];
+            ReplayFighterConfig const* fighter = &fighter_init[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
@@ -216,7 +212,7 @@ static void prepMatch(GameModeState* state)
     }
 
     clearReplay();
-    resetSeed();
+    setSeed(REPLAY_SEED);
     gm_LoadAnnouncer();
     gm_SetupSubColors(start);
 }
@@ -245,7 +241,7 @@ void onEnterRecordVs(GameModeState* state)
         gm_SetupPlayerDefaults(player);
 
         if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterInit const* fighter = &fighter_init[i];
+            ReplayFighterConfig const* fighter = &fighter_init[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
@@ -263,7 +259,7 @@ void onEnterRecordVs(GameModeState* state)
     }
 
     clearReplay();
-    resetSeed();
+    setSeed(REPLAY_SEED);
     gm_LoadAnnouncer();
     gm_SetupSubColors(start);
 }
