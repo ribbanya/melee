@@ -30,8 +30,6 @@ static void onExitRecordVs(GameModeState* state);
 static void onEnterPlaybackVs(GameModeState* state);
 static void onExitPlaybackVs(GameModeState* state);
 
-static ReplayFighter fighter_replay[ARRAY_SIZE(fighter_init)];
-
 enum {
     state_record_vs,
     state_playback_vs,
@@ -94,10 +92,12 @@ static void checkFrame(u32 frame)
 
 ReplayFrame* Replay_GetCurrentFrame(int slot)
 {
-    u32 frame = gm_GetFrameCount();
+    u32 gm_frame = gm_GetFrameCount();
+    ReplayFrame* rf;
     checkSlot(slot);
     checkFrame(frame);
-    return &fighter_replay[slot].frames[frame];
+    FRAY_ASSERT(replay->num_frames == gm_frame);
+    rf = &fighter_replay[slot].frames[frame];
 }
 
 void Replay_Mode_OnLoad(void) {}

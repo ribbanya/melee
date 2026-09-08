@@ -3,10 +3,10 @@
 #include <stdio.h>
 
 #include "rprecord.h"
+#include <fray/lb/lbqol.h>
 #include <melee/if/textdraw.h>
 #include <melee/if/textlib.h>
 #include <melee/if/types.h>
-#include <sysdolphin/baselib/debug.h>
 
 #define TEXT_X 2
 #define TEXT_Y 2
@@ -24,7 +24,7 @@ void ReplayText_Setup(void)
     static GXColor const fg = { 0xFF, 0xFF, 0xFF, 0xFF };
     HSD_GObj* gobj = DevText_GetGObj();
     text = DevText_Create(1, TEXT_X, TEXT_Y, TEXT_WIDTH, TEXT_HEIGHT, buf);
-    HSD_ASSERT(__LINE__, text);
+    FRAY_ASSERT(text);
     DevText_Show(gobj, text);
     DevText_HideCursor(text);
     DevText_SetBGColor(text, bg);

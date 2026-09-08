@@ -24,11 +24,6 @@ static Replay const replay_desc = {
     },
 };
 
-// static ReplayFighterDesc const fighter_init[] = {
-//     { CKIND_FOX, true, 0, 0, 2 },
-//     { CKIND_FOX, true, 2, 3, 3 },
-// };
-
 void Replay_Init(void)
 {
     HSD_ObjAllocInit(&frames_alloc_data,
