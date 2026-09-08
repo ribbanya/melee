@@ -35,23 +35,23 @@ void ReplayText_Setup(void)
 static void fmtButtons(ReplayFrame* rf, char dst[8])
 {
     char const empty = ' ';
-    dst[0] = rf->a ? 'A' : empty;
-    dst[1] = rf->b ? 'B' : empty;
-    dst[2] = rf->x ? 'X' : empty;
-    dst[3] = rf->y ? 'Y' : empty;
-    dst[4] = rf->l ? 'L' : empty;
-    dst[5] = rf->r ? 'R' : empty;
-    dst[6] = rf->z ? 'Z' : empty;
-    dst[7] = rf->dpad_up ? '^' : empty;
+    dst[0] = rf->in.a ? 'A' : empty;
+    dst[1] = rf->in.b ? 'B' : empty;
+    dst[2] = rf->in.x ? 'X' : empty;
+    dst[3] = rf->in.y ? 'Y' : empty;
+    dst[4] = rf->in.l ? 'L' : empty;
+    dst[5] = rf->in.r ? 'R' : empty;
+    dst[6] = rf->in.z ? 'Z' : empty;
+    dst[7] = rf->in.dpad_up ? '^' : empty;
 }
 
 static void fmtFlags(ReplayFrame* rf, char dst[4])
 {
     char const empty = ' ';
-    dst[0] = rf->facing_left ? 'L' : empty;
-    dst[1] = rf->airborne ? 'A' : empty;
-    dst[2] = rf->ecb_locked ? 'E' : empty;
-    dst[3] = rf->hit_this_frame ? 'X' : empty;
+    dst[0] = rf->out.facing_left ? 'L' : empty;
+    dst[1] = rf->out.airborne ? 'A' : empty;
+    dst[2] = rf->out.ecb_locked ? 'E' : empty;
+    dst[3] = rf->out.hit_this_frame ? 'X' : empty;
 }
 
 static float convertCoord(s8 val, bool is_cpu)
@@ -80,12 +80,13 @@ void ReplayText_Update(void)
         if (i > 0) {
             DevText_Print(text, "\n");
         }
-        DevText_Printf(
-            text,
-            "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d\n"
-            "%.8s | %.4s",
-            convertCoord(rf->lstick.x, true), convertCoord(rf->lstick.y, true),
-            convertCoord(rf->cstick.x, true), convertCoord(rf->cstick.y, true),
-            rf->trigger, buttons, flags);
+        DevText_Printf(text,
+                       "(%+.4f,%+.4f) (%+.4f,%+.4f) %3d\n"
+                       "%.8s | %.4s",
+                       convertCoord(rf->in.lstick.x, true),
+                       convertCoord(rf->in.lstick.y, true),
+                       convertCoord(rf->in.cstick.x, true),
+                       convertCoord(rf->in.cstick.y, true), rf->in.trigger,
+                       buttons, flags);
     }
 }

@@ -1,8 +1,27 @@
 #include "replay.h"
 
+#include <Runtime/platform.h>
+
+#include <melee/gm/forward.h>
+#include <melee/pl/forward.h>
+
+#include <abort_exit.h> // IWYU pragma: keep
 #include <string.h>
 
+#include "fray/lb/lbqol.h"
 #include "melee/gm/forward.h"
+#include "melee/gm/gm_16AE.h"
+#include "replay.h"
+#include "rprecord.h"
+#include "sysdolphin/baselib/controller.h"
+#include "sysdolphin/baselib/gobjproc.h"
+#include <dolphin/types.h>
+#include <fray/lb/lbqol.h>
+#include <melee/ft/types.h>
+#include <melee/gm/gm_16AE.h>
+#include <melee/gm/types.h>
+#include <melee/pl/player.h>
+#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjuserdata.h>
 #include <sysdolphin/baselib/memory.h>
@@ -44,6 +63,52 @@ static void removeUserData(void* user_data)
     HSD_Free(rp);
 }
 
+static void inputsSetButtons(ReplayInputs* ri, HSD_Pad buttons)
+{
+    ri->a = (buttons & HSD_PAD_A) != 0;
+    ri->b = (buttons & HSD_PAD_B) != 0;
+    ri->x = (buttons & HSD_PAD_X) != 0;
+    ri->y = (buttons & HSD_PAD_Y) != 0;
+    ri->l = (buttons & HSD_PAD_L) != 0;
+    ri->r = (buttons & HSD_PAD_R) != 0;
+    ri->z = (buttons & HSD_PAD_Z) != 0;
+    ri->dpad_up = (buttons & HSD_PAD_DPADUP) != 0;
+}
+
+s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
+{
+    return MAX(cpu->ltrigger, cpu->rtrigger);
+}
+
+static void recordProc(HSD_GObj* gobj)
+{
+    Replay* rp = gobj->user_data;
+    size_t i;
+
+    if (rp->state != ReplayState_Recording) {
+        return;
+    }
+
+    FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        ReplayFighter* rf = &rp->fighters[i];
+        HSD_GObj* fighter_gobj = Player_GetEntity(i);
+        Fighter* fp = fighter_gobj->user_data;
+        ReplayFrame* rm = Replay_GetCurrentFrame(i);
+
+        FRAY_ASSERTMSG(rf->pkind != Gm_PKind_Cpu,
+                       "Human recording not implemented!");
+        inputsSetButtons(&rm->in, fp->cpu.buttons);
+        rm->in.lstick = fp->cpu.lstick;
+        rm->in.cstick = fp->cpu.cstick;
+        rm->in.trigger = Replay_GetCpuTrigger(&fp->cpu);
+        rm->out.facing_left = fp->facing_dir < 0.0f;
+        rm->out.airborne = fp->ground_or_air == GA_Air;
+        rm->out.ecb_locked = fp->ecb_lock != 0;
+        rm->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
+    }
+}
+
 static HSD_GObj* createReplayGObj(Replay const* desc)
 {
     HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
@@ -53,6 +118,7 @@ static HSD_GObj* createReplayGObj(Replay const* desc)
 
     /// @todo Figure out plink and prio
     GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
+    HSD_GObj_SetupProc(gobj, recordProc, 4);
 
     rp->stkind = desc->stkind;
     rp->mkind = desc->mkind;
@@ -79,8 +145,23 @@ static HSD_GObj* createReplayGObj(Replay const* desc)
 
 HSD_GObj* Replay_GetOrCreateGObj(void)
 {
-    if (replay_gobj) {
+    if (replay_gobj != NULL) {
         return replay_gobj;
     }
     return createReplayGObj(&replay_desc);
+}
+
+static void checkFrame(Replay* rp, u32 frame)
+{
+    if (!(frame < rp->num_frames)) {
+        FRAY_ASSERTREPORT(0, "Frame out of bounds! %d\n", frame);
+    }
+}
+
+ReplayFrame* Replay_GetCurrentFrame(int slot)
+{
+    Replay* rp = Replay_GetOrCreateGObj()->user_data;
+    u32 frame = gm_GetFrameCount();
+    checkFrame(rp, frame);
+    return &rp->fighters[slot].frames[frame];
 }

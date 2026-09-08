@@ -76,30 +76,6 @@ void Replay_Mode_OnInit(void)
     ReplayCard_Init();
 }
 
-static void checkSlot(int slot)
-{
-    if (slot < 0 || !((size_t) slot < ARRAY_SIZE(fighter_replay))) {
-        HSD_ASSERTREPORT(__LINE__, 0, "Slot out of bounds! %d\n", slot);
-    }
-}
-
-static void checkFrame(u32 frame)
-{
-    if (!(frame < REPLAY_MAX_FRAMES)) {
-        HSD_ASSERTREPORT(__LINE__, 0, "Frame out of bounds! %d\n", frame);
-    }
-}
-
-ReplayFrame* Replay_GetCurrentFrame(int slot)
-{
-    u32 gm_frame = gm_GetFrameCount();
-    ReplayFrame* rf;
-    checkSlot(slot);
-    checkFrame(frame);
-    FRAY_ASSERT(replay->num_frames == gm_frame);
-    rf = &fighter_replay[slot].frames[frame];
-}
-
 void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
@@ -109,35 +85,9 @@ static void setSeed(u32 seed)
     *seed_ptr = seed;
 }
 
-static void clearReplay(void)
-{
-    size_t i;
-    for (i = 0; i < ARRAY_SIZE(fighter_replay); i++) {
-        fighter_replay[i].init = fighter_init[i];
-        memzero(fighter_replay[i].frames, sizeof(fighter_replay[i].frames));
-    }
-}
-
 static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
-}
-
-s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
-{
-    return MAX(cpu->ltrigger, cpu->rtrigger);
-}
-
-static void rpFrameSetButtons(ReplayFrame* rf, HSD_Pad buttons)
-{
-    rf->a = (buttons & HSD_PAD_A) != 0;
-    rf->b = (buttons & HSD_PAD_B) != 0;
-    rf->x = (buttons & HSD_PAD_X) != 0;
-    rf->y = (buttons & HSD_PAD_Y) != 0;
-    rf->l = (buttons & HSD_PAD_L) != 0;
-    rf->r = (buttons & HSD_PAD_R) != 0;
-    rf->z = (buttons & HSD_PAD_Z) != 0;
-    rf->dpad_up = (buttons & HSD_PAD_DPADUP) != 0;
 }
 
 static void recordFrame(void)

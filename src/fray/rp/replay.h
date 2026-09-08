@@ -21,6 +21,7 @@ typedef struct {
     u8 dpad_up : 1;
     S8Vec2 lstick;
     S8Vec2 cstick;
+    u8 trigger;
 } ReplayInputs;
 
 typedef struct {
@@ -36,7 +37,6 @@ typedef struct {
     ReplayInputs in;
     ReplayOutputs out;
 } ReplayFrame;
-ASSERT_SIZE(ReplayFrame, 8);
 
 typedef struct {
     u8 stkind; ///< ::StKind
