@@ -24,9 +24,20 @@
 #include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/random.h>
 
-static
+static HSD_ObjAllocData replay_alloc_data;
+static HSD_ObjAllocData fighter_alloc_data;
+static HSD_ObjAllocData frames_alloc_data;
 
-    static ReplayFighterConfig const fighter_init[] = {
-        { CKIND_FOX, true, 0, 0, 2 },
-        { CKIND_FOX, true, 2, 3, 3 },
-    };
+void Replay_Init(void)
+{
+    HSD_ObjAllocInit(&replay_alloc_data, sizeof(Replay), 4);
+    HSD_ObjAllocInit(&frames_alloc_data,
+                     sizeof(ReplayFighter) * REPLAY_MAX_FRAMES, 4);
+    HSD_ObjAllocInit(&frames_alloc_data,
+                     sizeof(ReplayFrame) * REPLAY_MAX_FRAMES, 4);
+}
+
+static ReplayFighterDesc const fighter_init[] = {
+    { CKIND_FOX, true, 0, 0, 2 },
+    { CKIND_FOX, true, 2, 3, 3 },
+};

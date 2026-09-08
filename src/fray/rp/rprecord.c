@@ -194,7 +194,7 @@ static void prepMatch(GameModeState* state)
         gm_SetupPlayerDefaults(player);
 
         if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterConfig const* fighter = &fighter_init[i];
+            ReplayFighterDesc const* fighter = &fighter_init[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;
@@ -241,7 +241,7 @@ void onEnterRecordVs(GameModeState* state)
         gm_SetupPlayerDefaults(player);
 
         if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterConfig const* fighter = &fighter_init[i];
+            ReplayFighterDesc const* fighter = &fighter_init[i];
             player->ckind = fighter->ckind;
             player->color = fighter->color;
             player->slot = fighter->slot;

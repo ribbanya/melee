@@ -5,10 +5,10 @@
 #include <melee/lb/types.h>
 
 #define REPLAY_MAX_SECONDS 60
-#define REPLAY_MAX_FRAMES (GM_FPS * 60)
-#define REPLAY_NUM_FIGHTERS 2
+#define REPLAY_MAX_FRAMES (GM_FPS * REPLAY_MAX_SECONDS)
 #define REPLAY_VERSION 0
-#define REPLAY_SEED 0xDEEDBEEF
+#define FRAY_GOBJ_CLASS_SHIFT 5
+#define REPLAY_GOBJ_CLASS (1 << FRAY_GOBJ_CLASS_SHIFT)
 
 typedef struct {
     u8 a : 1;
@@ -21,32 +21,53 @@ typedef struct {
     u8 dpad_up : 1;
     S8Vec2 lstick;
     S8Vec2 cstick;
+} ReplayInputs;
+
+typedef struct {
     u8 trigger;
     u8 facing_left : 1;
     u8 airborne : 1;
     u8 ecb_locked : 1;
     u8 hit_this_frame : 1;
     u8 reserved;
+} ReplayOutputs;
+
+typedef struct {
+    ReplayInputs in;
+    ReplayOutputs out;
 } ReplayFrame;
+ASSERT_SIZE(ReplayFrame, 8);
 
 typedef struct {
-    u8 ckind : 6; ///< ::CharacterKind
-    u8 is_cpu : 1;
-    u8 color : 3;
-    u8 slot : 2;
-    u8 spawn_pos : 2;
-} ReplayFighterConfig;
+    u8 ckind;    ///< ::CharacterKind
+    u8 pkind;    ///< ::Gm_PKind
+    u8 cpu_kind; ///< ::CpuKind
+    u8 color;
+    u8 slot;
+    u8 spawn_pos;
+    u8 reserved[2];
+} ReplayFighterDesc;
+ASSERT_SIZE(ReplayFighterDesc, 8);
 
 typedef struct {
-    u8 replay_version;
-    u8 num_fighters;
+    u8 stkind; ///< ::StKind
+    u8 mkind;  ///< ::MatchKind
+    u8 version;
+    u8 reserved;
     u32 seed;
-} ReplayInit;
+} ReplayMatchDesc;
+ASSERT_SIZE(ReplayMatchDesc, 8);
 
 typedef struct {
-    u8 num_fighters;
+    ReplayFighterDesc desc;
+    ReplayFrame* frames;
+} ReplayFighter;
+
+typedef struct {
+    ReplayMatchDesc desc;
     u32 num_frames;
-    ReplayFrame** frames;
+    u32 num_fighters;
+    ReplayFighter** fighters;
 } Replay;
 
 #endif
