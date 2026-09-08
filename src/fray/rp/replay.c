@@ -14,6 +14,7 @@
 #include "replay.h"
 #include "rprecord.h"
 #include "sysdolphin/baselib/controller.h"
+#include "sysdolphin/baselib/gobjgxlink.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
@@ -109,6 +110,12 @@ static void recordProc(HSD_GObj* gobj)
     }
 }
 
+static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
+{
+    /// @todo Pass gobj
+    // ReplayText_Update();
+}
+
 static HSD_GObj* createReplayGObj(Replay const* desc)
 {
     HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
@@ -119,10 +126,12 @@ static HSD_GObj* createReplayGObj(Replay const* desc)
     /// @todo Figure out plink and prio
     GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
     HSD_GObj_SetupProc(gobj, recordProc, 4);
+    GObj_SetupGXLinkMax(gobj, renderFunc, 0);
 
     rp->stkind = desc->stkind;
     rp->mkind = desc->mkind;
     rp->version = desc->version;
+    rp->state = desc->state;
     rp->seed = desc->seed;
     rp->num_frames = desc->num_frames;
 
@@ -143,12 +152,15 @@ static HSD_GObj* createReplayGObj(Replay const* desc)
     return gobj;
 };
 
-HSD_GObj* Replay_GetOrCreateGObj(void)
+void Replay_Load(void)
 {
-    if (replay_gobj != NULL) {
-        return replay_gobj;
-    }
-    return createReplayGObj(&replay_desc);
+    replay_gobj = createReplayGObj(&replay_desc);
+}
+
+HSD_GObj* Replay_GetGObj(void)
+{
+    FRAY_ASSERT(replay_gobj);
+    return replay_gobj;
 }
 
 static void checkFrame(Replay* rp, u32 frame)
@@ -160,7 +172,7 @@ static void checkFrame(Replay* rp, u32 frame)
 
 ReplayFrame* Replay_GetCurrentFrame(int slot)
 {
-    Replay* rp = Replay_GetOrCreateGObj()->user_data;
+    Replay* rp = Replay_GetGObj()->user_data;
     u32 frame = gm_GetFrameCount();
     checkFrame(rp, frame);
     return &rp->fighters[slot].frames[frame];

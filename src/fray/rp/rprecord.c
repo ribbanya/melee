@@ -3,26 +3,19 @@
 #include <Runtime/platform.h>
 
 #include <melee/gm/forward.h>
-#include <melee/pl/forward.h>
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/gm/gm_1A3F.h"
 #include "melee/lb/forward.h"
 #include "replay.h"
 #include "rpcard.h"
 #include "rpdisplay.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
-#include <melee/ft/types.h>
 #include <melee/gm/gm_1601.h>
-#include <melee/gm/gm_16AE.h>
-#include <melee/gm/gm_1A3F.h>
-#include <melee/gm/gm_1B03.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/pl/player.h>
-#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -73,6 +66,7 @@ GameModeState Replay_RecordStates[] = {
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
+    Replay_Init();
     ReplayCard_Init();
 }
 
@@ -87,85 +81,59 @@ static void setSeed(u32 seed)
 
 static void onMatchStartRecordVs(void)
 {
+    Replay_Load();
     ReplayText_Setup();
 }
 
-static void recordFrame(void)
-{
-    size_t i;
-    for (i = 0; i < ARRAY_SIZE(fighter_replay); i++) {
-        ReplayFighter* rp = &fighter_replay[i];
-        HSD_GObj* gobj = Player_GetEntity(i);
-        Fighter* fp = gobj->user_data;
-        ReplayFrame* rf = Replay_GetCurrentFrame(i);
+// static void prepMatch(GameModeState* state)
+// {
+//     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
+//     size_t i;
 
-        HSD_ASSERTMSG(__LINE__, rp->init.is_cpu,
-                      "Human recording not implemented!");
-        rpFrameSetButtons(rf, fp->cpu.buttons);
-        rf->lstick = fp->cpu.lstick;
-        rf->cstick = fp->cpu.cstick;
-        rf->trigger = Replay_GetCpuTrigger(&fp->cpu);
-        rf->facing_left = fp->facing_dir < 0.0f;
-        rf->airborne = fp->ground_or_air == GA_Air;
-        rf->ecb_locked = fp->ecb_lock != 0;
-        rf->hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
-    }
-}
+//     {
+//         StartMeleeRules* rules = &start->rules;
+//         gm_SetupRulesDefaults(rules);
+//         rules->stkind = St_Kind_Last;
+//         rules->xB = -1;
+//         rules->xC = -1;
+//         rules->timer_enabled = true;
+//         rules->time_limit = REPLAY_MAX_SECONDS;
+//         rules->match_kind = MatchKind_Stock;
+//         rules->game_speed = 0.25f;
 
-static void onFrameEndRecordVs(void)
-{
-    recordFrame();
-    ReplayText_Update();
-}
+//         /// @todo Handle via gobj
+//         rules->on_match_start = onMatchStartRecordVs;
+//         /// @todo Handle via replay gobj, ::fighter_alloc_data
+//         // rules->on_frame_end = onFrameEndRecordVs;
+//     }
 
-static void prepMatch(GameModeState* state)
-{
-    StartMeleeData* start = gm_GetGameModeStateEnterData(state);
-    size_t i;
+//     for (i = 0; i < Gm_Player_NumMax; i++) {
+//         PlayerInitData* player = &start->players[i];
+//         gm_SetupPlayerDefaults(player);
 
-    {
-        StartMeleeRules* rules = &start->rules;
-        gm_SetupRulesDefaults(rules);
-        rules->stkind = St_Kind_Last;
-        rules->xB = -1;
-        rules->xC = -1;
-        rules->timer_enabled = true;
-        rules->time_limit = REPLAY_MAX_SECONDS;
-        rules->match_kind = MatchKind_Stock;
-        rules->game_speed = 0.25f;
+//         if (i < ARRAY_SIZE(fighter_init)) {
+//             ReplayFighterDesc const* fighter = &fighter_init[i];
+//             player->ckind = fighter->ckind;
+//             player->color = fighter->color;
+//             player->slot = fighter->slot;
+//             player->spawn_pos = fighter->spawn_pos;
+//             player->slot_type =
+//                 fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
+//             player->cpu_level = 9;
+//             player->damage = 100;
+//             player->stocks = 1;
+//         } else if (i < PAD_MAX_CONTROLLERS) {
+//             player->cpu_kind = CpuKind_4;
+//             player->slot_type = Gm_PKind_NA;
+//             player->rumble_enabled = false;
+//         }
+//     }
 
-        /// @todo Handle via replay gobj, ::fighter_alloc_data
-        rules->on_match_start = onMatchStartRecordVs;
-        rules->on_frame_end = onFrameEndRecordVs;
-    }
-
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        PlayerInitData* player = &start->players[i];
-        gm_SetupPlayerDefaults(player);
-
-        if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterDesc const* fighter = &fighter_init[i];
-            player->ckind = fighter->ckind;
-            player->color = fighter->color;
-            player->slot = fighter->slot;
-            player->spawn_pos = fighter->spawn_pos;
-            player->slot_type =
-                fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
-            player->cpu_level = 9;
-            player->damage = 100;
-            player->stocks = 1;
-        } else if (i < PAD_MAX_CONTROLLERS) {
-            player->cpu_kind = CpuKind_4;
-            player->slot_type = Gm_PKind_NA;
-            player->rumble_enabled = false;
-        }
-    }
-
-    clearReplay();
-    setSeed(REPLAY_SEED);
-    gm_LoadAnnouncer();
-    gm_SetupSubColors(start);
-}
+//     clearReplay();
+//     setSeed(REPLAY_SEED);
+//     gm_LoadAnnouncer();
+//     gm_SetupSubColors(start);
+// }
 
 void onEnterRecordVs(GameModeState* state)
 {
@@ -183,35 +151,35 @@ void onEnterRecordVs(GameModeState* state)
         rules->match_kind = MatchKind_Stock;
         rules->game_speed = 0.25f;
         rules->on_match_start = onMatchStartRecordVs;
-        rules->on_frame_end = onFrameEndRecordVs;
+        // rules->on_frame_end = onFrameEndRecordVs;
     }
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
         PlayerInitData* player = &start->players[i];
         gm_SetupPlayerDefaults(player);
 
-        if (i < ARRAY_SIZE(fighter_init)) {
-            ReplayFighterDesc const* fighter = &fighter_init[i];
-            player->ckind = fighter->ckind;
-            player->color = fighter->color;
-            player->slot = fighter->slot;
-            player->spawn_pos = fighter->spawn_pos;
-            player->slot_type =
-                fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
-            player->cpu_level = 9;
-            player->damage = 100;
-            player->stocks = 1;
-        } else if (i < PAD_MAX_CONTROLLERS) {
-            player->cpu_kind = CpuKind_4;
-            player->slot_type = Gm_PKind_NA;
-            player->rumble_enabled = false;
-        }
+        //     if (i < ARRAY_SIZE(fighter_init)) {
+        //         ReplayFighterDesc const* fighter = &fighter_init[i];
+        //         player->ckind = fighter->ckind;
+        //         player->color = fighter->color;
+        //         player->slot = fighter->slot;
+        //         player->spawn_pos = fighter->spawn_pos;
+        //         player->slot_type =
+        //             fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
+        //         player->cpu_level = 9;
+        //         player->damage = 100;
+        //         player->stocks = 1;
+        //     } else if (i < PAD_MAX_CONTROLLERS) {
+        //         player->cpu_kind = CpuKind_4;
+        //         player->slot_type = Gm_PKind_NA;
+        //         player->rumble_enabled = false;
+        //     }
     }
 
-    clearReplay();
-    setSeed(REPLAY_SEED);
+    // clearReplay();
+    // setSeed(REPLAY_SEED);
     gm_LoadAnnouncer();
-    gm_SetupSubColors(start);
+    // gm_SetupSubColors(start);
 }
 
 void onEnterPlaybackVs(GameModeState* state) {}
