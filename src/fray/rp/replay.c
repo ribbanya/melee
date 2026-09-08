@@ -1,43 +1,83 @@
 #include "replay.h"
 
-#include <Runtime/platform.h>
+#include <string.h>
 
-#include <melee/gm/forward.h>
-#include <melee/pl/forward.h>
+#include "melee/gm/forward.h"
+#include <sysdolphin/baselib/gobj.h>
+#include <sysdolphin/baselib/gobjuserdata.h>
+#include <sysdolphin/baselib/memory.h>
+#include <sysdolphin/baselib/objalloc.h>
 
-#include <abort_exit.h> // IWYU pragma: keep
-
-#include "melee/lb/forward.h"
-#include "rpcard.h"
-#include "rpdisplay.h"
-#include <dolphin/types.h>
-#include <fray/lb/lbqol.h>
-#include <melee/ft/types.h>
-#include <melee/gm/gm_1601.h>
-#include <melee/gm/gm_16AE.h>
-#include <melee/gm/gm_1A3F.h>
-#include <melee/gm/gm_1B03.h>
-#include <melee/gm/gmvsmelee.h>
-#include <melee/gm/types.h>
-#include <melee/lb/lb_00B0.h>
-#include <melee/pl/player.h>
-#include <sysdolphin/baselib/controller.h>
-#include <sysdolphin/baselib/random.h>
-
-static HSD_ObjAllocData replay_alloc_data;
-static HSD_ObjAllocData fighter_alloc_data;
 static HSD_ObjAllocData frames_alloc_data;
+static HSD_GObj* replay_gobj;
+
+static Replay const replay_desc = {
+    St_Kind_Last, MatchKind_Stock, ReplayVersion_Current, false, 0xFEEDBEEF, 0,
+    { 0 },
+};
+
+// static ReplayFighterDesc const fighter_init[] = {
+//     { CKIND_FOX, true, 0, 0, 2 },
+//     { CKIND_FOX, true, 2, 3, 3 },
+// };
 
 void Replay_Init(void)
 {
-    HSD_ObjAllocInit(&replay_alloc_data, sizeof(Replay), 4);
-    HSD_ObjAllocInit(&frames_alloc_data,
-                     sizeof(ReplayFighter) * REPLAY_MAX_FRAMES, 4);
     HSD_ObjAllocInit(&frames_alloc_data,
                      sizeof(ReplayFrame) * REPLAY_MAX_FRAMES, 4);
 }
 
-static ReplayFighterDesc const fighter_init[] = {
-    { CKIND_FOX, true, 0, 0, 2 },
-    { CKIND_FOX, true, 2, 3, 3 },
+static void removeUserData(void* user_data)
+{
+    Replay* rp = user_data;
+    size_t i;
+
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        ReplayFrame** frames = &rp->fighters[i].frames;
+        if (frames) {
+            HSD_ObjFree(&frames_alloc_data, rp->fighters[i].frames);
+        }
+    }
+    HSD_Free(rp);
+}
+
+static HSD_GObj* createReplayGObj(Replay const* desc)
+{
+    HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
+    Replay* rp = HSD_MemAlloc(sizeof(*rp));
+    size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
+    size_t i;
+
+    /// @todo Figure out plink and prio
+    GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
+
+    rp->stkind = desc->stkind;
+    rp->mkind = desc->mkind;
+    rp->version = desc->version;
+    rp->seed = desc->seed;
+    rp->num_frames = desc->num_frames;
+
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        ReplayFighter const* src = &desc->fighters[i];
+        ReplayFighter* dst = &rp->fighters[i];
+
+        dst->ckind = src->ckind;
+        dst->pkind = src->ckind;
+        dst->cpu_kind = src->cpu_kind;
+        dst->color = src->color;
+        dst->slot = src->slot;
+        dst->spawn_pos = src->spawn_pos;
+        dst->frames = HSD_ObjAlloc(&frames_alloc_data);
+        memcpy(dst->frames, src->frames, frames_size);
+    }
+
+    return gobj;
 };
+
+HSD_GObj* Replay_GetOrCreateGObj(void)
+{
+    if (replay_gobj) {
+        return replay_gobj;
+    }
+    return createReplayGObj(&replay_desc);
+}
