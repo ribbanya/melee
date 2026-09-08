@@ -12,8 +12,16 @@ static HSD_ObjAllocData frames_alloc_data;
 static HSD_GObj* replay_gobj;
 
 static Replay const replay_desc = {
-    St_Kind_Last, MatchKind_Stock, ReplayVersion_Current, false, 0xFEEDBEEF, 0,
-    { 0 },
+    St_Kind_Last,
+    MatchKind_Stock,
+    ReplayVersion_Current,
+    false,
+    0xFEEDBEEF,
+    0,
+    {
+        { CKIND_FOX, Gm_PKind_Cpu, CpuKind_4, 0, 0, 3, NULL },
+        { CKIND_FOX, Gm_PKind_Cpu, CpuKind_4, 1, 0, 1, NULL },
+    },
 };
 
 // static ReplayFighterDesc const fighter_init[] = {
