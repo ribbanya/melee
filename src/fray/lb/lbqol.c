@@ -14,7 +14,7 @@
 #include <sysdolphin/baselib/random.h>
 
 /* 479D30 */ static HSD_GObjLibInitDataType gobj_init_data = {
-    FRAY_PLINK_MAX, FRAY_GXLINK_MAX, 2, NULL, NULL,
+    FRAY_PLINK_MAX, FRAY_GXLINK_MAX, FRAY_PRIORITY_MAX, NULL, NULL,
 };
 
 GameRules Qol_CompetitiveGameRules = {

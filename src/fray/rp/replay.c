@@ -4,7 +4,10 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/pl/player.h"
 #include "rpvsmode.h"
+#include "sysdolphin/baselib/gobjuserdata.h"
+#include "sysdolphin/baselib/memory.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/ft/types.h>
@@ -14,7 +17,6 @@
 #include <sysdolphin/baselib/objalloc.h>
 
 static HSD_ObjAllocData frames_alloc_data;
-static HSD_GObj* replay_gobj;
 
 void Replay_Init(void)
 {
@@ -22,19 +24,19 @@ void Replay_Init(void)
                      sizeof(ReplayFrame) * REPLAY_MAX_FRAMES, 4);
 }
 
-// static void removeUserData(void* user_data)
-// {
-//     Replayer* rp = user_data;
-//     size_t i;
+static void removeUserData(void* user_data)
+{
+    Replayer* rp = user_data;
+    size_t i;
 
-//     for (i = 0; i < Gm_Player_NumMax; i++) {
-//         ReplayFrame** frames = &rp->fighters[i].frames;
-//         if (frames) {
-//             HSD_ObjFree(&frames_alloc_data, rp->fighters[i].frames);
-//         }
-//     }
-//     HSD_Free(rp);
-// }
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        ReplayFrame** frames = &rp->frames[i];
+        if (frames != NULL) {
+            HSD_ObjFree(&frames_alloc_data, frames);
+        }
+    }
+    HSD_Free(rp);
+}
 
 static void inputsSetButtons(ReplayInputs* ri, HSD_Pad buttons)
 {
@@ -53,34 +55,44 @@ s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
     return MAX(cpu->ltrigger, cpu->rtrigger);
 }
 
-// static void recordProc(HSD_GObj* gobj)
-// {
-//     Replayer* rp = gobj->user_data;
-//     size_t i;
+static void recordProc(HSD_GObj* gobj)
+{
+    Replayer* rp = gobj->user_data;
+    size_t i;
 
-//     if (rp->state != ReplayState_Recording) {
-//         return;
-//     }
+    if (rp->state != ReplayState_Recording) {
+        return;
+    }
 
-//     FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
-//     for (i = 0; i < Gm_Player_NumMax; i++) {
-//         ReplayFighter* rf = &rp->fighters[i];
-//         HSD_GObj* fighter_gobj = Player_GetEntity(i);
-//         Fighter* fp = fighter_gobj->user_data;
-//         ReplayFrame* rm = Replay_GetCurrentFrame(i);
+    // FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
+    for (i = 0; i < Gm_Player_NumMax; i++) {
+        ReplayFrame* rf = rp->frames[i];
+        StaticPlayer* pp;
+        HSD_GObj* fighter_gobj;
+        Fighter* fp;
+        if (rf == NULL) {
+            continue;
+        }
 
-//         FRAY_ASSERTMSG(rf->pkind != Gm_PKind_Cpu,
-//                        "Human recording not implemented!");
-//         inputsSetButtons(&rm->in, fp->cpu.buttons);
-//         rm->in.lstick = fp->cpu.lstick;
-//         rm->in.cstick = fp->cpu.cstick;
-//         rm->in.trigger = Replay_GetCpuTrigger(&fp->cpu);
-//         rm->out.facing_left = fp->facing_dir < 0.0f;
-//         rm->out.airborne = fp->ground_or_air == GA_Air;
-//         rm->out.ecb_locked = fp->ecb_lock != 0;
-//         rm->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
-//     }
-// }
+        pp = Player_GetPtrForSlot(i);
+        fighter_gobj = pp->player_entity[0];
+
+        /// @todo support Sheik
+        fp = fighter_gobj->user_data;
+        // ReplayFrame* rm = &rm-
+
+        FRAY_ASSERTMSG(pp->slot_type != Gm_PKind_Cpu,
+                       "Human recording not implemented!");
+        inputsSetButtons(&rf->in, fp->cpu.buttons);
+        rf->in.lstick = fp->cpu.lstick;
+        rf->in.cstick = fp->cpu.cstick;
+        rf->in.trigger = Replay_GetCpuTrigger(&fp->cpu);
+        rf->out.facing_left = fp->facing_dir < 0.0f;
+        rf->out.airborne = fp->ground_or_air == GA_Air;
+        rf->out.ecb_locked = fp->ecb_lock != 0;
+        rf->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
+    }
+}
 
 static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 {
@@ -90,22 +102,18 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 
 HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
-    HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0x80);
-    // Replayer* rp = HSD_MemAlloc(sizeof(*rp));
-    // size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
-    // size_t i;
+    HSD_GObj* gobj =
+        GObj_Create(REPLAY_CLASS, REPLAY_PLINK, FRAY_PRIORITY_MAX);
+    Replayer* rp = HSD_MemAlloc(sizeof(*rp));
+    size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
+    size_t i;
 
-    // /// @todo Figure out plink and prio
-    // GObj_InitUserData(gobj, REPLAY_GOBJ_CLASS, removeUserData, rp);
-    // HSD_GObj_SetupProc(gobj, recordProc, 4);
-    // // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
+    /// @todo Figure out plink and prio
+    GObj_InitUserData(gobj, REPLAY_USER_DATA_KIND, removeUserData, rp);
+    HSD_GObj_SetupProc(gobj, recordProc, FRAY_PRIORITY_MAX);
+    // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
 
-    // rp->stkind = desc->stkind;
-    // rp->mkind = desc->mkind;
-    // rp->version = desc->version;
-    // rp->state = desc->state;
-    // rp->seed = desc->seed;
-    // rp->num_frames = desc->num_frames;
+    rp->num_frames = desc->num_frames;
 
     // for (i = 0; i < Gm_Player_NumMax; i++) {
     //     ReplayFighter const* src = &desc->fighters[i];

@@ -6,10 +6,11 @@
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/debug.h>
 
-#define FRAY_CLASS_START 0x20
-#define FRAY_PLINK_START 0x30
+#define FRAY_CLASS_START 0x40
+#define FRAY_PLINK_START 0x40
 #define FRAY_PLINK_MAX 0x4F
 #define FRAY_GXLINK_MAX 0x4F
+#define FRAY_PRIORITY_MAX 2
 
 #define FRAY_ASSERT(cond) HSD_ASSERT(__LINE__, cond)
 #define FRAY_ASSERTMSG(cond, msg) HSD_ASSERTMSG(__LINE__, cond, msg)
