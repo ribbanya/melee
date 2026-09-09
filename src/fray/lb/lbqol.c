@@ -4,19 +4,34 @@
 
 #include "melee/ft/forward.h"
 #include "melee/gm/forward.h"
+#include "melee/mn/forward.h"
 #include "sysdolphin/baselib/random.h"
 #include <melee/gm/gmmain_lib.h>
 #include <melee/lb/lblanguage.h>
 #include <sysdolphin/baselib/debug.h>
 
 GameRules Qol_CompetitiveGameRules = {
-    false, 52,   MatchKind_Stock,
-    8,     4,    0,
-    10,    0,    8,
-    true,  true, 0,
-    0,     0,    8,
-    8,     0,    0,
-    8,     0,    -1,
+    false,
+    52,
+    MatchKind_Stock,
+    8,
+    4,
+    0,
+    10,
+    StageSelectMode_Random,
+    8,
+    true,
+    true,
+    0,
+    0,
+    0,
+    8,
+    8,
+    0,
+    0,
+    8,
+    0,
+    -1,
 };
 
 struct GamePrefs Qol_CompetitiveGamePrefs = {

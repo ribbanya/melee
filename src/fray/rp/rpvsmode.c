@@ -75,6 +75,7 @@ static void initTestMatch(StartMeleeData* start)
     PlayerInitData* players = &start->players[0];
     size_t i;
 
+    rules->stkind = ;
     rules->timer_enabled = true;
     rules->time_limit = MIN(rules->time_limit, REPLAY_MAX_SECONDS);
     // rules->game_speed = 0.25f;
@@ -105,11 +106,7 @@ void Replay_Mode_OnInit(void)
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
     Qol_SetCompetitivePrefs();
-    {
-        GameRules* rules = gmMainLib_GetGameRules();
-        rules->stock_count = 1;
-        rules->stage_sel = StageSelectMode_Ordered;
-    }
+    gmMainLib_GetGameRules()->stock_count = 1;
 }
 
 void Replay_Mode_OnLoad(void) {}
