@@ -50,7 +50,7 @@ GameRules gmMainLib_DefaultGameRules = {
     /* unk_14 */ -1,
 };
 
-int gmMainLib_803D4A60[] = {
+int gmMainLib_DefaultGamePrefs[] = {
     0x2000000, 0, -1, -1, 0x01010101, 0x00010000, -1, 0,
 };
 
@@ -987,7 +987,7 @@ void gmMainLib_8015EE54(void)
 void gmMainLib_8015EE68(void)
 {
     gmMainLib_GetSaveData()->x186C &= 0xFFFFFFFD;
-    gmMainLib_GetGamePrefs()->stage_mask = gmMainLib_803D4A60[6];
+    gmMainLib_GetGamePrefs()->stage_mask = gmMainLib_DefaultGamePrefs[6];
 }
 
 s32 gmMainLib_8015EE90(void)
@@ -1220,7 +1220,7 @@ void gmMainLib_8015F600(int arg0, int arg1)
         }
 
         gmMainLib_804D3EE0->thing.x1CB0 =
-            *(struct gmm_x1CB0*) gmMainLib_803D4A60;
+            *(struct gmm_x1CB0*) gmMainLib_DefaultGamePrefs;
 
         {
             switch (lbLang_GetLanguageSetting()) {
