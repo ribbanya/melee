@@ -17,7 +17,7 @@
 #include <melee/cm/camera.h>
 #include <melee/ft/ftlib.h>
 #include <melee/gm/gm_1879.h>
-#include <melee/gm/gm_1A45.h>
+#include <melee/gm/gmscene.h>
 #include <melee/gm/gmregclear.h>
 #include <melee/if/ifcoget.h>
 #include <melee/if/ifstatus.h>

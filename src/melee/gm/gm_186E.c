@@ -1,7 +1,7 @@
 #include "gm_186E.h"
 
 #include "gm_1601.h"
-#include "gm_1A45.h"
+#include "gmscene.h"
 #include "gm_unsplit.h"
 #include <melee/cm/camera.h>
 #include <melee/ef/efasync.h>

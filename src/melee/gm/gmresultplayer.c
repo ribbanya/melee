@@ -5,7 +5,7 @@
 #include "forward.h"
 #include "gm_1601.h"
 #include "gm_1798.h"
-#include "gm_1A45.h"
+#include "gmscene.h"
 #include "gm_unsplit.h"
 #include "gmresult.h"
 #include "gmresultplayer.static.h"

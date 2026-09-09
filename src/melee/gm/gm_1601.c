@@ -10,7 +10,7 @@
 
 #include "forward.h"
 #include "gm_1601.static.h"
-#include "gm_1A45.h"
+#include "gmscene.h"
 #include "gm_unsplit.h"
 #include "gmmain_lib.h"
 #include "gmstamina.h"
