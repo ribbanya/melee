@@ -4,6 +4,8 @@
 
 #include "melee/ft/forward.h"
 #include "melee/gm/forward.h"
+#include "melee/gm/gm_1601.h"
+#include "melee/gm/gm_16F1.h"
 #include "melee/mn/forward.h"
 #include "sysdolphin/baselib/random.h"
 #include <melee/gm/gmmain_lib.h>
@@ -35,7 +37,7 @@ GameRules Qol_CompetitiveGameRules = {
 };
 
 struct GamePrefs Qol_CompetitiveGamePrefs = {
-    -1, 0, { false, false, false, false }, 0, true, LANG_US, 0xE70000B0,
+    -1, 0, { false, false, false, false }, 0, true, LANG_US, (1 << 4),
 };
 
 CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count] = {
@@ -77,4 +79,14 @@ CharacterKind Qol_PickRandomTopTier(int worst)
 {
     FRAY_ASSERT(0 <= worst && worst < CKind_Playable_Count);
     return Qol_TierList_PGStats2021[HSD_Randi(worst)];
+}
+
+/// @remarks From gmMainLib_8015FA34
+void Qol_UnlockAll(void)
+{
+    gmMainLib_804D3EE0->thing.x186C = U8_MAX;
+    gm_80164F18();
+    gm_8016468C();
+    gm_8017297C();
+    gm_801741FC();
 }
