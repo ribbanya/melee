@@ -98,9 +98,9 @@ void HSD_GObj_FogCallback(HSD_GObj* gobj, int unused);
 void HSD_GObj_80391120(HSD_Obj* obj);
 void HSD_GObj_803911C0(HSD_Obj* obj);
 void HSD_GObj_80391260(HSD_GObjLibInitDataType*);
-void HSD_GObjLibSetInit(HSD_GObjLibInitDataType* arg0);
+void HSD_GObjSetInitDefaults(HSD_GObjLibInitDataType* arg0);
 void HSD_GObj_80390ED0(HSD_GObj* gobj, u32 mask);
-void HSD_GObj_80391304(HSD_GObjLibInitDataType*);
+void HSD_GObjInit(HSD_GObjLibInitDataType*);
 
 static inline void* HSD_GObjGetUserData(HSD_GObj* gobj)
 {
