@@ -1,9 +1,13 @@
 #ifndef FRAY_LB_LBQOL_H
 #define FRAY_LB_LBQOL_H
 
-#include "melee/ft/forward.h"
+#include <melee/ft/forward.h>
+
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/debug.h>
+
+#define FRAY_CLASS_START 0x20
+#define FRAY_PLINK_START 0x30
 
 #define FRAY_ASSERT(cond) HSD_ASSERT(__LINE__, cond)
 #define FRAY_ASSERTMSG(cond, msg) HSD_ASSERTMSG(__LINE__, cond, msg)

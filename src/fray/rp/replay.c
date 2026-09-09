@@ -4,10 +4,10 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "fray/lb/lbqol.h"
+#include <fray/lb/lbqol.h>
 #include "rpvsmode.h"
-#include "sysdolphin/baselib/controller.h"
-#include "sysdolphin/baselib/gobjproc.h"
+#include <sysdolphin/baselib/controller.h>
+#include <sysdolphin/baselib/gobjproc.h>
 #include <dolphin/types.h>
 #include <melee/ft/types.h>
 #include <sysdolphin/baselib/gobj.h>

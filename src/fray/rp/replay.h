@@ -1,10 +1,13 @@
 #ifndef FRAY_RP_REPLAY_H
 #define FRAY_RP_REPLAY_H
 
-#include "melee/gm/forward.h"
+#include <melee/gm/forward.h>
+#include <fray/lb/lbqol.h>
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
 
+#define REPLAY_CLASS (FRAY_CLASS_START + 0)
+#define REPLAY_PLINK (FRAY_PLINK_START + 0)
 #define REPLAY_MAX_MINUTES 8
 #define REPLAY_MAX_SECONDS (REPLAY_MAX_MINUTES * 60)
 #define REPLAY_MAX_FRAMES (REPLAY_MAX_SECONDS * GM_FPS)

@@ -1,13 +1,13 @@
-#include "fray/lb/lbqol.h"
+#include "lbqol.h"
 
 #include <Runtime/platform.h>
 
-#include "melee/ft/forward.h"
-#include "melee/gm/forward.h"
-#include "melee/gm/gm_1601.h"
-#include "melee/gm/gm_16F1.h"
-#include "melee/mn/forward.h"
-#include "sysdolphin/baselib/random.h"
+#include <melee/ft/forward.h>
+#include <melee/gm/forward.h>
+#include <melee/gm/gm_1601.h>
+#include <melee/gm/gm_16F1.h>
+#include <melee/mn/forward.h>
+#include <sysdolphin/baselib/random.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/lb/lblanguage.h>
 #include <sysdolphin/baselib/debug.h>
