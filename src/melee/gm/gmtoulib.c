@@ -2702,7 +2702,7 @@ void gm_801905F0(StartMeleeData* arg0)
     arg0->rules.timer_counts_up = false;
     arg0->rules.x4_2 = false;
     arg0->rules.x4_4 = false;
-    arg0->rules.item_freq = gmMainLib_8015CC58()->item_freq;
+    arg0->rules.item_freq = gmMainLib_GetSaveData()->item_freq;
     arg0->rules.x2_2 = false;
     arg0->rules.x18 = 0;
     arg0->rules.game_speed = 1.0f;
