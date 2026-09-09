@@ -60,6 +60,8 @@ static void recordProc(HSD_GObj* gobj)
     Replayer* rp = gobj->user_data;
     size_t i;
 
+    OSReport("recordProc %d", rp->num_frames);
+
     if (rp->state != ReplayState_Recording) {
         return;
     }
@@ -102,15 +104,18 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 
 HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
-    HSD_GObj* gobj =
-        GObj_Create(REPLAY_CLASS, REPLAY_PLINK, FRAY_PRIORITY_MAX);
+    HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0);
     Replayer* rp = HSD_MemAlloc(sizeof(*rp));
     size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
     size_t i;
 
     /// @todo Figure out plink and prio
     GObj_InitUserData(gobj, REPLAY_USER_DATA_KIND, removeUserData, rp);
-    HSD_GObj_SetupProc(gobj, recordProc, FRAY_PRIORITY_MAX);
+
+    /// @todo Extract fighter proc prios to header
+    HSD_GObj_SetupProc(gobj, recordProc, 4); // Fighter_Create input proc
+    OSReport("GObj_Create %d", rp->num_frames);
+
     // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
 
     rp->num_frames = desc->num_frames;
