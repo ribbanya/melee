@@ -57,6 +57,7 @@ void Qol_SetCompetitivePrefs(void)
     *gmMainLib_GetGameRules() = Qol_CompetitiveGameRules;
 }
 
+/// @param worst The maximum desired index in the tier list.
 CharacterKind Qol_PickRandomTopTier(int worst)
 {
     FRAY_ASSERT(0 <= worst && worst < CKind_Playable_Count);

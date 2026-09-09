@@ -83,7 +83,8 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_match_start = onMatchStartRecordVs;
 
     for (i = 0; i < 2; i++) {
-        players[i].ckind = CKind_Fox;
+        players[i].ckind = Qol_PickRandomTopTier(6);
+        // players[i].ckind = CKind_Fox;
         players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
         players[i].damage = 100;
