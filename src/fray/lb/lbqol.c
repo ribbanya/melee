@@ -14,7 +14,7 @@ GameRules Qol_CompetitiveGameRules = {
     0,    -1, 0,
 };
 
-struct gmm_x1CB0 Qol_CompetitiveGamePrefs = {
+struct GamePrefs Qol_CompetitiveGamePrefs = {
     -1, 0, { false, false, false, false }, 0, true, LANG_US, 0xE70000B0,
 };
 

@@ -11,7 +11,7 @@
 
 void Qol_LogInit(void);
 void Qol_SetCompetitivePrefs(void);
-extern struct gmm_x1CB0 Qol_CompetitiveGamePrefs;
+extern struct GamePrefs Qol_CompetitiveGamePrefs;
 extern GameRules Qol_CompetitiveGameRules;
 
 #endif
