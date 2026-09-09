@@ -853,6 +853,11 @@ set(SOURCES
     src/melee/vi/vi1201v2.c
     src/melee/vi/vi1202.c
     src/melee/vi/vi.c
+    src/fray/lb/lbqol.c
+    src/fray/rp/replay.c
+    src/fray/rp/rprecord.c
+    src/fray/rp/rpcard.c
+    src/fray/rp/rpdisplay.c
 )
 
 add_compile_definitions(TARGET_PC)
