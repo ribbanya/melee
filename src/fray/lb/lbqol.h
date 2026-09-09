@@ -1,6 +1,7 @@
 #ifndef FRAY_LB_LBQOL_H
 #define FRAY_LB_LBQOL_H
 
+#include <melee/gm/types.h>
 #include <sysdolphin/baselib/debug.h>
 
 #define FRAY_ASSERT(cond) HSD_ASSERT(__LINE__, cond)
@@ -9,5 +10,8 @@
     HSD_ASSERTREPORT(__LINE__, cond, __VA_ARGS__)
 
 void Qol_LogInit(void);
+void Qol_SetCompetitivePrefs(void);
+extern struct gmm_x1CB0 Qol_CompetitiveGamePrefs;
+extern GameRules Qol_CompetitiveGameRules;
 
 #endif

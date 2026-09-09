@@ -120,7 +120,7 @@ void Replay_Mode_OnInit(void)
     // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
-    setPrefs();
+    Qol_SetCompetitivePrefs();
 }
 
 void Replay_Mode_OnLoad(void) {}
