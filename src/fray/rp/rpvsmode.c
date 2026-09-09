@@ -105,7 +105,11 @@ void Replay_Mode_OnInit(void)
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
     Qol_SetCompetitivePrefs();
-    gmMainLib_GetGameRules()->stock_count = 1;
+    {
+        GameRules* rules = gmMainLib_GetGameRules();
+        rules->stock_count = 1;
+        rules->stage_sel = StageSelectMode_Ordered;
+    }
 }
 
 void Replay_Mode_OnLoad(void) {}
