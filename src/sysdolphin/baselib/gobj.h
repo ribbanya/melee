@@ -5,6 +5,8 @@
 
 #include <sysdolphin/baselib/forward.h>
 
+#include "sysdolphin/baselib/objalloc.h"
+
 #define HSD_GOBJ_GXLINK_NONE ((u8) 0xFF)
 #define HSD_GOBJ_OBJ_NONE 0xFF
 
@@ -79,6 +81,8 @@ extern s8 HSD_GObj_FogKind;
 extern u8 HSD_GObj_JObjKind;
 extern s8 HSD_GObj_LightKind;
 extern u8 HSD_GObj_CameraKind;
+extern HSD_ObjAllocData gobj_alloc_data;
+extern HSD_ObjAllocData gobjproc_alloc_data;
 
 extern HSD_GObjLibInitDataType HSD_GObjLibInitData;
 

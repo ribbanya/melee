@@ -13,9 +13,6 @@ void HSD_GObjSetInitDefaults(HSD_GObjLibInitDataType* arg0)
     *arg0 = init_defaults;
 }
 
-extern HSD_ObjAllocData gobj_alloc_data;
-extern HSD_ObjAllocData gobjproc_alloc_data;
-
 void HSD_GObjInit(HSD_GObjLibInitDataType* arg0)
 {
     GObjFuncs* cur;
