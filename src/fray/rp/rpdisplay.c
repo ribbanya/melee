@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#include "rprecord.h"
+#include "rpvsmode.h"
 #include <fray/lb/lbqol.h>
 #include <melee/if/textdraw.h>
 #include <melee/if/textlib.h>

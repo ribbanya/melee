@@ -10,7 +10,7 @@
 
 #include "fray/lb/lbqol.h"
 #include "melee/gm/gmvs.h"
-#include "rprecord.h"
+#include "rpvsmode.h"
 #include "sysdolphin/baselib/controller.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>

@@ -44,7 +44,7 @@
 #include "gmvsmelee.h"
 #include "gmvsmode.h"
 #include "types.h"
-#include <fray/rp/rprecord.h>
+#include <fray/rp/rpvsmode.h>
 #include <melee/if/ifprize.h>
 #include <melee/mn/mncharsel.h>
 #include <melee/mn/mnmain.h>

@@ -574,7 +574,7 @@ config.libs = [
         "rp (Replay)",
         [
             Object(Equivalent, "fray/rp/replay.c"),
-            Object(Equivalent, "fray/rp/rprecord.c"),
+            Object(Equivalent, "fray/rp/rpvsmode.c"),
             Object(Equivalent, "fray/rp/rpcard.c"),
             Object(Equivalent, "fray/rp/rpdisplay.c"),
         ],
