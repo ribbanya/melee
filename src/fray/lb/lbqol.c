@@ -14,7 +14,7 @@
 #include <sysdolphin/baselib/random.h>
 
 /* 479D30 */ static HSD_GObjLibInitDataType gobj_init_data = {
-    0x4F, 0x4F, 2, NULL, NULL,
+    FRAY_PLINK_MAX, FRAY_GXLINK_MAX, 2, NULL, NULL,
 };
 
 GameRules Qol_CompetitiveGameRules = {
@@ -63,7 +63,10 @@ static int logPassthrough(UNUSED __file_handle arg0,
 
 void reportPassthrough(UNUSED const unsigned char* str, UNUSED size_t len) {}
 
-void Qol_GObjINit(void) {}
+void Qol_GObjInit(void)
+{
+    HSD_GObjInit(&gobj_init_data);
+}
 
 /// Shut up character-by-character ::OSReport spam.
 /// @todo Every ::OSReport is still doubled under Dolphin

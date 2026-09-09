@@ -96,6 +96,7 @@ static void initTestMatch(StartMeleeData* start)
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
+    Qol_GObjInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
     Replay_Init();

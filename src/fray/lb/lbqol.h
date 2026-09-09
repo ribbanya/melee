@@ -8,12 +8,15 @@
 
 #define FRAY_CLASS_START 0x20
 #define FRAY_PLINK_START 0x30
+#define FRAY_PLINK_MAX 0x4F
+#define FRAY_GXLINK_MAX 0x4F
 
 #define FRAY_ASSERT(cond) HSD_ASSERT(__LINE__, cond)
 #define FRAY_ASSERTMSG(cond, msg) HSD_ASSERTMSG(__LINE__, cond, msg)
 #define FRAY_ASSERTREPORT(cond, ...)                                          \
     HSD_ASSERTREPORT(__LINE__, cond, __VA_ARGS__)
 
+void Qol_GObjInit(void);
 void Qol_LogInit(void);
 CharacterKind Qol_PickRandomTopTier(int worst);
 void Qol_SetCompetitivePrefs(void);
