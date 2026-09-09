@@ -198,14 +198,6 @@ struct NameTagDataBank {
     struct NameTagData inner[19];
 };
 
-typedef enum StageSelMethod {
-    StageSelRules_0,
-    StageSelRules_Random,
-    StageSelMethod_2,
-    StageSelMethod_Loser,
-    StageSelMethod_Winner,
-} StageSelRules;
-
 struct GameRules {
     /* 0x00 */ u8 force_main_menu;
     /* 0x01 */ u8 bgm;
