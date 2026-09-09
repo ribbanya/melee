@@ -1,7 +1,6 @@
 #include "gm_1A45.h"
 
 #include "gm_1A36.h"
-#include "gm_1A45.static.h"
 #include "gm_unsplit.h"
 #include "gmmain_lib.h"
 #include "gmscdata.h"
@@ -22,6 +21,15 @@
 #include <sysdolphin/baselib/leak.h>
 #include <sysdolphin/baselib/perf.h>
 #include <sysdolphin/baselib/sobjlib.h>
+
+/* 479D30 */ static struct {
+    HSD_GObjLibInitDataType initdata;
+} gm_80479D48;
+/* 479D58 */ static struct gm_80479D58_t gm_80479D58;
+/* 4D672C */ HSD_GObj* gm_804D672C;
+/* 4D6728 */ UNK_T gm_804D6728;
+/* 4D6724 */ void (*gm_804D6724)(void);
+/* 4D6720 */ struct GameSceneInfo* gm_804D6720;
 
 static u64 gm_803DA888[8] = {
     0, 0x82FFFA, 0, 0x8EFFFA, 0x800FFA, 0x808FFA, 0x800FFA, 0,
@@ -221,7 +229,7 @@ void gm_801A4BD4(void)
     gm_801A4B50(0);
 
     lb_80019880(OSSecondsToTicks(1.0F / GM_FPS));
-    HSD_GObj_803912E0(&gm_80479D48.initdata);
+    HSD_GObjLibSetInit(&gm_80479D48.initdata);
     gm_80479D48.initdata.gproc_pri_max = 0x18;
     HSD_SObjLib_804D7960 =
         HSD_GObj_803912A8(&gm_80479D48.initdata, &HSD_SObjLib_8040C3A4);
