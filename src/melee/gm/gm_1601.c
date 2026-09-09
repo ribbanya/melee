@@ -2189,13 +2189,12 @@ void gm_801641E4(u8 stage, u8 enable)
     }
 }
 
-s32 gm_80164250(u16 mask)
+bool gm_IsStageUnlocked(u16 stkind)
 {
-    bool tmp = (1 << mask) & gmMainLib_GetGamePrefs()->stage_mask;
-    if (tmp) {
-        return 1;
+    if ((1 << stkind) & gmMainLib_GetGamePrefs()->stage_mask) {
+        return true;
     }
-    return 0;
+    return false;
 }
 
 bool fn_801642A0(void)
