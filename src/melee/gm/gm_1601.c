@@ -4145,6 +4145,7 @@ void fn_80169000(MatchEnd* arg0, u8* arg1)
     }
 }
 
+/// @param ckind ::CharacterKind
 u8 gm_GetNumCostumesForCKind(u8 ckind)
 {
     /// @todo Matching tactic: pad the pre-inline statement count so MWCC
