@@ -113,7 +113,8 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
     GObj_InitUserData(gobj, REPLAY_USER_DATA_KIND, removeUserData, rp);
 
     /// @todo Extract fighter proc prios to header
-    HSD_GObj_SetupProc(gobj, recordProc, 4); // Fighter_Create input proc
+    /// @todo After ::Fighter_Create input proc
+    HSD_GObj_SetupProc(gobj, recordProc, 0);
     OSReport("GObj_Create %d", rp->num_frames);
 
     // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
