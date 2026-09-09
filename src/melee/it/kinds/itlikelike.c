@@ -180,7 +180,7 @@ bool it_2725_Logic5_DmgReceived(Item_GObj* gobj)
         it_802756D0(gobj);
         it_80275474(gobj);
         it_8027CE44(gobj);
-        Camera_80030E44(2, &ip->pos);
+        Camera_RequestQuake(QuakeKind_Small, &ip->pos);
         if (HSD_Randf() < it_804D6D40->x8) {
             it_802DC3DC(gobj);
         } else {
@@ -1106,14 +1106,11 @@ void it_802DBAF0(Item_GObj* arg0, s32 arg1, s32 arg2)
                 fval = attr->x34;
             }
 
-            // TODO: fix pointer hacks
             if (arg2 != 0) {
-                ftCo_800C7B0C(ip->grab_victim, &sp18, &vec,
-                              (lbColl_80008D30_arg1*) ((u8*) attr + 0x64),
+                ftCo_800C7B0C(ip->grab_victim, &sp18, &vec, &attr->x40[1],
                               fval);
             } else {
-                ftCo_800C7B0C(ip->grab_victim, &sp18, &vec,
-                              (lbColl_80008D30_arg1*) ((u8*) attr + 0x40),
+                ftCo_800C7B0C(ip->grab_victim, &sp18, &vec, &attr->x40[0],
                               fval);
             }
             ip->xDD4_itemVar.likelike.x50 = NULL;

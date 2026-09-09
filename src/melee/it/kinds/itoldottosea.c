@@ -3,7 +3,7 @@
 #include "itfreeze.h"
 #include "itwhitebea.h"
 #include <melee/cm/camera.h>
-#include <melee/gm/gm_16AE.h>
+#include <melee/gm/gmvs.h>
 #include <melee/it/inlines.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/it_2725.h>
@@ -95,7 +95,7 @@ bool it_2725_Logic8_DmgReceived(Item_GObj* gobj)
         it_802756D0(gobj);
         it_80275474(gobj);
         it_8027CE44(gobj);
-        Camera_80030E44(2, &ip->pos);
+        Camera_RequestQuake(QuakeKind_Small, &ip->pos);
         if (HSD_Randf() < it_804D6D40->x8) {
             it_802E3528(gobj);
         } else {

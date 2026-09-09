@@ -742,7 +742,7 @@ void fn_801857C4(HSD_GObj* arg0)
     s32 i;
 
     if (lbl_804735E8.xE1 != 0) {
-        HSD_GObjPLink_80390228(lbl_804D65F0);
+        HSD_GObjFree(lbl_804D65F0);
         img_idx = (u8*) lbl_804735E8.x40;
         i = 0;
         delay = 1;
@@ -769,7 +769,7 @@ void fn_801857C4(HSD_GObj* arg0)
             delay += 8;
             sobj->x40 |= 9;
         }
-        HSD_GObjPLink_80390228(arg0);
+        HSD_GObjFree(arg0);
     }
 }
 
@@ -1119,7 +1119,7 @@ void fn_80186634(void* arg0)
     PAD_STACK(12);
 
     lbArchive_80016DBC("GmIntEz.dat", &lbl_804D6604, "gmIntroEasyTable", 0);
-    Camera_80028B9C(0xC);
+    Camera_Init(0xC);
     lb_8000FCDC();
     mpColl_80041C78();
     Ground_801C0378(0x40);

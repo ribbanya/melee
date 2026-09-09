@@ -1,11 +1,10 @@
 #include "ftmasterhandwalk.h"
 
-#include <Runtime/platform.h>
+#include <placeholder.h>
 
 #include "forward.h"
 #include "ftmasterhandslap.h"
 #include "ftmasterhandwait12.h"
-#include "placeholder.h"
 #include <dolphin/mtx.h>
 #include <melee/ft/fighter.h>
 #include <melee/ft/ft_084E.h>
@@ -142,10 +141,8 @@ void ftMh_WalkLoop_IASA(HSD_GObj* gobj)
 
 void ftMh_WalkLoop_Phys(HSD_GObj* gobj)
 {
-    /// @todo #GET_FIGHTER
-    Fighter* fp = gobj->user_data;
-    ftData* data = fp->ft_data;
-    ftMasterHand_SpecialAttrs* da = data->ext_attr;
+    Fighter* fp = GET_FIGHTER(gobj);
+    ftMasterHand_SpecialAttrs* da = fp->ft_data->ext_attr;
     ft_80085134(gobj);
     fp->self_vel.x = da->x40_pos.z;
 }

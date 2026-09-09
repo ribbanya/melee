@@ -148,7 +148,7 @@ void fn_8031FC30(HSD_GObj* gobj)
 void fn_8031FCBC(HSD_GObj* gobj)
 {
     if ((f32) un_804D6FF8 >= 100.0F) {
-        HSD_GObjPLink_80390228(gobj);
+        HSD_GObjFree(gobj);
     } else {
         un_804D6FF8 = un_804D6FF8 + 1;
     }
@@ -173,7 +173,7 @@ static inline void un_8031FD18_SetupScene(void)
         lb_80011E24(jobj, &un_804D6FF0, 3, -1);
     }
 
-    Camera_80028B9C(6);
+    Camera_Init(6);
     lb_8000FCDC();
     mpColl_80041C78();
     Ground_801C0378(0x40);

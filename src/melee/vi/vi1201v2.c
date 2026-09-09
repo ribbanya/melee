@@ -77,7 +77,7 @@ void un_80320508(CharacterKind char_kind, int costume)
 {
     PAD_STACK(16);
 
-    Camera_80028B9C(6);
+    Camera_Init(6);
     lb_8000FCDC();
     mpColl_80041C78();
     Ground_801C0378(0x40);
@@ -136,11 +136,11 @@ void un_8032074C(HSD_GObj* gobj)
     HSD_JObjAnimAll(jobj);
     if (mn_8022F298(jobj) == 251.0F) {
         if (un_804D7030 != NULL) {
-            HSD_GObjPLink_80390228(un_804D7030);
+            HSD_GObjFree(un_804D7030);
             un_804D7030 = NULL;
         }
         if (un_804D7034 != NULL) {
-            HSD_GObjPLink_80390228(un_804D7034);
+            HSD_GObjFree(un_804D7034);
             un_804D7034 = NULL;
         }
         un_803205F4();

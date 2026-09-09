@@ -40,7 +40,8 @@ struct Unk_Struct_w_Array {
 char str_PdPmdat_start_of_data[] = "PdPm.dat";
 char str_plLoadCommonData[] = "plLoadCommonData";
 
-ftMapping ftMapping_list[CHKIND_MAX] = { //////ftMapping_list
+ftMapping ftMapping_list[CHKIND_MAX] = {
+    //////ftMapping_list
     /* CKIND_CAPTAIN   */ { FTKIND_CAPTAIN, 0xFF },
     /* CKIND_DONKEY    */ { FTKIND_DONKEY, 0xFF },
     /* CKIND_FOX       */ { FTKIND_FOX, 0xFF },
@@ -236,7 +237,6 @@ void Player_80031AD0(int slot)
     first_struct.has_transformation = false;
     first_struct.x5 = -1;
 
-    /// @todo Eliminate cast.
     player->player_entity[0] = Fighter_Create(&first_struct);
     player->player_state = 2;
 
@@ -255,7 +255,6 @@ void Player_80031AD0(int slot)
         second_struct.has_transformation = has_transformation;
         second_struct.x5 = -1;
 
-        /// @todo Eliminate cast.
         player->player_entity[1] = Fighter_Create(&second_struct);
 
         if (player->player_state != 1) {
@@ -331,8 +330,7 @@ void Player_80031EBC(int slot)
                 ftCo_800D4F24(player->player_entity[player->transformed[i]],
                               1);
             }
-            HSD_GObjPLink_80390228(
-                player->player_entity[player->transformed[i]]);
+            HSD_GObjFree(player->player_entity[player->transformed[i]]);
         }
     }
 }

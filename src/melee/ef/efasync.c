@@ -1364,7 +1364,7 @@ void efAsync_QueueProcessDeferred(HSD_GObj* gobj,
         break;
     case EF_SPAWN_CAMERA_SHAKE:
         lb_8000B1CC(jobj, &queued_effect->params, &sp10);
-        Camera_80030E44(gfx_id, &sp10);
+        Camera_RequestQuake(gfx_id, &sp10);
         break;
     default:
         HSD_ASSERTREPORT(0x7CU, 0, "[EfASync] unknown type %d\n", spawn_kind,
@@ -1455,7 +1455,9 @@ void efAsync_Spawn(HSD_GObj* gobj, void* queue_head, u32 spawn_kind,
         break;
     }
     va_end(vlist);
-    if ((HSD_GObj_804D7838 != NULL) && (HSD_GObj_804D7838->s_link < 9U)) {
+    if ((HSD_GObj_CurrentInvokedProc != NULL) &&
+        (HSD_GObj_CurrentInvokedProc->s_link < 9U))
+    {
         queued->next = ((EF_QueuedEffect*) queue_head)->next;
         ((EF_QueuedEffect*) queue_head)->next = queued;
         return;

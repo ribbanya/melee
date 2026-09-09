@@ -15,7 +15,7 @@
 #include <melee/cm/camera.h>
 #include <melee/ft/ftdevice.h>
 #include <melee/ft/ftlib.h>
-#include <melee/gm/gm_16AE.h>
+#include <melee/gm/gmvs.h>
 #include <melee/it/it_26B1.h>
 #include <melee/it/itdrop.h>
 #include <melee/it/ithitbox.h>
@@ -991,7 +991,7 @@ void grCastle_801CE860(Ground_GObj* gobj)
             gp->u.castle.xC8 = yakumono_param->x12C[gp->u.castle.xC4];
         }
     }
-    Camera_80030E44(1, NULL);
+    Camera_RequestQuake(QuakeKind_Loop, NULL);
 }
 
 void grCastle_801CE8E4(Ground_GObj* gobj) {}
@@ -1365,7 +1365,7 @@ void grCastle_801CF308(Ground_GObj* gobj)
         gp->u.castle5.xC4 = 5;
         grAnime_801C8138((HSD_GObj*) gobj, gp->map_id, 0);
         Ground_801C5440(gp, 0, 0x53027U);
-        Camera_80030E44(2, NULL);
+        Camera_RequestQuake(QuakeKind_Small, NULL);
         /* fallthrough */
     }
     case 5: {

@@ -70,10 +70,7 @@ void Replay_Mode_OnInit(void)
     ReplayCard_Init();
 }
 
-void Replay_Mode_OnLoad(void)
-{
-    // ReplayText_Setup();
-}
+void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
 
@@ -82,7 +79,10 @@ static void setSeed(u32 seed)
     *seed_ptr = seed;
 }
 
-static void onMatchStartRecordVs(void) {}
+static void onMatchStartRecordVs(void)
+{
+    ReplayText_Setup();
+}
 
 // static void prepMatch(GameModeState* state)
 // {
@@ -137,8 +137,8 @@ static void onMatchStartRecordVs(void) {}
 void onEnterRecordVs(GameModeState* state)
 {
     Replay_Load();
-#if 0
     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
+#if 0
     Replay* rp = Replay_GetGObj()->user_data;
     size_t i;
 

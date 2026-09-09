@@ -39,9 +39,9 @@ typedef struct {
 } ReplayFrame;
 
 typedef struct {
-    u8 stkind; ///< ::StKind
-    u8 mkind;  ///< ::MatchKind
-    u8 version;
+    u8 stkind;  ///< ::StKind
+    u8 mkind;   ///< ::MatchKind
+    u8 version; ///< ::ReplayVersion
     u8 reserved;
     u32 seed;
 } ReplayMatchDesc;

@@ -9,22 +9,15 @@
 #include <string.h>
 
 #include "fray/lb/lbqol.h"
-#include "melee/gm/forward.h"
-#include "melee/gm/gm_16AE.h"
-#include "replay.h"
+#include "melee/gm/gmvs.h"
 #include "rprecord.h"
 #include "sysdolphin/baselib/controller.h"
-#include "sysdolphin/baselib/gobjgxlink.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
-#include <fray/lb/lbqol.h>
 #include <melee/ft/types.h>
-#include <melee/gm/gm_16AE.h>
 #include <melee/gm/types.h>
 #include <melee/pl/player.h>
-#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
-#include <sysdolphin/baselib/gobjuserdata.h>
 #include <sysdolphin/baselib/memory.h>
 #include <sysdolphin/baselib/objalloc.h>
 

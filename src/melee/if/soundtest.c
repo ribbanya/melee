@@ -1025,8 +1025,8 @@ void un_802FFF2C(StartMeleeData* arg0)
     }
     r->stkind = s->x130.x8;
     r->x20 = -1;
-    r->xB = s->x130.xCC[3] - 1;
-    r->xC = -1;
+    r->item_freq = s->x130.xCC[3] - 1;
+    r->sd_penalty = -1;
     r->x30 = s->x130.xEC;
     gm_SetupAllPlayerDefaults(arg0->players);
     sp = &s->x130;
@@ -2027,7 +2027,7 @@ bool un_80301964(enum soundtest_callback_arg0 arg0)
             HSD_SObj* sobj;
 
             if (un_804D6E08 != NULL) {
-                HSD_GObjPLink_80390228(un_804D6E08);
+                HSD_GObjFree(un_804D6E08);
             }
 
             gobj = GObj_Create(0xE, 0xF, 0);

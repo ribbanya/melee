@@ -13,7 +13,7 @@
 #include <dolphin/os.h>
 #include <melee/cm/camera.h>
 #include <melee/ft/ftlib.h>
-#include <melee/gm/gm_16AE.h>
+#include <melee/gm/gmvs.h>
 #include <melee/if/ifhazard.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lb_00F9.h>
@@ -377,8 +377,6 @@ bool grBigBlueRoute_8020BF30(Ground_GObj* arg)
     return false;
 }
 
-/// @todo Currently 98.29% match - register allocation only (extra mr through
-/// r0 for first loop jobj load and idx computation)
 void grBigBlueRoute_8020BF38(Ground_GObj* gobj)
 {
     Ground* gp = GET_GROUND(gobj);
@@ -1019,7 +1017,7 @@ void grBigBlueRoute_8020CD20(Ground_GObj* gobj)
                         ((UnkFlagStruct*) &gp->u.bigblue.x0)->b0 = 1;
                     }
                 } else {
-                    Camera_80030E44(1, NULL);
+                    Camera_RequestQuake(QuakeKind_Loop, NULL);
                     if (!RE_ENTRY->flags.b6) {
                         RE_ENTRY->flags.b6 = 1;
                         if (HSD_Randi(100) < 40) {
@@ -1060,8 +1058,6 @@ int grBigBlueRoute_8020DA9C(struct grBigBlueRoute_8020DA9C_t* desc)
     return desc->x8;
 }
 
-/// @todo Currently 97.73% match - needs register allocation fix (r27/r30 swap
-/// for arr/jobj)
 void grBigBlueRoute_8020DAB4(HSD_JObj** jobjs, f32 scale, int count)
 {
     HSD_JObj** arr;
