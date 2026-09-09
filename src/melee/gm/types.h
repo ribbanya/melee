@@ -206,7 +206,7 @@ struct GameRules {
     /* 0x04 */ u8 stock_count;
     /* 0x05 */ u8 handicap;
     /* 0x06 */ u8 damage_ratio;
-    /* 0x07 */ u8 unk_x7;
+    /* 0x07 */ u8 random_stage;
     /* 0x08 */ u8 stock_time_limit;
     /* 0x09 */ u8 friendly_fire;
     /* 0x0A */ u8 pause;

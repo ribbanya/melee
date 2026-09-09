@@ -2254,7 +2254,7 @@ bool gm_80164330(s32 arg0)
         OSReport("RandomStageSwitch All-Off!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     }
     return ((1 << (u16) arg0) & gmMainLib_GetGamePrefs()->stage_mask) ? true
-                                                                  : false;
+                                                                      : false;
 }
 
 bool gm_80164430(u16 arg0)
@@ -3717,12 +3717,12 @@ void gm_80167FC4(SSSData* arg0)
     PAD_STACK(8);
 
     temp_r3 = gmMainLib_GetGameRules();
-    if (temp_r3->unk_x7 == 1) {
+    if (temp_r3->random_stage == 1) {
         arg0->force_stage_id = mnStageSel_8025BBD4();
         return;
     }
     arg0->force_stage_id = -1;
-    switch (temp_r3->unk_x7) {
+    switch (temp_r3->random_stage) {
     case 0:
         arg0->unk_stage = 0;
         return;
