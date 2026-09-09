@@ -4,16 +4,12 @@
 
 #include <melee/gm/forward.h>
 
-#include "melee/ft/forward.h"
-#include "melee/gm/gm_1A3F.h"
 #include "melee/gm/gmmain_lib.h"
-#include "melee/gr/forward.h"
 #include "melee/lb/forward.h"
 #include "melee/mn/forward.h"
 #include "melee/mn/mnstagesel.h"
 #include "melee/pl/forward.h"
 #include "replay.h"
-#include "rpcard.h"
 #include "rpdisplay.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>

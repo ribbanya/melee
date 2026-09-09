@@ -2,23 +2,15 @@
 
 #include <Runtime/platform.h>
 
-#include <melee/gm/forward.h>
-#include <melee/pl/forward.h>
-
 #include <abort_exit.h> // IWYU pragma: keep
-#include <string.h>
 
 #include "fray/lb/lbqol.h"
-#include "melee/gm/gmvs.h"
 #include "rpvsmode.h"
 #include "sysdolphin/baselib/controller.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <melee/ft/types.h>
-#include <melee/gm/types.h>
-#include <melee/pl/player.h>
 #include <sysdolphin/baselib/gobj.h>
-#include <sysdolphin/baselib/memory.h>
 #include <sysdolphin/baselib/objalloc.h>
 
 static HSD_ObjAllocData frames_alloc_data;

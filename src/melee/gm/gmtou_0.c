@@ -1234,8 +1234,8 @@ void fn_80192938(void)
         }
 
         tm->x37[i].x3 = fn_8018F410();
-        tm->x37[i].x7 = HSD_Randi(
-            (s32) gm_GetNumCostumesForCKind(fn_8018F6FC((enum CSSIconHud) tm->x37[i].x3)));
+        tm->x37[i].x7 = HSD_Randi((s32) gm_GetNumCostumesForCKind(
+            fn_8018F6FC((enum CSSIconHud) tm->x37[i].x3)));
 
         if (i < (s32) tm->x2E) {
             ((u8*) &tm->x37[i])[-1] = 1;

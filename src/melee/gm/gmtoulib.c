@@ -2740,8 +2740,8 @@ void gm_801905F0(StartMeleeData* arg0)
             arg0->players[i].nametag = (u8) MIN(tm->x4B8[i].x6, 0x78);
             if (tm->x4B8[i].x2 != 0) {
                 arg0->players[i].ckind = gm_801905F0_inline0(fn_8018F410());
-                arg0->players[i].color =
-                    HSD_Randi(gm_GetNumCostumesForCKind(arg0->players[i].ckind));
+                arg0->players[i].color = HSD_Randi(
+                    gm_GetNumCostumesForCKind(arg0->players[i].ckind));
             } else {
                 arg0->players[i].ckind = gm_801905F0_inline0(tm->x4B8[i].x1);
                 arg0->players[i].color = tm->x4B8[i].x3;
