@@ -1,7 +1,7 @@
 #include "gm_1A33.h"
 
 #include "gm_1A36.h"
-#include "gm_1A45.h"
+#include "gmscene.h"
 #include "gmcamera.h"
 #include "types.h"
 #include <dolphin/pad.h>

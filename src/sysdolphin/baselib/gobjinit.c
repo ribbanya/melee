@@ -2,16 +2,15 @@
 #include "gobjproc.h"
 #include "memory.h"
 #include "objalloc.h"
+#include "Runtime/platform.h"
 
-static HSD_GObjLibInitDataType HSD_GObj_80408620 = {
-    0x3F,
-    0x3F,
-    2,
+static HSD_GObjLibInitDataType init_defaults = {
+    0x3F, 0x3F, 2, NULL, NULL,
 };
 
-void HSD_GObj_803912E0(HSD_GObjLibInitDataType* arg0)
+void HSD_GObjLibSetInit(HSD_GObjLibInitDataType* arg0)
 {
-    *arg0 = HSD_GObj_80408620;
+    *arg0 = init_defaults;
 }
 
 extern HSD_ObjAllocData gobj_alloc_data;

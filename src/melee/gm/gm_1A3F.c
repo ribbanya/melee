@@ -2,7 +2,7 @@
 
 #include "forward.h"
 #include "gm_1A36.h"
-#include "gm_1A45.h"
+#include "gmscene.h"
 #include "gmmain_lib.h"
 #include "gmscdata.h"
 #include "types.h"
