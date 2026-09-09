@@ -26,7 +26,7 @@
 /* 45A6C0 */ struct gmm_x0 gmMainLib_8045A6C0[2];
 /* 4D3EE0 */ struct gmm_x0* gmMainLib_804D3EE0 = gmMainLib_8045A6C0;
 
-GameRules gmMainLib_803D4A48 = {
+GameRules gmMainLib_DefaultGameRules = {
     0,
     0x34,
     0,  // mode
@@ -1338,7 +1338,7 @@ void gmMainLib_8015FBA4(void)
         lbLang_SetSavedLanguage(0);
     }
 
-    gmMainLib_8045A6C0[0].x1850 = gmMainLib_803D4A48;
+    gmMainLib_8045A6C0[0].x1850 = gmMainLib_DefaultGameRules;
     for (i = 1; i < 9; i++) {
         gmMainLib_8015F600(i, 1);
     }
