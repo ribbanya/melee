@@ -2151,7 +2151,7 @@ bool gm_8016403C(u8 item)
 void fn_801640B0(u64* item_mask)
 {
     int i;
-    struct gmm_x1CB0* temp_r30 = gmMainLib_GetGamePrefs();
+    struct GamePrefs* temp_r30 = gmMainLib_GetGamePrefs();
 
     for (i = 0; i < 0x20; i++) {
         int shift;
@@ -3564,7 +3564,7 @@ void gm_InitVsMode(VsModeData* vs)
 void gm_80167BC8(VsModeData* vs_data)
 {
     GameRules* rules;
-    struct gmm_x1CB0* prefs;
+    struct GamePrefs* prefs;
     s32 i;
     s8* handicap;
     PAD_STACK(72);
