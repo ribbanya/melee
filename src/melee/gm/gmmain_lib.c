@@ -50,7 +50,7 @@ GameRules gmMainLib_DefaultGameRules = {
     /* unk_14 */ -1,
 };
 
-struct gmm_x1CB0 gmMainLib_DefaultGamePrefs = {
+struct GamePrefs gmMainLib_DefaultGamePrefs = {
     2, U64_MAX, { true, true, true, true }, 0, true, LANG_JP, U32_MAX,
 };
 
@@ -106,7 +106,7 @@ void* gmMainLib_8015CC4C(void)
     return &gmMainLib_GetSaveData()->x2FF8;
 }
 
-struct gmm_x1CB0* gmMainLib_GetGamePrefs(void)
+struct GamePrefs* gmMainLib_GetGamePrefs(void)
 {
     return &gmMainLib_GetSaveData()->x1CB0;
 }

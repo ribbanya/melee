@@ -97,7 +97,7 @@ struct GameScene {
 };
 ASSERT_SIZE(struct GameScene, 0x14);
 
-struct gmm_x1CB0 {
+struct GamePrefs {
     /* +0 */ u8 item_freq;
     /* +8 */ u64 item_mask;
     /* +10 */ u8 rumble_enabled[PAD_MAX_CONTROLLERS];
@@ -305,7 +305,7 @@ struct gmm_x1868 {
     /* 0x0328 */ u8 padding_x1B80[0xF8];
     /* 0x0420 */ u32 x1C88[3];
     /* 0x042C */ u8 padding_x1C88[0x1C];
-    /* 0x0448 */ struct gmm_x1CB0 x1CB0;
+    /* 0x0448 */ struct GamePrefs x1CB0;
     /* 0x0468 */ s16 trophy_count;
     /* 0x046A */ u16 trophy_category_flags;
     /* 0x046C */ u16 trophy_flags[TY_TROPHY_COUNT];
