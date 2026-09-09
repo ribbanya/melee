@@ -24,38 +24,25 @@
 static HSD_ObjAllocData frames_alloc_data;
 static HSD_GObj* replay_gobj;
 
-static Replay const replay_desc = {
-    St_Kind_Last,
-    MatchKind_Stock,
-    ReplayVersion_Current,
-    false,
-    0xFEEDBEEF,
-    0,
-    {
-        { CKIND_FOX, Gm_PKind_Cpu, CpuKind_4, 0, 0, 3, NULL },
-        { CKIND_FOX, Gm_PKind_Cpu, CpuKind_4, 1, 0, 1, NULL },
-    },
-};
-
 void Replay_Init(void)
 {
     HSD_ObjAllocInit(&frames_alloc_data,
                      sizeof(ReplayFrame) * REPLAY_MAX_FRAMES, 4);
 }
 
-static void removeUserData(void* user_data)
-{
-    Replay* rp = user_data;
-    size_t i;
+// static void removeUserData(void* user_data)
+// {
+//     Replayer* rp = user_data;
+//     size_t i;
 
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        ReplayFrame** frames = &rp->fighters[i].frames;
-        if (frames) {
-            HSD_ObjFree(&frames_alloc_data, rp->fighters[i].frames);
-        }
-    }
-    HSD_Free(rp);
-}
+//     for (i = 0; i < Gm_Player_NumMax; i++) {
+//         ReplayFrame** frames = &rp->fighters[i].frames;
+//         if (frames) {
+//             HSD_ObjFree(&frames_alloc_data, rp->fighters[i].frames);
+//         }
+//     }
+//     HSD_Free(rp);
+// }
 
 static void inputsSetButtons(ReplayInputs* ri, HSD_Pad buttons)
 {
@@ -74,34 +61,34 @@ s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
     return MAX(cpu->ltrigger, cpu->rtrigger);
 }
 
-static void recordProc(HSD_GObj* gobj)
-{
-    Replay* rp = gobj->user_data;
-    size_t i;
+// static void recordProc(HSD_GObj* gobj)
+// {
+//     Replayer* rp = gobj->user_data;
+//     size_t i;
 
-    if (rp->state != ReplayState_Recording) {
-        return;
-    }
+//     if (rp->state != ReplayState_Recording) {
+//         return;
+//     }
 
-    FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        ReplayFighter* rf = &rp->fighters[i];
-        HSD_GObj* fighter_gobj = Player_GetEntity(i);
-        Fighter* fp = fighter_gobj->user_data;
-        ReplayFrame* rm = Replay_GetCurrentFrame(i);
+//     FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
+//     for (i = 0; i < Gm_Player_NumMax; i++) {
+//         ReplayFighter* rf = &rp->fighters[i];
+//         HSD_GObj* fighter_gobj = Player_GetEntity(i);
+//         Fighter* fp = fighter_gobj->user_data;
+//         ReplayFrame* rm = Replay_GetCurrentFrame(i);
 
-        FRAY_ASSERTMSG(rf->pkind != Gm_PKind_Cpu,
-                       "Human recording not implemented!");
-        inputsSetButtons(&rm->in, fp->cpu.buttons);
-        rm->in.lstick = fp->cpu.lstick;
-        rm->in.cstick = fp->cpu.cstick;
-        rm->in.trigger = Replay_GetCpuTrigger(&fp->cpu);
-        rm->out.facing_left = fp->facing_dir < 0.0f;
-        rm->out.airborne = fp->ground_or_air == GA_Air;
-        rm->out.ecb_locked = fp->ecb_lock != 0;
-        rm->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
-    }
-}
+//         FRAY_ASSERTMSG(rf->pkind != Gm_PKind_Cpu,
+//                        "Human recording not implemented!");
+//         inputsSetButtons(&rm->in, fp->cpu.buttons);
+//         rm->in.lstick = fp->cpu.lstick;
+//         rm->in.cstick = fp->cpu.cstick;
+//         rm->in.trigger = Replay_GetCpuTrigger(&fp->cpu);
+//         rm->out.facing_left = fp->facing_dir < 0.0f;
+//         rm->out.airborne = fp->ground_or_air == GA_Air;
+//         rm->out.ecb_locked = fp->ecb_lock != 0;
+//         rm->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
+//     }
+// }
 
 static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 {
@@ -109,10 +96,10 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
     // ReplayText_Update();
 }
 
-static HSD_GObj* createReplayGObj(Replay const* desc)
+static HSD_GObj* createReplayGObj(Replayer const* desc)
 {
     HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
-    // Replay* rp = HSD_MemAlloc(sizeof(*rp));
+    // Replayer* rp = HSD_MemAlloc(sizeof(*rp));
     // size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
     // size_t i;
 
@@ -145,10 +132,10 @@ static HSD_GObj* createReplayGObj(Replay const* desc)
     return gobj;
 };
 
-void Replay_Load(void)
-{
-    replay_gobj = createReplayGObj(&replay_desc);
-}
+// void Replay_Load(void)
+// {
+//     replay_gobj = createReplayGObj(&replay_desc);
+// }
 
 HSD_GObj* Replay_GetGObj(void)
 {
@@ -156,17 +143,17 @@ HSD_GObj* Replay_GetGObj(void)
     return replay_gobj;
 }
 
-static void checkFrame(Replay* rp, u32 frame)
+static void checkFrame(Replayer* rp, u32 frame)
 {
     if (!(frame < rp->num_frames)) {
         FRAY_ASSERTREPORT(0, "Frame out of bounds! %d\n", frame);
     }
 }
 
-ReplayFrame* Replay_GetCurrentFrame(int slot)
-{
-    Replay* rp = Replay_GetGObj()->user_data;
-    u32 frame = gm_GetFrameCount();
-    checkFrame(rp, frame);
-    return &rp->fighters[slot].frames[frame];
-}
+// ReplayFrame* Replay_GetCurrentFrame(int slot)
+// {
+//     Replayer* rp = Replay_GetGObj()->user_data;
+//     u32 frame = gm_GetFrameCount();
+//     checkFrame(rp, frame);
+//     return &rp->fighters[slot].frames[frame];
+// }
