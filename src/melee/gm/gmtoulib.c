@@ -2103,7 +2103,7 @@ int fn_8018F410(void)
 #endif
 int fn_8018F4A0(void)
 {
-    int temp_r3 = mnStageSel_8025BBD4();
+    int temp_r3 = mnSelStageRandom();
     if (!gm_80164430(temp_r3)) {
         printf("This is impossible stage num from mnSelStageRandom() -> stage "
                "%d \n",

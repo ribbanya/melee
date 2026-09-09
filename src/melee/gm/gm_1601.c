@@ -3718,7 +3718,7 @@ void gm_80167FC4(SSSData* arg0)
 
     temp_r3 = gmMainLib_GetGameRules();
     if (temp_r3->stage_sel == 1) {
-        arg0->force_stage_id = mnStageSel_8025BBD4();
+        arg0->force_stage_id = mnSelStageRandom();
         return;
     }
     arg0->force_stage_id = -1;
