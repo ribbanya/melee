@@ -50,8 +50,8 @@ GameRules gmMainLib_DefaultGameRules = {
     /* unk_14 */ -1,
 };
 
-int gmMainLib_DefaultGamePrefs[] = {
-    0x2000000, 0, -1, -1, 0x01010101, 0x00010000, -1, 0,
+struct gmm_x1CB0 gmMainLib_DefaultGamePrefs = {
+    2, U64_MAX, { true, true, true, true }, 0, true, LANG_JP, U32_MAX,
 };
 
 GXRenderModeObj gmMainLib_803D4A80 = {
@@ -909,7 +909,7 @@ u8 gmMainLib_8015ED74(void)
     return gmMainLib_GetGamePrefs()->sound_balance;
 }
 
-void gmMainLib_8015ED80(u8 arg0)
+void gmMainLib_8015ED80(s8 arg0)
 {
     gmMainLib_GetGamePrefs()->sound_balance = arg0;
 }
@@ -987,7 +987,8 @@ void gmMainLib_8015EE54(void)
 void gmMainLib_8015EE68(void)
 {
     gmMainLib_GetSaveData()->x186C &= 0xFFFFFFFD;
-    gmMainLib_GetGamePrefs()->stage_mask = gmMainLib_DefaultGamePrefs[6];
+    gmMainLib_GetGamePrefs()->stage_mask =
+        gmMainLib_DefaultGamePrefs.stage_mask;
 }
 
 s32 gmMainLib_8015EE90(void)
@@ -1219,8 +1220,7 @@ void gmMainLib_8015F600(int arg0, int arg1)
                                1);
         }
 
-        gmMainLib_804D3EE0->thing.x1CB0 =
-            *(struct gmm_x1CB0*) gmMainLib_DefaultGamePrefs;
+        gmMainLib_804D3EE0->thing.x1CB0 = gmMainLib_DefaultGamePrefs;
 
         {
             switch (lbLang_GetLanguageSetting()) {

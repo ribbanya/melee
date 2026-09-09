@@ -101,7 +101,7 @@ struct gmm_x1CB0 {
     /* +0 */ u8 item_freq;
     /* +8 */ u64 item_mask;
     /* +10 */ u8 rumble_enabled[PAD_MAX_CONTROLLERS];
-    /* +14 */ u8 sound_balance;
+    /* +14 */ s8 sound_balance;
     /* +15 */ u8 deflicker;
     /* +16 */ u8 saved_language; /* 0x1CC6 */
     /* +18 */ u32 stage_mask;
