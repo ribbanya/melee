@@ -74,7 +74,6 @@ static void initTestMatch(StartMeleeData* start)
 
     rules->stkind = mnSelStageRandom();
     rules->timer_enabled = true;
-    rules->time_limit = MIN(rules->time_limit, REPLAY_MAX_SECONDS);
     // rules->game_speed = 0.25f;
 
     rules->on_unpause_override = gm_80165290;
@@ -110,9 +109,12 @@ void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
 
-static void onRecordVsStartMelee(UNUSED StartMeleeData* start,
+static void onRecordVsStartMelee(StartMeleeData* start,
                                  UNUSED StartMeleeData* vs)
 {
+    if (start->rules.time_limit >= REPLAY_MAX_SECONDS) {
+        start->rules.time_limit = REPLAY_MAX_SECONDS;
+    }
     //         gm_SetupRulesDefaults(rules);
     // initTestMatch(&vs_mode_data);
 }

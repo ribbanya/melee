@@ -5,8 +5,9 @@
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
 
-#define REPLAY_MAX_SECONDS 60
-#define REPLAY_MAX_FRAMES (GM_FPS * REPLAY_MAX_SECONDS)
+#define REPLAY_MAX_MINUTES 8
+#define REPLAY_MAX_SECONDS (REPLAY_MAX_MINUTES * 60)
+#define REPLAY_MAX_FRAMES (REPLAY_MAX_SECONDS * GM_FPS)
 #define FRAY_GOBJ_CLASS_SHIFT 5
 #define REPLAY_GOBJ_CLASS (1 << FRAY_GOBJ_CLASS_SHIFT)
 
