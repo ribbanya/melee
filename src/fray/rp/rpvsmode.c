@@ -4,8 +4,6 @@
 
 #include <melee/gm/forward.h>
 
-#include <abort_exit.h> // IWYU pragma: keep
-
 #include "melee/gm/gm_1A3F.h"
 #include "melee/lb/forward.h"
 #include "replay.h"
@@ -22,6 +20,7 @@ static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 static void onEnterPlaybackVs(GameModeState* state);
 static void onExitPlaybackVs(GameModeState* state);
+static ReplaySetupData setup_data;
 
 enum {
     state_record_vs,

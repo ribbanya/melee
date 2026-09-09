@@ -12,6 +12,7 @@ stdenv.mkDerivation {
     fileset = lib.fileset.unions [
       ../src/sysdolphin
       ../src/melee
+      ../src/fray
       ../src/Runtime
       ../src/placeholder.h
       ../src/m2c_macros.h

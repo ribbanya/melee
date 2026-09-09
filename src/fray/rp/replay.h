@@ -47,11 +47,8 @@ typedef struct {
 } ReplayMatchDesc;
 ASSERT_SIZE(ReplayMatchDesc, 8);
 
-struct CSSData {
-    u16 unk_0x0;             ///< 1p port?
-    u8 match_type;           ///< ::CSSMatchType
-    u8 pending_scene_change; ///< ::CSSPendingSceneChangeKind
-    u8* ko_counts;
+struct ReplaySetupData {
+    // ReplayMatchDesc
     VsModeData vs;
 };
 
