@@ -4,14 +4,16 @@
 
 #include <melee/ft/forward.h>
 #include <melee/gm/forward.h>
+#include <melee/mn/forward.h>
+
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_16F1.h>
-#include <melee/mn/forward.h>
-#include <sysdolphin/baselib/random.h>
 #include <melee/gm/gmmain_lib.h>
 #include <melee/lb/lblanguage.h>
 #include <sysdolphin/baselib/debug.h>
+#include <sysdolphin/baselib/random.h>
 
+/* 479D30 */ static HSD_GObjLibInitDataType gobj_init_data;
 GameRules Qol_CompetitiveGameRules = {
     false,
     52,
