@@ -2972,9 +2972,9 @@ bool mn_IsFighterUnlocked(SelectableCharacterKind selkind)
 void mn_8022E978(u8 item_idx, u8 enable)
 {
     if (enable) {
-        gmMainLib_GetSaveData()->item_mask |= 1 << item_idx;
+        gmMainLib_8015CC58()->item_mask |= 1 << item_idx;
     } else {
-        gmMainLib_GetSaveData()->item_mask &= ~(1 << item_idx);
+        gmMainLib_8015CC58()->item_mask &= ~(1 << item_idx);
     }
 }
 

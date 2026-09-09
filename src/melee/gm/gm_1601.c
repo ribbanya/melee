@@ -2141,7 +2141,7 @@ u8 gm_CKindToSelKind(u8 ckind)
 
 bool gm_8016403C(u8 item)
 {
-    u64 item_mask = gmMainLib_GetSaveData()->item_mask;
+    u64 item_mask = gmMainLib_8015CC58()->item_mask;
     if ((1LL << item) & item_mask) {
         return true;
     }
@@ -2151,7 +2151,7 @@ bool gm_8016403C(u8 item)
 void fn_801640B0(u64* item_mask)
 {
     int i;
-    struct gmm_x1CB0* temp_r30 = gmMainLib_GetSaveData();
+    struct gmm_x1CB0* temp_r30 = gmMainLib_8015CC58();
 
     for (i = 0; i < 0x20; i++) {
         int shift;
@@ -2183,15 +2183,15 @@ u16 gm_801641CC(u8 arg0)
 void gm_801641E4(u8 stage, u8 enable)
 {
     if (enable) {
-        gmMainLib_GetSaveData()->stage_mask |= 1 << stage;
+        gmMainLib_8015CC58()->stage_mask |= 1 << stage;
     } else {
-        gmMainLib_GetSaveData()->stage_mask &= ~(1 << stage);
+        gmMainLib_8015CC58()->stage_mask &= ~(1 << stage);
     }
 }
 
 s32 gm_80164250(u16 mask)
 {
-    bool tmp = (1 << mask) & gmMainLib_GetSaveData()->stage_mask;
+    bool tmp = (1 << mask) & gmMainLib_8015CC58()->stage_mask;
     if (tmp) {
         return 1;
     }
@@ -2207,7 +2207,7 @@ bool fn_801642A0(void)
     var_r30 = 0;
     var_r29 = 0;
     do {
-        if ((1 << (u16) var_r29) & gmMainLib_GetSaveData()->stage_mask) {
+        if ((1 << (u16) var_r29) & gmMainLib_8015CC58()->stage_mask) {
             var_r0 = 1;
         } else {
             var_r0 = 0;
@@ -2241,7 +2241,7 @@ bool gm_80164330(s32 arg0)
     total_stages_on = 0;
     i = 0;
     for (i = 0; i < 0x1D; i++) {
-        if ((1 << (u16) i) & gmMainLib_GetSaveData()->stage_mask) {
+        if ((1 << (u16) i) & gmMainLib_8015CC58()->stage_mask) {
             var_r0 = 1;
         } else {
             var_r0 = 0;
@@ -2253,7 +2253,7 @@ bool gm_80164330(s32 arg0)
     if (total_stages_on == 0) {
         OSReport("RandomStageSwitch All-Off!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     }
-    return ((1 << (u16) arg0) & gmMainLib_GetSaveData()->stage_mask) ? true
+    return ((1 << (u16) arg0) & gmMainLib_8015CC58()->stage_mask) ? true
                                                                   : false;
 }
 
@@ -3570,7 +3570,7 @@ void gm_80167BC8(VsModeData* vs_data)
     PAD_STACK(72);
 
     rules = gmMainLib_GetGameRules();
-    prefs = gmMainLib_GetSaveData();
+    prefs = gmMainLib_8015CC58();
     vs_data->start.rules.timer_enabled = 0;
 
     switch (rules->mode) {
@@ -3640,7 +3640,7 @@ void gm_80167BC8(VsModeData* vs_data)
     vs_data->start.rules.friendly_fire = (rules->friendly_fire & 1);
     vs_data->start.rules.x30 = 0.1f * rules->damage_ratio;
     vs_data->start.rules.item_freq = (s8) prefs->item_freq;
-    prefs = gmMainLib_GetSaveData();
+    prefs = gmMainLib_8015CC58();
     i = 0;
     do {
         u8 item = lbl_803B7844[(u8) i];
