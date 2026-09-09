@@ -10,6 +10,7 @@
 #include "melee/gr/forward.h"
 #include "melee/lb/forward.h"
 #include "melee/mn/forward.h"
+#include "melee/mn/mnstagesel.h"
 #include "melee/pl/forward.h"
 #include "replay.h"
 #include "rpcard.h"
@@ -75,7 +76,7 @@ static void initTestMatch(StartMeleeData* start)
     PlayerInitData* players = &start->players[0];
     size_t i;
 
-    rules->stkind = ;
+    rules->stkind = mnSelStageRandom();
     rules->timer_enabled = true;
     rules->time_limit = MIN(rules->time_limit, REPLAY_MAX_SECONDS);
     // rules->game_speed = 0.25f;
@@ -84,8 +85,9 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_match_start = onMatchStartRecordVs;
 
     for (i = 0; i < 2; i++) {
-        players[i].ckind = Qol_PickRandomTopTier(6);
-        // players[i].ckind = CKind_Fox;
+        u8 ckind = Qol_PickRandomTopTier(6);
+        players[i].ckind = ckind;
+        players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
         players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
         players[i].damage = 100;
@@ -94,8 +96,6 @@ static void initTestMatch(StartMeleeData* start)
     players[1].spawn_dir = -1;
     players[1].color = 2;
     players[1].spawn_pos = 2;
-
-    gm_LoadAnnouncer();
 }
 
 void Replay_Mode_OnInit(void)

@@ -2181,7 +2181,7 @@ void mnCharSel_CostumeChange(int door, u32 input)
         do {
             mnCharSel_803F0DFC.doors[door].costume =
                 (mnCharSel_803F0DFC.doors[door].costume + 1) %
-                gm_80169238(
+                gm_GetNumCostumesForCKind(
                     icons[mnCharSel_803F0DFC.doors[door].sel_icon].char_kind);
         } while (isDuplicateCostume(door));
     } else if (input & HSD_PAD_Y) {
@@ -2190,7 +2190,7 @@ void mnCharSel_CostumeChange(int door, u32 input)
                 mnCharSel_803F0DFC.doors[door].costume--;
             } else {
                 mnCharSel_803F0DFC.doors[door].costume =
-                    gm_80169238(icons[mnCharSel_803F0DFC.doors[door].sel_icon]
+                    gm_GetNumCostumesForCKind(icons[mnCharSel_803F0DFC.doors[door].sel_icon]
                                     .char_kind) -
                     1;
             }
@@ -2599,7 +2599,7 @@ void mnCharSel_CursorThink(HSD_GObj* gobj)
                                         while (true) {
                                             mnCharSel_803F0DFC.doors[door]
                                                 .costume =
-                                                HSD_Randi((s32) gm_80169238(
+                                                HSD_Randi((s32) gm_GetNumCostumesForCKind(
                                                     icons[mnCharSel_803F0DFC
                                                               .doors[door]
                                                               .sel_icon]
@@ -4435,7 +4435,7 @@ s32 mnCharSel_802640A0(void)
             mnCharSel_804D6CB0->vs.start.players[mnCharSel_804D6CF1].ckind =
                 char_kinds[icon_off];
             mnCharSel_804D6CB0->vs.start.players[mnCharSel_804D6CF1].color =
-                HSD_Randi((s32) gm_80169238(char_kinds[icon_off]));
+                HSD_Randi((s32) gm_GetNumCostumesForCKind(char_kinds[icon_off]));
         }
     }
 
