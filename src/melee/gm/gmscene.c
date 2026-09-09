@@ -344,7 +344,7 @@ void gm_801A4D34(void (*on_frame)(void), UNUSED GameSceneInfo* info)
             if (temp_r25->unk_10.pre_gobj_proc != NULL) {
                 temp_r25->unk_10.pre_gobj_proc();
             }
-            HSD_GObj_80390CFC();
+            HSD_GObj_RunProcs();
             if (temp_r25->unk_0 != -2) {
                 temp_r25->unk_0++;
             }
