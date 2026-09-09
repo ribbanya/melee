@@ -39,28 +39,9 @@ typedef struct {
 } ReplayFrame;
 
 typedef struct {
-    u8 stkind;  ///< ::StKind
-    u8 mkind;   ///< ::MatchKind
-    u8 version; ///< ::ReplayVersion
-    u8 reserved;
     u32 seed;
-} ReplayMatchDesc;
-ASSERT_SIZE(ReplayMatchDesc, 8);
-
-struct ReplaySetupData {
-    // ReplayMatchDesc
     VsModeData vs;
-};
-
-typedef struct {
-    u8 ckind;    ///< ::CharacterKind
-    u8 pkind;    ///< ::Gm_PKind
-    u8 cpu_kind; ///< ::CpuKind
-    u8 color;
-    u8 slot;
-    u8 spawn_pos;
-    ReplayFrame* frames;
-} ReplayFighter;
+} ReplaySetupData;
 
 typedef enum {
     ReplayVersion_2026_09_08,
@@ -75,14 +56,12 @@ typedef enum {
 } ReplayState;
 
 typedef struct {
-    u8 stkind;  ///< ::StKind
-    u8 mkind;   ///< ::MatchKind
-    u8 version; ///< ::ReplayVersion
-    u8 state;   ///< ::ReplayState
     u32 seed;
+    ReplayState state; ///< ::ReplayState
     u32 num_frames;
-    ReplayFighter fighters[GM_MAX_PLAYERS];
-} Replay;
+    u32 cur_frame;
+    ReplayFrame* frames[GM_MAX_PLAYERS];
+} Replayer;
 
 HSD_GObj* Replay_GetGObj(void);
 void Replay_Init(void);

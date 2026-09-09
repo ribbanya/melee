@@ -4,8 +4,12 @@
 
 #include <melee/gm/forward.h>
 
+#include "melee/ft/forward.h"
 #include "melee/gm/gm_1A3F.h"
+#include "melee/gr/forward.h"
 #include "melee/lb/forward.h"
+#include "melee/mn/forward.h"
+#include "melee/pl/forward.h"
 #include "replay.h"
 #include "rpcard.h"
 #include "rpdisplay.h"
@@ -20,11 +24,14 @@ static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 static void onEnterPlaybackVs(GameModeState* state);
 static void onExitPlaybackVs(GameModeState* state);
+
+static void onExitRecordOver(GameModeState* state);
 static ReplaySetupData setup_data;
+static VsModeData vs_mode_data;
 
 enum {
     state_record_vs,
-    state_playback_vs,
+    state_record_over,
 };
 
 GameModeState Replay_RecordStates[] = {
@@ -40,45 +47,61 @@ GameModeState Replay_RecordStates[] = {
             &gmVsMelee_VsExitInfo,
         },
     },
-    {
-        state_playback_vs,
-        lbDvdPreload_2,
-        0,
-        onEnterPlaybackVs,
-        onExitPlaybackVs,
-        {
-            GS_VS,
-            &gmVsMelee_StartData,
-            &gmVsMelee_VsExitInfo,
-        },
+    { state_record_over,
+
+      lbDvdPreload_2,
+      0,
+      NULL,
+      onExitRecordOver,
+      {
+          GS_COMING_SOON,
+          NULL,
+          NULL,
+      }
+
     },
-    {
-        GM_GAMEMODESTATE_TERMINATE,
-        lbDvdPreload_0,
-        0,
-        NULL,
-        NULL,
-        { 0 },
-    },
+    { GM_GAMEMODESTATE_TERMINATE },
 };
+
+/// @todo Load from memcard
+static void initTestMatch(VsModeData* vs)
+{
+    StartMeleeRules* rules = &vs->start.rules;
+    PlayerInitData(*player)[6] = &vs->start.players;
+    ssize_t i;
+
+    rules->stkind = St_Kind_Last;
+
+    for (i = 0; i < 2; i++) {
+        player[i]->ckind = CKIND_FOX;
+        player[i]->cpu_kind = 4;
+        player[i]->cpu_level = 9;
+        player[i]->stocks = 1;
+        player[i]->damage = 100;
+    }
+
+    player[0]->color = 0;
+    player[1]->color = 2;
+
+    player[1]->spawn_dir = -1;
+    player[1]->spawn_pos = 3;
+}
 
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
-    Replay_Init();
-    ReplayCard_Init();
+    // Replay_Init();
+    // ReplayCard_Init();
+    gm_InitVsMode(&vs_mode_data);
+    initTestMatch(&vs_mode_data);
 }
 
 void Replay_Mode_OnLoad(void) {}
 
 void Replay_Mode_OnUnload(void) {}
 
-static void setSeed(u32 seed)
-{
-    *seed_ptr = seed;
-}
-
-static void onMatchStartRecordVs(void)
+static void onRecordVsStartMelee(UNUSED StartMeleeData* start,
+                                 UNUSED StartMeleeData* vs)
 {
     ReplayText_Setup();
 }
@@ -135,9 +158,10 @@ static void onMatchStartRecordVs(void)
 
 void onEnterRecordVs(GameModeState* state)
 {
-    Replay_Load();
-    StartMeleeData* start = gm_GetGameModeStateEnterData(state);
+    gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
+    // Replay_Load();
 #if 0
+    StartMeleeData* start = gm_GetGameModeStateEnterData(state);
     Replay* rp = Replay_GetGObj()->user_data;
     size_t i;
 
@@ -177,14 +201,12 @@ void onEnterRecordVs(GameModeState* state)
         //     }
     }
 
-    // clearReplay();
-    // setSeed(REPLAY_SEED);
 #endif
-    gm_LoadAnnouncer();
-    // gm_SetupSubColors(start);
 }
 
 void onEnterPlaybackVs(GameModeState* state) {}
 
 void onExitRecordVs(UNUSED GameModeState* state) {}
 void onExitPlaybackVs(UNUSED GameModeState* state) {}
+
+void onExitRecordOver(GameModeState* state) {}
