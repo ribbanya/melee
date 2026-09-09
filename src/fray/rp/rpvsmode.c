@@ -75,34 +75,17 @@ static void initTestMatch(StartMeleeData* start)
     PlayerInitData* players = &start->players[0];
     size_t i;
 
-    rules->stkind = St_Kind_Last;
-    rules->item_freq = -1;
-    rules->sd_penalty = -1;
     rules->timer_enabled = true;
-    rules->time_limit = REPLAY_MAX_SECONDS;
-    rules->match_kind = MatchKind_Stock;
+    rules->time_limit = MIN(rules->time_limit, REPLAY_MAX_SECONDS);
     // rules->game_speed = 0.25f;
 
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
 
-    // // player[0]->color = 0;
-    // // player[1]->color = 2;
-    // // player[0]->spawn_dir = +1;
-    // // player[1]->spawn_dir = -1;
-    // // player[0]->spawn_pos = 0;
-    // // player[1]->spawn_pos = 3;
-
-    start->rules.stkind = St_Kind_Last;
-    start->rules.item_freq = -1;
-    start->rules.sd_penalty = -1;
-    // start->rules.mode = MatchKind_Stock;
-
     for (i = 0; i < 2; i++) {
         players[i].ckind = CKind_Fox;
         players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
-        players[i].stocks = 1;
         players[i].damage = 100;
     }
 
@@ -121,6 +104,7 @@ void Replay_Mode_OnInit(void)
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
     Qol_SetCompetitivePrefs();
+    gmMainLib_GetGameRules()->stock_count = 1;
 }
 
 void Replay_Mode_OnLoad(void) {}
