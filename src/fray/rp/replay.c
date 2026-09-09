@@ -4,13 +4,13 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include <fray/lb/lbqol.h>
 #include "rpvsmode.h"
-#include <sysdolphin/baselib/controller.h>
-#include <sysdolphin/baselib/gobjproc.h>
 #include <dolphin/types.h>
+#include <fray/lb/lbqol.h>
 #include <melee/ft/types.h>
+#include <sysdolphin/baselib/controller.h>
 #include <sysdolphin/baselib/gobj.h>
+#include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/objalloc.h>
 
 static HSD_ObjAllocData frames_alloc_data;
@@ -90,7 +90,7 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 
 HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
-    HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
+    HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0x80);
     // Replayer* rp = HSD_MemAlloc(sizeof(*rp));
     // size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
     // size_t i;
@@ -123,12 +123,6 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
 
     return gobj;
 };
-
-HSD_GObj* Replay_GetGObj(void)
-{
-    FRAY_ASSERT(replay_gobj);
-    return replay_gobj;
-}
 
 static void checkFrame(Replayer* rp, u32 frame)
 {

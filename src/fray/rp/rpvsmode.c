@@ -3,19 +3,19 @@
 #include <Runtime/platform.h>
 
 #include <melee/gm/forward.h>
-
-#include <melee/gm/gmmain_lib.h>
 #include <melee/lb/forward.h>
 #include <melee/mn/forward.h>
-#include <melee/mn/mnstagesel.h>
 #include <melee/pl/forward.h>
+
 #include "replay.h"
 #include "rpdisplay.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
+#include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
+#include <melee/mn/mnstagesel.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -116,8 +116,9 @@ static void onRecordVsStartMelee(StartMeleeData* start,
         start->rules.time_limit = REPLAY_MAX_SECONDS;
     }
     {
-        // UNUSED HSD_GObj* gobj = Replay_GetGObj();
-        Replay_Load();
+        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
+        UNUSED HSD_GObj* gobj = Replay_Create(&desc);
+        // Replay_Load();
     }
 
     //         gm_SetupRulesDefaults(rules);

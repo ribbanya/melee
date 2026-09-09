@@ -2,17 +2,18 @@
 #define FRAY_RP_REPLAY_H
 
 #include <melee/gm/forward.h>
+
 #include <fray/lb/lbqol.h>
 #include <melee/gm/types.h>
 #include <melee/lb/types.h>
 
 #define REPLAY_CLASS (FRAY_CLASS_START + 0)
 #define REPLAY_PLINK (FRAY_PLINK_START + 0)
+#define REPLAY_PRIORITY 0x80
 #define REPLAY_MAX_MINUTES 8
 #define REPLAY_MAX_SECONDS (REPLAY_MAX_MINUTES * 60)
 #define REPLAY_MAX_FRAMES (REPLAY_MAX_SECONDS * GM_FPS)
 #define FRAY_GOBJ_CLASS_SHIFT 5
-#define REPLAY_GOBJ_CLASS (1 << FRAY_GOBJ_CLASS_SHIFT)
 
 typedef struct {
     u8 a : 1;
@@ -75,6 +76,6 @@ typedef struct {
 
 HSD_GObj* Replay_GetGObj(void);
 void Replay_Init(void);
-void Replay_Create(ReplayDesc const* desc);
+HSD_GObj* Replay_Create(ReplayDesc const* desc);
 
 #endif
