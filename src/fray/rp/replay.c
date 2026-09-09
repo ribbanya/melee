@@ -88,7 +88,7 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
     // ReplayText_Update();
 }
 
-static HSD_GObj* createReplayGObj(Replayer const* desc)
+HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
     HSD_GObj* gobj = GObj_Create(REPLAY_GOBJ_CLASS, 1, 0x80);
     // Replayer* rp = HSD_MemAlloc(sizeof(*rp));
@@ -123,11 +123,6 @@ static HSD_GObj* createReplayGObj(Replayer const* desc)
 
     return gobj;
 };
-
-// void Replay_Load(void)
-// {
-//     replay_gobj = createReplayGObj(&replay_desc);
-// }
 
 HSD_GObj* Replay_GetGObj(void)
 {

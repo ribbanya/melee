@@ -98,11 +98,11 @@ void Replay_Mode_OnInit(void)
     Qol_LogInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
-    // Replay_Init();
+    Replay_Init();
     // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
-    gmMainLib_GetGameRules()->stock_count = 1;
+    // gmMainLib_GetGameRules()->stock_count = 1;
 }
 
 void Replay_Mode_OnLoad(void) {}
@@ -115,6 +115,11 @@ static void onRecordVsStartMelee(StartMeleeData* start,
     if (start->rules.time_limit >= REPLAY_MAX_SECONDS) {
         start->rules.time_limit = REPLAY_MAX_SECONDS;
     }
+    {
+        // UNUSED HSD_GObj* gobj = Replay_GetGObj();
+        Replay_Load();
+    }
+
     //         gm_SetupRulesDefaults(rules);
     // initTestMatch(&vs_mode_data);
 }

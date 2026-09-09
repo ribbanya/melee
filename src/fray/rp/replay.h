@@ -54,7 +54,13 @@ typedef enum {
     ReplayState_New,
     ReplayState_Recording,
     ReplayState_Finalized,
+    ReplayState_Playing,
 } ReplayState;
+
+typedef struct {
+    u8 enabled_slots : GM_MAX_PLAYERS;
+    u32 num_frames;
+} ReplayDesc;
 
 typedef struct {
     u32 seed;
@@ -66,6 +72,6 @@ typedef struct {
 
 HSD_GObj* Replay_GetGObj(void);
 void Replay_Init(void);
-void Replay_Load(void);
+void Replay_Create(ReplayDesc const* desc);
 
 #endif
