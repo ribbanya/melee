@@ -101,11 +101,11 @@ static void initTestMatch(StartMeleeData* start)
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
+    Qol_SetCompetitivePrefs();
     // Replay_Init();
     // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
-    Qol_SetCompetitivePrefs();
     gmMainLib_GetGameRules()->stock_count = 1;
 }
 
