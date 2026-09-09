@@ -106,7 +106,7 @@ void* gmMainLib_8015CC4C(void)
     return &gmMainLib_GetSaveData()->x2FF8;
 }
 
-struct gmm_x1CB0* gmMainLib_8015CC58(void)
+struct gmm_x1CB0* gmMainLib_GetGamePrefs(void)
 {
     return &gmMainLib_GetSaveData()->x1CB0;
 }
@@ -891,7 +891,7 @@ int GetRumbleSettingOfPort(ssize_t port)
 
 void gmMainLib_SetRumbleEnabled(ssize_t port, bool enabled)
 {
-    gmMainLib_8015CC58()->rumble_enabled[port] = enabled;
+    gmMainLib_GetGamePrefs()->rumble_enabled[port] = enabled;
 }
 
 s32 gmMainLib_8015ED5C(void)
@@ -906,12 +906,12 @@ void gmMainLib_8015ED68(ssize_t port)
 
 u8 gmMainLib_8015ED74(void)
 {
-    return gmMainLib_8015CC58()->sound_balance;
+    return gmMainLib_GetGamePrefs()->sound_balance;
 }
 
 void gmMainLib_8015ED80(u8 arg0)
 {
-    gmMainLib_8015CC58()->sound_balance = arg0;
+    gmMainLib_GetGamePrefs()->sound_balance = arg0;
 }
 
 u16* gmMainLib_GetUnlockedCharactersBitmaskPtr(void)
@@ -987,7 +987,7 @@ void gmMainLib_8015EE54(void)
 void gmMainLib_8015EE68(void)
 {
     gmMainLib_GetSaveData()->x186C &= 0xFFFFFFFD;
-    gmMainLib_8015CC58()->stage_mask = gmMainLib_803D4A60[6];
+    gmMainLib_GetGamePrefs()->stage_mask = gmMainLib_803D4A60[6];
 }
 
 s32 gmMainLib_8015EE90(void)

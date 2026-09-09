@@ -115,7 +115,7 @@ static void initTestMatch(StartMeleeData* start)
 
 static void setPrefs(void)
 {
-    gmMainLib_8015CC58()->item_freq = -1;
+    gmMainLib_GetGamePrefs()->item_freq = -1;
     gmMainLib_GetGameRules()->mode = MatchKind_Stock;
     gmMainLib_GetGameRules()->stock_time_limit = REPLAY_MAX_SECONDS / 60;
     gmMainLib_GetGameRules()->stock_count = 1;
