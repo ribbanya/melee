@@ -5,6 +5,8 @@
 
 #include <sysdolphin/baselib/forward.h>
 
+#include "sysdolphin/baselib/objalloc.h"
+
 #define HSD_GOBJ_GXLINK_NONE ((u8) 0xFF)
 #define HSD_GOBJ_OBJ_NONE 0xFF
 
@@ -79,6 +81,8 @@ extern s8 HSD_GObj_FogKind;
 extern u8 HSD_GObj_JObjKind;
 extern s8 HSD_GObj_LightKind;
 extern u8 HSD_GObj_CameraKind;
+extern HSD_ObjAllocData gobj_alloc_data;
+extern HSD_ObjAllocData gobjproc_alloc_data;
 
 extern HSD_GObjLibInitDataType HSD_GObjLibInitData;
 
@@ -98,9 +102,9 @@ void HSD_GObj_FogCallback(HSD_GObj* gobj, int unused);
 void HSD_GObj_80391120(HSD_Obj* obj);
 void HSD_GObj_803911C0(HSD_Obj* obj);
 void HSD_GObj_80391260(HSD_GObjLibInitDataType*);
-void HSD_GObjLibSetInit(HSD_GObjLibInitDataType* arg0);
+void HSD_GObjSetInitDefaults(HSD_GObjLibInitDataType* arg0);
 void HSD_GObj_80390ED0(HSD_GObj* gobj, u32 mask);
-void HSD_GObj_80391304(HSD_GObjLibInitDataType*);
+void HSD_GObjInit(HSD_GObjLibInitDataType*);
 
 static inline void* HSD_GObjGetUserData(HSD_GObj* gobj)
 {

@@ -227,13 +227,13 @@ void gm_801A4BD4(void)
     gm_801A4B50(0);
 
     lb_80019880(OSSecondsToTicks(1.0F / GM_FPS));
-    HSD_GObjLibSetInit(&gobj_init_data);
+    HSD_GObjSetInitDefaults(&gobj_init_data);
     gobj_init_data.gproc_pri_max = 0x18;
     HSD_SObjLib_804D7960 =
         HSD_GObj_803912A8(&gobj_init_data, &HSD_SObjLib_8040C3A4);
     HSD_SObjLib_803A44A4();
     gobj_init_data.unk_2 = &gm_80479D58.unk_10.unk_28;
-    HSD_GObj_80391304(&gobj_init_data);
+    HSD_GObjInit(&gobj_init_data);
     hsd_80392474();
     un_802FF78C();
     gm_804D672C = GObj_Create(14, 0, 0);
