@@ -13,6 +13,7 @@
 void Qol_LogInit(void);
 CharacterKind Qol_PickRandomTopTier(int worst);
 void Qol_SetCompetitivePrefs(void);
+void Qol_UnlockAll(void);
 extern struct GamePrefs Qol_CompetitiveGamePrefs;
 extern GameRules Qol_CompetitiveGameRules;
 extern CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count];

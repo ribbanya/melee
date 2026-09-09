@@ -68,6 +68,16 @@ void Qol_LogInit(void)
     stdout->write_proc = logPassthrough;
 }
 
+/// @remarks From gmMainLib_8015FA34
+void Qol_UnlockAll(void)
+{
+    gmMainLib_804D3EE0->thing.x186C = U8_MAX;
+    gm_80164F18();
+    gm_8016468C();
+    gm_8017297C();
+    gm_801741FC();
+}
+
 void Qol_SetCompetitivePrefs(void)
 {
     *gmMainLib_GetGamePrefs() = Qol_CompetitiveGamePrefs;
@@ -79,14 +89,4 @@ CharacterKind Qol_PickRandomTopTier(int worst)
 {
     FRAY_ASSERT(0 <= worst && worst < CKind_Playable_Count);
     return Qol_TierList_PGStats2021[HSD_Randi(worst)];
-}
-
-/// @remarks From gmMainLib_8015FA34
-void Qol_UnlockAll(void)
-{
-    gmMainLib_804D3EE0->thing.x186C = U8_MAX;
-    gm_80164F18();
-    gm_8016468C();
-    gm_8017297C();
-    gm_801741FC();
 }
