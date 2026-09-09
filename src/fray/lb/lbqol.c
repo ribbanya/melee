@@ -37,7 +37,7 @@ GameRules Qol_CompetitiveGameRules = {
 };
 
 struct GamePrefs Qol_CompetitiveGamePrefs = {
-    -1, 0, { false, false, false, false }, 0, true, LANG_US, (1 << 4),
+    -1, 0, { false, false, false, false }, 0, true, LANG_US, 0xE70000B0,
 };
 
 CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count] = {
