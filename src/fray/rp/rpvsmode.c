@@ -96,10 +96,10 @@ static void initTestMatch(StartMeleeData* start)
     start->rules.stkind = St_Kind_Last;
     start->rules.item_freq = -1;
     start->rules.sd_penalty = -1;
-    start->rules.match_kind = MatchKind_Stock;
+    // start->rules.mode = MatchKind_Stock;
 
     for (i = 0; i < 2; i++) {
-        players[i].ckind = CKIND_FOX;
+        players[i].ckind = CKind_Fox;
         players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
         players[i].stocks = 1;
@@ -116,6 +116,10 @@ static void initTestMatch(StartMeleeData* start)
 static void setPrefs(void)
 {
     gmMainLib_8015CC58()->item_freq = -1;
+    gmMainLib_GetGameRules()->mode = MatchKind_Stock;
+    gmMainLib_GetGameRules()->stock_time_limit = REPLAY_MAX_SECONDS / 60;
+    gmMainLib_GetGameRules()->stock_count = 1;
+    gmMainLib_GetGameRules()->friendly_fire = true;
 }
 
 void Replay_Mode_OnInit(void)
