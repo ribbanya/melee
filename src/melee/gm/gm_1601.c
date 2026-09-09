@@ -3711,25 +3711,25 @@ void gm_80167FC4(SSSData* arg0)
     int i;
 
     u16* temp_r25;
-    s32 temp_r28;
+    StKind temp_r28;
     u8 temp_r3_2;
 
     PAD_STACK(8);
 
     temp_r3 = gmMainLib_GetGameRules();
-    if (temp_r3->random_stage == 1) {
+    if (temp_r3->stage_sel == 1) {
         arg0->force_stage_id = mnStageSel_8025BBD4();
         return;
     }
     arg0->force_stage_id = -1;
-    switch (temp_r3->random_stage) {
+    switch (temp_r3->stage_sel) {
     case 0:
         arg0->unk_stage = 0;
         return;
     case 2:
-        for (i = 0; i < 0x1D; i++) {
+        for (i = 0; i < St_Kind_OldYoshi; i++) {
             temp_r28 = arg0->vs.ordered_stage_index + i;
-            temp_r28 = (temp_r28 + 1) % 29;
+            temp_r28 = (temp_r28 + 1) % St_Kind_OldYoshi;
             temp_r30 = mnStageSel_8025BC08(temp_r28);
             temp_r25 = gmMainLib_8015EDA4();
 
