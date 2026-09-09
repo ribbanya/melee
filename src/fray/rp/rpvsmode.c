@@ -113,15 +113,6 @@ static void initTestMatch(StartMeleeData* start)
     gm_LoadAnnouncer();
 }
 
-static void setPrefs(void)
-{
-    gmMainLib_GetGamePrefs()->item_freq = -1;
-    gmMainLib_GetGameRules()->mode = MatchKind_Stock;
-    gmMainLib_GetGameRules()->stock_time_limit = REPLAY_MAX_SECONDS / 60;
-    gmMainLib_GetGameRules()->stock_count = 1;
-    gmMainLib_GetGameRules()->friendly_fire = true;
-}
-
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
@@ -196,56 +187,6 @@ static void onRecordVsStartMelee(UNUSED StartMeleeData* start,
 void onEnterRecordVs(GameModeState* state)
 {
     gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
-    // StartMeleeData* start = gm_GetGameModeStateEnterData(state);
-    // gm_SetupRulesDefaults(&start->rules);
-    // gm_SetupAllPlayerDefaults(start->players);
-
-    // gm_InitVsMode(VsModeData* vs)
-    // initTestMatch(start);
-    // gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
-    // Replay_Load();
-#if 0
-    StartMeleeData* start = gm_GetGameModeStateEnterData(state);
-    Replay* rp = Replay_GetGObj()->user_data;
-    size_t i;
-
-    {
-        StartMeleeRules* rules = &start->rules;
-        gm_SetupRulesDefaults(rules);
-        rules->stkind = St_Kind_Last;
-        rules->xB = -1;
-        rules->xC = -1;
-        rules->timer_enabled = true;
-        rules->time_limit = REPLAY_MAX_SECONDS;
-        rules->match_kind = MatchKind_Stock;
-        rules->game_speed = 0.25f;
-        rules->on_match_start = onMatchStartRecordVs;
-        // rules->on_frame_end = onFrameEndRecordVs;
-    }
-
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        PlayerInitData* player = &start->players[i];
-        ReplayFighter* fighter = &rp->fighters[i];
-        gm_SetupPlayerDefaults(player);
-
-        //     if (i < ARRAY_SIZE(fighter_init)) {
-        //         ReplayFighterDesc const* fighter = &fighter_init[i];
-        player->ckind = fighter->ckind;
-        player->color = fighter->color;
-        player->slot = fighter->slot;
-        player->spawn_pos = fighter->spawn_pos;
-        player->slot_type = fighter->pkind;
-        player->cpu_level = 9;
-        player->damage = 100;
-        player->stocks = 1;
-        //     } else if (i < PAD_MAX_CONTROLLERS) {
-        //         player->cpu_kind = CpuKind_4;
-        //         player->slot_type = Gm_PKind_NA;
-        //         player->rumble_enabled = false;
-        //     }
-    }
-
-#endif
 }
 
 void onEnterPlaybackVs(GameModeState* state) {}
