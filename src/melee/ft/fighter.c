@@ -1703,7 +1703,7 @@ void Fighter_8006A360(Fighter_GObj* gobj)
 void Fighter_8006ABA0(Fighter_GObj* gobj)
 {
     Fighter* fp = GET_FIGHTER(gobj);
-    if (!fp->x221F_b3 && ftCo_800A2040(fp)) {
+    if (!fp->x221F_b3 && ftCo_IsCpuControlled(fp)) {
         ftCo_800B3900(gobj);
     }
 }
@@ -1799,7 +1799,7 @@ void Fighter_Spaghetti_8006AD10(Fighter_GObj* gobj)
                 fp->input.held_buttons[1] = fp->input.held_buttons[0];
             }
 
-            if (ftCo_800A2040(fp)) {
+            if (ftCo_IsCpuControlled(fp)) {
                 SET_STICKS(fp->input.lstick[0].x, fp->input.lstick[0].y,
                            ftCo_GetCpuLStickX(fp), ftCo_GetCpuLStickY(fp));
                 if (DbLevel < DbLKind_DebugRom &&
@@ -1869,7 +1869,7 @@ void Fighter_Spaghetti_8006AD10(Fighter_GObj* gobj)
                 fp->input.triggers[0] = 0.0f;
             }
 
-            if (ftCo_800A2040(fp)) {
+            if (ftCo_IsCpuControlled(fp)) {
                 fp->input.held_buttons[0] = ftCo_GetCpuButtons(fp);
             } else {
                 fp->input.held_buttons[0] =
@@ -1878,7 +1878,7 @@ void Fighter_Spaghetti_8006AD10(Fighter_GObj* gobj)
 
             if (gm_8016B0FC()) {
                 fp->input.triggers[0] = 0.0f;
-                if (ftCo_800A2040(fp)) {
+                if (ftCo_IsCpuControlled(fp)) {
                     fp->input.held_buttons[0] &= HSD_PAD_A | HSD_PAD_XY;
                 } else {
                     fp->input.held_buttons[0] &= HSD_PAD_A;
