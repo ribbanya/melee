@@ -101,7 +101,7 @@ static void recordProc(HSD_GObj* gobj)
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
                 ++active_transforms;
-                recordInputs(fp, rf, pp->slot_type);
+                // recordInputs(fp, rf, pp->slot_type);
             }
         }
         FRAY_ASSERT(active_transforms == 1);
