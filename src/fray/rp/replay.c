@@ -26,7 +26,7 @@ void Replay_Init(void)
 
 static void removeUserData(void* user_data)
 {
-    // Replayer* rp = user_data;
+    Replayer* rp = user_data;
     // size_t i;
 
     // for (i = 0; i < Gm_Player_NumMax; i++) {
@@ -35,7 +35,7 @@ static void removeUserData(void* user_data)
     //         HSD_ObjFree(&frames_alloc_data, frames);
     //     }
     // }
-    // HSD_Free(rp);
+    HSD_Free(rp);
 }
 
 static void inputsSetButtons(ReplayInputs* ri, HSD_Pad buttons)
@@ -59,8 +59,6 @@ static void recordProc(HSD_GObj* gobj)
 {
     Replayer* rp = gobj->user_data;
     size_t i;
-
-    FRAY_ASSERTMSG(0, "recordProc");
 
     if (rp->state != ReplayState_Recording) {
         return;
@@ -93,6 +91,8 @@ static void recordProc(HSD_GObj* gobj)
         rf->out.airborne = fp->ground_or_air == GA_Air;
         rf->out.ecb_locked = fp->ecb_lock != 0;
         rf->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
+
+        REPORT_HEX(*rf);
     }
 }
 
@@ -105,40 +105,25 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
     // HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0);
-    // HSD_GObj* gobj = GObj_Create(HSD_GOBJ_CLASS_FIGHTER, 8, 0);
-    HSD_GObj* gobj = GObj_Create(0, 0, 0);
+    // HSD_GObj* gobj =
+    //     GObj_Create(HSD_GOBJ_CLASS_FIGHTER, HSD_GOBJ_PLINK_FIGHTER, 0);
+    // HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0);
+    HSD_GObj* gobj = GObj_Create(0, 7, 0);
     Replayer* rp = HSD_MemAlloc(sizeof(*rp));
     HSD_GObjProc* gproc;
     size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
     size_t i;
 
-    /// @todo Figure out plink and prio
     GObj_InitUserData(gobj, REPLAY_USER_DATA_KIND, removeUserData, rp);
 
     /// @todo Extract fighter proc prios to header
     /// @todo After ::Fighter_Create input proc
 
-    gproc = HSD_GObj_SetupProc(gobj, recordProc, 0);
+    gproc = HSD_GObj_SetupProc(gobj, recordProc, 3);
     // gproc = HSD_GObj_SetupProc(gobj, recordProc, 0x80);
 
     /// @todo ???
-    // HSD_GObj_80390CD4(gobj);
-    REPORT_ADDR(gobj);
-    REPORT_ADDR(gobj->obj_kind);
-    REPORT_ADDR(gobj->user_data_kind);
-    REPORT_ADDR(gobj->p_link);
-    REPORT_ADDR(rp);
-    REPORT_ADDR(gproc);
-    REPORT_ADDR(gproc->child);
-    REPORT_ADDR(gproc->next);
-    REPORT_ADDR(gproc->prev);
-    REPORT_HEX(gproc->s_link);
-    REPORT_HEX(gproc->flags_1);
-    REPORT_HEX(gproc->flags_2);
-    REPORT_HEX(gproc->flags_3);
-    REPORT_HEX(gproc->flags_4);
-    REPORT_ADDR(gproc->gobj);
-    REPORT_ADDR(gproc->on_invoke);
+    HSD_GObj_80390CD4(gobj);
 
     // gproc->flags_3 = HSD_GObj_804D783C;
     // gproc->flags_1
@@ -161,6 +146,25 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
     //     memcpy(dst->frames, src->frames, frames_size);
     // }
 
+    {
+        REPORT_ADDR(gobj);
+        REPORT_ADDR(gobj->obj_kind);
+        REPORT_ADDR(gobj->user_data);
+        REPORT_ADDR(gobj->user_data_kind);
+        REPORT_ADDR(gobj->p_link);
+        REPORT_ADDR(rp);
+        REPORT_ADDR(gproc);
+        REPORT_ADDR(gproc->child);
+        REPORT_ADDR(gproc->next);
+        REPORT_ADDR(gproc->prev);
+        REPORT_HEX(gproc->s_link);
+        REPORT_HEX(gproc->flags_1);
+        REPORT_HEX(gproc->flags_2);
+        REPORT_HEX(gproc->flags_3);
+        REPORT_HEX(gproc->flags_4);
+        REPORT_ADDR(gproc->gobj);
+        REPORT_ADDR(gproc->on_invoke);
+    }
     return gobj;
 };
 

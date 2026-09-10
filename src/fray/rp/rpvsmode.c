@@ -7,8 +7,12 @@
 #include <melee/mn/forward.h>
 #include <melee/pl/forward.h>
 
+#include "melee/ft/fighter.h"
+#include "melee/ft/forward.h"
+#include "melee/pl/types.h"
 #include "replay.h"
 #include "rpdisplay.h"
+#include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -26,6 +30,7 @@ static void onExitPlaybackVs(GameModeState* state);
 static void onExitRecordOver(GameModeState* state);
 static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
+static HSD_GObj* replay_gobj;
 
 enum {
     state_record_vs,
@@ -60,9 +65,23 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
+static void crashTheGame(UNUSED HSD_GObj* gobj)
+{
+    FRAY_ASSERTMSG(false, "CRASH!");
+}
+
 static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
+    {
+        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
+        Replayer* rp;
+        // struct plAllocInfo info = { Ft_Kind_Sandbag };
+        // HSD_GObj* gobj = Fighter_Create(&info);
+        replay_gobj = Replay_Create(&desc);
+        rp = replay_gobj->user_data;
+        rp->state = ReplayState_Recording;
+    }
 }
 
 /// @todo Load from memcard
@@ -115,11 +134,6 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 {
     if (start->rules.time_limit >= REPLAY_MAX_SECONDS) {
         start->rules.time_limit = REPLAY_MAX_SECONDS;
-    }
-    {
-        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
-        UNUSED HSD_GObj* gobj = Replay_Create(&desc);
-        // Replay_Load();
     }
 
     //         gm_SetupRulesDefaults(rules);
