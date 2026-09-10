@@ -455,7 +455,7 @@ typedef enum CpuKind {
     CpuKind_3,
     CpuKind_4,
     CpuKind_5,
-    CpuKind_6,
+    CpuKind_Nana,
     CpuKind_7,
     CpuKind_8,
     CpuKind_9,

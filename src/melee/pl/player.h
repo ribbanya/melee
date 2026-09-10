@@ -42,14 +42,16 @@ typedef struct _StaticPlayer {
 
     /*0x40*/ f32 facing_direction;
 
-    /*0x44*/ u8 costume_id; // 00 = normal, 01 = red, 02 = blue, 03 = green
-                            // (reflected in icon immediately)
+    /*0x44*/ u8 costume_id; ///< ::CostumeId; max value depends on
+                            ///< ::CostumeListsForeachCharacter and
+                            ///< ::gm_GetNumCostumesForCKind
     /*0x45*/ u8 unk45;
-    /*0x46*/ s8 controller_index;
-    /*0x47*/ u8 team; /// 00 = red, 01 = blue, 02 = green
-    /*0x48*/ u8 player_id;
-    /*0x49*/ u8 cpu_level;
-    /*0x4A*/ u8 cpu_type;
+    /*0x46*/ s8 controller_index; ///< Physical controller port up to
+                                  ///< ::PAD_MAX_CONTROLLERS
+    /*0x47*/ u8 team;             ///< ::TeamColor
+    /*0x48*/ u8 player_id;        ///< Player "slot" up to ::GM_MAX_PLAYERS
+    /*0x49*/ u8 cpu_level;        ///< 1 to 9
+    /*0x4A*/ u8 cpu_type;         ///< ::CpuKind
     /*0x4B*/ u8 handicap;
 
     /*0x4C*/ s8 unk4C;

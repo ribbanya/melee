@@ -8245,7 +8245,7 @@ void ftCo_800B2AFC(Fighter* fp)
         ftCo_800ADE48(fp);
         return;
     }
-    case CpuKind_6:
+    case CpuKind_Nana:
         ftCo_800B101C(fp);
         return;
     case CpuKind_4:
