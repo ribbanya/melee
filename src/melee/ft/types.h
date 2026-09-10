@@ -995,7 +995,7 @@ struct CpuFighter {
     /*   +6 */ S8Vec2 cstick;
     /*   +8 */ u8 ltrigger;
     /*   +9 */ u8 rtrigger; ///< R trigger analog value, 0 to 255
-    /*   +C */ enum_t xC;
+    /*   +C */ CpuKind kind;
     /*  +10 */ int level; ///< CPU level, 0-9
     /*  +14 */ int x14;
     /*  +18 */ int x18;

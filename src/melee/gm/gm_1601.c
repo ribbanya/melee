@@ -2972,7 +2972,7 @@ void gm_80166378(lbl_8046B6A0_24C_t* arg0_raw)
                 arg0->player_standings[i].x28 = gm_GetFrameCount();
             }
             arg0->player_standings[i].self_destructs =
-                Player_GetSuicideCount(i);
+                Player_GetSelfDestructs(i);
             arg0->player_standings[i].x24 = Player_GetFalls(i);
             arg0->player_standings[i].team = Player_GetTeam(i);
             arg0->player_standings[i].percent = Player_GetDamage(i);

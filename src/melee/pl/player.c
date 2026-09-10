@@ -1410,41 +1410,41 @@ void Player_UpdateMatchFrameCount(int slot, bool condition)
     }
 }
 
-u32 Player_GetSuicideCount(int slot)
+u32 Player_GetSelfDestructs(int slot)
 {
     StaticPlayer* player;
     u32 count;
     Player_CheckSlot(slot);
     player = &player_slots[slot];
-    count = player->suicide_count;
+    count = player->self_destructs;
     return count;
 }
 
-void Player_SetSuicideCount(s32 slot, u32 suicide_count)
+void Player_SetSelfDestructs(s32 slot, u32 self_destructs)
 {
     StaticPlayer* player;
 
-    if (suicide_count > 0xffff || 0 > (s32) suicide_count) {
+    if (self_destructs > 0xffff || 0 > (s32) self_destructs) {
         return;
     }
 
     Player_CheckSlot(slot);
     player = &player_slots[slot];
-    player->suicide_count = suicide_count;
+    player->self_destructs = self_destructs;
 }
 
-void Player_IncSuicideCount(s32 slot, s32 condition)
+void Player_IncSelfDestructs(s32 slot, s32 condition)
 {
     StaticPlayer* player;
-    u16 suicide_count;
+    u16 self_destructs;
 
     Player_CheckSlot(slot);
     player = &player_slots[slot];
 
     if (condition == 0) {
-        suicide_count = player->suicide_count;
-        if (suicide_count < 0xffff) {
-            player->suicide_count++;
+        self_destructs = player->self_destructs;
+        if (self_destructs < 0xffff) {
+            player->self_destructs++;
             ifStatus_802F6C04(slot);
         }
     }
@@ -1972,7 +1972,7 @@ void Player_InitOrResetPlayer(s32 slot)
     player->kos_by_player[5] = 0;
 
     player->match_frame_count = -1;
-    player->suicide_count = 0;
+    player->self_destructs = 0;
     player->stocks = 0;
 
     player->current_coins = 0;
