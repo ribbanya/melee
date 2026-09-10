@@ -67,7 +67,7 @@ GameModeState Replay_RecordStates[] = {
 
 static void onMatchStartRecordVs(void)
 {
-    // Qol_GObjInit();
+    Qol_GObjInit();
     REPORT_HEX(HSD_GObjLibInitData.p_link_max);
     // ReplayText_Setup();
     // {
