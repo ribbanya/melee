@@ -105,8 +105,6 @@ static void recordProc(HSD_GObj* gobj)
                 REPORT_ADDR(&fp->cpu);
                 REPORT_HEX(fp->player_id);
                 REPORT_HEX(fp->kind);
-                REPORT_ADDR(fp->cpu.x44);
-                REPORT_HEX(fp->cpu.xC);
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
