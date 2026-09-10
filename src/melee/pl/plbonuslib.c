@@ -426,7 +426,7 @@ void pl_8003E150(int slot, int arg1)
 }
 
 void pl_8003E17C(int player_id, int arg1,
-                 Item_GObj* item_gobj) // arg1 is fp->x221F_b4 from item owner
+                 Item_GObj* item_gobj) // arg1 is fp->is_sub_fighter from item owner
 {
     pl_StaleMoveTableExt_t* temp_r31 =
         Player_GetStaleMoveTableIndexPtr2(player_id);

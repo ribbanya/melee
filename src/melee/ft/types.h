@@ -1647,7 +1647,7 @@ struct Fighter {
     /* fp+221F:1 */ u8 x221F_b1 : 1;
     /* fp+221F:2 */ u8 x221F_b2 : 1;
     /* fp+221F:3 */ u8 x221F_b3 : 1;
-    /* fp+221F:4 */ u8 x221F_b4 : 1;
+    /* fp+221F:4 */ u8 is_sub_fighter : 1;
     /* fp+221F:5 */ u8 x221F_b5 : 1;
     /* fp+221F:6 */ u8 x221F_b6 : 1;
     /* fp+221F:7 */ u8 x221F_b7 : 1;

@@ -1079,7 +1079,7 @@ bool ftCo_800A1F98(int x, float y)
 
 bool ftCo_IsCpuControlled(Fighter* fp)
 {
-    if (Player_8003248C(fp->player_id, fp->x221F_b4) != Gm_PKind_Cpu) {
+    if (Player_8003248C(fp->player_id, fp->is_sub_fighter) != Gm_PKind_Cpu) {
         return false;
     }
     if (fp->cpu.kind == 5) {
@@ -8631,7 +8631,7 @@ bool ftCo_800B395C(Fighter_GObj* gobj, int arg1)
 
     fp = GET_FIGHTER(gobj);
     temp_r30 = &fp->cpu;
-    if (Player_8003248C(fp->player_id, fp->x221F_b4) == Gm_PKind_Cpu) {
+    if (Player_8003248C(fp->player_id, fp->is_sub_fighter) == Gm_PKind_Cpu) {
         switch (temp_r30->x18) {
         case 2:
         case 3:
