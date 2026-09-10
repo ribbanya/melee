@@ -1752,7 +1752,7 @@ bool ftCo_800B8A9C(Fighter* fp)
     int var_r0;
     PAD_STACK(4);
 
-    if (!cpu->xF9_b2) {
+    if (!cpu->is_follower) {
         return false;
     }
     target = cpu->x44;
