@@ -6,10 +6,8 @@
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/debug.h>
 
-#define FRAY_CLASS_START 0x40
-#define FRAY_PLINK_START 0x40
-#define FRAY_PLINK_MAX 0x4F
-#define FRAY_GXLINK_MAX 0x4F
+#define FRAY_CLASS_START 0x30
+#define FRAY_PLINK_START 0x30
 
 #define REPORT_HEX(p) (OSReport("%s = %x", #p, p))
 #define REPORT_INT(p) (OSReport("%s = %d", #p, p))
@@ -23,7 +21,6 @@
 #define FRAY_ASSERTREPORT(cond, ...)                                          \
     HSD_ASSERTREPORT(__LINE__, cond, __VA_ARGS__)
 
-void Qol_GObjInit(void);
 void Qol_LogInit(void);
 CharacterKind Qol_PickRandomTopTier(int worst);
 void Qol_SetCompetitivePrefs(void);

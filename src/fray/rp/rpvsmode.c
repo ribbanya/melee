@@ -67,16 +67,14 @@ GameModeState Replay_RecordStates[] = {
 
 static void onMatchStartRecordVs(void)
 {
-    Qol_GObjInit();
-    REPORT_HEX(HSD_GObjLibInitData.p_link_max);
-    // ReplayText_Setup();
-    // {
-    //     ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
-    //     Replayer* rp;
-    //     replay_gobj = Replay_Create(&desc);
-    //     rp = replay_gobj->user_data;
-    //     rp->state = ReplayState_Recording;
-    // }
+    ReplayText_Setup();
+    {
+        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
+        Replayer* rp;
+        replay_gobj = Replay_Create(&desc);
+        rp = replay_gobj->user_data;
+        rp->state = ReplayState_Recording;
+    }
 }
 
 /// @todo Load from memcard
@@ -94,7 +92,7 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_match_start = onMatchStartRecordVs;
 
     for (i = 0; i < 2; i++) {
-        u8 ckind = Qol_PickRandomTopTier(6);
+        u8 ckind = Qol_PickRandomTopTier(8);
         players[i].ckind = ckind;
         players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
         players[i].slot_type = Gm_PKind_Cpu;
