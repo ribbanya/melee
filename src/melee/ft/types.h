@@ -1046,7 +1046,7 @@ struct CpuFighter {
     /*  +F8:7 */ u8 xF8_b7 : 1;
     /*  +F9:0 */ u8 xF9_b0 : 1;
     /*  +F9:1 */ u8 xF9_b1 : 1;
-    /*  +F9:2 */ u8 xF9_b2 : 1;
+    /*  +F9:2 */ u8 is_follower : 1;
     /*  +F9:3 */ u8 xF9_b3 : 1;
     /*  +F9:4 */ u8 xF9_b4 : 1;
     /*  +F9:5 */ u8 xF9_b5 : 1;
