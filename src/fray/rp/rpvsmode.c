@@ -92,7 +92,7 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_match_start = onMatchStartRecordVs;
 
     players[0].ckind = CKind_PopoNana;
-    players[1].ckind = CKind_PopoNana;
+    players[1].ckind = CKind_Zelda;
     players[0].slot_type = Gm_PKind_Human;
     players[1].slot_type = Gm_PKind_Cpu;
     for (i = 0; i < 2; i++) {
