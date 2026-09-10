@@ -153,7 +153,7 @@ void ftCo_800D34E0(Fighter_GObj* gobj)
         Player_UpdateKOsBySlot(fp->dmg.x18c4_source_ply, fp->x221F_b4,
                                fp->player_id);
     } else {
-        Player_IncSuicideCount(fp->player_id, fp->x221F_b4);
+        Player_IncSelfDestructs(fp->player_id, fp->x221F_b4);
     }
     pl_8003D644(fp->player_id, fp->x221F_b4, fp->mv.co.unk_800D34E0.x6C,
                 fp->mv.co.unk_800D34E0.x70);
