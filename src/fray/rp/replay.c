@@ -82,6 +82,8 @@ static void recordProc(HSD_GObj* gobj)
     if (rp->state != ReplayState_Recording) {
         return;
     }
+    OSReport("Exiting recordProc!");
+    return;
 
     // FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
     for (i = 0; i < Gm_Player_NumMax; i++) {
@@ -104,7 +106,7 @@ static void recordProc(HSD_GObj* gobj)
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
-        FRAY_ASSERT(active_transforms == 1);
+        // FRAY_ASSERT(active_transforms == 1);
     }
 }
 
