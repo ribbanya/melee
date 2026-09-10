@@ -110,6 +110,7 @@ static void recordProc(HSD_GObj* gobj)
     if (rp->state != ReplayState_Recording) {
         return;
     }
+    return;
 
     // FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
 
