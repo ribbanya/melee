@@ -105,48 +105,43 @@ static void checkWeirdNana(int slot, int sub)
 static void recordProc(HSD_GObj* gobj)
 {
     Replayer* rp = gobj->user_data;
-    size_t i;
+    HSD_GObj* cur;
 
     if (rp->state != ReplayState_Recording) {
         return;
     }
 
     // FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
-    for (i = 0; i < Gm_Player_NumMax; i++) {
+
+    for (cur = HSD_GObjPLinkHead[HSD_GOBJ_PLINK_FIGHTER]; cur != NULL;
+         cur = HSD_GObjGetNext(cur))
+    {
+        // Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
+        Fighter* fp = cur->user_data;
+        size_t i = fp->player_id;
+        size_t j = fp->is_sub_fighter;
+        StaticPlayer* pp = Player_GetPtrForSlot(i);
         ReplayFrame* rf = rp->frames[i];
-        StaticPlayer* pp;
-        size_t j;
+        if (fp != NULL) {
+            bool is_cpu;
+            OSReport("\n=== %d[%d] ===\n", i, j);
+            REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
+            REPORT_INT(fp->kind);
+            REPORT_INT(pp->pkind);
+            REPORT_INT(pp->ckind);
+            REPORT_INT(pp->cpu_type);
+            REPORT_INT(fp->cpu.kind);
+            REPORT_INT(fp->is_sub_fighter);
+            REPORT_INT(fp->cpu.xF8_b0);
 
-        if (rf == NULL) {
-            continue;
-        }
-
-        pp = Player_GetPtrForSlot(i);
-
-        for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
-            Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
-            if (fp != NULL) {
-                bool is_cpu;
-                OSReport("\n=== %d[%d] ===\n", i, j);
-                FRAY_ASSERT(j == fp->is_sub_fighter);
-                REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
-                REPORT_INT(fp->kind);
-                REPORT_INT(pp->pkind);
-                REPORT_INT(pp->ckind);
-                REPORT_INT(pp->cpu_type);
-                REPORT_INT(fp->cpu.kind);
-                REPORT_INT(fp->is_sub_fighter);
-                REPORT_INT(fp->cpu.xF8_b0);
-
-                REPORT_ADDR(fp);
-                if (is_cpu) {
-                    REPORT_HEX(fp->cpu.buttons);
-                } else {
-                    REPORT_HEX(HSD_PadGameStatus[fp->x618_player_id].button);
-                }
-                checkWeirdNana(i, j);
-                // recordInputs(fp, rf, pp->slot_type);
+            REPORT_ADDR(fp);
+            if (is_cpu) {
+                REPORT_HEX(fp->cpu.buttons);
+            } else {
+                REPORT_HEX(HSD_PadGameStatus[fp->x618_player_id].button);
             }
+            checkWeirdNana(i, j);
+            // recordInputs(fp, rf, pp->slot_type);
         }
     }
 }
