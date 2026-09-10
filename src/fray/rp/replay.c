@@ -101,10 +101,12 @@ static void recordProc(HSD_GObj* gobj)
                 OSReport("\n=== %d[%d] ===\n", i, j);
                 REPORT_ADDR(fp);
                 REPORT_ADDR(&fp->cpu);
+                REPORT_INT(ftCo_IsCpuControlled(fp));
                 REPORT_ADDR(fp->cpu.csP);
                 REPORT_ADDR(fp->cpu.kind);
                 REPORT_HEX(fp->kind);
                 REPORT_HEX(fp->x61A_controller_index);
+
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
