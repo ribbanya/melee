@@ -4,6 +4,7 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/ft/kinds/ftCommon/ftCo_0A01.h"
 #include "melee/gm/forward.h"
 #include "melee/lb/lb_00B0.h"
 #include "melee/pl/player.h"
@@ -53,13 +54,9 @@ s8 Replay_GetCpuTrigger(struct CpuFighter* cpu)
     return MAX(cpu->ltrigger, cpu->rtrigger);
 }
 
-static void recordInputs(Fighter* fp, ReplayFrame* rf, Gm_PKind pkind)
+static void recordInputs(Fighter* fp, ReplayFrame* rf)
 {
-    switch (pkind) {
-    case Gm_PKind_Human:
-        FRAY_ASSERTMSG(false, "Human recording not implemented!");
-        break;
-    case Gm_PKind_Cpu:
+    if (ftCo_IsCpuControlled(fp)) {
         inputsSetButtons(&rf->in, fp->cpu.buttons);
         rf->in.lstick = fp->cpu.lstick;
         rf->in.cstick = fp->cpu.cstick;
@@ -68,9 +65,8 @@ static void recordInputs(Fighter* fp, ReplayFrame* rf, Gm_PKind pkind)
         rf->out.airborne = fp->ground_or_air == GA_Air;
         rf->out.ecb_locked = fp->ecb_lock != 0;
         rf->out.hit_this_frame = fp->dmg.x18ac_time_since_hit == 0;
-        break;
-    default:
-        break;
+    } else {
+        FRAY_ASSERTMSG(false, "Human recording not implemented!");
     }
 }
 
@@ -87,6 +83,7 @@ static void recordProc(HSD_GObj* gobj)
     for (i = 0; i < Gm_Player_NumMax; i++) {
         ReplayFrame* rf = rp->frames[i];
         StaticPlayer* pp;
+        bool is_cpu;
         size_t j;
 
         if (rf == NULL) {
@@ -99,14 +96,13 @@ static void recordProc(HSD_GObj* gobj)
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
                 OSReport("\n=== %d[%d] ===\n", i, j);
+                REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
                 REPORT_ADDR(fp);
-                REPORT_ADDR(&fp->cpu);
-                REPORT_INT(ftCo_IsCpuControlled(fp));
-                REPORT_ADDR(fp->cpu.csP);
-                REPORT_ADDR(fp->cpu.kind);
-                REPORT_HEX(fp->kind);
-                REPORT_HEX(fp->x61A_controller_index);
-
+                if (is_cpu) {
+                    REPORT_HEX(fp->cpu.buttons);
+                } else {
+                    REPORT_HEX(HSD_PadGameStatus[fp->x618_player_id].button);
+                }
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
