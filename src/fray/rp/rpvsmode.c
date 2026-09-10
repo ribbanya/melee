@@ -91,15 +91,21 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
 
+    players[0].ckind = CKind_Zelda;
+    players[1].ckind = CKind_Seak;
+    players[0].slot_type = Gm_PKind_Human;
+    players[1].slot_type = Gm_PKind_Cpu;
     for (i = 0; i < 2; i++) {
-        // u8 ckind = players[i].ckind;
-        u8 ckind = Qol_PickRandomTopTier(8);
-        players[i].slot_type = Gm_PKind_Cpu;
+        u8 ckind = players[i].ckind;
+        // u8 ckind = Qol_PickRandomTopTier(8);
         players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
         players[i].cpu_level = 9;
-        players[i].stocks = 1;
         players[i].damage = 100;
     }
+
+    players[1].spawn_dir = -1;
+    players[1].color = 2;
+    players[1].spawn_pos = 2;
 }
 
 void Replay_Mode_OnInit(void)
