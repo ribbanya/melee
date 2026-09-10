@@ -116,13 +116,13 @@ static void recordProc(HSD_GObj* gobj)
     for (cur = HSD_GObjPLinkHead[HSD_GOBJ_PLINK_FIGHTER]; cur != NULL;
          cur = HSD_GObjGetNext(cur))
     {
-        // Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
         Fighter* fp = cur->user_data;
-        size_t i = fp->player_id;
-        size_t j = fp->is_sub_fighter;
-        StaticPlayer* pp = Player_GetPtrForSlot(i);
-        ReplayFrame* rf = rp->frames[i];
+        // Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
+        // ReplayFrame* rf = rp->frames[i];
         if (fp != NULL) {
+            size_t i = fp->player_id;
+            size_t j = fp->is_sub_fighter;
+            StaticPlayer* pp = Player_GetPtrForSlot(i);
             bool is_cpu;
             OSReport("\n=== %d[%d] ===\n", i, j);
             REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
