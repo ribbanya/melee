@@ -4,6 +4,7 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "melee/ft/forward.h"
 #include "melee/ft/kinds/ftCommon/ftCo_0A01.h"
 #include "melee/gm/forward.h"
 #include "melee/lb/lb_00B0.h"
@@ -95,6 +96,19 @@ static void recordProc(HSD_GObj* gobj)
         for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
+                // Tests assumptions about the game state when Nana is
+                // selected, namely that she is a certain ftkind, ckind, pkind,
+                // and that she's the second transformation slot
+                u8 nana_checklist = 0;
+                nana_checklist |= (fp->kind == Ft_Kind_Nana) << 0;
+                nana_checklist |= (pp->slot_type == Gm_PKind_Cpu) << 1;
+                nana_checklist |= (fp->cpu.kind == CpuKind_Nana) << 2;
+                nana_checklist |= (j == 1) << 3;
+                nana_checklist |= (pp->transformed[j] == 1) << 4;
+                if (!(nana_checklist == 0x0 || nana_checklist == 0x7)) {
+                    FRAY_ASSERTREPORT(0, "nana_checklist irregul! %x",
+                                      nana_checklist);
+                }
                 OSReport("\n=== %d[%d] ===\n", i, j);
                 REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
                 REPORT_ADDR(fp);
