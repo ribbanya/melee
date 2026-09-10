@@ -97,7 +97,6 @@ static void recordProc(HSD_GObj* gobj)
             if (fp != NULL) {
                 OSReport("\n=== %d[%d] ===\n", i, j);
                 REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
-                REPORT_INT(fp->cpu.is_follower);
                 REPORT_ADDR(fp);
                 if (is_cpu) {
                     REPORT_HEX(fp->cpu.buttons);
