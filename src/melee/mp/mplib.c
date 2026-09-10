@@ -1665,7 +1665,7 @@ bool mpCheckFloor(float ax, float ay, float bx, float by, float y_offset,
 
             if (line_id_skip == (line_offset = (intptr_t) line_r26 -
                                                (intptr_t) groundCollLine) /
-                                    (s32) sizeof(CollLine))
+                                    (ssize_t) sizeof(CollLine))
             {
                 continue;
             }
@@ -1677,7 +1677,7 @@ bool mpCheckFloor(float ax, float ay, float bx, float by, float y_offset,
                 continue;
             }
 
-            mpLib_8004ED5C(line_offset / (s32) sizeof(CollLine), &x0_sp48,
+            mpLib_8004ED5C(line_offset / (ssize_t) sizeof(CollLine), &x0_sp48,
                            &y0_sp44, &x1_sp40, &y1_sp3C);
             y0_sp44 += y_offset;
             y1_sp3C += y_offset;
