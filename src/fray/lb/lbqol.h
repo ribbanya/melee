@@ -16,7 +16,7 @@
 #define REPORT_ADDR(p) (OSReport("%s = %08x", #p, p))
 
 /// @todo Seems to be at least 0x16 in vanilla? Where?
-#define FRAY_PRIORITY_MAX 0x16
+#define FRAY_PRIORITY_MAX 0x18
 
 #define FRAY_ASSERT(cond) HSD_ASSERT(__LINE__, cond)
 #define FRAY_ASSERTMSG(cond, msg) HSD_ASSERTMSG(__LINE__, cond, msg)

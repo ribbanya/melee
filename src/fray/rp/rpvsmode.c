@@ -65,23 +65,18 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
-static void crashTheGame(UNUSED HSD_GObj* gobj)
-{
-    FRAY_ASSERTMSG(false, "CRASH!");
-}
-
 static void onMatchStartRecordVs(void)
 {
-    ReplayText_Setup();
-    {
-        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
-        Replayer* rp;
-        // struct plAllocInfo info = { Ft_Kind_Sandbag };
-        // HSD_GObj* gobj = Fighter_Create(&info);
-        replay_gobj = Replay_Create(&desc);
-        rp = replay_gobj->user_data;
-        rp->state = ReplayState_Recording;
-    }
+    // Qol_GObjInit();
+    REPORT_HEX(HSD_GObjLibInitData.p_link_max);
+    // ReplayText_Setup();
+    // {
+    //     ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
+    //     Replayer* rp;
+    //     replay_gobj = Replay_Create(&desc);
+    //     rp = replay_gobj->user_data;
+    //     rp->state = ReplayState_Recording;
+    // }
 }
 
 /// @todo Load from memcard
@@ -115,7 +110,6 @@ static void initTestMatch(StartMeleeData* start)
 void Replay_Mode_OnInit(void)
 {
     Qol_LogInit();
-    Qol_GObjInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
     Replay_Init();
