@@ -1266,7 +1266,8 @@ void ftCommon_8007EFC8(HSD_GObj* gobj, void (*arg1)(HSD_GObj*))
 
     u8 _[16];
 
-    Player_SwapTransformedStates(src->player_id, src->is_sub_fighter, dst->is_sub_fighter);
+    Player_SwapTransformedStates(src->player_id, src->is_sub_fighter,
+                                 dst->is_sub_fighter);
     tmp_bit = src->is_sub_fighter;
     src->is_sub_fighter = dst->is_sub_fighter;
     dst->is_sub_fighter = tmp_bit;
@@ -1277,7 +1278,8 @@ void ftCommon_8007EFC8(HSD_GObj* gobj, void (*arg1)(HSD_GObj*))
     dst->pos_delta = src->pos_delta;
     dst->facing_dir = src->facing_dir;
     dst->dmg.x1830_percent = src->dmg.x1830_percent;
-    Player_SetHPByIndex(dst->player_id, dst->is_sub_fighter, dst->dmg.x1830_percent);
+    Player_SetHPByIndex(dst->player_id, dst->is_sub_fighter,
+                        dst->dmg.x1830_percent);
     dst->dmg.x18F0 = src->dmg.x18F0;
     dst->self_vel = src->self_vel;
     dst->ground_or_air = src->ground_or_air;
@@ -1758,7 +1760,8 @@ void ftCommon_8008031C(HSD_GObj* gobj)
         (ABS(fp->input.lstick[0].y) >= p_ftCommonData->x7B8 &&
          fp->x67A_y < p_ftCommonData->x7C0))
     {
-        Player_UpdateJoystickCountByIndex((s32) fp->player_id, fp->is_sub_fighter);
+        Player_UpdateJoystickCountByIndex((s32) fp->player_id,
+                                          fp->is_sub_fighter);
         fp->x67A_y = 0xFE;
         fp->x679_x = 0xFE;
     }

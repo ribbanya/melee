@@ -265,7 +265,8 @@ void pl_80038144(HSD_GObj* attacker_gobj, HSD_GObj* victim_gobj, s32 x18d4_int,
             if (gm_8016B168() && gm_8016B0D4() &&
                 attacker_fp->team == victim_fp->team)
             {
-                pl_80040D8C(attacker_fp->player_id, attacker_fp->is_sub_fighter);
+                pl_80040D8C(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter);
             }
 
             attack_id = ev.x2073;
@@ -313,7 +314,8 @@ void pl_80038144(HSD_GObj* attacker_gobj, HSD_GObj* victim_gobj, s32 x18d4_int,
                         }
                     }
 
-                    pl_8003DFF4(fp2->player_id, fp2->is_sub_fighter, attack_id2);
+                    pl_8003DFF4(fp2->player_id, fp2->is_sub_fighter,
+                                attack_id2);
                 }
 
                 if (attacked_from_behind) {
@@ -338,19 +340,23 @@ void pl_80038144(HSD_GObj* attacker_gobj, HSD_GObj* victim_gobj, s32 x18d4_int,
                     acp->x504[x18d4_x3] |= 1 << (u8) h_player;
                 }
 
-                pl_8003FE64(attacker_fp->player_id, attacker_fp->is_sub_fighter);
-                pl_8003ED0C(attacker_fp->player_id, attacker_fp->is_sub_fighter,
-                            victim_fp->player_id, victim_fp->is_sub_fighter,
+                pl_8003FE64(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter);
+                pl_8003ED0C(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter, victim_fp->player_id,
+                            victim_fp->is_sub_fighter,
                             victim_fp->dmg.x1830_percent);
                 x18d4_x3 = ev_data->xC;
-                pl_8003EA40(attacker_fp->player_id, attacker_fp->is_sub_fighter,
-                            victim_fp->player_id, victim_fp->is_sub_fighter,
-                            x18d4_x3);
-                pl_800403FC(attacker_fp->player_id, attacker_fp->is_sub_fighter,
-                            victim_fp->player_id, victim_fp->is_sub_fighter,
+                pl_8003EA40(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter, victim_fp->player_id,
+                            victim_fp->is_sub_fighter, x18d4_x3);
+                pl_800403FC(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter, victim_fp->player_id,
+                            victim_fp->is_sub_fighter,
                             victim_fp->dmg.x18d4.x3);
-                pl_80040FBC(attacker_fp->player_id, attacker_fp->is_sub_fighter,
-                            victim_fp->player_id, victim_fp->is_sub_fighter,
+                pl_80040FBC(attacker_fp->player_id,
+                            attacker_fp->is_sub_fighter, victim_fp->player_id,
+                            victim_fp->is_sub_fighter,
                             victim_fp->dmg.x18d4.x3);
             }
         }

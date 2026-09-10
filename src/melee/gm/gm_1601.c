@@ -10,9 +10,9 @@
 
 #include "forward.h"
 #include "gm_1601.static.h"
-#include "gmscene.h"
 #include "gm_unsplit.h"
 #include "gmmain_lib.h"
+#include "gmscene.h"
 #include "gmstamina.h"
 #include "types.h"
 #include <dolphin/pad.h>

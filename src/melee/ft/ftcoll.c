@@ -1535,7 +1535,8 @@ void ftColl_80078998(HSD_GObj* arg0, HSD_GObj* arg1, float arg2)
         Fighter* owner_fp = ip->owner->user_data;
         Fighter* victim_fp = arg1->user_data;
         pl_8003EB30(arg2, owner_fp->player_id, owner_fp->is_sub_fighter,
-                    victim_fp->player_id, victim_fp->is_sub_fighter, ip->xD90.x2073);
+                    victim_fp->player_id, victim_fp->is_sub_fighter,
+                    ip->xD90.x2073);
     }
 }
 #ifdef MUST_MATCH
@@ -3704,9 +3705,9 @@ void ftColl_8007BE3C(Fighter_GObj* gobj)
                 ftColl_80076444(s2, fighter_victim);
                 src_fp = s2->user_data;
                 victim_fp = fighter_victim->user_data;
-                pl_8003EB30(dmg_amount, src_fp->player_id, src_fp->is_sub_fighter,
-                            victim_fp->player_id, victim_fp->is_sub_fighter,
-                            src_fp->x2070.x2073);
+                pl_8003EB30(dmg_amount, src_fp->player_id,
+                            src_fp->is_sub_fighter, victim_fp->player_id,
+                            victim_fp->is_sub_fighter, src_fp->x2070.x2073);
             }
             break;
         case HSD_GOBJ_CLASS_ITEM:
@@ -3723,7 +3724,8 @@ void ftColl_8007BE3C(Fighter_GObj* gobj)
                         owner_fp = ip->owner->user_data;
                         victim_fp = item_victim->user_data;
                         pl_8003EB30(dmg_amount, owner_fp->player_id,
-                                    owner_fp->is_sub_fighter, victim_fp->player_id,
+                                    owner_fp->is_sub_fighter,
+                                    victim_fp->player_id,
                                     victim_fp->is_sub_fighter, ip->xD90.x2073);
                     }
                 }

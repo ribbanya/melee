@@ -92,9 +92,9 @@ void ft_80088478(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan)
     if (sfx_id != 0x83D60) {
         if (sfx_id != 0x83D61) {
             sfx_id = ft_80087D0C(fp, sfx_id);
-            fp->x214C =
-                lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
-                                   0x36 + fp->player_id * 2 + fp->is_sub_fighter);
+            fp->x214C = lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
+                                           0x36 + fp->player_id * 2 +
+                                               fp->is_sub_fighter);
             return;
         }
         ft_80088828(fp);
@@ -106,9 +106,9 @@ void ft_80088510(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan)
     if (sfx_id != 0x83D60) {
         if (sfx_id != 0x83D61) {
             sfx_id = ft_80087D0C(fp, sfx_id);
-            fp->x2150 =
-                lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
-                                   0x42 + fp->player_id * 2 + fp->is_sub_fighter);
+            fp->x2150 = lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
+                                           0x42 + fp->player_id * 2 +
+                                               fp->is_sub_fighter);
             return;
         }
         ft_80088884(fp);
@@ -120,9 +120,9 @@ void ft_800885A8(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan)
     if (sfx_id != 0x83D60) {
         if (sfx_id != 0x83D61) {
             sfx_id = ft_80087D0C(fp, sfx_id);
-            fp->x2154 =
-                lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
-                                   0x4E + fp->player_id * 2 + fp->is_sub_fighter);
+            fp->x2154 = lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
+                                           0x4E + fp->player_id * 2 +
+                                               fp->is_sub_fighter);
             return;
         }
         ft_800888E0(fp);
@@ -134,9 +134,9 @@ void ft_80088640(Fighter* fp, int sfx_id, u8 sfx_vol, u8 sfx_pan)
     if (sfx_id != 0x83D60) {
         if (sfx_id != 0x83D61) {
             sfx_id = ft_80087D0C(fp, sfx_id);
-            fp->x2158 =
-                lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
-                                   0x5A + fp->player_id * 2 + fp->is_sub_fighter);
+            fp->x2158 = lbAudioAx_80023870(sfx_id, sfx_vol, sfx_pan,
+                                           0x5A + fp->player_id * 2 +
+                                               fp->is_sub_fighter);
             return;
         }
         ft_8008893C(fp);

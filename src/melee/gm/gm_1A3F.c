@@ -2,9 +2,9 @@
 
 #include "forward.h"
 #include "gm_1A36.h"
-#include "gmscene.h"
 #include "gmmain_lib.h"
 #include "gmscdata.h"
+#include "gmscene.h"
 #include "types.h"
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbaudio_ax.h>
