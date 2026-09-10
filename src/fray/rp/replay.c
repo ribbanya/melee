@@ -98,7 +98,7 @@ static void checkWeirdNana(int slot, int sub)
     FRAY_ASSERT(transformed == 1);
     FRAY_ASSERT(ftCo_IsCpuControlled(fp));
     FRAY_ASSERT(pp->cpu_type == CpuKind_4);
-    FRAY_ASSERT(fp->x221F_b4);
+    FRAY_ASSERT(fp->is_sub_fighter);
     FRAY_ASSERT(fp->cpu.xF8_b0);
 }
 
@@ -128,14 +128,14 @@ static void recordProc(HSD_GObj* gobj)
             if (fp != NULL) {
                 bool is_cpu;
                 OSReport("\n=== %d[%d] ===\n", i, j);
-                FRAY_ASSERT(j == fp->x221F_b4);
+                FRAY_ASSERT(j == fp->is_sub_fighter);
                 REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
                 REPORT_INT(fp->kind);
                 REPORT_INT(pp->pkind);
                 REPORT_INT(pp->ckind);
                 REPORT_INT(pp->cpu_type);
                 REPORT_INT(fp->cpu.kind);
-                REPORT_INT(fp->x221F_b4);
+                REPORT_INT(fp->is_sub_fighter);
                 REPORT_INT(fp->cpu.xF8_b0);
 
                 REPORT_ADDR(fp);
