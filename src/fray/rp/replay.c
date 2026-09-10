@@ -104,7 +104,6 @@ static void checkWeirdNana(int slot, int sub)
 
 static void recordProc(HSD_GObj* gobj)
 {
-#if 0
     Replayer* rp = gobj->user_data;
     HSD_GObj* cur;
 
@@ -145,7 +144,6 @@ static void recordProc(HSD_GObj* gobj)
             // recordInputs(fp, rf, pp->slot_type);
         }
     }
-#endif
 }
 
 static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
