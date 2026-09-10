@@ -106,7 +106,7 @@ static void recordProc(HSD_GObj* gobj)
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
-        // FRAY_ASSERT(active_transforms == 1);
+        FRAY_ASSERT(active_transforms == 1);
     }
 }
 
@@ -128,7 +128,7 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
     /// @todo Extract fighter proc prios to header
     HSD_GObj_SetupProc(gobj, recordProc, 3);
 
-    rp->num_frames = desc->num_frames;
+    REPORT_HEX(rp->num_frames = desc->num_frames);
 
     for (i = 0; i < Gm_Player_NumMax; i++) {
         if (desc->enabled_slots & (1 << i)) {

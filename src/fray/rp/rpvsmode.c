@@ -91,9 +91,11 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
 
+    players[0].ckind = CKind_Zelda;
+    players[1].ckind = CKind_Seak;
     for (i = 0; i < 2; i++) {
-        u8 ckind = Qol_PickRandomTopTier(8);
-        players[i].ckind = ckind;
+        u8 ckind = players[i].ckind;
+        // u8 ckind = Qol_PickRandomTopTier(8);
         players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
         players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
@@ -107,7 +109,7 @@ static void initTestMatch(StartMeleeData* start)
 
 void Replay_Mode_OnInit(void)
 {
-    Qol_LogInit();
+    // Qol_LogInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
     Replay_Init();
