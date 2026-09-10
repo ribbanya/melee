@@ -26,16 +26,16 @@ void Replay_Init(void)
 
 static void removeUserData(void* user_data)
 {
-    Replayer* rp = user_data;
-    size_t i;
+    // Replayer* rp = user_data;
+    // size_t i;
 
-    for (i = 0; i < Gm_Player_NumMax; i++) {
-        ReplayFrame** frames = &rp->frames[i];
-        if (frames != NULL) {
-            HSD_ObjFree(&frames_alloc_data, frames);
-        }
-    }
-    HSD_Free(rp);
+    // for (i = 0; i < Gm_Player_NumMax; i++) {
+    //     ReplayFrame** frames = &rp->frames[i];
+    //     if (frames != NULL) {
+    //         HSD_ObjFree(&frames_alloc_data, frames);
+    //     }
+    // }
+    // HSD_Free(rp);
 }
 
 static void inputsSetButtons(ReplayInputs* ri, HSD_Pad buttons)
@@ -60,7 +60,7 @@ static void recordProc(HSD_GObj* gobj)
     Replayer* rp = gobj->user_data;
     size_t i;
 
-    OSReport("recordProc %d", rp->num_frames);
+    FRAY_ASSERTMSG(0, "recordProc");
 
     if (rp->state != ReplayState_Recording) {
         return;
@@ -104,8 +104,11 @@ static void renderFunc(UNUSED HSD_GObj* gobj, UNUSED int code)
 
 HSD_GObj* Replay_Create(ReplayDesc const* desc)
 {
-    HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0);
+    // HSD_GObj* gobj = GObj_Create(REPLAY_CLASS, REPLAY_PLINK, 0);
+    // HSD_GObj* gobj = GObj_Create(HSD_GOBJ_CLASS_FIGHTER, 8, 0);
+    HSD_GObj* gobj = GObj_Create(0, 0, 0);
     Replayer* rp = HSD_MemAlloc(sizeof(*rp));
+    HSD_GObjProc* gproc;
     size_t frames_size = sizeof(ReplayFrame) * desc->num_frames;
     size_t i;
 
@@ -114,8 +117,19 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
 
     /// @todo Extract fighter proc prios to header
     /// @todo After ::Fighter_Create input proc
-    HSD_GObj_SetupProc(gobj, recordProc, 0);
-    OSReport("GObj_Create %d", rp->num_frames);
+
+    gproc = HSD_GObj_SetupProc(gobj, recordProc, 0);
+    // gproc = HSD_GObj_SetupProc(gobj, recordProc, 0x80);
+
+    /// @todo ???
+    // HSD_GObj_80390CD4(gobj);
+    FRAY_ASSERT(gobj);
+    FRAY_ASSERT(gproc);
+    FRAY_ASSERT(gproc->gobj == gobj);
+    FRAY_ASSERT(gproc->on_invoke == recordProc);
+
+    // gproc->flags_3 = HSD_GObj_804D783C;
+    // gproc->flags_1
 
     // GObj_SetupGXLinkMax(gobj, renderFunc, 0);
 
