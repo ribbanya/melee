@@ -4,7 +4,6 @@
 #include <melee/pl/forward.h>
 #include <sysdolphin/baselib/forward.h>
 
-#include <m2c_macros.h>
 #include <placeholder.h>
 #include <stdio.h>
 #include <string.h>
@@ -62,7 +61,7 @@ const struct lbl_803B7C80_t {
     30, -20, 15, -12, 10, -8, 6, -4, 2, 1,
 };
 
-/* 3B7CA8 */ static const HSD_CameraDescPerspective lbl_803B7CA8 = {
+/* 3B7CA8 */ static const HSD_CameraDescPerspective cobj_desc = {
     NULL,
     0,
     PROJ_PERSPECTIVE,
@@ -1681,17 +1680,17 @@ void fn_8018E618(int arg0, f32 farg0, int arg1)
 {
     HSD_CameraDescPerspective cam;
     HSD_GObj* gobj;
-    HSD_GObj* tmp;
+    HSD_GObj* cur;
     s32 i;
     PAD_STACK(16);
 
-    cam = lbl_803B7CA8;
+    cam = cobj_desc;
 
-    while ((tmp = M2C_FIELD(HSD_GObjPLinkHead, HSD_GObj**, 0x6C)) != NULL) {
-        HSD_GObjFree(tmp);
+    while ((cur = HSD_GObjPLinkHead[HSD_GOBJ_PLINK_27]) != NULL) {
+        HSD_GObjFree(cur);
     }
-    while ((tmp = M2C_FIELD(HSD_GObjPLinkHead, HSD_GObj**, 0x50)) != NULL) {
-        HSD_GObjFree(tmp);
+    while ((cur = HSD_GObjPLinkHead[HSD_GOBJ_PLINK_20]) != NULL) {
+        HSD_GObjFree(cur);
     }
 
     for (i = 0; i < 0x40; i++) {
@@ -1704,7 +1703,7 @@ void fn_8018E618(int arg0, f32 farg0, int arg1)
         }
     }
 
-    gobj = GObj_Create(9, 0x14, 1);
+    gobj = GObj_Create(9, 20, 1);
     {
         typedef struct CObjData {
             f32 pos[9];
