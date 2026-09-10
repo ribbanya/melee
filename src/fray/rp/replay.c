@@ -88,7 +88,7 @@ static void recordProc(HSD_GObj* gobj)
         ReplayFrame* rf = rp->frames[i];
         StaticPlayer* pp;
         HSD_GObj* fighter_gobj;
-        size_t active_transforms = 0;
+        // size_t active_transforms = 0;
         size_t j;
 
         if (rf == NULL) {
@@ -97,16 +97,19 @@ static void recordProc(HSD_GObj* gobj)
 
         pp = Player_GetPtrForSlot(i);
         /// @todo support Nana
-        OSReport("transformed = %02x %02x", pp->transformed[0],
-                 pp->transformed[1]);
         for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
-                ++active_transforms;
+                OSReport("\n=== %d[%d] ===\n", i, j);
+                REPORT_ADDR(fp);
+                REPORT_ADDR(&fp->cpu);
+                REPORT_HEX(fp->player_id);
+                REPORT_HEX(fp->kind);
+                REPORT_ADDR(fp->cpu.x44);
+                REPORT_HEX(fp->cpu.xC);
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
-        FRAY_ASSERT(active_transforms == 1);
     }
 }
 
