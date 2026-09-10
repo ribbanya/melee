@@ -123,10 +123,22 @@ HSD_GObj* Replay_Create(ReplayDesc const* desc)
 
     /// @todo ???
     // HSD_GObj_80390CD4(gobj);
-    FRAY_ASSERT(gobj);
-    FRAY_ASSERT(gproc);
-    FRAY_ASSERT(gproc->gobj == gobj);
-    FRAY_ASSERT(gproc->on_invoke == recordProc);
+    REPORT_ADDR(gobj);
+    REPORT_ADDR(gobj->obj_kind);
+    REPORT_ADDR(gobj->user_data_kind);
+    REPORT_ADDR(gobj->p_link);
+    REPORT_ADDR(rp);
+    REPORT_ADDR(gproc);
+    REPORT_ADDR(gproc->child);
+    REPORT_ADDR(gproc->next);
+    REPORT_ADDR(gproc->prev);
+    REPORT_HEX(gproc->s_link);
+    REPORT_HEX(gproc->flags_1);
+    REPORT_HEX(gproc->flags_2);
+    REPORT_HEX(gproc->flags_3);
+    REPORT_HEX(gproc->flags_4);
+    REPORT_ADDR(gproc->gobj);
+    REPORT_ADDR(gproc->on_invoke);
 
     // gproc->flags_3 = HSD_GObj_804D783C;
     // gproc->flags_1

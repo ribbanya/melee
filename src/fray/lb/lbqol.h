@@ -11,6 +11,10 @@
 #define FRAY_PLINK_MAX 0x4F
 #define FRAY_GXLINK_MAX 0x4F
 
+#define REPORT_HEX(p) (OSReport("%s = %x", #p, p))
+#define REPORT_INT(p) (OSReport("%s = %d", #p, p))
+#define REPORT_ADDR(p) (OSReport("%s = %08x", #p, p))
+
 /// @todo Seems to be at least 0x16 in vanilla? Where?
 #define FRAY_PRIORITY_MAX 0x16
 
