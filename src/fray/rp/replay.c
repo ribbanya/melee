@@ -82,8 +82,6 @@ static void recordProc(HSD_GObj* gobj)
     if (rp->state != ReplayState_Recording) {
         return;
     }
-    OSReport("Exiting recordProc!");
-    return;
 
     // FRAY_ASSERT(rp->num_frames++ == gm_GetFrameCount());
     for (i = 0; i < Gm_Player_NumMax; i++) {
@@ -99,6 +97,8 @@ static void recordProc(HSD_GObj* gobj)
 
         pp = Player_GetPtrForSlot(i);
         /// @todo support Nana
+        OSReport("transformed = %02x %02x", pp->transformed[0],
+                 pp->transformed[1]);
         for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
