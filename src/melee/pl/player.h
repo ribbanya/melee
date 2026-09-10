@@ -13,16 +13,12 @@
 #include <sysdolphin/baselib/jobj.h>
 
 typedef struct _StaticPlayer {
-    /// @at{0} @sz{4}
     /// @todo 0x02 In-Game (includes dead). 0x00 Otherwise.
     enum_t player_state;
 
-    /// @at{4} @sz{4}
-    /// @todo External ID.
-    CharacterKind player_character;
+    CharacterKind ckind;
 
-    /// @at{8} @sz{4}
-    Gm_PKind slot_type;
+    Gm_PKind pkind;
 
     /*0x0C*/ u8 transformed[2]; // 0x0001 for normal, 0x0100 for transformed
                                 // (Probably Zelda/Sheik only)
