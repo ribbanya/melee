@@ -1077,7 +1077,7 @@ bool ftCo_800A1F98(int x, float y)
     return false;
 }
 
-bool ftCo_800A2040(Fighter* fp)
+bool ftCo_IsCpuControlled(Fighter* fp)
 {
     if (Player_8003248C(fp->player_id, fp->x221F_b4) != Gm_PKind_Cpu) {
         return false;
@@ -2696,7 +2696,7 @@ Fighter* ftCo_800A53DC(Fighter* fp)
             if (inlineD1(temp_r29)) {
                 continue;
             }
-            if (ftCo_800A2040(temp_r29)) {
+            if (ftCo_IsCpuControlled(temp_r29)) {
                 continue;
             }
 
