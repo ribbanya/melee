@@ -667,7 +667,7 @@ void ftCo_800A101C(Fighter* arg0, int arg1, int arg2, int arg3)
 
     temp_r30 = &arg0->cpu;
     if (arg0->kind == Ft_Kind_Nana) {
-        temp_r30->is_follower = true;
+        temp_r30->xF9_b2 = true;
         temp_r30->kind = 6;
         temp_r30->x3C = 15.0f;
     } else {
@@ -751,7 +751,7 @@ void ftCo_800A101C(Fighter* arg0, int arg1, int arg2, int arg3)
     temp_r30->cstick.y = 0;
     temp_r30->rtrigger = 0;
     temp_r30->ltrigger = 0;
-    temp_r30->is_follower = false;
+    temp_r30->xF9_b2 = false;
     temp_r30->xF9_b3 = false;
     temp_r30->xF9_b4 = false;
     temp_r30->xF9_b6 = false;
@@ -5769,7 +5769,7 @@ void ftCo_800ACB44(Fighter* fp)
         return;
     }
     temp_f1_2 = ftCo_800A1AB4(fp, temp_r3);
-    if (data->is_follower && temp_f1_2 < 30.0) {
+    if (data->xF9_b2 && temp_f1_2 < 30.0) {
         if (0.1F * data->level > HSD_Randf()) {
             ftCo_CpuRetapR(fp);
         } else {
@@ -6497,11 +6497,11 @@ void ftCo_800AE7AC(Fighter* fp, Vec3* arg1, int arg2)
     data0->xF9_b7 = false;
     data0->xF9_b1 = false;
     if (arg2 > 1) {
-        data0->is_follower = false;
+        data0->xF9_b2 = false;
         data0->xF9_b4 = false;
         data0->xF9_b6 = false;
     } else {
-        data0->is_follower = true;
+        data0->xF9_b2 = true;
         data0->xF9_b4 = true;
         data0->xF9_b6 = true;
     }
@@ -6555,7 +6555,7 @@ void ftCo_800AEA8C(Fighter* fp)
     PAD_STACK(8);
 
     data->xF8_b0 = false;
-    data->is_follower = (is_food = 1);
+    data->xF9_b2 = (is_food = 1);
     data->xF9_b4 = true;
     data->xF9_b3 = false;
     data->xF9_b5 = true;
@@ -6634,7 +6634,7 @@ static inline void ftCo_CpuSetTargetActive(struct CpuFighter* data)
 
 static inline void ftCo_CpuClearTargetModes(struct CpuFighter* data)
 {
-    data->is_follower = false;
+    data->xF9_b2 = false;
     data->xF9_b4 = false;
     data->xF9_b3 = false;
     data->xF9_b5 = false;
@@ -6679,7 +6679,7 @@ void ftCo_800AECF0(Fighter* fp)
         return;
     }
     data->xF8_b0 = false;
-    data->is_follower = (is_food = 1);
+    data->xF9_b2 = (is_food = 1);
     data->xF9_b4 = true;
     data->xF9_b3 = true;
     data->xF9_b5 = true;
@@ -6717,7 +6717,7 @@ static inline void ftCo_CpuInitNoTarget(Fighter* fp, bool fear_flag)
     s32 is_food;
 
     data->xF8_b0 = false;
-    data->is_follower = (is_food = 1);
+    data->xF9_b2 = (is_food = 1);
     data->xF9_b4 = true;
     data->xF9_b3 = fear_flag;
     data->xF9_b5 = true;
@@ -6906,7 +6906,7 @@ void ftCo_800AF290(Fighter* fp)
     }
 
     data->xF8_b0 = (is_food = true);
-    data->is_follower = true;
+    data->xF9_b2 = true;
     data->xF9_b4 = true;
     data->xF9_b3 = false;
     data->xF9_b5 = true;
@@ -6971,7 +6971,7 @@ void ftCo_800AF78C(Fighter* fp)
         return;
     }
     data->xF8_b0 = (is_food = true);
-    data->is_follower = true;
+    data->xF9_b2 = true;
     data->xF9_b4 = true;
     data->xF9_b3 = false;
     data->xF9_b5 = true;
@@ -7012,7 +7012,7 @@ void ftCo_800AFC40(Fighter* fp)
         return;
     }
     temp_r31->xF8_b0 = true;
-    temp_r31->is_follower = true;
+    temp_r31->xF9_b2 = true;
     temp_r31->xF9_b4 = true;
     temp_r31->xF9_b3 = true;
     temp_r31->xF9_b5 = true;
@@ -7072,7 +7072,7 @@ void ftCo_800AFE3C(Fighter* fp, int arg1)
         return;
     }
     temp_r31->xF8_b0 = false;
-    temp_r31->is_follower = true;
+    temp_r31->xF9_b2 = true;
     temp_r31->xF9_b4 = true;
     temp_r31->xF9_b3 = true;
     temp_r31->xF9_b5 = true;
@@ -7162,7 +7162,7 @@ void ftCo_800B00F8(Fighter* fp)
             } else {
                 var_r0_5 = 0;
             }
-            temp_r31->is_follower = var_r0_5;
+            temp_r31->xF9_b2 = var_r0_5;
             if (HSD_Randf() > 0.5) {
                 var_r0_6 = 1;
             } else {
@@ -7269,7 +7269,7 @@ static inline void ftCo_CpuInitEnemyTarget(Fighter* fp,
                                            struct CpuFighter* data)
 {
     data->xF8_b0 = false;
-    data->is_follower = true;
+    data->xF9_b2 = true;
     data->xF9_b4 = true;
     data->xF9_b3 = false;
     data->xF9_b5 = false;
@@ -7297,7 +7297,7 @@ void ftCo_800B0760(Fighter* fp)
     PAD_STACK(4 * 4);
 
     data->xF8_b0 = true;
-    data->is_follower = true;
+    data->xF9_b2 = true;
     data->xF9_b4 = true;
     data->xF9_b3 = false;
     data->xF9_b5 = false;
@@ -7556,7 +7556,7 @@ static inline void ftCo_CpuUpdateNanaFollow(Fighter* fp, Fighter* popo,
     if (ftCo_800B0E98(fp, popo)) {
         data->x18 = 0;
         data->xFA_b7 = true;
-        data->is_follower = false;
+        data->xF9_b2 = false;
         data->xF9_b4 = false;
     }
 }
@@ -7576,7 +7576,7 @@ void ftCo_800B101C(Fighter* fp)
     PAD_STACK(8);
 
     temp_r31 = &fp->cpu;
-    temp_r31->is_follower = true;
+    temp_r31->xF9_b2 = true;
     temp_r31->xF9_b4 = true;
     var_r29 = ftCo_800A589C(fp);
     if (var_r29 == NULL) {
@@ -7617,7 +7617,7 @@ void ftCo_800B126C(Fighter* fp)
     struct CpuFighter* data = &fp->cpu;
 
     data->xF8_b0 = true;
-    data->is_follower = false;
+    data->xF9_b2 = false;
     data->xF9_b4 = false;
     data->xF9_b3 = false;
     data->xF9_b5 = true;
@@ -7665,7 +7665,7 @@ void ftCo_800B1478(Fighter* fp)
     }
 
     data->xF8_b0 = true;
-    data->is_follower = (is_food = true);
+    data->xF9_b2 = (is_food = true);
     data->xF9_b4 = true;
     data->xF9_b3 = true;
     data->xF9_b5 = true;
@@ -7719,7 +7719,7 @@ void ftCo_800B17D0(Fighter* fp)
         return;
     }
     data->xF8_b0 = false;
-    data->is_follower = (is_food = 1);
+    data->xF9_b2 = (is_food = 1);
     data->xF9_b4 = true;
     data->xF9_b3 = true;
     data->xF9_b5 = true;
@@ -7772,7 +7772,7 @@ void ftCo_800B1AB8(Fighter* fp)
         return;
     }
     data->xF8_b0 = false;
-    data->is_follower = (is_food = 1);
+    data->xF9_b2 = (is_food = 1);
     data->xF9_b4 = true;
     data->xF9_b3 = true;
     data->xF9_b5 = false;
@@ -7874,7 +7874,7 @@ void ftCo_800B21C8(Fighter* fp)
         return;
     }
     data->xF8_b0 = false;
-    data->is_follower = true;
+    data->xF9_b2 = true;
     data->xF9_b4 = true;
     data->xF9_b3 = true;
     data->xF9_b5 = true;
