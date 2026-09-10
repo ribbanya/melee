@@ -10,6 +10,7 @@
 #define HSD_GOBJ_PLINK_LIGHT 3
 
 #define HSD_GOBJ_CLASS_SOUND 23
+#define GOBJ_TYPE_AUDIO_AX 62
 
 struct lb_80011A50_t;
 

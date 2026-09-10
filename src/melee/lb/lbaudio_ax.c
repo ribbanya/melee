@@ -29,8 +29,6 @@
 
 #define GET_SOUND(x) ((lbAudioAx_UserData*) HSD_GObjGetUserData(x))
 
-#define GOBJ_TYPE_AUDIO_AX 0x3E
-
 #define VOL_MAX 0x7F
 #define PAN_MID 0x40
 
