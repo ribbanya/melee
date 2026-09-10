@@ -91,13 +91,14 @@ static void initTestMatch(StartMeleeData* start)
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
 
-    players[0].ckind = CKind_PopoNana;
+    players[0].ckind = CKind_Seak;
     players[1].ckind = CKind_PopoNana;
+    players[0].slot_type = Gm_PKind_Human;
+    players[1].slot_type = Gm_PKind_Cpu;
     for (i = 0; i < 2; i++) {
         u8 ckind = players[i].ckind;
         // u8 ckind = Qol_PickRandomTopTier(8);
         players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
-        players[i].slot_type = Gm_PKind_Cpu;
         players[i].cpu_level = 9;
         players[i].damage = 100;
     }

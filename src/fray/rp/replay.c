@@ -87,8 +87,6 @@ static void recordProc(HSD_GObj* gobj)
     for (i = 0; i < Gm_Player_NumMax; i++) {
         ReplayFrame* rf = rp->frames[i];
         StaticPlayer* pp;
-        HSD_GObj* fighter_gobj;
-        // size_t active_transforms = 0;
         size_t j;
 
         if (rf == NULL) {
@@ -96,15 +94,17 @@ static void recordProc(HSD_GObj* gobj)
         }
 
         pp = Player_GetPtrForSlot(i);
-        /// @todo support Nana
+
         for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
                 OSReport("\n=== %d[%d] ===\n", i, j);
                 REPORT_ADDR(fp);
                 REPORT_ADDR(&fp->cpu);
-                REPORT_HEX(fp->player_id);
+                REPORT_ADDR(fp->cpu.csP);
+                REPORT_ADDR(fp->cpu.kind);
                 REPORT_HEX(fp->kind);
+                REPORT_HEX(fp->x61A_controller_index);
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
