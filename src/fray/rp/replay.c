@@ -8,6 +8,7 @@
 #include "melee/ft/kinds/ftCommon/ftCo_0A01.h"
 #include "melee/gm/forward.h"
 #include "melee/lb/lb_00B0.h"
+#include "melee/pl/forward.h"
 #include "melee/pl/player.h"
 #include "rpvsmode.h"
 #include "sysdolphin/baselib/gobjuserdata.h"
@@ -71,6 +72,36 @@ static void recordInputs(Fighter* fp, ReplayFrame* rf)
     }
 }
 
+static void checkWeirdNana(int slot, int sub)
+{
+    StaticPlayer* pp;
+    HSD_GObj* gobj;
+    Fighter* fp;
+    u8 transformed;
+
+    pp = Player_GetPtrForSlot(slot);
+    FRAY_ASSERT(pp);
+
+    transformed = pp->transformed[sub];
+
+    gobj = pp->player_entity[pp->transformed[sub]];
+    FRAY_ASSERT(gobj);
+
+    fp = gobj->user_data;
+    FRAY_ASSERT(fp);
+
+    if (fp->kind != Ft_Kind_Nana) {
+        return;
+    }
+    FRAY_ASSERT(pp->ckind == CKind_PopoNana);
+    FRAY_ASSERT(sub == 1);
+    FRAY_ASSERT(transformed == 1);
+    FRAY_ASSERT(ftCo_IsCpuControlled(fp));
+    FRAY_ASSERT(pp->cpu_type == CpuKind_4);
+    FRAY_ASSERT(fp->x221F_b4);
+    FRAY_ASSERT(fp->cpu.xF8_b0);
+}
+
 static void recordProc(HSD_GObj* gobj)
 {
     Replayer* rp = gobj->user_data;
@@ -84,7 +115,6 @@ static void recordProc(HSD_GObj* gobj)
     for (i = 0; i < Gm_Player_NumMax; i++) {
         ReplayFrame* rf = rp->frames[i];
         StaticPlayer* pp;
-        bool is_cpu;
         size_t j;
 
         if (rf == NULL) {
@@ -96,27 +126,25 @@ static void recordProc(HSD_GObj* gobj)
         for (j = 0; j < ARRAY_SIZE(pp->transformed); j++) {
             Fighter* fp = pp->player_entity[pp->transformed[j]]->user_data;
             if (fp != NULL) {
-                // Tests assumptions about the game state when Nana is
-                // selected, namely that she is a certain ftkind, ckind, pkind,
-                // and that she's the second transformation slot
-                u8 nana_checklist = 0;
-                nana_checklist |= (fp->kind == Ft_Kind_Nana) << 0;
-                nana_checklist |= (pp->slot_type == Gm_PKind_Cpu) << 1;
-                nana_checklist |= (fp->cpu.kind == CpuKind_Nana) << 2;
-                nana_checklist |= (j == 1) << 3;
-                nana_checklist |= (pp->transformed[j] == 1) << 4;
-                if (!(nana_checklist == 0x0 || nana_checklist == 0x7)) {
-                    FRAY_ASSERTREPORT(0, "nana_checklist irregul! %x",
-                                      nana_checklist);
-                }
+                bool is_cpu;
                 OSReport("\n=== %d[%d] ===\n", i, j);
+                FRAY_ASSERT(j == fp->x221F_b4);
                 REPORT_INT(is_cpu = ftCo_IsCpuControlled(fp));
+                REPORT_INT(fp->kind);
+                REPORT_INT(pp->pkind);
+                REPORT_INT(pp->ckind);
+                REPORT_INT(pp->cpu_type);
+                REPORT_INT(fp->cpu.kind);
+                REPORT_INT(fp->x221F_b4);
+                REPORT_INT(fp->cpu.xF8_b0);
+
                 REPORT_ADDR(fp);
                 if (is_cpu) {
                     REPORT_HEX(fp->cpu.buttons);
                 } else {
                     REPORT_HEX(HSD_PadGameStatus[fp->x618_player_id].button);
                 }
+                checkWeirdNana(i, j);
                 // recordInputs(fp, rf, pp->slot_type);
             }
         }
