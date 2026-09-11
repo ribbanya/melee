@@ -22,11 +22,13 @@
     HSD_ASSERTREPORT(__LINE__, cond, __VA_ARGS__)
 
 void Qol_LogInit(void);
-CharacterKind Qol_PickRandomTopTier(int worst);
+StKind Qol_PickRandomLegalStage(int max);
+CharacterKind Qol_PickRandomTopTier(int max);
 void Qol_SetCompetitivePrefs(void);
 void Qol_UnlockAll(void);
 extern struct GamePrefs Qol_CompetitiveGamePrefs;
 extern GameRules Qol_CompetitiveGameRules;
 extern CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count];
+extern StKind Qol_LegalStages[];
 
 #endif

@@ -6,6 +6,7 @@
 #include <melee/gm/forward.h>
 #include <melee/mn/forward.h>
 
+#include "melee/gr/forward.h"
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_16F1.h>
 #include <melee/gm/gmmain_lib.h>
@@ -50,6 +51,11 @@ CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count] = {
     CKind_Koopa,
 };
 
+StKind Qol_LegalStages[] = {
+    St_Kind_Battle,    St_Kind_Shrine,   St_Kind_Story,
+    St_Kind_OldPupupu, St_Kind_PStadium, St_Kind_Last,
+};
+
 static int logPassthrough(UNUSED __file_handle arg0,
                           UNUSED unsigned char* arg1, UNUSED size_t* arg2,
                           UNUSED __idle_proc arg3)
@@ -85,9 +91,14 @@ void Qol_SetCompetitivePrefs(void)
     *gmMainLib_GetGameRules() = Qol_CompetitiveGameRules;
 }
 
-/// @param worst The maximum desired index in the tier list.
-CharacterKind Qol_PickRandomTopTier(int worst)
+CharacterKind Qol_PickRandomTopTier(int max)
 {
-    FRAY_ASSERT(0 <= worst && worst < CKind_Playable_Count);
-    return Qol_TierList_PGStats2021[HSD_Randi(worst)];
+    FRAY_ASSERT(0 <= max && max < CKind_Playable_Count);
+    return Qol_TierList_PGStats2021[HSD_Randi(max)];
+}
+
+StKind Qol_PickRandomLegalStage(int max)
+{
+    FRAY_ASSERT(0 <= max && max < (ssize_t) ARRAY_SIZE(Qol_LegalStages));
+    return Qol_LegalStages[HSD_Randi(max)];
 }

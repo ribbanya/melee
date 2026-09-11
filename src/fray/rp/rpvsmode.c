@@ -9,6 +9,7 @@
 
 #include "melee/ft/fighter.h"
 #include "melee/ft/forward.h"
+#include "melee/gr/forward.h"
 #include "melee/pl/types.h"
 #include "replay.h"
 #include "rpdisplay.h"
@@ -82,30 +83,28 @@ static void initTestMatch(StartMeleeData* start)
 {
     StartMeleeRules* rules = &start->rules;
     PlayerInitData* players = &start->players[0];
+    size_t const max_players = 1;
+    size_t const max_tier = 1;
+    size_t const max_stage = 1;
     size_t i;
 
-    rules->stkind = mnSelStageRandom();
+    rules->stkind = Qol_PickRandomLegalStage(max_stage);
     rules->timer_enabled = true;
+    rules->match_kind = MatchKind_Time;
+
     // rules->game_speed = 0.25f;
 
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
 
-    players[0].ckind = CKind_Zelda;
-    players[1].ckind = CKind_Seak;
-    players[0].slot_type = Gm_PKind_Human;
-    players[1].slot_type = Gm_PKind_Cpu;
-    for (i = 0; i < 2; i++) {
-        u8 ckind = players[i].ckind;
-        // u8 ckind = Qol_PickRandomTopTier(8);
+    for (i = 0; i < max_players; i++) {
+        u8 ckind = Qol_PickRandomTopTier(max_tier);
+        players[i].slot_type = Gm_PKind_Cpu;
+        players[i].ckind = ckind;
         players[i].color = HSD_Randi(gm_GetNumCostumesForCKind(ckind));
         players[i].cpu_level = 9;
         players[i].damage = 100;
     }
-
-    players[1].spawn_dir = -1;
-    players[1].color = 2;
-    players[1].spawn_pos = 2;
 }
 
 void Replay_Mode_OnInit(void)
