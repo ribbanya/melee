@@ -1,4 +1,4 @@
-#include "rpvsmode.h"
+#include "bsvsmode.h"
 
 #include <Runtime/platform.h>
 
@@ -8,7 +8,7 @@
 #include <melee/pl/forward.h>
 
 #include "bisimulation.h"
-#include "rpdisplay.h"
+#include "bsdisplay.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>

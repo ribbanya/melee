@@ -574,9 +574,9 @@ config.libs = [
         "rp (Replay)",
         [
             Object(Equivalent, "fray/bs/bisimulation.c"),
-            Object(Equivalent, "fray/bs/rpvsmode.c"),
-            Object(Equivalent, "fray/bs/rpcard.c"),
-            Object(Equivalent, "fray/bs/rpdisplay.c"),
+            Object(Equivalent, "fray/bs/bsvsmode.c"),
+            Object(Equivalent, "fray/bs/bscard.c"),
+            Object(Equivalent, "fray/bs/bsdisplay.c"),
         ],
     ),
     MeleeLib(

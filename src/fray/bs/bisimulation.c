@@ -10,7 +10,7 @@
 #include "melee/lb/lb_00B0.h"
 #include "melee/pl/forward.h"
 #include "melee/pl/player.h"
-#include "rpvsmode.h"
+#include "bsvsmode.h"
 #include "sysdolphin/baselib/gobjuserdata.h"
 #include "sysdolphin/baselib/memory.h"
 #include <dolphin/types.h>
