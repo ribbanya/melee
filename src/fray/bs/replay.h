@@ -11,8 +11,7 @@
 #define REPLAY_PLINK (FRAY_PLINK_START + 0)
 #define REPLAY_PRIORITY 0x80
 #define REPLAY_USER_DATA_KIND 0
-#define REPLAY_MAX_MINUTES 8
-#define REPLAY_MAX_SECONDS (REPLAY_MAX_MINUTES * 60)
+#define REPLAY_MAX_SECONDS 30
 #define REPLAY_MAX_FRAMES (REPLAY_MAX_SECONDS * GM_FPS)
 
 typedef struct {
@@ -49,16 +48,15 @@ typedef struct {
 } ReplaySetupData;
 
 typedef enum {
-    ReplayVersion_2026_09_08,
+    ReplayVersion_2026_09_11,
     ReplayVersion_Count,
     ReplayVersion_Current = ReplayVersion_Count - 1,
 } ReplayVersion;
 
 typedef enum {
-    ReplayState_New,
+    ReplayState_None,
     ReplayState_Recording,
-    ReplayState_Finalized,
-    ReplayState_Playing,
+    ReplayState_Verifying,
 } ReplayState;
 
 typedef struct {
@@ -69,9 +67,8 @@ typedef struct {
 typedef struct {
     u32 seed;
     ReplayState state; ///< ::ReplayState
-    u32 num_frames;
-    u32 cur_frame;
-    ReplayFrame* frames[GM_MAX_PLAYERS];
+    u32 curr_frame;
+    u32 hashes[REPLAY_MAX_FRAMES];
 } Replayer;
 
 HSD_GObj* Replay_GetGObj(void);

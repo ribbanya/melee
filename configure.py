@@ -573,10 +573,10 @@ config.libs = [
     CustomLib(
         "rp (Replay)",
         [
-            Object(Equivalent, "fray/rp/replay.c"),
-            Object(Equivalent, "fray/rp/rpvsmode.c"),
-            Object(Equivalent, "fray/rp/rpcard.c"),
-            Object(Equivalent, "fray/rp/rpdisplay.c"),
+            Object(Equivalent, "fray/bs/replay.c"),
+            Object(Equivalent, "fray/bs/rpvsmode.c"),
+            Object(Equivalent, "fray/bs/rpcard.c"),
+            Object(Equivalent, "fray/bs/rpdisplay.c"),
         ],
     ),
     MeleeLib(

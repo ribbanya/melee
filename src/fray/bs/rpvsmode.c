@@ -7,20 +7,14 @@
 #include <melee/mn/forward.h>
 #include <melee/pl/forward.h>
 
-#include "melee/ft/fighter.h"
-#include "melee/ft/forward.h"
-#include "melee/gr/forward.h"
-#include "melee/pl/types.h"
 #include "replay.h"
 #include "rpdisplay.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
-#include <melee/gm/gmmain_lib.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
-#include <melee/mn/mnstagesel.h>
 #include <sysdolphin/baselib/random.h>
 
 static void onEnterRecordVs(GameModeState* state);
@@ -83,14 +77,12 @@ static void initTestMatch(StartMeleeData* start)
 {
     StartMeleeRules* rules = &start->rules;
     PlayerInitData* players = &start->players[0];
-    size_t const max_players = 1;
+    size_t const max_players = 2;
     size_t const max_tier = 1;
     size_t const max_stage = 1;
     size_t i;
 
     rules->stkind = Qol_PickRandomLegalStage(max_stage);
-    rules->timer_enabled = true;
-    rules->match_kind = MatchKind_Time;
 
     // rules->game_speed = 0.25f;
 
@@ -116,7 +108,6 @@ void Replay_Mode_OnInit(void)
     // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
-    // gmMainLib_GetGameRules()->stock_count = 1;
 }
 
 void Replay_Mode_OnLoad(void) {}
@@ -126,10 +117,8 @@ void Replay_Mode_OnUnload(void) {}
 static void onRecordVsStartMelee(StartMeleeData* start,
                                  UNUSED StartMeleeData* vs)
 {
-    if (start->rules.time_limit >= REPLAY_MAX_SECONDS) {
-        start->rules.time_limit = REPLAY_MAX_SECONDS;
-    }
-
+    start->rules.match_kind = MatchKind_Time;
+    start->rules.time_limit = REPLAY_MAX_SECONDS;
     //         gm_SetupRulesDefaults(rules);
     // initTestMatch(&vs_mode_data);
 }
