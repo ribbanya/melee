@@ -1,7 +1,7 @@
 #ifndef FRAY_REPLAY_H
 #define FRAY_REPLAY_H
 
-#include <fray/bs/replay.h>
+#include <fray/bs/bisimulation.h>
 #include <melee/ft/types.h>
 #include <melee/gm/types.h>
 

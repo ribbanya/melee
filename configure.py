@@ -573,7 +573,7 @@ config.libs = [
     CustomLib(
         "rp (Replay)",
         [
-            Object(Equivalent, "fray/bs/replay.c"),
+            Object(Equivalent, "fray/bs/bisimulation.c"),
             Object(Equivalent, "fray/bs/rpvsmode.c"),
             Object(Equivalent, "fray/bs/rpcard.c"),
             Object(Equivalent, "fray/bs/rpdisplay.c"),

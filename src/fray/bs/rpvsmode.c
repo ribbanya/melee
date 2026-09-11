@@ -7,7 +7,7 @@
 #include <melee/mn/forward.h>
 #include <melee/pl/forward.h>
 
-#include "replay.h"
+#include "bisimulation.h"
 #include "rpdisplay.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
