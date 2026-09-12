@@ -7,6 +7,7 @@
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "melee/ft/forward.h"
+#include "melee/gm/forward.h"
 #include "melee/gm/gmvs.h"
 #include "melee/pl/player.h"
 #include "sysdolphin/baselib/random.h"
@@ -47,7 +48,7 @@ void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst)
     dst->seed = *seed_ptr;
     dst->curr_frame = gm_GetFrameCount();
 
-    for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
+    for (i = 0; i < GM_MAX_PLAYERS; i++) {
         Bisim_CapturePlayer(&dst->players[i], Player_GetPtrForSlot(i));
     }
 }
@@ -76,7 +77,17 @@ void Bisim_WritePlayer(BsIO_Cursor* c, const Bisim_PlayerSnapshot* v)
     }
 }
 
-void Bisim_WriteGlobal(BsIO_Cursor* c, const Bisim_FighterSnapshot* fp) {}
+void Bisim_WriteGlobal(BsIO_Cursor* c, const Bisim_GlobalSnapshot* v)
+{
+    size_t i;
+
+    bsIO_WriteU32(c, v->seed);
+    bsIO_WriteU32(c, v->curr_frame);
+
+    for (i = 0; i < GM_MAX_PLAYERS; i++) {
+        Bisim_WritePlayer(c, &v->players[i]);
+    }
+}
 
 void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v)
 {
