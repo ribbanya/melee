@@ -20,6 +20,7 @@ void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src)
         return;
     }
 
+    dst->exists = true;
     dst->msid = src->motion_id;
     dst->anim_frame = src->cur_anim_frame;
     dst->airborne = src->ground_or_air;
@@ -38,13 +39,17 @@ void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src)
         return;
     }
 
+    dst->exists = true;
     dst->pkind = src->pkind;
     dst->color = src->costume_id;
     dst->port = src->controller_index;
 
     for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
-        Bisim_CaptureFighter(&dst->sub_fighters[i],
-                             Qol_GetUserDataOrNull(src->player_entity[i]));
+        Fighter* fp = Qol_GetUserDataOrNull(src->player_entity[i]);
+        Bisim_CaptureFighter(&dst->fighters[i], fp);
+        if (fp) {
+            FRAY_ASSERT(fp->is_sub_fighter == i);
+        }
     }
 }
 
@@ -56,12 +61,17 @@ void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst)
     dst->curr_frame = gm_GetFrameCount();
 
     for (i = 0; i < GM_MAX_PLAYERS; i++) {
-        Bisim_CapturePlayer(&dst->players[i], Player_GetPtrForSlot(i));
+        StaticPlayer* pp = Player_GetPtrForSlot(i);
+        Bisim_CapturePlayer(&dst->players[i], pp);
+        if (pp) {
+            FRAY_ASSERT(pp->player_id == i);
+        }
     }
 }
 
 void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* v)
 {
+    bsIO_WriteBool(c, v->exists);
     bsIO_WriteS32(c, v->msid);
     bsIO_WriteF32(c, v->anim_frame);
     bsIO_WriteBool(c, v->airborne);
@@ -75,12 +85,13 @@ void Bisim_WritePlayer(BsIO_Cursor* c, const Bisim_PlayerSnapshot* v)
 {
     size_t i;
 
+    bsIO_WriteBool(c, v->exists);
     bsIO_WriteU8(c, v->pkind);
     bsIO_WriteU8(c, v->color);
     bsIO_WriteU8(c, v->port);
 
     for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
-        Bisim_WriteFighter(c, &v->sub_fighters[i]);
+        Bisim_WriteFighter(c, &v->fighters[i]);
     }
 }
 
@@ -109,12 +120,34 @@ void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v)
 
 void Bisim_SPrintGlobal(char* s, const Bisim_GlobalSnapshot* v)
 {
-#ifndef __MWERKS__
-    __attribute__((nonstring))
-#endif
-    char const indent_style[2] = "  ";
-    char const max_indent = 3;
-    char indent[(sizeof(indent_style) - 1) * 3];
-    // strcpy();
-    sprintf(s, "{");
+    size_t i;
+    s += sprintf(s,
+                 "seed: %08X"
+                 "\ncurr_frame: %u",
+                 v->seed, v->curr_frame);
+    for (i = 0; i < GM_MAX_PLAYERS; i++) {
+        size_t j;
+        const Bisim_PlayerSnapshot* pv = &v->players[i];
+        if (!pv->exists) {
+            continue;
+        }
+        s += sprintf(s,
+                     "\nplayer[%u]:"
+                     "\n\tpkind: %u"
+                     "\n\tcolor: %u"
+                     "\n\tport: %u",
+                     i, pv->pkind, pv->color, pv->port);
+        for (j = 0; j < PL_MAX_SUB_FIGHTERS; j++) {
+            const Bisim_FighterSnapshot* fv = &pv->fighters[j];
+            if (!fv->exists) {
+                continue;
+            }
+            s += sprintf(s,
+                         "\nfighter[%u]:"
+                         "\n\t\tmsid: %d"
+                         "\n\t\tairborne: %d"
+                         "\n\t\tfacing_dir: %+.0f",
+                         j, fv->msid, fv->airborne, fv->facing_dir);
+        }
+    }
 }

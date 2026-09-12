@@ -9,6 +9,7 @@
 
 #include "bisimulation.h"
 #include "bsdisplay.h"
+#include "fray/bs/bsio.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
@@ -27,6 +28,7 @@ static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
 static HSD_GObj* replay_gobj;
 static Bisim_GlobalSnapshot snapshot;
+static char sprint_buf[0x400];
 
 enum {
     state_record_vs,
@@ -69,7 +71,9 @@ static void onMatchStartRecordVs(void)
 static void onFrameEndRecordVs(void)
 {
     Bisim_CaptureGlobal(&snapshot);
-    OSReport("seed %08X frame %d", snapshot.seed, snapshot.curr_frame);
+    bsIO_MemZero(&sprint_buf, sizeof(sprint_buf));
+    Bisim_SPrintGlobal((char*) &sprint_buf, &snapshot);
+    OSReport(sprint_buf);
 }
 
 /// @todo Load from memcard

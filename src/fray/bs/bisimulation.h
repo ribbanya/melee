@@ -36,6 +36,7 @@ typedef enum {
 
 /// Snapshot of a ::Fighter
 typedef struct {
+    bool exists;
     FtMotionId msid;
     float anim_frame;
     GroundOrAir airborne;
@@ -45,14 +46,15 @@ typedef struct {
     Vec3 vel;
     Vec3 kb_vel;
 } Bisim_FighterSnapshot;
-ASSERT_SIZE(Bisim_FighterSnapshot, 64);
+ASSERT_SIZE(Bisim_FighterSnapshot, 68);
 
 /// Snapshot of a ::StaticPlayer
 typedef struct {
+    bool exists;
     Gm_PKind pkind;
     u8 color;
     u8 port;
-    Bisim_FighterSnapshot sub_fighters[PL_MAX_SUB_FIGHTERS];
+    Bisim_FighterSnapshot fighters[PL_MAX_SUB_FIGHTERS];
 } Bisim_PlayerSnapshot;
 
 /// Global game state snapshot
@@ -69,6 +71,7 @@ typedef struct {
     u32 hashes[BISIM_MAX_FRAMES];
 } Replayer;
 
+void Bisim_SPrintGlobal(char* s, const Bisim_GlobalSnapshot* v);
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src);
 void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src);
 void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst);
