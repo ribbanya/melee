@@ -10,6 +10,7 @@
 #include "bisimulation.h"
 #include "bsdisplay.h"
 #include "fray/bs/bsio.h"
+#include "fray/lb/lbosd.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
@@ -65,7 +66,8 @@ GameModeState Replay_RecordStates[] = {
 
 static void onMatchStartRecordVs(void)
 {
-    ReplayText_Setup();
+    BsDisplay_Init();
+    BsDisplay_Show();
 }
 
 static void onFrameEndRecordVs(void)
@@ -73,7 +75,10 @@ static void onFrameEndRecordVs(void)
     Bisim_CaptureGlobal(&snapshot);
     bsIO_MemZero(&sprint_buf, sizeof(sprint_buf));
     Bisim_SPrintGlobal((char*) &sprint_buf, &snapshot);
-    OSReport(sprint_buf);
+    // BsDisplay_Draw(&snapshot);
+    Osd_Begin();
+    Osd_Text("hello\n");
+    // OSReport(sprint_buf);
 }
 
 /// @todo Load from memcard

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "fray/lb/lbqol.h"
+#include "melee/if/textdraw.h"
 #include <fray/lb/lbosd.h>
 #include <melee/if/textlib.h>
 
@@ -38,7 +40,7 @@ static size_t col;
 
 void Osd_Init(u32 id, u16 x, u16 y, u8 n_cols, u8 n_rows, char* buf)
 {
-    GXColor bg = { 0x00, 0x00, 0x00, 0xC0 };
+    GXColor bg = { 0xFF, 0x00, 0xFF, 0xFF };
     GXColor fg = { 0xFF, 0xFF, 0xFF, 0xFF };
 
     cols = n_cols;
@@ -47,58 +49,51 @@ void Osd_Init(u32 id, u16 x, u16 y, u8 n_cols, u8 n_rows, char* buf)
     col = 0;
 
     text = DevText_Create(id, x, y, n_cols, n_rows, buf);
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
 
+    DevText_Show(NULL, text);
     DevText_ShowText(text);
     DevText_HideCursor(text);
     DevText_SetBGColor(text, bg);
     DevText_SetTextColor(text, fg);
     DevText_SetScale(text, 10, 14);
     DevText_ShowBackground(text);
-    DevText_HideText(text); // hidden until first Show
+    DevText_HideText(text);
 }
 
 void Osd_Show(void)
 {
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
+    OSReport("osd show, text=%p\n", text);
     DevText_ShowText(text);
     DevText_ShowBackground(text);
+    OSReport("osd show done\n");
 }
 
 void Osd_Hide(void)
 {
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
     DevText_HideText(text);
     DevText_HideBackground(text);
 }
 
 void Osd_SetBGColor(GXColor c)
 {
-    if (text) {
-        DevText_SetBGColor(text, c);
-    }
+    FRAY_ASSERT(text);
+    DevText_SetBGColor(text, c);
 }
 
 void Osd_SetTextColor(GXColor c)
 {
-    if (text) {
-        DevText_SetTextColor(text, c);
-    }
+    FRAY_ASSERT(text);
+    DevText_SetTextColor(text, c);
 }
 
 // ------------------------------------------------------------ Row state
 
 void Osd_Begin(void)
 {
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
     DevText_Erase(text);
     row = 0;
     col = 0;
@@ -107,9 +102,7 @@ void Osd_Begin(void)
 
 static void flushRow(void)
 {
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
     if (row >= rows) {
         return;
     }
@@ -129,9 +122,7 @@ void Osd_Text(const char* s)
 {
     size_t n;
 
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
 
     n = strlen(s);
     if (n > cols) {
@@ -148,9 +139,7 @@ void Osd_Fmt(const char* fmt, ...)
     va_list ap;
     size_t n;
 
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
 
     va_start(ap, fmt);
     vsnprintf(line, sizeof(line), fmt, ap);
@@ -180,9 +169,7 @@ static void cellPut(const char* s, size_t width, int right_align)
     size_t pad;
     size_t i;
 
-    if (text == NULL) {
-        return;
-    }
+    FRAY_ASSERT(text);
     if (width == 0) {
         return;
     }
