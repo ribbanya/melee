@@ -1,13 +1,16 @@
 #include <fray/bs/bsdisplay.h>
 #include <fray/lb/lbosd.h>
 
-#define OSD_COLS 56
-#define OSD_ROWS 14
 #define OSD_ID 20
-#define OSD_X 4
-#define OSD_Y 4
+#define OSD_COLS 80
+#define OSD_ROWS 34
+#define OSD_GLYPH_W 8
+#define OSD_GLYPH_H 14
 
-static char panel_buf[OSD_COLS * OSD_ROWS * 2];
+typedef struct {
+    const char* label;
+    size_t width;
+} Column;
 
 typedef void (*EmitFn)(const Bisim_GlobalSnapshot* g,
                        const Bisim_PlayerSnapshot* p,
@@ -15,7 +18,7 @@ typedef void (*EmitFn)(const Bisim_GlobalSnapshot* g,
 
 typedef struct {
     const char* title;
-    const char* header;
+    const Column* columns; // { NULL, 0 } terminated
     EmitFn emit;
 } Page;
 
@@ -57,21 +60,41 @@ static void emitKbVel(UNUSED const Bisim_GlobalSnapshot* g,
     Osd_CellVec3(&f->kb_vel, 7, 3);
 }
 
-static const Page pages[] = {
-    { "state", "p s msid anim   air face", emitState },
-    { "pos", "p s px     py     pz", emitPos },
-    { "vel", "p s vx     vy     vz", emitVel },
-    { "acc", "p s ax     ay     az", emitAccel },
-    { "kb", "p s kx     ky     kz", emitKbVel },
+static char panel_buf[OSD_COLS * OSD_ROWS * 2];
+
+static const Column colsState[] = {
+    { "p", 1 },   { "s", 1 },    { "msid", 4 }, { "anim", 7 },
+    { "air", 3 }, { "face", 4 }, { NULL, 0 },
 };
 
-#define NUM_PAGES (ARRAY_SIZE(pages))
+static const Column colsPos[] = {
+    { "p", 1 }, { "s", 1 }, { "px", 7 }, { "py", 7 }, { "pz", 7 }, { NULL, 0 },
+};
+
+static const Column colsVel[] = {
+    { "p", 1 }, { "s", 1 }, { "vx", 7 }, { "vy", 7 }, { "vz", 7 }, { NULL, 0 },
+};
+
+static const Column colsAccel[] = {
+    { "p", 1 }, { "s", 1 }, { "ax", 7 }, { "ay", 7 }, { "az", 7 }, { NULL, 0 },
+};
+
+static const Column colsKbVel[] = {
+    { "p", 1 }, { "s", 1 }, { "kx", 7 }, { "ky", 7 }, { "kz", 7 }, { NULL, 0 },
+};
+
+static const Page pages[] = {
+    { "state", colsState, emitState }, { "pos", colsPos, emitPos },
+    { "vel", colsVel, emitVel },       { "acc", colsAccel, emitAccel },
+    { "kb", colsKbVel, emitKbVel },
+};
 
 static size_t page_idx = 0;
 
 void BsDisplay_Init(void)
 {
-    Osd_Init(OSD_ID, OSD_X, OSD_Y, OSD_COLS, OSD_ROWS, panel_buf);
+    Osd_Init(OSD_ID, 0, 0, OSD_COLS, OSD_ROWS, OSD_GLYPH_W, OSD_GLYPH_H,
+             panel_buf);
     page_idx = 0;
 }
 
@@ -86,19 +109,25 @@ void BsDisplay_Hide(void)
 
 void BsDisplay_NextPage(void)
 {
-    page_idx = (page_idx + 1) % NUM_PAGES;
+    page_idx = (page_idx + 1) % ARRAY_SIZE(pages);
 }
 
 void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 {
     const Page* page = &pages[page_idx];
+    const Column* c;
     size_t p;
     size_t s;
 
     Osd_Begin();
 
     Osd_Fmt("frame=%u seed=%08X  %s", g->curr_frame, g->seed, page->title);
-    Osd_Text(page->header);
+
+    Osd_RowBegin();
+    for (c = page->columns; c->label != NULL; c++) {
+        Osd_CellStr(c->label, c->width);
+    }
+    Osd_RowEnd();
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
         const Bisim_PlayerSnapshot* ps = &g->players[p];

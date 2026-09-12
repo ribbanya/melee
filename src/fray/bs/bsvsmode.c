@@ -75,10 +75,7 @@ static void onFrameEndRecordVs(void)
     Bisim_CaptureGlobal(&snapshot);
     bsIO_MemZero(&sprint_buf, sizeof(sprint_buf));
     Bisim_SPrintGlobal((char*) &sprint_buf, &snapshot);
-    // BsDisplay_Draw(&snapshot);
-    Osd_Begin();
-    Osd_Text("hello\n");
-    // OSReport(sprint_buf);
+    BsDisplay_Draw(&snapshot);
 }
 
 /// @todo Load from memcard

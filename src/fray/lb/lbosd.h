@@ -42,15 +42,17 @@ int snprintf(char* s, size_t n, const char* format, ...);
 
 /// Create the panel. `id` must be unique across all DevText users.
 /// `buf` must be at least `cols * rows * 2` bytes.
-void Osd_Init(u32 id, u16 x, u16 y, u8 cols, u8 rows, char* buf);
+void Osd_Init(u32 id, u16 x, u16 y, u8 cols, u8 rows,
+              f32 scale_x, f32 scale_y, char* buf);
 
 /// Toggle visibility of the text and background.
 void Osd_Show(void);
 void Osd_Hide(void);
 
 /// Colors. Defaults are opaque white on mostly-opaque black.
-void Osd_SetBGColor(GXColor c);
-void Osd_SetTextColor(GXColor c);
+void Osd_SetBGColor(u8 r, u8 g, u8 b);
+void Osd_SetTextColor(u8 r, u8 g, u8 b);
+void Osd_SetAlpha(u8 alpha);
 
 // ----------------------------------------------------------- page build
 

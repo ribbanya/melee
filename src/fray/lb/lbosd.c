@@ -8,6 +8,18 @@
 #include <fray/lb/lbosd.h>
 #include <melee/if/textlib.h>
 
+// One instance. Multiple panels are possible but unused.
+static DevText* text;
+static u8 cols;
+static u8 rows;
+
+// Per-row scratch. Line width is bounded by the panel width.
+static char line[256];
+static size_t row;
+static size_t col;
+static GXColor bg_color = { 0x00, 0x00, 0x00, 0x00 };
+static GXColor fg_color = { 0xFF, 0xFF, 0xFF, 0x00 };
+
 int snprintf(char* s, size_t n, const char* format, ...)
 {
     va_list ap;
@@ -26,74 +38,76 @@ int snprintf(char* s, size_t n, const char* format, ...)
     return r;
 }
 
-// One instance. Multiple panels are possible but unused.
-static DevText* text;
-static u8 cols;
-static u8 rows;
-
-// Per-row scratch. Line width is bounded by the panel width.
-static char line[256];
-static size_t row;
-static size_t col;
-
-// ---------------------------------------------------------------- Setup
-
-void Osd_Init(u32 id, u16 x, u16 y, u8 n_cols, u8 n_rows, char* buf)
+static void applyColors(void)
 {
-    GXColor bg = { 0xFF, 0x00, 0xFF, 0xFF };
-    GXColor fg = { 0xFF, 0xFF, 0xFF, 0xFF };
+    FRAY_ASSERT(text != NULL);
 
+    if (bg_color.a == 0) {
+        DevText_HideText(text);
+        DevText_HideBackground(text);
+        return;
+    }
+
+    DevText_SetBGColor(text, bg_color);
+    DevText_SetTextColor(text, fg_color);
+    DevText_ShowText(text);
+    DevText_ShowBackground(text);
+}
+
+void Osd_Init(u32 id, u16 x, u16 y, u8 n_cols, u8 n_rows, f32 scale_x,
+              f32 scale_y, char* buf)
+{
     cols = n_cols;
     rows = n_rows;
     row = 0;
     col = 0;
 
     text = DevText_Create(id, x, y, n_cols, n_rows, buf);
-    FRAY_ASSERT(text);
-
-    DevText_Show(NULL, text);
-    DevText_ShowText(text);
+    FRAY_ASSERT(text != NULL);
+    DevText_Show(DevText_GetGObj(), text);
     DevText_HideCursor(text);
-    DevText_SetBGColor(text, bg);
-    DevText_SetTextColor(text, fg);
-    DevText_SetScale(text, 10, 14);
-    DevText_ShowBackground(text);
-    DevText_HideText(text);
-}
-
-void Osd_Show(void)
-{
-    FRAY_ASSERT(text);
-    OSReport("osd show, text=%p\n", text);
-    DevText_ShowText(text);
-    DevText_ShowBackground(text);
-    OSReport("osd show done\n");
+    DevText_SetScale(text, scale_x, scale_y);
+    applyColors();
 }
 
 void Osd_Hide(void)
 {
-    FRAY_ASSERT(text);
-    DevText_HideText(text);
-    DevText_HideBackground(text);
+    Osd_SetAlpha(0x00);
 }
 
-void Osd_SetBGColor(GXColor c)
+void Osd_Show(void)
 {
-    FRAY_ASSERT(text);
-    DevText_SetBGColor(text, c);
+    Osd_SetAlpha(0xFF);
 }
 
-void Osd_SetTextColor(GXColor c)
+static void setColor(GXColor* dst, u8 r, u8 g, u8 b)
 {
-    FRAY_ASSERT(text);
-    DevText_SetTextColor(text, c);
+    dst->r = r;
+    dst->g = g;
+    dst->b = b;
+    applyColors();
 }
 
-// ------------------------------------------------------------ Row state
+void Osd_SetAlpha(u8 alpha)
+{
+    bg_color.a = alpha;
+    fg_color.a = alpha;
+    applyColors();
+}
+
+void Osd_SetBGColor(u8 r, u8 g, u8 b)
+{
+    setColor(&bg_color, r, g, b);
+}
+
+void Osd_SetTextColor(u8 r, u8 g, u8 b)
+{
+    setColor(&fg_color, r, g, b);
+}
 
 void Osd_Begin(void)
 {
-    FRAY_ASSERT(text);
+    FRAY_ASSERT(text != NULL);
     DevText_Erase(text);
     row = 0;
     col = 0;
@@ -102,7 +116,7 @@ void Osd_Begin(void)
 
 static void flushRow(void)
 {
-    FRAY_ASSERT(text);
+    FRAY_ASSERT(text != NULL);
     if (row >= rows) {
         return;
     }
@@ -116,13 +130,11 @@ static void flushRow(void)
     line[0] = '\0';
 }
 
-// -------------------------------------------------------- Line writers
-
 void Osd_Text(const char* s)
 {
     size_t n;
 
-    FRAY_ASSERT(text);
+    FRAY_ASSERT(text != NULL);
 
     n = strlen(s);
     if (n > cols) {
@@ -139,7 +151,7 @@ void Osd_Fmt(const char* fmt, ...)
     va_list ap;
     size_t n;
 
-    FRAY_ASSERT(text);
+    FRAY_ASSERT(text != NULL);
 
     va_start(ap, fmt);
     vsnprintf(line, sizeof(line), fmt, ap);
@@ -152,8 +164,6 @@ void Osd_Fmt(const char* fmt, ...)
     col = n;
     flushRow();
 }
-
-// -------------------------------------------------------- Columnar row
 
 void Osd_RowBegin(void)
 {
@@ -169,7 +179,7 @@ static void cellPut(const char* s, size_t width, int right_align)
     size_t pad;
     size_t i;
 
-    FRAY_ASSERT(text);
+    FRAY_ASSERT(text != NULL);
     if (width == 0) {
         return;
     }
