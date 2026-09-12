@@ -38,32 +38,28 @@ typedef struct {
     FtMotionId msid;
     float anim_frame;
     GroundOrAir airborne;
+    f32 facing_dir;
     Vec3 pos;
     Vec3 accel;
     Vec3 vel;
     Vec3 kb_vel;
 } Bisim_FighterSnapshot;
-ASSERT_SIZE(Bisim_FighterSnapshot, 60);
+ASSERT_SIZE(Bisim_FighterSnapshot, 64);
 
 /// Snapshot of a ::StaticPlayer
 typedef struct {
-    u8 pkind;
-    Bisim_FighterSnapshot
-        sub_fighters[ARRAY_SIZE(((StaticPlayer*) NULL)->transformed)];
+    Gm_PKind pkind;
+    u8 color;
+    u8 port;
+    Bisim_FighterSnapshot sub_fighters[PL_MAX_SUB_FIGHTERS];
 } Bisim_PlayerSnapshot;
 
-/// Global snapshot common to menus and versus
+/// Global game state snapshot
 typedef struct {
     u32 seed;
-} Bisim_GameSnapshot;
-
-/// Snapshot specific to versus mode (::GS_VS)
-typedef struct {
-    Bisim_GameSnapshot game;
     u32 curr_frame;
     Bisim_PlayerSnapshot players[GM_MAX_PLAYERS];
-    Bisim_FighterSnapshot fighters[GM_MAX_PLAYERS];
-} Bisim_VsSnapshot;
+} Bisim_GlobalSnapshot;
 
 typedef struct {
     u32 seed;
