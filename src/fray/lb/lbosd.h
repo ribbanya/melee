@@ -7,9 +7,9 @@
 #include <stdarg.h>
 #include <stddef.h>
 
- int snprintf(char* s, size_t n, const char* format, ...);
+int snprintf(char* s, size_t n, const char* format, ...);
 
-void Osd_Init(u32 id, u16 x, u16 y, u8 cols, u8 rows,
+void Osd_Init(u32 id, int x, int y, size_t cols, size_t rows,
               f32 scale_x, f32 scale_y, char* buf);
 
 void Osd_Show(void);
@@ -18,16 +18,11 @@ void Osd_SetAlpha(u8 alpha);
 void Osd_SetBGColor(u8 r, u8 g, u8 b);
 void Osd_SetTextColor(u8 r, u8 g, u8 b);
 
-void Osd_SetLayers(u32 layers);
-
 void Osd_Begin(void);
-void Osd_Line(u32 layers, const char* fmt, ...);
-void Osd_RowBegin(u32 layers);
-void Osd_CellStr(const char* s, size_t width);
-void Osd_CellU32(u32 v, size_t width);
-void Osd_CellF32(f32 v, size_t width, size_t decimals);
-void Osd_CellVec3(const Vec3* v, size_t width, size_t decimals);
-void Osd_RowEnd(void);
-void Osd_Ruler(void);
+void Osd_PutStr(int x, int y, const char* s);
+void Osd_PutFmt(int x, int y, const char* fmt, ...);
+void Osd_PutU32(int x, int y, size_t width, u32 v);
+void Osd_PutF32(int x, int y, size_t width, size_t decimals, f32 v);
+void Osd_PutVec3(int x, int y, size_t width, size_t decimals, const Vec3* v);
 
 #endif
