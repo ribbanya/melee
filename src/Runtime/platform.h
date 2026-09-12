@@ -90,8 +90,10 @@ typedef bool (*Predicate)(void);
 #ifndef ATTRIBUTE_NORETURN
 #if defined(__clang__) || defined(__GNUC__)
 #define ATTRIBUTE_NORETURN __attribute__((noreturn))
+#define ATTRIBUTE_NONSTRING __attribute__((nonstring))
 #else
 #define ATTRIBUTE_NORETURN
+#define ATTRIBUTE_NONSTRING
 #endif
 #endif
 
