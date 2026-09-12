@@ -64,7 +64,7 @@ static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
     {
-        ReplayDesc desc = { (1 << 0) | (1 << 1), REPLAY_MAX_FRAMES };
+        ReplayDesc desc = { (1 << 0) | (1 << 1), BISIM_MAX_FRAMES };
         Replayer* rp;
         replay_gobj = Replay_Create(&desc);
         rp = replay_gobj->user_data;
@@ -118,7 +118,7 @@ static void onRecordVsStartMelee(StartMeleeData* start,
                                  UNUSED StartMeleeData* vs)
 {
     start->rules.match_kind = MatchKind_Time;
-    start->rules.time_limit = REPLAY_MAX_SECONDS;
+    start->rules.time_limit = BISIM_MAX_SECONDS;
     //         gm_SetupRulesDefaults(rules);
     // initTestMatch(&vs_mode_data);
 }
@@ -135,7 +135,7 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 //         rules->xB = -1;
 //         rules->xC = -1;
 //         rules->timer_enabled = true;
-//         rules->time_limit = REPLAY_MAX_SECONDS;
+//         rules->time_limit = BISIM_MAX_SECONDS;
 //         rules->match_kind = MatchKind_Stock;
 //         rules->game_speed = 0.25f;
 
@@ -168,7 +168,7 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 //     }
 
 //     clearReplay();
-//     setSeed(REPLAY_SEED);
+//     setSeed(BISIM_SEED);
 //     gm_LoadAnnouncer();
 //     gm_SetupSubColors(start);
 // }
