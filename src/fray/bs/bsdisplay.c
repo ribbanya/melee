@@ -1,11 +1,12 @@
+#include "melee/pl/forward.h"
 #include <fray/bs/bsdisplay.h>
 #include <fray/lb/lbosd.h>
 
-#define OSD_ID      20
-#define OSD_COLS    54
-#define OSD_ROWS    34
-#define OSD_GLYPH_W 1.5f
-#define OSD_GLYPH_H 1.0f
+#define OSD_ID 20
+#define OSD_COLS 54
+#define OSD_ROWS 34
+#define OSD_GLYPH_W 10
+#define OSD_GLYPH_H 14
 
 typedef enum {
     BsLayer_Global = 0,
@@ -17,45 +18,34 @@ typedef enum {
 } BsLayer;
 
 typedef enum {
-    BsLayerMask_Global   = 1 << BsLayer_Global,
-    BsLayerMask_Players  = 1 << BsLayer_Players,
-    BsLayerMask_State    = 1 << BsLayer_State,
+    BsLayerMask_Global = 1 << BsLayer_Global,
+    BsLayerMask_Players = 1 << BsLayer_Players,
+    BsLayerMask_State = 1 << BsLayer_State,
     BsLayerMask_Dynamics = 1 << BsLayer_Dynamics,
-    BsLayerMask_Impulse  = 1 << BsLayer_Impulse,
-    BsLayerMask_All      = BsLayerMask_Global  | BsLayerMask_Players
-                         | BsLayerMask_State   | BsLayerMask_Dynamics
-                         | BsLayerMask_Impulse,
+    BsLayerMask_Impulse = 1 << BsLayer_Impulse,
+    BsLayerMask_All = BsLayerMask_Global | BsLayerMask_Players |
+                      BsLayerMask_State | BsLayerMask_Dynamics |
+                      BsLayerMask_Impulse,
 } BsLayerMask;
 
 typedef struct {
-    int    x;
+    int x;
     size_t w;
 } RowCol;
 
 static const RowCol playerRow[] = {
-    {  0, 1 },
-    {  2, 3 },
-    {  6, 1 },
+    { 0, 1 },
+    { 2, 3 },
+    { 6, 1 },
 };
 
 static const RowCol stateRow[] = {
-    {  0, 1 },
-    {  2, 1 },
-    {  4, 4 },
-    {  9, 8 },
-    { 20, 1 },
-    { 22, 1 },
+    { 0, 1 }, { 2, 1 }, { 4, 4 }, { 9, 8 }, { 20, 1 }, { 22, 1 },
 };
 
 static const RowCol vecRow[] = {
-    {  0, 1 },
-    {  2, 1 },
-    {  4, 7 },
-    { 12, 7 },
-    { 20, 7 },
-    { 28, 7 },
-    { 36, 7 },
-    { 44, 7 },
+    { 0, 1 },  { 2, 1 },  { 4, 7 },  { 12, 7 },
+    { 20, 7 }, { 28, 7 }, { 36, 7 }, { 44, 7 },
 };
 
 static char panel_buf[OSD_COLS * OSD_ROWS * 2];
@@ -68,28 +58,37 @@ static int col;
 static int page;
 static int pages;
 
-static const char* pkindName(u32 pkind)
+static const char* pkindName(Gm_PKind pkind)
 {
     switch (pkind) {
-    case 0:  return "hum";
-    case 1:  return "cpu";
-    case 2:  return "dem";
-    case 3:  return "na";
-    default: return "?";
+    case Gm_PKind_Human:
+        return "hmn";
+    case Gm_PKind_Cpu:
+        return "cpu";
+    case Gm_PKind_Demo:
+        return "dem";
+    case Gm_PKind_NA:
+        return "na";
+    case Gm_PKind_Boss:
+        return "bos";
+    default:
+        return "unk";
     }
 }
 
 static size_t countFighters(void)
 {
-    size_t n = 0;
-    size_t p;
-    size_t s;
+    size_t n = 0, i, j;
 
-    for (p = 0; p < GM_MAX_PLAYERS; p++) {
-        const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
-        if (!ps->exists) continue;
-        for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
-            if (ps->fighters[s].exists) n++;
+    for (i = 0; i < GM_MAX_PLAYERS; i++) {
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[i];
+        if (!ps->exists) {
+            continue;
+        }
+        for (j = 0; j < PL_MAX_SUB_FIGHTERS; j++) {
+            if (ps->fighters[j].exists) {
+                n++;
+            }
         }
     }
     return n;
@@ -99,8 +98,12 @@ static u32 layersForFighterCount(size_t n)
 {
     u32 mask = BsLayerMask_All;
 
-    if (n > 4) mask &= ~BsLayerMask_Impulse;
-    if (n > 8) mask &= ~BsLayerMask_Dynamics;
+    if (n > 4) {
+        mask &= ~BsLayerMask_Impulse;
+    }
+    if (n > 8) {
+        mask &= ~BsLayerMask_Dynamics;
+    }
 
     return mask;
 }
@@ -130,25 +133,31 @@ static void putVec(const Vec3* v, size_t decimals)
     putF32(v->z, decimals);
 }
 
-static void putVecHdr(const char* prefix)
+static void putVec3Header(const char* prefix)
 {
     char label[8];
     size_t n = strlen(prefix);
+    FRAY_ASSERT(n < sizeof(label));
 
     memcpy(label, prefix, n);
     label[n + 1] = '\0';
 
-    label[n] = 'x'; putStr(label);
-    label[n] = 'y'; putStr(label);
-    label[n] = 'z'; putStr(label);
+    label[n] = 'x';
+    putStr(label);
+    label[n] = 'y';
+    putStr(label);
+    label[n] = 'z';
+    putStr(label);
 }
 
 static void drawGlobal(void)
 {
-    if (!(layers & BsLayerMask_Global)) return;
+    if (!(layers & BsLayerMask_Global)) {
+        return;
+    }
 
-    Osd_PutFmt(0, y, "frame=%u seed=%08X",
-               snapshot->curr_frame, snapshot->seed);
+    Osd_PutFmt(0, y, "frame=%u seed=%08X hash=%08X", snapshot->curr_frame,
+               snapshot->seed, 0);
     y++;
 }
 
@@ -156,7 +165,9 @@ static void drawPlayers(void)
 {
     size_t p;
 
-    if (!(layers & BsLayerMask_Players)) return;
+    if (!(layers & BsLayerMask_Players)) {
+        return;
+    }
 
     row = playerRow;
     col = 0;
@@ -167,11 +178,13 @@ static void drawPlayers(void)
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
         const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
-        if (!ps->exists) continue;
+        if (!ps->exists) {
+            continue;
+        }
 
         col = 0;
         putU32(p);
-        putStr(pkindName((u32)ps->pkind));
+        putStr(pkindName(ps->pkind));
         putU32(ps->color);
         y++;
     }
@@ -184,7 +197,9 @@ static void drawState(void)
     size_t p;
     size_t s;
 
-    if (!(layers & BsLayerMask_State)) return;
+    if (!(layers & BsLayerMask_State)) {
+        return;
+    }
 
     row = stateRow;
     col = 0;
@@ -198,18 +213,22 @@ static void drawState(void)
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
         const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
-        if (!ps->exists) continue;
+        if (!ps->exists) {
+            continue;
+        }
 
         for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
             const Bisim_FighterSnapshot* fs = &ps->fighters[s];
-            if (!fs->exists) continue;
+            if (!fs->exists) {
+                continue;
+            }
 
             col = 0;
             putU32(p);
             putU32(s);
-            putU32((u32)fs->msid);
+            putU32((u32) fs->msid);
             putF32(fs->anim_frame, dec_anim);
-            putU32((u32)fs->airborne);
+            putU32((u32) fs->airborne);
             putF32(fs->facing_dir, dec_face);
             y++;
         }
@@ -222,23 +241,29 @@ static void drawDynamics(void)
     size_t p;
     size_t s;
 
-    if (!(layers & BsLayerMask_Dynamics)) return;
+    if (!(layers & BsLayerMask_Dynamics)) {
+        return;
+    }
 
     row = vecRow;
     col = 0;
     putStr("p");
     putStr("s");
-    putVecHdr("p");
-    putVecHdr("v");
+    putVec3Header("p");
+    putVec3Header("v");
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
         const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
-        if (!ps->exists) continue;
+        if (!ps->exists) {
+            continue;
+        }
 
         for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
             const Bisim_FighterSnapshot* fs = &ps->fighters[s];
-            if (!fs->exists) continue;
+            if (!fs->exists) {
+                continue;
+            }
 
             col = 0;
             putU32(p);
@@ -256,28 +281,34 @@ static void drawImpulse(void)
     size_t p;
     size_t s;
 
-    if (!(layers & BsLayerMask_Impulse)) return;
+    if (!(layers & BsLayerMask_Impulse)) {
+        return;
+    }
 
     row = vecRow;
     col = 0;
     putStr("p");
     putStr("s");
-    putVecHdr("a");
-    putVecHdr("k");
+    putVec3Header("a");
+    putVec3Header("k");
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
         const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
-        if (!ps->exists) continue;
+        if (!ps->exists) {
+            continue;
+        }
 
         for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
             const Bisim_FighterSnapshot* fs = &ps->fighters[s];
-            if (!fs->exists) continue;
+            if (!fs->exists) {
+                continue;
+            }
 
             col = 0;
             putU32(p);
             putU32(s);
-            putVec(&fs->accel,  decimals);
+            putVec(&fs->accel, decimals);
             putVec(&fs->kb_vel, decimals);
             y++;
         }
@@ -286,14 +317,20 @@ static void drawImpulse(void)
 
 void BsDisplay_Init(void)
 {
-    Osd_Init(OSD_ID, 0, 0, OSD_COLS, OSD_ROWS,
-             OSD_GLYPH_W, OSD_GLYPH_H, panel_buf);
-    page  = 0;
+    Osd_Init(OSD_ID, 0, 0, OSD_COLS, OSD_ROWS, OSD_GLYPH_W, OSD_GLYPH_H,
+             panel_buf);
+    page = 0;
     pages = 1;
 }
 
-void BsDisplay_Show(void) { Osd_Show(); }
-void BsDisplay_Hide(void) { Osd_Hide(); }
+void BsDisplay_Show(void)
+{
+    Osd_Show();
+}
+void BsDisplay_Hide(void)
+{
+    Osd_Hide();
+}
 
 void BsDisplay_NextPage(void)
 {
@@ -303,8 +340,8 @@ void BsDisplay_NextPage(void)
 void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 {
     snapshot = g;
-    layers   = layersForFighterCount(countFighters());
-    y        = 0;
+    layers = layersForFighterCount(countFighters());
+    y = 0;
 
     Osd_Begin();
     drawGlobal();
