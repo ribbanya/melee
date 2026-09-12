@@ -576,6 +576,8 @@ config.libs = [
             Object(Equivalent, "fray/bs/bisimulation.c"),
             Object(Equivalent, "fray/bs/bsvsmode.c"),
             Object(Equivalent, "fray/bs/bscard.c"),
+            Object(Equivalent, "fray/bs/bsio.c"),
+            Object(Equivalent, "fray/bs/bshash.c"),
             Object(Equivalent, "fray/bs/bsdisplay.c"),
         ],
     ),

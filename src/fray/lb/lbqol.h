@@ -26,6 +26,7 @@ StKind Qol_PickRandomLegalStage(int max);
 CharacterKind Qol_PickRandomTopTier(int max);
 void Qol_SetCompetitivePrefs(void);
 void Qol_UnlockAll(void);
+void* Qol_GetUserDataOrNull(HSD_GObj* gobj);
 extern struct GamePrefs Qol_CompetitiveGamePrefs;
 extern GameRules Qol_CompetitiveGameRules;
 extern CharacterKind Qol_TierList_PGStats2021[CKind_Playable_Count];

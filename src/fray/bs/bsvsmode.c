@@ -26,6 +26,7 @@ static void onExitRecordOver(GameModeState* state);
 static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
 static HSD_GObj* replay_gobj;
+static Bisim_GlobalSnapshot snapshot;
 
 enum {
     state_record_vs,
@@ -63,13 +64,12 @@ GameModeState Replay_RecordStates[] = {
 static void onMatchStartRecordVs(void)
 {
     ReplayText_Setup();
-    {
-        ReplayDesc desc = { (1 << 0) | (1 << 1), BISIM_MAX_FRAMES };
-        Replayer* rp;
-        replay_gobj = Replay_Create(&desc);
-        rp = replay_gobj->user_data;
-        rp->state = ReplayState_Recording;
-    }
+}
+
+static void onFrameEndRecordVs(void)
+{
+    Bisim_CaptureGlobal(&snapshot);
+    OSReport("seed %08X frame %d", snapshot.seed, snapshot.curr_frame);
 }
 
 /// @todo Load from memcard
@@ -88,6 +88,7 @@ static void initTestMatch(StartMeleeData* start)
 
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
+    rules->on_frame_end = onFrameEndRecordVs;
 
     for (i = 0; i < max_players; i++) {
         u8 ckind = Qol_PickRandomTopTier(max_tier);
@@ -101,10 +102,9 @@ static void initTestMatch(StartMeleeData* start)
 
 void Replay_Mode_OnInit(void)
 {
-    // Qol_LogInit();
+    Qol_LogInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
-    Replay_Init();
     // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);

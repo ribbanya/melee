@@ -3,6 +3,7 @@
 
 #include <melee/gm/forward.h>
 
+#include "fray/bs/bsio.h"
 #include "melee/ft/forward.h"
 #include "melee/pl/player.h"
 #include "Runtime/platform.h"
@@ -68,7 +69,12 @@ typedef struct {
     u32 hashes[BISIM_MAX_FRAMES];
 } Replayer;
 
-HSD_GObj* Replay_GetGObj(void);
-void Replay_Init(void);
+void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src);
+void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src);
+void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst);
+void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* v);
+void Bisim_WritePlayer(BsIO_Cursor* c, const Bisim_PlayerSnapshot* v);
+void Bisim_WriteGlobal(BsIO_Cursor* c, const Bisim_GlobalSnapshot* v);
+void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v);
 
 #endif

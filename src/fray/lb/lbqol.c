@@ -102,3 +102,11 @@ StKind Qol_PickRandomLegalStage(int max)
     FRAY_ASSERT(0 <= max && max < (ssize_t) ARRAY_SIZE(Qol_LegalStages));
     return Qol_LegalStages[HSD_Randi(max)];
 }
+
+void* Qol_GetUserDataOrNull(HSD_GObj* gobj)
+{
+    if (gobj == NULL) {
+        return NULL;
+    }
+    return HSD_GObjGetUserData(gobj);
+}

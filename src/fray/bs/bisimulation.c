@@ -1,23 +1,25 @@
 #include "bisimulation.h"
 
-#include <Runtime/platform.h>
-
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
+#include "fray/lb/lbqol.h"
 #include "melee/ft/forward.h"
 #include "melee/gm/forward.h"
 #include "melee/gm/gmvs.h"
 #include "melee/pl/player.h"
 #include "sysdolphin/baselib/random.h"
-#include <dolphin/types.h>
 #include <melee/ft/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjproc.h>
 
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src)
 {
+    if (!src) {
+        bsIO_MemZero(dst, sizeof(*dst));
+        return;
+    }
+
     dst->msid = src->motion_id;
     dst->anim_frame = src->cur_anim_frame;
     dst->airborne = src->ground_or_air;
@@ -31,13 +33,18 @@ void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src)
 {
     size_t i;
 
+    if (!src) {
+        bsIO_MemZero(dst, sizeof(*dst));
+        return;
+    }
+
     dst->pkind = src->pkind;
     dst->color = src->costume_id;
     dst->port = src->controller_index;
 
     for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
         Bisim_CaptureFighter(&dst->sub_fighters[i],
-                             src->player_entity[i]->user_data);
+                             Qol_GetUserDataOrNull(src->player_entity[i]));
     }
 }
 
