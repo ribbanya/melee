@@ -48,7 +48,7 @@ void bsIO_WriteU16(BsIO_Cursor* c, u16 v)
     c->buf[c->pos++] = v & 0xFF;
 }
 
-void bsIO_PutU32(BsIO_Cursor* c, u32 v)
+void bsIO_WriteU32(BsIO_Cursor* c, u32 v)
 {
     c->buf[c->pos++] = (v >> 24) & 0xFF;
     c->buf[c->pos++] = (v >> 16) & 0xFF;
@@ -56,30 +56,37 @@ void bsIO_PutU32(BsIO_Cursor* c, u32 v)
     c->buf[c->pos++] = v & 0xFF;
 }
 
-void bsIO_PutS8(BsIO_Cursor* c, s8 v)
+void bsIO_WriteS8(BsIO_Cursor* c, s8 v)
 {
     bsIO_WriteU8(c, (u8) v);
 }
-void bsIO_PutS16(BsIO_Cursor* c, s16 v)
+void bsIO_WriteS16(BsIO_Cursor* c, s16 v)
 {
     bsIO_WriteU16(c, (u16) v);
 }
-void bsIO_PutS32(BsIO_Cursor* c, s32 v)
+void bsIO_WriteS32(BsIO_Cursor* c, s32 v)
 {
-    bsIO_PutU32(c, (u32) v);
+    bsIO_WriteU32(c, (u32) v);
 }
 
-void bsIO_PutBool(BsIO_Cursor* c, int v)
+void bsIO_WriteBool(BsIO_Cursor* c, bool v)
 {
     bsIO_WriteU8(c, v != 0);
 }
 
-void bsIO_PutF32(BsIO_Cursor* c, f32 v)
+void bsIO_WriteF32(BsIO_Cursor* c, f32 v)
 {
-    bsIO_PutU32(c, bsIO_F32Bits(v));
+    bsIO_WriteU32(c, bsIO_F32Bits(v));
 }
 
-void bsIO_PutBytes(BsIO_Cursor* c, const void* src, u32 n)
+void bsIO_WriteVec3(BsIO_Cursor* c, const Vec3* v)
+{
+    bsIO_WriteF32(c, v->x);
+    bsIO_WriteF32(c, v->y);
+    bsIO_WriteF32(c, v->z);
+}
+
+void bsIO_WriteBytes(BsIO_Cursor* c, const void* src, u32 n)
 {
     memcpy(c->buf + c->pos, src, n);
     c->pos += n;
@@ -128,10 +135,14 @@ int bsIO_ReadBool(BsIO_Cursor* c)
 
 f32 bsIO_ReadF32(BsIO_Cursor* c)
 {
-    u32 u = bsIO_ReadU32(c);
-    f32 f;
-    memcpy(&f, &u, 4);
-    return f;
+    return bsIO_F32Bits(bsIO_ReadU32(c));
+}
+
+void bsIO_ReadVec3(BsIO_Cursor* c, Vec3* dst)
+{
+    dst->x = bsIO_ReadF32(c);
+    dst->y = bsIO_ReadF32(c);
+    dst->z = bsIO_ReadF32(c);
 }
 
 void bsIO_ReadBytes(BsIO_Cursor* c, void* dst, u32 n)

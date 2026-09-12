@@ -32,6 +32,12 @@ typedef enum {
 } BisimState;
 
 typedef struct {
+} Bisim_FighterSnapshot;
+
+typedef struct {
+} Bisim_VsSnapshot;
+
+typedef struct {
     u32 seed;
     BisimState state; ///< ::ReplayState
     u32 curr_frame;

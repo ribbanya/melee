@@ -5,12 +5,15 @@
 #include <abort_exit.h> // IWYU pragma: keep
 
 #include "fray/bs/bshash.h"
+#include "fray/bs/bsio.h"
 #include "melee/ft/forward.h"
 #include "melee/gm/gmvs.h"
 #include <dolphin/types.h>
 #include <melee/ft/types.h>
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjproc.h>
+
+void Bisim_WriteFighter(BsIO_Cursor* c, Fighter* fp) {}
 
 u32 Bisim_HashFighter(u32 h, HSD_GObj* gobj)
 {
