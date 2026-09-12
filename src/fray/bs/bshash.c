@@ -28,7 +28,7 @@ u32 bsHash_Bool(u32 h, bool b)
 
 u32 bsHash_F32(u32 h, f32 f)
 {
-    return bsHash_U32(h, bsHash_F32Bits(f));
+    return bsHash_U32(h, bsIO_F32Bits(f));
 }
 
 u32 bsHash_Vec3(u32 h, const Vec3* v)

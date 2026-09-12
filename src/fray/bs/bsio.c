@@ -17,7 +17,7 @@
 
 #include <string.h>
 
-u32 bsHash_F32Bits(f32 f)
+u32 bsIO_F32Bits(f32 f)
 {
 #if defined(__MWERKS__)
     return *(u32*) &f;
