@@ -26,20 +26,17 @@ u32 bsHash_Bool(u32 h, bool b)
     return bsHash_U32(h, b != 0);
 }
 
-u32 bsHash_F32Bits(f32 f)
-{
-#if defined(__MWERKS__)
-    return *(u32*) &f;
-#else
-    u32 u;
-    memcpy(&u, &f, 4);
-    return u;
-#endif
-}
-
 u32 bsHash_F32(u32 h, f32 f)
 {
     return bsHash_U32(h, bsHash_F32Bits(f));
+}
+
+u32 bsHash_Vec3(u32 h, const Vec3* v)
+{
+    h = bsHash_F32(h, v->x);
+    h = bsHash_F32(h, v->y);
+    h = bsHash_F32(h, v->z);
+    return h;
 }
 
 void bsHash_WriteU32BE(u8* dst, u32 v)
