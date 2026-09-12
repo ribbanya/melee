@@ -67,7 +67,7 @@ GameModeState Replay_RecordStates[] = {
 static void onMatchStartRecordVs(void)
 {
     BsDisplay_Init();
-    BsDisplay_Show();
+    Osd_SetAlpha(0x80);
 }
 
 static void onFrameEndRecordVs(void)

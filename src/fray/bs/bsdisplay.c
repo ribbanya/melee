@@ -8,85 +8,140 @@
 #define OSD_GLYPH_H 14
 
 typedef struct {
-    const char* label;
-    size_t width;
-} Column;
+    const Bisim_GlobalSnapshot* g;
+    const Bisim_PlayerSnapshot* p;
+    const Bisim_FighterSnapshot* f;
+    size_t port;
+    size_t sub;
+} Row;
 
-typedef void (*EmitFn)(const Bisim_GlobalSnapshot* g,
-                       const Bisim_PlayerSnapshot* p,
-                       const Bisim_FighterSnapshot* f);
+typedef void (*CellFn)(const Row* r, size_t width);
+
+typedef struct {
+    const char* header;
+    size_t width;
+    CellFn cell;
+} Column;
 
 typedef struct {
     const char* title;
-    const Column* columns; // { NULL, 0 } terminated
-    EmitFn emit;
+    const Column* columns;
 } Page;
 
-static void emitState(UNUSED const Bisim_GlobalSnapshot* g,
-                      UNUSED const Bisim_PlayerSnapshot* p,
-                      const Bisim_FighterSnapshot* f)
+static void cellPort(const Row* r, size_t width)
 {
-    Osd_CellU32(f->msid, 4);
-    Osd_CellF32(f->anim_frame, 6, 2);
-    Osd_CellU32(f->airborne, 3);
-    Osd_CellF32(f->facing_dir, 4, 0);
+    Osd_CellU32((u32) r->port, width);
 }
 
-static void emitPos(UNUSED const Bisim_GlobalSnapshot* g,
-                    UNUSED const Bisim_PlayerSnapshot* p,
-                    const Bisim_FighterSnapshot* f)
+static void cellSub(const Row* r, size_t width)
 {
-    Osd_CellVec3(&f->pos, 7, 2);
+    Osd_CellU32((u32) r->sub, width);
 }
 
-static void emitVel(UNUSED const Bisim_GlobalSnapshot* g,
-                    UNUSED const Bisim_PlayerSnapshot* p,
-                    const Bisim_FighterSnapshot* f)
+static void cellMsid(const Row* r, size_t width)
 {
-    Osd_CellVec3(&f->vel, 7, 3);
+    Osd_CellU32((u32) r->f->msid, width);
 }
 
-static void emitAccel(UNUSED const Bisim_GlobalSnapshot* g,
-                      UNUSED const Bisim_PlayerSnapshot* p,
-                      const Bisim_FighterSnapshot* f)
+static void cellAnim(const Row* r, size_t width)
 {
-    Osd_CellVec3(&f->accel, 7, 3);
+    Osd_CellF32(r->f->anim_frame, width, 2);
 }
 
-static void emitKbVel(UNUSED const Bisim_GlobalSnapshot* g,
-                      UNUSED const Bisim_PlayerSnapshot* p,
-                      const Bisim_FighterSnapshot* f)
+static void cellAirborne(const Row* r, size_t width)
 {
-    Osd_CellVec3(&f->kb_vel, 7, 3);
+    Osd_CellU32((u32) r->f->airborne, width);
+}
+
+static void cellFacing(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->facing_dir, width, 0);
+}
+
+static void cellPosX(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->pos.x, width, 2);
+}
+static void cellPosY(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->pos.y, width, 2);
+}
+static void cellPosZ(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->pos.z, width, 2);
+}
+
+static void cellVelX(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->vel.x, width, 3);
+}
+static void cellVelY(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->vel.y, width, 3);
+}
+static void cellVelZ(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->vel.z, width, 3);
+}
+
+static void cellAccelX(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->accel.x, width, 3);
+}
+static void cellAccelY(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->accel.y, width, 3);
+}
+static void cellAccelZ(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->accel.z, width, 3);
+}
+
+static void cellKbVelX(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->kb_vel.x, width, 3);
+}
+static void cellKbVelY(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->kb_vel.y, width, 3);
+}
+static void cellKbVelZ(const Row* r, size_t width)
+{
+    Osd_CellF32(r->f->kb_vel.z, width, 3);
 }
 
 static char panel_buf[OSD_COLS * OSD_ROWS * 2];
 
 static const Column colsState[] = {
-    { "p", 1 },   { "s", 1 },    { "msid", 4 }, { "anim", 7 },
-    { "air", 3 }, { "face", 4 }, { NULL, 0 },
+    { "p", 1, cellPort },       { "s", 1, cellSub },
+    { "msid", 4, cellMsid },    { "anim", 6, cellAnim },
+    { "air", 3, cellAirborne }, { "face", 4, cellFacing },
+    { NULL, 0, NULL },
 };
 
 static const Column colsPos[] = {
-    { "p", 1 }, { "s", 1 }, { "px", 7 }, { "py", 7 }, { "pz", 7 }, { NULL, 0 },
+    { "p", 1, cellPort },  { "s", 1, cellSub },   { "px", 7, cellPosX },
+    { "py", 7, cellPosY }, { "pz", 7, cellPosZ }, { NULL, 0, NULL },
 };
 
 static const Column colsVel[] = {
-    { "p", 1 }, { "s", 1 }, { "vx", 7 }, { "vy", 7 }, { "vz", 7 }, { NULL, 0 },
+    { "p", 1, cellPort },  { "s", 1, cellSub },   { "vx", 7, cellVelX },
+    { "vy", 7, cellVelY }, { "vz", 7, cellVelZ }, { NULL, 0, NULL },
 };
 
 static const Column colsAccel[] = {
-    { "p", 1 }, { "s", 1 }, { "ax", 7 }, { "ay", 7 }, { "az", 7 }, { NULL, 0 },
+    { "p", 1, cellPort },    { "s", 1, cellSub },     { "ax", 7, cellAccelX },
+    { "ay", 7, cellAccelY }, { "az", 7, cellAccelZ }, { NULL, 0, NULL },
 };
 
 static const Column colsKbVel[] = {
-    { "p", 1 }, { "s", 1 }, { "kx", 7 }, { "ky", 7 }, { "kz", 7 }, { NULL, 0 },
+    { "p", 1, cellPort },    { "s", 1, cellSub },     { "kx", 7, cellKbVelX },
+    { "ky", 7, cellKbVelY }, { "kz", 7, cellKbVelZ }, { NULL, 0, NULL },
 };
 
 static const Page pages[] = {
-    { "state", colsState, emitState }, { "pos", colsPos, emitPos },
-    { "vel", colsVel, emitVel },       { "acc", colsAccel, emitAccel },
-    { "kb", colsKbVel, emitKbVel },
+    { "state", colsState }, { "pos", colsPos },  { "vel", colsVel },
+    { "acc", colsAccel },   { "kb", colsKbVel },
 };
 
 static size_t page_idx = 0;
@@ -120,12 +175,11 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
     size_t s;
 
     Osd_Begin();
-
     Osd_Fmt("frame=%u seed=%08X  %s", g->curr_frame, g->seed, page->title);
 
     Osd_RowBegin();
-    for (c = page->columns; c->label != NULL; c++) {
-        Osd_CellStr(c->label, c->width);
+    for (c = page->columns; c->header != NULL; c++) {
+        Osd_CellStr(c->header, c->width);
     }
     Osd_RowEnd();
 
@@ -137,14 +191,22 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 
         for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
             const Bisim_FighterSnapshot* fs = &ps->fighters[s];
+            Row r;
+
             if (!fs->exists) {
                 continue;
             }
 
+            r.g = g;
+            r.p = ps;
+            r.f = fs;
+            r.port = p;
+            r.sub = s;
+
             Osd_RowBegin();
-            Osd_CellU32(p, 1);
-            Osd_CellU32(s, 1);
-            page->emit(g, ps, fs);
+            for (c = page->columns; c->header != NULL; c++) {
+                c->cell(&r, c->width);
+            }
             Osd_RowEnd();
         }
     }
