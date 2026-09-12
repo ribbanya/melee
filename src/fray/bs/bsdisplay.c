@@ -169,18 +169,52 @@ void BsDisplay_NextPage(void)
 
 void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 {
-    const Page* page = &pages[page_idx];
-    const Column* c;
     size_t p;
     size_t s;
 
     Osd_Begin();
-    Osd_Fmt("frame=%u seed=%08X  %s", g->curr_frame, g->seed, page->title);
 
-    Osd_RowBegin();
-    for (c = page->columns; c->header != NULL; c++) {
-        Osd_CellStr(c->header, c->width);
-    }
+    Osd_Line(U32_MAX, "frame=%u seed=%08X", g->curr_frame, g->seed);
+
+    Osd_RowBegin(1u << BsLayer_State);
+    Osd_CellStr("p", 1);
+    Osd_CellStr("s", 1);
+    Osd_CellStr("msid", 4);
+    Osd_CellStr("anim", 6);
+    Osd_CellStr("air", 3);
+    Osd_CellStr("face", 4);
+    Osd_RowEnd();
+
+    Osd_RowBegin(1u << BsLayer_Pos);
+    Osd_CellStr("p", 1);
+    Osd_CellStr("s", 1);
+    Osd_CellStr("px", 7);
+    Osd_CellStr("py", 7);
+    Osd_CellStr("pz", 7);
+    Osd_RowEnd();
+
+    Osd_RowBegin(1u << BsLayer_Vel);
+    Osd_CellStr("p", 1);
+    Osd_CellStr("s", 1);
+    Osd_CellStr("vx", 7);
+    Osd_CellStr("vy", 7);
+    Osd_CellStr("vz", 7);
+    Osd_RowEnd();
+
+    Osd_RowBegin(1u << BsLayer_Accel);
+    Osd_CellStr("p", 1);
+    Osd_CellStr("s", 1);
+    Osd_CellStr("ax", 7);
+    Osd_CellStr("ay", 7);
+    Osd_CellStr("az", 7);
+    Osd_RowEnd();
+
+    Osd_RowBegin(1u << BsLayer_KbVel);
+    Osd_CellStr("p", 1);
+    Osd_CellStr("s", 1);
+    Osd_CellStr("kx", 7);
+    Osd_CellStr("ky", 7);
+    Osd_CellStr("kz", 7);
     Osd_RowEnd();
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
@@ -191,22 +225,41 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 
         for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
             const Bisim_FighterSnapshot* fs = &ps->fighters[s];
-            Row r;
-
             if (!fs->exists) {
                 continue;
             }
 
-            r.g = g;
-            r.p = ps;
-            r.f = fs;
-            r.port = p;
-            r.sub = s;
+            Osd_RowBegin(1u << BsLayer_State);
+            Osd_CellU32(p, 1);
+            Osd_CellU32(s, 1);
+            Osd_CellU32((u32) fs->msid, 4);
+            Osd_CellF32(fs->anim_frame, 6, 2);
+            Osd_CellU32((u32) fs->airborne, 3);
+            Osd_CellF32(fs->facing_dir, 4, 0);
+            Osd_RowEnd();
 
-            Osd_RowBegin();
-            for (c = page->columns; c->header != NULL; c++) {
-                c->cell(&r, c->width);
-            }
+            Osd_RowBegin(1u << BsLayer_Pos);
+            Osd_CellU32(p, 1);
+            Osd_CellU32(s, 1);
+            Osd_CellVec3(&fs->pos, 7, 2);
+            Osd_RowEnd();
+
+            Osd_RowBegin(1u << BsLayer_Vel);
+            Osd_CellU32(p, 1);
+            Osd_CellU32(s, 1);
+            Osd_CellVec3(&fs->vel, 7, 3);
+            Osd_RowEnd();
+
+            Osd_RowBegin(1u << BsLayer_Accel);
+            Osd_CellU32(p, 1);
+            Osd_CellU32(s, 1);
+            Osd_CellVec3(&fs->accel, 7, 3);
+            Osd_RowEnd();
+
+            Osd_RowBegin(1u << BsLayer_KbVel);
+            Osd_CellU32(p, 1);
+            Osd_CellU32(s, 1);
+            Osd_CellVec3(&fs->kb_vel, 7, 3);
             Osd_RowEnd();
         }
     }
