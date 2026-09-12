@@ -1,6 +1,6 @@
 #include "random.h"
 
-u32 seed = 1;
+static u32 seed = 1;
 u32* seed_ptr = &seed;
 
 s32 HSD_Rand(void)
