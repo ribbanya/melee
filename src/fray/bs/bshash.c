@@ -2,8 +2,6 @@
 
 #include "bshash.h"
 
-#include <string.h>
-
 #define FNV_OFFSET 0x811C9DC5U
 #define FNV_PRIME 0x01000193U
 
