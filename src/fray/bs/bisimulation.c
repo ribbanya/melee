@@ -52,7 +52,7 @@ void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst)
 {
     size_t i;
 
-    dst->seed = *seed_ptr;
+    dst->seed = *HSD_RandSeedPtr;
     dst->curr_frame = gm_GetFrameCount();
 
     for (i = 0; i < GM_MAX_PLAYERS; i++) {
@@ -105,4 +105,16 @@ void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v)
     bsIO_ReadVec3(c, &v->accel);
     bsIO_ReadVec3(c, &v->vel);
     bsIO_ReadVec3(c, &v->kb_vel);
+}
+
+void Bisim_SPrintGlobal(char* s, const Bisim_GlobalSnapshot* v)
+{
+#ifndef __MWERKS__
+    __attribute__((nonstring))
+#endif
+    char const indent_style[2] = "  ";
+    char const max_indent = 3;
+    char indent[(sizeof(indent_style) - 1) * 3];
+    // strcpy();
+    sprintf(s, "{");
 }
