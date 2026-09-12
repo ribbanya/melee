@@ -171,9 +171,7 @@ void Osd_RowBegin(void)
     line[0] = '\0';
 }
 
-// Write `s` padded or truncated to exactly `width` characters, then a space.
-// `right_align` = 0: left-justified. 1: right-justified.
-static void cellPut(const char* s, size_t width, int right_align)
+static void cellPut(const char* s, size_t width)
 {
     size_t n;
     size_t pad;
@@ -184,7 +182,6 @@ static void cellPut(const char* s, size_t width, int right_align)
         return;
     }
 
-    // Would the cell plus a separator fit on this row?
     if (col + width + 1 > cols) {
         return;
     }
@@ -195,33 +192,25 @@ static void cellPut(const char* s, size_t width, int right_align)
     }
     pad = width - n;
 
-    if (right_align) {
-        for (i = 0; i < pad; i++) {
-            line[col++] = ' ';
-        }
-        memcpy(&line[col], s, n);
-        col += n;
-    } else {
-        memcpy(&line[col], s, n);
-        col += n;
-        for (i = 0; i < pad; i++) {
-            line[col++] = ' ';
-        }
+    for (i = 0; i < pad; i++) {
+        line[col++] = ' ';
     }
+    memcpy(&line[col], s, n);
+    col += n;
 
     line[col++] = ' '; // separator
 }
 
 void Osd_CellStr(const char* s, size_t width)
 {
-    cellPut(s, width, 0);
+    cellPut(s, width);
 }
 
 void Osd_CellU32(u32 v, size_t width)
 {
     char tmp[16];
     snprintf(tmp, sizeof(tmp), "%u", v);
-    cellPut(tmp, width, 1);
+    cellPut(tmp, width);
 }
 
 void Osd_CellF32(f32 v, size_t width, size_t decimals)
@@ -240,14 +229,7 @@ void Osd_CellF32(f32 v, size_t width, size_t decimals)
     fmt[4] = '\0';
 
     snprintf(tmp, sizeof(tmp), fmt, (double) v);
-    cellPut(tmp, width, 1);
-}
-
-void Osd_CellVec3(const Vec3* v, size_t width, size_t decimals)
-{
-    Osd_CellF32(v->x, width, decimals);
-    Osd_CellF32(v->y, width, decimals);
-    Osd_CellF32(v->z, width, decimals);
+    cellPut(tmp, width);
 }
 
 void Osd_RowEnd(void)
