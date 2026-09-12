@@ -232,6 +232,13 @@ void Osd_CellF32(f32 v, size_t width, size_t decimals)
     cellPut(tmp, width);
 }
 
+void Osd_CellVec3(const Vec3* v, size_t width, size_t decimals)
+{
+    Osd_CellF32(v->x, width, decimals);
+    Osd_CellF32(v->y, width, decimals);
+    Osd_CellF32(v->z, width, decimals);
+}
+
 void Osd_RowEnd(void)
 {
     flushRow();
