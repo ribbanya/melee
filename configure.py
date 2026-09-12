@@ -568,6 +568,7 @@ config.libs = [
         "lb (Library)",
         [
             Object(Equivalent, "fray/lb/lbqol.c"),
+            Object(Equivalent, "fray/lb/lbosd.c"),
         ],
     ),
     CustomLib(
