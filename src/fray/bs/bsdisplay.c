@@ -4,179 +4,87 @@
 #define OSD_ID 20
 #define OSD_COLS 80
 #define OSD_ROWS 34
-#define OSD_GLYPH_W 8
-#define OSD_GLYPH_H 14
+#define OSD_GLYPH_W 8.0f
+#define OSD_GLYPH_H 14.0f
 
-typedef struct {
-    const Bisim_GlobalSnapshot* g;
-    const Bisim_PlayerSnapshot* p;
-    const Bisim_FighterSnapshot* f;
-    size_t port;
-    size_t sub;
-} Row;
+typedef enum {
+    BsLayer_State = 0,
+    BsLayer_Pos,
+    BsLayer_Vel,
+    BsLayer_Accel,
+    BsLayer_KbVel,
+    BsLayer_Count,
+} BsLayer;
 
-typedef void (*CellFn)(const Row* r, size_t width);
-
-typedef struct {
-    const char* header;
-    size_t width;
-    CellFn cell;
-} Column;
-
-typedef struct {
-    const char* title;
-    const Column* columns;
-} Page;
-
-static void cellPort(const Row* r, size_t width)
-{
-    Osd_CellU32((u32) r->port, width);
-}
-
-static void cellSub(const Row* r, size_t width)
-{
-    Osd_CellU32((u32) r->sub, width);
-}
-
-static void cellMsid(const Row* r, size_t width)
-{
-    Osd_CellU32((u32) r->f->msid, width);
-}
-
-static void cellAnim(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->anim_frame, width, 2);
-}
-
-static void cellAirborne(const Row* r, size_t width)
-{
-    Osd_CellU32((u32) r->f->airborne, width);
-}
-
-static void cellFacing(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->facing_dir, width, 0);
-}
-
-static void cellPosX(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->pos.x, width, 2);
-}
-static void cellPosY(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->pos.y, width, 2);
-}
-static void cellPosZ(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->pos.z, width, 2);
-}
-
-static void cellVelX(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->vel.x, width, 3);
-}
-static void cellVelY(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->vel.y, width, 3);
-}
-static void cellVelZ(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->vel.z, width, 3);
-}
-
-static void cellAccelX(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->accel.x, width, 3);
-}
-static void cellAccelY(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->accel.y, width, 3);
-}
-static void cellAccelZ(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->accel.z, width, 3);
-}
-
-static void cellKbVelX(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->kb_vel.x, width, 3);
-}
-static void cellKbVelY(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->kb_vel.y, width, 3);
-}
-static void cellKbVelZ(const Row* r, size_t width)
-{
-    Osd_CellF32(r->f->kb_vel.z, width, 3);
-}
+typedef enum {
+    BsLayerMask_State = 1 << BsLayer_State,
+    BsLayerMask_Pos = 1 << BsLayer_Pos,
+    BsLayerMask_Vel = 1 << BsLayer_Vel,
+    BsLayerMask_Accel = 1 << BsLayer_Accel,
+    BsLayerMask_KbVel = 1 << BsLayer_KbVel,
+    BsLayerMask_All = BsLayerMask_State | BsLayerMask_Pos | BsLayerMask_Vel |
+                      BsLayerMask_Accel | BsLayerMask_KbVel,
+} BsLayerMask;
 
 static char panel_buf[OSD_COLS * OSD_ROWS * 2];
 
-static const Column colsState[] = {
-    { "p", 1, cellPort },       { "s", 1, cellSub },
-    { "msid", 4, cellMsid },    { "anim", 6, cellAnim },
-    { "air", 3, cellAirborne }, { "face", 4, cellFacing },
-    { NULL, 0, NULL },
-};
+static u32 layersForFighterCount(size_t n)
+{
+    u32 mask = BsLayerMask_All;
 
-static const Column colsPos[] = {
-    { "p", 1, cellPort },  { "s", 1, cellSub },   { "px", 7, cellPosX },
-    { "py", 7, cellPosY }, { "pz", 7, cellPosZ }, { NULL, 0, NULL },
-};
+    if (n > 4) {
+        mask &= ~BsLayerMask_KbVel;
+    }
+    if (n > 6) {
+        mask &= ~BsLayerMask_Accel;
+    }
+    if (n > 8) {
+        mask &= ~BsLayerMask_Vel;
+    }
 
-static const Column colsVel[] = {
-    { "p", 1, cellPort },  { "s", 1, cellSub },   { "vx", 7, cellVelX },
-    { "vy", 7, cellVelY }, { "vz", 7, cellVelZ }, { NULL, 0, NULL },
-};
-
-static const Column colsAccel[] = {
-    { "p", 1, cellPort },    { "s", 1, cellSub },     { "ax", 7, cellAccelX },
-    { "ay", 7, cellAccelY }, { "az", 7, cellAccelZ }, { NULL, 0, NULL },
-};
-
-static const Column colsKbVel[] = {
-    { "p", 1, cellPort },    { "s", 1, cellSub },     { "kx", 7, cellKbVelX },
-    { "ky", 7, cellKbVelY }, { "kz", 7, cellKbVelZ }, { NULL, 0, NULL },
-};
-
-static const Page pages[] = {
-    { "state", colsState }, { "pos", colsPos },  { "vel", colsVel },
-    { "acc", colsAccel },   { "kb", colsKbVel },
-};
-
-static size_t page_idx = 0;
+    return mask;
+}
 
 void BsDisplay_Init(void)
 {
     Osd_Init(OSD_ID, 0, 0, OSD_COLS, OSD_ROWS, OSD_GLYPH_W, OSD_GLYPH_H,
              panel_buf);
-    page_idx = 0;
 }
 
 void BsDisplay_Show(void)
 {
     Osd_Show();
 }
+
 void BsDisplay_Hide(void)
 {
     Osd_Hide();
 }
 
-void BsDisplay_NextPage(void)
-{
-    page_idx = (page_idx + 1) % ARRAY_SIZE(pages);
-}
-
 void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
 {
+    size_t n = 0;
     size_t p;
     size_t s;
 
+    for (p = 0; p < GM_MAX_PLAYERS; p++) {
+        const Bisim_PlayerSnapshot* ps = &g->players[p];
+        if (!ps->exists) {
+            continue;
+        }
+        for (s = 0; s < PL_MAX_SUB_FIGHTERS; s++) {
+            if (ps->fighters[s].exists) {
+                n++;
+            }
+        }
+    }
+
+    Osd_SetLayers(layersForFighterCount(n));
     Osd_Begin();
 
     Osd_Line(U32_MAX, "frame=%u seed=%08X", g->curr_frame, g->seed);
 
-    Osd_RowBegin(1u << BsLayer_State);
+    Osd_RowBegin(BsLayerMask_State);
     Osd_CellStr("p", 1);
     Osd_CellStr("s", 1);
     Osd_CellStr("msid", 4);
@@ -185,7 +93,7 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
     Osd_CellStr("face", 4);
     Osd_RowEnd();
 
-    Osd_RowBegin(1u << BsLayer_Pos);
+    Osd_RowBegin(BsLayerMask_Pos);
     Osd_CellStr("p", 1);
     Osd_CellStr("s", 1);
     Osd_CellStr("px", 7);
@@ -193,7 +101,7 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
     Osd_CellStr("pz", 7);
     Osd_RowEnd();
 
-    Osd_RowBegin(1u << BsLayer_Vel);
+    Osd_RowBegin(BsLayerMask_Vel);
     Osd_CellStr("p", 1);
     Osd_CellStr("s", 1);
     Osd_CellStr("vx", 7);
@@ -201,7 +109,7 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
     Osd_CellStr("vz", 7);
     Osd_RowEnd();
 
-    Osd_RowBegin(1u << BsLayer_Accel);
+    Osd_RowBegin(BsLayerMask_Accel);
     Osd_CellStr("p", 1);
     Osd_CellStr("s", 1);
     Osd_CellStr("ax", 7);
@@ -209,7 +117,7 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
     Osd_CellStr("az", 7);
     Osd_RowEnd();
 
-    Osd_RowBegin(1u << BsLayer_KbVel);
+    Osd_RowBegin(BsLayerMask_KbVel);
     Osd_CellStr("p", 1);
     Osd_CellStr("s", 1);
     Osd_CellStr("kx", 7);
@@ -229,7 +137,7 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
                 continue;
             }
 
-            Osd_RowBegin(1u << BsLayer_State);
+            Osd_RowBegin(BsLayerMask_State);
             Osd_CellU32(p, 1);
             Osd_CellU32(s, 1);
             Osd_CellU32((u32) fs->msid, 4);
@@ -238,25 +146,25 @@ void BsDisplay_Draw(const Bisim_GlobalSnapshot* g)
             Osd_CellF32(fs->facing_dir, 4, 0);
             Osd_RowEnd();
 
-            Osd_RowBegin(1u << BsLayer_Pos);
+            Osd_RowBegin(BsLayerMask_Pos);
             Osd_CellU32(p, 1);
             Osd_CellU32(s, 1);
             Osd_CellVec3(&fs->pos, 7, 2);
             Osd_RowEnd();
 
-            Osd_RowBegin(1u << BsLayer_Vel);
+            Osd_RowBegin(BsLayerMask_Vel);
             Osd_CellU32(p, 1);
             Osd_CellU32(s, 1);
             Osd_CellVec3(&fs->vel, 7, 3);
             Osd_RowEnd();
 
-            Osd_RowBegin(1u << BsLayer_Accel);
+            Osd_RowBegin(BsLayerMask_Accel);
             Osd_CellU32(p, 1);
             Osd_CellU32(s, 1);
             Osd_CellVec3(&fs->accel, 7, 3);
             Osd_RowEnd();
 
-            Osd_RowBegin(1u << BsLayer_KbVel);
+            Osd_RowBegin(BsLayerMask_KbVel);
             Osd_CellU32(p, 1);
             Osd_CellU32(s, 1);
             Osd_CellVec3(&fs->kb_vel, 7, 3);

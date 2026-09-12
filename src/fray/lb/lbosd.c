@@ -8,6 +8,8 @@
 #include <fray/lb/lbosd.h>
 #include <melee/if/textlib.h>
 
+static char* cells;
+
 int snprintf(char* s, size_t n, const char* format, ...)
 {
     va_list ap;
@@ -75,6 +77,7 @@ void Osd_Init(u32 id, u16 x, u16 y, u8 n_cols, u8 n_rows, f32 scale_x,
     col = 0;
     skipping = 0;
 
+    cells = buf;
     text = DevText_Create(id, x, y, n_cols, n_rows, buf);
     FRAY_ASSERT(text != NULL);
 
@@ -252,4 +255,24 @@ void Osd_RowEnd(void)
         return;
     }
     flushRow();
+}
+
+void Osd_Ruler(void)
+{
+    size_t i;
+    char s[2] = { 0, 0 };
+
+    if (!cells) {
+        return;
+    }
+
+    for (i = 0; i < cols; i++) {
+        s[0] = (char) ('A' + (i % 26));
+        cells[(0 * cols + i) * 2] = s[0];
+    }
+
+    for (i = 0; i < rows; i++) {
+        s[0] = (char) ('A' + (i % 26));
+        cells[(i * cols + 0) * 2] = s[0];
+    }
 }

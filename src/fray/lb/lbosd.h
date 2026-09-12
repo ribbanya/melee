@@ -28,5 +28,6 @@ void Osd_CellU32(u32 v, size_t width);
 void Osd_CellF32(f32 v, size_t width, size_t decimals);
 void Osd_CellVec3(const Vec3* v, size_t width, size_t decimals);
 void Osd_RowEnd(void);
+void Osd_Ruler(void);
 
 #endif
