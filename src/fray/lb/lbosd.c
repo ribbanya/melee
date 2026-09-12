@@ -1,10 +1,12 @@
-#include <fray/lb/lbosd.h>
-
-#include <melee/if/textlib.h>
-
+#include <printf.h> // IWYU pragma: keep
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "fray/lb/lbqol.h"
+#include "melee/if/textdraw.h"
+#include <fray/lb/lbosd.h>
+#include <melee/if/textlib.h>
 
 int snprintf(char* s, size_t n, const char* format, ...)
 {
@@ -34,7 +36,9 @@ static GXColor fg_color = { 0xFF, 0xFF, 0xFF, 0x00 };
 
 static void applyColors(void)
 {
-    if (!text) return;
+    if (!text) {
+        return;
+    }
 
     if (bg_color.a == 0) {
         DevText_HideText(text);
@@ -56,11 +60,11 @@ static void setColor(GXColor* dst, u8 r, u8 g, u8 b)
     applyColors();
 }
 
-void Osd_Init(u32 id, int x, int y, size_t n_cols, size_t n_rows,
-              f32 scale_x, f32 scale_y, char* buf)
+void Osd_Init(u32 id, int x, int y, size_t n_cols, size_t n_rows, f32 scale_x,
+              f32 scale_y, char* buf)
 {
-    cols  = n_cols;
-    rows  = n_rows;
+    cols = n_cols;
+    rows = n_rows;
     cells = buf;
 
     text = DevText_Create(id, x, y, n_cols, n_rows, buf);
@@ -72,8 +76,14 @@ void Osd_Init(u32 id, int x, int y, size_t n_cols, size_t n_rows,
     applyColors();
 }
 
-void Osd_Show(void) { Osd_SetAlpha(0xFF); }
-void Osd_Hide(void) { Osd_SetAlpha(0x00); }
+void Osd_Show(void)
+{
+    Osd_SetAlpha(0xFF);
+}
+void Osd_Hide(void)
+{
+    Osd_SetAlpha(0x00);
+}
 
 void Osd_SetAlpha(u8 alpha)
 {
@@ -82,8 +92,14 @@ void Osd_SetAlpha(u8 alpha)
     applyColors();
 }
 
-void Osd_SetBGColor(u8 r, u8 g, u8 b)   { setColor(&bg_color, r, g, b); }
-void Osd_SetTextColor(u8 r, u8 g, u8 b) { setColor(&fg_color, r, g, b); }
+void Osd_SetBGColor(u8 r, u8 g, u8 b)
+{
+    setColor(&bg_color, r, g, b);
+}
+void Osd_SetTextColor(u8 r, u8 g, u8 b)
+{
+    setColor(&fg_color, r, g, b);
+}
 
 void Osd_Begin(void)
 {
@@ -93,8 +109,12 @@ void Osd_Begin(void)
 
 static void putChar(int x, int y, char c)
 {
-    if (x < 0 || y < 0) return;
-    if ((size_t)x >= cols || (size_t)y >= rows) return;
+    if (x < 0 || y < 0) {
+        return;
+    }
+    if ((size_t) x >= cols || (size_t) y >= rows) {
+        return;
+    }
     cells[(y * cols + x) * 2] = c;
 }
 
@@ -127,7 +147,7 @@ static void putRight(int x, int y, size_t width, const char* s)
     if (n >= width) {
         start = x;
     } else {
-        start = x + (int)(width - n);
+        start = x + (int) (width - n);
     }
 
     Osd_PutStr(start, y, s);
@@ -145,21 +165,23 @@ void Osd_PutF32(int x, int y, size_t width, size_t decimals, f32 v)
     char fmt[8];
     char tmp[32];
 
-    if (decimals > 6) decimals = 6;
+    if (decimals > 6) {
+        decimals = 6;
+    }
 
     fmt[0] = '%';
     fmt[1] = '.';
-    fmt[2] = (char)('0' + decimals);
+    fmt[2] = (char) ('0' + decimals);
     fmt[3] = 'f';
     fmt[4] = '\0';
 
-    snprintf(tmp, sizeof(tmp), fmt, (double)v);
+    snprintf(tmp, sizeof(tmp), fmt, (double) v);
     putRight(x, y, width, tmp);
 }
 
 void Osd_PutVec3(int x, int y, size_t width, size_t decimals, const Vec3* v)
 {
-    Osd_PutF32(x,                       y, width, decimals, v->x);
-    Osd_PutF32(x + (int)(width + 1),    y, width, decimals, v->y);
-    Osd_PutF32(x + 2 * (int)(width + 1), y, width, decimals, v->z);
+    Osd_PutF32(x, y, width, decimals, v->x);
+    Osd_PutF32(x + (int) (width + 1), y, width, decimals, v->y);
+    Osd_PutF32(x + 2 * (int) (width + 1), y, width, decimals, v->z);
 }
