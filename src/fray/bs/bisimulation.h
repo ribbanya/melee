@@ -3,9 +3,11 @@
 
 #include <melee/gm/forward.h>
 
+#include "melee/ft/forward.h"
+#include "melee/pl/player.h"
+#include "Runtime/platform.h"
 #include <fray/lb/lbqol.h>
 #include <melee/gm/types.h>
-#include <melee/lb/types.h>
 
 #define BISIM_CLASS (FRAY_CLASS_START + 0)
 #define BISIM_PLINK (FRAY_PLINK_START + 0)
@@ -31,10 +33,36 @@ typedef enum {
     BisimState_Verifying,
 } BisimState;
 
+/// Snapshot of a ::Fighter
 typedef struct {
+    FtMotionId msid;
+    float anim_frame;
+    GroundOrAir airborne;
+    Vec3 pos;
+    Vec3 accel;
+    Vec3 vel;
+    Vec3 kb_vel;
 } Bisim_FighterSnapshot;
+ASSERT_SIZE(Bisim_FighterSnapshot, 60);
 
+/// Snapshot of a ::StaticPlayer
 typedef struct {
+    u8 pkind;
+    Bisim_FighterSnapshot
+        sub_fighters[ARRAY_SIZE(((StaticPlayer*) NULL)->transformed)];
+} Bisim_PlayerSnapshot;
+
+/// Global snapshot common to menus and versus
+typedef struct {
+    u32 seed;
+} Bisim_GameSnapshot;
+
+/// Snapshot specific to versus mode (::GS_VS)
+typedef struct {
+    Bisim_GameSnapshot game;
+    u32 curr_frame;
+    Bisim_PlayerSnapshot players[GM_MAX_PLAYERS];
+    Bisim_FighterSnapshot fighters[GM_MAX_PLAYERS];
 } Bisim_VsSnapshot;
 
 typedef struct {

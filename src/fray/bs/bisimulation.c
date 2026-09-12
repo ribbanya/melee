@@ -13,7 +13,18 @@
 #include <sysdolphin/baselib/gobj.h>
 #include <sysdolphin/baselib/gobjproc.h>
 
-void Bisim_WriteFighter(BsIO_Cursor* c, Fighter* fp) {}
+void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src)
+{
+    dst->msid = src->motion_id;
+    dst->anim_frame = src->cur_anim_frame;
+    dst->airborne = src->ground_or_air;
+    dst->pos = src->cur_pos;
+    dst->accel = src->x74_self_accel;
+    dst->vel = src->self_vel;
+    dst->kb_vel = src->x8c_kb_vel;
+}
+
+void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* fp) {}
 
 u32 Bisim_HashFighter(u32 h, HSD_GObj* gobj)
 {

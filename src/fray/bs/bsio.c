@@ -151,6 +151,11 @@ void bsIO_ReadBytes(BsIO_Cursor* c, void* dst, u32 n)
     c->pos += n;
 }
 
+void bsIO_MemZero(void* dst, u32 n)
+{
+    memset(dst, 0, (size_t) n);
+}
+
 void bsIO_Skip(BsIO_Cursor* c, u32 n)
 {
     c->pos += n;

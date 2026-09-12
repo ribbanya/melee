@@ -1,3 +1,4 @@
+/// @file bsio.h Big-endian serialization for the bisimulation module
 #ifndef FRAY_BS_BSIO_H
 #define FRAY_BS_BSIO_H
 
@@ -18,6 +19,7 @@ u32 bsIO_Remaining(const BsIO_Cursor* c);
 
 u32 bsIO_F32Bits(f32 f);
 void bsIO_Skip(BsIO_Cursor* c, u32 n);
+void bsIO_MemZero(void* dst, u32 n);
 
 u8 bsIO_ReadU8(BsIO_Cursor* c);
 u16 bsIO_ReadU16(BsIO_Cursor* c);
