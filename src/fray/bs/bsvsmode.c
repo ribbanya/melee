@@ -29,19 +29,7 @@ static void onExitRecordOver(GameModeState* state);
 static VsModeData vs_mode_data;
 
 static Bisim_GlobalSnapshot snapshot;
-static Bisim_Archive archive = {
-    {
-        BISIM_MAGIC,
-        sizeof(archive.header),
-        BisimVersion_Current,
-        0,
-        BisimBlob_GlobalSnapshot,
-        0,
-        sizeof(Bisim_GlobalSnapshot),
-        0,
-    },
-    &snapshot,
-};
+static Bisim_Archive archive;
 
 static u32 curr_frame = U32_MAX;
 static u32 end_frame = BISIM_MAX_FRAMES;
@@ -185,6 +173,7 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 {
     start->rules.match_kind = MatchKind_Time;
     start->rules.time_limit = BISIM_MAX_SECONDS;
+    end_frame = BISIM_MAX_SECONDS * GM_FPS;
 }
 
 void onEnterRecordVs(GameModeState* state)
