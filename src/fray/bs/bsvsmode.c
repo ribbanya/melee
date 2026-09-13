@@ -21,6 +21,8 @@
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/random.h>
 
+#define GAME_SPEED 1.0f
+
 static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 
@@ -39,6 +41,7 @@ static Bisim_GlobalBuf curr_snapshot;
 static Bisim_GlobalBuf start_snapshot;
 static Bisim_GlobalBuf end_snapshot;
 static BsIO_Cursor snapshot_cursor;
+static u32 hashes[BISIM_MAX_FRAMES];
 
 enum {
     state_record_vs,
@@ -89,11 +92,14 @@ static void setupSnapshot(void)
     archive.data = &snapshot;
 
     bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
+
+    memset(&hashes, 0, sizeof(hashes));
 }
 
 static void updateSnapshot(void)
 {
     u32 f = gm_GetFrameCount();
+    u32 h;
 
     if (curr_frame == f) {
         return;
@@ -105,9 +111,11 @@ static void updateSnapshot(void)
 
     bsIO_Reset(&snapshot_cursor);
     Bisim_WriteGlobal(&snapshot_cursor, archive.data);
-    archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
 
-    BsDisplay_Draw(archive.data, archive.header.hash);
+    h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
+    archive.header.hash = h;
+    hashes[curr_frame] = h;
+    BsDisplay_Draw(archive.data, h);
 
     if (curr_frame == 0) {
         memcpy(start_snapshot, &snapshot, sizeof(start_snapshot));
@@ -141,7 +149,7 @@ static void initTestMatch(StartMeleeData* start)
 
     rules->stkind = Qol_PickRandomLegalStage(max_stage);
 
-    // rules->game_speed = 0.05f;
+    rules->game_speed = GAME_SPEED;
 
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
