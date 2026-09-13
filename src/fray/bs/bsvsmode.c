@@ -14,7 +14,6 @@
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "melee/gm/gmvs.h"
-#include "sysdolphin/baselib/debug.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -32,7 +31,8 @@ static void onExitRecordOver(GameModeState* state);
 static VsModeData vs_mode_data;
 
 static Bisim_GlobalSnapshot snapshot;
-static Bisim_Archive archive;
+static Bisim_Archive snapshot_archive;
+static Bisim_Archive hashes_archive;
 
 static u32 start_seed;
 static u32 curr_frame;
@@ -79,9 +79,9 @@ GameModeState Replay_RecordStates[] = {
 
 static void setupSnapshot(void)
 {
-    Bisim_ArchiveHeader* hd = &archive.header;
+    Bisim_ArchiveHeader* hd = &snapshot_archive.header;
     hd->magic = BISIM_MAGIC;
-    hd->header_size = sizeof(archive.header);
+    hd->header_size = sizeof(snapshot_archive.header);
     hd->version = BisimVersion_Current;
     hd->reserved = 0;
     hd->hash = 0;
@@ -90,7 +90,7 @@ static void setupSnapshot(void)
     hd->flags = 0;
 
     memset(&snapshot, 0, sizeof(snapshot));
-    archive.data = &snapshot;
+    snapshot_archive.data = &snapshot;
 
     bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 
@@ -108,15 +108,14 @@ static void updateSnapshot(void)
 
     curr_frame = f;
 
-    Bisim_CaptureGlobal(archive.data);
+    Bisim_CaptureGlobal(&snapshot);
 
     bsIO_Reset(&snapshot_cursor);
-    Bisim_WriteGlobal(&snapshot_cursor, archive.data);
+    Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
 
     h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-    archive.header.hash = h;
     hashes[curr_frame] = h;
-    BsDisplay_Draw(archive.data, h);
+    BsDisplay_Draw(&snapshot, h);
 
     if (curr_frame == 0) {
         memcpy(start_snapshot, &snapshot, sizeof(start_snapshot));
@@ -124,16 +123,8 @@ static void updateSnapshot(void)
         size_t i, j;
         const size_t cols = 6;
         memcpy(end_snapshot, &snapshot, sizeof(end_snapshot));
-
-        // TODO: fix remainder
-        for (i = 0; i < ARRAY_SIZE(hashes) / cols; i++) {
-            for (j = 0; j < cols; j++) {
-                OSReport("%08X ", hashes[i * cols + j]);
-            }
-            OSReport("\n");
-        }
-        FRAY_ASSERT(curr_frame <= end_frame);
     }
+    FRAY_ASSERT(curr_frame <= end_frame);
 }
 
 static void onMatchStartRecordVs(void)
