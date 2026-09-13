@@ -1990,14 +1990,7 @@ config.libs = [
 ]
 
 
-def link_order_callback(module_id: int, objects: list[str]) -> list[str]:
-    del module_id
-    if not config.non_matching:
-        return objects
-    return all_objects
-
-
-config.link_order_callback = link_order_callback
+config.link_order_callback = lambda _, o: all_objects if config.non_matching else o
 
 
 # Extra categories for progress tracking
