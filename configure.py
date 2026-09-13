@@ -16,20 +16,16 @@ import argparse
 import json
 import os
 import sys
-from collections.abc import Iterator
 from pathlib import Path
-import traceback
-from typing import cast, Any
+from typing import cast
 
 from tools.project import (
     BuildConfig,
     BuildConfigUnit,
     Library,
-    generate_build_ninja,
-    generate_objdiff_config,
 )
-from tools.project import Object
 from tools.project import (
+    Object,
     ProgressCategory,
     ProjectConfig,
     calculate_progress,
@@ -547,13 +543,11 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
     )
 
 
-Matching = True  # Object matches and should be linked
-NonMatching = False  # Object does not match and should not be linked
-Equivalent = (
-    config.non_matching
-)  # Object should be linked when configured with --non-matching
-Linkable = bool(args.linkable)  # Object is linkable but non-matching
-Debug = bool(args.debug)  # Only link if --debug
+Matching = True
+NonMatching = False
+Equivalent = config.non_matching
+Linkable = bool(args.linkable)
+Debug = bool(args.debug)
 
 
 # Object is only matching for specific versions
