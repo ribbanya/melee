@@ -23,8 +23,6 @@ from tools.project import (
     BuildConfig,
     BuildConfigUnit,
     Library,
-)
-from tools.project import (
     Object,
     ProgressCategory,
     ProjectConfig,
