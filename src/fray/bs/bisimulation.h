@@ -3,6 +3,7 @@
 
 #include <melee/gm/forward.h>
 
+#include "fray/bs/bsarchive.h"
 #include "fray/bs/bsio.h"
 #include "melee/ft/forward.h"
 #include "melee/pl/player.h"
@@ -77,6 +78,21 @@ typedef struct {
     u32 curr_frame;
     Bisim_PlayerSnapshot players[GM_MAX_PLAYERS];
 } Bisim_GlobalSnapshot;
+
+typedef struct {
+    u32 seed;
+    u32 hashes[BISIM_MAX_FRAMES];
+} Bisim_SeededHashes;
+
+typedef struct {
+    Bisim_ArchiveHeader start_snapshot_header;
+    Bisim_GlobalBuf start_snapshot;
+    Bisim_ArchiveHeader seeded_hashes_header;
+    Bisim_SeededHashes seeded_hashes;
+    Bisim_ArchiveHeader end_snapshot_header;
+    Bisim_GlobalBuf end_snapshot;
+    Bisim_ArchiveHeader tail;
+} Bisim_SaveData;
 
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src);
 void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src);
