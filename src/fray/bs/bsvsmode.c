@@ -31,8 +31,10 @@ static VsModeData vs_mode_data;
 static Bisim_GlobalSnapshot snapshot;
 static Bisim_Archive archive;
 
-static u32 curr_frame = U32_MAX;
-static u32 end_frame = BISIM_MAX_FRAMES;
+static u32 start_seed;
+static u32 curr_frame;
+static u32 end_frame;
+
 static Bisim_GlobalBuf curr_snapshot;
 static Bisim_GlobalBuf start_snapshot;
 static Bisim_GlobalBuf end_snapshot;
@@ -173,7 +175,12 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 {
     start->rules.match_kind = MatchKind_Time;
     start->rules.time_limit = BISIM_MAX_SECONDS;
+    curr_frame = U32_MAX;
+    start_seed = *HSD_RandSeedPtr;
     end_frame = BISIM_MAX_SECONDS * GM_FPS;
+
+    REPORT_HEX(start_seed);
+    REPORT_UINT(end_frame);
 }
 
 void onEnterRecordVs(GameModeState* state)
