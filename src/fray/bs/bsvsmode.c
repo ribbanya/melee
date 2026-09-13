@@ -80,34 +80,37 @@ static void setupSnapshot(void)
     bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 }
 
+static void writeSnapshot(Bisim_ArchiveHeader* ah, Bisim_GlobalBuf* dst)
+{
+    bsIO_Init(&snapshot_cursor, (u8*) dst, sizeof(*dst));
+    Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
+    bsArchive_SetHeader(ah, &snapshot_cursor, BisimBlob_GlobalSnapshot, 0);
+    FRAY_ASSERT(snapshot_cursor.err == BsIO_Ok);
+}
+
 static void updateSnapshot(void)
 {
-    u32 f = gm_GetFrameCount();
-    u32 h;
-
-    if (curr_frame == f) {
-        return;
+    {
+        u32 f = gm_GetFrameCount();
+        if (curr_frame == f) {
+            return;
+        }
+        curr_frame = f;
     }
-
-    curr_frame = f;
 
     Bisim_CaptureGlobal(&snapshot);
 
-    bsIO_Reset(&snapshot_cursor);
-    Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
-    FRAY_ASSERT(snapshot_cursor.err == BsIO_Ok);
-
-    h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-    save_data.seeded_hashes.hashes[curr_frame] = h;
-    BsDisplay_Draw(&snapshot, h);
+    {
+        u32 h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
+        save_data.seeded_hashes.hashes[curr_frame] = h;
+        BsDisplay_Draw(&snapshot, h);
+    }
 
     if (curr_frame == 0) {
-        memcpy(save_data.start_snapshot, &snapshot,
-               sizeof(save_data.start_snapshot));
+        writeSnapshot(&save_data.start_snapshot_header,
+                      &save_data.start_snapshot);
     } else if (curr_frame == end_frame) {
-        /// @todo on match end
-        memcpy(save_data.end_snapshot, &snapshot,
-               sizeof(save_data.end_snapshot));
+        writeSnapshot(&save_data.end_snapshot_header, &save_data.end_snapshot);
     }
     FRAY_ASSERT(curr_frame <= end_frame);
 }

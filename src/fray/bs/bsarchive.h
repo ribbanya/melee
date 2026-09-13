@@ -30,6 +30,7 @@ typedef struct {
     u8* data;
 } Bisim_Archive;
 
-void bsArchive_Load(Bisim_Archive* a, BsIO_Cursor* c);
+void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, BsIO_Cursor* c,
+                         BisimBlobType type, u32 flags);
 
 #endif
