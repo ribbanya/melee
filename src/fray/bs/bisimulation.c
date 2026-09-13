@@ -80,7 +80,7 @@ void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* v)
 {
     bsIO_WriteBool(c, v->exists);
     bsIO_WriteU8(c, v->ftkind);
-    bsIO_WriteU16(c, v->msid);
+    bsIO_WriteS16(c, v->msid);
     bsIO_WriteF32(c, v->anim_frame);
     bsIO_WriteBool(c, v->airborne);
     bsIO_WriteS8(c, v->facing_dir);
@@ -99,7 +99,11 @@ void Bisim_WritePlayer(BsIO_Cursor* c, const Bisim_PlayerSnapshot* v)
 
     bsIO_WriteBool(c, v->exists);
     bsIO_WriteU8(c, v->pkind);
+    bsIO_WriteU8(c, v->ckind);
     bsIO_WriteU8(c, v->color);
+    bsIO_WriteS8(c, v->stocks);
+    bsIO_WriteU8(c, v->team);
+    bsIO_WriteU16(c, v->damage);
 
     for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
         Bisim_WriteFighter(c, &v->fighters[i]);
@@ -121,11 +125,45 @@ void Bisim_WriteGlobal(BsIO_Cursor* c, const Bisim_GlobalSnapshot* v)
 void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v)
 {
     v->exists = bsIO_ReadBool(c);
-    v->msid = bsIO_ReadS32(c);
+    v->ftkind = bsIO_ReadU8(c);
+    v->msid = bsIO_ReadS16(c);
     v->anim_frame = bsIO_ReadF32(c);
     v->airborne = bsIO_ReadBool(c);
+    v->facing_dir = bsIO_ReadS8(c);
     bsIO_ReadVec3(c, &v->pos);
     bsIO_ReadVec3(c, &v->accel);
     bsIO_ReadVec3(c, &v->self_vel);
     bsIO_ReadVec3(c, &v->kb_vel);
+    v->buttons = bsIO_ReadU32(c);
+    bsIO_ReadVec2(c, &v->lstick);
+    bsIO_ReadVec2(c, &v->cstick);
+}
+
+void Bisim_ReadPlayer(BsIO_Cursor* c, Bisim_PlayerSnapshot* v)
+{
+    size_t i;
+
+    v->exists = bsIO_ReadBool(c);
+    v->pkind = bsIO_ReadU8(c);
+    v->ckind = bsIO_ReadU8(c);
+    v->color = bsIO_ReadU8(c);
+    v->stocks = bsIO_ReadS8(c);
+    v->team = bsIO_ReadU8(c);
+    v->damage = bsIO_ReadU16(c);
+
+    for (i = 0; i < PL_MAX_SUB_FIGHTERS; i++) {
+        Bisim_ReadFighter(c, &v->fighters[i]);
+    }
+}
+
+void Bisim_ReadGlobal(BsIO_Cursor* c, Bisim_GlobalSnapshot* v)
+{
+    size_t i;
+
+    v->seed = bsIO_ReadU32(c);
+    v->curr_frame = bsIO_ReadU32(c);
+
+    for (i = 0; i < GM_MAX_PLAYERS; i++) {
+        Bisim_ReadPlayer(c, &v->players[i]);
+    }
 }

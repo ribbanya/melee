@@ -217,6 +217,12 @@ f32 bsIO_ReadF32(BsIO_Cursor* c)
     return bsIO_F32Bits(bsIO_ReadU32(c));
 }
 
+void bsIO_ReadVec2(BsIO_Cursor* c, Vec2* dst)
+{
+    dst->x = bsIO_ReadF32(c);
+    dst->y = bsIO_ReadF32(c);
+}
+
 void bsIO_ReadVec3(BsIO_Cursor* c, Vec3* dst)
 {
     dst->x = bsIO_ReadF32(c);

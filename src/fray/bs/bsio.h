@@ -47,6 +47,7 @@ s16 bsIO_ReadS16(BsIO_Cursor* c);
 s32 bsIO_ReadS32(BsIO_Cursor* c);
 int bsIO_ReadBool(BsIO_Cursor* c);
 f32 bsIO_ReadF32(BsIO_Cursor* c);
+void bsIO_ReadVec2(BsIO_Cursor* c, Vec2* dst);
 void bsIO_ReadVec3(BsIO_Cursor* c, Vec3* dst);
 void bsIO_ReadBytes(BsIO_Cursor* c, void* dst, u32 n);
 
