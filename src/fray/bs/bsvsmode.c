@@ -71,9 +71,9 @@ static void onMatchStartRecordVs(void)
 
 static void onFrameEndRecordVs(void)
 {
-    Bisim_CaptureGlobal(&snapshot.data);
-    memset(&sprint_buf, 0, sizeof(sprint_buf));
-    BsDisplay_Draw(&snapshot);
+    // Bisim_CaptureGlobal(&snapshot.data);
+    // memset(&sprint_buf, 0, sizeof(sprint_buf));
+    // BsDisplay_Draw(&snapshot);
 }
 
 /// @todo Load from memcard

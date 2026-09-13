@@ -74,6 +74,7 @@ typedef struct {
     u32 size;
     u32 flags;
 } Bisim_ArchiveHeader;
+ASSERT_SIZE(Bisim_ArchiveHeader, 20);
 
 typedef struct {
     Bisim_ArchiveHeader header;
