@@ -2,11 +2,14 @@
 #include <fray/bs/bsdisplay.h>
 #include <fray/lb/lbosd.h>
 
+#define OSD_CELL_PX_W 8
+#define OSD_CELL_PX_H 12
+
 // From DevText_SetupCObj
-#define OSD_ORTHO_LEFT (-20.0f)
-#define OSD_ORTHO_TOP (-20.0f)
-#define OSD_ORTHO_RIGHT 660.0f
-#define OSD_ORTHO_BOTTOM 500.0f
+#define OSD_ORTHO_LEFT 0.0f
+#define OSD_ORTHO_TOP 0.0f
+#define OSD_ORTHO_RIGHT 640.0f
+#define OSD_ORTHO_BOTTOM 480.0f
 
 #define OSD_ORTHO_W (OSD_ORTHO_RIGHT - OSD_ORTHO_LEFT)
 #define OSD_ORTHO_H (OSD_ORTHO_BOTTOM - OSD_ORTHO_TOP)
@@ -14,16 +17,12 @@
 #define OSD_FB_W 640.0f
 #define OSD_FB_H 480.0f
 
-// Integer visual cell size in pixels. These two are the knobs.
-#define OSD_CELL_PX_W 10
-#define OSD_CELL_PX_H 15
-
 #define OSD_COLS ((int) (OSD_FB_W / OSD_CELL_PX_W)) // 64
 #define OSD_ROWS ((int) (OSD_FB_H / OSD_CELL_PX_H)) // 32
 
 // Convert visual cell size back to ortho units for DevText_SetScale.
-#define OSD_GLYPH_W (OSD_CELL_PX_W * OSD_ORTHO_W / OSD_FB_W) // 10.625
-#define OSD_GLYPH_H (OSD_CELL_PX_H * OSD_ORTHO_H / OSD_FB_H) // 16.25
+#define OSD_GLYPH_W (OSD_CELL_PX_W * OSD_ORTHO_W / OSD_FB_W)
+#define OSD_GLYPH_H (OSD_CELL_PX_H * OSD_ORTHO_H / OSD_FB_H)
 
 #define OSD_ID 20
 #define OSD_ALPHA 0x90

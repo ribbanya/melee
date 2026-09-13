@@ -444,7 +444,6 @@ def Lib(
 
         extra_cflags = cast(list[str], obj.options["extra_cflags"])
         if args.debug and not bool(obj.options.get("force_optimization")):
-            print(obj.name)
             extra_cflags.extend(cflags_debug)
         else:
             extra_cflags.extend(cflags_optimized)
