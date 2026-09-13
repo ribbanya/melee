@@ -283,7 +283,6 @@ config.progress_data_fancy_item = "Event Matches"
 # Can be overridden in libraries or objects
 config.scratch_preset_id = 63
 
-custom_objects = list[str]()
 
 # GC/Wii compiler flags
 cflags_base = [
