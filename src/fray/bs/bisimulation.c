@@ -70,14 +70,6 @@ void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst)
     }
 }
 
-void Bisim_CaptureHash(Bisim_HashedSnapshot* dst)
-{
-    u32 h;
-    Bisim_CaptureGlobal(&dst->snapshot);
-    bsHash_Vec3(u32 h, const Vec3* v)
-    // h = bs
-}
-
 void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* v)
 {
     bsIO_WriteBool(c, v->exists);
