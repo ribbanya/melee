@@ -41,7 +41,7 @@ static u32 end_frame;
 static Bisim_GlobalBuf curr_snapshot;
 static Bisim_GlobalBuf start_snapshot;
 static Bisim_GlobalBuf end_snapshot;
-static BsIO_Cursor snapshot_cursor;
+static BsIO_Cursor cursor;
 static u32 hashes[BISIM_MAX_FRAMES];
 
 enum {
@@ -92,7 +92,7 @@ static void setupSnapshot(void)
     memset(&snapshot, 0, sizeof(snapshot));
     snapshot_archive.data = &snapshot;
 
-    bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
+    bsIO_Init(&cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 
     memset(&hashes, 0, sizeof(hashes));
 }
@@ -110,10 +110,10 @@ static void updateSnapshot(void)
 
     Bisim_CaptureGlobal(&snapshot);
 
-    bsIO_Reset(&snapshot_cursor);
-    Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
+    bsIO_Reset(&cursor);
+    Bisim_WriteGlobal(&cursor, &snapshot);
 
-    h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
+    h = bsHash_Cursor(bsHash_Init(), &cursor);
     hashes[curr_frame] = h;
     BsDisplay_Draw(&snapshot, h);
 

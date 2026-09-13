@@ -79,28 +79,6 @@ typedef struct {
     Bisim_PlayerSnapshot players[GM_MAX_PLAYERS];
 } Bisim_GlobalSnapshot;
 
-typedef enum {
-    BisimBlob_None,
-    BisimBlob_GlobalSnapshot,
-} BisimBlobType;
-
-typedef struct {
-    u32 magic;
-    u8 header_size;
-    u8 version; ///< ::BisimVersion
-    u8 reserved;
-    u8 type;
-    u32 hash;
-    u32 size;
-    u32 flags;
-} Bisim_ArchiveHeader;
-ASSERT_SIZE(Bisim_ArchiveHeader, 20);
-
-typedef struct {
-    Bisim_ArchiveHeader header;
-    void* data;
-} Bisim_Archive;
-
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src);
 void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src);
 void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst);
