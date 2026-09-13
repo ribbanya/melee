@@ -1,5 +1,18 @@
 #include "fray/bs/bsarchive.h"
 
+#include "fray/bs/bisimulation.h"
+#include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 
-void bsArchive_Load(Bisim_Archive* a, BsIO_Cursor* c) {}
+void bsArchive_Save(Bisim_Archive* a, BsIO_Cursor* c, BisimBlobType type,
+                    u32 flags)
+{
+    Bisim_ArchiveHeader* ah = &a->header;
+    ah->magic = BISIM_MAGIC;
+    ah->header_size = sizeof(*ah);
+    ah->version = BisimVersion_Current;
+    ah->type = type;
+    ah->hash = bsHash_Cursor(bsHash_Init(), c);
+    ah->size = c->pos;
+    ah->flags = flags;
+}
