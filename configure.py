@@ -449,6 +449,8 @@ def Lib(
             extra_cflags.append(
                 "-inline auto" if inline is None else f"-inline {inline}"
             )
+        if args.sym == "auto":
+            extra_cflags.append(f"-sym {'off' if obj.completed else 'on'}")
 
     lib = {
         "lib": lib_name,
