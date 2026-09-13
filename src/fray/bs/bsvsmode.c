@@ -102,15 +102,14 @@ static void updateSnapshot(void)
 
     {
         u32 h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-        save_data.seeded_hashes.hashes[curr_frame] = h;
+        save_data.hashes.hashes[curr_frame] = h;
         BsDisplay_Draw(&snapshot, h);
     }
 
     if (curr_frame == 0) {
-        writeSnapshot(&save_data.start_snapshot_header,
-                      &save_data.start_snapshot);
+        writeSnapshot(&save_data.start_header, &save_data.start);
     } else if (curr_frame == end_frame) {
-        writeSnapshot(&save_data.end_snapshot_header, &save_data.end_snapshot);
+        writeSnapshot(&save_data.end_header, &save_data.end);
     }
     FRAY_ASSERT(curr_frame <= end_frame);
 }
@@ -174,10 +173,10 @@ static void onRecordVsStartMelee(StartMeleeData* start,
     start->rules.match_kind = MatchKind_Time;
     start->rules.time_limit = BISIM_MAX_SECONDS;
     curr_frame = U32_MAX;
-    save_data.seeded_hashes.seed = *HSD_RandSeedPtr;
+    save_data.hashes.seed = *HSD_RandSeedPtr;
     end_frame = BISIM_MAX_SECONDS * GM_FPS;
 
-    REPORT_HEX(save_data.seeded_hashes.seed);
+    REPORT_HEX(save_data.hashes.seed);
     REPORT_UINT(end_frame);
 }
 

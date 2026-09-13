@@ -14,4 +14,8 @@ void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, BsIO_Cursor* c,
     ah->hash = bsHash_Cursor(bsHash_Init(), c);
     ah->size = c->pos;
     ah->flags = flags;
+
+    OSReport("%.4s, 0x%X, %d, %d, %08X, %u, %08X\n", &ah->magic,
+             ah->header_size, ah->version, ah->type, ah->hash, ah->size,
+             ah->flags);
 }

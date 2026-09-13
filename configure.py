@@ -580,6 +580,7 @@ config.libs = [
             Object(Equivalent, "fray/bs/bsio.c"),
             Object(Equivalent, "fray/bs/bshash.c"),
             Object(Equivalent, "fray/bs/bsdisplay.c"),
+            Object(Equivalent, "fray/bs/bsarchive.c"),
         ],
     ),
     MeleeLib(

@@ -20,7 +20,7 @@
 
 #define BISIM_FIGHTER_SIZE 0x4E
 #define BISIM_PLAYER_SIZE (0x8 + (BISIM_FIGHTER_SIZE * PL_MAX_SUB_FIGHTERS))
-#define BISIM_GLOBAL_SIZE (0x8 + (BISIM_PLAYER_SIZE + GM_MAX_PLAYERS))
+#define BISIM_GLOBAL_SIZE (0x8 + (BISIM_PLAYER_SIZE * GM_MAX_PLAYERS))
 
 typedef u8 Bisim_FighterBuf[BISIM_FIGHTER_SIZE];
 typedef u8 Bisim_PlayerBuf[BISIM_PLAYER_SIZE];
@@ -85,12 +85,12 @@ typedef struct {
 } Bisim_SeededHashes;
 
 typedef struct {
-    Bisim_ArchiveHeader start_snapshot_header;
-    Bisim_GlobalBuf start_snapshot;
-    Bisim_ArchiveHeader seeded_hashes_header;
-    Bisim_SeededHashes seeded_hashes;
-    Bisim_ArchiveHeader end_snapshot_header;
-    Bisim_GlobalBuf end_snapshot;
+    Bisim_ArchiveHeader start_header;
+    Bisim_GlobalBuf start;
+    Bisim_ArchiveHeader hashes_header;
+    Bisim_SeededHashes hashes;
+    Bisim_ArchiveHeader end_header;
+    Bisim_GlobalBuf end;
     Bisim_ArchiveHeader tail;
 } Bisim_SaveData;
 

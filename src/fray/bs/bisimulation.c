@@ -166,4 +166,6 @@ void Bisim_ReadGlobal(BsIO_Cursor* c, Bisim_GlobalSnapshot* v)
     for (i = 0; i < GM_MAX_PLAYERS; i++) {
         Bisim_ReadPlayer(c, &v->players[i]);
     }
+    REPORT_UINT(c->pos);
+    REPORT_UINT(c->cap);
 }
