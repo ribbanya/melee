@@ -16,6 +16,11 @@
 #define BISIM_USER_DATA_KIND 0
 #define BISIM_MAX_SECONDS 30
 #define BISIM_MAX_FRAMES (BISIM_MAX_SECONDS * GM_FPS)
+#define BISIM_MAGIC 0x47414C53
+
+#define BISIM_FIGHTER_SIZE 0x4E
+#define BISIM_PLAYER_SIZE (0x8 + (BISIM_FIGHTER_SIZE * PL_MAX_SUB_FIGHTERS))
+#define BISIM_GLOBAL_SIZE (0x8 + (BISIM_PLAYER_SIZE + GM_MAX_PLAYERS))
 
 typedef struct {
     u32 seed;
@@ -69,6 +74,10 @@ typedef struct {
     u32 curr_frame;
     Bisim_PlayerSnapshot players[GM_MAX_PLAYERS];
 } Bisim_GlobalSnapshot;
+
+typedef enum {
+    BisimBlob_GlobalSnapshot,
+} BisimBlobType;
 
 typedef struct {
     u32 magic;

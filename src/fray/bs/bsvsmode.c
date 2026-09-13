@@ -7,8 +7,11 @@
 #include <melee/mn/forward.h>
 #include <melee/pl/forward.h>
 
+#include <string.h>
+
 #include "bisimulation.h"
 #include "bsdisplay.h"
+#include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "sysdolphin/baselib/gobjproc.h"
 #include <dolphin/types.h>
@@ -27,8 +30,24 @@ static void onExitRecordOver(GameModeState* state);
 static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
 static HSD_GObj* replay_gobj;
-static Bisim_Archive snapshot;
-static char sprint_buf[0x400];
+
+static Bisim_GlobalSnapshot snapshot;
+static Bisim_Archive archive = {
+    {
+        BISIM_MAGIC,
+        sizeof(archive.header),
+        BisimVersion_Current,
+        0,
+        0,
+        BisimBlob_GlobalSnapshot,
+        sizeof(Bisim_GlobalSnapshot),
+        0,
+    },
+    &snapshot,
+};
+
+static u8 snapshot_buf[BISIM_GLOBAL_SIZE];
+static BsIO_Cursor snapshot_cursor;
 
 enum {
     state_record_vs,
@@ -63,17 +82,40 @@ GameModeState Replay_RecordStates[] = {
     { GM_GAMEMODESTATE_TERMINATE },
 };
 
+static void setupSnapshot(void)
+{
+    Bisim_ArchiveHeader* hd = &archive.header;
+    hd->magic = BISIM_MAGIC;
+    hd->header_size = sizeof(archive.header);
+    hd->version = BisimVersion_Current;
+    hd->reserved = 0;
+    hd->hash = 0;
+    hd->type = BisimBlob_GlobalSnapshot;
+    hd->size = sizeof(Bisim_GlobalSnapshot);
+    hd->flags = 0;
+
+    memset(&snapshot, 0, sizeof(snapshot));
+    archive.data = &snapshot;
+
+    bsIO_Init(&snapshot_cursor, (u8*) &snapshot_buf, sizeof(snapshot_buf));
+}
+
 static void onMatchStartRecordVs(void)
 {
+    setupSnapshot();
     BsDisplay_Init();
     BsDisplay_Show();
 }
 
 static void onFrameEndRecordVs(void)
 {
-    // Bisim_CaptureGlobal(&snapshot.data);
-    // memset(&sprint_buf, 0, sizeof(sprint_buf));
-    // BsDisplay_Draw(&snapshot);
+    Bisim_CaptureGlobal(archive.data);
+
+    bsIO_Reset(&snapshot_cursor);
+    Bisim_WriteGlobal(&snapshot_cursor, archive.data);
+    archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
+
+    BsDisplay_Draw(&archive);
 }
 
 /// @todo Load from memcard
