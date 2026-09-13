@@ -22,6 +22,10 @@
 #define BISIM_PLAYER_SIZE (0x8 + (BISIM_FIGHTER_SIZE * PL_MAX_SUB_FIGHTERS))
 #define BISIM_GLOBAL_SIZE (0x8 + (BISIM_PLAYER_SIZE + GM_MAX_PLAYERS))
 
+typedef u8 Bisim_FighterBuf[BISIM_FIGHTER_SIZE];
+typedef u8 Bisim_PlayerBuf[BISIM_PLAYER_SIZE];
+typedef u8 Bisim_GlobalBuf[BISIM_GLOBAL_SIZE];
+
 typedef struct {
     u32 seed;
     VsModeData vs;

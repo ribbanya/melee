@@ -70,7 +70,8 @@ static const RowCol vecRow[] = {
 
 static char panel_buf[OSD_COLS * OSD_ROWS * 2];
 
-static Bisim_Archive archive;
+static u32 hash;
+static const Bisim_GlobalSnapshot* snapshot;
 static const RowCol* row;
 static u32 layers;
 static int y;
@@ -96,18 +97,12 @@ static const char* pkindName(Gm_PKind pkind)
     }
 }
 
-static Bisim_GlobalSnapshot* getGlobal(void)
-{
-    Bisim_GlobalSnapshot* gs = archive.data;
-    return gs;
-}
-
 static size_t countFighters(void)
 {
     size_t n = 0, i, j;
 
     for (i = 0; i < GM_MAX_PLAYERS; i++) {
-        const Bisim_PlayerSnapshot* ps = &getGlobal()->players[i];
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[i];
         if (!ps->exists) {
             continue;
         }
@@ -182,8 +177,8 @@ static void drawGlobal(void)
         return;
     }
 
-    Osd_PutFmt(0, y, "frame=%u seed=%08X hash=%08X", getGlobal()->curr_frame,
-               getGlobal()->seed, archive.header.hash);
+    Osd_PutFmt(0, y, "frame=%u seed=%08X hash=%08X", snapshot->curr_frame,
+               snapshot->seed, hash);
     y++;
 }
 
@@ -203,7 +198,7 @@ static void drawPlayers(void)
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
-        const Bisim_PlayerSnapshot* ps = &getGlobal()->players[p];
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
         if (!ps->exists) {
             continue;
         }
@@ -238,7 +233,7 @@ static void drawState(void)
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
-        const Bisim_PlayerSnapshot* ps = &getGlobal()->players[p];
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
         if (!ps->exists) {
             continue;
         }
@@ -280,7 +275,7 @@ static void drawDynamics(void)
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
-        const Bisim_PlayerSnapshot* ps = &getGlobal()->players[p];
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
         if (!ps->exists) {
             continue;
         }
@@ -320,7 +315,7 @@ static void drawImpulse(void)
     y++;
 
     for (p = 0; p < GM_MAX_PLAYERS; p++) {
-        const Bisim_PlayerSnapshot* ps = &getGlobal()->players[p];
+        const Bisim_PlayerSnapshot* ps = &snapshot->players[p];
         if (!ps->exists) {
             continue;
         }
@@ -364,9 +359,10 @@ void BsDisplay_NextPage(void)
     page = (page + 1) % pages;
 }
 
-void BsDisplay_Draw(const Bisim_Archive* global_archive)
+void BsDisplay_Draw(const Bisim_GlobalSnapshot* gs, u32 h)
 {
-    archive = *global_archive;
+    hash = h;
+    snapshot = gs;
     layers = layersForFighterCount(countFighters());
     y = 0;
 

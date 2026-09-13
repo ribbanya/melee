@@ -7,6 +7,6 @@ void BsDisplay_Init(void);
 void BsDisplay_Show(void);
 void BsDisplay_Hide(void);
 void BsDisplay_NextPage(void);
-void BsDisplay_Draw(const Bisim_Archive* g);
+void BsDisplay_Draw(const Bisim_GlobalSnapshot* gs, u32 h);
 
 #endif

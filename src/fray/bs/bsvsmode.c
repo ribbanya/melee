@@ -13,7 +13,7 @@
 #include "bsdisplay.h"
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
-#include "sysdolphin/baselib/gobjproc.h"
+#include "melee/if/textlib.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -23,13 +23,10 @@
 
 static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
-static void onEnterPlaybackVs(GameModeState* state);
-static void onExitPlaybackVs(GameModeState* state);
 
+static void onEnterRecordOver(GameModeState* state);
 static void onExitRecordOver(GameModeState* state);
-static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
-static HSD_GObj* replay_gobj;
 
 static Bisim_GlobalSnapshot snapshot;
 static Bisim_Archive archive = {
@@ -46,7 +43,9 @@ static Bisim_Archive archive = {
     &snapshot,
 };
 
-static u8 snapshot_buf[BISIM_GLOBAL_SIZE];
+static Bisim_GlobalBuf curr_snapshot;
+static Bisim_GlobalBuf start_snapshot;
+static Bisim_GlobalBuf end_snapshot;
 static BsIO_Cursor snapshot_cursor;
 
 enum {
@@ -60,7 +59,7 @@ GameModeState Replay_RecordStates[] = {
         lbDvdPreload_2,
         0,
         onEnterRecordVs,
-        NULL,
+        onExitRecordVs,
         {
             GS_VS,
             &gmVsMelee_StartData,
@@ -70,7 +69,7 @@ GameModeState Replay_RecordStates[] = {
     { state_record_over,
       lbDvdPreload_2,
       0,
-      NULL,
+      onEnterRecordOver,
       onExitRecordOver,
       {
           GS_COMING_SOON,
@@ -97,7 +96,7 @@ static void setupSnapshot(void)
     memset(&snapshot, 0, sizeof(snapshot));
     archive.data = &snapshot;
 
-    bsIO_Init(&snapshot_cursor, (u8*) &snapshot_buf, sizeof(snapshot_buf));
+    bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 }
 
 static void onMatchStartRecordVs(void)
@@ -115,7 +114,7 @@ static void onFrameEndRecordVs(void)
     Bisim_WriteGlobal(&snapshot_cursor, archive.data);
     archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
 
-    BsDisplay_Draw(&archive);
+    BsDisplay_Draw(archive.data, archive.header.hash);
 }
 
 /// @todo Load from memcard
@@ -130,7 +129,7 @@ static void initTestMatch(StartMeleeData* start)
 
     rules->stkind = Qol_PickRandomLegalStage(max_stage);
 
-    // rules->game_speed = 0.25f;
+    // rules->game_speed = 0.05f;
 
     rules->on_unpause_override = gm_80165290;
     rules->on_match_start = onMatchStartRecordVs;
@@ -224,9 +223,16 @@ void onEnterRecordVs(GameModeState* state)
     gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
 }
 
-void onEnterPlaybackVs(GameModeState* state) {}
+void onExitRecordVs(GameModeState* state)
+{
+    gmVsMelee_ExitVs(state, state_record_over, state_record_over);
+}
 
-void onExitRecordVs(UNUSED GameModeState* state) {}
-void onExitPlaybackVs(UNUSED GameModeState* state) {}
+void onEnterRecordOver(UNUSED GameModeState* state)
+{
+    // BsDisplay_Init();
+    // BsDisplay_Show();
+    // BsDisplay_Draw(&archive);
+}
 
-void onExitRecordOver(GameModeState* state) {}
+void onExitRecordOver(UNUSED GameModeState* state) {}
