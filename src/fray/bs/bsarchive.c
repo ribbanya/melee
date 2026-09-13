@@ -8,7 +8,7 @@ void bsArchive_Save(Bisim_Archive* a, BsIO_Cursor* c, BisimBlobType type,
                     u32 flags)
 {
     Bisim_ArchiveHeader* ah = &a->header;
-    ah->magic = BISIM_MAGIC;
+    ah->magic = BISIM_ARCHIVE_MAGIC;
     ah->header_size = sizeof(*ah);
     ah->version = BisimVersion_Current;
     ah->type = type;

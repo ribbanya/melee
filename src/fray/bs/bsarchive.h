@@ -5,7 +5,7 @@
 #include "Runtime/platform.h"
 #include <dolphin/types.h>
 
-#define BISIM_MAGIC 0x47414C53
+#define BISIM_ARCHIVE_MAGIC 0x47414C53
 
 typedef enum {
     BisimBlob_None,

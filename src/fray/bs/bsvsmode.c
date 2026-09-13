@@ -81,7 +81,7 @@ GameModeState Replay_RecordStates[] = {
 static void setupSnapshot(void)
 {
     Bisim_ArchiveHeader* hd = &snapshot_archive.header;
-    hd->magic = BISIM_MAGIC;
+    hd->magic = BISIM_ARCHIVE_MAGIC;
     hd->header_size = sizeof(snapshot_archive.header);
     hd->version = BisimVersion_Current;
     hd->reserved = 0;
