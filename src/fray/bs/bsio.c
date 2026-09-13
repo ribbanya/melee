@@ -19,8 +19,7 @@ void bsIO_Init(BsIO_Cursor* c, u8* buf, u32 cap)
 {
     c->buf = buf;
     c->cap = cap;
-    c->pos = 0;
-    c->err = BsIO_Ok;
+    bsIO_Reset(c);
 }
 
 u32 bsIO_Len(const BsIO_Cursor* c)
