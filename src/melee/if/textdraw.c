@@ -172,10 +172,10 @@ void DevText_SetupCObj(void)
         float roll = 0;
         float near = 0;
         float far = 2;
-        float top = 0;
-        float bottom = 480;
-        float left = 0;
-        float right = 640;
+        float top = -20;
+        float bottom = 500;
+        float left = -20;
+        float right = 660;
 
         viewport.xmin = 0;
         viewport.xmax = 640;
