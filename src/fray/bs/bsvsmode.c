@@ -43,7 +43,8 @@ static Bisim_Archive archive = {
     &snapshot,
 };
 
-static u32 curr_frame = 0;
+static u32 curr_frame = U32_MAX;
+static u32 end_frame = BISIM_MAX_FRAMES;
 static Bisim_GlobalBuf curr_snapshot;
 static Bisim_GlobalBuf start_snapshot;
 static Bisim_GlobalBuf end_snapshot;
@@ -104,6 +105,12 @@ static void updateSnapshot(void)
 {
     u32 f = gm_GetFrameCount();
 
+    if (curr_frame == f) {
+        return;
+    }
+
+    curr_frame = f;
+
     Bisim_CaptureGlobal(archive.data);
 
     bsIO_Reset(&snapshot_cursor);
@@ -111,6 +118,13 @@ static void updateSnapshot(void)
     archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
 
     BsDisplay_Draw(archive.data, archive.header.hash);
+
+    if (curr_frame == 0) {
+        memcpy(start_snapshot, &snapshot, sizeof(start_snapshot));
+    } else if (curr_frame == end_frame) {
+        memcpy(end_snapshot, &snapshot, sizeof(end_snapshot));
+    }
+    FRAY_ASSERT(curr_frame <= end_frame);
 }
 
 static void onMatchStartRecordVs(void)
@@ -158,7 +172,6 @@ void Replay_Mode_OnInit(void)
     Qol_LogInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
-    // ReplayCard_Init();
     gm_InitVsMode(&vs_mode_data);
     initTestMatch(&vs_mode_data.start);
 }
@@ -172,59 +185,7 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 {
     start->rules.match_kind = MatchKind_Time;
     start->rules.time_limit = BISIM_MAX_SECONDS;
-    //         gm_SetupRulesDefaults(rules);
-    // initTestMatch(&vs_mode_data);
 }
-
-// static void prepMatch(GameModeState* state)
-// {
-//     StartMeleeData* start = gm_GetGameModeStateEnterData(state);
-//     size_t i;
-
-//     {
-//         StartMeleeRules* rules = &start->rules;
-//         gm_SetupRulesDefaults(rules);
-//         rules->stkind = St_Kind_Last;
-//         rules->xB = -1;
-//         rules->xC = -1;
-//         rules->timer_enabled = true;
-//         rules->time_limit = BISIM_MAX_SECONDS;
-//         rules->match_kind = MatchKind_Stock;
-//         rules->game_speed = 0.25f;
-
-//         /// @todo Handle via gobj
-//         rules->on_match_start = onMatchStartRecordVs;
-//         /// @todo Handle via replay gobj, ::fighter_alloc_data
-// rules->on_frame_end = onFrameEndRecordVs;
-//     }
-
-//     for (i = 0; i < Gm_Player_NumMax; i++) {
-//         PlayerInitData* player = &start->players[i];
-//         gm_SetupPlayerDefaults(player);
-
-//         if (i < ARRAY_SIZE(fighter_init)) {
-//             ReplayFighterDesc const* fighter = &fighter_init[i];
-//             player->ckind = fighter->ckind;
-//             player->color = fighter->color;
-//             player->slot = fighter->slot;
-//             player->spawn_pos = fighter->spawn_pos;
-//             player->slot_type =
-//                 fighter->is_cpu ? Gm_PKind_Cpu : Gm_PKind_Human;
-//             player->cpu_level = 9;
-//             player->damage = 100;
-//             player->stocks = 1;
-//         } else if (i < PAD_MAX_CONTROLLERS) {
-//             player->cpu_kind = CpuKind_4;
-//             player->slot_type = Gm_PKind_NA;
-//             player->rumble_enabled = false;
-//         }
-//     }
-
-//     clearReplay();
-//     setSeed(BISIM_SEED);
-//     gm_LoadAnnouncer();
-//     gm_SetupSubColors(start);
-// }
 
 void onEnterRecordVs(GameModeState* state)
 {
