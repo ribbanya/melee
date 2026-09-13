@@ -285,8 +285,6 @@ config.scratch_preset_id = 63
 
 # GC/Wii compiler flags
 cflags_base = [
-    # "-O4,p",
-    # "-inline auto",
     "-nowraplines",
     "-cwd source",
     "-Cpp_exceptions off",
