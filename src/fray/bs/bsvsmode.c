@@ -88,6 +88,14 @@ static void writeSnapshot(Bisim_ArchiveHeader* ah, Bisim_GlobalBuf* dst)
     FRAY_ASSERT(snapshot_cursor.err == BsIO_Ok);
 }
 
+static void writeRecording(Bisim_ArchiveHeader* ah, Bisim_SeededHashes* dst)
+{
+    bsIO_Init(&snapshot_cursor, (u8*) dst, sizeof(*dst));
+    snapshot_cursor.pos += sizeof(*dst);
+    bsArchive_SetHeader(ah, &snapshot_cursor, BisimBlob_SeededHashes, 0);
+    FRAY_ASSERT(snapshot_cursor.err == BsIO_Ok);
+}
+
 static void updateSnapshot(void)
 {
     {
@@ -102,7 +110,7 @@ static void updateSnapshot(void)
 
     {
         u32 h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-        save_data.hashes.hashes[curr_frame] = h;
+        save_data.history.hashes[curr_frame] = h;
         BsDisplay_Draw(&snapshot, h);
     }
 
@@ -110,6 +118,7 @@ static void updateSnapshot(void)
         writeSnapshot(&save_data.start_header, &save_data.start);
     } else if (curr_frame == end_frame) {
         writeSnapshot(&save_data.end_header, &save_data.end);
+        writeRecording(&save_data.history_header, &save_data.history);
     }
     FRAY_ASSERT(curr_frame <= end_frame);
 }
@@ -137,7 +146,6 @@ static void initTestMatch(StartMeleeData* start)
     size_t i;
 
     rules->stkind = Qol_PickRandomLegalStage(max_stage);
-
     rules->game_speed = GAME_SPEED;
 
     rules->on_unpause_override = gm_80165290;
@@ -173,10 +181,10 @@ static void onRecordVsStartMelee(StartMeleeData* start,
     start->rules.match_kind = MatchKind_Time;
     start->rules.time_limit = BISIM_MAX_SECONDS;
     curr_frame = U32_MAX;
-    save_data.hashes.seed = *HSD_RandSeedPtr;
+    save_data.history.seed = *HSD_RandSeedPtr;
     end_frame = BISIM_MAX_SECONDS * GM_FPS;
 
-    REPORT_HEX(save_data.hashes.seed);
+    REPORT_HEX(save_data.history.seed);
     REPORT_UINT(end_frame);
 }
 

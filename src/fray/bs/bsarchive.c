@@ -4,7 +4,7 @@
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 
-void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, BsIO_Cursor* c,
+void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, const BsIO_Cursor* c,
                          BisimBlobType type, u32 flags)
 {
     ah->magic = BISIM_ARCHIVE_MAGIC;
@@ -15,7 +15,7 @@ void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, BsIO_Cursor* c,
     ah->size = c->pos;
     ah->flags = flags;
 
-    OSReport("%.4s, 0x%X, %d, %d, %08X, %u, %08X\n", &ah->magic,
+    OSReport("%.4s, 0x%X, %d, %d, 0x%08X, %u, 0x%08X\n", &ah->magic,
              ah->header_size, ah->version, ah->type, ah->hash, ah->size,
              ah->flags);
 }

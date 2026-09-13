@@ -87,8 +87,8 @@ typedef struct {
 typedef struct {
     Bisim_ArchiveHeader start_header;
     Bisim_GlobalBuf start;
-    Bisim_ArchiveHeader hashes_header;
-    Bisim_SeededHashes hashes;
+    Bisim_ArchiveHeader history_header;
+    Bisim_SeededHashes history;
     Bisim_ArchiveHeader end_header;
     Bisim_GlobalBuf end;
     Bisim_ArchiveHeader tail;
