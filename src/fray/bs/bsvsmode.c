@@ -27,7 +27,7 @@ static void onExitRecordOver(GameModeState* state);
 static ReplaySetupData setup_data;
 static VsModeData vs_mode_data;
 static HSD_GObj* replay_gobj;
-static Bisim_GlobalSnapshot snapshot;
+static Bisim_Archive snapshot;
 static char sprint_buf[0x400];
 
 enum {
@@ -71,9 +71,8 @@ static void onMatchStartRecordVs(void)
 
 static void onFrameEndRecordVs(void)
 {
-    Bisim_CaptureGlobal(&snapshot);
-    bsIO_MemZero(&sprint_buf, sizeof(sprint_buf));
-    Bisim_SPrintGlobal((char*) &sprint_buf, &snapshot);
+    Bisim_CaptureGlobal(&snapshot.data);
+    memset(&sprint_buf, 0, sizeof(sprint_buf));
     BsDisplay_Draw(&snapshot);
 }
 

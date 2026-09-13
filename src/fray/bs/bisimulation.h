@@ -65,18 +65,21 @@ typedef struct {
 } Bisim_GlobalSnapshot;
 
 typedef struct {
+    u32 magic;
+    u8 header_size;
+    u8 version; ///< ::BisimVersion
+    u8 reserved;
+    u8 type;
     u32 hash;
-    Bisim_GlobalSnapshot snapshot;
-} Bisim_HashedSnapshot;
+    u32 size;
+    u32 flags;
+} Bisim_ArchiveHeader;
 
 typedef struct {
-    u32 seed;
-    BisimState state; ///< ::ReplayState
-    u32 curr_frame;
-    u32 hashes[BISIM_MAX_FRAMES];
-} Replayer;
+    Bisim_ArchiveHeader header;
+    void* data;
+} Bisim_Archive;
 
-void Bisim_SPrintGlobal(char* s, const Bisim_GlobalSnapshot* v);
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src);
 void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src);
 void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst);

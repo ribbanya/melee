@@ -2,7 +2,6 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "fray/lb/lbqol.h"
 #include "melee/ft/forward.h"
@@ -11,13 +10,11 @@
 #include "melee/pl/player.h"
 #include "sysdolphin/baselib/random.h"
 #include <melee/ft/types.h>
-#include <sysdolphin/baselib/gobj.h>
-#include <sysdolphin/baselib/gobjproc.h>
 
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src)
 {
     if (!src) {
-        bsIO_MemZero(dst, sizeof(*dst));
+        memset(dst, 0, sizeof(*dst));
         return;
     }
 
@@ -36,7 +33,7 @@ void Bisim_CapturePlayer(Bisim_PlayerSnapshot* dst, const StaticPlayer* src)
     size_t i;
 
     if (!src) {
-        bsIO_MemZero(dst, sizeof(*dst));
+        memset(dst, 0, sizeof(*dst));
         return;
     }
 
