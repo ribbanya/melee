@@ -65,6 +65,11 @@ typedef struct {
 } Bisim_GlobalSnapshot;
 
 typedef struct {
+    u32 hash;
+    Bisim_GlobalSnapshot snapshot;
+} Bisim_HashedSnapshot;
+
+typedef struct {
     u32 seed;
     BisimState state; ///< ::ReplayState
     u32 curr_frame;

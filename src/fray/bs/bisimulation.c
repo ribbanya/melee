@@ -2,6 +2,7 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
+#include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "fray/lb/lbqol.h"
 #include "melee/ft/forward.h"
@@ -69,6 +70,14 @@ void Bisim_CaptureGlobal(Bisim_GlobalSnapshot* dst)
     }
 }
 
+void Bisim_CaptureHash(Bisim_HashedSnapshot* dst)
+{
+    u32 h;
+    Bisim_CaptureGlobal(&dst->snapshot);
+    bsHash_Vec3(u32 h, const Vec3* v)
+    // h = bs
+}
+
 void Bisim_WriteFighter(BsIO_Cursor* c, const Bisim_FighterSnapshot* v)
 {
     bsIO_WriteBool(c, v->exists);
@@ -116,38 +125,4 @@ void Bisim_ReadFighter(BsIO_Cursor* c, Bisim_FighterSnapshot* v)
     bsIO_ReadVec3(c, &v->accel);
     bsIO_ReadVec3(c, &v->vel);
     bsIO_ReadVec3(c, &v->kb_vel);
-}
-
-void Bisim_SPrintGlobal(char* s, const Bisim_GlobalSnapshot* v)
-{
-    size_t i;
-    s += sprintf(s,
-                 "seed: %08X"
-                 "\ncurr_frame: %u",
-                 v->seed, v->curr_frame);
-    for (i = 0; i < GM_MAX_PLAYERS; i++) {
-        size_t j;
-        const Bisim_PlayerSnapshot* pv = &v->players[i];
-        if (!pv->exists) {
-            continue;
-        }
-        s += sprintf(s,
-                     "\nplayer[%u]:"
-                     "\n\tpkind: %u"
-                     "\n\tcolor: %u"
-                     "\n\tport: %u",
-                     i, pv->pkind, pv->color, pv->port);
-        for (j = 0; j < PL_MAX_SUB_FIGHTERS; j++) {
-            const Bisim_FighterSnapshot* fv = &pv->fighters[j];
-            if (!fv->exists) {
-                continue;
-            }
-            s += sprintf(s,
-                         "\nfighter[%u]:"
-                         "\n\t\tmsid: %d"
-                         "\n\t\tairborne: %d"
-                         "\n\t\tfacing_dir: %+.0f",
-                         j, fv->msid, fv->airborne, fv->facing_dir);
-        }
-    }
 }
