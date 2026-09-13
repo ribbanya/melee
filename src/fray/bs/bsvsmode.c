@@ -13,7 +13,7 @@
 #include "bsdisplay.h"
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
-#include "melee/if/textlib.h"
+#include "melee/gm/gmvs.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -35,14 +35,15 @@ static Bisim_Archive archive = {
         sizeof(archive.header),
         BisimVersion_Current,
         0,
-        0,
         BisimBlob_GlobalSnapshot,
+        0,
         sizeof(Bisim_GlobalSnapshot),
         0,
     },
     &snapshot,
 };
 
+static u32 curr_frame = 0;
 static Bisim_GlobalBuf curr_snapshot;
 static Bisim_GlobalBuf start_snapshot;
 static Bisim_GlobalBuf end_snapshot;
@@ -99,6 +100,19 @@ static void setupSnapshot(void)
     bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 }
 
+static void updateSnapshot(void)
+{
+    u32 f = gm_GetFrameCount();
+
+    Bisim_CaptureGlobal(archive.data);
+
+    bsIO_Reset(&snapshot_cursor);
+    Bisim_WriteGlobal(&snapshot_cursor, archive.data);
+    archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
+
+    BsDisplay_Draw(archive.data, archive.header.hash);
+}
+
 static void onMatchStartRecordVs(void)
 {
     setupSnapshot();
@@ -108,13 +122,7 @@ static void onMatchStartRecordVs(void)
 
 static void onFrameEndRecordVs(void)
 {
-    Bisim_CaptureGlobal(archive.data);
-
-    bsIO_Reset(&snapshot_cursor);
-    Bisim_WriteGlobal(&snapshot_cursor, archive.data);
-    archive.header.hash = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-
-    BsDisplay_Draw(archive.data, archive.header.hash);
+    updateSnapshot();
 }
 
 /// @todo Load from memcard

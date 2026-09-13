@@ -80,6 +80,7 @@ typedef struct {
 } Bisim_GlobalSnapshot;
 
 typedef enum {
+    BisimBlob_None,
     BisimBlob_GlobalSnapshot,
 } BisimBlobType;
 
