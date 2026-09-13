@@ -288,7 +288,7 @@ static void drawDynamics(void)
             putU32(p);
             putU32(s);
             putVec(&fs->pos, decimals);
-            putVec(&fs->vel, decimals);
+            putVec(&fs->self_vel, decimals);
             y++;
         }
     }

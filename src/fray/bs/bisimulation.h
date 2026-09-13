@@ -37,23 +37,29 @@ typedef enum {
 /// Snapshot of a ::Fighter
 typedef struct {
     bool exists;
+    FighterKind ftkind;
     FtMotionId msid;
     float anim_frame;
     GroundOrAir airborne;
-    f32 facing_dir;
+    int facing_dir;
     Vec3 pos;
     Vec3 accel;
-    Vec3 vel;
+    Vec3 self_vel;
     Vec3 kb_vel;
+    HSD_Pad buttons;
+    Vec2 lstick;
+    Vec2 cstick;
 } Bisim_FighterSnapshot;
-ASSERT_SIZE(Bisim_FighterSnapshot, 68);
 
 /// Snapshot of a ::StaticPlayer
 typedef struct {
     bool exists;
     Gm_PKind pkind;
+    CharacterKind ckind;
     u8 color;
-    u8 port;
+    s8 stocks;
+    u8 team;
+    u16 damage;
     Bisim_FighterSnapshot fighters[PL_MAX_SUB_FIGHTERS];
 } Bisim_PlayerSnapshot;
 

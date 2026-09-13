@@ -106,12 +106,18 @@ void bsIO_WriteS32(BsIO_Cursor* c, s32 v)
 
 void bsIO_WriteBool(BsIO_Cursor* c, bool v)
 {
-    bsIO_WriteU8(c, v ? 1 : 0);
+    bsIO_WriteU8(c, v != 0);
 }
 
 void bsIO_WriteF32(BsIO_Cursor* c, f32 v)
 {
     bsIO_WriteU32(c, bsIO_F32Bits(v));
+}
+
+void bsIO_WriteVec2(BsIO_Cursor* c, const Vec2* v)
+{
+    bsIO_WriteF32(c, v->x);
+    bsIO_WriteF32(c, v->y);
 }
 
 void bsIO_WriteVec3(BsIO_Cursor* c, const Vec3* v)
