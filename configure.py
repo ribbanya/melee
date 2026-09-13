@@ -438,7 +438,9 @@ def Lib(
     inline: str | None = None,
 ) -> Library:
     for obj in objects:
-        all_objects.append(obj.name)
+        if obj.completed:
+            all_objects.append(obj.name)
+
         extra_cflags = cast(list[str], obj.options["extra_cflags"])
         if args.debug and not bool(obj.options.get("force_optimization")):
             extra_cflags.extend(cflags_debug)
