@@ -36,6 +36,7 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = ["GALE01"]
+MODPACKS = ["none", "bisim"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -52,6 +53,12 @@ parser.add_argument(
     type=str.upper,
     default=VERSIONS[DEFAULT_VERSION],
     help="version to build",
+)
+parser.add_argument(
+    "--modpack",
+    choices=MODPACKS,
+    default="none",
+    help="which modpack to build (default: none)",
 )
 parser.add_argument(
     "--build-dir",
@@ -210,10 +217,13 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
+if args.modpack == "none":
+    args.modpack = None
+
 if args.debug and args.sym == "auto":
     args.sym = "on"
 
-if any({args.debug, args.asm, args.linkable}) or args.sym == "on":
+if any({args.debug, args.asm, args.linkable, args.modpack}) or args.sym == "on":
     args.non_matching = True
 
 
@@ -545,6 +555,14 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
         fix_trk=True,
         category="runtime",
     )
+
+
+def ModLib(modpack: str, lib_name: str, objects: Objects, **kwargs) -> Library:
+    if args.modpack != modpack:
+        for obj in objects:
+            obj.completed = False
+
+    return Lib(lib_name, objects, **kwargs)
 
 
 Matching = True

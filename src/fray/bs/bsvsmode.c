@@ -14,6 +14,7 @@
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "melee/gm/gmvs.h"
+#include "sysdolphin/baselib/debug.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -120,9 +121,19 @@ static void updateSnapshot(void)
     if (curr_frame == 0) {
         memcpy(start_snapshot, &snapshot, sizeof(start_snapshot));
     } else if (curr_frame == end_frame) {
+        size_t i, j;
+        const size_t cols = 6;
         memcpy(end_snapshot, &snapshot, sizeof(end_snapshot));
+
+        // TODO: fix remainder
+        for (i = 0; i < ARRAY_SIZE(hashes) / cols; i++) {
+            for (j = 0; j < cols; j++) {
+                OSReport("%08X ", hashes[i * cols + j]);
+            }
+            OSReport("\n");
+        }
+        FRAY_ASSERT(curr_frame <= end_frame);
     }
-    FRAY_ASSERT(curr_frame <= end_frame);
 }
 
 static void onMatchStartRecordVs(void)
@@ -167,7 +178,7 @@ static void initTestMatch(StartMeleeData* start)
 
 void Replay_Mode_OnInit(void)
 {
-    Qol_LogInit();
+    // Qol_LogInit();
     Qol_UnlockAll();
     Qol_SetCompetitivePrefs();
     gm_InitVsMode(&vs_mode_data);
