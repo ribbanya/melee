@@ -2,11 +2,31 @@
 #include <fray/bs/bsdisplay.h>
 #include <fray/lb/lbosd.h>
 
+// From DevText_SetupCObj
+#define OSD_ORTHO_LEFT (-20.0f)
+#define OSD_ORTHO_TOP (-20.0f)
+#define OSD_ORTHO_RIGHT 660.0f
+#define OSD_ORTHO_BOTTOM 500.0f
+
+#define OSD_ORTHO_W (OSD_ORTHO_RIGHT - OSD_ORTHO_LEFT)
+#define OSD_ORTHO_H (OSD_ORTHO_BOTTOM - OSD_ORTHO_TOP)
+
+#define OSD_FB_W 640.0f
+#define OSD_FB_H 480.0f
+
+// Integer visual cell size in pixels. These two are the knobs.
+#define OSD_CELL_PX_W 10
+#define OSD_CELL_PX_H 15
+
+#define OSD_COLS ((int) (OSD_FB_W / OSD_CELL_PX_W)) // 64
+#define OSD_ROWS ((int) (OSD_FB_H / OSD_CELL_PX_H)) // 32
+
+// Convert visual cell size back to ortho units for DevText_SetScale.
+#define OSD_GLYPH_W (OSD_CELL_PX_W * OSD_ORTHO_W / OSD_FB_W) // 10.625
+#define OSD_GLYPH_H (OSD_CELL_PX_H * OSD_ORTHO_H / OSD_FB_H) // 16.25
+
 #define OSD_ID 20
-#define OSD_COLS 54
-#define OSD_ROWS 34
-#define OSD_GLYPH_W 10
-#define OSD_GLYPH_H 14
+#define OSD_ALPHA 0x90
 
 typedef enum {
     BsLayer_Global = 0,
@@ -226,9 +246,9 @@ static void drawState(void)
             col = 0;
             putU32(p);
             putU32(s);
-            putU32((u32) fs->msid);
+            putU32(fs->msid);
             putF32(fs->anim_frame, dec_anim);
-            putU32((u32) fs->airborne);
+            putU32(fs->airborne);
             putF32(fs->facing_dir, dec_face);
             y++;
         }
@@ -325,8 +345,9 @@ void BsDisplay_Init(void)
 
 void BsDisplay_Show(void)
 {
-    Osd_Show();
+    Osd_SetAlpha(OSD_ALPHA);
 }
+
 void BsDisplay_Hide(void)
 {
     Osd_Hide();

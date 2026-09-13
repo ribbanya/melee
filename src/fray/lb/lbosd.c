@@ -80,6 +80,7 @@ void Osd_Show(void)
 {
     Osd_SetAlpha(0xFF);
 }
+
 void Osd_Hide(void)
 {
     Osd_SetAlpha(0x00);
@@ -96,6 +97,7 @@ void Osd_SetBGColor(u8 r, u8 g, u8 b)
 {
     setColor(&bg_color, r, g, b);
 }
+
 void Osd_SetTextColor(u8 r, u8 g, u8 b)
 {
     setColor(&fg_color, r, g, b);
