@@ -372,9 +372,7 @@ config.linker_version = "GC/1.3.2"
 
 # Native compiler flags
 
-clang_includes = [
-    "src"
-]
+clang_includes = ["src"]
 
 clang_system_includes = [
     "src/MSL",
@@ -454,8 +452,9 @@ def Lib(
             extra_cflags.extend(cflags_debug)
         else:
             extra_cflags.extend(cflags_optimized)
-            extra_cflags.append("-inline auto" if inline is None else f"-inline {inline}")
-
+            extra_cflags.append(
+                "-inline auto" if inline is None else f"-inline {inline}"
+            )
 
     lib = {
         "lib": lib_name,
@@ -1894,7 +1893,9 @@ config.libs = [
             Object(Matching, "sysdolphin/baselib/fobj.c"),
             Object(Matching, "sysdolphin/baselib/pobj.c", force_optimization=True),
             Object(Matching, "sysdolphin/baselib/jobj.c"),
-            Object(Matching, "sysdolphin/baselib/displayfunc.c", force_optimization=True),
+            Object(
+                Matching, "sysdolphin/baselib/displayfunc.c", force_optimization=True
+            ),
             Object(Matching, "sysdolphin/baselib/initialize.c"),
             Object(Matching, "sysdolphin/baselib/video.c"),
             Object(Matching, "sysdolphin/baselib/controller.c"),
@@ -1954,7 +1955,8 @@ config.libs = [
             Object(
                 Matching,
                 "sysdolphin/baselib/psdisp.c",
-                extra_cflags=["-Cpp_exceptions on"], force_optimization=True,
+                extra_cflags=["-Cpp_exceptions on"],
+                force_optimization=True,
             ),
             Object(
                 Matching,
@@ -2005,8 +2007,6 @@ def link_order_callback(module_id: int, objects: list[str]) -> list[str]:
 
 
 config.link_order_callback = link_order_callback
-
-
 
 
 # Extra categories for progress tracking
