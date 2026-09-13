@@ -25,7 +25,7 @@ ASSERT_SIZE(Bisim_ArchiveHeader, 20);
 
 typedef struct {
     Bisim_ArchiveHeader header;
-    void* data;
+    u8* data;
 } Bisim_Archive;
 
 void bsArchive_Load(Bisim_Archive* a, BsIO_Cursor* c);

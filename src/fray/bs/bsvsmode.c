@@ -87,11 +87,11 @@ static void setupSnapshot(void)
     hd->reserved = 0;
     hd->hash = 0;
     hd->type = BisimBlob_GlobalSnapshot;
-    hd->size = sizeof(Bisim_GlobalSnapshot);
+    hd->size = sizeof(curr_snapshot);
     hd->flags = 0;
 
     memset(&snapshot, 0, sizeof(snapshot));
-    snapshot_archive.data = &snapshot;
+    snapshot_archive.data = (u8*) &curr_snapshot;
 
     bsIO_Init(&cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 
