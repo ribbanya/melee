@@ -11,6 +11,7 @@
 
 #include "bisimulation.h"
 #include "bsdisplay.h"
+#include "fray/bs/bsarchive.h"
 #include "fray/bs/bshash.h"
 #include "fray/bs/bsio.h"
 #include "melee/gm/gmvs.h"
@@ -112,6 +113,7 @@ static void updateSnapshot(void)
 
     bsIO_Reset(&cursor);
     Bisim_WriteGlobal(&cursor, &snapshot);
+    FRAY_ASSERT(cursor.err == BsIO_Ok);
 
     h = bsHash_Cursor(bsHash_Init(), &cursor);
     hashes[curr_frame] = h;
