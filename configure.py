@@ -1991,11 +1991,10 @@ config.libs = [
 
 
 def link_order_callback(module_id: int, objects: list[str]) -> list[str]:
+    del module_id
     if not config.non_matching:
         return objects
-    if module_id == 0:  # DOL
-        return all_objects
-    return objects
+    return all_objects
 
 
 config.link_order_callback = link_order_callback
