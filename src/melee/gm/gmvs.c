@@ -1258,7 +1258,7 @@ void fn_8016CD98(VsSceneController* scene)
             if (++scene->state.unk_2C >= 60) {
                 scene->state.unk_2C = 0;
                 if (scene->start.timer_counts_up) {
-                    if (scene->state.timer_seconds < -1) {
+                    if (scene->state.timer_seconds < U32_MAX) {
                         scene->state.timer_seconds++;
                     }
                 } else {

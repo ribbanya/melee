@@ -4,10 +4,10 @@
 #include <Runtime/platform.h>
 
 #include <melee/ft/forward.h>
+#include <melee/gm/forward.h>
 #include <melee/pl/forward.h>
 #include <sysdolphin/baselib/forward.h>
 
-#include "melee/gm/forward.h"
 #include <dolphin/mtx.h>
 #include <dolphin/pad.h>
 #include <melee/pl/types.h>
