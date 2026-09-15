@@ -9,8 +9,8 @@
 
 #include "types.h"
 #include <dolphin/card.h>
-#include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/card.h>
+#include <sysdolphin/baselib/debug.h>
 #include <sysdolphin/baselib/memory.h>
 
 #define SECTOR_SIZE 0x2000
@@ -594,7 +594,7 @@ int lb_8001AAE4(const char* old_name, const char* new_name)
 int lb_8001AC04(const char* filename)
 {
     int hsd_result;
-    int unused;
+    PAD_STACK(4);
 
     hsd_result = hsd_803B286C(&_p(card_state), filename, _p(comment),
                               _p(banner), _p(icons), fn_8001A0B0);
