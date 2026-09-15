@@ -110,7 +110,7 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 
 /* 3A949C */ static void hsd_803A949C(s32 chan, s32 card_result);
 /* 3ACB74 */ static s32 fn_803ACB74(s32 seq_a, s32 seq_b);
-/// .sbss globals emit in reverse declaration order.
+
 /* 4D79C8 */ u8 hsd_804D79C8;
 /* 4D79C4 */ s32 hsd_804D79C4;
 /* 4D79C0 */ s32 hsd_804D79C0;
@@ -124,6 +124,7 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 
 /// Command ring head (next command to run).
 /* 4D7980 */ static volatile s32 hsd_804D7980;
+
 /// Command ring tail (next free slot).
 /* 4D7984 */ static volatile s32 hsd_804D7984;
 
