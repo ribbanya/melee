@@ -111,6 +111,8 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 /* 3A949C */ static void hsd_803A949C(s32 chan, s32 card_result);
 /* 3ACB74 */ static s32 fn_803ACB74(s32 seq_a, s32 seq_b);
 
+/// @todo these don't go here
+/// @{
 /* 4D79C8 */ u8 hsd_804D79C8;
 /* 4D79C4 */ s32 hsd_804D79C4;
 /* 4D79C0 */ s32 hsd_804D79C0;
@@ -121,6 +123,7 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 /* 4D79A8 */ s32 hsd_804D79A8;
 /* 4D79A4 */ u8* hsd_804D79A4;
 /* 4D79A0 */ u8* hsd_804D79A0;
+/// @}
 
 /// Command ring head (next command to run).
 /* 4D7980 */ static volatile s32 hsd_804D7980;
@@ -791,6 +794,7 @@ static inline s32 retryCardFastOpen(s32 chan, s32 file_no,
 
     return result;
 }
+
 static inline s32 retryCardReadAsync(CARDFileInfo* file_info, void* buffer,
                                      s32 length, s32 offset,
                                      CARDCallback callback)
@@ -807,6 +811,7 @@ static inline s32 retryCardReadAsync(CARDFileInfo* file_info, void* buffer,
 
     return result;
 }
+
 static inline s32 retryCardWriteAsync(CARDFileInfo* file_info, void* buffer,
                                       s32 length, s32 offset,
                                       CARDCallback callback)
@@ -823,6 +828,7 @@ static inline s32 retryCardWriteAsync(CARDFileInfo* file_info, void* buffer,
 
     return result;
 }
+
 static inline s32 retryCardClose(CARDFileInfo* file_info)
 {
     s32 i;
@@ -837,6 +843,7 @@ static inline s32 retryCardClose(CARDFileInfo* file_info)
 
     return result;
 }
+
 static inline s32 retryCardCreateAsync(s32 chan, const char* filename,
                                        s32 size, CARDFileInfo* file_info,
                                        CARDCallback callback)
@@ -853,6 +860,7 @@ static inline s32 retryCardCreateAsync(s32 chan, const char* filename,
 
     return result;
 }
+
 static inline s32 retryCardGetStatus(s32 chan, s32 file_no, CARDStat* stat)
 {
     s32 i;
@@ -867,6 +875,7 @@ static inline s32 retryCardGetStatus(s32 chan, s32 file_no, CARDStat* stat)
 
     return result;
 }
+
 static inline s32 retryCardSetStatusAsync(s32 chan, s32 file_no,
                                           CARDStat* stat,
                                           CARDCallback callback)
@@ -883,6 +892,7 @@ static inline s32 retryCardSetStatusAsync(s32 chan, s32 file_no,
 
     return result;
 }
+
 static inline int setupCardIcons(const CardCmd* cmd)
 {
     u32 bit;
@@ -900,6 +910,7 @@ static inline int setupCardIcons(const CardCmd* cmd)
     }
     return k;
 }
+
 static inline void unpackCardStat(const CardCmd* cmd, CARDStat* stat)
 {
     s32 k;
@@ -919,6 +930,7 @@ static inline void unpackCardStat(const CardCmd* cmd, CARDStat* stat)
                                  used / cmd->state->sector_size;
     }
 }
+
 static inline void rollbackCardCommands(CardContext* context, s32 snap)
 {
     s32 saved = snap;
@@ -929,6 +941,7 @@ static inline void rollbackCardCommands(CardContext* context, s32 snap)
     }
     hsd_804D7984 = snap;
 }
+
 static inline void initHeaderBlockCommand(CardCmd* buf, CardState* state,
                                           u32 block, void* comment,
                                           void* banner, void* icons)
@@ -940,6 +953,7 @@ static inline void initHeaderBlockCommand(CardCmd* buf, CardState* state,
     buf->read_header.banner = banner;
     buf->read_header.icons = icons;
 }
+
 static inline s32 queueHeaderBlock(CardState* state, u32 block, void* comment,
                                    void* banner, void* icons)
 {
@@ -948,6 +962,7 @@ static inline s32 queueHeaderBlock(CardState* state, u32 block, void* comment,
     initHeaderBlockCommand(&buf, state, block, comment, banner, icons);
     return fn_803AC168(&buf);
 }
+
 static inline s32 queueHeaderBlocks(CardState* state, void* comment,
                                     void* banner, void* icons)
 {
@@ -1942,6 +1957,7 @@ s32 fn_803ACBE8(CardState* state, s32 block_idx)
         return sector_size * sector;
     }
 }
+
 s32 fn_803ACC0C(CardState* state, s32 block_idx, s32 block_id, s32 seq_num,
                 void* expected_data, s32 data_size)
 {
@@ -5669,6 +5685,7 @@ static int fn_803B2E04(u8 prev, s32 cur)
     }
     return val;
 }
+
 #ifdef MUST_MATCH
 #pragma pop
 #endif
@@ -5748,6 +5765,7 @@ static int fn_803B302C(u32 prev, u32 cur)
     cur ^= prev;
     return cur;
 }
+
 #ifdef MUST_MATCH
 #pragma pop
 #endif
