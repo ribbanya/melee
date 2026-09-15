@@ -54,13 +54,17 @@ typedef enum CardTaskType {
 
 struct CardTask {
     /* 0x00 */ CardTaskType type;
+
     /// Bit i permits this task to run after result i.
     /* 0x04 */ int result_mask;
+
     /* 0x08 */ void* file_entries;
     /* 0x0C */ char* filename_ptr;
+
     /// Copies are limited to CARD_FILENAME_MAX; the extra bytes stay zero
     /// in the static task storage to terminate full-length filenames.
     /* 0x10 */ char filename[CARD_FILENAME_MAX + 1];
+
     /* 0x31 */ char new_filename[CARD_FILENAME_MAX + 1];
     /* 0x52 */ char pad_52[2];
 };
@@ -69,10 +73,10 @@ ASSERT_OFFSET(struct CardTask, filename, 0x10);
 ASSERT_OFFSET(struct CardTask, new_filename, 0x31);
 
 struct lb_80432A68_t {
-    /* 0x000 */ UNK_T work_area;
-    /* 0x004 */ UNK_T lib_area;
+    /* 0x000 */ void* work_area;
+    /* 0x004 */ void* lib_area;
     /* 0x008 */ int chan;
-    /* 0x00C */ UNK_T unk_C;
+    /* 0x00C */ UNK_T save_data;
     /* 0x010 */ int* status;
     /* 0x014 */ char* comment;
     /* 0x018 */ void* banner;
@@ -245,7 +249,7 @@ void lb_80019EF0(int chan, UNK_T save_data, UNK_T status_out, UNK_T callback)
     int i;
 
     _p(chan) = chan;
-    _p(unk_C) = save_data;
+    _p(save_data) = save_data;
     _p(status) = status_out;
     _p(comment) = NULL;
     _p(banner) = NULL;
@@ -467,7 +471,8 @@ int lb_8001A594(char* filename, void* file_entries)
                 } else if (_p(unused_files) == 0) {
                     _p(saved_error) = 6;
                 } else {
-                    setupCardEntries(&_p(card_state), _p(unk_C), file_entries);
+                    setupCardEntries(&_p(card_state), _p(save_data),
+                                     file_entries);
                     if (_p(unused_bytes) <
                         (hsd_803B2674(&_p(card_state)) << 0xD))
                     {
