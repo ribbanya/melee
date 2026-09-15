@@ -5,6 +5,21 @@
 
 #include <dolphin/card.h>
 
+typedef enum {
+    HSD_CardResult_Ok,
+    HSD_CardResult_UnkN1,
+    HSD_CardResult_UnkN2,
+    HSD_CardResult_UnkN3,
+    HSD_CardResult_UnkN4,
+    HSD_CardResult_UnkN261,
+} HSD_CardResult;
+
+typedef enum {
+    CardBanner_None,
+    CardBanner_Small, ///< Indexed color, including its palette.
+    CardBanner_Large, ///< RGB5A3 color.
+} CardBannerFormat;
+
 #define HSD_CARD_MAX_FILES 9
 
 typedef struct {

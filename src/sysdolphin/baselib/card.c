@@ -10,12 +10,6 @@
 #define BANNER_SMALL 0xE00
 #define BANNER_LARGE 0x1800
 
-typedef enum {
-    CardBanner_None,
-    CardBanner_Small, ///< Indexed color, including its palette.
-    CardBanner_Large, ///< RGB5A3 color.
-} CardBannerFormat;
-
 /// 0x20-byte header at the start of every data block on the card.
 typedef struct CardBlockHeader {
     /* 0x00 */ u8 digest[0x10];

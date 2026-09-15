@@ -13,7 +13,6 @@ struct CardEntry {
     u8* data;
 };
 
-/* 019BB8 */ int lb_80019BB8(int card_result);
 /* 019CB0 */ int lb_80019CB0(int result);
 /* 019EF0 */ void lb_80019EF0(int chan, UNK_T save_data, UNK_T status_out,
                               UNK_T callback);
@@ -28,7 +27,7 @@ struct CardEntry {
 /* 01AAE4 */ int lb_8001AAE4(const char* old_name, const char* new_name);
 /* 01AC04 */ int lb_8001AC04(const char* filename);
 /* 01ACEC */ int lb_8001ACEC(struct CardEntry* file_entries);
-/* 01AE38 */ int lb_8001AE38(UNK_T file_entries);
+/* 01AE38 */ int lb_8001AE38(struct CardEntry* file_entries);
 /* 01AF84 */ int lb_8001AF84(void);
 /* 01B068 */ int lb_8001B068(void);
 /* 01B14C */ int lb_8001B14C(void);
