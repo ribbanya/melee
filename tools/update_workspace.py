@@ -75,14 +75,6 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
         dst.mkdir(parents=True, exist_ok=True)
 
         # Set repo root
-        repo = repo_root or src
-
-        # Get git-tracked files
-        try:
-            git_tracked = get_git_tracked_files(repo)
-        except subprocess.CalledProcessError as e:
-            print(f"Error getting git-tracked files: {e}")
-            return
 
         # Create a temporary directory for extraction
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -105,36 +97,23 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
                     print(f"  Skipped: {rel_path} (git internal)")
                     continue
 
-                # Check if this file (or any file within this directory) is git-tracked
-                should_move = False
 
-                if rel_path_str in git_tracked:
-                    should_move = True
-                else:
-                    # Check if it's a directory containing tracked files
-                    for tracked in git_tracked:
-                        tracked_path = Path(tracked)
-                        if rel_path in tracked_path.parents:
-                            should_move = True
-                            break
+                src_file = tmp_path / rel_path
+                dst_file = dst / rel_path
 
-                if should_move:
-                    src_file = tmp_path / rel_path
-                    dst_file = dst / rel_path
+                if src_file.exists():
+                    # Create parent directories if needed
+                    dst_file.parent.mkdir(parents=True, exist_ok=True)
 
-                    if src_file.exists():
-                        # Create parent directories if needed
-                        dst_file.parent.mkdir(parents=True, exist_ok=True)
+                    if src_file.is_dir():
+                        if dst_file.exists():
+                            shutil.rmtree(dst_file)
+                        shutil.copytree(src_file, dst_file)
+                    else:
+                        shutil.copy2(src_file, dst_file)
 
-                        if src_file.is_dir():
-                            if dst_file.exists():
-                                shutil.rmtree(dst_file)
-                            shutil.copytree(src_file, dst_file)
-                        else:
-                            shutil.copy2(src_file, dst_file)
-
-                        moved_count += 1
-                        print(f"  Moved: {rel_path}")
+                    moved_count += 1
+                    print(f"  Moved: {rel_path}")
 
             print(f"\nMoved {moved_count} git-tracked files/directories to {dst}")
     finally:
