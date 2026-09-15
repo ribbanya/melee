@@ -13,7 +13,6 @@ struct CardEntry {
     u8* data;
 };
 
-/* 019CB0 */ int lb_80019CB0(int result);
 /* 019EF0 */ void lb_80019EF0(int chan, UNK_T save_data, UNK_T status_out,
                               UNK_T callback);
 /* 01A0B0 */ void fn_8001A0B0(int file_idx, int hsd_error);
