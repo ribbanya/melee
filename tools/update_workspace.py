@@ -100,6 +100,11 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
             for rel_path_str in extracted_names:
                 rel_path = Path(rel_path_str)
 
+                # Skip .git directory/file explicitly
+                if rel_path.name == ".git" or rel_path.parts[0] == ".git":
+                    print(f"  Skipped: {rel_path} (git internal)")
+                    continue
+
                 # Check if this file (or any file within this directory) is git-tracked
                 should_move = False
 
