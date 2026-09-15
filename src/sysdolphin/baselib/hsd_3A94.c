@@ -140,10 +140,14 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 /* 4D7994 */ static s32 hsd_804D7994;
 
 /// Ring tail saved before queueing a request; -1 when nothing to roll back.
-/* 4D7998 */ static s32 hsd_804D7998;
+/* 4D7998 */ static int hsd_804D7998;
 
 /// 0 = running commands, 1 = async CARD call in flight, 2 = idle.
-/* 4D799C */ static s32 hsd_804D799C;
+/* 4D799C */ static enum {
+    running,
+    running_async,
+    idle,
+} hsd_804D799C;
 
 /// .bss globals emit in reverse declaration order. Keeping the storage in
 /// this TU lets MWCC pool the callback's command-field addresses directly.
