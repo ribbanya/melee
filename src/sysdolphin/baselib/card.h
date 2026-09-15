@@ -5,6 +5,8 @@
 
 #include <dolphin/card.h>
 
+#define HSD_CARD_MAX_FILES 9
+
 typedef struct {
     u8 banner_format;
     u8 unused;
@@ -26,9 +28,9 @@ typedef struct CardState {
     /// Bytes of comment + banner + icons; the 0x30-byte digest follows.
     /* 0x24 */ u32 header_size;
 
-    /* 0x28 */ int file_flags[9]; ///< @todo enum, not flags
-    /* 0x4C */ int file_sizes[9];
-    /* 0x70 */ u8* file_data[9];
+    /* 0x28 */ int file_flags[HSD_CARD_MAX_FILES]; ///< @todo enum, not flags
+    /* 0x4C */ int file_sizes[HSD_CARD_MAX_FILES];
+    /* 0x70 */ u8* file_data[HSD_CARD_MAX_FILES];
     /* 0x94 */ u8 pad_94[0xDC];
 
     /// Block id stored in each physical block; negated = stale copy,

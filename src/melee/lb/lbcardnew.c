@@ -614,19 +614,16 @@ static inline int readCardFileSize(const volatile int* file_size)
     return *file_size;
 }
 
-int lb_8001ACEC(UNK_T file_entries)
+int lb_8001ACEC(struct CardEntry* entries)
 {
     int file_error;
     int hsd_result;
-    int unused;
     int i;
-    struct CardEntry* entries = file_entries; ///< @todo this seems fake
-    volatile int cached_flag;
-    volatile int pad_stack;
-    volatile int cached_data;
-
+    UNUSED volatile int cached_flag;
+    PAD_STACK(4);
     _p(saved_error) = 0;
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < HSD_CARD_MAX_FILES; i++) {
+        UNUSED volatile int cached_data;
         cached_flag = readCardFileSize(&_p(card_state).file_sizes[i]);
         cached_data = _p(card_state).file_flags[i];
         if (readCardFileSize(&_p(card_state).file_sizes[i]) != 0) {
