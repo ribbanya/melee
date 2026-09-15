@@ -34,7 +34,9 @@ def get_git_tracked_files(repo_root: Path) -> set[str]:
     return set(result.stdout.strip().split("\n"))
 
 
-def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Optional[Path] = None) -> None:
+def extract_tar_gz_selective(
+    pattern: str, src: Path, dst: Path, repo_root: Optional[Path] = None
+) -> None:
     """
     Find the most recently modified file matching the glob pattern, verify it's a .tar.gz,
     extract to a temp directory, and move only git-tracked files to destination.
@@ -93,7 +95,9 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
                 tar.extractall(path=tmp_path)
                 extracted_names = tar.getnames()
 
-            print(f"Extracted {len(extracted_names)} files/directories to temp directory")
+            print(
+                f"Extracted {len(extracted_names)} files/directories to temp directory"
+            )
 
             # Move only git-tracked files
             moved_count = 0
@@ -101,7 +105,9 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
                 rel_path = Path(rel_path_str)
 
                 # Skip .git directory/file explicitly
-                if rel_path.name == ".git" or rel_path.parts[0] == ".git":
+                if rel_path.name == ".git" or (
+                    rel_path.parts and rel_path.parts[0] == ".git"
+                ):
                     print(f"  Skipped: {rel_path} (git internal)")
                     continue
 
