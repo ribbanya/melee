@@ -75,7 +75,7 @@ def extract_tar_gz_selective(pattern: str, src: Path, dst: Path, repo_root: Opti
         dst.mkdir(parents=True, exist_ok=True)
 
         # Set repo root
-        repo = repo_root or dst
+        repo = repo_root or src
 
         # Get git-tracked files
         try:
