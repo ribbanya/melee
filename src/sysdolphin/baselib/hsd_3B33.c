@@ -3,7 +3,7 @@
 #include <setjmp.h> // IWYU pragma: keep
 #include <string.h>
 
-#include "hsd_3A94.h"
+#include "card.h"
 #include "hsd_3B34.h"
 
 extern JpegWork hsd_804D2648;

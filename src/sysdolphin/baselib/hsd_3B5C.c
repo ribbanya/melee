@@ -1,7 +1,7 @@
 #include <placeholder.h>
 #include <setjmp.h>
 
-#include "hsd_3A94.h"
+#include "card.h"
 #include "hsd_3B34.h"
 
 jmp_buf hsd_804D2E70;
