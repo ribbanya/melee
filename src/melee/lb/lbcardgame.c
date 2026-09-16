@@ -251,7 +251,7 @@ void lb_8001CC84(void)
             if (dont_inline_helper() != LbCardResult_Busy) {
                 _p(x14) = true;
             } else {
-                _p(x10) = true;
+                _p(x10) = statex10_1;
             }
             break;
         case statex10_1: {

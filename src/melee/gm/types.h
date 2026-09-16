@@ -908,7 +908,7 @@ struct gm_80479D58_t {
     /*  +0 */ u32 unk_0;
     /*  +4 */ u32 unk_4;
     /*  +8 */ u32 unk_8;
-    /*  +C */ int unk_C;
+    /*  +C */ int status;
     /* +10 */ struct gm_801677C0_s unk_10;
 };
 
