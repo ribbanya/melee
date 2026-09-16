@@ -5,7 +5,9 @@
 #include "gmmain_lib.h"
 #include "gmscdata.h"
 #include "gmscene.h"
+#include "melee/db/db.h"
 #include "types.h"
+#include <dolphin/vi/vifuncs.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcardgame.h>
@@ -372,6 +374,14 @@ void gm_801A4510(void)
     }
 #ifdef FRAY
     state_machine.routing.curr_mode = GM_REPLAY;
+#else
+    if (VIGetDTVStatus() != 0 &&
+        (db_gameLaunchButtonState & HSD_PAD_B || OSGetProgressiveMode() == 1))
+    {
+        state_machine.routing.curr_mode = GM_PROGRESSIVE_SCAN;
+    } else {
+        state_machine.routing.curr_mode = GM_BOOT;
+    }
 #endif
     state_machine.routing.prev_mode = GM_COUNT;
 
