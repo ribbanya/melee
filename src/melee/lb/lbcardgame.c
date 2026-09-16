@@ -25,7 +25,7 @@ typedef enum {
     fileType_SaveData,
     fileType_NameTag,
     fileType_TrophyUnk,
-    fileType_None
+    fileType_3
 } fileType;
 
 typedef enum {
@@ -62,7 +62,7 @@ static struct {
 };
 
 static LbCardEntry manifest[] = {
-    { 0, fileType_None, NULL },
+    { 0, fileType_3, NULL },
     { sizeof(GmSaveData), fileType_SaveData, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
