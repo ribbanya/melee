@@ -141,7 +141,7 @@ static void* getCurrentIcon(void)
 #ifdef FRAY
 static char filename[] = "FrayBisim202609161211";
 #else
-static char filename[] = "SuperSmashBros";
+char filename[] = "SuperSmashBros0110290334";
 #endif
 
 u32 lb_8001C87C(void)
