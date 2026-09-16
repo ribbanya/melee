@@ -1,13 +1,12 @@
 #include "gm_1A3F.h"
 
-#include "forward.h"
 #include "gm_1A36.h"
 #include "gmmain_lib.h"
 #include "gmscdata.h"
 #include "gmscene.h"
-#include "melee/db/db.h"
 #include "types.h"
-#include <dolphin/vi/vifuncs.h>
+#include <dolphin/vi.h>
+#include <melee/db/db.h>
 #include <melee/lb/lb_00B0.h>
 #include <melee/lb/lbaudio_ax.h>
 #include <melee/lb/lbcardgame.h>
