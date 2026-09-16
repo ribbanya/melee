@@ -65,7 +65,8 @@ GameModeState Replay_RecordStates[] = {
       onEnterRecordOver,
       onExitRecordOver,
       {
-          GS_COMING_SOON,
+          GS_MENU,
+          // GS_COMING_SOON,
           NULL,
           NULL,
       }
