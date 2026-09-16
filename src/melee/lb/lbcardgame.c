@@ -138,7 +138,11 @@ static void* getCurrentIcon(void)
     return _p(icon_data)[idx];
 }
 
+#ifdef FRAY
 static char filename[] = "FrayBisim202609161211";
+#else
+static char filename[] = "SuperSmashBros";
+#endif
 
 u32 lb_8001C87C(void)
 {
