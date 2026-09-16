@@ -6,10 +6,6 @@
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/debug.h>
 
-#ifndef MUST_MATCH
-#define FRAY_BISIM
-#endif
-
 #define FRAY_CLASS_START 0x30
 #define FRAY_PLINK_START 0x30
 

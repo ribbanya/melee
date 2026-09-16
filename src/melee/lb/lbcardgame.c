@@ -17,6 +17,10 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 
+#ifdef FRAY
+#include <fray/bs/bscardgame.h>
+#endif
+
 typedef enum {
     stateStatus_0,
 } stateStatus;
@@ -76,11 +80,15 @@ static LbCardEntry manifest[] = {
 
 void lb_8001C600(void)
 {
+#if FRAY
+    bs_8001C600();
+#else
     int prev = _p(probe_status);
     _p(probe_status) = CARDProbe(0);
     if (_p(probe_status) != prev) {
         _p(unk_status) = 1;
     }
+#endif
 }
 
 static char* lb_8001C658(void)
@@ -122,16 +130,24 @@ char filename[] = "SuperSmashBros0110290334";
 
 u32 lb_8001C87C(void)
 {
+#ifdef FRAY
+    return bs_8001C87C();
+#else
     return lb_8001B7E0(0, filename, manifest, &lb_803BAB60, &_p(unk_status));
+#endif
 }
 
 int lb_8001C8BC(void)
 {
+#ifdef FRAY
+    bs_8001C8BC();
+#else
     HSD_ASSERT(320, _p(enable));
 
     return lb_8001BC18(0, filename, (void**) manifest, &lb_803BAB60,
                        lb_8001C658(), getCurrentIcon(), _p(icon_data)[3],
                        &_p(unk_status));
+#endif
 }
 
 #ifdef MUST_MATCH
@@ -169,11 +185,18 @@ static LbCardStatus updateCardStatus(void)
 
 void lbCardGame_SetCardStatus(LbCardStatus status)
 {
+#ifdef FRAY
+    bsCardGame_SetCardStatus(status);
+#else
     _p(card_status) = status;
+#endif
 }
 
 lbCardResult lb_8001CBBC(void)
 {
+#ifdef FRAY
+    bs_8001CBBC();
+#else
     lbCardResult result;
 
     if (updateCardStatus() != LbCardStatus_0) {
@@ -184,6 +207,7 @@ lbCardResult lb_8001CBBC(void)
         _p(card_status) = LbCardStatus_2;
     }
     return result;
+#endif
 }
 
 void fn_8001CC30(bool arg0)

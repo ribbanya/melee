@@ -311,6 +311,7 @@ if args.sym in {"on", "off"}:
 
 if args.non_matching:
     args.always_apply = False
+    cflags_base.append("-DFRAY")
 else:
     cflags_base.append("-DMUST_MATCH")
 
@@ -423,6 +424,10 @@ clang_flags_base = [
     *[f"-isystem{s}" for s in clang_system_includes],
     *[f"-W{s}" for s in clang_warnings],
 ]
+
+if args.non_matching:
+    clang_flags_base.append("-DFRAY")
+
 
 # args.lint is the warnings we want but we send clang the ones we don't want
 clang_disabled_warnings = []
