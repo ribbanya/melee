@@ -18,7 +18,11 @@
 #include <dolphin/types.h>
 #include <melee/mn/types.h>
 
+#ifdef FRAY
+#define GM_NAMETAG_BANK_COUNT 1
+#else
 #define GM_NAMETAG_BANK_COUNT 7
+#endif
 
 /// @deprecated Replace with inline bitfields
 typedef union UnkFlagStruct {
@@ -460,7 +464,9 @@ struct gmm_x0 {
 ASSERT_SIZE(struct EventData, 0x588 - 0x530);
 ASSERT_SIZE(struct gmm_x0_vsdata, 0x588 - 0x51C);
 ASSERT_SIZE(struct gmm_x0_vsmodes, 0x1850 - 0x588);
+#ifndef FRAY
 ASSERT_SIZE(struct gmm_x0, 0x10A30);
+#endif
 
 struct Placeholder_8016AE38_flags_2 {
     /* +0:0 */ u8 x0_b0_b2 : 3;
@@ -902,7 +908,7 @@ struct gm_80479D58_t {
     /*  +0 */ u32 unk_0;
     /*  +4 */ u32 unk_4;
     /*  +8 */ u32 unk_8;
-    /*  +C */ int unk_C;
+    /*  +C */ int status;
     /* +10 */ struct gm_801677C0_s unk_10;
 };
 

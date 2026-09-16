@@ -6,7 +6,8 @@ include(GNUInstallDirs)
 
 file(GLOB_RECURSE SOURCES "src/melee/**.c" LIST_DIRECTORIES FALSE)
 file(GLOB_RECURSE HSD_SOURCES "src/sysdolphin/**.c" LIST_DIRECTORIES FALSE)
-set(SOURCES ${SOURCES} ${HSD_SOURCES})
+file(GLOB_RECURSE FRAY_SOURCES "src/fray/**.c" LIST_DIRECTORIES FALSE)
+set(SOURCES ${SOURCES} ${HSD_SOURCES} ${FRAY_SOURCES})
 
 add_compile_definitions(TARGET_PC)
 

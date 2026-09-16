@@ -61,6 +61,9 @@
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
 #include <melee/vi/vi1202.h>
+#ifdef FRAY
+#include <fray/bs/bsvsmode.h>
+#endif
 
 static GameScene scenes[] = {
     {
@@ -72,7 +75,7 @@ static GameScene scenes[] = {
     },
     {
         GS_MENU,
-        mnMain_Scene_OnFrame,
+        NULL,
         mnMain_Scene_OnEnter,
         NULL,
         NULL,
@@ -741,6 +744,16 @@ static GameMode modes[] = {
         gm_Mode_SingleButtonVs_OnInit,
         gm_Mode_SingleButtonVs_States,
     },
+#ifdef FRAY
+    {
+        false,
+        GM_REPLAY,
+        bsVsMode_OnLoad,
+        bsVsMode_OnUnload,
+        Replay_Mode_OnInit,
+        Replay_RecordStates,
+    },
+#endif
     {
         false,
         GM_COUNT,

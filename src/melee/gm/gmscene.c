@@ -176,12 +176,12 @@ void gm_801A4B50(int arg0)
 
 void gm_801A4B60(void)
 {
-    gm_80479D58.unk_C = 1;
+    gm_80479D58.status = 1;
 }
 
 void gm_801A4B74(void)
 {
-    gm_80479D58.unk_C = 2;
+    gm_80479D58.status = 2;
 }
 
 void gm_801A4B88(struct GameSceneInfo* info)
@@ -281,11 +281,11 @@ void gm_801A4D34(void (*on_frame)(void), UNUSED GameSceneInfo* info)
     gm_80479D58.unk_0 = 0;
     gm_80479D58.unk_4 = 0;
     gm_80479D58.unk_8 = 0;
-    gm_80479D58.unk_C = 0;
+    gm_80479D58.status = 0;
     HSD_PadFlushQueue(HSD_PAD_FLUSH_QUEUE_LEAVE1);
     lbCardGame_InitScene();
 
-    while (temp_r25->unk_C == 0) {
+    while (temp_r25->status == 0) {
         hsd_80392E80();
         gmMainLib_8046B0F0.xC = false;
 
@@ -358,11 +358,11 @@ void gm_801A4D34(void (*on_frame)(void), UNUSED GameSceneInfo* info)
                 OSCheckActiveThreads();
             }
             gmMainLib_8046B0F0.xC = false;
-            if (temp_r25->unk_C != 0) {
+            if (temp_r25->status != 0) {
                 break;
             }
         }
-        if (temp_r25->unk_C == 2) {
+        if (temp_r25->status == 2) {
             break;
         }
 

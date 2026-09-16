@@ -17,6 +17,11 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 
+#ifdef FRAY
+#include <fray/bs/bisimulation.h>
+#include <fray/bs/bsvsmode.h>
+#endif
+
 typedef enum {
     stateStatus_0,
 } stateStatus;
@@ -39,7 +44,7 @@ typedef enum {
     /* +8  */ LbCardStatus card_status;
     /* +C  */ bool dirty;
     /* +10 */ statex10 x10;
-    /* +14 */ bool failed;
+    /* +14 */ bool x14;
     /* +18 */ bool enable;
     /* +1C */ char comment[CARD_COMMENT_SIZE];
     /* +5C */ void** icon_data;
@@ -65,12 +70,16 @@ static LbCardEntry manifest[] = {
     { 0, fileType_3, NULL },
     { sizeof(GmSaveData), fileType_SaveData, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+#ifdef FRAY
+    { sizeof(Bisim_SaveData), fileType_3, NULL },
+#else
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+#endif
     { -1 },
 };
 
@@ -96,9 +105,17 @@ static char* lb_8001C658(void)
         _p(comment)[i] = '\0';
     }
     if (lbLang_IsSettingJP()) {
+#ifdef FRAY
+        title = "大乱闘スマッシュブラザーズＤＸ 双模倣性データ";
+#else
         title = "大乱闘スマッシュブラザーズＤＸ  セーブデータ";
+#endif
     } else {
+#ifdef FRAY
+        title = "Super Smash Bros. Melee Bisimulation Data";
+#else
         title = "Super Smash Bros. Melee         Game Data";
+#endif
     }
     sprintf(_p(comment), "%s %4d/%02d/%02d", title, time.year, time.mon + 1,
             time.mday);
@@ -118,7 +135,11 @@ static void* getCurrentIcon(void)
     return _p(icon_data)[idx];
 }
 
+#ifdef FRAY
+static char filename[] = "FrayBisim202609161211";
+#else
 char filename[] = "SuperSmashBros0110290334";
+#endif
 
 u32 lb_8001C87C(void)
 {
@@ -228,16 +249,16 @@ void lb_8001CC84(void)
             }
 
             if (dont_inline_helper() != LbCardResult_Busy) {
-                _p(failed) = true;
+                _p(x14) = true;
             } else {
-                _p(x10) = true;
+                _p(x10) = statex10_1;
             }
             break;
         case statex10_1: {
             int result = lbCardNew_CompleteNextTask();
             if (result != LbCardResult_Busy) {
                 if (result != 0) {
-                    _p(failed) = true;
+                    _p(x14) = true;
                 }
                 _p(x10) = result = 0;
             }
@@ -329,7 +350,7 @@ void lbCardGame_Reset(void)
     _p(enable) = false;
     _p(dirty) = false;
     _p(x10) = 0;
-    _p(failed) = false;
+    _p(x14) = false;
 }
 
 void lbCardGame_Init(void)
@@ -345,4 +366,7 @@ void lbCardGame_Init(void)
     for (i = 0; i < GM_NAMETAG_BANK_COUNT; i++) {
         manifest[2 + i].data = &gmMainLib_GetNameTagDataBanks()[i];
     }
+#ifdef FRAY
+    manifest[2 + GM_NAMETAG_BANK_COUNT].data = bsVsMode_GetSaveData();
+#endif
 }
