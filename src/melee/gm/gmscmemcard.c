@@ -49,7 +49,7 @@ typedef struct {
     struct enterData_x0_t unk0;
     exitData unk8;
     int unk10;
-    tickDecision unk14;
+    tickDecision decision;
     bool unk18;
     u8 unk1C;
 } enterData;
@@ -111,12 +111,12 @@ static inline bool gm_801AF0D4_inline(void)
     if (lbCardNew_ProbeEx(enter_data.unk0.chan)) {
         if (enter_data.unk18 == 1) {
             enter_data.unk18 = 0;
-            enter_data.unk14 = 1;
+            enter_data.decision = 1;
             return true;
         }
     } else if (enter_data.unk18 == 0) {
         enter_data.unk18 = 1;
-        enter_data.unk14 = 1;
+        enter_data.decision = 1;
         return true;
     }
     return false;
@@ -188,10 +188,10 @@ static inline void unk_inline(void)
 {
     if (enter_data.unk0.unk0 == 1) {
         gm_801AEE6C(2, 23, get_lang_val(23));
-        enter_data.unk14 = 18;
+        enter_data.decision = 18;
     } else {
         gm_801AEE6C(2, 24, get_lang_val(24));
-        enter_data.unk14 = 19;
+        enter_data.decision = 19;
     }
 }
 
@@ -210,30 +210,30 @@ void gm_801AF250(void)
             gm_801AE640(0, enter_data.unk1C);
             gm_801AE74C(0, !enter_data.unk1C);
         }
-        enter_data.unk14 = 2;
+        enter_data.decision = 2;
         return;
     case 3:
         gm_801AEE6C(1, 8, get_lang_val(8));
-        enter_data.unk14 = 3;
+        enter_data.decision = 3;
         enter_data.unk1C = 1;
         gm_801AE640(0, enter_data.unk1C);
         gm_801AE74C(0, !enter_data.unk1C);
         return;
     case 4:
         gm_801AEE6C(1, 0xA, get_lang_val(0xA));
-        enter_data.unk14 = 5;
+        enter_data.decision = 5;
         return;
     case 5:
         gm_801AEE6C(0, 0xE, get_lang_val(0xE));
-        enter_data.unk14 = 9;
+        enter_data.decision = 9;
         return;
     case 6:
         gm_801AEE6C(0, 0xF, get_lang_val(0xF));
-        enter_data.unk14 = 0xA;
+        enter_data.decision = 0xA;
         return;
     case 9:
         gm_801AEE6C(1, 0x10, get_lang_val(0x10));
-        enter_data.unk14 = 0xB;
+        enter_data.decision = 0xB;
         enter_data.unk1C = 1U;
         gm_801AE640(0, enter_data.unk1C);
         gm_801AE74C(0, !enter_data.unk1C);
@@ -242,20 +242,20 @@ void gm_801AF250(void)
     case 11:
     case 13:
         gm_801AEE6C(0, 0x13, get_lang_val(0x13));
-        enter_data.unk14 = 0xE;
+        enter_data.decision = 0xE;
         return;
     case 12:
         gm_801AEE6C(0, 0x14, get_lang_val(0x14));
-        enter_data.unk14 = 0xF;
+        enter_data.decision = 0xF;
         return;
     case 14:
         gm_801AEE6C(0, 0x15, get_lang_val(0x15));
-        enter_data.unk14 = 0x10;
+        enter_data.decision = 0x10;
         return;
     case 15:
         gm_801AEE6C(0, 0x16, get_lang_val(0x16));
         enter_data.unk18 = 0;
-        enter_data.unk14 = 0x11;
+        enter_data.decision = 0x11;
         return;
     case 0:
     case 7:
@@ -291,15 +291,15 @@ void gm_Scene_MemCard_OnFrame(void)
         return;
     }
 
-    switch (enter_data.unk14) {
+    switch (enter_data.decision) {
     case 0:
         temp_r29 = lb_8001CBBC();
         gmMainLib_8015FA34(temp_r29);
         if (temp_r29 == 0 || temp_r29 == 2) {
             enter_data.unk8.unk0 = 1;
-            enter_data.unk14 = 0x14;
+            enter_data.decision = 0x14;
         } else {
-            enter_data.unk14 = 1;
+            enter_data.decision = 1;
         }
         break;
     case 1:
@@ -309,11 +309,11 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             if (enter_data.unk1C == 0) {
                 if (enter_data.unk0.unk0 == 0) {
-                    enter_data.unk14 = 0;
+                    enter_data.decision = 0;
                     lbCardGame_SetCardStatus(LbCardStatus_0);
                 } else {
                     enter_data.unk8.unk0 = 1;
-                    enter_data.unk14 = 20;
+                    enter_data.decision = 20;
                     lbCardGame_SetCardStatus(LbCardStatus_0);
                     lbCardGame_UpdatePowerTime();
                 }
@@ -326,7 +326,7 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             if (enter_data.unk1C == 0) {
                 gm_801AEE6C(0, 9, get_lang_val(9));
-                enter_data.unk14 = 4;
+                enter_data.decision = 4;
             } else {
                 unk_inline();
             }
@@ -336,10 +336,10 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4()) {
             if (!lb_8001CC4C()) {
                 gm_801AEE6C(0, 0xB, get_lang_val(0xB));
-                enter_data.unk14 = 6;
+                enter_data.decision = 6;
             } else {
                 gm_801AEE6C(0, 0xD, get_lang_val(0xD));
-                enter_data.unk14 = 8;
+                enter_data.decision = 8;
             }
         }
         break;
@@ -347,7 +347,7 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             if (enter_data.unk1C == 0) {
                 gm_801AEE6C(0, 0xB, get_lang_val(0xB));
-                enter_data.unk14 = 6;
+                enter_data.decision = 6;
             } else {
                 unk_inline();
             }
@@ -357,17 +357,17 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4()) {
             if (!lb_8001C8BC()) {
                 gm_801AEE6C(0, 0xC, get_lang_val(0xC));
-                enter_data.unk14 = 7;
+                enter_data.decision = 7;
             } else {
                 gm_801AEE6C(0, 0xD, get_lang_val(0xD));
-                enter_data.unk14 = 8;
+                enter_data.decision = 8;
             }
         }
         break;
     case 7:
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             enter_data.unk8.unk0 = 1;
-            enter_data.unk14 = 0x14;
+            enter_data.decision = 0x14;
             lbCardGame_SetCardStatus(0);
         }
         break;
@@ -391,10 +391,10 @@ void gm_Scene_MemCard_OnFrame(void)
             if (enter_data.unk1C == 0) {
                 if (lb_8001B8C8(enter_data.unk0.chan) == 0) {
                     gm_801AEE6C(0, 0x11, get_lang_val(0x11));
-                    enter_data.unk14 = 0xC;
+                    enter_data.decision = 0xC;
                 } else {
                     gm_801AEE6C(0, 0x12, get_lang_val(0x12));
-                    enter_data.unk14 = 0xD;
+                    enter_data.decision = 0xD;
                 }
             } else {
                 unk_inline();
@@ -403,7 +403,7 @@ void gm_Scene_MemCard_OnFrame(void)
         break;
     case 12:
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
-            enter_data.unk14 = 1;
+            enter_data.decision = 1;
         }
         break;
     case 13:
@@ -435,10 +435,10 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             if (enter_data.unk1C == 0) {
                 enter_data.unk8.unk0 = 0;
-                enter_data.unk14 = 0x14;
-                lbCardGame_SetCardStatus(4);
+                enter_data.decision = tickDecision_20;
+                lbCardGame_SetCardStatus(LbCardStatus_4);
             } else {
-                enter_data.unk14 = 1;
+                enter_data.decision = 1;
             }
         }
         break;
@@ -446,10 +446,10 @@ void gm_Scene_MemCard_OnFrame(void)
         if (!gm_801AF0D4() && gm_801AEDC8_flag_check()) {
             if (enter_data.unk1C == 0) {
                 enter_data.unk8.unk0 = 0;
-                enter_data.unk14 = 20;
+                enter_data.decision = tickDecision_20;
                 lbCardGame_SetCardStatus(LbCardStatus_4);
             } else {
-                enter_data.unk14 = 1;
+                enter_data.decision = tickDecision_1;
             }
         }
         break;
@@ -465,9 +465,9 @@ void gm_Scene_MemCard_OnFrame(void)
 static inline bool checkUnk0(void)
 {
     if (enter_data.unk0.unk0 == 0) {
-        return false;
+        return tickDecision_0;
     }
-    return true;
+    return tickDecision_1;
 }
 
 void gm_Scene_MemCard_OnEnter(void* user_data)
@@ -478,7 +478,7 @@ void gm_Scene_MemCard_OnEnter(void* user_data)
     if (data != NULL) {
         enter_data.unk0 = data->unk0;
     }
-    enter_data.unk14 = checkUnk0();
+    enter_data.decision = checkUnk0();
     enter_data.unk8.mode_id = enter_data.unk0.mode_id;
     lbCardNew_AllocWorkArea();
     lbCardGame_LoadArchive(0);
