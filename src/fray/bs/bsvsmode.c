@@ -14,11 +14,8 @@
 #include "bsdisplay.h"
 #include "bshash.h"
 #include "bsio.h"
-#include "melee/gm/gm_1A3F.h"
-#include "melee/gm/gmmain_lib.h"
 #include "melee/lb/lbcardgame.h"
 #include "melee/lb/lbcardnew.h"
-#include "sysdolphin/baselib/debug.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -86,6 +83,7 @@ static void setupSnapshot(void)
 {
     memset(&snapshot, 0, sizeof(snapshot));
     memset(&save_data, 0, sizeof(save_data));
+    bsIO_Init(&snapshot_cursor, &save_data.end, sizeof(save_data.end));
 }
 
 static void writeSnapshot(Bisim_ArchiveHeader* ah, Bisim_GlobalBuf* dst)
@@ -114,8 +112,9 @@ static void updateSnapshot(void)
         curr_frame = f;
     }
 
-    bsIO_Init(&snapshot_cursor, save_data.end, sizeof(*save_data.end));
     Bisim_CaptureGlobal(&snapshot);
+
+    bsIO_Reset(&snapshot_cursor);
     Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
     bsArchive_SetHeader(&save_data.end_header, &snapshot_cursor,
                         BisimBlob_GlobalSnapshot, 0);
