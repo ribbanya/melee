@@ -51,12 +51,16 @@ void bootOnLoad(GameModeState* scene)
     struct loadData* scene_data = gm_GetGameModeStateEnterData(scene);
     scene_data->x4 = 0;
     scene_data->x0 = 0;
+#ifdef FRAY
+    scene_data->mode_id = GM_REPLAY;
+#else
     if (gmMainLib_8046B0F0.skip_intro == true) {
         scene_data->mode_id = GM_TITLE;
     } else {
         gm_801BF708(0);
         scene_data->mode_id = GM_OPENING_MV;
     }
+#endif
 }
 
 void bootOnLeave(GameModeState* data)

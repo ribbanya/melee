@@ -371,9 +371,6 @@ void gm_801A4510(void)
             modes[i].on_init();
         }
     }
-#ifdef FRAY
-    state_machine.routing.curr_mode = GM_REPLAY;
-#else
     if (VIGetDTVStatus() != 0 &&
         (db_gameLaunchButtonState & HSD_PAD_B || OSGetProgressiveMode() == 1))
     {
@@ -381,7 +378,6 @@ void gm_801A4510(void)
     } else {
         state_machine.routing.curr_mode = GM_BOOT;
     }
-#endif
     state_machine.routing.prev_mode = GM_COUNT;
 
     while (true) {
