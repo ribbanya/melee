@@ -254,7 +254,7 @@ void lb_8001CDB4(void)
     }
 }
 
-void lbCardGame_UpdatePowerTime(void)
+void lbCardGame_SetDirty(void)
 {
     HSD_ASSERT(675, _p(enable));
     *gm_GetPowerTime() += gmMainLib_8015FC74();
