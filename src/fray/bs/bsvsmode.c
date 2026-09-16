@@ -14,6 +14,7 @@
 #include "bsdisplay.h"
 #include "bshash.h"
 #include "bsio.h"
+#include "melee/lb/lbcardnew.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -205,6 +206,7 @@ void onExitRecordVs(GameModeState* state)
 
 void onEnterRecordOver(UNUSED GameModeState* state)
 {
+    lbCardNew_CompleteAllTasks(LbCardResult_Busy);
     // BsDisplay_Init();
     // BsDisplay_Show();
     // BsDisplay_Draw(&archive);
