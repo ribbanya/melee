@@ -1,8 +1,8 @@
-#include "fray/bs/bsarchive.h"
+#include "bsarchive.h"
 
-#include "fray/bs/bisimulation.h"
-#include "fray/bs/bshash.h"
-#include "fray/bs/bsio.h"
+#include "bisimulation.h"
+#include "bshash.h"
+#include "bsio.h"
 
 void bsArchive_SetHeader(Bisim_ArchiveHeader* ah, const BsIO_Cursor* c,
                          BisimBlobType type, u32 flags)

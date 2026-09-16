@@ -6,7 +6,7 @@
 #include <melee/gm/forward.h>
 #include <melee/mn/forward.h>
 
-#include "melee/gr/forward.h"
+#include <melee/gr/forward.h>
 #include <melee/gm/gm_1601.h>
 #include <melee/gm/gm_16F1.h>
 #include <melee/gm/gmmain_lib.h>

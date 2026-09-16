@@ -1,8 +1,8 @@
 #ifndef FRAY_BS_BSARCHIVE_H
 #define FRAY_BS_BSARCHIVE_H
 
-#include "bsio.h"
-#include "Runtime/platform.h"
+#include <fray/bs/bsio.h>
+#include <Runtime/platform.h>
 #include <dolphin/types.h>
 
 #define BISIM_ARCHIVE_MAGIC 0x47414C53

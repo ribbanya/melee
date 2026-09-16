@@ -2,14 +2,14 @@
 
 #include <abort_exit.h> // IWYU pragma: keep
 
-#include "fray/bs/bsio.h"
-#include "fray/lb/lbqol.h"
-#include "melee/ft/forward.h"
-#include "melee/ft/inlines.h"
-#include "melee/gm/forward.h"
-#include "melee/gm/gmvs.h"
-#include "melee/pl/player.h"
-#include "sysdolphin/baselib/random.h"
+#include "bsio.h"
+#include <fray/lb/lbqol.h>
+#include <melee/ft/forward.h>
+#include <melee/ft/inlines.h>
+#include <melee/gm/forward.h>
+#include <melee/gm/gmvs.h>
+#include <melee/pl/player.h>
+#include <sysdolphin/baselib/random.h>
 #include <melee/ft/types.h>
 
 void Bisim_CaptureFighter(Bisim_FighterSnapshot* dst, const Fighter* src)

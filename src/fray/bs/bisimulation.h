@@ -3,11 +3,11 @@
 
 #include <melee/gm/forward.h>
 
-#include "fray/bs/bsarchive.h"
-#include "fray/bs/bsio.h"
-#include "melee/ft/forward.h"
-#include "melee/pl/player.h"
-#include "Runtime/platform.h"
+#include <fray/bs/bsarchive.h>
+#include <fray/bs/bsio.h>
+#include <melee/ft/forward.h>
+#include <melee/pl/player.h>
+#include <Runtime/platform.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/types.h>
 

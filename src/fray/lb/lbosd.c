@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "fray/lb/lbqol.h"
-#include "melee/if/textdraw.h"
-#include <fray/lb/lbosd.h>
+#include "lbqol.h"
+#include <melee/if/textdraw.h>
+#include "lbosd.h"
 #include <melee/if/textlib.h>
 
 int snprintf(char* s, size_t n, const char* format, ...)

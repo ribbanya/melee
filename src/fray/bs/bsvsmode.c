@@ -11,10 +11,10 @@
 
 #include "bisimulation.h"
 #include "bsdisplay.h"
-#include "fray/bs/bsarchive.h"
-#include "fray/bs/bshash.h"
-#include "fray/bs/bsio.h"
-#include "melee/gm/gmvs.h"
+#include "bsarchive.h"
+#include "bshash.h"
+#include "bsio.h"
+#include <melee/gm/gmvs.h>
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>

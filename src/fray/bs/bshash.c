@@ -2,7 +2,7 @@
 
 #include "bshash.h"
 
-#include "fray/bs/bsio.h"
+#include "bsio.h"
 
 #define FNV_OFFSET 0x811C9DC5U
 #define FNV_PRIME 0x01000193U

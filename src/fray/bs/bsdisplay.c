@@ -1,6 +1,6 @@
-#include "fray/bs/bisimulation.h"
-#include "melee/pl/forward.h"
-#include <fray/bs/bsdisplay.h>
+#include "bisimulation.h"
+#include <melee/pl/forward.h>
+#include "bsdisplay.h"
 #include <fray/lb/lbosd.h>
 
 #define OSD_CELL_PX_W 8

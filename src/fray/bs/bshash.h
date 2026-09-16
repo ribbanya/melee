@@ -3,7 +3,7 @@
 
 #include <Runtime/platform.h>
 
-#include "fray/bs/bsio.h"
+#include <fray/bs/bsio.h>
 #include <dolphin/mtx.h>
 
 u32 bsHash_Init(void);
