@@ -557,9 +557,10 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
     )
 
 
-Matching = True
+Matching = False
 NonMatching = False
 Equivalent = config.non_matching
+Modified = config.non_matching
 Linkable = bool(args.linkable)
 Debug = bool(args.debug)
 
@@ -575,22 +576,8 @@ config.warn_missing_source = True
 
 config.libs = [
     MeleeLib(
-        "bs (Bisimulation)",
-        [
-            Object(Equivalent, "fray/bs/bisimulation.c"),
-            Object(Equivalent, "fray/bs/bsvsmode.c"),
-            Object(Equivalent, "fray/bs/bscard.c"),
-            Object(Equivalent, "fray/bs/bsio.c"),
-            Object(Equivalent, "fray/bs/bshash.c"),
-            Object(Equivalent, "fray/bs/bsdisplay.c"),
-            Object(Equivalent, "fray/bs/bsarchive.c"),
-        ],
-    ),
-    MeleeLib(
         "lb (Library)",
         [
-            Object(Equivalent, "fray/lb/lbqol.c"),
-            Object(Equivalent, "fray/lb/lbosd.c"),
             Object(Matching, "melee/lb/lbcommand.c"),
             Object(Matching, "melee/lb/lbcollision.c", force_optimization=True),
             Object(Matching, "melee/lb/lblanguage.c"),
@@ -2013,6 +2000,20 @@ config.libs = [
                 "sysdolphin/baselib/hsd_3B5C.c",
                 extra_cflags=["-Cpp_exceptions on"],
             ),
+        ],
+    ),
+    MeleeLib(
+        "Fray Bisimulation",
+        [
+            Object(Modified, "fray/lb/lbqol.c"),
+            Object(Modified, "fray/lb/lbosd.c"),
+            Object(Modified, "fray/bs/bisimulation.c"),
+            Object(Modified, "fray/bs/bsvsmode.c"),
+            Object(Modified, "fray/bs/bscard.c"),
+            Object(Modified, "fray/bs/bsio.c"),
+            Object(Modified, "fray/bs/bshash.c"),
+            Object(Modified, "fray/bs/bsdisplay.c"),
+            Object(Modified, "fray/bs/bsarchive.c"),
         ],
     ),
 ]

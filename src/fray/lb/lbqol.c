@@ -78,7 +78,7 @@ void Qol_LogInit(void)
 /// @remarks From gmMainLib_8015FA34
 void Qol_UnlockAll(void)
 {
-    gmMainLib_804D3EE0->thing.x186C = U8_MAX;
+    gmMainLib_804D3EE0->thing.save_data.x186C = U8_MAX;
     gm_80164F18();
     gm_8016468C();
     gm_8017297C();
