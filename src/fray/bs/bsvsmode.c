@@ -10,14 +10,14 @@
 #include <string.h>
 
 #include "bisimulation.h"
-#include "bsdisplay.h"
 #include "bsarchive.h"
+#include "bsdisplay.h"
 #include "bshash.h"
 #include "bsio.h"
-#include <melee/gm/gmvs.h>
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
+#include <melee/gm/gmvs.h>
 #include <melee/gm/gmvsmelee.h>
 #include <melee/gm/types.h>
 #include <sysdolphin/baselib/random.h>
@@ -72,6 +72,11 @@ GameModeState Replay_RecordStates[] = {
     },
     { GM_GAMEMODESTATE_TERMINATE },
 };
+
+Bisim_SaveData* bsVsMode_GetSaveData(void)
+{
+    return &save_data;
+}
 
 static void setupSnapshot(void)
 {

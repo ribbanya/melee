@@ -19,6 +19,7 @@
 
 #ifdef FRAY
 #include <fray/bs/bisimulation.h>
+#include <fray/bs/bsvsmode.h>
 #endif
 
 typedef enum {
@@ -356,4 +357,7 @@ void lbCardGame_Init(void)
     for (i = 0; i < GM_NAMETAG_BANK_COUNT; i++) {
         manifest[2 + i].data = &gmMainLib_GetNameTagDataBanks()[i];
     }
+#ifdef FRAY
+    manifest[2 + GM_NAMETAG_BANK_COUNT].data = bsVsMode_GetSaveData();
+#endif
 }
