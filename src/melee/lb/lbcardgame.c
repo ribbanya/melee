@@ -1,6 +1,5 @@
 #include "lbcardgame.h"
 
-#include "fray/bs/bisimulation.h"
 #include "lbarchive.h"
 #include "lbcardnew.h"
 #include "lblanguage.h"
@@ -18,6 +17,10 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 
+#ifdef FRAY
+#include <fray/bs/bisimulation.h>
+#endif
+
 typedef enum {
     stateStatus_0,
 } stateStatus;
@@ -27,7 +30,9 @@ typedef enum {
     fileType_NameTag,
     fileType_TrophyUnk,
     fileType_None,
+#ifdef FRAY
     fileType_Bisim,
+#endif
 } fileType;
 
 typedef enum {
