@@ -67,7 +67,16 @@ static LbCardEntry manifest[] = {
     { 0, fileType_None, NULL },
     { sizeof(GmSaveData), fileType_SaveData, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+#ifdef FRAY
     { sizeof(Bisim_SaveData), fileType_Bisim, NULL },
+#else
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+#endif
     { -1 },
 };
 
