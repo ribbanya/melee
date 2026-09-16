@@ -30,28 +30,14 @@ typedef struct {
 
 typedef void (*LbCardOnFinishedCallback)(int);
 
-/* 01A0B0 */ void fn_8001A0B0(int file_idx, int hsd_error);
-/* 01A184 */ int taskMount(void);
-/* 01A3A4 */ int taskCheck(void);
-/* 01A4CC */ void lb_8001A4CC(const char* filename, UNK_T file_entries);
-/* 01A860 */ int taskUnk3(void);
-/* 01A8A4 */ int taskFormat(void);
-/* 01A9CC */ int taskDelete(char* filename);
-/* 01AAE4 */ int taskRename(const char* old_name, const char* new_name);
-/* 01AC04 */ int taskCreate(const char* filename);
-/* 01ACEC */ int taskRead(LbCardEntry* file_entries);
-/* 01AE38 */ int taskWrite(LbCardEntry* file_entries);
-/* 01AF84 */ int taskSetStatus(void);
-/* 01B068 */ int taskReadHeader(void);
-/* 01B14C */ int taskListSnapshots(void);
-/* 01B614 */ int taskFindFile(const char* filename);
 /* 01B6E0 */ s32 lb_8001B6E0(s32 file_idx);
 /* 01B6F8 */ enum_t lbCardNew_CompleteNextTask(void);
 /* 01B760 */ int lbCardNew_CompleteAllTasks(int result);
 /* 01B7E0 */ u32 lb_8001B7E0(int chan, char* filename, void* file_entries,
                              void* save_data, int* status_out);
 /* 01B8C8 */ bool lb_8001B8C8(int chan);
-/* 01B99C */ int lb_8001B99C(int chan, const char* filename, UNK_T status_out);
+/* 01B99C */ int lbCardNew_DeleteSnap(int chan, const char* filename,
+                                      UNK_T status_out);
 /* 01BA44 */ bool lb_8001BA44(int chan, const char* filename,
                               UNK_T status_out);
 /* 01BB48 */ int lb_8001BB48(int chan, char* filename, void* file_entries,
@@ -78,7 +64,7 @@ typedef void (*LbCardOnFinishedCallback)(int);
 /* 01C404 */ int lbCardNew_ProbeEx(int chan);
 /* 01C4A8 */ int lb_8001C4A8(void* file_entries, void* icon_data);
 /* 01C550 */ void lbCardNew_AllocWorkArea(void);
-/* 01C5A4 */ void lb_8001C5A4(void);
-/* 01C5BC */ void lb_8001C5BC(void);
+/* 01C5A4 */ void lbCardNew_ForgetMemory(void);
+/* 01C5BC */ void lbCardNew_Init(void);
 
 #endif
