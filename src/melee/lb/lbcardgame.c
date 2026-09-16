@@ -344,19 +344,10 @@ void lbCardGame_Init(void)
     _p(unk_status) = false;
     _p(card_status) = LbCardStatus_0;
     lbCardGame_Reset();
-    manifest[1].data = gmMainLib_GetSaveData();
+    manifest[1].data = &gmMainLib_GetCardData()->save_data;
 
-    /// @remarks Reads beyond the length of ::GmCardData::nametag_banks
-    for (i = 0; i < 7; i++) {
-#ifdef FRAY
-        {
-            struct GmCardData* base = gmMainLib_GetSaveData();
-            struct NameTagDataBank* bank = &base->nametag_banks[i];
-            OSReport("reading nametag bank at 0x%08X (0x%08X+%X)\n", bank,
-                     base, ((intptr_t) bank) - ((intptr_t) base));
-        }
-#endif
-        manifest[2 + i].data = &gmMainLib_8015CC4C()[i];
+    for (i = 0; i < GM_NAMETAG_BANK_COUNT; i++) {
+        manifest[2 + i].data = &gmMainLib_GetNameTagDataBanks()[i];
     }
     FRAY_PANIC("halting\n");
 }
