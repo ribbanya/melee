@@ -86,8 +86,22 @@ ASSERT_OFFSET(CardTask, new_filename, 0x31);
 
 /* 019C38 */ static CardTask* getNewTask(void);
 /* 019CB0 */ static int executeNextTask(lbCardResult result);
+/* 01A0B0 */ static void fn_8001A0B0(int file_idx, int hsd_error);
+/* 01A184 */ static int taskMount(void);
+/* 01A3A4 */ static int taskCheck(void);
 /* 01A594 */ static int taskOpen(const char* filename,
                                  LbCardEntry* file_entries);
+/* 01A860 */ static int taskUnk3(void);
+/* 01A8A4 */ static int taskFormat(void);
+/* 01A9CC */ static int taskDelete(char* filename);
+/* 01AAE4 */ static int taskRename(const char* old_name, const char* new_name);
+/* 01AC04 */ static int taskCreate(const char* filename);
+/* 01ACEC */ static int taskRead(LbCardEntry* file_entries);
+/* 01AE38 */ static int taskWrite(LbCardEntry* file_entries);
+/* 01AF84 */ static int taskSetStatus(void);
+/* 01B068 */ static int taskReadHeader(void);
+/* 01B14C */ static int taskListSnapshots(void);
+/* 01B614 */ static int taskFindFile(const char* filename);
 /* 432A68 */ static struct {
     /* 0x000 */ void* work_area;
     /* 0x004 */ void* lib_area;
@@ -834,7 +848,7 @@ int lbCardNew_CompleteAllTasks(int result)
     return result;
 }
 
-static inline CardTask* setup_task(CardTaskType type, int result_mask)
+static inline CardTask* setupTask(CardTaskType type, int result_mask)
 {
     CardTask* task = getNewTask();
     task->type = type;
@@ -855,10 +869,10 @@ u32 lb_8001B7E0(int chan, char* filename, void* file_entries, void* save_data,
     PAD_STACK(20);
 
     resetState(chan, save_data, status_out, NULL);
-    setup_task(LbCardNewTask_Mount, 0x10000);
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Mount, resultMask_16);
+    setupTask(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
     lb_8001A4CC_dontinline(filename, file_entries);
-    setup_task(LbCardNewTask_Unk3, -1);
+    setupTask(LbCardNewTask_Unk3, U32_MAX);
 
     result = executeNextTask(LbCardResult_16);
     if (result == LbCardResult_Busy) {
@@ -875,9 +889,9 @@ int lb_8001B8C8(int chan)
     u8 _[0x18];
 
     resetState(chan, 0, 0, 0);
-    setup_task(LbCardNewTask_Mount, resultMask_16);
-    setup_task(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
-    setup_task(LbCardNewTask_Format, U32_MAX);
+    setupTask(LbCardNewTask_Mount, resultMask_16);
+    setupTask(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
+    setupTask(LbCardNewTask_Format, U32_MAX);
 
     result = executeNextTask(LbCardResult_16);
     if (result == LbCardResult_Busy) {
@@ -886,18 +900,18 @@ int lb_8001B8C8(int chan)
     return result;
 }
 
-int lb_8001B99C(int chan, const char* filename, UNK_T status_out)
+int lbCardNew_DeleteSnap(int chan, const char* filename, UNK_T status_out)
 {
-    int new_var;
+    int result;
     resetState(chan, 0, status_out, 0);
-    setup_task(LbCardNewTask_Mount, 0x10000);
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Mount, resultMask_16);
+    setupTask(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
     lb_8001A4CC_dontinline(filename, 0);
-    setup_task(LbCardNewTask_Unk3, -1);
-    new_var = 0x10;
-    strncpy(setup_task(LbCardNewTask_Delete, 0xE)->filename, filename,
+    setupTask(LbCardNewTask_Unk3, U32_MAX);
+    result = LbCardResult_16;
+    strncpy(setupTask(LbCardNewTask_Delete, 0xE)->filename, filename,
             CARD_FILENAME_MAX);
-    return executeNextTask(new_var);
+    return executeNextTask(result);
 }
 
 int lb_8001BA44(int chan, const char* filename, UNK_T status_out)
@@ -906,11 +920,11 @@ int lb_8001BA44(int chan, const char* filename, UNK_T status_out)
     u8 _[0x10];
 
     resetState(chan, 0, status_out, 0);
-    setup_task(LbCardNewTask_Mount, 0x10000);
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Mount, 0x10000);
+    setupTask(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(filename, 0);
-    setup_task(LbCardNewTask_Unk3, -1);
-    strncpy(setup_task(LbCardNewTask_Delete, 0xE)->filename, filename,
+    setupTask(LbCardNewTask_Unk3, -1);
+    strncpy(setupTask(LbCardNewTask_Delete, 0xE)->filename, filename,
             CARD_FILENAME_MAX);
     result = executeNextTask(0x10);
     if (result == LbCardResult_Busy) {
@@ -958,12 +972,12 @@ int lb_8001BC18(int chan, char* filename, void** file_entries, void* save_data,
 
     resetState(chan, save_data, status_out, 0);
 
-    setup_task(LbCardNewTask_Mount, 0x10000);
+    setupTask(LbCardNewTask_Mount, 0x10000);
     size = 0x20;
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(filename, file_entries);
-    setup_task(LbCardNewTask_Unk3, -1);
-    memcpy(setup_task(LbCardNewTask_Create, 0x10)->filename, filename, size);
+    setupTask(LbCardNewTask_Unk3, -1);
+    memcpy(setupTask(LbCardNewTask_Create, 0x10)->filename, filename, size);
     _p(comment) = comment;
     _p(banner) = banner;
     _p(icons) = icons;
@@ -987,11 +1001,11 @@ int lb_8001BD34(int chan, const char* filename, UNK_T file_entries,
 
     resetState(chan, NULL, status_out, NULL);
 
-    setup_task(LbCardNewTask_Mount, 0x10000);
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Mount, 0x10000);
+    setupTask(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(filename, 0);
-    setup_task(LbCardNewTask_Unk3, U32_MAX);
-    setup_task(LbCardNewTask_Read, 3)->file_entries = file_entries;
+    setupTask(LbCardNewTask_Unk3, U32_MAX);
+    setupTask(LbCardNewTask_Read, 3)->file_entries = file_entries;
 
     result = executeNextTask(LbCardResult_16);
     if (result == LbCardResult_Busy) {
@@ -1072,11 +1086,11 @@ int lb_8001BFD8(int chan, lbCardNew_SnapshotEntry* snapshot_entries,
     u8 _[0x18];
 
     resetState(chan, 0, 0, 0);
-    setup_task(LbCardNewTask_Mount, resultMask_16);
-    setup_task(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
+    setupTask(LbCardNewTask_Mount, resultMask_16);
+    setupTask(LbCardNewTask_Check, resultMask_Ready | resultMask_Malformed);
     lb_8001A4CC_dontinline(NULL, 0);
-    setup_task(LbCardNewTask_Unk3, U32_MAX);
-    setup_task(LbCardNewTask_ListSnapshots, resultMask_NullFilename);
+    setupTask(LbCardNewTask_Unk3, U32_MAX);
+    setupTask(LbCardNewTask_ListSnapshots, resultMask_NullFilename);
     _p(snapshot_entries) = snapshot_entries;
     _p(free_blocks) = free_blocks;
     _p(free_files) = free_files;
@@ -1159,11 +1173,11 @@ int lb_8001C2D8(int chan, const char* company, const char* game_name,
     CardTask* unused_3;
 
     resetState(chan, 0, 0, 0);
-    setup_task(LbCardNewTask_Mount, 0x10000);
-    setup_task(LbCardNewTask_Check, 0x201);
+    setupTask(LbCardNewTask_Mount, 0x10000);
+    setupTask(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(NULL, 0);
-    setup_task(LbCardNewTask_Unk3, -1);
-    task = setup_task(LbCardNewTask_FindFile, 0x80);
+    setupTask(LbCardNewTask_Unk3, -1);
+    task = setupTask(LbCardNewTask_FindFile, 0x80);
     strncpy(_p(company), company, 2U);
     strncpy(_p(game_name), game_name, 4U);
     strncpy(task->filename, filename, CARD_FILENAME_MAX);
