@@ -22,7 +22,7 @@ typedef struct {
 
 u32 bsIO_F32Bits(f32 v);
 
-void bsIO_Init(BsIO_Cursor* c, u8* buf, u32 cap);
+void bsIO_Init(BsIO_Cursor* c, void* buf, u32 cap);
 u32 bsIO_Len(const BsIO_Cursor* c);
 u32 bsIO_Remaining(const BsIO_Cursor* c);
 void bsIO_Reset(BsIO_Cursor* c);

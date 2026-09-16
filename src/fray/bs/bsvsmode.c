@@ -41,7 +41,6 @@ static Bisim_GlobalSnapshot snapshot;
 static u32 curr_frame;
 static u32 end_frame;
 
-static Bisim_GlobalBuf curr_snapshot;
 static BsIO_Cursor snapshot_cursor;
 static Bisim_SaveData save_data;
 
@@ -87,7 +86,6 @@ static void setupSnapshot(void)
 {
     memset(&snapshot, 0, sizeof(snapshot));
     memset(&save_data, 0, sizeof(save_data));
-    bsIO_Init(&snapshot_cursor, (u8*) &curr_snapshot, sizeof(curr_snapshot));
 }
 
 static void writeSnapshot(Bisim_ArchiveHeader* ah, Bisim_GlobalBuf* dst)
@@ -116,19 +114,22 @@ static void updateSnapshot(void)
         curr_frame = f;
     }
 
+    bsIO_Init(&snapshot_cursor, save_data.end, sizeof(*save_data.end));
     Bisim_CaptureGlobal(&snapshot);
+    Bisim_WriteGlobal(&snapshot_cursor, &snapshot);
+    bsArchive_SetHeader(&save_data.end_header, &snapshot_cursor,
+                        BisimBlob_GlobalSnapshot, 0);
+    FRAY_ASSERT(snapshot_cursor.err == BsIO_Ok);
 
     {
         u32 h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-        // save_data.history.hashes[curr_frame] = h;
-        save_data.history.hashes[curr_frame] = curr_frame;
+        save_data.history.hashes[curr_frame] = h;
         BsDisplay_Draw(&snapshot, h);
     }
 
     if (curr_frame == 0) {
         writeSnapshot(&save_data.start_header, &save_data.start);
     } else if (curr_frame == end_frame) {
-        writeSnapshot(&save_data.end_header, &save_data.end);
         writeRecording(&save_data.history_header, &save_data.history);
     }
     FRAY_ASSERT(curr_frame <= end_frame);

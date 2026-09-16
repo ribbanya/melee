@@ -15,7 +15,7 @@ u32 bsIO_F32Bits(f32 v)
 #endif
 }
 
-void bsIO_Init(BsIO_Cursor* c, u8* buf, u32 cap)
+void bsIO_Init(BsIO_Cursor* c, void* buf, u32 cap)
 {
     c->buf = buf;
     c->cap = cap;
