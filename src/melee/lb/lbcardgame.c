@@ -344,6 +344,14 @@ void lbCardGame_Init(void)
 
     /// @remarks Reads beyond the length of ::GmCardData::nametag_banks
     for (i = 0; i < 7; i++) {
+#ifdef FRAY
+        {
+            struct GmCardData* base = gmMainLib_GetSaveData();
+            struct NameTagDataBank* bank = &base->nametag_banks[i];
+            OSReport("reading nametag bank at 0x%08X (0x08X+%X)", bank, base,
+                     ((intptr_t) bank) - ((intptr_t) base));
+        }
+#endif
         manifest[2 + i].data = &gmMainLib_8015CC4C()[i];
     }
 }
