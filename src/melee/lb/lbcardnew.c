@@ -937,19 +937,18 @@ int lb_8001BB48(int chan, char* filename, void* file_entries, void* save_data,
 int lb_8001BC18(int chan, char* filename, void** file_entries, void* save_data,
                 char* comment, void* banner, void* icons, bool* status_out)
 {
-    int new_var;
+    size_t size;
     s32 result;
     u8 _[0x18];
 
     lb_80019EF0(chan, save_data, status_out, 0);
 
     setup_task(LbCardNewTask_Mount, 0x10000);
-    new_var = 0x20;
+    size = 0x20;
     setup_task(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(filename, file_entries);
     setup_task(LbCardNewTask_Unk3, -1);
-    memcpy(setup_task(LbCardNewTask_Create, 0x10)->filename, filename,
-           new_var);
+    memcpy(setup_task(LbCardNewTask_Create, 0x10)->filename, filename, size);
     _p(comment) = comment;
     _p(banner) = banner;
     _p(icons) = icons;
@@ -976,13 +975,12 @@ int lb_8001BD34(int chan, const char* filename, UNK_T file_entries,
     setup_task(LbCardNewTask_Mount, 0x10000);
     setup_task(LbCardNewTask_Check, 0x201);
     lb_8001A4CC_dontinline(filename, 0);
-    setup_task(LbCardNewTask_Unk3, -1);
+    setup_task(LbCardNewTask_Unk3, U32_MAX);
     setup_task(LbCardNewTask_Read, 3)->file_entries = file_entries;
 
-    result = executeNextTask(0x10);
+    result = executeNextTask(LbCardResult_16);
     if (result == LbCardResult_Busy) {
-        while ((result = lbCardNew_CompleteNextTask()) == 11) {
-        }
+        while ((result = lbCardNew_CompleteNextTask()) == LbCardResult_Busy);
     }
     return result;
 }
