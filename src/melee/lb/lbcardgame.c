@@ -108,9 +108,17 @@ static char* lb_8001C658(void)
         _p(comment)[i] = '\0';
     }
     if (lbLang_IsSettingJP()) {
+#ifdef FRAY
         title = "大乱闘スマッシュブラザーズＤＸ 双模倣性データ";
+#else
+        title = "大乱闘スマッシュブラザーズＤＸ  セーブデータ";
+#endif
     } else {
+#ifdef FRAY
         title = "Super Smash Bros. Melee Bisimulation Data";
+#else
+        title = "Super Smash Bros. Melee         Game Data";
+#endif
     }
     sprintf(_p(comment), "%s %4d/%02d/%02d", title, time.year, time.mon + 1,
             time.mday);
