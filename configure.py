@@ -575,14 +575,7 @@ config.warn_missing_source = True
 
 config.libs = [
     MeleeLib(
-        "lb (Library)",
-        [
-            Object(Equivalent, "fray/lb/lbqol.c"),
-            Object(Equivalent, "fray/lb/lbosd.c"),
-        ],
-    ),
-    MeleeLib(
-        "rp (Replay)",
+        "bs (Bisimulation)",
         [
             Object(Equivalent, "fray/bs/bisimulation.c"),
             Object(Equivalent, "fray/bs/bsvsmode.c"),
@@ -596,6 +589,8 @@ config.libs = [
     MeleeLib(
         "lb (Library)",
         [
+            Object(Equivalent, "fray/lb/lbqol.c"),
+            Object(Equivalent, "fray/lb/lbosd.c"),
             Object(Matching, "melee/lb/lbcommand.c"),
             Object(Matching, "melee/lb/lbcollision.c", force_optimization=True),
             Object(Matching, "melee/lb/lblanguage.c"),
