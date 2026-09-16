@@ -75,7 +75,7 @@ static GameScene scenes[] = {
     },
     {
         GS_MENU,
-        mnMain_Scene_OnFrame,
+        NULL,
         mnMain_Scene_OnEnter,
         NULL,
         NULL,

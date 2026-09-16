@@ -219,7 +219,7 @@ void onExitRecordVs(GameModeState* state)
     lb_8001CDB4();
     lbCardNew_CompleteAllTasks(LbCardResult_Busy);
     while (lbCardNew_CompleteNextTask() == 11);
-    gm_SetPendingGameMode(GM_VS);
+    gm_SetPendingGameMode(GM_MENU);
     gm_SetNewGameModePending();
     // gmVsMelee_ExitVs(state, state_record_over, state_record_over);
 }
