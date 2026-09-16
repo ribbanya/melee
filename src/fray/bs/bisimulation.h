@@ -1,21 +1,22 @@
 #ifndef FRAY_RP_REPLAY_H
 #define FRAY_RP_REPLAY_H
 
+#include <Runtime/platform.h>
+
+#include <melee/ft/forward.h>
 #include <melee/gm/forward.h>
 
 #include <fray/bs/bsarchive.h>
 #include <fray/bs/bsio.h>
-#include <melee/ft/forward.h>
-#include <melee/pl/player.h>
-#include <Runtime/platform.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/types.h>
+#include <melee/pl/player.h>
 
 #define BISIM_CLASS (FRAY_CLASS_START + 0)
 #define BISIM_PLINK (FRAY_PLINK_START + 0)
 #define BISIM_PRIORITY 0x80
 #define BISIM_USER_DATA_KIND 0
-#define BISIM_MAX_SECONDS 30
+#define BISIM_MAX_SECONDS 5
 #define BISIM_MAX_FRAMES (BISIM_MAX_SECONDS * GM_FPS)
 
 #define BISIM_FIGHTER_SIZE 0x4E

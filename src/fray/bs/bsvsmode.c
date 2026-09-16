@@ -211,24 +211,30 @@ void Replay_Mode_OnLoad(void)
 
 void Replay_Mode_OnUnload(void) {}
 
+static void setupStartMelee(StartMeleeData* start)
+{
+    start->rules.match_kind = MatchKind_Time;
+    start->rules.time_limit = BISIM_MAX_SECONDS;
+    curr_frame = U32_MAX;
+    end_frame = BISIM_MAX_SECONDS * GM_FPS;
+}
+
 static void onRecordVsStartMelee(StartMeleeData* start,
                                  UNUSED StartMeleeData* vs)
 {
-    start->rules.match_kind = MatchKind_Time;
-    start->rules.time_limit = 5; // BISIM_MAX_SECONDS;
-    curr_frame = U32_MAX;
+    setupStartMelee(start);
     save_data.history.seed = *HSD_RandSeedPtr;
-    end_frame = start->rules.time_limit * GM_FPS;
+}
 
-    REPORT_HEX(save_data.history.seed);
-    REPORT_UINT(end_frame);
-    // lbCardGame_LoadArchive(0);
+static void initCard(void)
+{
+    lbCardNew_AllocWorkArea();
+    lbCardGame_LoadArchive(0);
 }
 
 void onEnterRecordVs(GameModeState* state)
 {
-    lbCardNew_AllocWorkArea();
-    lbCardGame_LoadArchive(0);
+    initCard();
     gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
 }
 
@@ -237,7 +243,18 @@ void onExitRecordVs(UNUSED GameModeState* state)
     lbCardGame_SaveChanges();
 }
 
-void onEnterValidateVs(GameModeState* state) {}
+static void onValidateVsStartMelee(StartMeleeData* start,
+                                   UNUSED StartMeleeData* vs)
+{
+    setupStartMelee(start);
+    *HSD_RandSeedPtr = save_data.history.seed;
+}
+
+void onEnterValidateVs(GameModeState* state)
+{
+    initCard();
+    gmVsMelee_EnterVs(state, &vs_mode_data, onValidateVsStartMelee, NULL);
+}
 void onExitValidateVs(GameModeState* state) {}
 
 void onEnterRecordOver(UNUSED GameModeState* state) {}
