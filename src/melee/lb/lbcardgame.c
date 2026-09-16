@@ -44,7 +44,7 @@ typedef enum {
     /* +8  */ LbCardStatus card_status;
     /* +C  */ bool xC;
     /* +10 */ statex10 x10;
-    /* +14 */ bool failed;
+    /* +14 */ bool x14;
     /* +18 */ bool enable;
     /* +1C */ char comment[CARD_COMMENT_SIZE];
     /* +5C */ void** icon_data;
@@ -249,7 +249,7 @@ void lb_8001CC84(void)
             }
 
             if (dont_inline_helper() != LbCardResult_Busy) {
-                _p(failed) = true;
+                _p(x14) = true;
             } else {
                 _p(x10) = true;
             }
@@ -258,7 +258,7 @@ void lb_8001CC84(void)
             int result = lbCardNew_CompleteNextTask();
             if (result != LbCardResult_Busy) {
                 if (result != 0) {
-                    _p(failed) = true;
+                    _p(x14) = true;
                 }
                 _p(x10) = result = 0;
             }
@@ -350,7 +350,7 @@ void lbCardGame_Reset(void)
     _p(enable) = false;
     _p(xC) = false;
     _p(x10) = 0;
-    _p(failed) = false;
+    _p(x14) = false;
 }
 
 void lbCardGame_Init(void)

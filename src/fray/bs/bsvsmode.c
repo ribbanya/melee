@@ -14,6 +14,7 @@
 #include "bsdisplay.h"
 #include "bshash.h"
 #include "bsio.h"
+#include "melee/lb/lbcardgame.h"
 #include "melee/lb/lbcardnew.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
@@ -65,8 +66,8 @@ GameModeState Replay_RecordStates[] = {
       onEnterRecordOver,
       onExitRecordOver,
       {
-          GS_MENU,
-          // GS_COMING_SOON,
+          // GS_MENU,
+          GS_COMING_SOON,
           NULL,
           NULL,
       }
@@ -186,13 +187,14 @@ static void onRecordVsStartMelee(StartMeleeData* start,
                                  UNUSED StartMeleeData* vs)
 {
     start->rules.match_kind = MatchKind_Time;
-    start->rules.time_limit = BISIM_MAX_SECONDS;
+    start->rules.time_limit = 5; // BISIM_MAX_SECONDS;
     curr_frame = U32_MAX;
     save_data.history.seed = *HSD_RandSeedPtr;
-    end_frame = BISIM_MAX_SECONDS * GM_FPS;
+    end_frame = start->rules.time_limit * GM_FPS;
 
     REPORT_HEX(save_data.history.seed);
     REPORT_UINT(end_frame);
+    lbCardGame_LoadArchive(0);
 }
 
 void onEnterRecordVs(GameModeState* state)
@@ -207,7 +209,13 @@ void onExitRecordVs(GameModeState* state)
 
 void onEnterRecordOver(UNUSED GameModeState* state)
 {
-    lbCardNew_CompleteAllTasks(LbCardResult_Busy);
+    lb_8001CC84();
+    // lbCardNew_CompleteAllTasks(LbCardResult_Busy);
+    // int result = lb_8001C8BC();
+    // OSReport(un_803FD230, result);
+    // if (result == 0) {
+    //     lbCardGame_SetCardStatus(0);
+    // }
     // BsDisplay_Init();
     // BsDisplay_Show();
     // BsDisplay_Draw(&archive);
