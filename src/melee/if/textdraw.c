@@ -172,10 +172,12 @@ void DevText_SetupCObj(void)
         float roll = 0;
         float near = 0;
         float far = 2;
+#ifdef FRAY
         float top = 0;
         float bottom = 480;
         float left = 0;
         float right = 640;
+#endif
 
         viewport.xmin = 0;
         viewport.xmax = 640;
