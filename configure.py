@@ -556,10 +556,9 @@ def TRKLib(lib_name: str, objects: Objects) -> Library:
     )
 
 
-Matching = False
+Matching = True
 NonMatching = False
 Equivalent = config.non_matching
-Modified = config.non_matching
 Linkable = bool(args.linkable)
 Debug = bool(args.debug)
 
