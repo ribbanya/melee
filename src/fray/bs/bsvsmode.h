@@ -6,8 +6,8 @@
 
 Bisim_SaveData* bsVsMode_GetSaveData(void);
 void Replay_Mode_OnInit(void);
-void Replay_Mode_OnLoad(void);
-void Replay_Mode_OnUnload(void);
+void bsVsMode_OnLoad(void);
+void bsVsMode_OnUnload(void);
 extern GameModeState Replay_RecordStates[];
 
 #endif
