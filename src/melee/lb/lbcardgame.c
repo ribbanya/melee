@@ -25,7 +25,7 @@ typedef enum {
     fileType_SaveData,
     fileType_NameTag,
     fileType_TrophyUnk,
-    fileType_3
+    fileType_3,
 } fileType;
 
 typedef enum {
