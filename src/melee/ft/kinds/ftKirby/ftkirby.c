@@ -2842,7 +2842,8 @@ HSD_JObj* ftKb_Init_UnkMotionStates6(Fighter_GObj* gobj)
         return fp->u.kb.hat.jobj;
     }
 
-    /// @todo What???
+    /// @remark This is actually a correctness hack. If no return was here,
+    /// MWCC emits the same code.
     return (HSD_JObj*) gobj;
 }
 
@@ -2881,7 +2882,7 @@ ftKb_SpecialN_insert_joint_refs(s32* total_dobjs, HSD_Joint* root, Fighter* fp,
             bone++;
             (*part_idx)++;
         }
-        HSD_IDInsertToTable(NULL, (u32) *joint, parts[*part_idx].joint);
+        HSD_IDInsertToTable(NULL, (HSD_IDKey) *joint, parts[*part_idx].joint);
         (*part_idx)++;
         ftAnim_GetNextJointInTree(joint, joint_idx);
     }

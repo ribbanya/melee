@@ -411,9 +411,7 @@ void fn_80169C54(s8 arg0, s8 arg1)
         ncostumes++;
     }
     if (ncostumes > 0) {
-        slot = 0;
-        character = &st->x0;
-        do {
+        for (slot = 0, character = &st->x0; slot < 3; slot++, character++) {
             ckind = *character;
             if (0x21 != ckind && ckind != 4) {
                 fighter0 = Player_800325C8((CharacterKind) ckind, 0);
@@ -435,9 +433,7 @@ void fn_80169C54(s8 arg0, s8 arg1)
                     }
                 }
             }
-            slot++;
-            character++;
-        } while (slot < 3);
+        }
         if (arg0 != 4) {
             extra_fighter0 = Player_800325C8((CharacterKind) arg0, 0);
             if ((extra_fighter0 != -1) && (extra_fighter0 != 4)) {
@@ -913,7 +909,7 @@ bool gm_8016A944(void)
 
 UNK_T gm_8016A97C(void)
 {
-    return &M2C_FIELD(&lbl_8046B668, UNK_T*, 0x1C);
+    return lbl_8046B668.arr2;
 }
 
 struct lbl_8046B668_t* gm_8016A98C(void)
