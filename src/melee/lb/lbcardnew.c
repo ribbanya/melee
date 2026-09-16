@@ -269,11 +269,11 @@ static void resetState(int chan, void* save_data, int* status_out,
     _p(saved_error) = 16;
 
     for (i = 0; i < (ssize_t) ARRAY_SIZE(_p(unk_38)); i++) {
-        _p(unk_38)[i].lb_error = 16;
+        _p(unk_38)[i].lb_error = LbCardResult_16;
         _p(unk_38)[i].hsd_result = -1;
     }
 
-    _p(mounted) = 0;
+    _p(mounted) = false;
     _p(on_finished) = callback;
 
     resetTaskArray();
@@ -295,13 +295,13 @@ static int convert_hsdcard_error(int hsd_result)
     switch (hsd_result) {
     case 0:
     case 1:
-        lb_result = 0;
+        lb_result = LbCardResult_Ready;
         break;
     case -261:
     case -260:
     case -259:
     case -258:
-        lb_result = 2;
+        lb_result = LbCardResult_2;
         break;
     case -263:
     case -262:
@@ -312,7 +312,7 @@ static int convert_hsdcard_error(int hsd_result)
     case -265:
     case -266:
     case -267:
-        lb_result = 10;
+        lb_result = LbCardResult_10;
         break;
     default:
         lb_result = convertSdkResult(hsd_result);
