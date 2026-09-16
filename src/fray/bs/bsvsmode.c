@@ -120,7 +120,8 @@ static void updateSnapshot(void)
 
     {
         u32 h = bsHash_Cursor(bsHash_Init(), &snapshot_cursor);
-        save_data.history.hashes[curr_frame] = h;
+        // save_data.history.hashes[curr_frame] = h;
+        save_data.history.hashes[curr_frame] = curr_frame;
         BsDisplay_Draw(&snapshot, h);
     }
 
@@ -188,8 +189,8 @@ void Replay_Mode_OnInit(void)
 
 void Replay_Mode_OnLoad(void)
 {
-    lbCardNew_AllocWorkArea();
-    lbCardGame_LoadArchive(0);
+    // lbCardNew_AllocWorkArea();
+    // lbCardGame_LoadArchive(0);
 }
 
 void Replay_Mode_OnUnload(void) {}
@@ -210,34 +211,16 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 
 void onEnterRecordVs(GameModeState* state)
 {
-    // lbCardNew_AllocWorkArea();
-    // lbCardGame_LoadArchive(0);
+    lbCardNew_AllocWorkArea();
+    lbCardGame_LoadArchive(0);
     gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
 }
 
-void onExitRecordVs(GameModeState* state)
+void onExitRecordVs(UNUSED GameModeState* state)
 {
-    // lbCardNew_AllocWorkArea();
-    // lbCardGame_LoadArchive(0);
     lbCardGame_SaveChanges();
-    // lb_8001CDB4();
-    // lbCardNew_CompleteAllTasks(LbCardResult_Busy);
-    // while (lbCardNew_CompleteNextTask() == 11);
-    // gm_SetPendingGameMode(GM_MENU);
-    // gm_SetNewGameModePending();
-    // gmVsMelee_ExitVs(state, state_record_over, state_record_over);
 }
 
-void onEnterRecordOver(UNUSED GameModeState* state)
-{
-    // int result = lb_8001C8BC();
-    // OSReport(un_803FD230, result);
-    // if (result == 0) {
-    //     lbCardGame_SetCardStatus(0);
-    // }
-    // BsDisplay_Init();
-    // BsDisplay_Show();
-    // BsDisplay_Draw(&archive);
-}
+void onEnterRecordOver(UNUSED GameModeState* state) {}
 
 void onExitRecordOver(UNUSED GameModeState* state) {}
