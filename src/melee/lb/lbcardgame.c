@@ -349,5 +349,4 @@ void lbCardGame_Init(void)
     for (i = 0; i < GM_NAMETAG_BANK_COUNT; i++) {
         manifest[2 + i].data = &gmMainLib_GetNameTagDataBanks()[i];
     }
-    FRAY_PANIC("halting\n");
 }
