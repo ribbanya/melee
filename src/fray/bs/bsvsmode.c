@@ -190,7 +190,6 @@ void Replay_Mode_OnLoad(void)
 {
     lbCardNew_AllocWorkArea();
     lbCardGame_LoadArchive(0);
-    lbCardGame_UpdatePowerTime();
 }
 
 void Replay_Mode_OnUnload(void) {}
@@ -206,21 +205,26 @@ static void onRecordVsStartMelee(StartMeleeData* start,
 
     REPORT_HEX(save_data.history.seed);
     REPORT_UINT(end_frame);
-    lbCardGame_LoadArchive(0);
+    // lbCardGame_LoadArchive(0);
 }
 
 void onEnterRecordVs(GameModeState* state)
 {
+    // lbCardNew_AllocWorkArea();
+    // lbCardGame_LoadArchive(0);
     gmVsMelee_EnterVs(state, &vs_mode_data, onRecordVsStartMelee, NULL);
 }
 
 void onExitRecordVs(GameModeState* state)
 {
-    lb_8001CDB4();
-    lbCardNew_CompleteAllTasks(LbCardResult_Busy);
-    while (lbCardNew_CompleteNextTask() == 11);
-    gm_SetPendingGameMode(GM_MENU);
-    gm_SetNewGameModePending();
+    // lbCardNew_AllocWorkArea();
+    // lbCardGame_LoadArchive(0);
+    lbCardGame_SaveChanges();
+    // lb_8001CDB4();
+    // lbCardNew_CompleteAllTasks(LbCardResult_Busy);
+    // while (lbCardNew_CompleteNextTask() == 11);
+    // gm_SetPendingGameMode(GM_MENU);
+    // gm_SetNewGameModePending();
     // gmVsMelee_ExitVs(state, state_record_over, state_record_over);
 }
 
