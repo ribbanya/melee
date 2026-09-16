@@ -401,7 +401,7 @@ int taskCheck(void)
     return saved_error;
 }
 
-void lb_8001A4CC(const char* filename, void* file_entries)
+static void setTaskFilename(const char* filename, void* file_entries)
 {
     CardTask* task = getNewTask();
     task->type = LbCardNewTask_Open;
@@ -460,8 +460,9 @@ int taskOpen(const char* filename, LbCardEntry* entries)
             } else {
                 open_result = CARDOpen(_p(chan), filename, &_p(file_info));
                 CARDClose(&_p(file_info));
-                HSD_ASSERT(0x2C8, _p(lib_area));
-                hsd_803B24E4(&_p(card_state), _p(chan), 0x2000, _p(lib_area));
+                HSD_ASSERT(712, _p(lib_area));
+                hsd_803B24E4(&_p(card_state), _p(chan), SECTOR_SIZE,
+                             _p(lib_area));
                 if (open_result == LbCardResult_Ready) {
                     hsd_result =
                         hsd_803B2550(&_p(card_state), filename, fn_8001A0B0);
@@ -844,7 +845,7 @@ static inline CardTask* setup_task(CardTaskType type, int result_mask)
 static inline void lb_8001A4CC_dontinline(const char* filename,
                                           void* file_entries)
 {
-    lb_8001A4CC(filename, file_entries);
+    setTaskFilename(filename, file_entries);
 }
 
 u32 lb_8001B7E0(int chan, char* filename, void* file_entries, void* save_data,
@@ -1016,7 +1017,7 @@ int lb_8001BE30(int chan, const char* filename, UNK_T file_entries,
     task = getNewTask();
     task->type = LbCardNewTask_Check;
     task->result_mask = 0x201;
-    lb_8001A4CC(filename, 0);
+    setTaskFilename(filename, 0);
     task = getNewTask();
     task->type = LbCardNewTask_Unk3;
     task->result_mask = -1;
@@ -1189,7 +1190,7 @@ int lb_8001C4A8(void* file_entries, void* icon_data)
 
     entry = file_entries;
     ctx = &_p(card_state);
-    hsd_803B24E4(ctx, 0, 0x2000, _p(lib_area));
+    hsd_803B24E4(ctx, 0, SECTOR_SIZE, _p(lib_area));
     hsd_SetCardIconInfo(ctx, icon);
     {
         int i;
@@ -1215,12 +1216,12 @@ void lbCardNew_AllocWorkArea(void)
     }
 }
 
-void lb_8001C5A4(void)
+void lbCardNew_ForgetMemory(void)
 {
     _p(work_area) = _p(lib_area) = NULL;
 }
 
-void lb_8001C5BC(void)
+void lbCardNew_Init(void)
 {
     hsd_803B2374();
     resetState(0, NULL, NULL, NULL);

@@ -30,10 +30,8 @@ typedef struct {
 
 typedef void (*LbCardOnFinishedCallback)(int);
 
-/* 01A0B0 */ void fn_8001A0B0(int file_idx, int hsd_error);
 /* 01A184 */ int taskMount(void);
 /* 01A3A4 */ int taskCheck(void);
-/* 01A4CC */ void lb_8001A4CC(const char* filename, UNK_T file_entries);
 /* 01A860 */ int taskUnk3(void);
 /* 01A8A4 */ int taskFormat(void);
 /* 01A9CC */ int taskDelete(char* filename);
@@ -45,6 +43,8 @@ typedef void (*LbCardOnFinishedCallback)(int);
 /* 01B068 */ int taskReadHeader(void);
 /* 01B14C */ int taskListSnapshots(void);
 /* 01B614 */ int taskFindFile(const char* filename);
+/* 01A0B0 */ void fn_8001A0B0(int file_idx, int hsd_error);
+
 /* 01B6E0 */ s32 lb_8001B6E0(s32 file_idx);
 /* 01B6F8 */ enum_t lbCardNew_CompleteNextTask(void);
 /* 01B760 */ int lbCardNew_CompleteAllTasks(int result);
@@ -78,7 +78,7 @@ typedef void (*LbCardOnFinishedCallback)(int);
 /* 01C404 */ int lbCardNew_ProbeEx(int chan);
 /* 01C4A8 */ int lb_8001C4A8(void* file_entries, void* icon_data);
 /* 01C550 */ void lbCardNew_AllocWorkArea(void);
-/* 01C5A4 */ void lb_8001C5A4(void);
-/* 01C5BC */ void lb_8001C5BC(void);
+/* 01C5A4 */ void lbCardNew_ForgetMemory(void);
+/* 01C5BC */ void lbCardNew_Init(void);
 
 #endif
