@@ -106,9 +106,9 @@ ASSERT_OFFSET(CardContext, requests, 0x1210);
 /* 3AC168 */ static s32 fn_803AC168(s32* cmd_buf);
 /* 3AC258 */ static s32 fn_803AC258(CardState* card_state, s32 block_idx);
 /* 3AC2A4 */ static s32 fn_803AC2A4(CardState* card_state);
-/* 3AC2D4 */ static void fn_803AC2D4(void);
-/* 3AC2E0 */ static void fn_803AC2E0(void);
-/* 3AC334 */ static void fn_803AC334(void);
+/* 3AC2D4 */
+/* 3AC2E0 */
+/* 3AC334 */
 /* 3AC3F8 */ static void fn_803AC3F8(void*, u8*, s32);
 /* 3AC558 */ static void hsd_803AC558(struct CardState*, u8*);
 /* 3AC634 */ static u32 fn_803AC634(struct CardState* file_desc, s32 file_idx);
@@ -1736,7 +1736,7 @@ void fn_803AC3F8(CardState* state, u8* data, s32 file_idx)
     }
 }
 
-void hsd_803AC558(CardState* state, u8* data)
+void hsd_803AC558(CardState* state, const u8* data)
 {
     int i;
 
