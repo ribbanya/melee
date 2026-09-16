@@ -100,9 +100,9 @@ static char* lb_8001C658(void)
         _p(comment)[i] = '\0';
     }
     if (lbLang_IsSettingJP()) {
-        title = "大乱闘スマッシュブラザーズＤＸ  セーブデータ";
+        title = "大乱闘スマッシュブラザーズＤＸ 双模倣性データ";
     } else {
-        title = "Super Smash Bros. Melee         Game Data";
+        title = "Super Smash Bros. Melee Bisimulation Data";
     }
     sprintf(_p(comment), "%s %4d/%02d/%02d", title, time.year, time.mon + 1,
             time.mday);
@@ -122,7 +122,7 @@ static void* getCurrentIcon(void)
     return _p(icon_data)[idx];
 }
 
-char filename[] = "SuperSmashBros0110290334";
+static char filename[] = "FrayBisim202609161211";
 
 u32 lb_8001C87C(void)
 {
