@@ -29,10 +29,13 @@
 static void onEnterRecordVs(GameModeState* state);
 static void onExitRecordVs(GameModeState* state);
 
+static void onEnterValidateVs(GameModeState* state);
+static void onExitValidateVs(GameModeState* state);
+
 static void onEnterRecordOver(GameModeState* state);
 static void onExitRecordOver(GameModeState* state);
-static VsModeData vs_mode_data;
 
+static VsModeData vs_mode_data;
 static Bisim_GlobalSnapshot snapshot;
 
 static u32 curr_frame;
@@ -43,6 +46,7 @@ static Bisim_SaveData save_data;
 
 enum {
     state_record_vs,
+    state_validate_vs,
     state_record_over,
 };
 
@@ -59,17 +63,29 @@ GameModeState Replay_RecordStates[] = {
             &gmVsMelee_VsExitInfo,
         },
     },
-    { state_record_over,
-      lbDvdPreload_2,
-      0,
-      onEnterRecordOver,
-      onExitRecordOver,
-      {
-          GS_COMING_SOON,
-          NULL,
-          NULL,
-      }
-
+    {
+        state_validate_vs,
+        lbDvdPreload_2,
+        0,
+        onEnterValidateVs,
+        onExitValidateVs,
+        {
+            GS_VS,
+            &gmVsMelee_StartData,
+            &gmVsMelee_VsExitInfo,
+        },
+    },
+    {
+        state_record_over,
+        lbDvdPreload_2,
+        0,
+        onEnterRecordOver,
+        onExitRecordOver,
+        {
+            GS_COMING_SOON,
+            NULL,
+            NULL,
+        },
     },
     { GM_GAMEMODESTATE_TERMINATE },
 };
@@ -221,6 +237,8 @@ void onExitRecordVs(UNUSED GameModeState* state)
     lbCardGame_SaveChanges();
 }
 
-void onEnterRecordOver(UNUSED GameModeState* state) {}
+void onEnterValidateVs(GameModeState* state) {}
+void onExitValidateVs(GameModeState* state) {}
 
+void onEnterRecordOver(UNUSED GameModeState* state) {}
 void onExitRecordOver(UNUSED GameModeState* state) {}
