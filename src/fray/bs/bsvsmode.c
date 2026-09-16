@@ -14,8 +14,11 @@
 #include "bsdisplay.h"
 #include "bshash.h"
 #include "bsio.h"
+#include "melee/gm/gm_1A3F.h"
+#include "melee/gm/gmmain_lib.h"
 #include "melee/lb/lbcardgame.h"
 #include "melee/lb/lbcardnew.h"
+#include "sysdolphin/baselib/debug.h"
 #include <dolphin/types.h>
 #include <fray/lb/lbqol.h>
 #include <melee/gm/gm_1601.h>
@@ -66,7 +69,6 @@ GameModeState Replay_RecordStates[] = {
       onEnterRecordOver,
       onExitRecordOver,
       {
-          // GS_MENU,
           GS_COMING_SOON,
           NULL,
           NULL,
@@ -133,9 +135,14 @@ static void updateSnapshot(void)
 
 static void onMatchStartRecordVs(void)
 {
+    Bisim_ArchiveHeader* ah = &save_data.history_header;
     setupSnapshot();
     BsDisplay_Init();
     BsDisplay_Show();
+
+    OSReport("Loading: %.4s, 0x%X, %d, %d, 0x%08X, %u, 0x%08X\n", &ah->magic,
+             ah->header_size, ah->version, ah->type, ah->hash, ah->size,
+             ah->flags);
 }
 
 static void onFrameEndRecordVs(void)
@@ -179,7 +186,12 @@ void Replay_Mode_OnInit(void)
     initTestMatch(&vs_mode_data.start);
 }
 
-void Replay_Mode_OnLoad(void) {}
+void Replay_Mode_OnLoad(void)
+{
+    lbCardNew_AllocWorkArea();
+    lbCardGame_LoadArchive(0);
+    lbCardGame_UpdatePowerTime();
+}
 
 void Replay_Mode_OnUnload(void) {}
 
@@ -204,13 +216,16 @@ void onEnterRecordVs(GameModeState* state)
 
 void onExitRecordVs(GameModeState* state)
 {
-    gmVsMelee_ExitVs(state, state_record_over, state_record_over);
+    lb_8001CDB4();
+    lbCardNew_CompleteAllTasks(LbCardResult_Busy);
+    while (lbCardNew_CompleteNextTask() == 11);
+    gm_SetPendingGameMode(GM_VS);
+    gm_SetNewGameModePending();
+    // gmVsMelee_ExitVs(state, state_record_over, state_record_over);
 }
 
 void onEnterRecordOver(UNUSED GameModeState* state)
 {
-    lb_8001CC84();
-    // lbCardNew_CompleteAllTasks(LbCardResult_Busy);
     // int result = lb_8001C8BC();
     // OSReport(un_803FD230, result);
     // if (result == 0) {

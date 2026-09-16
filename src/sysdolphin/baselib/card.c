@@ -5683,6 +5683,7 @@ static int fn_803B2E04(u8 prev, s32 cur)
 
 int hsd_803B2FA0(u8* data, int len)
 {
+#ifndef FRAY
     u8* ptr;
     int i;
 
@@ -5696,7 +5697,7 @@ int hsd_803B2FA0(u8* data, int len)
         ptr = data + i;
         *ptr = fn_803B2E04(ptr[-1], *ptr);
     }
-
+#endif
     return 0;
 }
 
@@ -5763,6 +5764,7 @@ static int fn_803B302C(u32 prev, u32 cur)
 
 int hsd_803B31CC(u8* data, int len)
 {
+#ifndef FRAY
     u32 prev;
     u8* ptr;
     int i;
@@ -5790,6 +5792,7 @@ int hsd_803B31CC(u8* data, int len)
             return -1;
         }
     }
+#endif
 
     return 0;
 }
