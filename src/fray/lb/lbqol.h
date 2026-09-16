@@ -21,6 +21,7 @@
 #define FRAY_ASSERTMSG(cond, msg) HSD_ASSERTMSG(__LINE__, cond, msg)
 #define FRAY_ASSERTREPORT(cond, ...)                                          \
     HSD_ASSERTREPORT(__LINE__, cond, __VA_ARGS__)
+#define FRAY_PANIC(...) (OSPanic(__FILE__, __LINE__, __VA_ARGS__))
 
 void Qol_LogInit(void);
 StKind Qol_PickRandomLegalStage(int max);

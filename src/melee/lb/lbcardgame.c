@@ -17,6 +17,10 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 
+#ifdef FRAY
+#include <fray/lb/lbqol.h>
+#endif
+
 typedef enum {
     stateStatus_0,
 } stateStatus;
@@ -348,10 +352,11 @@ void lbCardGame_Init(void)
         {
             struct GmCardData* base = gmMainLib_GetSaveData();
             struct NameTagDataBank* bank = &base->nametag_banks[i];
-            OSReport("reading nametag bank at 0x%08X (0x08X+%X)", bank, base,
-                     ((intptr_t) bank) - ((intptr_t) base));
+            OSReport("reading nametag bank at 0x%08X (0x%08X+%X)\n", bank,
+                     base, ((intptr_t) bank) - ((intptr_t) base));
         }
 #endif
         manifest[2 + i].data = &gmMainLib_8015CC4C()[i];
     }
+    FRAY_PANIC("halting\n");
 }
