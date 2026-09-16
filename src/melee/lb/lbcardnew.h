@@ -13,7 +13,8 @@ typedef enum {
     LbCardResult_NoFile = 4,
     LbCardResult_NullFilename = 7,
     LbCardResult_Malformed = 9,
-    LbCardResult_Busy = 11,
+    LbCardResult_10,
+    LbCardResult_Busy,
     LbCardResult_BadSectorSize,
     LbCardResult_Invalid,
     LbCardResult_FatalError,
@@ -27,8 +28,8 @@ typedef struct {
     void* data;
 } LbCardEntry;
 
-/* 019EF0 */ void lb_80019EF0(int chan, UNK_T save_data, UNK_T status_out,
-                              UNK_T callback);
+typedef void (*LbCardOnFinishedCallback)(int);
+
 /* 01A0B0 */ void fn_8001A0B0(int file_idx, int hsd_error);
 /* 01A184 */ int taskMount(void);
 /* 01A3A4 */ int taskCheck(void);

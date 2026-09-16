@@ -464,9 +464,7 @@ struct gmm_x0 {
 ASSERT_SIZE(struct EventData, 0x588 - 0x530);
 ASSERT_SIZE(struct gmm_x0_vsdata, 0x588 - 0x51C);
 ASSERT_SIZE(struct gmm_x0_vsmodes, 0x1850 - 0x588);
-#ifndef FRAY
 ASSERT_SIZE(struct gmm_x0, 0x10A30);
-#endif
 
 struct Placeholder_8016AE38_flags_2 {
     /* +0:0 */ u8 x0_b0_b2 : 3;

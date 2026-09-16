@@ -170,12 +170,12 @@ static LbCardStatus updateCardStatus(void)
         }
         break;
     case 3:
-        if (lbCardNew_ProbeEx(0) != 0) {
+        if (lbCardNew_ProbeEx(0) != LbCardResult_Ready) {
             _p(card_status) = LbCardStatus_4;
         }
         break;
     case 4:
-        if (unk_status != 0 && lbCardNew_ProbeEx(0) == 0) {
+        if (unk_status != 0 && lbCardNew_ProbeEx(0) == LbCardResult_Ready) {
             _p(card_status) = LbCardStatus_3;
         }
         break;
