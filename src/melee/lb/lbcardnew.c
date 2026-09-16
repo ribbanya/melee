@@ -78,7 +78,6 @@ typedef struct {
     /* 0x10 */ char filename[CARD_FILENAME_MAX + 1];
 
     /* 0x31 */ char new_filename[CARD_FILENAME_MAX + 1];
-    /* 0x52 */ char pad_52[2];
 } CardTask;
 ASSERT_SIZE(CardTask, 0x54);
 ASSERT_OFFSET(CardTask, filename, 0x10);
@@ -128,7 +127,7 @@ ASSERT_OFFSET(CardTask, new_filename, 0x31);
     /* 0x0A8 */ CardState card_state;
     /* 0x50C */ LbCardOnFinishedCallback on_finished;
     /* 0x510 */ CardTask task_array[LbCardNewTaskArray_Max];
-    /* 0x8AC */ int pending_ops; ///< count
+    /* 0x8AC */ int tasks_remaining;
 } state;
 
 #define _p(x) (state.x)
@@ -280,7 +279,7 @@ static void resetState(int chan, void* save_data, int* status_out,
     _p(snapshot_entries) = NULL;
     _p(free_blocks) = NULL;
     _p(free_files) = NULL;
-    _p(saved_error) = 16;
+    _p(saved_error) = LbCardResult_16;
 
     for (i = 0; i < (ssize_t) ARRAY_SIZE(_p(unk_38)); i++) {
         _p(unk_38)[i].lb_error = LbCardResult_16;
@@ -300,10 +299,10 @@ static void onCardComplete(UNUSED s32 chan, s32 result)
     if (error != 0) {
         _p(saved_error) = error;
     }
-    _p(pending_ops) -= 1;
+    _p(tasks_remaining) -= 1;
 }
 
-static int convert_hsdcard_error(int hsd_result)
+static int convertHsdResult(int hsd_result)
 {
     int lb_result;
     switch (hsd_result) {
@@ -339,14 +338,14 @@ void fn_8001A0B0(int file_idx, int hsd_error)
 {
     s32 error;
 
-    error = convert_hsdcard_error(hsd_error);
+    error = convertHsdResult(hsd_error);
 
     _p(unk_38)[file_idx].lb_error = error;
     _p(unk_38)[file_idx].hsd_result = hsd_error;
     if (error != 0) {
         _p(saved_error) = error;
     }
-    _p(pending_ops) -= 1;
+    _p(tasks_remaining) -= 1;
 }
 
 int taskMount(void)
@@ -360,7 +359,7 @@ int taskMount(void)
     PAD_STACK(3 * 4);
 
     did_disable = 0;
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     probe_result = CARDProbeEx(_p(chan), &_p(memsize), &_p(sectorsize));
     _p(saved_error) = convertSdkResult(probe_result);
     if (_p(saved_error) == 0) {
@@ -378,10 +377,10 @@ int taskMount(void)
             _p(mounted) = true;
         }
         if (_p(saved_error) == 0) {
-            _p(pending_ops) += 1;
+            _p(tasks_remaining) += 1;
         }
     }
-    pending_ops = _p(pending_ops);
+    pending_ops = _p(tasks_remaining);
     saved_error = _p(saved_error);
     if (did_disable) {
         OSRestoreInterrupts(enabled);
@@ -399,14 +398,14 @@ int taskCheck(void)
     int enabled;
     int check_result;
     PAD_STACK(4 * 4);
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     enabled = OSDisableInterrupts();
     check_result = CARDCheckAsync(_p(chan), onCardComplete);
     _p(saved_error) = convertSdkResult(check_result);
     if (_p(saved_error) == LbCardResult_Ready) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    pending_ops = _p(pending_ops);
+    pending_ops = _p(tasks_remaining);
     saved_error = _p(saved_error);
     OSRestoreInterrupts(enabled);
     if (pending_ops != 0) {
@@ -460,7 +459,7 @@ int taskOpen(const char* filename, LbCardEntry* entries)
     int hsd_result;
     PAD_STACK(6 * 4);
 
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     if (_p(sectorsize) != SECTOR_SIZE) {
         _p(saved_error) = LbCardResult_BadSectorSize;
     } else {
@@ -481,9 +480,9 @@ int taskOpen(const char* filename, LbCardEntry* entries)
                     hsd_result =
                         hsd_803B2550(&_p(card_state), filename, fn_8001A0B0);
 
-                    _p(saved_error) = convert_hsdcard_error(hsd_result);
+                    _p(saved_error) = convertHsdResult(hsd_result);
                     if (_p(saved_error) == LbCardResult_Ready) {
-                        _p(pending_ops) += 1;
+                        _p(tasks_remaining) += 1;
                     }
                 } else if (entries == NULL) {
                     _p(saved_error) = 4;
@@ -502,7 +501,7 @@ int taskOpen(const char* filename, LbCardEntry* entries)
             }
         }
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -510,7 +509,7 @@ int taskOpen(const char* filename, LbCardEntry* entries)
 
 int taskUnk3(void)
 {
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     switch (_p(saved_error)) {
     case 1:
         break;
@@ -533,7 +532,7 @@ int taskFormat(void)
 
     unused = 0;
     did_disable = 0;
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     if (_p(mounted) != 0) {
         enabled = OSDisableInterrupts();
         did_disable = 1;
@@ -541,10 +540,10 @@ int taskFormat(void)
 
         _p(saved_error) = convertSdkResult(format_result);
         if (_p(saved_error) == 0) {
-            _p(pending_ops) += 1;
+            _p(tasks_remaining) += 1;
         }
     }
-    pending_ops = _p(pending_ops);
+    pending_ops = _p(tasks_remaining);
     saved_error = _p(saved_error);
     if (did_disable != 0) {
         OSRestoreInterrupts(enabled);
@@ -565,15 +564,15 @@ int taskDelete(char* filename)
     u8 _[8];
 
     unused = 0;
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     enabled = OSDisableInterrupts();
     delete_result = CARDDeleteAsync(_p(chan), filename, onCardComplete);
 
     _p(saved_error) = convertSdkResult(delete_result);
     if (_p(saved_error) == 0) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    pending_ops = _p(pending_ops);
+    pending_ops = _p(tasks_remaining);
     saved_error = _p(saved_error);
     OSRestoreInterrupts(enabled);
     if (pending_ops != 0) {
@@ -592,15 +591,15 @@ int taskRename(const char* old_name, const char* new_name)
     u8 _[8];
 
     unused = 0;
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     enabled = OSDisableInterrupts();
     rename_result =
         CARDRenameAsync(_p(chan), old_name, new_name, onCardComplete);
     _p(saved_error) = convertSdkResult(rename_result);
     if (_p(saved_error) == 0) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    pending_ops = _p(pending_ops);
+    pending_ops = _p(tasks_remaining);
     saved_error = _p(saved_error);
     OSRestoreInterrupts(enabled);
     if (pending_ops != 0) {
@@ -616,11 +615,11 @@ int taskCreate(const char* filename)
 
     hsd_result = hsd_803B286C(&_p(card_state), filename, _p(comment),
                               _p(banner), _p(icons), fn_8001A0B0);
-    _p(saved_error) = convert_hsdcard_error(hsd_result);
+    _p(saved_error) = convertHsdResult(hsd_result);
     if (_p(saved_error) == 0) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -647,17 +646,17 @@ int taskRead(LbCardEntry* entries)
         if (readCardFileSize(&_p(card_state).file_sizes[i]) != 0) {
             hsd_result =
                 hsd_803B29D8(&_p(card_state), i, entries[i].data, fn_8001A0B0);
-            _p(unk_38)[i].lb_error = convert_hsdcard_error(hsd_result);
+            _p(unk_38)[i].lb_error = convertHsdResult(hsd_result);
             _p(unk_38)[i].hsd_result = hsd_result;
             file_error = _p(unk_38)[i].lb_error;
             if (file_error == LbCardResult_Ready) {
-                _p(pending_ops) += 1;
+                _p(tasks_remaining) += 1;
             } else {
                 _p(saved_error) = file_error;
             }
         }
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -679,17 +678,17 @@ int taskWrite(LbCardEntry* entries)
         if (readCardFileSize(&_p(card_state).file_sizes[i]) != 0) {
             hsd_result =
                 hsd_803B2A4C(&_p(card_state), i, entries[i].data, fn_8001A0B0);
-            _p(unk_38)[i].lb_error = convert_hsdcard_error(hsd_result);
+            _p(unk_38)[i].lb_error = convertHsdResult(hsd_result);
             _p(unk_38)[i].hsd_result = hsd_result;
             file_error = _p(unk_38)[i].lb_error;
             if (file_error == LbCardResult_Ready) {
-                _p(pending_ops) += 1;
+                _p(tasks_remaining) += 1;
             } else {
                 _p(saved_error) = file_error;
             }
         }
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -700,12 +699,12 @@ int taskSetStatus(void)
     int hsd_result = hsd_803B2928(&_p(card_state), _p(comment), _p(banner),
                                   _p(icons), fn_8001A0B0);
 
-    _p(saved_error) = convert_hsdcard_error(hsd_result);
+    _p(saved_error) = convertHsdResult(hsd_result);
 
     if (_p(saved_error) == 0) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -716,12 +715,12 @@ int taskReadHeader(void)
     int hsd_result = hsd_803B27F4(&_p(card_state), _p(comment), _p(banner),
                                   _p(icons), fn_8001A0B0);
 
-    _p(saved_error) = convert_hsdcard_error(hsd_result);
+    _p(saved_error) = convertHsdResult(hsd_result);
 
     if (_p(saved_error) == 0) {
-        _p(pending_ops) += 1;
+        _p(tasks_remaining) += 1;
     }
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         return LbCardResult_Busy;
     }
     return _p(saved_error);
@@ -744,7 +743,7 @@ int taskListSnapshots(void)
 
     head = NULL;
     disk_id = DVDGetCurrentDiskID();
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     if (_p(free_blocks) != NULL) {
         *_p(free_blocks) = _p(unused_bytes) / SECTOR_SIZE;
     }
@@ -796,7 +795,7 @@ int taskFindFile(const char* filename)
     int fileno;
 
     fileno = 0;
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
     while (true) {
         if (CARDGetStatus(_p(chan), fileno, &card_stat) == 0 &&
             strncmp((const char*) card_stat.company, _p(company), 2) == 0 &&
@@ -828,7 +827,7 @@ int lbCardNew_CompleteNextTask(void)
 
     hsd_803AAA48();
     enabled = OSDisableInterrupts();
-    if (_p(pending_ops) != 0) {
+    if (_p(tasks_remaining) != 0) {
         result = LbCardResult_Busy;
     } else {
         result = _p(saved_error);
@@ -1239,5 +1238,5 @@ void lbCardNew_Init(void)
 {
     hsd_803B2374();
     resetState(0, NULL, NULL, NULL);
-    _p(pending_ops) = 0;
+    _p(tasks_remaining) = 0;
 }
