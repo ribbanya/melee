@@ -370,7 +370,9 @@ void gm_801A4510(void)
             modes[i].on_init();
         }
     }
+#ifdef FRAY
     state_machine.routing.curr_mode = GM_REPLAY;
+#endif
     state_machine.routing.prev_mode = GM_COUNT;
 
     while (true) {

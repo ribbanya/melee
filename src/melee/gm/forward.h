@@ -62,8 +62,10 @@ typedef enum GameModeKind {
     /* 2A */ GM_CAMERA_VS,
     /* 2B */ GM_EVENT,
     /* 2C */ GM_SINGLE_BUTTON_VS,
+#ifdef FRAY
     /* 2D */ GM_REPLAY,
-    /* 2F */ GM_COUNT,
+#endif
+    /* 2D */ GM_COUNT,
 } GameModeKind;
 
 typedef enum GameSceneKind {

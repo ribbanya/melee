@@ -44,7 +44,9 @@
 #include "gmvsmelee.h"
 #include "gmvsmode.h"
 #include "types.h"
+#ifdef FRAY
 #include <fray/bs/bsvsmode.h>
+#endif
 #include <melee/if/ifprize.h>
 #include <melee/mn/mncharsel.h>
 #include <melee/mn/mnmain.h>
@@ -743,6 +745,7 @@ static GameMode modes[] = {
         gm_Mode_SingleButtonVs_OnInit,
         gm_Mode_SingleButtonVs_States,
     },
+#ifdef FRAY
     {
         false,
         GM_REPLAY,
@@ -751,6 +754,7 @@ static GameMode modes[] = {
         Replay_Mode_OnInit,
         Replay_RecordStates,
     },
+#endif
     {
         false,
         GM_COUNT,
