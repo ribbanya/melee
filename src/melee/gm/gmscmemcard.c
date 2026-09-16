@@ -315,7 +315,7 @@ void gm_Scene_MemCard_OnFrame(void)
                     enter_data.unk8.unk0 = 1;
                     enter_data.decision = 20;
                     lbCardGame_SetCardStatus(LbCardStatus_0);
-                    lbCardGame_UpdatePowerTime();
+                    lbCardGame_SetDirty();
                 }
             } else {
                 unk_inline();
