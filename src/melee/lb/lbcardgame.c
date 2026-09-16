@@ -1,5 +1,6 @@
 #include "lbcardgame.h"
 
+#include "fray/bs/bisimulation.h"
 #include "lbarchive.h"
 #include "lbcardnew.h"
 #include "lblanguage.h"
@@ -17,10 +18,6 @@
 #include <sysdolphin/baselib/gobjproc.h>
 #include <sysdolphin/baselib/jobj.h>
 
-#ifdef FRAY
-#include <fray/lb/lbqol.h>
-#endif
-
 typedef enum {
     stateStatus_0,
 } stateStatus;
@@ -29,7 +26,8 @@ typedef enum {
     fileType_SaveData,
     fileType_NameTag,
     fileType_TrophyUnk,
-    fileType_None
+    fileType_None,
+    fileType_Bisim,
 } fileType;
 
 typedef enum {
@@ -69,12 +67,7 @@ static LbCardEntry manifest[] = {
     { 0, fileType_None, NULL },
     { sizeof(GmSaveData), fileType_SaveData, NULL },
     { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
-    { sizeof(struct NameTagDataBank), fileType_NameTag, NULL },
+    { sizeof(Bisim_SaveData), fileType_Bisim, NULL },
     { -1 },
 };
 
