@@ -1,6 +1,5 @@
 #include "gmscdata.h"
 
-#include "forward.h"
 #include "gm_1A33.h"
 #include "gm_unsplit.h"
 #include "gmadventure.h"
@@ -44,9 +43,6 @@
 #include "gmvsmelee.h"
 #include "gmvsmode.h"
 #include "types.h"
-#ifdef FRAY
-#include <fray/bs/bsvsmode.h>
-#endif
 #include <melee/if/ifprize.h>
 #include <melee/mn/mncharsel.h>
 #include <melee/mn/mnmain.h>
@@ -65,6 +61,9 @@
 #include <melee/vi/vi1201v1.h>
 #include <melee/vi/vi1201v2.h>
 #include <melee/vi/vi1202.h>
+#ifdef FRAY
+#include <fray/bs/bsvsmode.h>
+#endif
 
 static GameScene scenes[] = {
     {
