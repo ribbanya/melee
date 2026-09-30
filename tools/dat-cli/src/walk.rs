@@ -169,6 +169,76 @@ impl<'a> Walker<'a> {
         }
     }
 
+    /// Walk `count` consecutive elements of type `element` at `offset`, or
+    /// if `count` is `None`, as many as fit before the next public symbol or
+    /// pointer target.
+    pub fn root_array(
+        &mut self,
+        offset: u32,
+        element: DieId,
+        count: Option<u64>,
+        name: &str,
+    ) {
+        let Some(element) = self.resolve(Some(element)) else {
+            return;
+        };
+        let (Some(id), Some(size)) = (
+            self.canonical.of(element),
+            self.canonical.byte_size(self.graph, element),
+        ) else {
+            return;
+        };
+        if size == 0 || !self.visited.insert((offset, id)) {
+            return;
+        }
+        self.walk.objects.entry(offset).or_default().insert(id);
+        let room = (self.data.len() as u64).saturating_sub(offset.into());
+        let count = count.unwrap_or_else(|| {
+            let end = self
+                .publics
+                .iter()
+                .chain(&self.targets)
+                .copied()
+                .filter(|&at| at > offset)
+                .min()
+                .map_or(room, |end| u64::from(end - offset));
+            end.min(room) / size
+        });
+        if count * size > room {
+            self.issue(Issue::OutOfBounds {
+                at: offset,
+                path: name.to_owned(),
+            });
+        }
+        let count = count.min(room / size);
+        // Plain data, such as a texture: only check it isn't relocated
+        if !self.has_pointers(element) {
+            let end = offset + (count * size) as u32;
+            let mut words: Vec<_> = self
+                .relocs
+                .iter()
+                .copied()
+                .filter(|at| (offset..end).contains(at))
+                .collect();
+            words.sort();
+            for at in words {
+                self.issue(Issue::RelocatedScalar {
+                    at,
+                    path: format!("{name}[{}]", (at - offset) as u64 / size),
+                });
+            }
+            return;
+        }
+        for i in 0..count {
+            let at = offset + (i * size) as u32;
+            self.layout(at, element, &format!("{name}[{i}]"), None);
+            while let Some((offset, die, path, env)) = self.queue.pop() {
+                self.env = env;
+                self.object(offset, die, path);
+            }
+        }
+    }
+
     pub fn finish(self) -> Walk {
         self.walk
     }
@@ -324,12 +394,13 @@ impl<'a> Walker<'a> {
                 }
             }
             TypeKind::Base { .. } | TypeKind::Enum { .. }
-                if self.relocs.contains(&offset) => {
-                    self.issue(Issue::RelocatedScalar {
-                        at: offset,
-                        path: path.to_owned(),
-                    });
-                }
+                if self.relocs.contains(&offset) =>
+            {
+                self.issue(Issue::RelocatedScalar {
+                    at: offset,
+                    path: path.to_owned(),
+                });
+            }
             _ => {}
         }
     }
@@ -530,6 +601,7 @@ impl<'a> Walker<'a> {
             })?;
         self.canonical
             .lookup(self.graph, &name)
+            .into_iter()
             .find_map(|die| self.resolve(Some(die)))
     }
 

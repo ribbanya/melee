@@ -63,7 +63,10 @@ used for publics no loader types:
 ```
 
 Names and archives take `*` and `?`. The first line with a matching archive
-wins, then the first `*` line.
+wins, then the first `*` line. Types can be `T`, `T*`, `T[N]`, or `T[]` for
+as many as fit before the next public symbol or pointer target. Raw data
+(textures, palettes) is typed as `u8[]` or `u16[]`, like the extracted
+blobs in `config.yml`.
 
 ## Annotations
 

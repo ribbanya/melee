@@ -9,7 +9,7 @@ use melee_dat::{
         roots::{RootName, roots},
     },
     hsd::Archive,
-    symbols::{Count, SymbolFile},
+    symbols::{Count, SymbolFile, TypeSpec},
     walk::{Walker, macros},
 };
 use std::{
@@ -268,14 +268,10 @@ fn walk(args: args::Check) -> Result<()> {
     let mut symbol_types = BTreeMap::new();
     for entry in &symbols.entries {
         let Some(spec) = &entry.ty else { continue };
-        anyhow::ensure!(
-            spec.count == Count::One,
-            "{}: arrays aren't supported yet: {entry}",
-            symbols_path.display()
-        );
         let die = canonical
             .lookup(&graph, &spec.name)
-            .next()
+            .first()
+            .copied()
             .with_context(|| format!("{entry}: no type `{}`", spec.name))?;
         symbol_types.insert(spec.name.as_str(), die);
     }
@@ -303,36 +299,41 @@ fn walk(args: args::Check) -> Result<()> {
             let mut any = false;
             for (name, symbol) in archive.named_publics() {
                 let name = String::from_utf8_lossy(name);
-                let ty =
-                    root_types.get(name.as_ref()).copied().or_else(|| {
-                        let spec =
-                            symbols.lookup(&name, &file)?.ty.as_ref()?;
-                        symbol_types.get(spec.name.as_str()).copied()
-                    });
-                if let Some(ty) = ty {
+                if let Some(&ty) = root_types.get(name.as_ref()) {
                     walker.root(symbol.offset, ty, &name);
+                    any = true;
+                } else if let Some(TypeSpec { name: ty, count }) =
+                    symbols.lookup(&name, &file).and_then(|e| e.ty.as_ref())
+                {
+                    let ty = symbol_types[ty.as_str()];
+                    let offset = symbol.offset;
+                    match *count {
+                        Count::One => walker.root(offset, ty, &name),
+                        Count::Exactly(n) => {
+                            walker.root_array(offset, ty, Some(n), &name)
+                        }
+                        Count::Unbounded => {
+                            walker.root_array(offset, ty, None, &name)
+                        }
+                    }
                     any = true;
                 }
             }
             let result = walker.finish();
-            for (name, symbol) in archive.named_publics() {
-                if !result.objects.contains_key(&symbol.offset) {
-                    let name = String::from_utf8_lossy(name);
-                    log::debug!("{rel}: untyped public {name}");
-                }
-            }
-
             publics += archive.publics.len();
             relocs += archive.relocs.len();
+            for (name, symbol) in archive.named_publics() {
+                if result.objects.contains_key(&symbol.offset) {
+                    typed += 1;
+                    continue;
+                }
+                let name = String::from_utf8_lossy(name);
+                log::debug!("{rel}: untyped public {name}");
+            }
             if !any {
                 continue;
             }
             walked += 1;
-            typed += archive
-                .publics
-                .iter()
-                .filter(|p| result.objects.contains_key(&p.offset))
-                .count();
             explained += result.pointers.len();
             untyped_pointers += result.untyped_pointers;
             sentinels += result.sentinels;

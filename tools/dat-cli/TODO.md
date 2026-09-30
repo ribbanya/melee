@@ -2,6 +2,8 @@
 
 ## Walk findings
 
+- `SdIntro.dat`: `SIS_IntroData[0]` points to the end of the data.
+
 - `ItemStateDesc.x4_matanim_joint` and `x8_parameters` hold unrelocated
   values in some items' first state (10 cases: `GrCn.dat`, `ItCo.dat`, ...).
   They aren't always those pointer types.
@@ -35,15 +37,12 @@ Not errors:
   - all character items and Pokémon
 - `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes` up
   to -1, which needs a new annotation.
-- `dat_symbols.txt` roots are one element each; `T[N]` and `T[]` are
-  rejected.
+- `*_image` and `*_tlut` are `u8[]`/`u16[]` up to the next public or
+  pointer target. Their exact sizes come from their `HSD_ImageDesc` and
+  `HSD_TlutDesc`, which a real element type could use.
 
 ## Coverage
 
-- 3,051 `*_image` and `*_tlut` publics are raw texel and palette data,
-  reached only through `void*` (`HSD_ImageDesc.image_ptr`,
-  `HSD_TlutDesc.lut`). Count them as data, or type them as byte arrays
-  sized by their descriptors.
 - `Ef*`, `Sd*`, `Sm*`: no roots.
 - 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,
   the `tydisplay` wrapper, `ftdemo` motion data, `grdatfiles` stage info.

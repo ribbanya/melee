@@ -8,3 +8,10 @@
 *_joint = *; // type:HSD_Joint
 *_camanim = *; // type:HSD_CameraAnim
 *_tlut_desc = *; // type:HSD_TlutDesc
+
+// Texels and palettes, up to the next public
+*_image = *; // type:u8[]
+*_tlut = *; // type:u16[]
+
+// SISLib text: string tables, loaded by name from a parameter
+SIS_*Data* = Sd*.dat; // type:u8*[]
