@@ -23,6 +23,7 @@ This produces `build/ppc-dwarf/melee.elf`. Pass it with `--dwarf`, or set
 ## Commands
 
 ```sh
+melee-dat symbols coverage  # how much of the archives the walk explains
 melee-dat symbols walk    # walk every archive, print mismatches
 melee-dat symbols roots   # symbols loaded by name, with their types
 melee-dat symbols check   # root types against the archives' symbol sizes
@@ -42,6 +43,36 @@ Run with `cargo run -rqp melee-dat -- <command> --dwarf build/ppc-dwarf/melee.el
   different types.
 
 Each line includes the path from the root symbol.
+
+## Coverage
+
+`symbols coverage` walks the archives and counts the relocations the walk
+explains. The rest are one of:
+
+- **gap**: inside a typed object, or in data a pointer reaches. A type is
+  missing or wrong.
+- **trailing**: after the end of a typed object, where nothing points. The
+  type is too short, or the data after it is unreferenced.
+- **unreferenced**: nothing reaches it from a public symbol.
+
+`reachable` is the explained share of the relocations that aren't
+unreferenced.
+
+```sh
+melee-dat symbols coverage                    # by archive family
+melee-dat symbols coverage --by archive       # archives with the largest gaps
+melee-dat symbols coverage --by owner         # gaps by the object they follow
+melee-dat symbols coverage --by field         # void* fields not followed
+melee-dat symbols coverage --by public        # public symbols with no type
+melee-dat symbols coverage -a 'Pl??.dat'      # only matching archives
+melee-dat symbols coverage -a PlMr.dat --list # every unexplained relocation
+melee-dat symbols coverage --format json      # everything, like objdiff's report.json
+```
+
+`--top N` limits table rows (default 25, 0 for all). The JSON report has
+`measures`, `units` (archives, with their gaps by owner, untyped publics and
+fields) and `categories` (families). `--list` adds each unit's unexplained
+relocations.
 
 ## Roots
 
@@ -114,5 +145,6 @@ Known problems and coverage gaps are in `TODO.md`.
 - `src/interop/dwarf/roots.rs`: roots from the loaders' records.
 - `src/interop/hsd.rs`: archive format (mirrors `archive.c`, `lbarchive.c`).
 - `src/walk.rs`: the walk.
+- `src/coverage.rs`: gap, trailing and unreferenced relocations.
 - `src/symbols.rs`: `dat_symbols.txt`.
 - `samples`: unfinished.

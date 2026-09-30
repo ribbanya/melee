@@ -1,21 +1,25 @@
+mod coverage;
+
 use super::dwarf_path;
 use anyhow::{Context, Result};
+use globset::GlobSet;
 use melee_dat::{
     config::{gather_files, get_config},
     dwarf::{
-        TypeGraph,
+        DieId, TypeGraph,
         canonical::Canonical,
         render::Renderer,
         roots::{RootName, roots},
     },
     hsd::Archive,
     symbols::{Count, SymbolFile, TypeSpec},
-    walk::{Walker, macros},
+    walk::{Walk, Walker, macros},
 };
 use std::{
-    collections::{BTreeMap, BTreeSet},
+    collections::{BTreeMap, BTreeSet, HashMap},
     fs,
     io::{self, Write},
+    path::PathBuf,
 };
 
 #[derive(clap::Args)]
@@ -34,6 +38,9 @@ enum Command {
 
     /// Type each archive's data by walking it from its roots
     Walk(args::Check),
+
+    /// How much of each archive the walk explains, and where the gaps are
+    Coverage(args::Coverage),
 }
 
 mod args {
@@ -58,6 +65,26 @@ mod args {
         #[arg(long)]
         pub dwarf: Option<PathBuf>,
     }
+
+    #[derive(Args)]
+    pub struct Coverage {
+        #[command(flatten)]
+        pub check: Check,
+        /// What to list
+        #[arg(long, value_enum, default_value_t)]
+        pub by: super::coverage::View,
+        /// Only archives whose file matches (glob; repeatable)
+        #[arg(short, long)]
+        pub archive: Vec<String>,
+        /// Rows to show in the table, by size; 0 for all
+        #[arg(long, default_value_t = 25)]
+        pub top: usize,
+        /// Also list every unexplained relocation
+        #[arg(long)]
+        pub list: bool,
+        #[arg(long, value_enum, default_value_t)]
+        pub format: super::coverage::Format,
+    }
 }
 
 pub fn run(Args { command }: Args) -> Result<()> {
@@ -65,6 +92,7 @@ pub fn run(Args { command }: Args) -> Result<()> {
         Command::Roots(args) => list_roots(args),
         Command::Check(args) => check(args),
         Command::Walk(args) => walk(args),
+        Command::Coverage(args) => coverage::run(args),
     }
 }
 
@@ -238,165 +266,203 @@ fn check(args: args::Check) -> Result<()> {
     Ok(())
 }
 
-fn walk(args: args::Check) -> Result<()> {
-    let config = get_config(args.proj_path.as_ref(), &args.cfg_path)?;
-    let base = args
-        .proj_path
-        .clone()
-        .unwrap_or_default()
-        .join(config.base.as_str());
-    let graph = TypeGraph::load(dwarf_path(args.dwarf.clone())?)?;
-    let canonical = Canonical::new(&graph);
-    let renderer = Renderer::new(&graph, &canonical);
-    let macros = macros(&graph);
+/// Everything a walk needs, loaded once.
+struct Project {
+    base: PathBuf,
+    include: Vec<String>,
+    graph: TypeGraph,
+    canonical: Canonical,
+    macros: HashMap<String, String>,
+    /// Types of the root names loaders record; one type per name.
+    root_types: BTreeMap<String, DieId>,
+    /// `dat_symbols.txt`, for names no loader records.
+    symbols: SymbolFile,
+    symbol_types: BTreeMap<String, DieId>,
+}
 
-    // The type of each root name; roots are loaded as one type each
-    let mut root_types = BTreeMap::new();
-    for root in roots(&graph, &canonical) {
-        if let (RootName::Literal(name), Some(ty)) = (root.name, root.ty) {
-            root_types.entry(name).or_insert(ty);
+/// One archive's walk: a whole file, or one of a packed file's archives.
+struct Walked<'a> {
+    /// The file relative to the base, e.g. `PlMr.dat`.
+    file: &'a str,
+    /// `file`, with `@0xOFFSET` for packed archives after the first.
+    name: String,
+    archive: &'a Archive<'a>,
+    /// Whether any root was found in it.
+    rooted: bool,
+    result: Walk,
+}
+
+impl Project {
+    fn load(args: &args::Check) -> Result<Self> {
+        let config = get_config(args.proj_path.as_ref(), &args.cfg_path)?;
+        let proj = args.proj_path.clone().unwrap_or_default();
+        let graph = TypeGraph::load(dwarf_path(args.dwarf.clone())?)?;
+        let canonical = Canonical::new(&graph);
+        let macros = macros(&graph);
+
+        let mut root_types = BTreeMap::new();
+        for root in roots(&graph, &canonical) {
+            if let (RootName::Literal(name), Some(ty)) = (root.name, root.ty) {
+                root_types.entry(name).or_insert(ty);
+            }
         }
-    }
-    // Then the patterns in `dat_symbols.txt`, for names no loader records
-    let symbols_path = args
-        .proj_path
-        .clone()
-        .unwrap_or_default()
-        .join(config.symbols.as_str());
-    let symbols = SymbolFile::parse(&fs::read_to_string(&symbols_path)?)
-        .with_context(|| format!("{}", symbols_path.display()))?;
-    let mut symbol_types = BTreeMap::new();
-    for entry in &symbols.entries {
-        let Some(spec) = &entry.ty else { continue };
-        let die = canonical
-            .lookup(&graph, &spec.name)
-            .first()
-            .copied()
-            .with_context(|| format!("{entry}: no type `{}`", spec.name))?;
-        symbol_types.insert(spec.name.as_str(), die);
+        let symbols_path = proj.join(config.symbols.as_str());
+        let symbols =
+            SymbolFile::parse(&fs::read_to_string(&symbols_path)?)
+                .with_context(|| format!("{}", symbols_path.display()))?;
+        let mut symbol_types = BTreeMap::new();
+        for entry in &symbols.entries {
+            let Some(spec) = &entry.ty else { continue };
+            let die = canonical
+                .lookup(&graph, &spec.name)
+                .first()
+                .copied()
+                .with_context(|| {
+                    format!("{entry}: no type `{}`", spec.name)
+                })?;
+            symbol_types.insert(spec.name.clone(), die);
+        }
+        Ok(Project {
+            base: proj.join(config.base.as_str()),
+            include: config.include,
+            graph,
+            canonical,
+            macros,
+            root_types,
+            symbols,
+            symbol_types,
+        })
     }
 
+    /// Walk every archive whose file matches `only` (all if empty), in
+    /// file order.
+    fn walk_all(
+        &self,
+        only: &GlobSet,
+        mut each: impl FnMut(Walked) -> Result<()>,
+    ) -> Result<()> {
+        let mut paths = gather_files(&self.base, &self.include)?;
+        paths.sort();
+        for path in paths {
+            let file = path
+                .strip_prefix(&self.base)?
+                .to_string_lossy()
+                .into_owned();
+            if !only.is_empty() && !only.is_match(&file) {
+                continue;
+            }
+            let bytes = fs::read(&path)?;
+            let archives = Archive::parse_packed(&bytes)
+                .with_context(|| format!("{}", path.display()))?;
+            for (at, archive) in &archives {
+                let name = match at {
+                    0 => file.clone(),
+                    _ => format!("{file}@{at:#X}"),
+                };
+                let (rooted, result) = self.walk(&file, archive);
+                each(Walked {
+                    file: &file,
+                    name,
+                    archive,
+                    rooted,
+                    result,
+                })?;
+            }
+        }
+        Ok(())
+    }
+
+    fn walk(&self, file: &str, archive: &Archive) -> (bool, Walk) {
+        let mut walker =
+            Walker::new(&self.graph, &self.canonical, &self.macros, archive);
+        let mut rooted = false;
+        for (name, symbol) in archive.named_publics() {
+            let name = String::from_utf8_lossy(name);
+            if let Some(&ty) = self.root_types.get(name.as_ref()) {
+                walker.root(symbol.offset, ty, &name);
+                rooted = true;
+            } else if let Some(TypeSpec { name: ty, count }) =
+                self.symbols.lookup(&name, file).and_then(|e| e.ty.as_ref())
+            {
+                let ty = self.symbol_types[ty];
+                let offset = symbol.offset;
+                match *count {
+                    Count::One => walker.root(offset, ty, &name),
+                    Count::Exactly(n) => {
+                        walker.root_array(offset, ty, Some(n), &name)
+                    }
+                    Count::Unbounded => {
+                        walker.root_array(offset, ty, None, &name)
+                    }
+                }
+                rooted = true;
+            }
+        }
+        (rooted, walker.finish())
+    }
+
+    /// The type of the object at `offset`, for display.
+    fn object_type(&self, walk: &Walk, offset: u32) -> String {
+        let renderer = Renderer::new(&self.graph, &self.canonical);
+        walk.objects
+            .get(&offset)
+            .and_then(|types| types.first())
+            .map_or_else(
+                || "?".to_owned(),
+                |&id| renderer.declare(Some(self.canonical.get(id).rep), ""),
+            )
+    }
+}
+
+fn walk(args: args::Check) -> Result<()> {
+    let project = Project::load(&args)?;
+    let renderer = Renderer::new(&project.graph, &project.canonical);
     let mut out = io::stdout().lock();
     let (mut walked, mut publics, mut typed, mut relocs, mut explained) =
         (0, 0, 0, 0, 0);
     let (mut untyped_pointers, mut sentinels, mut conflicts) = (0, 0, 0);
     let mut kinds: BTreeMap<&str, usize> = BTreeMap::new();
-    let mut untyped_fields: BTreeMap<String, usize> = BTreeMap::new();
-    let mut unexplained_after: BTreeMap<String, usize> = BTreeMap::new();
-    let mut paths = gather_files(&base, &config.include)?;
-    paths.sort();
-    for path in paths {
-        let bytes = fs::read(&path)?;
-        let file = path.strip_prefix(&base)?.to_string_lossy().into_owned();
-        let archives = Archive::parse_packed(&bytes)
-            .with_context(|| format!("{}", path.display()))?;
-        for (at, archive) in archives {
-            let rel = match at {
-                0 => file.clone(),
-                _ => format!("{file}@{at:#X}"),
-            };
-
-            let mut walker =
-                Walker::new(&graph, &canonical, &macros, &archive);
-            let mut any = false;
-            for (name, symbol) in archive.named_publics() {
-                let name = String::from_utf8_lossy(name);
-                if let Some(&ty) = root_types.get(name.as_ref()) {
-                    walker.root(symbol.offset, ty, &name);
-                    any = true;
-                } else if let Some(TypeSpec { name: ty, count }) =
-                    symbols.lookup(&name, &file).and_then(|e| e.ty.as_ref())
-                {
-                    let ty = symbol_types[ty.as_str()];
-                    let offset = symbol.offset;
-                    match *count {
-                        Count::One => walker.root(offset, ty, &name),
-                        Count::Exactly(n) => {
-                            walker.root_array(offset, ty, Some(n), &name)
-                        }
-                        Count::Unbounded => {
-                            walker.root_array(offset, ty, None, &name)
-                        }
-                    }
-                    any = true;
-                }
-            }
-            let result = walker.finish();
-            publics += archive.publics.len();
-            relocs += archive.relocs.len();
-            for (name, symbol) in archive.named_publics() {
-                if result.objects.contains_key(&symbol.offset) {
-                    typed += 1;
-                    continue;
-                }
-                let name = String::from_utf8_lossy(name);
-                log::debug!("{rel}: untyped public {name}");
-            }
-            log::debug!(
-                "{rel}: {} of {} relocations unexplained",
-                archive.relocs.len() - result.pointers.len(),
-                archive.relocs.len()
-            );
-            if log::log_enabled!(log::Level::Debug) {
-                for &at in &archive.relocs {
-                    if result.pointers.contains(&at) {
-                        continue;
-                    }
-                    let owner = result
-                        .objects
-                        .range(..=at)
-                        .next_back()
-                        .map_or("(none)".to_owned(), |(offset, types)| {
-                            let id = *types.first().unwrap();
-                            let ty = renderer
-                                .declare(Some(canonical.get(id).rep), "");
-                            let path =
-                                result.paths.get(offset).map_or("", |p| p);
-                            format!(
-                                "{ty} at {} (0x{offset:X})",
-                                generic_path(path)
-                            )
-                        });
-                    log::trace!("{rel}: 0x{at:X} unexplained, after {owner}");
-                    *unexplained_after
-                        .entry(format!("{}: {owner}", family(&file)))
-                        .or_default() += 1;
-                }
-            }
-            if !any {
-                continue;
-            }
-            walked += 1;
-            explained += result.pointers.len();
-            untyped_pointers += result.untyped_pointers;
-            for (field, n) in &result.untyped_fields {
-                *untyped_fields
-                    .entry(format!("{}: {field}", family(&file)))
-                    .or_default() += n;
-            }
-            sentinels += result.sentinels;
-            for (offset, types) in &result.objects {
-                if types.len() > 1 {
-                    conflicts += 1;
-                    let names: Vec<_> = types
-                        .iter()
-                        .map(|&id| {
-                            renderer.declare(Some(canonical.get(id).rep), "")
-                        })
-                        .collect();
-                    writeln!(
-                        out,
-                        "{rel}: object at 0x{offset:X} reached as {}",
-                        names.join(", ")
-                    )?;
-                }
-            }
-            for issue in &result.issues {
-                *kinds.entry(issue.kind()).or_default() += 1;
-                writeln!(out, "{rel}: {}: {issue}", issue.kind())?;
+    project.walk_all(&GlobSet::empty(), |w| {
+        publics += w.archive.publics.len();
+        relocs += w.archive.relocs.len();
+        if !w.rooted {
+            return Ok(());
+        }
+        let result = &w.result;
+        walked += 1;
+        typed += w
+            .archive
+            .publics
+            .iter()
+            .filter(|p| result.objects.contains_key(&p.offset))
+            .count();
+        explained += result.pointers.len();
+        untyped_pointers += result.untyped_pointers;
+        sentinels += result.sentinels;
+        for (offset, types) in &result.objects {
+            if types.len() > 1 {
+                conflicts += 1;
+                let names: Vec<_> = types
+                    .iter()
+                    .map(|&id| {
+                        renderer
+                            .declare(Some(project.canonical.get(id).rep), "")
+                    })
+                    .collect();
+                writeln!(
+                    out,
+                    "{}: object at 0x{offset:X} reached as {}",
+                    w.name,
+                    names.join(", ")
+                )?;
             }
         }
-    }
+        for issue in &result.issues {
+            *kinds.entry(issue.kind()).or_default() += 1;
+            writeln!(out, "{}: {}: {issue}", w.name, issue.kind())?;
+        }
+        Ok(())
+    })?;
 
     eprintln!(
         "walked {walked} archives: {typed}/{publics} public symbols typed, \
@@ -404,51 +470,8 @@ fn walk(args: args::Check) -> Result<()> {
 pointers, {sentinels} -1 pointers, {conflicts} objects reached as several \
 types"
     );
-    if log::log_enabled!(log::Level::Debug) {
-        let mut fields: Vec<_> = untyped_fields.into_iter().collect();
-        fields.sort_by(|a, b| b.1.cmp(&a.1));
-        for (field, n) in fields {
-            log::debug!("{n} untyped pointers at {field}");
-        }
-        let mut owners: Vec<_> = unexplained_after.into_iter().collect();
-        owners.sort_by(|a, b| b.1.cmp(&a.1));
-        for (owner, n) in owners {
-            log::debug!("{n} unexplained relocations after {owner}");
-        }
-    }
     for (kind, count) in kinds {
         eprintln!("  {count} {kind}");
     }
     Ok(())
-}
-
-/// An archive's family for grouping, e.g. `Pl` for `PlMrNr.dat`.
-fn family(file: &str) -> &str {
-    file.get(..2).unwrap_or(file)
-}
-
-/// A walk path without its root's name, indices or repeated links, for
-/// grouping: `ftDataMario.x0->child->child` becomes `.x0->child...`.
-fn generic_path(path: &str) -> String {
-    let field = path.find(['.', '-', '[']).map_or("", |at| &path[at..]);
-    let mut out = String::new();
-    let mut in_index = false;
-    for c in field.chars() {
-        match c {
-            '[' => {
-                in_index = true;
-                out.push_str("[]");
-            }
-            ']' => in_index = false,
-            _ if in_index => {}
-            _ => out.push(c),
-        }
-    }
-    for link in ["->child", "->next"] {
-        let twice = format!("{link}{link}");
-        while out.contains(&twice) {
-            out = out.replace(&twice, link);
-        }
-    }
-    out
 }
