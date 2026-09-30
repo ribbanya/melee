@@ -13,7 +13,9 @@ use super::project::{Check, Project};
 use anyhow::{Context, Result, bail};
 use globset::{Glob, GlobSetBuilder};
 use melee_dat::{
-    dwarf::{TypeGraph, cache::TypesFile, canonical::Canonical},
+    dwarf::{
+        TypeGraph, cache::TypesFile, canonical::Canonical, render::Renderer,
+    },
     hsd::Archive,
     samples::{
         CWriter, Instance, Picker, SampleInfo, Source, root_of, target_object,
@@ -41,6 +43,10 @@ pub struct Args {
 
 #[derive(clap::Subcommand)]
 enum Command {
+    /// Write a hash of the types an archive's roots lead to, if it changed:
+    /// the unit's other steps depend on it instead of every type
+    Types(TypesArgs),
+
     /// Write an archive's samples as a target object, with a sidecar
     Slice(Slice),
 
@@ -52,6 +58,17 @@ enum Command {
 
     /// Compare the built units' samples
     Report(Report),
+}
+
+#[derive(clap::Args)]
+struct TypesArgs {
+    /// The archive, relative to the archives' directory, e.g. `PlMr.dat`
+    archive: String,
+    #[command(flatten)]
+    check: Check,
+    /// The hash; left alone when unchanged, so that its dependents are too
+    #[arg(short, long)]
+    output: PathBuf,
 }
 
 #[derive(clap::Args)]
@@ -107,6 +124,7 @@ struct Report {
 
 pub fn run(Args { command }: Args) -> Result<()> {
     match command {
+        Command::Types(args) => types(args),
         Command::Slice(args) => slice(args),
         Command::Codegen(args) => codegen(args),
         Command::Project(args) => project(args),
@@ -132,6 +150,71 @@ fn read_sidecar(path: &Path) -> Result<Sidecar> {
     let bytes =
         fs::read(path).with_context(|| format!("{}", path.display()))?;
     postcard::from_bytes(&bytes).with_context(|| format!("{}", path.display()))
+}
+
+/// Everything an archive's samples depend on from the types: the root
+/// names it has and their types, the definition of every type those lead
+/// to, and the macros their annotations use.
+fn types(args: TypesArgs) -> Result<()> {
+    use std::hash::{DefaultHasher, Hash, Hasher};
+    let project = Project::load(&args.check)?;
+    let path = project.base.join(&args.archive);
+    let bytes =
+        fs::read(&path).with_context(|| format!("{}", path.display()))?;
+    let archives = Archive::parse_packed(&bytes)
+        .with_context(|| format!("{}", path.display()))?;
+    let renderer = Renderer::new(&project.graph, &project.canonical);
+
+    let mut text = String::new();
+    let mut roots = Vec::new();
+    for (_, archive) in &archives {
+        for (name, _) in archive.named_publics() {
+            let name = String::from_utf8_lossy(name);
+            if let Some(&ty) = project.root_types.get(name.as_ref()) {
+                text += &format!(
+                    "root {name}: {}\n",
+                    renderer.declare(Some(ty), "")
+                );
+                roots.push(ty);
+            } else if let Some(spec) = project
+                .symbols
+                .lookup(&name, &args.archive)
+                .and_then(|e| e.ty.as_ref())
+            {
+                text += &format!("symbol {name}: {spec}\n");
+                roots.push(project.symbol_types[&spec.name]);
+            }
+        }
+    }
+    let definitions: String = project
+        .canonical
+        .reachable(&project.graph, roots)
+        .into_iter()
+        .filter(|&id| renderer.is_listed(id))
+        .map(|id| renderer.definition(id))
+        .collect();
+    // The macros and enumerators the annotations might use
+    let identifiers: BTreeSet<&str> = definitions
+        .split(|c: char| !(c.is_ascii_alphanumeric() || c == '_'))
+        .filter(|w| !w.is_empty())
+        .collect();
+    text += &definitions;
+    for identifier in identifiers {
+        if let Some(value) = project.macros.get(identifier) {
+            text += &format!("#define {identifier} {value}\n");
+        }
+    }
+
+    let mut hasher = DefaultHasher::new();
+    text.hash(&mut hasher);
+    let hash = format!("{:016x}\n", hasher.finish());
+    if fs::read_to_string(&args.output).ok().as_deref() != Some(&hash) {
+        if let Some(dir) = args.output.parent() {
+            fs::create_dir_all(dir)?;
+        }
+        fs::write(&args.output, hash)?;
+    }
+    Ok(())
 }
 
 fn slice(args: Slice) -> Result<()> {
