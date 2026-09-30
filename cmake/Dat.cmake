@@ -21,6 +21,23 @@ endif()
 set(MELEE_DAT "" CACHE FILEPATH "melee-dat binary; built with cargo if empty")
 set(MELEE_DAT_FILES "${CMAKE_SOURCE_DIR}/orig/${MELEE_VERSION}/files"
     CACHE PATH "The game's files, with its .dat archives")
+# What to sample is the user's choice, not the project's
+set(MELEE_DAT_SAMPLES_ALL "" CACHE STRING
+    "Archives (globs, e.g. PlFx.dat;Gr*.dat) to sample every typed object of, not one instance per type")
+set(MELEE_DAT_SAMPLES_EXCLUDE "" CACHE STRING
+    "Types (globs on their names) never to sample, e.g. bulky vertex or image records")
+
+set(_dat_all_regexes)
+foreach(_glob IN LISTS MELEE_DAT_SAMPLES_ALL)
+    string(REPLACE "." "\\." _regex "${_glob}")
+    string(REPLACE "*" ".*" _regex "${_regex}")
+    string(REPLACE "?" "." _regex "${_regex}")
+    list(APPEND _dat_all_regexes "^${_regex}$")
+endforeach()
+set(_dat_exclude)
+foreach(_glob IN LISTS MELEE_DAT_SAMPLES_EXCLUDE)
+    list(APPEND _dat_exclude --exclude "${_glob}")
+endforeach()
 
 set(_dat_config "${CMAKE_SOURCE_DIR}/config/${MELEE_VERSION}/dat.yml")
 set(_dat_symbols "${CMAKE_SOURCE_DIR}/config/${MELEE_VERSION}/dat_symbols.txt")
@@ -82,11 +99,17 @@ foreach(_archive IN LISTS _dat_archives)
     set(_formatted "stamp/${_unit}.formatted")
     set(_base "base/${_unit}.o")
 
+    set(_all)
+    foreach(_regex IN LISTS _dat_all_regexes)
+        if(_file MATCHES "${_regex}")
+            set(_all --all)
+        endif()
+    endforeach()
     add_custom_command(
         OUTPUT "${_target}" "${_sidecar}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
-            --files "${MELEE_DAT_FILES}" -o "${_target}"
+            --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
         DEPENDS "${_archive}" types.bin "${_dat_tool}" "${_dat_config}"
             "${_dat_symbols}"
         COMMENT "Slicing ${_file}"

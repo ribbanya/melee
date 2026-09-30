@@ -144,6 +144,13 @@ that doesn't round-trip. A union is written through the member its tag
 chose; a union object is declared as that member (`typeof(((union U *)
 0)->member)`), since the archive only holds that member's bytes.
 
+What to sample is up to you, in the build's cache: by default each archive
+gives its best instance of each type. `MELEE_DAT_SAMPLES_ALL` takes archive
+globs whose every typed object becomes a sample, e.g.
+`cmake --preset dat -DMELEE_DAT_SAMPLES_ALL="PlFx.dat;Gr*.dat"`, and
+`MELEE_DAT_SAMPLES_EXCLUDE` type globs never to sample (data they point to
+stays bytes), for records too bulky to want in C.
+
 Use `samples report` for the verdict: objdiff's own report measures data
 per section and misses relocation differences. To check a type change, edit
 the header and rebuild the preset.

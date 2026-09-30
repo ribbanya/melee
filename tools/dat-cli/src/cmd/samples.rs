@@ -11,6 +11,7 @@
 
 use super::project::{Check, Project};
 use anyhow::{Context, Result, bail};
+use globset::{Glob, GlobSetBuilder};
 use melee_dat::{
     dwarf::{TypeGraph, cache::TypesFile, canonical::Canonical},
     hsd::Archive,
@@ -62,6 +63,13 @@ struct Slice {
     /// The target object; its sidecar is written next to it as `.samples`
     #[arg(short, long)]
     output: PathBuf,
+    /// Every typed object, not just the best instance of each type
+    #[arg(long)]
+    all: bool,
+    /// Types never to sample, as globs on their names (e.g.
+    /// `HSD_VtxDescList`); data they point to stays bytes
+    #[arg(long)]
+    exclude: Vec<String>,
 }
 
 #[derive(clap::Args)]
@@ -135,7 +143,12 @@ fn slice(args: Slice) -> Result<()> {
         .with_context(|| format!("{}", path.display()))?;
 
     // This archive's best instance of each type and variant
-    let mut picker = Picker::new(&project.graph, &project.canonical);
+    let mut exclude = GlobSetBuilder::new();
+    for glob in &args.exclude {
+        exclude.add(Glob::new(glob)?);
+    }
+    let mut picker = Picker::new(&project.graph, &project.canonical)
+        .select(args.all, exclude.build()?);
     let mut walks = BTreeMap::new();
     for (at, archive) in &archives {
         let (_, walk) = project.walk(&args.archive, archive);
