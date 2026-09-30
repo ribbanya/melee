@@ -87,3 +87,16 @@ Not errors:
 
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
+
+## Reporting (low priority)
+
+- decomp.dev ingests objdiff-format reports from workflow artifacts named
+  `<version>_report`. A `GALE01-dat_report` artifact would show as its own
+  version without touching `GALE01`'s numbers. Folding dats into the main
+  report as REL-like units would lower `GALE01`'s data percentage:
+  decomp.dev sums every unit and ignores `module_name`.
+- The report has to come from dat-cli: `objdiff-cli report` measures data
+  per combined section and misses relocation differences, and can't hold
+  whole archives. Units per archive, `matched_data` as the bytes of objects
+  whose sample matches.
+- Unknown whether CI's `/orig` has `orig/GALE01/files`.
