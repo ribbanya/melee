@@ -84,9 +84,6 @@ struct ProjectArgs {
     /// `src/` and `base/`
     #[arg(short, long)]
     output: PathBuf,
-    /// The build's ninja, which objdiff runs to rebuild a base object
-    #[arg(long, default_value = "ninja")]
-    make: String,
 }
 
 #[derive(clap::Args)]
@@ -250,8 +247,8 @@ fn codegen(args: Codegen) -> Result<()> {
     )?;
 
     // A directory of each root's header and source, next to the unit's
-    // file, which includes the sources: `gen/PlMr/ftDataMario.{h,c}`,
-    // `gen/PlMr.c`
+    // file, which includes the sources: `src/PlMr/ftDataMario.{h,c}`,
+    // `src/PlMr.c`
     let stem = args
         .output
         .file_stem()
@@ -308,7 +305,7 @@ fn project(args: ProjectArgs) -> Result<()> {
         "min_version": "2.0.0-beta.5",
         // The build that writes this file, so objdiff can rebuild a base
         // object with `ninja base/<unit>.o`
-        "custom_make": args.make,
+        "custom_make": "ninja",
         "build_target": false,
         "build_base": true,
         "progress_categories": [{ "id": "dat", "name": "Dat Samples" }],

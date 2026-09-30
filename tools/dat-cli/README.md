@@ -127,8 +127,8 @@ melee-dat samples report build/GALE01/dat
   the other data they point to, and designated initializers generated from
   the types; pointers into other roots include those roots' headers
 - `src/<archive>.c`: the unit, which includes every root's source; all of
-  `src` is generated into `gen` and formatted with the repository's
-  `.clang-format`
+  it is formatted in place with the repository's `.clang-format`
+  (`stamp/<archive>.formatted` records that)
 - `base/<archive>.o`: that C, compiled with the DWARF build's flags
 
 `compile_commands.json` there gives clangd the same flags as the build.

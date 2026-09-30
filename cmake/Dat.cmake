@@ -1,10 +1,18 @@
 # Samples of the .dat archives' data, typed by the DWARF build and compared
 # with objdiff (see tools/dat-cli). Each archive is a unit, built in four
-# steps: slice (archive → target/<unit>.o), codegen (→ gen/<unit>.c, which
-# includes a header and source per root in gen/<unit>/), format (→ src/)
+# steps: slice (archive → target/<unit>.o), codegen (→ src/<unit>.c, which
+# includes a header and source per root in src/<unit>/), format (in place)
 # and compile (→ base/<unit>.o). The build directory is also the objdiff
 # project.
 include_guard(GLOBAL)
+
+# Configured through a symlink, the build names the same files by two paths
+# (the physical one CMake resolves, and the logical one from $PWD), and
+# ninja then reruns CMake and rebuilds everything on every build
+file(REAL_PATH "${CMAKE_SOURCE_DIR}" _dat_real_source)
+if(NOT _dat_real_source STREQUAL CMAKE_SOURCE_DIR)
+    message(FATAL_ERROR "Configure from ${_dat_real_source}, not through a symlink (${CMAKE_SOURCE_DIR}): cd -P there first")
+endif()
 
 if(NOT MELEE_DWARF)
     message(FATAL_ERROR "MELEE_DAT_SAMPLES needs MELEE_DWARF: the samples are typed by its DWARF")
@@ -70,8 +78,8 @@ foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_unit "${_archive}" NAME_WE)
     set(_target "target/${_unit}.o")
     set(_sidecar "target/${_unit}.samples")
-    set(_generated "gen/${_unit}.c")
     set(_source "src/${_unit}.c")
+    set(_formatted "stamp/${_unit}.formatted")
     set(_base "base/${_unit}.o")
 
     add_custom_command(
@@ -85,22 +93,22 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_generated}"
+        OUTPUT "${_source}"
         COMMAND "${_dat_tool}" samples codegen "${_target}" --types types.bin
-            -o "${_generated}"
+            -o "${_source}"
         DEPENDS "${_target}" "${_sidecar}" types.bin "${_dat_tool}"
-        COMMENT "Generating ${_generated}"
+        COMMENT "Generating ${_source}"
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_source}"
+        OUTPUT "${_formatted}"
         COMMAND "${CMAKE_COMMAND}"
             "-DCLANG_FORMAT=${MELEE_CLANG_FORMAT}"
             "-DSTYLE=${CMAKE_SOURCE_DIR}/.clang-format"
-            "-DGENERATED=${CMAKE_CURRENT_BINARY_DIR}/${_generated}"
             "-DSOURCE=${CMAKE_CURRENT_BINARY_DIR}/${_source}"
+            "-DSTAMP=${CMAKE_CURRENT_BINARY_DIR}/${_formatted}"
             -P "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
-        DEPENDS "${_generated}" "${CMAKE_SOURCE_DIR}/.clang-format"
+        DEPENDS "${_source}" "${CMAKE_SOURCE_DIR}/.clang-format"
             "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
         COMMENT "Formatting ${_source}"
         VERBATIM
@@ -109,7 +117,7 @@ foreach(_archive IN LISTS _dat_archives)
         OUTPUT "${_base}"
         COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -MD -MF "${_base}.d"
             -c "${_source}" -o "${_base}"
-        DEPENDS "${_source}" "${_dat_flags}"
+        DEPENDS "${_source}" "${_formatted}" "${_dat_flags}"
         DEPFILE "${_base}.d"
         COMMENT "Compiling ${_source}"
         VERBATIM
@@ -131,7 +139,6 @@ file(GENERATE OUTPUT compile_commands.json CONTENT "[\n${_dat_commands}\n]\n")
 add_custom_command(
     OUTPUT objdiff.json
     COMMAND "${_dat_tool}" samples project ${_dat_sidecars} -o objdiff.json
-        --make "${CMAKE_MAKE_PROGRAM}"
     DEPENDS ${_dat_sidecars} "${_dat_tool}"
     COMMENT "Writing objdiff.json"
     VERBATIM
