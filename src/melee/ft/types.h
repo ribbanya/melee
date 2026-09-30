@@ -7,6 +7,7 @@
 #include <melee/it/forward.h>
 #include <sysdolphin/baselib/forward.h>
 
+#include <dat_macros.h>
 #include <placeholder.h>
 
 #include <dolphin/gx.h>
@@ -1965,19 +1966,16 @@ struct ftData_80085FD4_ret {
     /* +14 */ uintptr_t x14;
 };
 
-struct ArticleDynamicBones {
-    BoneDynamicsTemplate array[Ft_Dynamics_NumMax];
-};
-
 struct ftDynamics {
     /// @todo Very similar to #ItemDynamics.
     struct ftDynamics_x0 {
         /*  +0 */ int dynamicsNum;
-        /*  +4 */ ArticleDynamicBones* ftDynamicBones;
+        /*  +4 */ BoneDynamicsTemplate* ftDynamicBones DAT_COUNT(dynamicsNum);
     } x0;
     /*  +8 */ int x4;
     /*  +C */ struct ftData_x38* x8;
-    /* +10 */ FigaTree*** x10;
+    /// Per animation, the set of each dynamic bone (0x100 for none).
+    /* +10 */ s32** x10;
 };
 
 struct KirbyHatStruct {

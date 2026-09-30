@@ -2684,7 +2684,7 @@ void ftKb_Init_LoadSpecialAttrs(HSD_GObj* gobj)
     COPY_ATTRS(gobj, ftKb_DatAttrs);
 }
 
-void ftKb_Init_800EEB00(Fighter_GObj* gobj, ArticleDynamicBones** arg1)
+void ftKb_Init_800EEB00(Fighter_GObj* gobj, BoneDynamicsTemplate** arg1)
 {
     *arg1 =
         ft_80459B88.hats[Ft_Kind_Pichu]->hat_dynamics[4]->x0.ftDynamicBones;

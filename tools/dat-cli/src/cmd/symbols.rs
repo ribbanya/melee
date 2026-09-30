@@ -79,7 +79,7 @@ fn list_roots(args: args::Roots) -> Result<()> {
         (RootName, Option<String>),
         BTreeMap<Option<String>, Vec<String>>,
     > = BTreeMap::new();
-    for root in roots(&graph) {
+    for root in roots(&graph, &canonical) {
         let ty = root.ty.map(|ty| renderer.declare(Some(ty), ""));
         let site = match root.function(&graph) {
             Some(function) => format!("{} {function}", root.location(&graph)),
@@ -171,7 +171,7 @@ fn check(args: args::Check) -> Result<()> {
     // Each literal root name with the distinct types it is loaded as
     let mut types: BTreeMap<String, BTreeSet<_>> = BTreeMap::new();
     let mut dynamic = 0;
-    for root in roots(&graph) {
+    for root in roots(&graph, &canonical) {
         match root.name {
             RootName::Literal(name) => {
                 let entry = types.entry(name).or_default();
@@ -245,7 +245,7 @@ fn walk(args: args::Check) -> Result<()> {
 
     // The type of each root name; roots are loaded as one type each
     let mut root_types = BTreeMap::new();
-    for root in roots(&graph) {
+    for root in roots(&graph, &canonical) {
         if let (RootName::Literal(name), Some(ty)) = (root.name, root.ty) {
             root_types.entry(name).or_insert(ty);
         }

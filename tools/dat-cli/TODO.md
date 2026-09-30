@@ -6,6 +6,15 @@
   values in some items' first state (10 cases: `GrCn.dat`, `ItCo.dat`, ...).
   They aren't always those pointer types.
 
+- Kirby's copy-ability data (`ftDataKirbyCopy*`) is loaded through
+  `((HSD_Archive**) &ft_80459B88)[kind]`, so it's typed `HSD_Archive`. The
+  slot is really a `KirbyHatStruct*`, but the flat index disagrees with
+  `ft_80459B88.hats[kind]` elsewhere by one.
+- `Fighter_WaitAnimData.xC` points to `CmdUnion` animation scripts. The
+  union can't be resolved without modelling the script's commands.
+- `EffectDataTable` only has its two particle banks. The records after them
+  (an `f32` and four pointers each) aren't typed.
+
 Not errors:
 
 - 18 objects reached as both `HSD_CameraAnim` and `HSD_WObjAnim`: the
@@ -27,9 +36,8 @@ Not errors:
 
 ## Coverage
 
-- Fighters (`Pl*.dat`, 42% of all relocations) aren't walked. Their roots
-  are named by indexing tables in the code, e.g. `ftData_803C2468[kind][i]`.
-  Read the table from the ELF; every entry is a root of the witness's type.
+- `Pl??AJ.dat` (fighter animations) aren't read: they're many archives
+  packed together.
 - Trophies (`Ty*.dat`): names come from tables inside archives.
 - `Ef*`, `Sd*`, `Sm*`: no roots.
 - 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,
