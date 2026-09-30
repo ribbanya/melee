@@ -67,12 +67,20 @@ pub struct Sample {
     /// The member each tagged union inside chose, by the union's offset in
     /// the archive and its type.
     pub choices: BTreeMap<(u32, CanonId), usize>,
+    /// Those choices by member name, in order: which variant of the type
+    /// this is.
+    pub variant: Vec<String>,
 }
 
 impl Sample {
     /// The symbol both sides define.
     pub fn symbol(&self) -> String {
-        format!("sample_{}", identifier(&self.type_name))
+        let mut symbol = format!("sample_{}", identifier(&self.type_name));
+        for member in &self.variant {
+            symbol.push_str("__");
+            symbol.push_str(&identifier(member));
+        }
+        symbol
     }
 
     /// The unit it belongs to: its header without the extension, e.g.
@@ -94,7 +102,8 @@ pub struct Picker<'a> {
     graph: &'a TypeGraph,
     canonical: &'a Canonical,
     renderer: Renderer<'a>,
-    best: BTreeMap<String, Sample>,
+    /// By type and variant.
+    best: BTreeMap<(String, Vec<String>), Sample>,
     skipped: BTreeMap<String, String>,
     /// Variants that need a type of their own, with where one is.
     variants: BTreeMap<String, String>,
@@ -168,10 +177,19 @@ impl<'a> Picker<'a> {
                 die = member_die.unwrap();
             }
             let ty = &self.graph.types[&die];
-            let (type_name, typedef_header) = self.spelling(die);
+            let (mut type_name, mut typedef_header) = self.spelling(die);
+            // An anonymous struct is named by its typedef, e.g. `Vec2`
             if ty.name.is_none() {
-                self.skipped.insert(type_name, "anonymous".into());
-                continue;
+                match self.typedef_of(die) {
+                    Some((name, header)) => {
+                        type_name = name;
+                        typedef_header = header;
+                    }
+                    None => {
+                        self.skipped.insert(type_name, "anonymous".into());
+                        continue;
+                    }
+                }
             }
             let Some(header) =
                 ty.decl_file.and_then(|f| header(self.graph.str(f)))
@@ -204,9 +222,12 @@ impl<'a> Picker<'a> {
                 .range((offset, CanonId(0))..(end as u32, CanonId(0)))
                 .map(|(&k, &v)| (k, v))
                 .collect();
-            let nested = choices
-                .iter()
-                .find(|&(&(at, _), &i)| i != 0 && (at, id) != (offset, id));
+            let writer = CWriter::new(self.graph, self.canonical);
+            let nested = choices.iter().find(|&(&(at, union), &i)| {
+                i != 0
+                    && (at, id) != (offset, id)
+                    && !writer.first_carries(union, i)
+            });
             if let Some((&(at, union), &index)) = nested {
                 let member = match &self.canonical.ty(self.graph, union).kind {
                     TypeKind::Record { members, .. } => members
@@ -228,6 +249,23 @@ impl<'a> Picker<'a> {
                     });
                 continue;
             }
+            // The variant, by the members nested unions chose; a union
+            // object's own choice is already its type
+            let variant = choices
+                .iter()
+                .filter(|&(&(at, union), _)| (at, union) != (offset, id))
+                .map(|(&(_, union), &index)| {
+                    match &self.canonical.ty(self.graph, union).kind {
+                        TypeKind::Record { members, .. } => members
+                            .get(index)
+                            .and_then(|m| m.name)
+                            .map_or(index.to_string(), |n| {
+                                self.graph.str(n).to_owned()
+                            }),
+                        _ => index.to_string(),
+                    }
+                })
+                .collect();
             let bytes = &archive.data[offset as usize..end as usize];
             let candidate = Sample {
                 die,
@@ -244,16 +282,18 @@ impl<'a> Picker<'a> {
                 nonzero: bytes.iter().filter(|&&b| b != 0).count(),
                 clean,
                 choices,
+                variant,
             };
             // A clean instance if there is one, so that a sample fails
             // only where its type is wrong everywhere; then the one that
             // exercises the most: pointers, then data
-            let better = self.best.get(&type_name).is_none_or(|best| {
+            let key = (type_name, candidate.variant.clone());
+            let better = self.best.get(&key).is_none_or(|best| {
                 (candidate.clean, candidate.relocs, candidate.nonzero)
                     > (best.clean, best.relocs, best.nonzero)
             });
             if better {
-                self.best.insert(type_name, candidate);
+                self.best.insert(key, candidate);
             }
         }
     }
@@ -278,6 +318,24 @@ impl<'a> Picker<'a> {
                 _ => return die,
             }
         }
+    }
+
+    /// A typedef that names an anonymous record, with its header.
+    fn typedef_of(&self, die: DieId) -> Option<(String, Option<String>)> {
+        let id = self.canonical.of(die)?;
+        self.canonical.types.iter().find_map(|t| {
+            let ty = &self.graph.types[&t.rep];
+            let TypeKind::Typedef { target: Some(target) } = ty.kind else {
+                return None;
+            };
+            if self.canonical.of(target) != Some(id) {
+                return None;
+            }
+            Some((
+                self.graph.str(ty.name?).to_owned(),
+                ty.decl_file.and_then(|f| header(self.graph.str(f))),
+            ))
+        })
     }
 
     /// How C names a record: its typedef where one of the same name refers
@@ -319,7 +377,7 @@ impl<'a> Picker<'a> {
         let skipped = self
             .skipped
             .into_iter()
-            .filter(|(name, _)| !self.best.contains_key(name))
+            .filter(|(name, _)| !self.best.keys().any(|(t, _)| t == name))
             .map(|(type_name, reason)| Skipped { type_name, reason })
             .chain(variants)
             .collect();
@@ -710,6 +768,33 @@ impl<'a> CWriter<'a> {
             _ => out.push('0'),
         }
         Ok(())
+    }
+
+    /// Whether a union's first member can carry member `index`: C89
+    /// initializes a union through its first member, which has to be as
+    /// large and have a pointer wherever the chosen member does.
+    pub fn first_carries(&self, union: CanonId, index: usize) -> bool {
+        let TypeKind::Record { members, .. } =
+            &self.canonical.ty(self.graph, union).kind
+        else {
+            return false;
+        };
+        let (Some(first), Some(chosen)) = (
+            members.first().and_then(|m| m.ty),
+            members.get(index).and_then(|m| m.ty),
+        ) else {
+            return false;
+        };
+        let size = |die| {
+            self.canonical
+                .byte_size(self.graph, self.resolve(die))
+                .unwrap_or(0)
+        };
+        let (mut first_pointers, mut chosen_pointers) =
+            (BTreeSet::new(), BTreeSet::new());
+        self.pointer_offsets(first, 0, &mut first_pointers, 0);
+        self.pointer_offsets(chosen, 0, &mut chosen_pointers, 0);
+        size(first) >= size(chosen) && chosen_pointers.is_subset(&first_pointers)
     }
 
     /// Every offset where `die` at `base` has a pointer.

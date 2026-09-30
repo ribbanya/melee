@@ -2,17 +2,23 @@
 
 ## Sample findings
 
-- `_HSD_TexLODDesc` doesn't match: the DWARF build compiles aurora's GX
-  headers with `TARGET_PC`, where `GXBool` is `bool`, which the decomp
-  defines as `int`. The game's headers have `u8`. Other aurora/`libs/dolphin`
-  differences would be wrong the same way.
+- `HeartContainerAttr` doesn't match (92.9%).
+- `itEgg_ItemVars` with `ItemSpecialAttributes` as `.kusudama`: the union's
+  first member can't carry that variant. `ItemSpecialAttributes`'
+  `hammer_head`, `m_ball` and `tomato` have no types of their own.
+- HSD-owned coverage gaps come from stage containers: `UnkStageDat_x8_t`'s
+  `unk4`/`unk8`/`unkC` are animation lists indexed by animation (count only
+  in code), `x28` is a `u8` flag per animation, and the map header's
+  `unk10` holds 8-byte records, not `HSD_Spline*`.
 
 ## Samples
 
-- Union-typed objects aren't sampled: C89 initializes a union through its
-  first member only, and MWCC has no designated initializers or
-  `__typeof__`. Unions inside samples are written through their first
-  member, with relocations wherever any member has a pointer.
+- C89 initializes a union through its first member only, and MWCC has no
+  designated initializers or `__typeof__`. A union object is sampled per
+  variant its tag chooses, as that member's own type. A union inside a
+  sample is written through its first member, which has to carry the
+  chosen variant (as large, with pointers wherever it has them); others
+  are listed as needing a type of their own.
 
 ## Walk findings
 
