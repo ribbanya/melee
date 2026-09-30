@@ -1,10 +1,11 @@
 #ifndef _SOUNDTEST_H_
 #define _SOUNDTEST_H_
 
-#include <dat_macros.h>
 #include <Runtime/platform.h>
 
 #include <melee/if/forward.h>
+
+#include <dat_macros.h>
 
 #include <melee/if/types.h>
 
