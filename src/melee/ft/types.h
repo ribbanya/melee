@@ -702,7 +702,7 @@ struct FtPartsDesc {
 };
 
 typedef struct ftData_x20 {
-    /* +0 */ HSD_Joint** x0 DAT_EXTENT;
+    /* +0 */ HSD_Joint* x0; ///< The shield model
     /* +4 */ f32 x8;
 } ftData_x20;
 
