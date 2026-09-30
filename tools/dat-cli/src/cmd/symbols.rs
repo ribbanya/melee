@@ -281,6 +281,8 @@ fn walk(args: args::Check) -> Result<()> {
         (0, 0, 0, 0, 0);
     let (mut untyped_pointers, mut sentinels, mut conflicts) = (0, 0, 0);
     let mut kinds: BTreeMap<&str, usize> = BTreeMap::new();
+    let mut untyped_fields: BTreeMap<String, usize> = BTreeMap::new();
+    let mut unexplained_after: BTreeMap<String, usize> = BTreeMap::new();
     let mut paths = gather_files(&base, &config.include)?;
     paths.sort();
     for path in paths {
@@ -330,12 +332,40 @@ fn walk(args: args::Check) -> Result<()> {
                 let name = String::from_utf8_lossy(name);
                 log::debug!("{rel}: untyped public {name}");
             }
+            log::debug!(
+                "{rel}: {} of {} relocations unexplained",
+                archive.relocs.len() - result.pointers.len(),
+                archive.relocs.len()
+            );
+            if log::log_enabled!(log::Level::Debug) {
+                for &at in &archive.relocs {
+                    if result.pointers.contains(&at) {
+                        continue;
+                    }
+                    let owner = result
+                        .objects
+                        .range(..=at)
+                        .next_back()
+                        .map_or("(none)".to_owned(), |(_, types)| {
+                            let id = *types.first().unwrap();
+                            renderer.declare(Some(canonical.get(id).rep), "")
+                        });
+                    *unexplained_after
+                        .entry(format!("{}: {owner}", family(&file)))
+                        .or_default() += 1;
+                }
+            }
             if !any {
                 continue;
             }
             walked += 1;
             explained += result.pointers.len();
             untyped_pointers += result.untyped_pointers;
+            for (field, n) in &result.untyped_fields {
+                *untyped_fields
+                    .entry(format!("{}: {field}", family(&file)))
+                    .or_default() += n;
+            }
             sentinels += result.sentinels;
             for (offset, types) in &result.objects {
                 if types.len() > 1 {
@@ -366,8 +396,25 @@ fn walk(args: args::Check) -> Result<()> {
 pointers, {sentinels} -1 pointers, {conflicts} objects reached as several \
 types"
     );
+    if log::log_enabled!(log::Level::Debug) {
+        let mut fields: Vec<_> = untyped_fields.into_iter().collect();
+        fields.sort_by(|a, b| b.1.cmp(&a.1));
+        for (field, n) in fields {
+            log::debug!("{n} untyped pointers at {field}");
+        }
+        let mut owners: Vec<_> = unexplained_after.into_iter().collect();
+        owners.sort_by(|a, b| b.1.cmp(&a.1));
+        for (owner, n) in owners {
+            log::debug!("{n} unexplained relocations after {owner}");
+        }
+    }
     for (kind, count) in kinds {
         eprintln!("  {count} {kind}");
     }
     Ok(())
+}
+
+/// An archive's family for grouping, e.g. `Pl` for `PlMrNr.dat`.
+fn family(file: &str) -> &str {
+    file.get(..2).unwrap_or(file)
 }

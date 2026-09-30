@@ -83,6 +83,9 @@ pub struct Walk {
     pub pointers: HashSet<u32>,
     /// Pointers followed to a target of unknown type (`void*`, functions).
     pub untyped_pointers: usize,
+    /// The same, by field path from the root, without the root's name or
+    /// indices.
+    pub untyped_fields: BTreeMap<String, usize>,
     /// Pointer fields holding -1, which the data uses like null.
     pub sentinels: usize,
     pub issues: BTreeSet<Issue>,
@@ -387,7 +390,7 @@ impl<'a> Walker<'a> {
                             format!("{path}->"),
                             self.env.clone(),
                         )),
-                        None => self.walk.untyped_pointers += 1,
+                        None => self.untyped(path),
                     }
                 } else {
                     self.unrelocated(offset, value, path);
@@ -432,8 +435,7 @@ impl<'a> Walker<'a> {
                 }
                 self.walk.pointers.insert(offset);
                 let Some(target) = self.pointee(target) else {
-                    self.walk.untyped_pointers += 1;
-                    return;
+                    return self.untyped(path);
                 };
                 let Some(id) = self.canonical.of(target) else {
                     return;
@@ -557,8 +559,7 @@ impl<'a> Walker<'a> {
         }
         self.walk.pointers.insert(offset);
         let Some(element) = element.or_else(|| self.pointee(target)) else {
-            self.walk.untyped_pointers += 1;
-            return;
+            return self.untyped(path);
         };
         let Some(size) = self.canonical.byte_size(self.graph, element) else {
             return;
@@ -574,6 +575,25 @@ impl<'a> Walker<'a> {
                 env,
             ));
         }
+    }
+
+    fn untyped(&mut self, path: &str) {
+        self.walk.untyped_pointers += 1;
+        let field = path.find(['.', '-', '[']).map_or("", |at| &path[at..]);
+        let mut key = String::with_capacity(field.len());
+        let mut in_index = false;
+        for c in field.chars() {
+            match c {
+                '[' => {
+                    in_index = true;
+                    key.push_str("[]");
+                }
+                ']' => in_index = false,
+                _ if in_index => {}
+                _ => key.push(c),
+            }
+        }
+        *self.walk.untyped_fields.entry(key).or_default() += 1;
     }
 
     /// A pointer field that is not relocated: null, the -1 the data also
