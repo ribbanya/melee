@@ -122,15 +122,19 @@ melee-dat samples report build/GALE01/dat
 - `target/<archive>.o`: the sampled objects from the archive, named as the
   archive names them (its public symbol, else `x<OFFSET>`), with pointers as
   relocations; `target/<archive>.samples` says what each is
-- `src/<archive>.c`: designated initializers generated from the types
-  (`gen/<archive>.c`), formatted with the repository's `.clang-format`
+- `src/<archive>/<root>.{h,c}`: per root of the archive (the public
+  symbol its samples were reached from), a header declaring its samples and
+  the other data they point to, and designated initializers generated from
+  the types; pointers into other roots include those roots' headers
+- `src/<archive>.c`: the unit, which includes every root's source; all of
+  `src` is generated into `gen` and formatted with the repository's
+  `.clang-format`
 - `base/<archive>.o`: that C, compiled with the DWARF build's flags
 
 `compile_commands.json` there gives clangd the same flags as the build.
 
 Each unit is four steps (`samples slice`, `samples codegen`, format,
-compile), and
-`samples project` writes `objdiff.json` from all of them. The archives come
+compile), and `samples project` writes `objdiff.json` from all of them. The archives come
 from `orig/GALE01/files` (`MELEE_DAT_FILES`); `MELEE_DAT` takes a prebuilt
 `melee-dat`, else the build compiles it with cargo.
 

@@ -563,7 +563,7 @@ fn markdown_cell(cell: &str, code: bool) -> String {
 
 fn capitalize(word: &str) -> String {
     let mut chars = word.chars();
-    chars.next().map_or(String::new(), |c| {
-        c.to_uppercase().chain(chars).collect()
-    })
+    chars
+        .next()
+        .map_or(String::new(), |c| c.to_uppercase().chain(chars).collect())
 }

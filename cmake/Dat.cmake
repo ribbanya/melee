@@ -1,7 +1,8 @@
 # Samples of the .dat archives' data, typed by the DWARF build and compared
-# with objdiff (see tools/dat-cli). Each archive is a unit, built in three
-# steps: slice (archive → target/<unit>.o), codegen (→ src/<unit>.c) and
-# compile (→ base/<unit>.o). The build directory is also the objdiff
+# with objdiff (see tools/dat-cli). Each archive is a unit, built in four
+# steps: slice (archive → target/<unit>.o), codegen (→ gen/<unit>.c, which
+# includes a header and source per root in gen/<unit>/), format (→ src/)
+# and compile (→ base/<unit>.o). The build directory is also the objdiff
 # project.
 include_guard(GLOBAL)
 
@@ -92,10 +93,14 @@ foreach(_archive IN LISTS _dat_archives)
     )
     add_custom_command(
         OUTPUT "${_source}"
-        COMMAND "${CMAKE_COMMAND}" -E copy "${_generated}" "${_source}"
-        COMMAND "${MELEE_CLANG_FORMAT}"
-            "--style=file:${CMAKE_SOURCE_DIR}/.clang-format" -i "${_source}"
+        COMMAND "${CMAKE_COMMAND}"
+            "-DCLANG_FORMAT=${MELEE_CLANG_FORMAT}"
+            "-DSTYLE=${CMAKE_SOURCE_DIR}/.clang-format"
+            "-DGENERATED=${CMAKE_CURRENT_BINARY_DIR}/${_generated}"
+            "-DSOURCE=${CMAKE_CURRENT_BINARY_DIR}/${_source}"
+            -P "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
         DEPENDS "${_generated}" "${CMAKE_SOURCE_DIR}/.clang-format"
+            "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
         COMMENT "Formatting ${_source}"
         VERBATIM
     )

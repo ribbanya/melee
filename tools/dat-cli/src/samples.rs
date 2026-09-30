@@ -59,6 +59,8 @@ pub struct Sample {
     pub lookup: String,
     /// For a union object, the member its tag chose.
     pub member: Option<String>,
+    /// The root the walk first reached it from, e.g. `ftDataMario`.
+    pub root: String,
     /// The header that declares the type, relative to its include directory.
     pub header: String,
     pub size: u64,
@@ -109,6 +111,8 @@ pub struct SampleInfo {
     pub lookup: String,
     /// For a union object, the member its tag chose.
     pub member: Option<String>,
+    /// The root the walk first reached it from.
+    pub root: String,
     /// The header that declares the type.
     pub header: String,
     /// The members its tagged unions chose, in order.
@@ -177,17 +181,19 @@ impl<'a> Picker<'a> {
                 continue;
             }
             let mut type_name = self.renderer.declare(Some(die), "");
-            let mut lookup =
-                ty.name.map(|n| self.graph.str(n).to_owned()).unwrap_or_default();
+            let mut lookup = ty
+                .name
+                .map(|n| self.graph.str(n).to_owned())
+                .unwrap_or_default();
             let mut decl_file = ty.decl_file;
             // An anonymous record is named by its typedef, e.g. `Vec2`
             if ty.name.is_none() {
                 match self.typedef_of(id) {
                     Some(typedef) => {
                         let typedef = &self.graph.types[&typedef];
-                        type_name = typedef
-                            .name
-                            .map_or(type_name, |n| self.graph.str(n).to_owned());
+                        type_name = typedef.name.map_or(type_name, |n| {
+                            self.graph.str(n).to_owned()
+                        });
                         lookup = type_name.clone();
                         decl_file = typedef.decl_file;
                     }
@@ -215,8 +221,10 @@ impl<'a> Picker<'a> {
             {
                 // A union object is the member its tag chose: the archive
                 // only holds that member's bytes, and other data follows
-                let member =
-                    walk.choices.get(&(offset, id)).and_then(|&i| members.get(i));
+                let member = walk
+                    .choices
+                    .get(&(offset, id))
+                    .and_then(|&i| members.get(i));
                 let Some((member, member_ty)) =
                     member.and_then(|m| Some((m, m.ty?)))
                 else {
@@ -270,12 +278,14 @@ impl<'a> Picker<'a> {
                     }
                 })
                 .collect();
+            let root = root_of(path).to_owned();
             let bytes = &archive.data[offset as usize..end as usize];
             let candidate = Sample {
                 die,
                 type_name: type_name.clone(),
                 lookup,
                 member: member_name,
+                root,
                 header,
                 size,
                 location: Location {
@@ -314,6 +324,7 @@ impl<'a> Picker<'a> {
             type_name: sample.type_name.clone(),
             lookup: sample.lookup.clone(),
             member: sample.member.clone(),
+            root: sample.root.clone(),
             header: sample.header.clone(),
             variant: sample.variant.clone(),
             choices: sample
@@ -334,7 +345,8 @@ impl<'a> Picker<'a> {
     fn member_size(&self, mut die: DieId) -> Option<u64> {
         while let TypeKind::Typedef { target: Some(t) }
         | TypeKind::Const { target: Some(t) }
-        | TypeKind::Volatile { target: Some(t) } = self.graph.types[&die].kind
+        | TypeKind::Volatile { target: Some(t) } =
+            self.graph.types[&die].kind
         {
             die = t;
         }
@@ -359,13 +371,23 @@ impl<'a> Picker<'a> {
             .into_iter()
             .filter(|(name, _)| {
                 !self.best.keys().any(|(t, _)| {
-                    t == name || t.strip_prefix(name.as_str()).is_some_and(|m| m.starts_with('.'))
+                    t == name
+                        || t.strip_prefix(name.as_str())
+                            .is_some_and(|m| m.starts_with('.'))
                 })
             })
             .map(|(type_name, reason)| Skipped { type_name, reason })
             .collect();
         (self.best.into_values().collect(), skipped)
     }
+}
+
+/// The root a walk path starts from.
+pub fn root_of(path: &str) -> &str {
+    path.split(['.', '-', '['])
+        .next()
+        .filter(|r| !r.is_empty())
+        .unwrap_or("unknown")
 }
 
 /// The include path of a header from its DWARF path, e.g.
@@ -438,7 +460,7 @@ impl<'a> Source<'a> {
     }
 
     /// Relocated words in `offset..offset + size`, with their targets.
-    fn relocs(&self, offset: u32, size: u64) -> Vec<(u32, u32)> {
+    pub fn relocs(&self, offset: u32, size: u64) -> Vec<(u32, u32)> {
         self.relocs
             .range(offset..offset + size as u32)
             .map(|&at| (at, self.word(at)))
@@ -510,6 +532,21 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
     Ok(obj.write()?)
 }
 
+/// A root's generated C, named after it.
+pub struct RootFiles {
+    pub name: String,
+    pub header: String,
+    /// None for a root with no samples, only data they point to.
+    pub source: Option<String>,
+}
+
+/// A root name as a file name.
+fn file_name(root: &str) -> String {
+    root.chars()
+        .map(|c| if c.is_ascii_alphanumeric() { c } else { '_' })
+        .collect()
+}
+
 /// Writes C initializers that should compile to a sample's bytes.
 pub struct CWriter<'a> {
     graph: &'a TypeGraph,
@@ -530,12 +567,20 @@ impl<'a> CWriter<'a> {
         }
     }
 
-    /// A unit's C: its headers, declarations of every name it uses, and one
-    /// definition per sample.
-    pub fn unit(&self, instances: &[Instance]) -> Result<String> {
-        let defined: BTreeMap<&str, &str> = instances
+    /// A unit's C, one root at a time: its header, declaring the root's
+    /// samples, and its source, defining them.
+    /// `externs` are the other data the samples point to, by name, with
+    /// their roots; they are declared as bytes.
+    pub fn unit(
+        &self,
+        archive: &str,
+        instances: &[Instance],
+        externs: &BTreeMap<String, String>,
+    ) -> Result<Vec<RootFiles>> {
+        let owners: BTreeMap<&str, &str> = instances
             .iter()
-            .map(|i| (i.info.symbol.as_str(), i.info.type_name.as_str()))
+            .map(|i| (i.info.symbol.as_str(), i.info.root.as_str()))
+            .chain(externs.iter().map(|(n, r)| (n.as_str(), r.as_str())))
             .collect();
         let mut samples = BTreeMap::new();
         for inst in instances {
@@ -545,6 +590,82 @@ impl<'a> CWriter<'a> {
             }
         }
         *self.samples.borrow_mut() = samples;
+        let mut roots: BTreeMap<&str, (Vec<&Instance>, Vec<&str>)> =
+            BTreeMap::new();
+        for inst in instances {
+            roots
+                .entry(inst.info.root.as_str())
+                .or_default()
+                .0
+                .push(inst);
+        }
+        for (name, root) in externs {
+            roots
+                .entry(root.as_str())
+                .or_default()
+                .1
+                .push(name.as_str());
+        }
+        roots
+            .into_iter()
+            .map(|(root, (instances, bytes))| {
+                Ok(RootFiles {
+                    name: file_name(root),
+                    header: self.header(archive, root, &instances, &bytes)?,
+                    source: if instances.is_empty() {
+                        None
+                    } else {
+                        Some(self.source(archive, root, &instances, &owners)?)
+                    },
+                })
+            })
+            .collect()
+    }
+
+    /// A root's header: an extern declaration of each of its samples, and
+    /// of the other data in it that samples point to, as bytes.
+    fn header(
+        &self,
+        archive: &str,
+        root: &str,
+        instances: &[&Instance],
+        bytes: &[&str],
+    ) -> Result<String> {
+        let guard = format!("DAT_{}_H", file_name(root).to_uppercase());
+        let mut out = format!(
+            "/**\n * @file\n \
+             * The samples of `{root}` in `{archive}`, and the data \
+             they point to.\n \
+             * Generated by `melee-dat samples codegen`.\n */\n\n\
+             #ifndef {guard}\n#define {guard}\n\n\
+             #include <Runtime/platform.h>\n"
+        );
+        let headers: BTreeSet<&str> =
+            instances.iter().map(|i| i.info.header.as_str()).collect();
+        for header in headers {
+            writeln!(out, "#include <{header}>")?;
+        }
+        out.push('\n');
+        for inst in instances {
+            let info = inst.info;
+            writeln!(out, "extern {} {};", info.type_name, info.symbol)?;
+        }
+        for name in bytes {
+            writeln!(out, "extern u8 {name}[];")?;
+        }
+        writeln!(out, "\n#endif")?;
+        Ok(out)
+    }
+
+    /// A root's source: its samples' definitions, after the headers of every
+    /// root they point into.
+    fn source(
+        &self,
+        archive: &str,
+        root: &str,
+        instances: &[&Instance],
+        owners: &BTreeMap<&str, &str>,
+    ) -> Result<String> {
         // What the pointers name, in the order they first do
         let mut referenced = Vec::new();
         let mut seen = BTreeSet::new();
@@ -559,34 +680,42 @@ impl<'a> CWriter<'a> {
             let mut init = String::new();
             self.value(&mut init, inst, die, 0, 0)?;
             let info = inst.info;
-            let variant = match info.variant.as_slice() {
-                [] => String::new(),
-                members => format!(" ({})", members.join(", ")),
+            let at = match info.archive {
+                0 => format!("0x{:X}", info.offset),
+                archive => format!("0x{archive:X}+0x{:X}", info.offset),
             };
-            writeln!(defs, "/// 0x{:X}{variant}", info.offset)?;
+            write!(defs, "/// `{archive}` at {at}.")?;
+            if !info.variant.is_empty() {
+                write!(
+                    defs,
+                    " Its unions' members: {}.",
+                    info.variant.join(", ")
+                )?;
+            }
+            defs.push('\n');
             writeln!(defs, "{} {} = {init};\n", info.type_name, info.symbol)?;
         }
-        let mut out = String::from(concat!(
-            "// Generated by `melee-dat samples codegen` from the types.\n\n",
-            "#include <Runtime/platform.h>\n",
-        ));
-        let headers: BTreeSet<&str> =
-            instances.iter().map(|i| i.info.header.as_str()).collect();
-        for header in headers {
-            writeln!(out, "#include <{header}>")?;
-        }
-        out.push('\n');
-        // Everything a pointer names, before the definitions: samples as
-        // their types, other data as bytes
-        for name in &referenced {
-            match defined.get(name) {
-                Some(type_name) => writeln!(out, "extern {type_name} {name};")?,
-                None => writeln!(out, "extern u8 {name}[];")?,
+        let mut out = format!(
+            "/**\n * @file\n \
+             * The samples of `{root}` in `{archive}`.\n \
+             * Generated by `melee-dat samples codegen`.\n */\n\n"
+        );
+        // This root's declarations, then those of every other root it
+        // points into
+        let mut roots = vec![root];
+        for name in referenced {
+            let owner = owners
+                .get(name)
+                .with_context(|| format!("no root declares {name}"))?;
+            if !roots.contains(owner) {
+                roots.push(owner);
             }
         }
-        if !referenced.is_empty() {
-            out.push('\n');
+        roots[1..].sort_unstable();
+        for root in roots {
+            writeln!(out, "#include \"{}.h\"", file_name(root))?;
         }
+        out.push('\n');
         out.push_str(&defs);
         Ok(out)
     }
@@ -744,9 +873,10 @@ impl<'a> CWriter<'a> {
                     .iter()
                     .find(|c| c.offset == offset && c.union == union)
                     .and_then(|c| members.get(c.member));
-                let largest = members.iter().rev().max_by_key(|m| {
-                    m.ty.map_or(0, |ty| self.size(ty))
-                });
+                let largest = members
+                    .iter()
+                    .rev()
+                    .max_by_key(|m| m.ty.map_or(0, |ty| self.size(ty)));
                 let Some(member) = chosen.or(largest) else {
                     out.push_str("{0}");
                     return Ok(());
@@ -790,7 +920,8 @@ impl<'a> CWriter<'a> {
                         .map(|p| self.resolve(p))
                         .and_then(|p| self.canonical.of(p));
                     let same = pointee.is_some()
-                        && self.samples.borrow().get(target) == pointee.as_ref();
+                        && self.samples.borrow().get(target)
+                            == pointee.as_ref();
                     match same {
                         true => write!(out, "&{target}")?,
                         false => write!(out, "({cast}) &{target}")?,
@@ -805,7 +936,8 @@ impl<'a> CWriter<'a> {
             // the same bytes without the relocation, so objdiff shows that
             // the field should be a pointer
             TypeKind::Base { encoding } => {
-                let bytes = &inst.bytes[offset as usize..(offset as u64 + size) as usize];
+                let bytes = &inst.bytes
+                    [offset as usize..(offset as u64 + size) as usize];
                 match (*encoding, size) {
                     (FLOAT, 4) => {
                         let v = f32::from_be_bytes(bytes.try_into().unwrap());
@@ -825,7 +957,8 @@ impl<'a> CWriter<'a> {
                 }
             }
             TypeKind::Enum { .. } => {
-                let bytes = &inst.bytes[offset as usize..(offset as u64 + size) as usize];
+                let bytes = &inst.bytes
+                    [offset as usize..(offset as u64 + size) as usize];
                 let value =
                     bytes.iter().fold(0u64, |acc, &b| acc << 8 | u64::from(b));
                 integer(out, value, size, true)?;

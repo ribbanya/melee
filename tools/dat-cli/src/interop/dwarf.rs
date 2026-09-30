@@ -60,7 +60,9 @@ pub struct TypeGraph {
 }
 
 /// A variable at a fixed address.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Global {
     pub ty: Option<DieId>,
     pub address: u64,
@@ -76,13 +78,17 @@ pub struct Unit {
 
 /// A `DW_MACRO_define`, split into its name (with any parameter list) and
 /// replacement text.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Macro {
     pub name: Str,
     pub value: Str,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Type {
     /// Index into [`TypeGraph::units`].
     pub unit: usize,
@@ -96,7 +102,9 @@ pub struct Type {
     pub kind: TypeKind,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub enum TypeKind {
     /// `DW_TAG_base_type`, with its `DW_ATE_*` encoding.
     Base {
@@ -144,7 +152,9 @@ pub enum TypeKind {
     },
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Member {
     pub name: Option<Str>,
     pub ty: Option<DieId>,
@@ -156,14 +166,18 @@ pub struct Member {
     pub annotations: Vec<Annotation>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Enumerator {
     pub name: Option<Str>,
     pub value: i64,
 }
 
 /// A `DW_TAG_variable` with at least one annotation.
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Variable {
     /// Index into [`TypeGraph::units`].
     pub unit: usize,
@@ -178,7 +192,9 @@ pub struct Variable {
 
 /// A `DW_TAG_LLVM_annotation`: `name` is the attribute that produced it
 /// (e.g. `btf_decl_tag`) and `value` its argument, both verbatim.
-#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(
+    Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize,
+)]
 pub struct Annotation {
     pub name: Option<Str>,
     pub value: Option<Str>,
