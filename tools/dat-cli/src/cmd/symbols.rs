@@ -149,14 +149,20 @@ fn index_archives(
     paths.sort();
     for path in paths {
         let bytes = fs::read(&path)?;
-        let archive = Archive::parse(&bytes)
+        let file = path.strip_prefix(&base)?.to_string_lossy().into_owned();
+        let archives = Archive::parse_packed(&bytes)
             .with_context(|| format!("{}", path.display()))?;
-        let rel = path.strip_prefix(&base)?.to_string_lossy().into_owned();
-        for (name, symbol) in archive.named_publics() {
-            index
-                .entry(String::from_utf8_lossy(name).into_owned())
-                .or_default()
-                .push((rel.clone(), archive.extent(symbol.offset)));
+        for (at, archive) in archives {
+            let rel = match at {
+                0 => file.clone(),
+                _ => format!("{file}@{at:#X}"),
+            };
+            for (name, symbol) in archive.named_publics() {
+                index
+                    .entry(String::from_utf8_lossy(name).into_owned())
+                    .or_default()
+                    .push((rel.clone(), archive.extent(symbol.offset)));
+            }
         }
     }
     Ok(index)
@@ -260,54 +266,61 @@ fn walk(args: args::Check) -> Result<()> {
     paths.sort();
     for path in paths {
         let bytes = fs::read(&path)?;
-        let archive = Archive::parse(&bytes)
+        let file = path.strip_prefix(&base)?.to_string_lossy().into_owned();
+        let archives = Archive::parse_packed(&bytes)
             .with_context(|| format!("{}", path.display()))?;
-        let rel = path.strip_prefix(&base)?.to_string_lossy().into_owned();
+        for (at, archive) in archives {
+            let rel = match at {
+                0 => file.clone(),
+                _ => format!("{file}@{at:#X}"),
+            };
 
-        let mut walker = Walker::new(&graph, &canonical, &macros, &archive);
-        let mut any = false;
-        for (name, symbol) in archive.named_publics() {
-            let name = String::from_utf8_lossy(name);
-            if let Some(&ty) = root_types.get(name.as_ref()) {
-                walker.root(symbol.offset, ty, &name);
-                any = true;
+            let mut walker =
+                Walker::new(&graph, &canonical, &macros, &archive);
+            let mut any = false;
+            for (name, symbol) in archive.named_publics() {
+                let name = String::from_utf8_lossy(name);
+                if let Some(&ty) = root_types.get(name.as_ref()) {
+                    walker.root(symbol.offset, ty, &name);
+                    any = true;
+                }
             }
-        }
-        let result = walker.finish();
+            let result = walker.finish();
 
-        publics += archive.publics.len();
-        relocs += archive.relocs.len();
-        if !any {
-            continue;
-        }
-        walked += 1;
-        typed += archive
-            .publics
-            .iter()
-            .filter(|p| result.objects.contains_key(&p.offset))
-            .count();
-        explained += result.pointers.len();
-        untyped_pointers += result.untyped_pointers;
-        sentinels += result.sentinels;
-        for (offset, types) in &result.objects {
-            if types.len() > 1 {
-                conflicts += 1;
-                let names: Vec<_> = types
-                    .iter()
-                    .map(|&id| {
-                        renderer.declare(Some(canonical.get(id).rep), "")
-                    })
-                    .collect();
-                writeln!(
-                    out,
-                    "{rel}: object at 0x{offset:X} reached as {}",
-                    names.join(", ")
-                )?;
+            publics += archive.publics.len();
+            relocs += archive.relocs.len();
+            if !any {
+                continue;
             }
-        }
-        for issue in &result.issues {
-            *kinds.entry(issue.kind()).or_default() += 1;
-            writeln!(out, "{rel}: {}: {issue}", issue.kind())?;
+            walked += 1;
+            typed += archive
+                .publics
+                .iter()
+                .filter(|p| result.objects.contains_key(&p.offset))
+                .count();
+            explained += result.pointers.len();
+            untyped_pointers += result.untyped_pointers;
+            sentinels += result.sentinels;
+            for (offset, types) in &result.objects {
+                if types.len() > 1 {
+                    conflicts += 1;
+                    let names: Vec<_> = types
+                        .iter()
+                        .map(|&id| {
+                            renderer.declare(Some(canonical.get(id).rep), "")
+                        })
+                        .collect();
+                    writeln!(
+                        out,
+                        "{rel}: object at 0x{offset:X} reached as {}",
+                        names.join(", ")
+                    )?;
+                }
+            }
+            for issue in &result.issues {
+                *kinds.entry(issue.kind()).or_default() += 1;
+                writeln!(out, "{rel}: {}: {issue}", issue.kind())?;
+            }
         }
     }
 

@@ -121,6 +121,26 @@ impl<'a> Archive<'a> {
         Ok(parsed)
     }
 
+    /// Every archive in `bytes`, with its offset: usually one, but some files
+    /// (`Pl??AJ.dat`) pack several, each padded to 32 bytes.
+    pub fn parse_packed(bytes: &'a [u8]) -> Result<Vec<(usize, Self)>> {
+        let mut archives = Vec::new();
+        let mut offset = 0;
+        while offset < bytes.len() {
+            let rest = &bytes[offset..];
+            let size = header
+                .parse_next(&mut &rest[..])
+                .map_err(|e| anyhow::anyhow!("DAT parse error: {e:?}"))?
+                .file_size as usize;
+            if size == 0 || size > rest.len() {
+                bail!("archive at {offset:#X} has size {size:#X}");
+            }
+            archives.push((offset, Self::parse(&rest[..size])?));
+            offset += size.next_multiple_of(32);
+        }
+        Ok(archives)
+    }
+
     // TODO: Lookup based on next symbol table start
     pub fn symbol_at(&self, offset: u32) -> Option<&'a [u8]> {
         let start = offset as usize;

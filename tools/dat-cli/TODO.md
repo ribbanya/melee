@@ -36,8 +36,8 @@ Not errors:
 
 ## Coverage
 
-- `Pl??AJ.dat` (fighter animations) aren't read: they're many archives
-  packed together.
+- `Pl??AJ.dat` (fighter animations) are read as packed archives, but their
+  `*_figatree` publics have no roots: the names come from `ftData` tables.
 - Trophies (`Ty*.dat`): names come from tables inside archives.
 - `Ef*`, `Sd*`, `Sm*`: no roots.
 - 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,

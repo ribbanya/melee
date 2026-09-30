@@ -2,7 +2,6 @@ base: orig/GALE01/files
 symbols: config/GALE01/dat_symbols.txt
 include:
   - '*.dat'
-  - '!Pl??AJ.dat'
 
 samples:
   - archive: GrI2.dat
