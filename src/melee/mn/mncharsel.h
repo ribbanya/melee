@@ -1,8 +1,9 @@
 #ifndef GALE01_25BC20
 #define GALE01_25BC20
 
-#include <melee/sc/types.h>
 #include <sysdolphin/baselib/forward.h>
+
+#include <melee/sc/types.h>
 
 /* 25BC20 */ u8* mnCharSel_8025BC20(u8* dst, u32 value);
 /* 25BD30 */ void mnCharSel_8025BD30(void);

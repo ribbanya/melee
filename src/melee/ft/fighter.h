@@ -1,7 +1,6 @@
 #ifndef GALE01_0679B0
 #define GALE01_0679B0
 
-#include <melee/sfx/crowdsfx.h>
 #include <Runtime/platform.h>
 
 #include <sysdolphin/baselib/forward.h>
@@ -11,6 +10,7 @@
 #include <dolphin/mtx.h>
 #include <melee/ft/inlines.h> // IWYU pragma: export
 #include <melee/ft/types.h>
+#include <melee/sfx/crowdsfx.h>
 #include <sysdolphin/baselib/objalloc.h>
 
 /**

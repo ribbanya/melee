@@ -1,4 +1,5 @@
 #include "dbinit.h"
+
 #include "db.h"
 #include "dbsound.h"
 #include <dolphin/card.h>
@@ -60,7 +61,6 @@ void db_GetGameLaunchButtonState(void)
         VIWaitForRetrace();
     }
 }
-
 
 void db_Setup(void)
 {

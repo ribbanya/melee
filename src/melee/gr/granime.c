@@ -910,7 +910,8 @@ void grAnime_801C7C1C(HSD_JObj* jobj, s32 map_id, s32 arg2, s32 arg3, s32 arg4,
     } else {
         aj = NULL;
     }
-    if ((arg3 & 2) && (mjp = archive->unk4->unk8[map_id].matanims, mjp != NULL) &&
+    if ((arg3 & 2) &&
+        (mjp = archive->unk4->unk8[map_id].matanims, mjp != NULL) &&
         ((mj = mjp[arg4]) != NULL))
     {
         mj = &mj[arg2];
@@ -919,7 +920,8 @@ void grAnime_801C7C1C(HSD_JObj* jobj, s32 map_id, s32 arg2, s32 arg3, s32 arg4,
     } else {
         mj = NULL;
     }
-    if ((arg3 & 4) && (sjp = archive->unk4->unk8[map_id].shapeanims, sjp != NULL) &&
+    if ((arg3 & 4) &&
+        (sjp = archive->unk4->unk8[map_id].shapeanims, sjp != NULL) &&
         ((sj = sjp[arg4]) != NULL))
     {
         sj = &sj[arg2];

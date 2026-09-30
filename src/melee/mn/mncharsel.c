@@ -49,8 +49,6 @@ static u8 mnCharSel_804D50D0[8] = { 2, 0, 1, 0, 5, 3, 4, 0 };
 static u8 mnCharSel_804D50D8[8] = { 2, 0, 8, 1, 7, 7, 7, 7 };
 static u8 mnCharSel_804D50E0[3] = { 0, 1, 3 };
 
-
-
 static CSSData* mnCharSel_804D6CB0;
 static struct MnSelectChrDataTable* css_data_table;
 static HSD_GObj* mnCharSel_804D6CB8;
@@ -5301,8 +5299,9 @@ void mnCharSel_Scene_OnEnter(void* arg0)
         mnCharSel_804D6CD0 = lbArchive_LoadArchive("MnSlChr.usd");
         mnCharSel_804D6CD4 = lbArchive_LoadArchive("MnExtAll.usd");
     }
-    css_data_table = HSD_ArchiveGetPublicAs(
-        struct MnSelectChrDataTable, mnCharSel_804D6CD0, "MnSelectChrDataTable");
+    css_data_table =
+        HSD_ArchiveGetPublicAs(struct MnSelectChrDataTable, mnCharSel_804D6CD0,
+                               "MnSelectChrDataTable");
     css_models = &css_data_table->models;
     if (lbLang_IsSavedLanguageJP() != 0) {
         HSD_SisLib_803A62A0(0, "SdSlChr.dat", "SIS_SelCharData");

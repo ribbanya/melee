@@ -95,10 +95,6 @@ ClassicProcArray const lbl_803B7C40 = {
     fn_80184A4C, fn_80184A70, fn_80184A94,
 };
 
-
-
-
-
 static struct lbl_804D6604_t* lbl_804D6604;
 
 static int lbl_804D6608;

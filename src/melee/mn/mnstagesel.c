@@ -76,8 +76,6 @@ static struct StageListInfo {
 };
 ASSERT_SIZE(mnStageSel_803F06D0[0], 0x1C);
 
-
-
 static s8 mnStageSel_804D50A0 = -1;
 
 static SSSData* sss_data;
@@ -523,9 +521,9 @@ void mnStageSel_Scene_OnEnter(void* arg0)
         } else {
             mnStageSel_804D6C94 = lbArchive_LoadArchive("MnSlMap.dat");
         }
-        sss_data_table =
-            HSD_ArchiveGetPublicAs(struct MnSelectStageDataTable, mnStageSel_804D6C94,
-                                   "MnSelectStageDataTable");
+        sss_data_table = HSD_ArchiveGetPublicAs(struct MnSelectStageDataTable,
+                                                mnStageSel_804D6C94,
+                                                "MnSelectStageDataTable");
         MenMain_cam = sss_data_table->cam;
         sss_models = &sss_data_table->models;
         mnStageSel_804D6CAF = 0;

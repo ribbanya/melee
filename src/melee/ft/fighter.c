@@ -176,7 +176,6 @@ void Fighter_FirstInitialize_80067A84(void)
     HSD_ObjAllocInit(&fighter_x59C_alloc_data, 0x8000, 0x20);
 }
 
-
 void Fighter_LoadCommonData(void)
 {
     struct ftLoadCommonData* data;

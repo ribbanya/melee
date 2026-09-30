@@ -20,7 +20,6 @@
 /* 2FFC6C */ static bool un_802FFC6C(enum soundtest_callback_arg0);
 /* 2FFCC8 */ static bool fn_802FFCC8(enum soundtest_callback_arg0);
 
-
 /// .sdata
 /* 804D5850 */ static int un_804D5850 = 127;
 /* 804D5854 */ static int un_804D5854 = 127;

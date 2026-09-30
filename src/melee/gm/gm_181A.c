@@ -1,4 +1,5 @@
 #include "gm_181A.h"
+
 #include <Runtime/platform.h>
 
 #include <sysdolphin/baselib/forward.h>
@@ -25,7 +26,6 @@
 #include <sysdolphin/baselib/mobj.h>
 #include <sysdolphin/baselib/random.h>
 #include <sysdolphin/baselib/tobj.h>
-
 
 typedef struct RegClearCharEntry {
     /* 0x00 */ u8 x0;

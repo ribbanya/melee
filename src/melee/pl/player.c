@@ -2017,7 +2017,6 @@ void Player_80036DA4(void)
     Fighter_FirstInitialize_80067A84();
 }
 
-
 void Player_80036DD8(void)
 {
     struct plLoadCommonData* data;

@@ -1180,7 +1180,6 @@ f32 Ground_801C20D0(void)
     return stage_info.cam_info.cam_vertical_tilt;
 }
 
-
 static inline bool find_light_override(UnkArchiveStruct* archive,
                                        HSD_LightDesc* desc, bool* b6, bool* b7,
                                        bool* b5)

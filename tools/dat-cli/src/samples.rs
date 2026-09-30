@@ -763,8 +763,10 @@ impl<'a> CWriter<'a> {
         )?;
         group(
             "Externs",
-            "Data the program supplies by name when it loads the archive; \
-             Melee's loader sets each to NULL (`lbArchive_InitializeDAT`).",
+            concat!(
+                "Data the program supplies by name when it loads the archive; ",
+                "Melee's loader sets each to NULL (`lbArchive_InitializeDAT`).",
+            ),
             linked
                 .iter()
                 .map(|n| format!("extern DatBlob {n}[];"))
@@ -772,8 +774,7 @@ impl<'a> CWriter<'a> {
         )?;
         group(
             "Elided",
-            "Data in this archive the samples point to that isn't written as \
-             C.",
+            "Data in this archive the samples point to that isn't written as C.",
             elided
                 .iter()
                 .map(|(n, size)| format!("extern DatBlob {n}[{size:#X}];"))
