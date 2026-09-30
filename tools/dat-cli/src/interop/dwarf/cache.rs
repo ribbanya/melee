@@ -18,7 +18,6 @@ use serde::{Deserialize, Serialize};
 use std::{
     collections::{BTreeMap, HashMap},
     fs,
-    io::{BufReader, BufWriter},
     path::Path,
 };
 
@@ -77,17 +76,15 @@ impl TypesFile {
     }
 
     pub fn load(path: &Path) -> Result<Self> {
-        let file = fs::File::open(path)
-            .with_context(|| format!("{}", path.display()))?;
-        serde_json::from_reader(BufReader::new(file))
+        let bytes =
+            fs::read(path).with_context(|| format!("{}", path.display()))?;
+        postcard::from_bytes(&bytes)
             .with_context(|| format!("{}", path.display()))
     }
 
     pub fn save(&self, path: &Path) -> Result<()> {
-        let file = fs::File::create(path)
-            .with_context(|| format!("{}", path.display()))?;
-        serde_json::to_writer(BufWriter::new(file), self)?;
-        Ok(())
+        fs::write(path, postcard::to_stdvec(self)?)
+            .with_context(|| format!("{}", path.display()))
     }
 }
 

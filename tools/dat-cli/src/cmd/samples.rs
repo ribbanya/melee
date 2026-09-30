@@ -2,7 +2,7 @@
 //!
 //! One unit per archive file, each built in steps a build system runs:
 //! - `slice`: the archive → `target/<unit>.o`, its sampled objects under
-//!   their archive names, plus `target/<unit>.json` saying what each is
+//!   their archive names, plus `target/<unit>.samples` saying what each is
 //! - `codegen`: the target object → `src/<unit>.c`, generated from the types
 //! - (the build compiles `src/<unit>.c` to `base/<unit>.o`)
 //! - `project`: every unit's sidecar → `objdiff.json`
@@ -55,7 +55,7 @@ struct Slice {
     archive: String,
     #[command(flatten)]
     check: Check,
-    /// The target object; its sidecar is written next to it as `.json`
+    /// The target object; its sidecar is written next to it as `.samples`
     #[arg(short, long)]
     output: PathBuf,
 }
@@ -76,7 +76,7 @@ struct Codegen {
 
 #[derive(clap::Args)]
 struct ProjectArgs {
-    /// The units' sidecars (`target/<unit>.json`)
+    /// The units' sidecars (`target/<unit>.samples`)
     sidecars: Vec<PathBuf>,
     /// `objdiff.json`; its directory is the project's, with `target/`,
     /// `src/` and `base/`
@@ -111,7 +111,13 @@ struct Sidecar {
 }
 
 fn sidecar_path(target: &Path) -> PathBuf {
-    target.with_extension("json")
+    target.with_extension("samples")
+}
+
+fn read_sidecar(path: &Path) -> Result<Sidecar> {
+    let bytes =
+        fs::read(path).with_context(|| format!("{}", path.display()))?;
+    postcard::from_bytes(&bytes).with_context(|| format!("{}", path.display()))
 }
 
 fn slice(args: Slice) -> Result<()> {
@@ -158,19 +164,12 @@ fn slice(args: Slice) -> Result<()> {
         archive: args.archive,
         samples: infos,
     };
-    fs::write(
-        sidecar_path(&args.output),
-        serde_json::to_string_pretty(&sidecar)? + "\n",
-    )?;
+    fs::write(sidecar_path(&args.output), postcard::to_stdvec(&sidecar)?)?;
     Ok(())
 }
 
 fn codegen(args: Codegen) -> Result<()> {
-    let sidecar: Sidecar = serde_json::from_str(
-        &fs::read_to_string(sidecar_path(&args.target)).with_context(
-            || format!("{}: no sidecar", args.target.display()),
-        )?,
-    )?;
+    let sidecar = read_sidecar(&sidecar_path(&args.target))?;
     let data = fs::read(&args.target)
         .with_context(|| format!("{}", args.target.display()))?;
     let obj = object::File::parse(&*data)?;
@@ -229,10 +228,7 @@ fn codegen(args: Codegen) -> Result<()> {
 fn project(args: ProjectArgs) -> Result<()> {
     let mut units = Vec::new();
     for path in &args.sidecars {
-        let sidecar: Sidecar = serde_json::from_str(
-            &fs::read_to_string(path)
-                .with_context(|| format!("{}", path.display()))?,
-        )?;
+        let sidecar = read_sidecar(path)?;
         if sidecar.samples.is_empty() {
             continue;
         }
@@ -327,8 +323,7 @@ struct UnitMatch {
 /// match.
 fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
     let target = dir.join("target").join(format!("{unit}.o"));
-    let sidecar: Sidecar =
-        serde_json::from_str(&fs::read_to_string(sidecar_path(&target))?)?;
+    let sidecar = read_sidecar(&sidecar_path(&target))?;
     let samples: BTreeSet<&str> =
         sidecar.samples.iter().map(|s| s.symbol.as_str()).collect();
     let output = Process::new("objdiff-cli")
