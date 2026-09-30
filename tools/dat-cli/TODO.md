@@ -78,6 +78,12 @@ Not errors:
   relocated by `ftData` at runtime. They could be read as nested archives.
 - About 15,000 `void*` fields aren't followed. Use `DAT_TYPE` where the type
   is known.
+- A root that is itself a null-terminated pointer array has no annotation:
+  `ScGamRegStaffrollNames_scene_modelset` (GmStRoll.dat, 3,760 relocations)
+  is loaded into a `DynamicModelDesc**`, so the walk follows only its first
+  pointer. It needs `DAT_NULLTERM` on roots, or counts in `dat_symbols.txt`
+  for roots the code types (they take precedence now) with pointer element
+  types.
 
 ## Tool
 
