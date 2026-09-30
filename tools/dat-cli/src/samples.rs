@@ -19,7 +19,7 @@ use crate::{
     hsd::Archive,
     walk::Walk,
 };
-use anyhow::{Result, bail};
+use anyhow::{Context, Result, bail};
 use object::{
     Architecture, BinaryFormat, Endianness, RelocationFlags, SectionKind,
     SymbolFlags, SymbolKind, SymbolScope,
@@ -54,6 +54,11 @@ pub struct Sample {
     /// The type as C declares it (`struct HSD_Joint`, `Vec2`, or
     /// `typeof(((union U *) 0)->member)` for a union object).
     pub type_name: String,
+    /// The type's name for looking it up again: its tag, or the typedef
+    /// that names it.
+    pub lookup: String,
+    /// For a union object, the member its tag chose.
+    pub member: Option<String>,
     /// The header that declares the type, relative to its include directory.
     pub header: String,
     pub size: u64,
@@ -86,6 +91,49 @@ impl Sample {
 pub struct Skipped {
     pub type_name: String,
     pub reason: &'static str,
+}
+
+/// A sample as the sidecar next to its target object describes it.
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct SampleInfo {
+    /// Its symbol in the target object.
+    pub symbol: String,
+    /// Where it was in the archive.
+    pub offset: u32,
+    /// Offset of the archive in its file; nonzero inside packed files.
+    pub archive: usize,
+    pub size: u64,
+    /// The type as C declares it.
+    pub type_name: String,
+    /// The type's tag or typedef name, to look it up in the DWARF.
+    pub lookup: String,
+    /// For a union object, the member its tag chose.
+    pub member: Option<String>,
+    /// The header that declares the type.
+    pub header: String,
+    /// The members its tagged unions chose, in order.
+    pub variant: Vec<String>,
+    pub choices: Vec<Choice>,
+}
+
+/// The member a tagged union inside a sample chose.
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+pub struct Choice {
+    /// Offset of the union in the sample.
+    pub offset: u32,
+    /// The union type, as C declares it.
+    pub union: String,
+    /// Index of the member.
+    pub member: usize,
+}
+
+/// A sample's data, as codegen reads it from the target object.
+pub struct Instance<'a> {
+    pub info: &'a SampleInfo,
+    pub bytes: &'a [u8],
+    /// Relocated words, by offset in the sample, with the symbol each
+    /// points to.
+    pub relocs: BTreeMap<u32, String>,
 }
 
 /// Picks the samples from walked archives.
@@ -129,6 +177,8 @@ impl<'a> Picker<'a> {
                 continue;
             }
             let mut type_name = self.renderer.declare(Some(die), "");
+            let mut lookup =
+                ty.name.map(|n| self.graph.str(n).to_owned()).unwrap_or_default();
             let mut decl_file = ty.decl_file;
             // An anonymous record is named by its typedef, e.g. `Vec2`
             if ty.name.is_none() {
@@ -138,6 +188,7 @@ impl<'a> Picker<'a> {
                         type_name = typedef
                             .name
                             .map_or(type_name, |n| self.graph.str(n).to_owned());
+                        lookup = type_name.clone();
                         decl_file = typedef.decl_file;
                     }
                     None => {
@@ -155,6 +206,7 @@ impl<'a> Picker<'a> {
             // What each tagged union inside chose, by offset and type
             let mut die = die;
             let mut key_name = type_name.clone();
+            let mut member_name = None;
             if let TypeKind::Record {
                 union: true,
                 members,
@@ -176,6 +228,7 @@ impl<'a> Picker<'a> {
                 let name = member.name.map_or("?", |n| self.graph.str(n));
                 key_name = format!("{type_name}.{name}");
                 type_name = format!("typeof((({type_name} *) 0)->{name})");
+                member_name = Some(name.to_owned());
                 die = member_ty;
             }
             let Some(size) = self.member_size(die) else {
@@ -221,6 +274,8 @@ impl<'a> Picker<'a> {
             let candidate = Sample {
                 die,
                 type_name: type_name.clone(),
+                lookup,
+                member: member_name,
                 header,
                 size,
                 location: Location {
@@ -245,6 +300,33 @@ impl<'a> Picker<'a> {
             if better {
                 self.best.insert(key, candidate);
             }
+        }
+    }
+
+    /// What codegen needs to know about a sample, by name.
+    pub fn info(&self, sample: &Sample, symbol: String) -> SampleInfo {
+        let base = sample.location.offset;
+        SampleInfo {
+            symbol,
+            offset: sample.location.offset,
+            archive: sample.location.archive,
+            size: sample.size,
+            type_name: sample.type_name.clone(),
+            lookup: sample.lookup.clone(),
+            member: sample.member.clone(),
+            header: sample.header.clone(),
+            variant: sample.variant.clone(),
+            choices: sample
+                .choices
+                .iter()
+                .map(|(&(at, union), &member)| Choice {
+                    offset: at - base,
+                    union: self
+                        .renderer
+                        .declare(Some(self.canonical.get(union).rep), ""),
+                    member,
+                })
+                .collect(),
         }
     }
 
@@ -446,43 +528,36 @@ impl<'a> CWriter<'a> {
 
     /// A unit's C: its headers, declarations of every name it uses, and one
     /// definition per sample.
-    pub fn unit(&self, samples: &[(&Sample, &Source)]) -> Result<String> {
-        let defined: BTreeMap<String, &str> = samples
+    pub fn unit(&self, instances: &[Instance]) -> Result<String> {
+        let defined: BTreeMap<&str, &str> = instances
             .iter()
-            .map(|(s, source)| {
-                (source.name(s.location.offset), s.type_name.as_str())
-            })
+            .map(|i| (i.info.symbol.as_str(), i.info.type_name.as_str()))
             .collect();
         let mut externs = BTreeSet::new();
         let mut defs = String::new();
-        for (sample, source) in samples {
-            let offset = sample.location.offset;
-            for (_, target) in source.relocs(offset, sample.size) {
-                let name = source.name(target);
-                if !defined.contains_key(&name) {
-                    externs.insert(name);
+        for inst in instances {
+            for name in inst.relocs.values() {
+                if !defined.contains_key(name.as_str()) {
+                    externs.insert(name.as_str());
                 }
             }
+            let die = self.die_of(inst.info)?;
             let mut init = String::new();
-            self.value(&mut init, sample, source, sample.die, offset, 0)?;
-            let variant = match sample.variant.as_slice() {
+            self.value(&mut init, inst, die, 0, 0)?;
+            let info = inst.info;
+            let variant = match info.variant.as_slice() {
                 [] => String::new(),
                 members => format!(" ({})", members.join(", ")),
             };
-            writeln!(defs, "/// 0x{offset:X}{variant}")?;
-            writeln!(
-                defs,
-                "{} {} = {init};\n",
-                sample.type_name,
-                source.name(offset)
-            )?;
+            writeln!(defs, "/// 0x{:X}{variant}", info.offset)?;
+            writeln!(defs, "{} {} = {init};\n", info.type_name, info.symbol)?;
         }
         let mut out = String::from(concat!(
-            "// Generated by `melee-dat samples generate` from the types.\n\n",
+            "// Generated by `melee-dat samples codegen` from the types.\n\n",
             "#include <Runtime/platform.h>\n",
         ));
         let headers: BTreeSet<&str> =
-            samples.iter().map(|(s, _)| s.header.as_str()).collect();
+            instances.iter().map(|i| i.info.header.as_str()).collect();
         for header in headers {
             writeln!(out, "#include <{header}>")?;
         }
@@ -497,6 +572,40 @@ impl<'a> CWriter<'a> {
         out.push('\n');
         out.push_str(&defs);
         Ok(out)
+    }
+
+    /// A sample's type, looked up by name; for a union object, the member
+    /// its tag chose.
+    fn die_of(&self, info: &SampleInfo) -> Result<DieId> {
+        let record = self
+            .canonical
+            .lookup(self.graph, &info.lookup)
+            .into_iter()
+            .map(|die| self.resolve(die))
+            .find(|die| {
+                matches!(
+                    self.graph.types[die].kind,
+                    TypeKind::Record {
+                        declaration: false,
+                        ..
+                    }
+                )
+            });
+        let Some(record) = record else {
+            bail!("{}: no type `{}`", info.symbol, info.lookup);
+        };
+        let Some(member) = &info.member else {
+            return Ok(record);
+        };
+        let TypeKind::Record { members, .. } = &self.graph.types[&record].kind
+        else {
+            unreachable!()
+        };
+        members
+            .iter()
+            .find(|m| m.name.is_some_and(|n| self.graph.str(n) == member))
+            .and_then(|m| m.ty)
+            .with_context(|| format!("{}: no member `{member}`", info.symbol))
     }
 
     /// Look through typedefs and qualifiers, and from declarations to
@@ -542,14 +651,13 @@ impl<'a> CWriter<'a> {
     fn value(
         &self,
         out: &mut String,
-        sample: &Sample,
-        source: &Source,
+        inst: &Instance,
         die: DieId,
         offset: u32,
         depth: usize,
     ) -> Result<()> {
         if depth > 32 {
-            bail!("{}: type nests too deep", sample.type_name);
+            bail!("{}: type nests too deep", inst.info.symbol);
         }
         let spelled = die;
         let die = self.resolve(die);
@@ -581,7 +689,7 @@ impl<'a> CWriter<'a> {
                         let start = member
                             .bit_offset
                             .unwrap_or(member.offset.unwrap_or(0) * 8);
-                        let value = self.bits(source, offset, start, bits);
+                        let value = bits_at(inst.bytes, offset, start, bits);
                         let negative = self.signed(ty)
                             && bits < 64
                             && value >> (bits - 1) & 1 == 1;
@@ -593,7 +701,7 @@ impl<'a> CWriter<'a> {
                         continue;
                     }
                     let at = offset + member.offset.unwrap_or(0) as u32;
-                    self.value(out, sample, source, ty, at, depth + 1)?;
+                    self.value(out, inst, ty, at, depth + 1)?;
                 }
                 if first {
                     out.push('0');
@@ -607,11 +715,13 @@ impl<'a> CWriter<'a> {
             } => {
                 // The member its tag chose; else the largest, which holds
                 // every byte
-                let chosen = self
-                    .canonical
-                    .of(die)
-                    .and_then(|id| sample.choices.get(&(offset, id)))
-                    .and_then(|&i| members.get(i));
+                let union = self.renderer.declare(Some(die), "");
+                let chosen = inst
+                    .info
+                    .choices
+                    .iter()
+                    .find(|c| c.offset == offset && c.union == union)
+                    .and_then(|c| members.get(c.member));
                 let largest = members.iter().rev().max_by_key(|m| {
                     m.ty.map_or(0, |ty| self.size(ty))
                 });
@@ -625,7 +735,7 @@ impl<'a> CWriter<'a> {
                 };
                 out.push('{');
                 out.push_str(&self.designator(member));
-                self.value(out, sample, source, ty, offset, depth + 1)?;
+                self.value(out, inst, ty, offset, depth + 1)?;
                 out.push('}');
             }
             TypeKind::Array { element, dims } => {
@@ -645,15 +755,15 @@ impl<'a> CWriter<'a> {
                         out.push_str(", ");
                     }
                     let at = offset + (i * element_size) as u32;
-                    self.value(out, sample, source, element, at, depth + 1)?;
+                    self.value(out, inst, element, at, depth + 1)?;
                 }
                 out.push('}');
             }
             TypeKind::Pointer { .. } => {
                 let cast = self.renderer.declare(Some(spelled), "");
-                let value = source.word(offset);
-                if source.relocs.contains(&offset) {
-                    write!(out, "({cast}) &{}", source.name(value))?;
+                let value = word_at(inst.bytes, offset);
+                if let Some(target) = inst.relocs.get(&offset) {
+                    write!(out, "({cast}) &{target}")?;
                 } else if value == 0 {
                     out.push_str("NULL");
                 } else {
@@ -664,7 +774,7 @@ impl<'a> CWriter<'a> {
             // the same bytes without the relocation, so objdiff shows that
             // the field should be a pointer
             TypeKind::Base { encoding } => {
-                let bytes = source.bytes(offset, size);
+                let bytes = &inst.bytes[offset as usize..(offset as u64 + size) as usize];
                 match (*encoding, size) {
                     (FLOAT, 4) => {
                         let v = f32::from_be_bytes(bytes.try_into().unwrap());
@@ -684,7 +794,7 @@ impl<'a> CWriter<'a> {
                 }
             }
             TypeKind::Enum { .. } => {
-                let bytes = source.bytes(offset, size);
+                let bytes = &inst.bytes[offset as usize..(offset as u64 + size) as usize];
                 let value =
                     bytes.iter().fold(0u64, |acc, &b| acc << 8 | u64::from(b));
                 integer(out, value, size, true)?;
@@ -692,16 +802,6 @@ impl<'a> CWriter<'a> {
             _ => out.push('0'),
         }
         Ok(())
-    }
-
-    /// Bits `start..start + len` of the record at `offset`, counted from the
-    /// most significant bit of its first byte.
-    fn bits(&self, source: &Source, offset: u32, start: u64, len: u64) -> u64 {
-        (start..start + len).fold(0, |acc, bit| {
-            let byte =
-                source.archive.data[offset as usize + (bit / 8) as usize];
-            acc << 1 | u64::from(byte >> (7 - bit % 8) & 1)
-        })
     }
 
     fn signed(&self, die: DieId) -> bool {
@@ -713,6 +813,20 @@ impl<'a> CWriter<'a> {
             _ => false,
         }
     }
+}
+
+/// Bits `start..start + len` of the record at `offset`, counted from the
+/// most significant bit of its first byte.
+fn bits_at(bytes: &[u8], offset: u32, start: u64, len: u64) -> u64 {
+    (start..start + len).fold(0, |acc, bit| {
+        let byte = bytes[offset as usize + (bit / 8) as usize];
+        acc << 1 | u64::from(byte >> (7 - bit % 8) & 1)
+    })
+}
+
+fn word_at(bytes: &[u8], offset: u32) -> u32 {
+    let at = offset as usize;
+    u32::from_be_bytes(bytes[at..at + 4].try_into().unwrap())
 }
 
 /// A float literal from Rust's shortest round-trip form, e.g. `1.0`,

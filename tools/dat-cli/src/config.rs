@@ -17,16 +17,6 @@ pub struct ProjectConfig {
     pub include: Vec<String>,
     #[serde(with = "unix_path")]
     pub symbols: Utf8UnixPathBuf,
-    pub samples: SamplesConfig,
-}
-
-/// Where `samples` writes.
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SamplesConfig {
-    /// Everything generated: `target/`, `src/`, `manifest.json`, and the
-    /// `base/` objects ninja compiles.
-    #[serde(with = "unix_path")]
-    pub dir: Utf8UnixPathBuf,
 }
 
 pub fn get_config(

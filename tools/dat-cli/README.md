@@ -105,27 +105,33 @@ blobs in `config.yml`.
 Archives are too large to diff whole, so each type the walk finds is
 sampled once per variant its tagged unions choose: the instance with no
 findings of its own that has the most pointers. It is an optional part of
-the build:
+the build, in the dev shell (it needs `clang`, `AURORA_SRC` and
+`NEWLIB_INCLUDE`, like the CMake presets):
 
 ```sh
 ./configure.py --dat-dwarf build/ppc-dwarf/melee.elf
 ninja
 ```
 
-Ninja then generates both sides under `build/GALE01/dat` (not committed)
-and compiles them like game code:
+Ninja then generates both sides under `build/GALE01/dat` (not committed),
+one unit per archive that has a sample:
 
-- `target/<unit>.o`: the instance's bytes from the archive, with its
-  pointers as relocations to externs named after their targets
-  (`dat_PlMr_1A40`)
-- `src/<unit>.c`: C initializers generated from the current types, compiled
-  to `base/<unit>.o`
+- `target/<archive>.o`: each instance's bytes from the archive, with its
+  pointers as relocations
+- `src/<archive>.c`: designated initializers generated from the current
+  types, compiled to `base/<archive>.o` with clang like the DWARF build
 
-A unit is the header that declares the types. Units join the root objdiff
-project as `dat/<unit>`, next to the DOL's `main/` units. A pointer the
-type has as an integer is written as its raw value, so objdiff shows the
-missing relocation; so does data in padding, a layout MWCC disagrees with,
-or a float that doesn't round-trip.
+Both sides name an object as the archive does: its public symbol, else
+`x<OFFSET>`. Units join the root objdiff project as `dat/<archive>`, next
+to the DOL's `main/` units.
+
+A pointer the type has as an integer is written as its raw value, so
+objdiff shows the missing relocation; so does data in padding, or a float
+that doesn't round-trip. A union is written through the member its tag
+chose. A union object is declared as that member (`typeof(((union U *)
+0)->member)`): the archive only holds that member's bytes. The base is
+built by the compiler the DWARF comes from, so this checks that the types
+explain the data, not MWCC's layout of them.
 
 ```sh
 melee-dat samples report  # samples that don't match

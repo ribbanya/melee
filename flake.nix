@@ -131,7 +131,14 @@
             # melee-dtk with the .dat samples in its objdiff project and
             # report
             melee-dat-samples = melee-dtk.override {
-              inherit melee-dat melee-dwarf dat-files;
+              inherit
+                melee-dat
+                melee-dwarf
+                dat-files
+                aurora-src
+                ;
+              clang = pkgs.llvmPackages_22.clang-unwrapped;
+              inherit (pkgs.pkgsCross.ppc-embedded) newlib;
             };
 
             melee-docs =
@@ -170,6 +177,10 @@
               pkgs.ninja
               pkgs.llvmPackages_22.clang-unwrapped
               pkgs.llvmPackages_22.bintools-unwrapped
+              # For tools/dat-cli and configure.py --dat-dwarf
+              pkgs.cargo
+              pkgs.rustc
+              objdiff
             ]
             # The native CMake preset builds 32-bit
             ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ pkgs.gcc_multi ];

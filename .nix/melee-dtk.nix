@@ -11,15 +11,21 @@
   main-dol,
   sjiswrap,
   # Sample the .dat archives' types too (configure.py --dat-dwarf): the
-  # melee-dat tool, the DWARF build of the game, and orig/GALE01/files
+  # melee-dat tool, the DWARF build of the game, orig/GALE01/files, and
+  # what compiles the samples like the DWARF build
   melee-dat ? null,
   melee-dwarf ? null,
   dat-files ? null,
+  clang ? null,
+  aurora-src ? null,
+  newlib ? null,
 }:
 let
   withDat = melee-dat != null;
 in
-assert withDat -> melee-dwarf != null && dat-files != null;
+assert
+  withDat
+  -> melee-dwarf != null && dat-files != null && clang != null && aurora-src != null && newlib != null;
 stdenvNoCC.mkDerivation (finalAttrs: {
   name = "doldecomp-melee";
 
@@ -53,7 +59,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ninja
     python3
     wibo
-  ];
+  ]
+  ++ lib.optional withDat clang;
+
+  env = lib.optionalAttrs withDat {
+    AURORA_SRC = "${aurora-src}";
+    NEWLIB_INCLUDE = "${newlib}/powerpc-none-eabi/include";
+  };
 
   configurePhase = ''
     runHook preConfigure

@@ -2267,8 +2267,9 @@ if args.mode == "configure":
     # Write build.ninja and objdiff.json
     generate_build(config)
 
-    # Samples join the DOL's main/ units in objdiff as dat/
-    if dat_units is not None:
+    # Samples join the DOL's main/ units in objdiff as dat/. Before the DOL
+    # is split there is no objdiff.json yet
+    if dat_units and Path("objdiff.json").is_file():
         with open("objdiff.json", encoding="utf-8") as f:
             objdiff_config = json.load(f)
         objdiff_config["units"].extend(dat_units)

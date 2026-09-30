@@ -1,28 +1,24 @@
-//! `samples`: one instance of each archive type, compared with objdiff.
+//! `samples`: archive data typed by the DWARF, compared with objdiff.
 //!
-//! `generate` writes, under the configured directory:
-//! - `target/<unit>.o`: the sampled bytes from the archives
-//! - `src/<unit>.c`: C generated from the current types
-//! - `manifest.json`: the units, which `configure.py` turns into build
-//!   edges compiling each source to `base/<unit>.o` and into `dat/<unit>`
-//!   units of the root objdiff project
-//! - `dep`: what the manifest was generated from, for ninja
+//! One unit per archive file, each built in steps a build system runs:
+//! - `slice`: the archive → `target/<unit>.o`, its sampled objects under
+//!   their archive names, plus `target/<unit>.json` saying what each is
+//! - `codegen`: the target object → `src/<unit>.c`, generated from the types
+//! - (the build compiles `src/<unit>.c` to `base/<unit>.o`)
+//! - `project`: every unit's sidecar → `objdiff.json`
 //!
-//! `report` compares them once ninja has built the base objects.
+//! `report` compares the built units.
 
-use super::{
-    dwarf_path,
-    project::{Check, Project},
-};
+use super::project::{Check, Project};
 use anyhow::{Context, Result, bail};
-use globset::GlobSet;
 use melee_dat::{
-    config::{gather_files, get_config},
+    dwarf::{TypeGraph, cache::TypesFile, canonical::Canonical},
     hsd::Archive,
-    samples::{CWriter, Picker, Sample, Skipped, Source, target_object},
+    samples::{CWriter, Instance, Picker, SampleInfo, Source, target_object},
 };
+use object::{Object, ObjectSection, ObjectSymbol, RelocationTarget};
 use rayon::prelude::*;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -40,279 +36,237 @@ pub struct Args {
 
 #[derive(clap::Subcommand)]
 enum Command {
-    /// List the samples: one instance of each type the walk finds
-    List(List),
+    /// Write an archive's samples as a target object, with a sidecar
+    Slice(Slice),
 
-    /// Write the target objects, the C and their manifest
-    Generate(Generate),
+    /// Write the C for a target object's samples, from the types
+    Codegen(Codegen),
 
-    /// Compare the samples with objdiff
+    /// Write the objdiff project for the units' sidecars
+    Project(ProjectArgs),
+
+    /// Compare the built units' samples
     Report(Report),
 }
 
 #[derive(clap::Args)]
-struct List {
+struct Slice {
+    /// The archive, relative to the archives' directory, e.g. `PlMr.dat`
+    archive: String,
     #[command(flatten)]
     check: Check,
-    #[arg(long)]
-    json: bool,
+    /// The target object; its sidecar is written next to it as `.json`
+    #[arg(short, long)]
+    output: PathBuf,
 }
 
 #[derive(clap::Args)]
-struct Generate {
-    #[command(flatten)]
-    check: Check,
+struct Codegen {
+    /// The target object, with its sidecar next to it
+    target: PathBuf,
+    /// ELF or object with DWARF [default: $MELEE_DWARF_ELF]
+    #[arg(long)]
+    dwarf: Option<PathBuf>,
+    /// The compact types file from `types export`, instead of the DWARF
+    #[arg(long, conflicts_with = "dwarf")]
+    types: Option<PathBuf>,
+    #[arg(short, long)]
+    output: PathBuf,
+}
+
+#[derive(clap::Args)]
+struct ProjectArgs {
+    /// The units' sidecars (`target/<unit>.json`)
+    sidecars: Vec<PathBuf>,
+    /// `objdiff.json`; its directory is the project's, with `target/`,
+    /// `src/` and `base/`
+    #[arg(short, long)]
+    output: PathBuf,
 }
 
 #[derive(clap::Args)]
 struct Report {
-    /// Project config
-    #[arg(default_value = "config/GALE01/dat.yml")]
-    cfg_path: PathBuf,
-    #[arg(short = 'p', long)]
-    proj_path: Option<PathBuf>,
-    /// Print objdiff's report instead of the table
+    /// The project directory
+    #[arg(default_value = "build/GALE01/dat")]
+    dir: PathBuf,
     #[arg(long)]
     json: bool,
 }
 
 pub fn run(Args { command }: Args) -> Result<()> {
     match command {
-        Command::List(args) => list(args),
-        Command::Generate(args) => generate(args),
+        Command::Slice(args) => slice(args),
+        Command::Codegen(args) => codegen(args),
+        Command::Project(args) => project(args),
         Command::Report(args) => report(args),
     }
 }
 
-/// The samples and the types that have none.
-fn pick(project: &Project) -> Result<(Vec<Sample>, Vec<Skipped>)> {
+/// What `slice` writes next to a target object.
+#[derive(Serialize, Deserialize)]
+struct Sidecar {
+    /// The archive file, e.g. `PlMr.dat`.
+    archive: String,
+    samples: Vec<SampleInfo>,
+}
+
+fn sidecar_path(target: &Path) -> PathBuf {
+    target.with_extension("json")
+}
+
+fn slice(args: Slice) -> Result<()> {
+    let project = Project::load(&args.check)?;
+    let path = project.base.join(&args.archive);
+    let bytes =
+        fs::read(&path).with_context(|| format!("{}", path.display()))?;
+    let archives = Archive::parse_packed(&bytes)
+        .with_context(|| format!("{}", path.display()))?;
+
+    // This archive's best instance of each type and variant
     let mut picker = Picker::new(&project.graph, &project.canonical);
-    project.walk_all(&GlobSet::empty(), |w| {
-        let offset = w
-            .name
-            .split_once('@')
-            .and_then(|(_, o)| usize::from_str_radix(&o[2..], 16).ok())
-            .unwrap_or(0);
-        picker.add(w.file, offset, w.archive, &w.result);
-        Ok(())
-    })?;
-    Ok(picker.finish())
-}
+    for (at, archive) in &archives {
+        let (_, walk) = project.walk(&args.archive, archive);
+        picker.add(&args.archive, *at, archive, &walk);
+    }
+    let (mut samples, _) = picker.finish();
+    samples.sort_by_key(|s| (s.location.archive, s.location.offset));
 
-#[derive(Serialize)]
-struct Row<'a> {
-    #[serde(rename = "type")]
-    ty: &'a str,
-    variant: String,
-    unit: &'a str,
-    file: &'a str,
-    archive: usize,
-    offset: u32,
-    size: u64,
-    relocations: usize,
-}
-
-fn list(args: List) -> Result<()> {
-    let project = Project::load(&args.check)?;
-    let (samples, skipped) = pick(&project)?;
-    let rows: Vec<Row> = samples
+    let sources: BTreeMap<usize, Source> = archives
         .iter()
-        .map(|s| Row {
-            ty: &s.type_name,
-            variant: s.variant.join(", "),
-            unit: s.unit(),
-            file: &s.location.file,
-            archive: s.location.archive,
-            offset: s.location.offset,
-            size: s.size,
-            relocations: s.relocs,
-        })
+        .map(|(at, a)| (*at, Source::new(a, *at)))
         .collect();
-    let mut out = io::stdout().lock();
-    if args.json {
-        let skipped: BTreeMap<&str, &str> = skipped
-            .iter()
-            .map(|s| (s.type_name.as_str(), s.reason))
-            .collect();
-        let report = json!({ "samples": rows, "skipped": skipped });
-        serde_json::to_writer_pretty(&mut out, &report)?;
-        writeln!(out)?;
-        return Ok(());
+    let pairs: Vec<_> = samples
+        .iter()
+        .map(|s| (s, &sources[&s.location.archive]))
+        .collect();
+    let picker = Picker::new(&project.graph, &project.canonical);
+    let mut infos = Vec::new();
+    let mut names = BTreeSet::new();
+    for (sample, source) in &pairs {
+        let name = source.name(sample.location.offset);
+        if !names.insert(name.clone()) {
+            bail!("{}: two samples named {name}", args.archive);
+        }
+        infos.push(picker.info(sample, name));
     }
-    for r in &rows {
-        let archive = match r.archive {
-            0 => String::new(),
-            a => format!("@0x{a:X}"),
-        };
-        writeln!(
-            out,
-            "{}: {} ({:#X} bytes, {} relocations) from {}{archive} at 0x{:X}",
-            r.unit, r.ty, r.size, r.relocations, r.file, r.offset
-        )?;
+
+    if let Some(dir) = args.output.parent() {
+        fs::create_dir_all(dir)?;
     }
-    for s in &skipped {
-        writeln!(out, "skipped: {} ({})", s.type_name, s.reason)?;
-    }
-    let mut units: Vec<_> = rows.iter().map(|r| r.unit).collect();
-    units.sort();
-    units.dedup();
-    eprintln!(
-        "{} samples in {} units, {} types skipped",
-        rows.len(),
-        units.len(),
-        skipped.len()
-    );
-    Ok(())
-}
-
-/// The directory samples are generated in.
-fn samples_dir(cfg_path: &Path, proj_path: Option<&PathBuf>) -> Result<PathBuf> {
-    let config = get_config(proj_path, cfg_path)?;
-    let proj = proj_path.cloned().unwrap_or_default();
-    Ok(proj.join(config.samples.dir.as_str()))
-}
-
-/// One unit of `manifest.json`, with paths relative to the manifest.
-#[derive(Serialize, serde::Deserialize)]
-struct ManifestUnit {
-    /// The unit, named after its archive, e.g. `PlMr`.
-    name: String,
-    source: String,
-    target: String,
-    symbols: Vec<String>,
-}
-
-#[derive(Serialize, serde::Deserialize)]
-struct Manifest {
-    units: Vec<ManifestUnit>,
-}
-
-/// Write `bytes` unless the file already holds them, so that ninja only
-/// rebuilds what changed.
-fn write_if_changed(path: &Path, bytes: &[u8]) -> Result<bool> {
-    if fs::read(path).is_ok_and(|old| old == bytes) {
-        return Ok(false);
-    }
-    fs::create_dir_all(path.parent().unwrap())?;
-    fs::write(path, bytes).with_context(|| format!("{}", path.display()))?;
-    Ok(true)
-}
-
-/// Remove every file under `dir` that isn't in `keep`.
-fn remove_stale(dir: &Path, keep: &BTreeSet<PathBuf>) -> Result<()> {
-    let Ok(entries) = fs::read_dir(dir) else {
-        return Ok(());
+    fs::write(&args.output, target_object(&pairs)?)?;
+    let sidecar = Sidecar {
+        archive: args.archive,
+        samples: infos,
     };
-    for entry in entries {
-        let path = entry?.path();
-        if path.is_dir() {
-            remove_stale(&path, keep)?;
-            // Fails unless it is now empty, which is the point
-            let _ = fs::remove_dir(&path);
-        } else if !keep.contains(&path) {
-            fs::remove_file(&path)?;
-        }
-    }
+    fs::write(
+        sidecar_path(&args.output),
+        serde_json::to_string_pretty(&sidecar)? + "\n",
+    )?;
     Ok(())
 }
 
-fn generate(args: Generate) -> Result<()> {
-    let dir = samples_dir(&args.check.cfg_path, args.check.proj_path.as_ref())?;
-    let project = Project::load(&args.check)?;
-    let (samples, _) = pick(&project)?;
-    let mut units: BTreeMap<String, Vec<Sample>> = BTreeMap::new();
-    for sample in samples {
-        units.entry(sample.unit().to_owned()).or_default().push(sample);
-    }
-
-    // Each archive a sample reads, parsed once
-    let mut files: BTreeMap<String, Vec<u8>> = BTreeMap::new();
-    for sample in units.values().flatten() {
-        let file = &sample.location.file;
-        if !files.contains_key(file) {
-            let path = project.base.join(file);
-            let bytes = fs::read(&path)
-                .with_context(|| format!("{}", path.display()))?;
-            files.insert(file.clone(), bytes);
-        }
-    }
-    let mut archives: BTreeMap<(&str, usize), Archive> = BTreeMap::new();
-    for (file, bytes) in &files {
-        for (at, archive) in Archive::parse_packed(bytes)? {
-            archives.insert((file, at), archive);
-        }
-    }
-    let sources: BTreeMap<(&str, usize), Source> = archives
-        .iter()
-        .map(|(&(file, at), a)| ((file, at), Source::new(a, at)))
-        .collect();
-
-    let writer = CWriter::new(&project.graph, &project.canonical);
-    let mut manifest = Manifest { units: Vec::new() };
-    let (mut keep_targets, mut keep_sources, mut keep_bases) =
-        (BTreeSet::new(), BTreeSet::new(), BTreeSet::new());
-    let mut changed = 0;
-    for (unit, samples) in &units {
-        let mut pairs: Vec<(&Sample, &Source)> = samples
-            .iter()
-            .map(|s| {
-                let key = (s.location.file.as_str(), s.location.archive);
-                (s, &sources[&key])
-            })
-            .collect();
-        pairs.sort_by_key(|(s, _)| (s.location.archive, s.location.offset));
-        let target = dir.join("target").join(format!("{unit}.o"));
-        let source = dir.join("src").join(format!("{unit}.c"));
-        changed += usize::from(write_if_changed(&target, &target_object(&pairs)?)?);
-        changed +=
-            usize::from(write_if_changed(&source, writer.unit(&pairs)?.as_bytes())?);
-        keep_bases.insert(dir.join("base").join(format!("{unit}.o")));
-        keep_bases.insert(dir.join("base").join(format!("{unit}.d")));
-        keep_targets.insert(target);
-        keep_sources.insert(source);
-        manifest.units.push(ManifestUnit {
-            name: unit.clone(),
-            source: format!("src/{unit}.c"),
-            target: format!("target/{unit}.o"),
-            symbols: pairs
-                .iter()
-                .map(|(s, source)| source.name(s.location.offset))
-                .collect(),
-        });
-    }
-    // Units that no longer exist don't linger
-    remove_stale(&dir.join("target"), &keep_targets)?;
-    remove_stale(&dir.join("src"), &keep_sources)?;
-    remove_stale(&dir.join("base"), &keep_bases)?;
-
-    let manifest_path = dir.join("manifest.json");
-    write_if_changed(
-        &manifest_path,
-        (serde_json::to_string_pretty(&manifest)? + "\n").as_bytes(),
+fn codegen(args: Codegen) -> Result<()> {
+    let sidecar: Sidecar = serde_json::from_str(
+        &fs::read_to_string(sidecar_path(&args.target)).with_context(
+            || format!("{}: no sidecar", args.target.display()),
+        )?,
     )?;
+    let data = fs::read(&args.target)
+        .with_context(|| format!("{}", args.target.display()))?;
+    let obj = object::File::parse(&*data)?;
 
-    // What the manifest depends on, for ninja: the types, every archive
-    // and the configuration
-    let mut deps = vec![dwarf_path(args.check.dwarf.clone())?];
-    deps.extend(gather_files(&project.base, &project.include)?);
-    let proj = args.check.proj_path.clone().unwrap_or_default();
-    let config = get_config(args.check.proj_path.as_ref(), &args.check.cfg_path)?;
-    deps.push(proj.join(&args.check.cfg_path));
-    deps.push(proj.join(config.symbols.as_str()));
-    let escape = |p: &Path| p.to_string_lossy().replace(' ', "\\ ");
-    let mut dep = format!("{}:", escape(&manifest_path));
-    for path in &deps {
-        dep.push_str(" \\\n  ");
-        dep.push_str(&escape(path));
+    // Each symbol's bytes and relocations, from the object
+    let section = obj.section_by_name(".data");
+    let bytes = match &section {
+        Some(section) => section.data()?,
+        None => &[],
+    };
+    let mut relocs: BTreeMap<u64, String> = BTreeMap::new();
+    if let Some(section) = &section {
+        for (at, reloc) in section.relocations() {
+            if let RelocationTarget::Symbol(id) = reloc.target() {
+                let name = obj.symbol_by_index(id)?.name()?.to_owned();
+                relocs.insert(at, name);
+            }
+        }
     }
-    dep.push('\n');
-    fs::write(dir.join("dep"), dep)?;
+    let symbols: BTreeMap<&str, (u64, u64)> = obj
+        .symbols()
+        .filter(|s| s.is_definition())
+        .filter_map(|s| Some((s.name().ok()?, (s.address(), s.size()))))
+        .collect();
+    let instances = sidecar
+        .samples
+        .iter()
+        .map(|info| {
+            let &(at, size) = symbols
+                .get(info.symbol.as_str())
+                .with_context(|| format!("no symbol {}", info.symbol))?;
+            Ok(Instance {
+                info,
+                bytes: &bytes[at as usize..(at + size) as usize],
+                relocs: relocs
+                    .range(at..at + size)
+                    .map(|(&r, name)| ((r - at) as u32, name.clone()))
+                    .collect(),
+            })
+        })
+        .collect::<Result<Vec<_>>>()?;
 
-    eprintln!(
-        "{} units in {}, {changed} files changed",
-        units.len(),
-        dir.display()
-    );
+    let graph = match &args.types {
+        Some(path) => TypesFile::load(path)?.graph,
+        None => TypeGraph::load(super::dwarf_path(args.dwarf)?)?,
+    };
+    let canonical = Canonical::new(&graph);
+    let c = CWriter::new(&graph, &canonical).unit(&instances)?;
+    if let Some(dir) = args.output.parent() {
+        fs::create_dir_all(dir)?;
+    }
+    fs::write(&args.output, c)?;
+    Ok(())
+}
+
+fn project(args: ProjectArgs) -> Result<()> {
+    let mut units = Vec::new();
+    for path in &args.sidecars {
+        let sidecar: Sidecar = serde_json::from_str(
+            &fs::read_to_string(path)
+                .with_context(|| format!("{}", path.display()))?,
+        )?;
+        if sidecar.samples.is_empty() {
+            continue;
+        }
+        let unit = path
+            .file_stem()
+            .context("sidecar without a name")?
+            .to_string_lossy()
+            .into_owned();
+        units.push(json!({
+            "name": unit,
+            "target_path": format!("target/{unit}.o"),
+            "base_path": format!("base/{unit}.o"),
+            "metadata": {
+                "complete": false,
+                "source_path": format!("src/{unit}.c"),
+                "progress_categories": ["dat"],
+                "auto_generated": false,
+            },
+        }));
+    }
+    let objdiff = json!({
+        "min_version": "2.0.0-beta.5",
+        // The build that writes this file, so objdiff can rebuild a base
+        // object with `ninja base/<unit>.o`
+        "custom_make": "ninja",
+        "build_target": false,
+        "build_base": true,
+        "progress_categories": [{ "id": "dat", "name": "Dat Samples" }],
+        "units": units,
+    });
+    if let Some(dir) = args.output.parent() {
+        fs::create_dir_all(dir)?;
+    }
+    fs::write(&args.output, serde_json::to_string_pretty(&objdiff)? + "\n")?;
     Ok(())
 }
 
@@ -353,7 +307,8 @@ impl MatchMeasures {
     }
 
     fn finish(&mut self) {
-        let percent = |n: f64, d: f64| if d == 0.0 { 100.0 } else { n * 100.0 / d };
+        let percent =
+            |n: f64, d: f64| if d == 0.0 { 100.0 } else { n * 100.0 / d };
         self.matched_samples_percent =
             percent(self.matched_samples as f64, self.total_samples as f64);
         self.matched_data_percent =
@@ -370,35 +325,41 @@ struct UnitMatch {
 
 /// objdiff's diff of one unit's target and base objects: each sample's
 /// match.
-fn diff_unit(dir: &Path, unit: &ManifestUnit) -> Result<Vec<SampleMatch>> {
-    let samples = &unit.symbols;
-    let base = dir.join("base").join(format!("{}.o", unit.name));
+fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
+    let target = dir.join("target").join(format!("{unit}.o"));
+    let sidecar: Sidecar =
+        serde_json::from_str(&fs::read_to_string(sidecar_path(&target))?)?;
+    let samples: BTreeSet<&str> =
+        sidecar.samples.iter().map(|s| s.symbol.as_str()).collect();
     let output = Process::new("objdiff-cli")
         .arg("diff")
         .arg("-1")
-        .arg(dir.join(&unit.target))
+        .arg(&target)
         .arg("-2")
-        .arg(&base)
+        .arg(dir.join("base").join(format!("{unit}.o")))
         .args(["-o", "-"])
         .output()
         .context("running objdiff-cli")?;
     if !output.status.success() {
         bail!(
-            "objdiff-cli diff {}: {}",
-            unit.name,
+            "objdiff-cli diff {unit}: {}",
             String::from_utf8_lossy(&output.stderr)
         );
     }
     let diff: serde_json::Value = serde_json::from_slice(&output.stdout)?;
-    let symbols = diff["left"]["symbols"].as_array().cloned().unwrap_or_default();
+    let symbols = diff["left"]["symbols"]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
     Ok(symbols
         .iter()
         .filter_map(|s| {
             let name = s["name"].as_str()?;
-            if !samples.iter().any(|s| s == name) {
+            if !samples.contains(name) {
                 return None;
             }
-            let size = s["size"].as_str().and_then(|v| v.parse().ok()).unwrap_or(0);
+            let size =
+                s["size"].as_str().and_then(|v| v.parse().ok()).unwrap_or(0);
             // A symbol with no counterpart has no match percent
             let match_percent = s["match_percent"].as_f64().unwrap_or(0.0);
             Some(SampleMatch {
@@ -411,22 +372,32 @@ fn diff_unit(dir: &Path, unit: &ManifestUnit) -> Result<Vec<SampleMatch>> {
 }
 
 fn report(args: Report) -> Result<()> {
-    let dir = samples_dir(&args.cfg_path, args.proj_path.as_ref())?;
-    let manifest: Manifest = serde_json::from_str(
-        &fs::read_to_string(dir.join("manifest.json"))
-            .context("no manifest.json: configure with --dat-dwarf and run ninja")?,
+    let project: serde_json::Value = serde_json::from_str(
+        &fs::read_to_string(args.dir.join("objdiff.json")).with_context(
+            || {
+                format!(
+                    "no objdiff.json in {}: build the samples first",
+                    args.dir.display()
+                )
+            },
+        )?,
     )?;
-    let units: Vec<UnitMatch> = manifest
-        .units
+    let names: Vec<String> = project["units"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter_map(|u| u["name"].as_str().map(str::to_owned))
+        .collect();
+    let units: Vec<UnitMatch> = names
         .par_iter()
-        .map(|unit| {
-            let samples = diff_unit(&dir, unit)?;
+        .map(|name| {
+            let samples = diff_unit(&args.dir, name)?;
             let mut measures = MatchMeasures::default();
             for sample in &samples {
                 measures.add(sample);
             }
             Ok(UnitMatch {
-                name: unit.name.clone(),
+                name: name.clone(),
                 measures,
                 samples,
             })
@@ -455,15 +426,16 @@ fn report(args: Report) -> Result<()> {
         writeln!(
             out,
             "{:6.1}%  {}  ({unit}, {:#X} bytes)",
-            s.match_percent,
-            s.name,
-            s.size
+            s.match_percent, s.name, s.size
         )?;
     }
     writeln!(
         out,
-        "{}/{} samples match, {:.2}% of their bytes",
-        total.matched_samples, total.total_samples, total.matched_data_percent
+        "{}/{} samples match in {} units, {:.2}% of their bytes",
+        total.matched_samples,
+        total.total_samples,
+        units.len(),
+        total.matched_data_percent
     )?;
     Ok(())
 }
