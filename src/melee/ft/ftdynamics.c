@@ -132,7 +132,7 @@ static inline void ftCo_SetupKirbyHatBone(Fighter* fp, KirbyHatStruct* hat,
 
 void ftCo_8009D074(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Koopa];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Link];
     fp->dynamics_num = hat->hat_dynamics[2]->x0.dynamicsNum;
     HSD_ASSERTREPORT(135, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -146,7 +146,7 @@ void ftCo_8009D074(Fighter* fp)
 
 void ftCo_8009D18C(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Zelda];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_CLink];
     fp->dynamics_num = hat->hat_dynamics[2]->x0.dynamicsNum;
     HSD_ASSERTREPORT(167, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -160,7 +160,7 @@ void ftCo_8009D18C(Fighter* fp)
 
 void ftCo_8009D2A4(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Nana];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Pikachu];
     fp->dynamics_num = hat->hat_dynamics[2]->x0.dynamicsNum;
     HSD_ASSERTREPORT(199, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -174,7 +174,7 @@ void ftCo_8009D2A4(Fighter* fp)
 
 void ftCo_8009D3BC(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Falco];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Pichu];
     fp->dynamics_num = hat->hat_dynamics[2]->x0.dynamicsNum;
     HSD_ASSERTREPORT(232, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -188,7 +188,7 @@ void ftCo_8009D3BC(Fighter* fp)
 
 void ftCo_8009D4D4(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Kirby];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Koopa];
     fp->dynamics_num = hat->hat_dynamics[1]->x0.dynamicsNum;
     HSD_ASSERTREPORT(265, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -202,7 +202,7 @@ void ftCo_8009D4D4(Fighter* fp)
 
 void ftCo_8009D5EC(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Mars];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Zelda];
     fp->dynamics_num = hat->hat_dynamics[0]->x0.dynamicsNum;
     HSD_ASSERTREPORT(298, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -216,7 +216,7 @@ void ftCo_8009D5EC(Fighter* fp)
 
 void ftCo_8009D704(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Link];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Seak];
     fp->dynamics_num = hat->hat_dynamics[2]->x0.dynamicsNum;
     HSD_ASSERTREPORT(331, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -230,7 +230,7 @@ void ftCo_8009D704(Fighter* fp)
 
 void ftCo_8009D81C(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Yoshi];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Purin];
     PAD_STACK(2 * 4);
     fp->dynamics_num = hat->hat_dynamics[3]->x0.dynamicsNum;
     HSD_ASSERTREPORT(364, fp->dynamics_num < Ft_Dynamics_NumMax,
@@ -252,7 +252,7 @@ void ftCo_8009D81C(Fighter* fp)
 
 void ftCo_8009D920(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Luigi];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Mars];
     fp->dynamics_num = hat->hat_dynamics[1]->x0.dynamicsNum;
     HSD_ASSERTREPORT(388, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -266,7 +266,7 @@ void ftCo_8009D920(Fighter* fp)
 
 void ftCo_8009DA38(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Ganon];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Emblem];
     fp->dynamics_num = hat->hat_dynamics[1]->x0.dynamicsNum;
     HSD_ASSERTREPORT(421, fp->dynamics_num < Ft_Dynamics_NumMax,
                      "fighter dynamics num over!\n");
@@ -280,7 +280,7 @@ void ftCo_8009DA38(Fighter* fp)
 
 void ftCo_8009DB50(Fighter* fp)
 {
-    KirbyHatStruct* hat = ft_80459B88.hats[Ft_Kind_Purin];
+    KirbyHatStruct* hat = ft_80459B88.copies[Ft_Kind_Mewtwo];
     PAD_STACK(2 * 4);
     fp->dynamics_num = hat->hat_dynamics[4]->x0.dynamicsNum;
     HSD_ASSERTREPORT(455, fp->dynamics_num < Ft_Dynamics_NumMax,

@@ -1995,19 +1995,115 @@ struct KirbyHatStruct {
     /*  +C */ ftDynamics* hat_dynamics[5];
 };
 
-typedef struct Kirby_Unk {
-    /*  +0 */ HSD_Joint* x0;
-    /*  +4 */ FtPartsDesc x4;
-    /*  +C */ UNK_T xC;
-    /* +10 */ ftDynamics* x10;
-    /* +14 */ UNK_T x14;
-    /* +18 */ ftDynamics* x18;
-    /* +1C */ ftDynamics* x1C;
-} Kirby_Unk;
+/// @name Kirby's copy abilities
+/// The data of `ftDataKirbyCopy*`, one per fighter he can copy. Most give
+/// him a hat (#ftKbCopyHat), the rest parts added to his own model
+/// (#ftKbCopyParts). What follows depends on the fighter.
+/// @{
 
+/// Captain Falcon, Ganondorf.
+typedef struct ftKbCopyHat {
+    /* +0 */ HSD_Joint* hat_joint;
+    /* +4 */ FtPartsDesc desc;
+} ftKbCopyHat;
+
+/// Mario, Samus, Luigi, Dr. Mario.
+typedef struct ftKbCopyHat_Item {
+    /* +0 */ ftKbCopyHat hat;
+    /* +C */ Article* item;
+} ftKbCopyHat_Item;
+
+/// Fox, Ness, Peach.
+typedef struct ftKbCopyHat_Items {
+    /* +0 */ ftKbCopyHat hat;
+    /* +C */ Article* items[2];
+} ftKbCopyHat_Items;
+
+/// Link, Sheik, Pikachu, Young Link, Pichu.
+typedef struct ftKbCopyHat_ItemsDynamics {
+    /*  +0 */ ftKbCopyHat hat;
+    /*  +C */ Article* items[2];
+    /* +14 */ ftDynamics* dynamics;
+} ftKbCopyHat_ItemsDynamics;
+
+/// Bowser.
+typedef struct ftKbCopyHat_ItemDynamics {
+    /*  +0 */ ftKbCopyHat hat;
+    /*  +C */ Article* item;
+    /* +10 */ ftDynamics* dynamics;
+} ftKbCopyHat_ItemDynamics;
+
+/// Ice Climbers.
+typedef struct ftKbCopyHat_Popo {
+    /*  +0 */ ftKbCopyHat hat;
+    /*  +C */ Article* ice;
+    /* +10 */ HSD_Joint* x10;
+} ftKbCopyHat_Popo;
+
+/// Zelda.
+typedef struct ftKbCopyHat_Dynamics {
+    /* +0 */ ftKbCopyHat hat;
+    /* +C */ ftDynamics* dynamics;
+} ftKbCopyHat_Dynamics;
+
+/// Marth, Roy.
+typedef struct ftKbCopyHat_Sword {
+    /*  +0 */ ftKbCopyHat hat;
+    /*  +C */ HSD_Joint* sword;
+    /* +10 */ ftDynamics* dynamics;
+} ftKbCopyHat_Sword;
+
+/// Yoshi.
+typedef struct ftKbCopyHat_Yoshi {
+    /*  +0 */ ftKbCopyHat hat;
+    /*  +C */ ftDynamics* dynamics;
+    /* +10 */ HSD_AnimJoint* anims[4];
+    /* +20 */ Article* egg;
+} ftKbCopyHat_Yoshi;
+
+/// Donkey Kong.
+typedef struct ftKbCopyParts {
+    /*  +0 */ FtPartsDesc parts;
+    /*  +8 */ ftData_x8_x8 x8;
+    /* +10 */ u32 part_mask;
+    /* +14 */ HSD_Joint* model;
+} ftKbCopyParts;
+
+/// Jigglypuff.
+typedef struct ftKbCopyParts_Dynamics {
+    /*  +0 */ ftKbCopyParts parts;
+    /* +18 */ ftDynamics* dynamics;
+} ftKbCopyParts_Dynamics;
+
+/// Mewtwo.
+typedef struct ftKbCopyParts_ItemDynamics {
+    /*  +0 */ ftKbCopyParts parts;
+    /* +18 */ Article* item;
+    /* +1C */ ftDynamics* dynamics;
+} ftKbCopyParts_ItemDynamics;
+
+/// Falco.
+typedef struct ftKbCopyParts_Items {
+    /*  +0 */ ftKbCopyParts parts;
+    /* +18 */ Article* items[2];
+} ftKbCopyParts_Items;
+
+/// Mr. Game & Watch.
+typedef struct ftKbCopyParts_GameWatch {
+    /*  +0 */ ftKbCopyParts parts;
+    /* +18 */ FtPartsVisLookup* vis;
+    /* +1C */ ftDynamics* dynamics;
+    /* +20 */ Article* items[2];
+} ftKbCopyParts_GameWatch;
+
+/// @}
+
+/// Kirby's copy abilities, loaded from `ftDataKirbyCopy*` as he copies
+/// each fighter.
 struct ft_80459B88_t {
-    /* +0 */ Kirby_Unk* x0;
-    /* +4 */ KirbyHatStruct* hats[Ft_Kind_Max];
+    /// By #FighterKind. The layouts differ per fighter; see
+    /// `config/GALE01/dat_symbols.txt`.
+    KirbyHatStruct* copies[Ft_Kind_Max + 1];
 };
 ASSERT_SIZE(struct ft_80459B88_t, 0x88);
 
