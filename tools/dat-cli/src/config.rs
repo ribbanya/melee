@@ -20,15 +20,13 @@ pub struct ProjectConfig {
     pub samples: SamplesConfig,
 }
 
-/// Where `samples` writes, and how it compiles.
+/// Where `samples` writes.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SamplesConfig {
-    /// Everything generated: `target/`, `src/`, `base/`, `objdiff.json`.
+    /// Everything generated: `target/`, `src/`, `manifest.json`, and the
+    /// `base/` objects ninja compiles.
     #[serde(with = "unix_path")]
     pub dir: Utf8UnixPathBuf,
-    /// A game object in `build.ninja`; samples compile with its command.
-    #[serde(with = "unix_path")]
-    pub compile_like: Utf8UnixPathBuf,
 }
 
 pub fn get_config(

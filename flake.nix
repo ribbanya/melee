@@ -79,6 +79,18 @@
             hash = "sha256-3CFQRRNCQ1C9oXp8ZegjcbRREqXfwenydJqLerDv9kY=";
           };
 
+          # The game's files, for the .dat archives: one hash for the whole
+          # directory
+          dat-files = pkgsMinPython.requireFile {
+            name = "melee-GALE01-files";
+            message = ''
+              Add melee's extracted files to your nix store with:
+                nix store add --name melee-GALE01-files orig/GALE01/files
+            '';
+            hashMode = "recursive";
+            hash = "sha256-S7iM0nxt/3kj9IpuIqD2kcv1rbIbZ7E1gpgJByOo+Vo=";
+          };
+
           m2c = pkgs.python3Packages.callPackage ./.nix/m2c.nix { };
 
         in
@@ -114,6 +126,12 @@
 
             melee-dat = pkgs.callPackage ./.nix/melee-dat.nix {
               inherit melee-dwarf;
+            };
+
+            # melee-dtk with the .dat samples in its objdiff project and
+            # report
+            melee-dat-samples = melee-dtk.override {
+              inherit melee-dat melee-dwarf dat-files;
             };
 
             melee-docs =
@@ -171,6 +189,7 @@
           melee-cmake
           melee-dwarf
           melee-dat
+          melee-dat-samples
           melee-docs
           m2c
           ;

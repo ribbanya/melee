@@ -32,6 +32,7 @@ from tools.project import (
     generate_build,
     is_windows,
     load_build_config,
+    make_flags_str,
 )
 
 # Game versions
@@ -117,6 +118,19 @@ parser.add_argument(
     metavar="BINARY | DIR",
     type=Path,
     help="path to objdiff-cli binary or source (optional)",
+)
+parser.add_argument(
+    "--dat-dwarf",
+    metavar="ELF",
+    type=Path,
+    help="sample the .dat archives' types for objdiff, using this DWARF build "
+    "of the game (e.g. build/ppc-dwarf/melee.elf); see tools/dat-cli",
+)
+parser.add_argument(
+    "--melee-dat",
+    metavar="BINARY | DIR",
+    type=Path,
+    help="path to melee-dat binary or source (optional, with --dat-dwarf)",
 )
 parser.add_argument(
     "--reloc-diffs",
@@ -2101,6 +2115,122 @@ def generate_compile_commands(objects: dict[str, Object], build_config: BuildCon
         json.dump(clangd_config, w, indent=2, default=default_format)
 
 
+def configure_dat() -> list[dict]:
+    """Add the .dat sample pipeline to the build (see tools/dat-cli).
+
+    Like the DOL split, it has two phases: an edge generates the samples and
+    a manifest of their units, and the configure this triggers turns the
+    manifest into a compile edge per unit. Returns the units for objdiff.
+    """
+    dat_dir = Path(config.build_dir) / config.version / "dat"
+    manifest_path = dat_dir / "manifest.json"
+    dat_config = Path("config") / config.version / "dat.yml"
+
+    rules = config.custom_build_rules = list(config.custom_build_rules or [])
+    steps = config.custom_build_steps = dict(config.custom_build_steps or {})
+    post_compile = steps.setdefault("post-compile", [])
+
+    # The tool: a binary, or built from source
+    melee_dat = args.melee_dat
+    if melee_dat is None or melee_dat.is_dir():
+        source = melee_dat or Path(".")
+        target = Path(config.build_dir) / "tools"
+        melee_dat = target / "release" / "melee-dat"
+        rules.append(
+            {
+                "name": "dat_cargo",
+                "command": "cargo build --release --manifest-path $in "
+                "-p melee-dat --target-dir $target",
+                "description": "CARGO melee-dat",
+                "depfile": Path("$target") / "release" / "melee-dat.d",
+                "deps": "gcc",
+            }
+        )
+        post_compile.append(
+            {
+                "outputs": melee_dat,
+                "rule": "dat_cargo",
+                "inputs": source / "Cargo.toml",
+                "implicit": [source / "Cargo.lock"],
+                "variables": {"target": target},
+            }
+        )
+
+    manifest = None
+    if manifest_path.is_file():
+        with manifest_path.open(encoding="utf-8") as f:
+            manifest = json.load(f)
+    units = manifest["units"] if manifest else []
+
+    include_flags = " ".join(f"-I {i}" for i in includes_base)
+    rules.append(
+        {
+            "name": "dat_samples",
+            "command": f"{melee_dat} samples generate {dat_config} "
+            f"--dwarf $in {include_flags}",
+            "description": "DAT samples",
+            "depfile": dat_dir / "dep",
+            "deps": "gcc",
+            # Unchanged samples keep their timestamps
+            "restat": True,
+        }
+    )
+    post_compile.append(
+        {
+            "outputs": manifest_path,
+            "rule": "dat_samples",
+            "inputs": args.dat_dwarf,
+            "implicit": [melee_dat],
+            "implicit_outputs": [
+                dat_dir / unit[side] for unit in units for side in ("source", "target")
+            ],
+        }
+    )
+    # The unit list is only known once the manifest exists
+    config.reconfig_deps.append(manifest_path)
+
+    cflags = [
+        *cflags_base,
+        *(f"-i {i}" for i in includes_base),
+        "-lang=c",
+        *cflags_optimized,
+        "-inline auto",
+        "-sym off",
+    ]
+    objdiff_units = []
+    for unit in units:
+        base = dat_dir / "base" / f"{unit['name']}.o"
+        post_compile.append(
+            {
+                "outputs": base,
+                "rule": "mwcc",
+                "inputs": dat_dir / unit["source"],
+                "implicit": [manifest_path],
+                "variables": {
+                    "mw_version": Path("GC/1.2.5n"),
+                    "cflags": make_flags_str(cflags),
+                    "basedir": base.parent,
+                    "basefile": base.with_suffix(""),
+                },
+            }
+        )
+        objdiff_units.append(
+            {
+                "name": f"dat/{unit['name']}",
+                "target_path": dat_dir / unit["target"],
+                "base_path": base,
+                "metadata": {
+                    "complete": False,
+                    "reverse_fn_order": False,
+                    "source_path": dat_dir / unit["source"],
+                    "progress_categories": ["dat"],
+                    "auto_generated": False,
+                },
+            }
+        )
+    return objdiff_units
+
+
 if args.mode == "configure":
     if args.always_apply:
         config.custom_build_steps = {
@@ -2113,8 +2243,27 @@ if args.mode == "configure":
             ]
         }
 
+    dat_units = None
+    if args.dat_dwarf is not None:
+        config.progress_categories.append(ProgressCategory("dat", "Dat Samples"))
+        dat_units = configure_dat()
+
     # Write build.ninja and objdiff.json
     generate_build(config)
+
+    # Samples join the DOL's main/ units in objdiff as dat/
+    if dat_units is not None:
+        with open("objdiff.json", encoding="utf-8") as f:
+            objdiff_config = json.load(f)
+        objdiff_config["units"].extend(dat_units)
+        with open("objdiff.json", "w", encoding="utf-8") as f:
+
+            def unix_path(value):
+                if isinstance(value, Path):
+                    return value.as_posix()
+                raise TypeError(value)
+
+            json.dump(objdiff_config, f, indent=2, default=unix_path)
 
     config.validate()
     objects = config.objects()

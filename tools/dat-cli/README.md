@@ -103,30 +103,49 @@ blobs in `config.yml`.
 ## Samples
 
 Archives are too large to diff whole, so each type the walk finds is
-sampled once: the instance with no findings of its own that has the most
-pointers. Both sides are generated, under `build/GALE01/dat` (not
-committed):
+sampled once per variant its tagged unions choose: the instance with no
+findings of its own that has the most pointers. It is an optional part of
+the build:
+
+```sh
+./configure.py --dat-dwarf build/ppc-dwarf/melee.elf
+ninja
+```
+
+Ninja then generates both sides under `build/GALE01/dat` (not committed)
+and compiles them like game code:
 
 - `target/<unit>.o`: the instance's bytes from the archive, with its
   pointers as relocations to externs named after their targets
   (`dat_PlMr_1A40`)
 - `src/<unit>.c`: C initializers generated from the current types, compiled
-  to `base/<unit>.o` with the same command as `samples.compile_like`
+  to `base/<unit>.o`
 
-A unit is the header that declares the types. A pointer the type has as
-an integer is written as its raw value, so objdiff shows the missing
-relocation; so does data in padding, a layout MWCC disagrees with, or a
-float that doesn't round-trip.
+A unit is the header that declares the types. Units join the root objdiff
+project as `dat/<unit>`, next to the DOL's `main/` units. A pointer the
+type has as an integer is written as its raw value, so objdiff shows the
+missing relocation; so does data in padding, a layout MWCC disagrees with,
+or a float that doesn't round-trip.
 
 ```sh
-melee-dat samples build   # regenerate everything
 melee-dat samples report  # samples that don't match
 melee-dat samples list    # which instance stands for each type
 ```
 
+Use `samples report` for the verdict: objdiff's own report measures data
+per section and misses relocation differences.
+
 To check a type change: edit the header, `cmake --build --preset
-ppc-dwarf`, then `samples build` and `samples report`. The directory is an
-objdiff project, so the objdiff GUI can open it too.
+ppc-dwarf`, then `ninja` and `samples report`.
+
+`--melee-dat` takes a prebuilt `melee-dat`; by default ninja builds it with
+cargo. In nix, `melee-dat-samples` is `melee-dtk` with the samples, given
+the game's files in the store:
+
+```sh
+nix store add --name melee-GALE01-files orig/GALE01/files
+nix build .#melee-dat-samples
+```
 
 ## Annotations
 

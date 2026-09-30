@@ -1,19 +1,23 @@
 //! `samples`: one instance of each archive type, compared with objdiff.
 //!
-//! `build` writes, under the configured directory:
+//! `generate` writes, under the configured directory:
 //! - `target/<unit>.o`: the sampled bytes from the archives
 //! - `src/<unit>.c`: C generated from the current types
-//! - `base/<unit>.o`: that C, compiled like the game's code
-//! - `objdiff.json`: a project pairing them
+//! - `manifest.json`: the units, which `configure.py` turns into build
+//!   edges compiling each source to `base/<unit>.o` and into `dat/<unit>`
+//!   units of the root objdiff project
+//! - `dep`: what the manifest was generated from, for ninja
 //!
-//! `report` compares them. Edit a type, rebuild the DWARF, and run both
-//! again.
+//! `report` compares them once ninja has built the base objects.
 
-use super::project::{Check, Project};
+use super::{
+    dwarf_path,
+    project::{Check, Project},
+};
 use anyhow::{Context, Result, bail};
-use globset::{Glob, GlobSet, GlobSetBuilder};
+use globset::GlobSet;
 use melee_dat::{
-    config::get_config,
+    config::{gather_files, get_config},
     hsd::Archive,
     samples::{CWriter, Picker, Sample, Skipped, Source, target_object},
 };
@@ -21,7 +25,7 @@ use rayon::prelude::*;
 use serde::Serialize;
 use serde_json::json;
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, BTreeSet},
     fs,
     io::{self, Write},
     path::{Path, PathBuf},
@@ -39,8 +43,8 @@ enum Command {
     /// List the samples: one instance of each type the walk finds
     List(List),
 
-    /// Write the target objects and C, and compile the C
-    Build(Build),
+    /// Write the target objects, the C and their manifest
+    Generate(Generate),
 
     /// Compare the samples with objdiff
     Report(Report),
@@ -55,12 +59,12 @@ struct List {
 }
 
 #[derive(clap::Args)]
-struct Build {
+struct Generate {
     #[command(flatten)]
     check: Check,
-    /// Only units whose name matches (glob; repeatable)
-    #[arg(short, long)]
-    unit: Vec<String>,
+    /// Where the game's compiler looks for headers (repeatable)
+    #[arg(short = 'I', long = "include")]
+    include: Vec<PathBuf>,
 }
 
 #[derive(clap::Args)]
@@ -78,7 +82,7 @@ struct Report {
 pub fn run(Args { command }: Args) -> Result<()> {
     match command {
         Command::List(args) => list(args),
-        Command::Build(args) => build(args),
+        Command::Generate(args) => generate(args),
         Command::Report(args) => report(args),
     }
 }
@@ -164,72 +168,11 @@ fn list(args: List) -> Result<()> {
     Ok(())
 }
 
-/// The samples directory and the game object whose compile command
-/// samples reuse.
-fn samples_config(
-    cfg_path: &Path,
-    proj_path: Option<&PathBuf>,
-) -> Result<(PathBuf, PathBuf)> {
+/// The directory samples are generated in.
+fn samples_dir(cfg_path: &Path, proj_path: Option<&PathBuf>) -> Result<PathBuf> {
     let config = get_config(proj_path, cfg_path)?;
     let proj = proj_path.cloned().unwrap_or_default();
-    Ok((
-        proj.join(config.samples.dir.as_str()),
-        PathBuf::from(config.samples.compile_like.as_str()),
-    ))
-}
-
-/// The command `ninja` runs for `object`, with `{in}` and `{outdir}` in
-/// place of its source and output directory.
-fn compile_template(object: &Path) -> Result<String> {
-    let output = Process::new("ninja")
-        .args(["-t", "commands"])
-        .arg(object)
-        .output()
-        .context("running ninja")?;
-    if !output.status.success() {
-        bail!(
-            "ninja -t commands {}: {}",
-            object.display(),
-            String::from_utf8_lossy(&output.stderr)
-        );
-    }
-    let commands = String::from_utf8(output.stdout)?;
-    let command = commands.lines().last().context("no command")?;
-    // The compile itself, without the dependency file handling after it
-    let command = command.split(" && ").next().unwrap_or(command);
-    let words: Vec<&str> = command.split(' ').collect();
-    let mut out = Vec::new();
-    let mut i = 0;
-    while i < words.len() {
-        match words[i] {
-            "-MMD" => {}
-            "-c" => {
-                out.push("-c {in}".to_owned());
-                i += 1;
-            }
-            "-o" => {
-                out.push("-o {outdir}".to_owned());
-                i += 1;
-            }
-            word => out.push(word.to_owned()),
-        }
-        i += 1;
-    }
-    let template = out.join(" ");
-    if !template.contains("{in}") || !template.contains("{outdir}") {
-        bail!("no -c and -o in: {command}");
-    }
-    Ok(template)
-}
-
-/// The `-i` directories of a compile command.
-fn include_dirs(template: &str) -> Vec<PathBuf> {
-    let words: Vec<&str> = template.split(' ').collect();
-    words
-        .windows(2)
-        .filter(|w| w[0] == "-i")
-        .map(|w| PathBuf::from(w[1]))
-        .collect()
+    Ok(proj.join(config.samples.dir.as_str()))
 }
 
 /// `header` if an include directory has it, else the nearest parent
@@ -249,33 +192,65 @@ fn find_header(dirs: &[PathBuf], header: &str) -> String {
     }
 }
 
-fn build(args: Build) -> Result<()> {
-    let (dir, compile_like) =
-        samples_config(&args.check.cfg_path, args.check.proj_path.as_ref())?;
-    let template = compile_template(&compile_like)?;
+/// One unit of `manifest.json`, with paths relative to the manifest.
+#[derive(Serialize, serde::Deserialize)]
+struct ManifestUnit {
+    /// The unit, e.g. `sysdolphin/baselib/jobj`.
+    name: String,
+    source: String,
+    target: String,
+    symbols: Vec<String>,
+}
+
+#[derive(Serialize, serde::Deserialize)]
+struct Manifest {
+    units: Vec<ManifestUnit>,
+}
+
+/// Write `bytes` unless the file already holds them, so that ninja only
+/// rebuilds what changed.
+fn write_if_changed(path: &Path, bytes: &[u8]) -> Result<bool> {
+    if fs::read(path).is_ok_and(|old| old == bytes) {
+        return Ok(false);
+    }
+    fs::create_dir_all(path.parent().unwrap())?;
+    fs::write(path, bytes).with_context(|| format!("{}", path.display()))?;
+    Ok(true)
+}
+
+/// Remove every file under `dir` that isn't in `keep`.
+fn remove_stale(dir: &Path, keep: &BTreeSet<PathBuf>) -> Result<()> {
+    let Ok(entries) = fs::read_dir(dir) else {
+        return Ok(());
+    };
+    for entry in entries {
+        let path = entry?.path();
+        if path.is_dir() {
+            remove_stale(&path, keep)?;
+            // Fails unless it is now empty, which is the point
+            let _ = fs::remove_dir(&path);
+        } else if !keep.contains(&path) {
+            fs::remove_file(&path)?;
+        }
+    }
+    Ok(())
+}
+
+fn generate(args: Generate) -> Result<()> {
+    let dir = samples_dir(&args.check.cfg_path, args.check.proj_path.as_ref())?;
     let project = Project::load(&args.check)?;
     let (mut samples, _) = pick(&project)?;
     // The DWARF build's headers aren't always the game's; include what
     // the game's compiler can find
-    let dirs = include_dirs(&template);
     for sample in &mut samples {
-        sample.header = find_header(&dirs, &sample.header);
+        sample.header = find_header(&args.include, &sample.header);
         for include in &mut sample.includes {
-            *include = find_header(&dirs, include);
+            *include = find_header(&args.include, include);
         }
     }
-
-    let mut filter = GlobSetBuilder::new();
-    for glob in &args.unit {
-        filter.add(Glob::new(glob)?);
-    }
-    let filter = filter.build()?;
     let mut units: BTreeMap<String, Vec<Sample>> = BTreeMap::new();
     for sample in samples {
-        let unit = sample.unit().to_owned();
-        if args.unit.is_empty() || filter.is_match(&unit) {
-            units.entry(unit).or_default().push(sample);
-        }
+        units.entry(sample.unit().to_owned()).or_default().push(sample);
     }
 
     // Each archive a sample reads, parsed once
@@ -298,11 +273,11 @@ fn build(args: Build) -> Result<()> {
     let sources: BTreeMap<(&str, usize), Source> =
         archives.iter().map(|(&k, a)| (k, Source::new(a))).collect();
 
-    // Start clean, so units that no longer exist don't linger
-    for sub in ["target", "src", "base"] {
-        let _ = fs::remove_dir_all(dir.join(sub));
-    }
     let writer = CWriter::new(&project.graph, &project.canonical);
+    let mut manifest = Manifest { units: Vec::new() };
+    let (mut keep_targets, mut keep_sources, mut keep_bases) =
+        (BTreeSet::new(), BTreeSet::new(), BTreeSet::new());
+    let mut changed = 0;
     for (unit, samples) in &units {
         let pairs: Vec<(&Sample, &Source)> = samples
             .iter()
@@ -312,80 +287,53 @@ fn build(args: Build) -> Result<()> {
             })
             .collect();
         let target = dir.join("target").join(format!("{unit}.o"));
-        fs::create_dir_all(target.parent().unwrap())?;
-        fs::write(&target, target_object(&pairs)?)?;
         let source = dir.join("src").join(format!("{unit}.c"));
-        fs::create_dir_all(source.parent().unwrap())?;
-        fs::write(&source, writer.unit(&pairs)?)?;
+        changed += usize::from(write_if_changed(&target, &target_object(&pairs)?)?);
+        changed +=
+            usize::from(write_if_changed(&source, writer.unit(&pairs)?.as_bytes())?);
+        keep_bases.insert(dir.join("base").join(format!("{unit}.o")));
+        keep_bases.insert(dir.join("base").join(format!("{unit}.d")));
+        keep_targets.insert(target);
+        keep_sources.insert(source);
+        manifest.units.push(ManifestUnit {
+            name: unit.clone(),
+            source: format!("src/{unit}.c"),
+            target: format!("target/{unit}.o"),
+            symbols: samples.iter().map(Sample::symbol).collect(),
+        });
     }
+    // Units that no longer exist don't linger
+    remove_stale(&dir.join("target"), &keep_targets)?;
+    remove_stale(&dir.join("src"), &keep_sources)?;
+    remove_stale(&dir.join("base"), &keep_bases)?;
 
-    // Compile every unit like the game's code
-    let names: Vec<&String> = units.keys().collect();
-    let failed: Vec<(String, String)> = names
-        .par_iter()
-        .filter_map(|unit| {
-            let source = dir.join("src").join(format!("{unit}.c"));
-            let base = dir.join("base").join(format!("{unit}.o"));
-            let outdir = base.parent()?.to_owned();
-            let _ = fs::create_dir_all(&outdir);
-            let command = template
-                .replace("{in}", &source.to_string_lossy())
-                .replace("{outdir}", &outdir.to_string_lossy());
-            match Process::new("sh").arg("-c").arg(&command).output() {
-                Ok(o) if o.status.success() => None,
-                Ok(o) => Some((
-                    unit.to_string(),
-                    String::from_utf8_lossy(&o.stdout).into_owned()
-                        + &String::from_utf8_lossy(&o.stderr),
-                )),
-                Err(e) => Some((unit.to_string(), e.to_string())),
-            }
-        })
-        .collect();
-    for (unit, log) in &failed {
-        eprintln!("{unit}: doesn't compile:\n{}", log.trim_end());
-    }
-
-    // An objdiff project over the directory
-    let project_units: Vec<_> = units
-        .keys()
-        .map(|unit| {
-            json!({
-                "name": format!("dat/{unit}"),
-                "target_path": format!("target/{unit}.o"),
-                "base_path": format!("base/{unit}.o"),
-                "metadata": {
-                    "complete": false,
-                    "reverse_fn_order": false,
-                    "source_path": format!("src/{unit}.c"),
-                    "progress_categories": ["dat"],
-                    "auto_generated": false,
-                },
-            })
-        })
-        .collect();
-    // Like tools/project.py's, without the build: samples build writes both
-    // sides
-    let objdiff = json!({
-        "min_version": "2.0.0-beta.5",
-        "target_dir": "target",
-        "base_dir": "base",
-        "build_target": false,
-        "build_base": false,
-        "progress_categories": [{ "id": "dat", "name": "Archive samples" }],
-        "units": project_units,
-    });
-    fs::create_dir_all(&dir)?;
-    fs::write(
-        dir.join("objdiff.json"),
-        serde_json::to_string_pretty(&objdiff)?,
+    let manifest_path = dir.join("manifest.json");
+    write_if_changed(
+        &manifest_path,
+        (serde_json::to_string_pretty(&manifest)? + "\n").as_bytes(),
     )?;
+
+    // What the manifest depends on, for ninja: the types, every archive
+    // and the configuration
+    let mut deps = vec![dwarf_path(args.check.dwarf.clone())?];
+    deps.extend(gather_files(&project.base, &project.include)?);
+    let proj = args.check.proj_path.clone().unwrap_or_default();
+    let config = get_config(args.check.proj_path.as_ref(), &args.check.cfg_path)?;
+    deps.push(proj.join(&args.check.cfg_path));
+    deps.push(proj.join(config.symbols.as_str()));
+    let escape = |p: &Path| p.to_string_lossy().replace(' ', "\\ ");
+    let mut dep = format!("{}:", escape(&manifest_path));
+    for path in &deps {
+        dep.push_str(" \\\n  ");
+        dep.push_str(&escape(path));
+    }
+    dep.push('\n');
+    fs::write(dir.join("dep"), dep)?;
+
     eprintln!(
-        "{} units in {}: {} compiled, {} failed",
+        "{} units in {}, {changed} files changed",
         units.len(),
-        dir.display(),
-        units.len() - failed.len(),
-        failed.len()
+        dir.display()
     );
     Ok(())
 }
@@ -478,16 +426,17 @@ fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
 }
 
 fn report(args: Report) -> Result<()> {
-    let (dir, _) = samples_config(&args.cfg_path, args.proj_path.as_ref())?;
-    let project: serde_json::Value = serde_json::from_str(
-        &fs::read_to_string(dir.join("objdiff.json"))
-            .context("no objdiff.json: run `samples build` first")?,
+    let dir = samples_dir(&args.cfg_path, args.proj_path.as_ref())?;
+    let manifest: Manifest = serde_json::from_str(
+        &fs::read_to_string(dir.join("manifest.json"))
+            .context("no manifest.json: configure with --dat-dwarf and run ninja")?,
     )?;
-    let names: Vec<String> = project["units"]
-        .as_array()
-        .into_iter()
-        .flatten()
-        .filter_map(|u| u["name"].as_str().map(str::to_owned))
+    // The root objdiff project has the samples as `dat/<unit>`
+    let dir = args.proj_path.clone().unwrap_or_else(|| PathBuf::from("."));
+    let names: Vec<String> = manifest
+        .units
+        .iter()
+        .map(|u| format!("dat/{}", u.name))
         .collect();
     let units: Vec<UnitMatch> = names
         .par_iter()
