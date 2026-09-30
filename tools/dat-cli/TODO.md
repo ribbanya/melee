@@ -26,7 +26,7 @@
 
 Not errors:
 
-- 18 objects reached as both `HSD_CameraAnim` and `HSD_WObjAnim`: the
+- 23 objects reached as both `HSD_CameraAnim` and `HSD_WObjAnim`: the
   exporter reuses identical bytes. The walker could recognize this.
 - `-1` in pointer fields means none. Counted, not reported.
 
@@ -50,7 +50,12 @@ Not errors:
 
 ## Coverage
 
-- `Ef*`, `Sd*`, `Sm*`: no roots.
+- Loaded into untyped destinations, types unknown:
+  `sqEventInitDataLevelTbl`, `tournament_box*_array`, `mnNameDefaultName*`
+  (and `mnNameAutoName*`), `MemCardIconData`, `MemSnapIconData`,
+  `effKirbyPichuDataTable`.
+- `toy.c` loads trophy symbols through `symbol_name` fields of its tables;
+  those are covered by name patterns instead.
 - `ftDemo*MotionFile*` are `u8[]`: packed archives like `Pl??AJ.dat`,
   relocated by `ftData` at runtime. They could be read as nested archives.
 - About 15,000 `void*` fields aren't followed. Use `DAT_TYPE` where the type

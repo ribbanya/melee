@@ -48,3 +48,15 @@ yakumono_param = GrZe.dat; // type:grZe_YakumonoParam
 
 // Demo motions: packed archives the game relocates itself, like Pl??AJ
 ftDemo*MotionFile* = *; // type:u8[]
+
+// Scenes whose loaders aren't typed or decompiled
+*_scene_data = *; // type:SceneDesc
+*_scene_lights = *; // type:LightList*[]
+visual*Scene = Vi*.dat; // type:SceneDesc
+cut3Bg*Scene = GmRgEBG*.dat; // type:SceneDesc
+
+// Memory card banners and icons
+MemCardBanner_* = LbMcGame.dat; // type:u8[]
+MemCardIcon_* = LbMcGame.dat; // type:u8[]
+MemSnapBanner_* = LbMcSnap.dat; // type:u8[]
+MemSnapIcon_* = LbMcSnap.dat; // type:u8[]
