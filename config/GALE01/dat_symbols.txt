@@ -15,3 +15,36 @@
 
 // SISLib text: string tables, loaded by name from a parameter
 SIS_*Data* = Sd*.dat; // type:u8*[]
+
+// Stage parameters: each stage's code casts them to its own type
+yakumono_param = GrBb.dat; // type:grBb_YakumonoParam
+yakumono_param = GrCn.dat; // type:grCorneria_YakumonoParam
+yakumono_param = GrCs.dat; // type:grCastle_YakumonoParam
+yakumono_param = GrFs.dat; // type:grFourside_YakumonoParam
+yakumono_param = GrFz.dat; // type:grFlatzone_YakumonoParam
+yakumono_param = GrGd.dat; // type:grGarden_YakumonoParam
+yakumono_param = GrGr.dat; // type:grGreens_YakumonoParam
+yakumono_param = GrI1.dat; // type:grInishie1_YakumonoParam
+yakumono_param = GrI2.dat; // type:grInishie2_YakumonoParam
+yakumono_param = GrIm.dat; // type:grIceMt_YakumonoParam
+yakumono_param = GrIz.dat; // type:grIzumi_YakumonoParam
+yakumono_param = GrKg.dat; // type:grKongo_YakumonoParam
+yakumono_param = GrKr.dat; // type:grKraid_YakumonoParam
+yakumono_param = GrMc.dat; // type:grMc_YakumonoParam
+yakumono_param = GrNBa.dat; // type:grBattle_YakumonoParam
+yakumono_param = GrNBr.dat; // type:grBigBlueRoute_YakumonoParam
+yakumono_param = GrNPo.dat; // type:grPushon_YakumonoParam
+yakumono_param = GrNSr.dat; // type:grShrineRoute_YakumonoParam
+yakumono_param = GrNZr.dat; // type:grZebesRoute_YakumonoParam
+yakumono_param = GrOk.dat; // type:grOldKongo_YakumonoParam
+yakumono_param = GrOp.dat; // type:grOldpupupu_YakumonoParam
+yakumono_param = GrRc.dat; // type:grRCruise_YakumonoParam
+yakumono_param = GrSt.dat; // type:grStory_YakumonoParam
+yakumono_param = GrTFc.dat; // type:grTFalco_YakumonoParam
+yakumono_param = GrTFx.dat; // type:grTFox_YakumonoParam
+yakumono_param = GrTGn.dat; // type:grTGn_YakumonoParam
+yakumono_param = GrVe.dat; // type:grVenom_YakumonoParam
+yakumono_param = GrZe.dat; // type:grZe_YakumonoParam
+
+// Demo motions: packed archives the game relocates itself, like Pl??AJ
+ftDemo*MotionFile* = *; // type:u8[]

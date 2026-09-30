@@ -3,6 +3,13 @@
 ## Walk findings
 
 - `SdIntro.dat`: `SIS_IntroData[0]` points to the end of the data.
+- `grPushon_YakumonoParam.x0` and `grShrineRoute_YakumonoParam.x10` are
+  touch-line `lbColl_80008D30_arg1*`, written through
+  `ftDevice_Callback0`'s `Vec3*` out parameter. That callback type is shared
+  by two device tables with different outputs. `grZe_YakumonoParam` hides a
+  pointer at 0x2C in `pad_14`.
+- `yakumono_param` has no type for about 40 stages, including every
+  `GrT*` target test. Their code doesn't read it, or reads it locally.
 
 - `ItemStateDesc.x4_matanim_joint` and `x8_parameters` hold unrelocated
   values in some items' first state (10 cases: `GrCn.dat`, `ItCo.dat`, ...).
@@ -44,8 +51,8 @@ Not errors:
 ## Coverage
 
 - `Ef*`, `Sd*`, `Sm*`: no roots.
-- 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,
-  the `tydisplay` wrapper, `ftdemo` motion data, `grdatfiles` stage info.
+- `ftDemo*MotionFile*` are `u8[]`: packed archives like `Pl??AJ.dat`,
+  relocated by `ftData` at runtime. They could be read as nested archives.
 - About 15,000 `void*` fields aren't followed. Use `DAT_TYPE` where the type
   is known.
 
