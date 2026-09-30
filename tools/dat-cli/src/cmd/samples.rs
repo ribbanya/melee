@@ -62,9 +62,6 @@ struct List {
 struct Generate {
     #[command(flatten)]
     check: Check,
-    /// Where the game's compiler looks for headers (repeatable)
-    #[arg(short = 'I', long = "include")]
-    include: Vec<PathBuf>,
 }
 
 #[derive(clap::Args)]
@@ -106,7 +103,7 @@ fn pick(project: &Project) -> Result<(Vec<Sample>, Vec<Skipped>)> {
 struct Row<'a> {
     #[serde(rename = "type")]
     ty: &'a str,
-    symbol: String,
+    variant: String,
     unit: &'a str,
     file: &'a str,
     archive: usize,
@@ -122,7 +119,7 @@ fn list(args: List) -> Result<()> {
         .iter()
         .map(|s| Row {
             ty: &s.type_name,
-            symbol: s.symbol(),
+            variant: s.variant.join(", "),
             unit: s.unit(),
             file: &s.location.file,
             archive: s.location.archive,
@@ -135,7 +132,7 @@ fn list(args: List) -> Result<()> {
     if args.json {
         let skipped: BTreeMap<&str, &str> = skipped
             .iter()
-            .map(|s| (s.type_name.as_str(), s.reason.as_str()))
+            .map(|s| (s.type_name.as_str(), s.reason))
             .collect();
         let report = json!({ "samples": rows, "skipped": skipped });
         serde_json::to_writer_pretty(&mut out, &report)?;
@@ -175,27 +172,10 @@ fn samples_dir(cfg_path: &Path, proj_path: Option<&PathBuf>) -> Result<PathBuf> 
     Ok(proj.join(config.samples.dir.as_str()))
 }
 
-/// `header` if an include directory has it, else the nearest parent
-/// header that one does (`dolphin/mtx/GeoTypes.h` to `dolphin/mtx.h`).
-fn find_header(dirs: &[PathBuf], header: &str) -> String {
-    let exists = |h: &str| dirs.iter().any(|d| d.join(h).is_file());
-    let mut candidate = header.to_owned();
-    loop {
-        if exists(&candidate) {
-            return candidate;
-        }
-        let stem = candidate.strip_suffix(".h").unwrap_or(&candidate);
-        match stem.rsplit_once('/') {
-            Some((parent, _)) => candidate = format!("{parent}.h"),
-            None => return header.to_owned(),
-        }
-    }
-}
-
 /// One unit of `manifest.json`, with paths relative to the manifest.
 #[derive(Serialize, serde::Deserialize)]
 struct ManifestUnit {
-    /// The unit, e.g. `sysdolphin/baselib/jobj`.
+    /// The unit, named after its archive, e.g. `PlMr`.
     name: String,
     source: String,
     target: String,
@@ -239,15 +219,7 @@ fn remove_stale(dir: &Path, keep: &BTreeSet<PathBuf>) -> Result<()> {
 fn generate(args: Generate) -> Result<()> {
     let dir = samples_dir(&args.check.cfg_path, args.check.proj_path.as_ref())?;
     let project = Project::load(&args.check)?;
-    let (mut samples, _) = pick(&project)?;
-    // The DWARF build's headers aren't always the game's; include what
-    // the game's compiler can find
-    for sample in &mut samples {
-        sample.header = find_header(&args.include, &sample.header);
-        for include in &mut sample.includes {
-            *include = find_header(&args.include, include);
-        }
-    }
+    let (samples, _) = pick(&project)?;
     let mut units: BTreeMap<String, Vec<Sample>> = BTreeMap::new();
     for sample in samples {
         units.entry(sample.unit().to_owned()).or_default().push(sample);
@@ -270,8 +242,10 @@ fn generate(args: Generate) -> Result<()> {
             archives.insert((file, at), archive);
         }
     }
-    let sources: BTreeMap<(&str, usize), Source> =
-        archives.iter().map(|(&k, a)| (k, Source::new(a))).collect();
+    let sources: BTreeMap<(&str, usize), Source> = archives
+        .iter()
+        .map(|(&(file, at), a)| ((file, at), Source::new(a, at)))
+        .collect();
 
     let writer = CWriter::new(&project.graph, &project.canonical);
     let mut manifest = Manifest { units: Vec::new() };
@@ -279,13 +253,14 @@ fn generate(args: Generate) -> Result<()> {
         (BTreeSet::new(), BTreeSet::new(), BTreeSet::new());
     let mut changed = 0;
     for (unit, samples) in &units {
-        let pairs: Vec<(&Sample, &Source)> = samples
+        let mut pairs: Vec<(&Sample, &Source)> = samples
             .iter()
             .map(|s| {
                 let key = (s.location.file.as_str(), s.location.archive);
                 (s, &sources[&key])
             })
             .collect();
+        pairs.sort_by_key(|(s, _)| (s.location.archive, s.location.offset));
         let target = dir.join("target").join(format!("{unit}.o"));
         let source = dir.join("src").join(format!("{unit}.c"));
         changed += usize::from(write_if_changed(&target, &target_object(&pairs)?)?);
@@ -299,7 +274,10 @@ fn generate(args: Generate) -> Result<()> {
             name: unit.clone(),
             source: format!("src/{unit}.c"),
             target: format!("target/{unit}.o"),
-            symbols: samples.iter().map(Sample::symbol).collect(),
+            symbols: pairs
+                .iter()
+                .map(|(s, source)| source.name(s.location.offset))
+                .collect(),
         });
     }
     // Units that no longer exist don't linger
@@ -390,17 +368,24 @@ struct UnitMatch {
     samples: Vec<SampleMatch>,
 }
 
-/// objdiff's diff of one unit: each sample's match.
-fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
+/// objdiff's diff of one unit's target and base objects: each sample's
+/// match.
+fn diff_unit(dir: &Path, unit: &ManifestUnit) -> Result<Vec<SampleMatch>> {
+    let samples = &unit.symbols;
+    let base = dir.join("base").join(format!("{}.o", unit.name));
     let output = Process::new("objdiff-cli")
-        .args(["diff", "-p"])
-        .arg(dir)
-        .args(["-u", unit, "-o", "-"])
+        .arg("diff")
+        .arg("-1")
+        .arg(dir.join(&unit.target))
+        .arg("-2")
+        .arg(&base)
+        .args(["-o", "-"])
         .output()
         .context("running objdiff-cli")?;
     if !output.status.success() {
         bail!(
-            "objdiff-cli diff -u {unit}: {}",
+            "objdiff-cli diff {}: {}",
+            unit.name,
             String::from_utf8_lossy(&output.stderr)
         );
     }
@@ -410,7 +395,7 @@ fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
         .iter()
         .filter_map(|s| {
             let name = s["name"].as_str()?;
-            if !name.starts_with("sample_") {
+            if !samples.iter().any(|s| s == name) {
                 return None;
             }
             let size = s["size"].as_str().and_then(|v| v.parse().ok()).unwrap_or(0);
@@ -431,23 +416,17 @@ fn report(args: Report) -> Result<()> {
         &fs::read_to_string(dir.join("manifest.json"))
             .context("no manifest.json: configure with --dat-dwarf and run ninja")?,
     )?;
-    // The root objdiff project has the samples as `dat/<unit>`
-    let dir = args.proj_path.clone().unwrap_or_else(|| PathBuf::from("."));
-    let names: Vec<String> = manifest
+    let units: Vec<UnitMatch> = manifest
         .units
-        .iter()
-        .map(|u| format!("dat/{}", u.name))
-        .collect();
-    let units: Vec<UnitMatch> = names
         .par_iter()
-        .map(|name| {
-            let samples = diff_unit(&dir, name)?;
+        .map(|unit| {
+            let samples = diff_unit(&dir, unit)?;
             let mut measures = MatchMeasures::default();
             for sample in &samples {
                 measures.add(sample);
             }
             Ok(UnitMatch {
-                name: name.trim_start_matches("dat/").to_owned(),
+                name: unit.name.clone(),
                 measures,
                 samples,
             })
@@ -477,7 +456,7 @@ fn report(args: Report) -> Result<()> {
             out,
             "{:6.1}%  {}  ({unit}, {:#X} bytes)",
             s.match_percent,
-            s.name.trim_start_matches("sample_"),
+            s.name,
             s.size
         )?;
     }
