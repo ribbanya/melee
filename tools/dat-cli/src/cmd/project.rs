@@ -167,7 +167,7 @@ impl Project {
         for (name, symbol) in archive.named_publics() {
             let name = String::from_utf8_lossy(name);
             if let Some(&ty) = self.root_types.get(name.as_ref()) {
-                // The code gives the type; `dat_symbols.txt` may give how
+                // The loader gives the type; `dat_symbols.txt` may give how
                 // many there are, for a root that is a table
                 let count =
                     self.symbols.lookup(&name, file).and_then(|e| e.count);

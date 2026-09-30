@@ -48,8 +48,8 @@ pub struct Entry {
     pub name: String,
     pub location: Location,
     pub ty: Option<TypeSpec>,
-    /// How many of the root's type there are, for a root whose type the
-    /// code gives (a `type:` has its own): `count:N`, or `count:*` for as
+    /// How many of the root's type there are, for a root whose loader gives
+    /// its type (a `type:` has its own): `count:N`, or `count:*` for as
     /// many as fit before the next symbol or pointer target.
     pub count: Option<Count>,
     /// Attributes other than `type` and `count`, kept verbatim and in order.

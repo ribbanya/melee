@@ -88,8 +88,9 @@ ftDataKirbyCopyMewtwo = PlKbCpMt.dat; // type:ftKbCopyParts_ItemDynamics
 ftDataKirbyCopyFalco = PlKbCpFc.dat; // type:ftKbCopyParts_Items
 ftDataKirbyCopyGamewatch = PlKbCpGw.dat; // type:ftKbCopyParts_GameWatch
 
-// Tables of pointers the code types by their first element: how many there
-// are. `count:*` lists end in a null pointer, then the next object.
+// Pointer tables whose loaders declare only the first element's type: how
+// many elements there are. `count:*` lists end in a null pointer, then the
+// next object.
 map_plit = *; // count:*
 itemdata = *; // count:*
 ScMenMain_scene_lights = *; // count:*
