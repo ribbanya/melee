@@ -15,10 +15,16 @@
   values in some items' first state (10 cases: `GrCn.dat`, `ItCo.dat`, ...).
   They aren't always those pointer types.
 
-- Kirby's copy-ability data (`ftDataKirbyCopy*`) is loaded through
-  `((HSD_Archive**) &ft_80459B88)[kind]`, so it's typed `HSD_Archive`. The
-  slot is really a `KirbyHatStruct*`, but the flat index disagrees with
-  `ft_80459B88.hats[kind]` elsewhere by one.
+- Kirby's copy-ability data (`ftDataKirbyCopy*`, `PlKbCp*.dat`, 10.4k
+  relocations) is loaded through `((HSD_Archive**) &ft_80459B88)[kind]`,
+  so it's typed `HSD_Archive`. Retyping it as `KirbyHatStruct` doesn't fit:
+  - most copies are the hat joint, `{1, parts*}`, then a mostly
+    null-terminated pointer list (not `ftDynamics*[5]`)
+  - Donkey Kong, Falco, Game & Watch, Mewtwo and Jigglypuff start with 1,
+    a different layout
+  - `hats[kind]->hat_dynamics[2]` in `ftdynamics.c` only matches the data
+    for some kinds if shifted by one, and the Ice Climbers code casts slot 1
+    to `HSD_Joint*`
 - `ftData.x48_items` entries are typed `Article` (`ftData_Item`), but
   some slots are joints or other structs: Samus 4, Game & Watch 10,
   Kirby 4, Yoshi 3, Sheik 4/5, Link 6, Jigglypuff 1. These give about 140
