@@ -84,6 +84,9 @@ struct ProjectArgs {
     /// `src/` and `base/`
     #[arg(short, long)]
     output: PathBuf,
+    /// The build's ninja, which objdiff runs to rebuild a base object
+    #[arg(long, default_value = "ninja")]
+    make: String,
 }
 
 #[derive(clap::Args)]
@@ -305,7 +308,7 @@ fn project(args: ProjectArgs) -> Result<()> {
         "min_version": "2.0.0-beta.5",
         // The build that writes this file, so objdiff can rebuild a base
         // object with `ninja base/<unit>.o`
-        "custom_make": "ninja",
+        "custom_make": args.make,
         "build_target": false,
         "build_base": true,
         "progress_categories": [{ "id": "dat", "name": "Dat Samples" }],

@@ -27,9 +27,10 @@ if(MELEE_DAT)
     set(_dat_tool "${MELEE_DAT}")
 else()
     set(_dat_tool "${CMAKE_CURRENT_BINARY_DIR}/cargo/release/melee-dat")
+    find_program(MELEE_CARGO cargo REQUIRED)
     add_custom_command(
         OUTPUT "${_dat_tool}"
-        COMMAND cargo build --release -p melee-dat
+        COMMAND "${MELEE_CARGO}" build --release -p melee-dat
             --manifest-path "${CMAKE_SOURCE_DIR}/Cargo.toml"
             --target-dir "${CMAKE_CURRENT_BINARY_DIR}/cargo"
         DEPFILE "${_dat_tool}.d"
@@ -130,6 +131,7 @@ file(GENERATE OUTPUT compile_commands.json CONTENT "[\n${_dat_commands}\n]\n")
 add_custom_command(
     OUTPUT objdiff.json
     COMMAND "${_dat_tool}" samples project ${_dat_sidecars} -o objdiff.json
+        --make "${CMAKE_MAKE_PROGRAM}"
     DEPENDS ${_dat_sidecars} "${_dat_tool}"
     COMMENT "Writing objdiff.json"
     VERBATIM
