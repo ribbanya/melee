@@ -197,6 +197,14 @@ fn slice(args: Slice) -> Result<()> {
         fs::create_dir_all(dir)?;
     }
     fs::write(&args.output, target_object(&pairs)?)?;
+    // The target's order, for linking the base object's `.data` the same:
+    // clang lays variables out where an initializer first points to them
+    let mut script = String::from("SECTIONS\n{\n    .data : {\n");
+    for info in &infos {
+        script += &format!("        *(.data.{})\n", info.symbol);
+    }
+    script += "        *(.data .data.*)\n    }\n}\n";
+    fs::write(args.output.with_extension("ld"), script)?;
     let sidecar = Sidecar {
         archive: args.archive,
         samples: infos,
@@ -283,6 +291,9 @@ fn codegen(args: Codegen) -> Result<()> {
     );
     for root in &roots {
         fs::write(dir.join(format!("{}.h", root.name)), &root.header)?;
+        unit += &format!("#include \"{stem}/{}.h\"\n", root.name);
+    }
+    for root in &roots {
         if let Some(source) = &root.source {
             fs::write(dir.join(format!("{}.c", root.name)), source)?;
             unit += &format!("#include \"{stem}/{}.c\"\n", root.name);

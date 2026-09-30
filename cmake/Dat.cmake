@@ -95,6 +95,8 @@ foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_unit "${_archive}" NAME_WE)
     set(_target "target/${_unit}.o")
     set(_sidecar "target/${_unit}.samples")
+    set(_layout "target/${_unit}.ld")
+    set(_object "obj/${_unit}.o")
     set(_source "src/${_unit}.c")
     set(_formatted "stamp/${_unit}.formatted")
     set(_base "base/${_unit}.o")
@@ -106,7 +108,7 @@ foreach(_archive IN LISTS _dat_archives)
         endif()
     endforeach()
     add_custom_command(
-        OUTPUT "${_target}" "${_sidecar}"
+        OUTPUT "${_target}" "${_sidecar}" "${_layout}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
             --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
@@ -138,9 +140,16 @@ foreach(_archive IN LISTS _dat_archives)
     )
     add_custom_command(
         OUTPUT "${_base}"
-        COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -MD -MF "${_base}.d"
-            -c "${_source}" -o "${_base}"
-        DEPENDS "${_source}" "${_formatted}" "${_dat_flags}"
+        BYPRODUCTS "${_object}"
+        # Each sample in its own section, then linked into .data in the
+        # target's order: clang lays variables out where an initializer
+        # first points to them
+        COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -fdata-sections
+            -MD -MF "${_base}.d" -MT "${_base}"
+            -c "${_source}" -o "${_object}"
+        COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}"
+            -o "${_base}"
+        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_dat_flags}"
         DEPFILE "${_base}.d"
         COMMENT "Compiling ${_source}"
         VERBATIM
