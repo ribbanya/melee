@@ -13,12 +13,14 @@ use super::project::{Check, Project};
 use anyhow::{Context, Result, bail};
 use globset::{Glob, GlobSetBuilder};
 use melee_dat::{
+    coverage::coverage,
     dwarf::{
         TypeGraph, cache::TypesFile, canonical::Canonical, render::Renderer,
     },
     hsd::Archive,
     samples::{
-        CWriter, Instance, Picker, SampleInfo, Source, root_of, target_object,
+        CWriter, Elided, Instance, Picker, SampleInfo, Source, root_of,
+        target_object,
     },
 };
 use object::{
@@ -139,11 +141,15 @@ struct Sidecar {
     archive: String,
     samples: Vec<SampleInfo>,
     /// The data in the archive the samples point to but that isn't written
-    /// as C, by name, with its root.
-    elided: BTreeMap<String, String>,
+    /// as C, by name.
+    elided: BTreeMap<String, Elided>,
     /// The archive's externs the samples point to: other archives'
     /// symbols, which the loader links in by name.
     externs: BTreeSet<String>,
+    /// Whether the types explain the whole file: every relocation, every
+    /// public symbol, and nothing the walk finds wrong. objdiff's
+    /// `complete`, the analog of code that is linked into the game.
+    complete: bool,
 }
 
 fn sidecar_path(target: &Path) -> PathBuf {
@@ -267,20 +273,62 @@ fn slice(args: Slice) -> Result<()> {
     // object it is in: the nearest one the walk reached at or before it
     let mut elided = BTreeMap::new();
     let mut externs = BTreeSet::new();
+    // Where elided data ends, without a type: the next place something
+    // starts
+    let starts: BTreeMap<usize, BTreeSet<u32>> = archives
+        .iter()
+        .map(|(at, archive)| {
+            let source = &sources[at];
+            let mut starts: BTreeSet<u32> =
+                archive.publics.iter().map(|p| p.offset).collect();
+            starts.extend(walks[at].objects.keys());
+            starts.extend(
+                source
+                    .relocs(0, archive.data.len() as u64)
+                    .iter()
+                    .map(|&(_, t)| t),
+            );
+            (*at, starts)
+        })
+        .collect();
     for (sample, source) in &pairs {
         for (_, name) in source.externs(sample.location.offset, sample.size) {
             externs.insert(name.to_owned());
         }
-        let paths = &walks[&sample.location.archive].paths;
+        let walk = &walks[&sample.location.archive];
         for (_, target) in source.relocs(sample.location.offset, sample.size) {
             let name = source.name(target);
-            if !names.contains(&name) {
-                let root = paths
-                    .range(..=target)
-                    .next_back()
-                    .map_or("unknown", |(_, path)| root_of(path));
-                elided.entry(name).or_insert_with(|| root.to_owned());
+            if names.contains(&name) {
+                continue;
             }
+            let root = walk
+                .paths
+                .range(..=target)
+                .next_back()
+                .map_or("unknown", |(_, path)| root_of(path))
+                .to_owned();
+            // Its type's size where the walk typed it
+            let typed = walk.objects.get(&target).and_then(|types| {
+                types
+                    .iter()
+                    .filter_map(|&id| {
+                        let rep = project.canonical.get(id).rep;
+                        project.canonical.byte_size(&project.graph, rep)
+                    })
+                    .max()
+            });
+            let end = source.archive.data.len() as u32;
+            let size = typed.map_or_else(
+                || {
+                    starts[&sample.location.archive]
+                        .range(target + 1..)
+                        .next()
+                        .map_or(end, |&s| s.min(end))
+                        - target
+                },
+                |size| size as u32,
+            );
+            elided.entry(name).or_insert(Elided { root, size });
         }
     }
 
@@ -301,6 +349,17 @@ fn slice(args: Slice) -> Result<()> {
         samples: infos,
         elided,
         externs,
+        complete: archives.iter().all(|(at, archive)| {
+            let walk = &walks[at];
+            walk.issues.is_empty()
+                && archive
+                    .publics
+                    .iter()
+                    .all(|p| walk.objects.contains_key(&p.offset))
+                && coverage(&project.graph, &project.canonical, archive, walk)
+                    .unexplained
+                    .is_empty()
+        }),
     };
     fs::write(sidecar_path(&args.output), postcard::to_stdvec(&sidecar)?)?;
     Ok(())
@@ -413,7 +472,7 @@ fn project(args: ProjectArgs) -> Result<()> {
             "target_path": format!("target/{unit}.o"),
             "base_path": format!("base/{unit}.o"),
             "metadata": {
-                "complete": false,
+                "complete": sidecar.complete,
                 "source_path": format!("src/{unit}.c"),
                 "progress_categories": ["dat"],
                 "auto_generated": false,

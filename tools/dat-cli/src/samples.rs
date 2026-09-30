@@ -587,9 +587,20 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
     Ok(obj.write()?)
 }
 
+/// Data the samples point to that isn't written as C.
+#[derive(serde::Serialize, serde::Deserialize)]
+pub struct Elided {
+    /// The root it belongs to: its header declares it.
+    pub root: String,
+    /// Its type's size where the walk typed it, else up to where the next
+    /// object, public symbol or pointer target starts.
+    pub size: u32,
+}
+
 /// A root's samples, the archive externs it declares, and the elided data
 /// it declares.
-type RootParts<'i, 'n> = (Vec<&'i Instance<'i>>, Vec<&'n str>, Vec<&'n str>);
+type RootParts<'i, 'n> =
+    (Vec<&'i Instance<'i>>, Vec<&'n str>, Vec<(&'n str, u32)>);
 
 /// A root's generated C, named after it.
 pub struct RootFiles {
@@ -629,14 +640,14 @@ impl<'a> CWriter<'a> {
     /// A unit's C, one root at a time: its header, declaring the root's
     /// samples, and its source, defining them.
     /// `elided` is the other data in the archive the samples point to, by
-    /// name, with its root; `externs` are the archive's externs they point
-    /// to, which the first root pointing to each declares. Both are
-    /// declared as #DatBlob.
+    /// name; `externs` are the archive's externs they point to, which the
+    /// first root pointing to each declares. Both are declared as
+    /// `DatBlob` arrays.
     pub fn unit(
         &self,
         archive: &str,
         instances: &[Instance],
-        elided: &BTreeMap<String, String>,
+        elided: &BTreeMap<String, Elided>,
         externs: &BTreeSet<String>,
     ) -> Result<Vec<RootFiles>> {
         let mut linked: BTreeMap<&str, &str> = BTreeMap::new();
@@ -650,7 +661,7 @@ impl<'a> CWriter<'a> {
         let owners: BTreeMap<&str, &str> = instances
             .iter()
             .map(|i| (i.info.symbol.as_str(), i.info.root.as_str()))
-            .chain(elided.iter().map(|(n, r)| (n.as_str(), r.as_str())))
+            .chain(elided.iter().map(|(n, e)| (n.as_str(), e.root.as_str())))
             .chain(linked.iter().map(|(&n, &r)| (n, r)))
             .collect();
         let mut samples = BTreeMap::new();
@@ -669,12 +680,12 @@ impl<'a> CWriter<'a> {
                 .0
                 .push(inst);
         }
-        for (name, root) in elided {
+        for (name, e) in elided {
             roots
-                .entry(root.as_str())
+                .entry(e.root.as_str())
                 .or_default()
                 .2
-                .push(name.as_str());
+                .push((name.as_str(), e.size));
         }
         for (&name, &root) in &linked {
             roots.entry(root).or_default().1.push(name);
@@ -704,7 +715,7 @@ impl<'a> CWriter<'a> {
         root: &str,
         instances: &[&Instance],
         linked: &[&str],
-        elided: &[&str],
+        elided: &[(&str, u32)],
     ) -> Result<String> {
         let guard = format!("DAT_{}_H", file_name(root).to_uppercase());
         let mut out = format!(
@@ -752,11 +763,11 @@ impl<'a> CWriter<'a> {
         )?;
         group(
             "Externs",
-            "Other archives' symbols the samples point to, which the loader \
-             links in by name.",
+            "Data the program supplies by name when it loads the archive; \
+             Melee's loader sets each to NULL (`lbArchive_InitializeDAT`).",
             linked
                 .iter()
-                .map(|n| format!("extern DatBlob {n};"))
+                .map(|n| format!("extern DatBlob {n}[];"))
                 .collect(),
         )?;
         group(
@@ -765,7 +776,7 @@ impl<'a> CWriter<'a> {
              C.",
             elided
                 .iter()
-                .map(|n| format!("extern DatBlob {n};"))
+                .map(|(n, size)| format!("extern DatBlob {n}[{size:#X}];"))
                 .collect(),
         )?;
         writeln!(out, "\n#endif")?;

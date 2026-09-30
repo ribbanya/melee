@@ -272,9 +272,10 @@ static inline void GXTexCoord1x16(const u16 index)
 /// @}
 #endif
 
-/// Archive data that generated C points to without defining: bulk data such
-/// as images, palettes, vertices and display lists, and objects that aren't
-/// sampled. An incomplete byte array, so only its address can be taken.
-typedef unsigned char DatBlob[];
+/// A byte of archive data that generated C points to without defining: bulk
+/// data such as images, palettes, vertices and display lists, objects that
+/// aren't sampled, and the archive's externs. Declared as arrays of their
+/// size where it's known, e.g. @c extern DatBlob x13CC0[0x1C0];
+typedef unsigned char DatBlob;
 
 #endif
