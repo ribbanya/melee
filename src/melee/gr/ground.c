@@ -793,11 +793,11 @@ HSD_JObj* Ground_801C13D0(s32 arg0, s32 depth)
     if (archive != NULL && arg0 < archive->unk4->unkC) {
         HSD_Joint* joint;
         if (depth == 0) {
-            joint = archive->unk4->unk8[arg0].unk0;
+            joint = archive->unk4->unk8[arg0].joint;
         } else {
             s32 tmp_depth = depth;
             joint =
-                Ground_801C126C(archive->unk4->unk8[arg0].unk0, &tmp_depth);
+                Ground_801C126C(archive->unk4->unk8[arg0].joint, &tmp_depth);
         }
         result = HSD_JObjLoadJoint(joint);
     }
@@ -879,7 +879,7 @@ Ground_GObj* Ground_GetStageGObj(int map_id)
 
     if (map_id < archive->unk4->unkC) {
         archive = grDatFiles_801C6330(map_id);
-        temp_r24 = archive->unk4->unk8[map_id].unk0;
+        temp_r24 = archive->unk4->unk8[map_id].joint;
         temp_r23 = HSD_JObjLoadJoint(temp_r24);
         Ground_801C34AC(map_id, temp_r23, temp_r24);
         if (stageinfo->param != NULL) {
@@ -2832,7 +2832,7 @@ void Ground_801C4A08(HSD_GObj* gobj)
         archive = grDatFiles_801C6330(gp->map_id);
         if (archive != NULL) {
             Ground_801C36F4(gp->map_id, jobj,
-                            archive->unk4->unk8[map_id].unk0);
+                            archive->unk4->unk8[map_id].joint);
         }
     }
     HSD_GObjFree(gobj);

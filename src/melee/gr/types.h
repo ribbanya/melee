@@ -2002,10 +2002,10 @@ struct GroundParam {
 };
 
 struct UnkStageDat_x8_t {
-    /*  +0 */ struct HSD_Joint* unk0;
-    /*  +4 */ HSD_AnimJoint** unk4 DAT_NULLTERM;
-    /*  +8 */ HSD_MatAnimJoint** unk8 DAT_NULLTERM;
-    /*  +C */ HSD_ShapeAnimJoint** unkC DAT_NULLTERM;
+    /*  +0 */ struct HSD_Joint* joint;
+    /*  +4 */ HSD_AnimJoint** anims DAT_NULLTERM;
+    /*  +8 */ HSD_MatAnimJoint** matanims DAT_NULLTERM;
+    /*  +C */ HSD_ShapeAnimJoint** shapeanims DAT_NULLTERM;
     /* +10 */ HSD_CameraDescPerspective* x10;
     /* +14 */ UNK_T x14;
     /* +18 */ LightList** x18 DAT_NULLTERM;
