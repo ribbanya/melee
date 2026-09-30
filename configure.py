@@ -32,7 +32,6 @@ from tools.project import (
     generate_build,
     is_windows,
     load_build_config,
-    make_flags_str,
 )
 
 # Game versions
@@ -2162,12 +2161,10 @@ def configure_dat() -> list[dict]:
             manifest = json.load(f)
     units = manifest["units"] if manifest else []
 
-    include_flags = " ".join(f"-I {i}" for i in includes_base)
     rules.append(
         {
             "name": "dat_samples",
-            "command": f"{melee_dat} samples generate {dat_config} "
-            f"--dwarf $in {include_flags}",
+            "command": f"{melee_dat} samples generate {dat_config} --dwarf $in",
             "description": "DAT samples",
             "depfile": dat_dir / "dep",
             "deps": "gcc",
@@ -2189,29 +2186,48 @@ def configure_dat() -> list[dict]:
     # The unit list is only known once the manifest exists
     config.reconfig_deps.append(manifest_path)
 
-    cflags = [
-        *cflags_base,
-        *(f"-i {i}" for i in includes_base),
-        "-lang=c",
-        *cflags_optimized,
-        "-inline auto",
-        "-sym off",
+    # The base objects only have to match the target, so they are compiled
+    # like the DWARF build (cmake/Dwarf.cmake), whose C can write any union
+    # member
+    aurora = os.environ.get("AURORA_SRC")
+    newlib = os.environ.get("NEWLIB_INCLUDE")
+    if not aurora or not newlib:
+        sys.exit("--dat-dwarf needs AURORA_SRC and NEWLIB_INCLUDE, as the CMake presets do")
+    clang_flags = [
+        "--target=ppc32-none-eabi",
+        "-std=gnu23",
+        "-O0",
+        "-w",
+        # Zeroed samples stay in .data, like the target's
+        "-fno-zero-initialized-in-bss",
+        f"-DBUILD_VERSION={version_num}",
+        f"-DVERSION_{config.version}",
+        "-DDAT_ANNOTATIONS",
+        "-DLINT",
+        "-Dbool=int",
+        f"-I{aurora}/include",
+        "-Isrc",
+        "-Ilibs/doldecomp/include",
+        f"-isystem {newlib}",
     ]
+    rules.append(
+        {
+            "name": "dat_clang",
+            "command": f"clang {' '.join(clang_flags)} -MD -MF $out.d -c $in -o $out",
+            "description": "CLANG $out",
+            "depfile": "$out.d",
+            "deps": "gcc",
+        }
+    )
     objdiff_units = []
     for unit in units:
         base = dat_dir / "base" / f"{unit['name']}.o"
         post_compile.append(
             {
                 "outputs": base,
-                "rule": "mwcc",
+                "rule": "dat_clang",
                 "inputs": dat_dir / unit["source"],
                 "implicit": [manifest_path],
-                "variables": {
-                    "mw_version": Path("GC/1.2.5n"),
-                    "cflags": make_flags_str(cflags),
-                    "basedir": base.parent,
-                    "basefile": base.with_suffix(""),
-                },
             }
         )
         objdiff_units.append(
