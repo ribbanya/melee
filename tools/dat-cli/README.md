@@ -129,7 +129,11 @@ melee-dat samples report build/GALE01/dat
 - `src/<archive>.c`: the unit, which includes every root's source; all of
   it is formatted in place with the repository's `.clang-format`
   (`stamp/<archive>.formatted` records that)
-- `base/<archive>.o`: that C, compiled with the DWARF build's flags
+- `base/<archive>.o`: that C, compiled with the DWARF build's flags, one
+  section per variable (`obj/<archive>.o`), then linked with
+  `target/<archive>.ld` into one `.data` in the target's order (clang lays
+  variables out where they are first pointed to, not where they are
+  defined)
 
 `compile_commands.json` there gives clangd the same flags as the build.
 
