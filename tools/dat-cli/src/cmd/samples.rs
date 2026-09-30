@@ -355,14 +355,21 @@ fn build(args: Build) -> Result<()> {
                 "target_path": format!("target/{unit}.o"),
                 "base_path": format!("base/{unit}.o"),
                 "metadata": {
-                    "progress_categories": ["dat"],
+                    "complete": false,
+                    "reverse_fn_order": false,
                     "source_path": format!("src/{unit}.c"),
+                    "progress_categories": ["dat"],
+                    "auto_generated": false,
                 },
             })
         })
         .collect();
+    // Like tools/project.py's, without the build: samples build writes both
+    // sides
     let objdiff = json!({
         "min_version": "2.0.0-beta.5",
+        "target_dir": "target",
+        "base_dir": "base",
         "build_target": false,
         "build_base": false,
         "progress_categories": [{ "id": "dat", "name": "Archive samples" }],
