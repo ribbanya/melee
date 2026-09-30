@@ -81,6 +81,7 @@ type instead.
 | `DAT_TYPE(T)` | `void*` points to a `T`. |
 | `DAT_EXTENT` | Array, or pointer to elements, that runs as far as the data does. Stopgap for lengths only the code knows. |
 | `DAT_BIND(T::f, value)` | `T::f` is `value` for everything reached through this member. |
+| `DAT_SCRIPT(table, len...)` | Pointer to a command script: opcode in the top 6 bits, lengths in words from the listed values, then from `table` in the code. Ends at opcode 0; relocated words point to more script. |
 | `DAT_NULLTERM` | Pointer to elements up to one whose first word is zero. On a member, or on a pointer typedef for nested lists. |
 
 Expressions are C. Names resolve to fields of the enclosing record, then

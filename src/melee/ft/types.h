@@ -702,7 +702,7 @@ struct FtPartsDesc {
 };
 
 typedef struct ftData_x20 {
-    /* +0 */ HSD_Joint** x0;
+    /* +0 */ HSD_Joint** x0 DAT_EXTENT;
     /* +4 */ f32 x8;
 } ftData_x20;
 
@@ -720,8 +720,9 @@ typedef struct ftData_x38 {
 typedef struct ftData_x1C {
     u16 x0; ///< Fighter_Part
     u16 x2;
-    u8* x4; ///< an array of Fighter part indices
-    HSD_AnimJoint** x8;
+    u8* x4 DAT_COUNT(x2); ///< an array of Fighter part indices
+    /// @todo Count: the part animations of the fighter's kind.
+    HSD_AnimJoint** x8 DAT_EXTENT;
 } ftData_x1C;
 
 typedef struct ftData_x30 {
@@ -866,7 +867,8 @@ typedef struct Fighter_WaitAnimData {
     char* x0;
     s32 x4;
     s32 x8;
-    CmdUnion* xC;
+    /// Generic commands (#Command_Execute), then #ftAction_803C0870.
+    CmdUnion* xC DAT_SCRIPT(ftAction_803C0870, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1);
     s32 x10_animCurrFlags;
     uintptr_t x14;
 } Fighter_WaitAnimData;
@@ -883,11 +885,13 @@ struct ftData {
         /* +13 */ u8 x13;
         /* +14 */ u8 x14;
     }* x8;
-    /*  +C */ Fighter_WaitAnimData* xC;
+    /// @todo Count: #ftData_Table_Unk0 of the fighter's kind.
+    /*  +C */ Fighter_WaitAnimData* xC DAT_EXTENT;
     /* +10 */ u8 (*x10)[2];
-    /* +14 */ Fighter_WaitAnimData* x14;
+    /// @todo Count: #ftData_UnkIntPairs of the fighter's kind.
+    /* +14 */ Fighter_WaitAnimData* x14 DAT_EXTENT;
     /* +18 */ u8 (*x18)[2];
-    /* +1C */ ftData_x1C** x1C;
+    /* +1C */ ftData_x1C** x1C DAT_EXTENT; ///< Up to one per #Fighter::x8B0
     /* +20 */ ftData_x20* x20;
     /* +24 */ UNK_T x24;
     /* +28 */ WaitStruct* x28;

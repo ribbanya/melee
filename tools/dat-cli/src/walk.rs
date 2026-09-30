@@ -9,7 +9,7 @@
 use crate::{
     dwarf::{
         DieId, Member, TypeGraph, TypeKind,
-        annotation::DatTag,
+        annotation::{DatTag, Script},
         canonical::{CanonId, Canonical},
         expr::{Expr, eval_expr},
     },
@@ -32,6 +32,8 @@ pub enum Issue {
     /// A union none of whose members could be chosen, so none was
     /// followed.
     AmbiguousUnion { at: u32, path: String },
+    /// A `DAT_SCRIPT` command whose opcode has no known length.
+    UnknownCommand { at: u32, opcode: u8, path: String },
 }
 
 impl std::fmt::Display for Issue {
@@ -52,6 +54,9 @@ impl std::fmt::Display for Issue {
             Issue::AmbiguousUnion { at, path } => {
                 write!(f, "0x{at:X}: {path} is a union with no valid member")
             }
+            Issue::UnknownCommand { at, opcode, path } => {
+                write!(f, "0x{at:X}: {path} has unknown opcode {opcode:#X}")
+            }
         }
     }
 }
@@ -63,6 +68,7 @@ impl Issue {
             Issue::RelocatedScalar { .. } => "relocated scalar",
             Issue::OutOfBounds { .. } => "out of bounds",
             Issue::AmbiguousUnion { .. } => "ambiguous union",
+            Issue::UnknownCommand { .. } => "unknown command",
         }
     }
 }
@@ -79,6 +85,8 @@ enum Choice<'m> {
 pub struct Walk {
     /// Every object start reached, with the types it was reached as.
     pub objects: BTreeMap<u32, BTreeSet<CanonId>>,
+    /// The first path each object was reached by.
+    pub paths: BTreeMap<u32, String>,
     /// Relocated words the walk found a pointer field for.
     pub pointers: HashSet<u32>,
     /// Pointers followed to a target of unknown type (`void*`, functions).
@@ -126,6 +134,8 @@ pub struct Walker<'a> {
     targets: HashSet<u32>,
     walk: Walk,
     visited: HashSet<(u32, CanonId)>,
+    /// Starts of `DAT_SCRIPT` scripts already walked.
+    scripts: HashSet<u32>,
     /// Objects still to walk, each with the bindings in effect where it
     /// was reached.
     queue: Vec<(u32, DieId, String, Env)>,
@@ -158,6 +168,7 @@ impl<'a> Walker<'a> {
                 .collect(),
             walk: Walk::default(),
             visited: HashSet::new(),
+            scripts: HashSet::new(),
             queue: Vec::new(),
             env: None,
         }
@@ -257,6 +268,10 @@ impl<'a> Walker<'a> {
             return;
         }
         self.walk.objects.entry(offset).or_default().insert(id);
+        self.walk
+            .paths
+            .entry(offset)
+            .or_insert_with(|| path.clone());
         self.layout(offset, die, &path, None);
     }
 
@@ -315,6 +330,8 @@ impl<'a> Walker<'a> {
                         );
                     } else if let Some(target) = declared {
                         self.typed(at, target, &path);
+                    } else if let Some(script) = self.script_tag(member) {
+                        self.script(at, ty, &script, &path);
                     } else if self.is_extent(member) {
                         self.extent(at, ty, &path, &binds, parent);
                     } else if self.member_tagged(member, &DatTag::NullTerm) {
@@ -361,7 +378,9 @@ impl<'a> Walker<'a> {
                 };
                 if let Some(ty) = member.ty {
                     let path = field(path, member.name.map(|n| graph.str(n)));
-                    if self.member_tagged(member, &DatTag::NullTerm) {
+                    if let Some(script) = self.script_tag(member) {
+                        self.script(offset, ty, &script, &path);
+                    } else if self.member_tagged(member, &DatTag::NullTerm) {
                         self.nullterm(offset, ty, &path);
                     } else {
                         self.layout(offset, ty, &path, parent);
@@ -722,6 +741,110 @@ impl<'a> Walker<'a> {
                 .as_ref()
                 == Some(tag)
         })
+    }
+
+    fn script_tag(&self, member: &Member) -> Option<Script> {
+        member.annotations.iter().find_map(|a| {
+            match DatTag::parse(self.graph.str(a.value?))? {
+                DatTag::Script(script) => Some(script),
+                _ => None,
+            }
+        })
+    }
+
+    /// The length in words of a script command, from `DAT_SCRIPT`'s own
+    /// lengths or else its table in the code.
+    fn command_length(&self, script: &Script, opcode: u8) -> Option<u64> {
+        let opcode = u64::from(opcode);
+        let first = script.lengths.len() as u64;
+        if opcode < first {
+            return script.lengths.get(opcode as usize).copied();
+        }
+        let table = self
+            .graph
+            .globals
+            .get(&self.graph.strings.get(&script.table)?)?;
+        let size = table
+            .ty
+            .and_then(|ty| self.canonical.byte_size(self.graph, ty))?;
+        let index = opcode - first;
+        if index >= size {
+            return None;
+        }
+        Some(self.graph.bytes(table.address + index, 1)?[0].into())
+    }
+
+    /// Follow a `DAT_SCRIPT` pointer, and every script its commands point to.
+    fn script(
+        &mut self,
+        offset: u32,
+        pointer: DieId,
+        script: &Script,
+        path: &str,
+    ) {
+        let Some(pointer) = self.resolve(Some(pointer)) else {
+            return;
+        };
+        let TypeKind::Pointer { target } = self.graph.types[&pointer].kind
+        else {
+            return self.layout(offset, pointer, path, None);
+        };
+        let value = self.word(offset);
+        if !self.relocs.contains(&offset) {
+            return self.unrelocated(offset, value, path);
+        }
+        self.walk.pointers.insert(offset);
+        let id = self.pointee(target).and_then(|t| self.canonical.of(t));
+        let mut queue = vec![(value, format!("{path}->"))];
+        while let Some((start, path)) = queue.pop() {
+            if !self.scripts.insert(start) {
+                continue;
+            }
+            if let Some(id) = id {
+                self.walk.objects.entry(start).or_default().insert(id);
+            }
+            self.walk.paths.entry(start).or_insert_with(|| path.clone());
+            let mut at = start;
+            loop {
+                let Some(&first) = self.data.get(at as usize) else {
+                    self.issue(Issue::OutOfBounds {
+                        at,
+                        path: path.clone(),
+                    });
+                    break;
+                };
+                let opcode = first >> 2;
+                let Some(length) = self.command_length(script, opcode) else {
+                    self.issue(Issue::UnknownCommand {
+                        at,
+                        opcode,
+                        path: path.clone(),
+                    });
+                    break;
+                };
+                let end = at + (length.max(1) * 4) as u32;
+                if end as usize > self.data.len() {
+                    self.issue(Issue::OutOfBounds {
+                        at,
+                        path: path.clone(),
+                    });
+                    break;
+                }
+                for word in (at..end).step_by(4) {
+                    if self.relocs.contains(&word) {
+                        self.walk.pointers.insert(word);
+                        queue.push((
+                            self.word(word),
+                            format!("{path}+0x{:X}->", word - start),
+                        ));
+                    }
+                }
+                if opcode == 0 {
+                    break;
+                }
+                at = end;
+            }
+        }
     }
 
     /// Whether a typedef on the way from `die` to its underlying type

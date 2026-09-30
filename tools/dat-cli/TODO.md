@@ -19,8 +19,11 @@
   `((HSD_Archive**) &ft_80459B88)[kind]`, so it's typed `HSD_Archive`. The
   slot is really a `KirbyHatStruct*`, but the flat index disagrees with
   `ft_80459B88.hats[kind]` elsewhere by one.
-- `Fighter_WaitAnimData.xC` points to `CmdUnion` animation scripts. The
-  union can't be resolved without modelling the script's commands.
+- `ftData.x48_items` is a per-fighter table: mostly `Article*`, but some
+  slots are joints (Link 6, Kirby 4, Yoshi 3) or other structs (Samus 4).
+  Needs a per-fighter type.
+- Fighters' part animations (`ftData_x1C.x8`) sit next to `HSD_AnimJoint`
+  trees that nothing points to. Their relocations can't be explained.
 - `EffectDataTable` only has its two particle banks. The records after them
   (an `f32` and four pointers each) aren't typed.
 
@@ -42,6 +45,9 @@ Not errors:
   - inconsistent types: R_Shell, Foods, Kinoko
   - never used: ScBall, RabbitC, MetalB, Spycloak
   - all character items and Pokémon
+- `ftData.xC`/`x14` (actions), `x1C` (part animations) and their `x8`,
+  and `ftData_x20.x0` use `DAT_EXTENT`. The counts are in DOL tables per
+  fighter kind (`ftData_Table_Unk0`, `ftData_UnkIntPairs`), or only in code.
 - `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes` up
   to -1, which needs a new annotation.
 - `*_image` and `*_tlut` are `u8[]`/`u16[]` up to the next public or

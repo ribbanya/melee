@@ -52,6 +52,14 @@
 /// bindings shadow outer ones.
 #define DAT_BIND(name, value) DAT_TAG("bind(" #name ", " #value ")")
 
+/// The pointer refers to a command script: commands of whole words, each
+/// with its opcode in the top 6 bits of its first byte, up to one with opcode
+/// 0. Opcode @c n is as many words long as the @c n th of the lengths
+/// following @p table, or past those, as @p table (an array in the code)
+/// says at @c n minus their number. Relocated words within a command point
+/// to more script, such as a goto's target.
+#define DAT_SCRIPT(table, ...) DAT_TAG("script(" #table ", " #__VA_ARGS__ ")")
+
 /// The untyped pointer, or pointer-sized integer, refers to a @p type when it
 /// is relocated.
 #define DAT_TYPE(type) DAT_TAG("type(" #type ")")

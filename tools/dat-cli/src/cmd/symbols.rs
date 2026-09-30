@@ -346,10 +346,18 @@ fn walk(args: args::Check) -> Result<()> {
                         .objects
                         .range(..=at)
                         .next_back()
-                        .map_or("(none)".to_owned(), |(_, types)| {
+                        .map_or("(none)".to_owned(), |(offset, types)| {
                             let id = *types.first().unwrap();
-                            renderer.declare(Some(canonical.get(id).rep), "")
+                            let ty = renderer
+                                .declare(Some(canonical.get(id).rep), "");
+                            let path =
+                                result.paths.get(offset).map_or("", |p| p);
+                            format!(
+                                "{ty} at {} (0x{offset:X})",
+                                generic_path(path)
+                            )
                         });
+                    log::trace!("{rel}: 0x{at:X} unexplained, after {owner}");
                     *unexplained_after
                         .entry(format!("{}: {owner}", family(&file)))
                         .or_default() += 1;
@@ -417,4 +425,30 @@ types"
 /// An archive's family for grouping, e.g. `Pl` for `PlMrNr.dat`.
 fn family(file: &str) -> &str {
     file.get(..2).unwrap_or(file)
+}
+
+/// A walk path without its root's name, indices or repeated links, for
+/// grouping: `ftDataMario.x0->child->child` becomes `.x0->child...`.
+fn generic_path(path: &str) -> String {
+    let field = path.find(['.', '-', '[']).map_or("", |at| &path[at..]);
+    let mut out = String::new();
+    let mut in_index = false;
+    for c in field.chars() {
+        match c {
+            '[' => {
+                in_index = true;
+                out.push_str("[]");
+            }
+            ']' => in_index = false,
+            _ if in_index => {}
+            _ => out.push(c),
+        }
+    }
+    for link in ["->child", "->next"] {
+        let twice = format!("{link}{link}");
+        while out.contains(&twice) {
+            out = out.replace(&twice, link);
+        }
+    }
+    out
 }
