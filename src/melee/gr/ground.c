@@ -1180,14 +1180,6 @@ f32 Ground_801C20D0(void)
     return stage_info.cam_info.cam_vertical_tilt;
 }
 
-typedef struct LightOverrideEntry {
-    /* 0x0 */ HSD_LightDesc* desc;
-    /* 0x4 */ u8 a : 1;
-    /* 0x4 */ u8 b : 1;
-    /* 0x4 */ u8 c : 1;
-    /* 0x4 */ u8 _ : 5;
-    /* 0x5 */ u8 _pad[3];
-} LightOverrideEntry;
 
 static inline bool find_light_override(UnkArchiveStruct* archive,
                                        HSD_LightDesc* desc, bool* b6, bool* b7,

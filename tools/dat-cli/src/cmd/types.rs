@@ -20,6 +20,10 @@ enum Command {
     /// Records with the same layout under different names: likely the same
     /// data defined twice
     Duplicates(args::Duplicates),
+
+    /// Types the archives' roots reach that a `.c` file declares, which
+    /// generated C can't include
+    Unhoisted(args::Unhoisted),
 }
 
 mod args {
@@ -33,6 +37,13 @@ mod args {
         pub dwarf: Option<PathBuf>,
         #[arg(short, long)]
         pub output: PathBuf,
+    }
+
+    #[derive(Args)]
+    pub struct Unhoisted {
+        /// The compact types file from `types export`
+        #[arg(long)]
+        pub types: PathBuf,
     }
 
     #[derive(Args)]
@@ -67,6 +78,7 @@ pub fn run(Args { command }: Args) -> Result<()> {
         Command::Dump(args) => dump(args),
         Command::Export(args) => export(args),
         Command::Duplicates(args) => duplicates(args),
+        Command::Unhoisted(args) => unhoisted(args),
     }
 }
 
@@ -278,5 +290,31 @@ fn duplicates(args: args::Duplicates) -> Result<()> {
         }
     }
     writeln!(out, "{} groups", groups.len())?;
+    Ok(())
+}
+
+fn unhoisted(args: args::Unhoisted) -> Result<()> {
+    let file = melee_dat::dwarf::cache::TypesFile::load(&args.types)?;
+    let graph = file.graph;
+    let canonical = Canonical::new(&graph);
+    let renderer = Renderer::new(&graph, &canonical);
+    let mut rows = std::collections::BTreeSet::new();
+    for id in canonical.reachable(&graph, file.roots.into_values()) {
+        let ty = &graph.types[&canonical.get(id).rep];
+        let (Some(_), Some(decl)) = (ty.name, ty.decl_file) else {
+            continue;
+        };
+        let decl = graph.str(decl);
+        if decl.ends_with(".c") && renderer.is_listed(id) {
+            let decl = decl.rsplit_once("/src/").map_or(decl, |(_, f)| f);
+            let name = renderer.display(id).unwrap_or("?");
+            rows.insert((decl.to_owned(), name.to_owned()));
+        }
+    }
+    let mut out = io::stdout().lock();
+    for (decl, name) in &rows {
+        writeln!(out, "{decl}  {name}")?;
+    }
+    writeln!(out, "{} types", rows.len())?;
     Ok(())
 }

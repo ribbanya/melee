@@ -17,4 +17,16 @@ struct SoundTestMenuData {
 /* 2FF884 */ bool un_802FF884(char*);
 /* 3F9FA4 */ extern struct SoundTestMenuData un_803F9FA4;
 
+/// Symbol table loaded from SmSt.dat
+struct SoundTestLoadData {
+    /* 0x00 */ int x0;
+    /* 0x04 */ char** x4;
+    /* 0x08 */ char** x8;
+    /* 0x0C */ char** xC;
+    /* 0x10 */ int x10;
+    /* 0x14 */ int* x14;
+    /* 0x18 */ int* x18;
+    /* 0x1C */ char** x1C;
+};
+
 #endif
