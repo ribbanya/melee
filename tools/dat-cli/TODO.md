@@ -63,7 +63,6 @@ Not errors:
 
 ## Tool
 
-- `DAT_NULLTERM` is parsed but the walker ignores it.
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
 - `samples`: objdiff sample objects. No relocations yet; sizes are wrong.

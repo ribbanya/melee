@@ -269,6 +269,9 @@ impl<'a> Walker<'a> {
         path: &str,
         parent: Option<(DieId, u32)>,
     ) {
+        if self.typedef_tagged(die, &DatTag::NullTerm) {
+            return self.nullterm(offset, die, path);
+        }
         let Some(die) = self.resolve(Some(die)) else {
             return;
         };
@@ -314,6 +317,8 @@ impl<'a> Walker<'a> {
                         self.typed(at, target, &path);
                     } else if self.is_extent(member) {
                         self.extent(at, ty, &path, &binds, parent);
+                    } else if self.member_tagged(member, &DatTag::NullTerm) {
+                        self.nullterm(at, ty, &path);
                     } else if !binds.is_empty()
                         && let Some((element, size, count)) = self.array(ty)
                     {
@@ -356,7 +361,11 @@ impl<'a> Walker<'a> {
                 };
                 if let Some(ty) = member.ty {
                     let path = field(path, member.name.map(|n| graph.str(n)));
-                    self.layout(offset, ty, &path, parent);
+                    if self.member_tagged(member, &DatTag::NullTerm) {
+                        self.nullterm(offset, ty, &path);
+                    } else {
+                        self.layout(offset, ty, &path, parent);
+                    }
                 }
             }
             TypeKind::Array { element, dims } => {
@@ -703,10 +712,89 @@ impl<'a> Walker<'a> {
     }
 
     fn is_extent(&self, member: &Member) -> bool {
+        self.member_tagged(member, &DatTag::Extent)
+    }
+
+    fn member_tagged(&self, member: &Member, tag: &DatTag) -> bool {
         member.annotations.iter().any(|a| {
-            a.value.and_then(|v| DatTag::parse(self.graph.str(v)))
-                == Some(DatTag::Extent)
+            a.value
+                .and_then(|v| DatTag::parse(self.graph.str(v)))
+                .as_ref()
+                == Some(tag)
         })
+    }
+
+    /// Whether a typedef on the way from `die` to its underlying type
+    /// carries `tag`.
+    fn typedef_tagged(&self, mut die: DieId, tag: &DatTag) -> bool {
+        while let Some(ty) = self.graph.types.get(&die) {
+            let TypeKind::Typedef {
+                target: Some(target),
+            } = ty.kind
+            else {
+                return false;
+            };
+            if ty.annotations.iter().any(|a| {
+                a.value
+                    .and_then(|v| DatTag::parse(self.graph.str(v)))
+                    .as_ref()
+                    == Some(tag)
+            }) {
+                return true;
+            }
+            die = target;
+        }
+        false
+    }
+
+    /// Follow a `DAT_NULLTERM` pointer: elements up to one whose first word
+    /// is zero, which is the terminator.
+    fn nullterm(&mut self, offset: u32, pointer: DieId, path: &str) {
+        let Some(pointer) = self.resolve(Some(pointer)) else {
+            return;
+        };
+        let TypeKind::Pointer { target } = self.graph.types[&pointer].kind
+        else {
+            return self.layout(offset, pointer, path, None);
+        };
+        let value = self.word(offset);
+        if !self.relocs.contains(&offset) {
+            return self.unrelocated(offset, value, path);
+        }
+        self.walk.pointers.insert(offset);
+        let Some(element) = self.pointee(target) else {
+            return self.untyped(path);
+        };
+        let (Some(id), Some(size)) = (
+            self.canonical.of(element),
+            self.canonical.byte_size(self.graph, element),
+        ) else {
+            return;
+        };
+        if size == 0 || !self.visited.insert((value, id)) {
+            return;
+        }
+        self.walk.objects.entry(value).or_default().insert(id);
+        let env = self.env.clone();
+        for i in 0.. {
+            let at = value + (i * size) as u32;
+            if at as usize + size as usize > self.data.len() {
+                self.issue(Issue::OutOfBounds {
+                    at: value,
+                    path: format!("{path}->"),
+                });
+                break;
+            }
+            // The terminator is walked too, for its other fields
+            let end = self.word(at) == 0 && !self.relocs.contains(&at);
+            // Unresolved, so that typedef tags on the element still apply
+            let ty = target.unwrap_or(element);
+            self.layout(at, ty, &format!("{path}->[{i}]"), None);
+            self.env = env.clone();
+            if end {
+                break;
+            }
+        }
     }
 
     /// Whether any part of a type is a pointer, looking through records,

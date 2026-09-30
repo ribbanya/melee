@@ -81,7 +81,7 @@ type instead.
 | `DAT_TYPE(T)` | `void*` points to a `T`. |
 | `DAT_EXTENT` | Array, or pointer to elements, that runs as far as the data does. Stopgap for lengths only the code knows. |
 | `DAT_BIND(T::f, value)` | `T::f` is `value` for everything reached through this member. |
-| `DAT_NULLTERM` | Pointer to elements up to a zeroed one. |
+| `DAT_NULLTERM` | Pointer to elements up to one whose first word is zero. On a member, or on a pointer typedef for nested lists. |
 
 Expressions are C. Names resolve to fields of the enclosing record, then
 bindings, then macros and enum constants. `_index` is the element index
