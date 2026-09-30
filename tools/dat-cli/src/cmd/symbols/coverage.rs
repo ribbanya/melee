@@ -305,8 +305,10 @@ fn table(
         writeln!(out, "### Dat coverage\n")?;
         writeln!(
             out,
-            "**Explained relocations**: {:.2}% of {} ({:.2}% of those \
-             reachable)\n",
+            concat!(
+                "**Explained relocations**: {:.2}% of {} ",
+                "({:.2}% of those reachable)\n",
+            ),
             m.explained_relocations_percent,
             m.total_relocations,
             m.reachable_relocations_percent

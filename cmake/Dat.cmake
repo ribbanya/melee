@@ -115,11 +115,10 @@ foreach(_archive IN LISTS _dat_archives)
     )
     list(APPEND _dat_sidecars "${_sidecar}")
     list(APPEND _dat_bases "${_base}")
-    list(APPEND _dat_commands "  {
-    \"directory\": \"${CMAKE_CURRENT_BINARY_DIR}\",
-    \"file\": \"${CMAKE_CURRENT_BINARY_DIR}/${_source}\",
-    \"arguments\": [\"${CMAKE_C_COMPILER}\", \"@${_dat_flags}\", \"-c\", \"${_source}\", \"-o\", \"${_base}\"]
-  }")
+    list(APPEND _dat_commands "{\
+\"directory\": \"${CMAKE_CURRENT_BINARY_DIR}\", \
+\"file\": \"${CMAKE_CURRENT_BINARY_DIR}/${_source}\", \
+\"arguments\": [\"${CMAKE_C_COMPILER}\", \"@${_dat_flags}\", \"-c\", \"${_source}\", \"-o\", \"${_base}\"]}")
 endforeach()
 
 # The same commands for clangd, which looks for the nearest
