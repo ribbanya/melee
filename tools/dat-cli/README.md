@@ -78,7 +78,7 @@ type instead.
 | --- | --- |
 | `DAT_COUNT(n)` | Pointer to `n` elements. |
 | `DAT_IF(cond)` | Union member is valid when `cond` holds. |
-| `DAT_TYPE(T)` | `void*` points to a `T`. |
+| `DAT_TYPE(T)` | `void*` points to a `T`. Also on a `void*` typedef, for arrays of them. |
 | `DAT_EXTENT` | Array, or pointer to elements, that runs as far as the data does. Stopgap for lengths only the code knows. |
 | `DAT_BIND(T::f, value)` | `T::f` is `value` for everything reached through this member. |
 | `DAT_SCRIPT(table, len...)` | Pointer to a command script: opcode in the top 6 bits, lengths in words from the listed values, then from `table` in the code. Ends at opcode 0; relocated words point to more script. |

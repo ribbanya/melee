@@ -19,9 +19,12 @@
   `((HSD_Archive**) &ft_80459B88)[kind]`, so it's typed `HSD_Archive`. The
   slot is really a `KirbyHatStruct*`, but the flat index disagrees with
   `ft_80459B88.hats[kind]` elsewhere by one.
-- `ftData.x48_items` is a per-fighter table: mostly `Article*`, but some
-  slots are joints (Link 6, Kirby 4, Yoshi 3) or other structs (Samus 4).
-  Needs a per-fighter type.
+- `ftData.x48_items` entries are typed `Article` (`ftData_Item`), but
+  some slots are joints or other structs: Samus 4, Game & Watch 10,
+  Kirby 4, Yoshi 3, Sheik 4/5, Link 6, Jigglypuff 1. These give about 140
+  findings. Binding the fighter kind at each `ftData` root (its index in
+  the loader's name table) would let a union pick per slot. The same binding
+  would type `Article.x4_special` for fighter items.
 - Fighters' part animations (`ftData_x1C.x8`) sit next to `HSD_AnimJoint`
   trees that nothing points to. Their relocations can't be explained.
 - `EffectDataTable` only has its two particle banks. The records after them

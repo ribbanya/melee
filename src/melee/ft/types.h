@@ -717,6 +717,12 @@ typedef struct ftData_x38 {
     float x10;
 } ftData_x38;
 
+/// An entry of #ftData::x48_items: mostly an #Article, but some fighters
+/// keep joints or their own structs in certain slots.
+/// @todo Type the other slots per fighter (Link 6, Kirby 4, Yoshi 3,
+///       Samus 4).
+typedef void* ftData_Item DAT_TYPE(Article);
+
 typedef struct ftData_x1C {
     u16 x0; ///< Fighter_Part
     u16 x2;
@@ -902,8 +908,9 @@ struct ftData {
     /* +3C */ struct UnkFloat6_Camera* x3C;
     /* +40 */ struct itPickup* x40;
     /* +44 */ ftData_x44_t* x44;
-    /* +48 */ UNK_T* x48_items; ///< @todo might be similar to KirbyHat? see
-                                ///< ftPr_Init_8013C360
+    /// The fighter's own items, by a per-fighter index.
+    /// @todo Count differs per fighter.
+    /* +48 */ ftData_Item* x48_items DAT_EXTENT;
     /* +4C */ FtSFX* x4C_sfx;
     /* +50 */ Vec2* x50;
     /* +54 */ int* x54;

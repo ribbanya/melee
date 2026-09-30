@@ -287,6 +287,9 @@ impl<'a> Walker<'a> {
         if self.typedef_tagged(die, &DatTag::NullTerm) {
             return self.nullterm(offset, die, path);
         }
+        if let Some(target) = self.typedef_type(die) {
+            return self.typed(offset, target, path);
+        }
         let Some(die) = self.resolve(Some(die)) else {
             return;
         };
@@ -462,6 +465,7 @@ impl<'a> Walker<'a> {
                     return self.unrelocated(offset, value, path);
                 }
                 self.walk.pointers.insert(offset);
+                let raw = target;
                 let Some(target) = self.pointee(target) else {
                     return self.untyped(path);
                 };
@@ -472,10 +476,12 @@ impl<'a> Walker<'a> {
                     return;
                 }
                 self.walk.objects.entry(value).or_default().insert(id);
-                (value, Some(target), format!("{path}->"))
+                (value, raw, format!("{path}->"))
             }
             _ => return self.layout(offset, array, path, parent),
         };
+        // Laid out unresolved, so that typedef tags on the element apply
+        let raw = element;
         let Some(element) = self.resolve(element) else {
             return;
         };
@@ -495,7 +501,8 @@ impl<'a> Walker<'a> {
                 break;
             }
             self.env = self.bound(&outer, binds, parent, i.into());
-            self.layout(at, element, &format!("{path}[{i}]"), parent);
+            let ty = raw.unwrap_or(element);
+            self.layout(at, ty, &format!("{path}[{i}]"), parent);
         }
         self.env = outer;
     }
@@ -592,9 +599,18 @@ impl<'a> Walker<'a> {
         let Some(size) = self.canonical.byte_size(self.graph, element) else {
             return;
         };
-        // A count beyond the data is itself a finding, reported per element
+        // A count beyond the data means the count or the pointer is wrong:
+        // one finding, and nothing followed
+        let room = (self.data.len() as u64).saturating_sub(value.into());
+        if count > room / size.max(1) {
+            self.issue(Issue::OutOfBounds {
+                at: value,
+                path: format!("{path}->[{count}]"),
+            });
+            return;
+        }
         let outer = self.env.clone();
-        for i in 0..count.min(self.data.len() as u64) {
+        for i in 0..count {
             let env = self.bound(&outer, binds, parent, i);
             self.queue.push((
                 value + (i * size) as u32,
@@ -845,6 +861,35 @@ impl<'a> Walker<'a> {
                 at = end;
             }
         }
+    }
+
+    /// The type a `DAT_TYPE` typedef on the way from `die` to its underlying
+    /// type refers to.
+    fn typedef_type(&self, mut die: DieId) -> Option<DieId> {
+        while let Some(ty) = self.graph.types.get(&die) {
+            let TypeKind::Typedef {
+                target: Some(target),
+            } = ty.kind
+            else {
+                return None;
+            };
+            let name =
+                ty.annotations.iter().find_map(|a| {
+                    match DatTag::parse(self.graph.str(a.value?))? {
+                        DatTag::Type(name) => Some(name),
+                        _ => None,
+                    }
+                });
+            if let Some(name) = name {
+                return self
+                    .canonical
+                    .lookup(self.graph, &name)
+                    .into_iter()
+                    .find_map(|die| self.resolve(Some(die)));
+            }
+            die = target;
+        }
+        None
     }
 
     /// Whether a typedef on the way from `die` to its underlying type
