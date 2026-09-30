@@ -55,6 +55,16 @@ The loaders record what they load in the DWARF build:
 A root is untyped if its destination is `void*`, and skipped if its name
 isn't a string literal or a global string.
 
+Names the code builds at runtime go in `config/GALE01/dat_symbols.txt`,
+used for publics no loader types:
+
+```text
+*_figatree = Pl??AJ.dat; // type:FigaTree
+```
+
+Names and archives take `*` and `?`. The first line with a matching archive
+wins, then the first `*` line.
+
 ## Annotations
 
 For what C types can't express. From `libs/doldecomp/include/dat_macros.h`;
@@ -66,7 +76,7 @@ type instead.
 | `DAT_COUNT(n)` | Pointer to `n` elements. |
 | `DAT_IF(cond)` | Union member is valid when `cond` holds. |
 | `DAT_TYPE(T)` | `void*` points to a `T`. |
-| `DAT_EXTENT` | Array runs as far as the data does. Stopgap for lengths only the code knows. |
+| `DAT_EXTENT` | Array, or pointer to elements, that runs as far as the data does. Stopgap for lengths only the code knows. |
 | `DAT_BIND(T::f, value)` | `T::f` is `value` for everything reached through this member. |
 | `DAT_NULLTERM` | Pointer to elements up to a zeroed one. |
 
@@ -100,4 +110,5 @@ Known problems and coverage gaps are in `TODO.md`.
 - `src/interop/dwarf/roots.rs`: roots from the loaders' records.
 - `src/interop/hsd.rs`: archive format (mirrors `archive.c`, `lbarchive.c`).
 - `src/walk.rs`: the walk.
-- `samples`, `src/symbols.rs`: unfinished.
+- `src/symbols.rs`: `dat_symbols.txt`.
+- `samples`: unfinished.

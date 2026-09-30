@@ -33,11 +33,13 @@ Not errors:
   - inconsistent types: R_Shell, Foods, Kinoko
   - never used: ScBall, RabbitC, MetalB, Spycloak
   - all character items and Pokémon
+- `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes` up
+  to -1, which needs a new annotation.
+- `dat_symbols.txt` roots are one element each; `T[N]` and `T[]` are
+  rejected.
 
 ## Coverage
 
-- `Pl??AJ.dat` (fighter animations) are read as packed archives, but their
-  `*_figatree` publics have no roots: the names come from `ftData` tables.
 - Trophies (`Ty*.dat`): names come from tables inside archives.
 - `Ef*`, `Sd*`, `Sm*`: no roots.
 - 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,
@@ -51,4 +53,3 @@ Not errors:
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
 - `samples`: objdiff sample objects. No relocations yet; sizes are wrong.
-- `src/symbols.rs`: parser for hand-written root bindings. Unused.

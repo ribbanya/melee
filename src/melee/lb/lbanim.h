@@ -6,6 +6,8 @@
 #include <melee/lb/forward.h>
 #include <sysdolphin/baselib/forward.h>
 
+#include <dat_macros.h>
+
 struct FigaTrack {
     u16 length;
     u16 startframe;
@@ -19,8 +21,10 @@ struct FigaTree {
     int type;
     u32 flags;
     f32 frames;
+    /// Tracks per joint, up to -1
     s8* nodes;
-    FigaTrack* tracks;
+    /// @todo As many as the sum of #nodes.
+    FigaTrack* tracks DAT_EXTENT;
 };
 
 /* 01E60C */ HSD_FObj* fn_8001E60C(FigaTrack*, s8 frames);

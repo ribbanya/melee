@@ -246,12 +246,12 @@ impl<'a> Memory<'a> {
         {
             return None;
         }
-        Some(start.and_then(|start| {
+        Some(start.map(|start| {
             let bytes: Vec<u8> = (start..start + 256)
                 .map_while(|a| self.graph.bytes(a, 1).map(|b| b[0]))
                 .take_while(|&b| b != 0)
                 .collect();
-            Some(String::from_utf8_lossy(&bytes).into_owned())
+            String::from_utf8_lossy(&bytes).into_owned()
         }))
     }
 

@@ -323,21 +323,21 @@ impl<'a> Walker<'a> {
                     self.unrelocated(offset, value, path);
                 }
             }
-            TypeKind::Base { .. } | TypeKind::Enum { .. } => {
-                if self.relocs.contains(&offset) {
+            TypeKind::Base { .. } | TypeKind::Enum { .. }
+                if self.relocs.contains(&offset) => {
                     self.issue(Issue::RelocatedScalar {
                         at: offset,
                         path: path.to_owned(),
                     });
                 }
-            }
             _ => {}
         }
     }
 
-    /// Walk a `DAT_EXTENT` array: every element until the next public
-    /// symbol, object or pointer target, the end of the data, or an element
-    /// that does not fit its type.
+    /// Walk a `DAT_EXTENT` array, or the elements a `DAT_EXTENT` pointer
+    /// points to: every element until the next public symbol, object or
+    /// pointer target, the end of the data, or an element that does not fit
+    /// its type.
     fn extent(
         &mut self,
         offset: u32,
@@ -350,9 +350,30 @@ impl<'a> Walker<'a> {
         let Some(array) = self.resolve(Some(array)) else {
             return;
         };
-        let TypeKind::Array { element, .. } = self.graph.types[&array].kind
-        else {
-            return self.layout(offset, array, path, parent);
+        let (offset, element, path) = match self.graph.types[&array].kind {
+            TypeKind::Array { element, .. } => {
+                (offset, element, path.to_owned())
+            }
+            TypeKind::Pointer { target } => {
+                let value = self.word(offset);
+                if !self.relocs.contains(&offset) {
+                    return self.unrelocated(offset, value, path);
+                }
+                self.walk.pointers.insert(offset);
+                let Some(target) = self.pointee(target) else {
+                    self.walk.untyped_pointers += 1;
+                    return;
+                };
+                let Some(id) = self.canonical.of(target) else {
+                    return;
+                };
+                if !self.visited.insert((value, id)) {
+                    return;
+                }
+                self.walk.objects.entry(value).or_default().insert(id);
+                (value, Some(target), format!("{path}->"))
+            }
+            _ => return self.layout(offset, array, path, parent),
         };
         let Some(element) = self.resolve(element) else {
             return;
@@ -507,12 +528,8 @@ impl<'a> Walker<'a> {
                     _ => None,
                 }
             })?;
-        let name =
-            self.graph.strings.get(name.trim_start_matches("struct "))?;
         self.canonical
-            .named(name)
-            .iter()
-            .map(|&id| self.canonical.get(id).rep)
+            .lookup(self.graph, &name)
             .find_map(|die| self.resolve(Some(die)))
     }
 

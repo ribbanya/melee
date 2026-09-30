@@ -9,6 +9,7 @@ use melee_dat::{
         roots::{RootName, roots},
     },
     hsd::Archive,
+    symbols::{Count, SymbolFile},
     walk::{Walker, macros},
 };
 use std::{
@@ -256,6 +257,28 @@ fn walk(args: args::Check) -> Result<()> {
             root_types.entry(name).or_insert(ty);
         }
     }
+    // Then the patterns in `dat_symbols.txt`, for names no loader records
+    let symbols_path = args
+        .proj_path
+        .clone()
+        .unwrap_or_default()
+        .join(config.symbols.as_str());
+    let symbols = SymbolFile::parse(&fs::read_to_string(&symbols_path)?)
+        .with_context(|| format!("{}", symbols_path.display()))?;
+    let mut symbol_types = BTreeMap::new();
+    for entry in &symbols.entries {
+        let Some(spec) = &entry.ty else { continue };
+        anyhow::ensure!(
+            spec.count == Count::One,
+            "{}: arrays aren't supported yet: {entry}",
+            symbols_path.display()
+        );
+        let die = canonical
+            .lookup(&graph, &spec.name)
+            .next()
+            .with_context(|| format!("{entry}: no type `{}`", spec.name))?;
+        symbol_types.insert(spec.name.as_str(), die);
+    }
 
     let mut out = io::stdout().lock();
     let (mut walked, mut publics, mut typed, mut relocs, mut explained) =
@@ -280,7 +303,13 @@ fn walk(args: args::Check) -> Result<()> {
             let mut any = false;
             for (name, symbol) in archive.named_publics() {
                 let name = String::from_utf8_lossy(name);
-                if let Some(&ty) = root_types.get(name.as_ref()) {
+                let ty =
+                    root_types.get(name.as_ref()).copied().or_else(|| {
+                        let spec =
+                            symbols.lookup(&name, &file)?.ty.as_ref()?;
+                        symbol_types.get(spec.name.as_str()).copied()
+                    });
+                if let Some(ty) = ty {
                     walker.root(symbol.offset, ty, &name);
                     any = true;
                 }
