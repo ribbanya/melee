@@ -1,1 +1,10 @@
+// Fighter animations, named by ftData tables
 *_figatree = Pl??AJ.dat; // type:FigaTree
+
+// Named by HSD's exporter conventions. The first match wins.
+*_matanim_joint = *; // type:HSD_MatAnimJoint
+*_shapeanim_joint = *; // type:HSD_ShapeAnimJoint
+*_animjoint = *; // type:HSD_AnimJoint
+*_joint = *; // type:HSD_Joint
+*_camanim = *; // type:HSD_CameraAnim
+*_tlut_desc = *; // type:HSD_TlutDesc

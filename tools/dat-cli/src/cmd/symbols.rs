@@ -315,6 +315,12 @@ fn walk(args: args::Check) -> Result<()> {
                 }
             }
             let result = walker.finish();
+            for (name, symbol) in archive.named_publics() {
+                if !result.objects.contains_key(&symbol.offset) {
+                    let name = String::from_utf8_lossy(name);
+                    log::debug!("{rel}: untyped public {name}");
+                }
+            }
 
             publics += archive.publics.len();
             relocs += archive.relocs.len();

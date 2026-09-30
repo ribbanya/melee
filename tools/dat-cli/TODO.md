@@ -40,7 +40,10 @@ Not errors:
 
 ## Coverage
 
-- Trophies (`Ty*.dat`): names come from tables inside archives.
+- 3,051 `*_image` and `*_tlut` publics are raw texel and palette data,
+  reached only through `void*` (`HSD_ImageDesc.image_ptr`,
+  `HSD_TlutDesc.lut`). Count them as data, or type them as byte arrays
+  sized by their descriptors.
 - `Ef*`, `Sd*`, `Sm*`: no roots.
 - 8 calls still use untyped `HSD_ArchiveGetPublicAddress`: `lbarchive.c`,
   the `tydisplay` wrapper, `ftdemo` motion data, `grdatfiles` stage info.
