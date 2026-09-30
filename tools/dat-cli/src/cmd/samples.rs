@@ -18,7 +18,9 @@ use melee_dat::{
         CWriter, Instance, Picker, SampleInfo, Source, root_of, target_object,
     },
 };
-use object::{Object, ObjectSection, ObjectSymbol, RelocationTarget};
+use object::{
+    Object, ObjectSection, ObjectSymbol, RelocationTarget, SectionKind,
+};
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -369,6 +371,36 @@ struct UnitMatch {
     name: String,
     measures: MatchMeasures,
     samples: Vec<SampleMatch>,
+    /// The base object's contents outside `.data`, e.g. code or strings
+    /// from headers, which the target doesn't have.
+    extra: Vec<String>,
+}
+
+/// Allocated sections of a unit's base object other than `.data`, with
+/// their sizes.
+fn extra_sections(dir: &Path, unit: &str) -> Result<Vec<String>> {
+    let path = dir.join(format!("base/{unit}.o"));
+    let data =
+        fs::read(&path).with_context(|| format!("{}", path.display()))?;
+    let obj = object::File::parse(&*data)?;
+    Ok(obj
+        .sections()
+        .filter(|s| s.size() > 0 && s.name() != Ok(".data"))
+        .filter(|s| {
+            matches!(
+                s.kind(),
+                SectionKind::Text
+                    | SectionKind::Data
+                    | SectionKind::ReadOnlyData
+                    | SectionKind::ReadOnlyDataWithRel
+                    | SectionKind::ReadOnlyString
+                    | SectionKind::UninitializedData
+            )
+        })
+        .map(|s| {
+            format!("{} ({:#X} bytes)", s.name().unwrap_or("?"), s.size())
+        })
+        .collect())
 }
 
 /// objdiff's diff of one unit's target and base objects: each sample's
@@ -447,6 +479,7 @@ fn report(args: Report) -> Result<()> {
                 name: name.clone(),
                 measures,
                 samples,
+                extra: extra_sections(&args.dir, name)?,
             })
         })
         .collect::<Result<_>>()?;
@@ -476,6 +509,11 @@ fn report(args: Report) -> Result<()> {
             "{:6.1}%  {}  ({unit}, {:#X} bytes)",
             s.match_percent, s.name, s.size
         )?;
+    }
+    for unit in &units {
+        for section in &unit.extra {
+            writeln!(out, "  extra  {section} in base/{}.o", unit.name)?;
+        }
     }
     writeln!(
         out,
