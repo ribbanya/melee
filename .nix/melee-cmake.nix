@@ -35,7 +35,10 @@ assert withDat -> dwarf && melee-dat != null;
         ../src/Runtime
         ../libs/doldecomp
       ]
-      ++ lib.optionals withDat [ ../config ]
+      ++ lib.optionals withDat [
+        ../config
+        ../.clang-format
+      ]
     );
   };
 
