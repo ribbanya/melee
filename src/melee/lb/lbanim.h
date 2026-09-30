@@ -14,6 +14,7 @@ struct FigaTrack {
     u8 obj_type;
     u8 frac_value;
     u8 frac_slope;
+    u8 dummy0; ///< Set in the data, unused
     u8* ad_head;
 };
 

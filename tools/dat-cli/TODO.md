@@ -1,5 +1,19 @@
 # TODO
 
+## Sample findings
+
+- `_HSD_TexLODDesc` doesn't match: the DWARF build compiles aurora's GX
+  headers with `TARGET_PC`, where `GXBool` is `bool`, which the decomp
+  defines as `int`. The game's headers have `u8`. Other aurora/`libs/dolphin`
+  differences would be wrong the same way.
+
+## Samples
+
+- Union-typed objects aren't sampled: C89 initializes a union through its
+  first member only, and MWCC has no designated initializers or
+  `__typeof__`. Unions inside samples are written through their first
+  member, with relocations wherever any member has a pointer.
+
 ## Walk findings
 
 - `SdIntro.dat`: `SIS_IntroData[0]` points to the end of the data.
@@ -73,4 +87,3 @@ Not errors:
 
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
-- `samples`: objdiff sample objects. No relocations yet; sizes are wrong.

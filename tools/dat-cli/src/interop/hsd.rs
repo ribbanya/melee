@@ -1,10 +1,4 @@
-use anyhow::{Context, Result, bail};
-use object::{
-    Architecture, BinaryFormat, Endianness, SectionKind, SymbolKind,
-    SymbolScope,
-    elf::{STB_GLOBAL, STT_OBJECT, STV_DEFAULT, SymbolInfo, SymbolOther},
-    write::{Object, StandardSegment, Symbol},
-};
+use anyhow::{Result, bail};
 use std::range::Range;
 use winnow::{
     ModalResult, Parser,
@@ -208,82 +202,5 @@ impl<'a> Archive<'a> {
         self.externs
             .iter()
             .filter_map(|e| self.symbol_at(e.symbol).map(|s| (e, s)))
-    }
-
-    const SMALL_DATA_MAX: u64 = 8;
-
-    pub fn to_object(&self) -> Result<Vec<u8>> {
-        dbg!(
-            self.symbols
-                .split(|&b| b == 0) // Split on every null byte
-                .filter(|chunk| !chunk.is_empty()) // Skip empty chunks (e.g., trailing or double nulls)
-                .filter_map(|chunk| str::from_utf8(chunk).ok()) // Convert valid UTF-8/ASCII to &str
-                .collect::<Vec<_>>()
-        );
-        let mut obj = Object::new(
-            BinaryFormat::Elf,
-            Architecture::PowerPc,
-            Endianness::Big,
-        );
-
-        let data = obj.add_section(
-            obj.segment_name(StandardSegment::Data).to_vec(),
-            b".data".to_vec(),
-            SectionKind::Data,
-        );
-        let sdata = obj.add_section(
-            obj.segment_name(StandardSegment::Data).to_vec(),
-            b".sdata".to_vec(),
-            SectionKind::Data,
-        );
-
-        dbg!(self.header);
-        dbg!(self.symbols.len());
-        let mut publics: Vec<_> = self.publics.iter().collect();
-        publics.sort_by_key(|p| p.offset);
-
-        let data_size = self.header.data_size;
-
-        for (i, NamedSymbol { offset, symbol }) in
-            self.publics.iter().chain(self.externs.iter()).enumerate()
-        {
-            let name = self.symbol_at(*symbol).with_context(|| {
-                format!("public at offset {:#x} has no symbol", *offset)
-            })?;
-            let next =
-                publics.get(i + 1).map(|n| n.offset).unwrap_or(data_size);
-            let size = next.saturating_sub(*offset) as u64;
-
-            let start = *offset as usize;
-            let end = start + size as usize;
-            let bytes = &self.data[start..end];
-
-            let section = if size <= Self::SMALL_DATA_MAX {
-                sdata
-            } else {
-                data
-            };
-            obj.append_section_data(section, bytes, 4);
-
-            let section_offset =
-                obj.section(section).data().len() as u64 - size;
-
-            obj.add_symbol(dbg!(Symbol {
-                name: name.to_vec(),
-                value: section_offset,
-                size,
-                kind: SymbolKind::Data,
-                scope: SymbolScope::Compilation,
-                weak: false,
-                section: object::write::SymbolSection::Section(section),
-                flags: object::write::SymbolFlags::Elf {
-                    st_info: SymbolInfo((STB_GLOBAL.0 << 4) + STT_OBJECT.0),
-                    st_other: SymbolOther(STV_DEFAULT.0),
-                },
-            }));
-        }
-
-        // TODO: no anyhow here
-        obj.write().context("writing object")
     }
 }

@@ -99,6 +99,34 @@ as many as fit before the next public symbol or pointer target. Raw data
 (textures, palettes) is typed as `u8[]` or `u16[]`, like the extracted
 blobs in `config.yml`.
 
+## Samples
+
+Archives are too large to diff whole, so each type the walk finds is
+sampled once: the instance with no findings of its own that has the most
+pointers. Both sides are generated, under `build/GALE01/dat` (not
+committed):
+
+- `target/<unit>.o`: the instance's bytes from the archive, with its
+  pointers as relocations to externs named after their targets
+  (`dat_PlMr_1A40`)
+- `src/<unit>.c`: C initializers generated from the current types, compiled
+  to `base/<unit>.o` with the same command as `samples.compile_like`
+
+A unit is the header that declares the types. A pointer the type has as
+an integer is written as its raw value, so objdiff shows the missing
+relocation; so does data in padding, a layout MWCC disagrees with, or a
+float that doesn't round-trip.
+
+```sh
+melee-dat samples build   # regenerate everything
+melee-dat samples report  # samples that don't match
+melee-dat samples list    # which instance stands for each type
+```
+
+To check a type change: edit the header, `cmake --build --preset
+ppc-dwarf`, then `samples build` and `samples report`. The directory is an
+objdiff project, so the objdiff GUI can open it too.
+
 ## Annotations
 
 For what C types can't express. From `libs/doldecomp/include/dat_macros.h`;
@@ -147,4 +175,4 @@ Known problems and coverage gaps are in `TODO.md`.
 - `src/walk.rs`: the walk.
 - `src/coverage.rs`: gap, trailing and unreferenced relocations.
 - `src/symbols.rs`: `dat_symbols.txt`.
-- `samples`: unfinished.
+- `src/samples.rs`: sample selection, target objects and C.

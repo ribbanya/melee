@@ -62,6 +62,17 @@ impl std::fmt::Display for Issue {
 }
 
 impl Issue {
+    /// The walk path of the field it is about.
+    pub fn path(&self) -> &str {
+        match self {
+            Issue::UnrelocatedPointer { path, .. }
+            | Issue::RelocatedScalar { path, .. }
+            | Issue::OutOfBounds { path, .. }
+            | Issue::AmbiguousUnion { path, .. }
+            | Issue::UnknownCommand { path, .. } => path,
+        }
+    }
+
     pub fn kind(&self) -> &'static str {
         match self {
             Issue::UnrelocatedPointer { .. } => "unrelocated pointer",
@@ -87,6 +98,9 @@ pub struct Walk {
     pub objects: BTreeMap<u32, BTreeSet<CanonId>>,
     /// The first path each object was reached by.
     pub paths: BTreeMap<u32, String>,
+    /// The member each tagged union chose, by the union's offset and
+    /// type: an index into its members.
+    pub choices: BTreeMap<(u32, CanonId), usize>,
     /// Relocated words the walk found a pointer field for.
     pub pointers: HashSet<u32>,
     /// Pointers followed to a target of unknown type (`void*`, functions).
@@ -368,7 +382,15 @@ impl<'a> Walker<'a> {
                     return self.scalar(offset, die, path);
                 }
                 let member = match self.choose(members, offset, parent) {
-                    Choice::Member(member) => member,
+                    Choice::Member(member) => {
+                        if let (Some(id), Some(index)) = (
+                            self.canonical.of(die),
+                            members.iter().position(|m| std::ptr::eq(m, member)),
+                        ) {
+                            self.walk.choices.insert((offset, id), index);
+                        }
+                        member
+                    }
                     Choice::Unused => return,
                     // Following a guess could misread everything behind it
                     Choice::Ambiguous => {
