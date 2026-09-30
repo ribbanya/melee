@@ -1,6 +1,7 @@
 #ifndef _SOUNDTEST_H_
 #define _SOUNDTEST_H_
 
+#include <dat_macros.h>
 #include <Runtime/platform.h>
 
 #include <melee/if/forward.h>
@@ -20,13 +21,13 @@ struct SoundTestMenuData {
 /// Symbol table loaded from SmSt.dat
 struct SoundTestLoadData {
     /* 0x00 */ int x0;
-    /* 0x04 */ char** x4;
-    /* 0x08 */ char** x8;
-    /* 0x0C */ char** xC;
+    /* 0x04 */ char** x4 DAT_COUNT(x0);
+    /* 0x08 */ char** x8 DAT_EXTENT;
+    /* 0x0C */ char** xC DAT_COUNT(x10);
     /* 0x10 */ int x10;
-    /* 0x14 */ int* x14;
-    /* 0x18 */ int* x18;
-    /* 0x1C */ char** x1C;
+    /* 0x14 */ int* x14 DAT_COUNT(x10);
+    /* 0x18 */ int* x18 DAT_EXTENT;
+    /* 0x1C */ char** x1C DAT_EXTENT;
 };
 
 #endif
