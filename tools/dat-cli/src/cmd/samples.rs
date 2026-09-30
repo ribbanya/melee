@@ -138,8 +138,12 @@ struct Sidecar {
     /// The archive file, e.g. `PlMr.dat`.
     archive: String,
     samples: Vec<SampleInfo>,
-    /// Everything else the samples point to, by name, with its root.
-    externs: BTreeMap<String, String>,
+    /// The data in the archive the samples point to but that isn't written
+    /// as C, by name, with its root.
+    elided: BTreeMap<String, String>,
+    /// The archive's externs the samples point to: other archives'
+    /// symbols, which the loader links in by name.
+    externs: BTreeSet<String>,
 }
 
 fn sidecar_path(target: &Path) -> PathBuf {
@@ -261,8 +265,12 @@ fn slice(args: Slice) -> Result<()> {
     }
     // The other data the samples point to belongs to the root of the
     // object it is in: the nearest one the walk reached at or before it
-    let mut externs = BTreeMap::new();
+    let mut elided = BTreeMap::new();
+    let mut externs = BTreeSet::new();
     for (sample, source) in &pairs {
+        for (_, name) in source.externs(sample.location.offset, sample.size) {
+            externs.insert(name.to_owned());
+        }
         let paths = &walks[&sample.location.archive].paths;
         for (_, target) in source.relocs(sample.location.offset, sample.size) {
             let name = source.name(target);
@@ -271,7 +279,7 @@ fn slice(args: Slice) -> Result<()> {
                     .range(..=target)
                     .next_back()
                     .map_or("unknown", |(_, path)| root_of(path));
-                externs.entry(name).or_insert_with(|| root.to_owned());
+                elided.entry(name).or_insert_with(|| root.to_owned());
             }
         }
     }
@@ -291,6 +299,7 @@ fn slice(args: Slice) -> Result<()> {
     let sidecar = Sidecar {
         archive: args.archive,
         samples: infos,
+        elided,
         externs,
     };
     fs::write(sidecar_path(&args.output), postcard::to_stdvec(&sidecar)?)?;
@@ -349,6 +358,7 @@ fn codegen(args: Codegen) -> Result<()> {
     let roots = CWriter::new(&graph, &canonical).unit(
         &sidecar.archive,
         &instances,
+        &sidecar.elided,
         &sidecar.externs,
     )?;
 

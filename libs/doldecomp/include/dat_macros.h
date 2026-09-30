@@ -272,4 +272,9 @@ static inline void GXTexCoord1x16(const u16 index)
 /// @}
 #endif
 
+/// Archive data that generated C points to without defining: bulk data such
+/// as images, palettes, vertices and display lists, and objects that aren't
+/// sampled. An incomplete byte array, so only its address can be taken.
+typedef unsigned char DatBlob[];
+
 #endif

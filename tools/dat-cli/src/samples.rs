@@ -141,13 +141,17 @@ pub struct Instance<'a> {
     pub relocs: BTreeMap<u32, String>,
 }
 
+/// A sample's type and variant, and in [`Picker::all`] mode its archive
+/// and offset.
+type PickKey = (String, Vec<String>, Option<(usize, u32)>);
+
 /// Picks the samples from walked archives.
 pub struct Picker<'a> {
     graph: &'a TypeGraph,
     canonical: &'a Canonical,
     renderer: Renderer<'a>,
     /// By type and variant, and in [`Picker::all`] mode by location too.
-    best: BTreeMap<(String, Vec<String>, Option<(usize, u32)>), Sample>,
+    best: BTreeMap<PickKey, Sample>,
     skipped: BTreeMap<String, &'static str>,
     /// Keep every instance, not the best of each type and variant.
     all: bool,
@@ -440,6 +444,8 @@ pub struct Source<'a> {
     /// Offset of the archive in its file; nonzero inside packed files.
     archive_offset: usize,
     relocs: BTreeSet<u32>,
+    /// Words the loader points at other archives' symbols, with their names.
+    externs: BTreeMap<u32, String>,
     /// Public symbols by offset.
     publics: BTreeMap<u32, String>,
 }
@@ -458,8 +464,23 @@ impl<'a> Source<'a> {
             archive,
             archive_offset,
             relocs: archive.relocs.iter().copied().collect(),
+            externs: archive
+                .extern_slots()
+                .into_iter()
+                .map(|(at, name)| {
+                    (at, String::from_utf8_lossy(name).into_owned())
+                })
+                .collect(),
             publics,
         }
+    }
+
+    /// Extern slots in `offset..offset + size`, with the externs' names.
+    pub fn externs(&self, offset: u32, size: u64) -> Vec<(u32, &str)> {
+        self.externs
+            .range(offset..offset + size as u32)
+            .map(|(&at, name)| (at, name.as_str()))
+            .collect()
     }
 
     /// What the data at `offset` is called: its public symbol's name, else
@@ -515,7 +536,13 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
         // Relocated words hold their target in the relocation, as a
         // compiler writes them; the archive's value is only an offset
         let mut bytes = source.bytes(offset, sample.size).to_vec();
-        for (word, _) in source.relocs(offset, sample.size) {
+        // So do the words the loader links to other archives' symbols
+        let externs = source.externs(offset, sample.size);
+        let words = source
+            .relocs(offset, sample.size)
+            .into_iter()
+            .map(|(w, _)| w);
+        for word in words.chain(externs.iter().map(|&(w, _)| w)) {
             let at = (word - offset) as usize;
             bytes[at..at + 4].fill(0);
         }
@@ -532,8 +559,15 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
     }
     for ((sample, source), at) in samples.iter().zip(placed) {
         let offset = sample.location.offset;
-        for (word, target) in source.relocs(offset, sample.size) {
-            let name = source.name(target);
+        let relocs = source
+            .relocs(offset, sample.size)
+            .into_iter()
+            .map(|(word, target)| (word, source.name(target)));
+        let externs = source
+            .externs(offset, sample.size)
+            .into_iter()
+            .map(|(word, name)| (word, name.to_owned()));
+        for (word, name) in relocs.chain(externs) {
             let id = *symbols.entry(name.clone()).or_insert_with(|| {
                 obj.add_symbol(symbol(name, SymbolSection::Undefined, 0, 0))
             });
@@ -552,6 +586,10 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
     }
     Ok(obj.write()?)
 }
+
+/// A root's samples, the archive externs it declares, and the elided data
+/// it declares.
+type RootParts<'i, 'n> = (Vec<&'i Instance<'i>>, Vec<&'n str>, Vec<&'n str>);
 
 /// A root's generated C, named after it.
 pub struct RootFiles {
@@ -590,18 +628,30 @@ impl<'a> CWriter<'a> {
 
     /// A unit's C, one root at a time: its header, declaring the root's
     /// samples, and its source, defining them.
-    /// `externs` are the other data the samples point to, by name, with
-    /// their roots; they are declared as bytes.
+    /// `elided` is the other data in the archive the samples point to, by
+    /// name, with its root; `externs` are the archive's externs they point
+    /// to, which the first root pointing to each declares. Both are
+    /// declared as #DatBlob.
     pub fn unit(
         &self,
         archive: &str,
         instances: &[Instance],
-        externs: &BTreeMap<String, String>,
+        elided: &BTreeMap<String, String>,
+        externs: &BTreeSet<String>,
     ) -> Result<Vec<RootFiles>> {
+        let mut linked: BTreeMap<&str, &str> = BTreeMap::new();
+        for inst in instances {
+            for name in inst.relocs.values() {
+                if let Some(name) = externs.get(name) {
+                    linked.entry(name).or_insert(inst.info.root.as_str());
+                }
+            }
+        }
         let owners: BTreeMap<&str, &str> = instances
             .iter()
             .map(|i| (i.info.symbol.as_str(), i.info.root.as_str()))
-            .chain(externs.iter().map(|(n, r)| (n.as_str(), r.as_str())))
+            .chain(elided.iter().map(|(n, r)| (n.as_str(), r.as_str())))
+            .chain(linked.iter().map(|(&n, &r)| (n, r)))
             .collect();
         let mut samples = BTreeMap::new();
         for inst in instances {
@@ -611,8 +661,7 @@ impl<'a> CWriter<'a> {
             }
         }
         *self.samples.borrow_mut() = samples;
-        let mut roots: BTreeMap<&str, (Vec<&Instance>, Vec<&str>)> =
-            BTreeMap::new();
+        let mut roots: BTreeMap<&str, RootParts> = BTreeMap::new();
         for inst in instances {
             roots
                 .entry(inst.info.root.as_str())
@@ -620,19 +669,23 @@ impl<'a> CWriter<'a> {
                 .0
                 .push(inst);
         }
-        for (name, root) in externs {
+        for (name, root) in elided {
             roots
                 .entry(root.as_str())
                 .or_default()
-                .1
+                .2
                 .push(name.as_str());
+        }
+        for (&name, &root) in &linked {
+            roots.entry(root).or_default().1.push(name);
         }
         roots
             .into_iter()
-            .map(|(root, (instances, bytes))| {
+            .map(|(root, (instances, linked, elided))| {
                 Ok(RootFiles {
                     name: file_name(root),
-                    header: self.header(archive, root, &instances, &bytes)?,
+                    header: self
+                        .header(archive, root, &instances, &linked, &elided)?,
                     source: if instances.is_empty() {
                         None
                     } else {
@@ -650,7 +703,8 @@ impl<'a> CWriter<'a> {
         archive: &str,
         root: &str,
         instances: &[&Instance],
-        bytes: &[&str],
+        linked: &[&str],
+        elided: &[&str],
     ) -> Result<String> {
         let guard = format!("DAT_{}_H", file_name(root).to_uppercase());
         let mut out = format!(
@@ -664,6 +718,7 @@ impl<'a> CWriter<'a> {
                 "#ifndef {guard}\n",
                 "#define {guard}\n\n",
                 "#include <Runtime/platform.h>\n",
+                "#include <dat_macros.h>\n",
             ),
             root = root,
             archive = archive,
@@ -674,14 +729,45 @@ impl<'a> CWriter<'a> {
         for header in headers {
             writeln!(out, "#include <{header}>")?;
         }
-        out.push('\n');
-        for inst in instances {
-            let info = inst.info;
-            writeln!(out, "extern {} {};", info.type_name, info.symbol)?;
-        }
-        for name in bytes {
-            writeln!(out, "extern u8 {name}[];")?;
-        }
+        // Each kind of declaration as a Doxygen member group
+        let mut group = |name: &str, doc: &str, lines: Vec<String>| {
+            if lines.is_empty() {
+                return Ok(());
+            }
+            write!(out, "\n/**\n * @name {name}\n * {doc}\n * @{{\n */\n")?;
+            for line in lines {
+                writeln!(out, "{line}")?;
+            }
+            writeln!(out, "/// @}}")
+        };
+        group(
+            "Samples",
+            &format!("Defined in `{}.c`.", file_name(root)),
+            instances
+                .iter()
+                .map(|i| {
+                    format!("extern {} {};", i.info.type_name, i.info.symbol)
+                })
+                .collect(),
+        )?;
+        group(
+            "Externs",
+            "Other archives' symbols the samples point to, which the loader \
+             links in by name.",
+            linked
+                .iter()
+                .map(|n| format!("extern DatBlob {n};"))
+                .collect(),
+        )?;
+        group(
+            "Elided",
+            "Data in this archive the samples point to that isn't written as \
+             C.",
+            elided
+                .iter()
+                .map(|n| format!("extern DatBlob {n};"))
+                .collect(),
+        )?;
         writeln!(out, "\n#endif")?;
         Ok(out)
     }
