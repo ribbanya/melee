@@ -67,6 +67,7 @@ melee-dat symbols coverage --by public        # public symbols with no type
 melee-dat symbols coverage -a 'Pl??.dat'      # only matching archives
 melee-dat symbols coverage -a PlMr.dat --list # every unexplained relocation
 melee-dat symbols coverage --format json      # everything, like objdiff's report.json
+melee-dat symbols coverage --format markdown  # the tables, for a PR or issue
 ```
 
 `--top N` limits table rows (default 25, 0 for all). The JSON report has
