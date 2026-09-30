@@ -515,6 +515,9 @@ pub struct CWriter<'a> {
     graph: &'a TypeGraph,
     canonical: &'a Canonical,
     renderer: Renderer<'a>,
+    /// The unit's samples' types, by symbol, so pointers to them need no
+    /// cast.
+    samples: std::cell::RefCell<BTreeMap<String, CanonId>>,
 }
 
 impl<'a> CWriter<'a> {
@@ -523,6 +526,7 @@ impl<'a> CWriter<'a> {
             graph,
             canonical,
             renderer: Renderer::new(graph, canonical),
+            samples: Default::default(),
         }
     }
 
@@ -533,12 +537,22 @@ impl<'a> CWriter<'a> {
             .iter()
             .map(|i| (i.info.symbol.as_str(), i.info.type_name.as_str()))
             .collect();
-        let mut externs = BTreeSet::new();
+        let mut samples = BTreeMap::new();
+        for inst in instances {
+            let die = self.resolve(self.die_of(inst.info)?);
+            if let Some(id) = self.canonical.of(die) {
+                samples.insert(inst.info.symbol.clone(), id);
+            }
+        }
+        *self.samples.borrow_mut() = samples;
+        // What the pointers name, in the order they first do
+        let mut referenced = Vec::new();
+        let mut seen = BTreeSet::new();
         let mut defs = String::new();
         for inst in instances {
             for name in inst.relocs.values() {
-                if !defined.contains_key(name.as_str()) {
-                    externs.insert(name.as_str());
+                if seen.insert(name.as_str()) {
+                    referenced.push(name.as_str());
                 }
             }
             let die = self.die_of(inst.info)?;
@@ -562,14 +576,17 @@ impl<'a> CWriter<'a> {
             writeln!(out, "#include <{header}>")?;
         }
         out.push('\n');
-        // Samples point to each other, so all are declared first
-        for (name, type_name) in &defined {
-            writeln!(out, "extern {type_name} {name};")?;
+        // Everything a pointer names, before the definitions: samples as
+        // their types, other data as bytes
+        for name in &referenced {
+            match defined.get(name) {
+                Some(type_name) => writeln!(out, "extern {type_name} {name};")?,
+                None => writeln!(out, "extern u8 {name}[];")?,
+            }
         }
-        for name in externs {
-            writeln!(out, "extern u8 {name}[];")?;
+        if !referenced.is_empty() {
+            out.push('\n');
         }
-        out.push('\n');
         out.push_str(&defs);
         Ok(out)
     }
@@ -703,8 +720,13 @@ impl<'a> CWriter<'a> {
                     let at = offset + member.offset.unwrap_or(0) as u32;
                     self.value(out, inst, ty, at, depth + 1)?;
                 }
+                // A trailing comma lays the sample's members out one per
+                // line when the C is formatted. clang-format leaves an
+                // initializer alone if a nested one has one too
                 if first {
                     out.push('0');
+                } else if depth == 0 {
+                    out.push(',');
                 }
                 out.push('}');
             }
@@ -759,11 +781,20 @@ impl<'a> CWriter<'a> {
                 }
                 out.push('}');
             }
-            TypeKind::Pointer { .. } => {
+            TypeKind::Pointer { target: pointee } => {
                 let cast = self.renderer.declare(Some(spelled), "");
                 let value = word_at(inst.bytes, offset);
                 if let Some(target) = inst.relocs.get(&offset) {
-                    write!(out, "({cast}) &{target}")?;
+                    // A sample of the pointee's own type needs no cast
+                    let pointee = pointee
+                        .map(|p| self.resolve(p))
+                        .and_then(|p| self.canonical.of(p));
+                    let same = pointee.is_some()
+                        && self.samples.borrow().get(target) == pointee.as_ref();
+                    match same {
+                        true => write!(out, "&{target}")?,
+                        false => write!(out, "({cast}) &{target}")?,
+                    }
                 } else if value == 0 {
                     out.push_str("NULL");
                 } else {

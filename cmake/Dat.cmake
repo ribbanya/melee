@@ -16,6 +16,11 @@ set(MELEE_DAT_FILES "${CMAKE_SOURCE_DIR}/orig/${MELEE_VERSION}/files"
 set(_dat_config "${CMAKE_SOURCE_DIR}/config/${MELEE_VERSION}/dat.yml")
 set(_dat_symbols "${CMAKE_SOURCE_DIR}/config/${MELEE_VERSION}/dat_symbols.txt")
 
+# The generated C is formatted like the repository's; clang-format comes
+# with the clang that compiles it
+get_filename_component(_dat_llvm_bin "${CMAKE_C_COMPILER}" DIRECTORY)
+find_program(MELEE_CLANG_FORMAT clang-format HINTS "${_dat_llvm_bin}" REQUIRED)
+
 # The tool
 if(MELEE_DAT)
     set(_dat_tool "${MELEE_DAT}")
@@ -57,11 +62,13 @@ $<JOIN:$<FILTER:$<TARGET_PROPERTY:melee,COMPILE_OPTIONS>,EXCLUDE,^-g|^-fdebug-ma
 file(GLOB _dat_archives CONFIGURE_DEPENDS "${MELEE_DAT_FILES}/*.dat")
 set(_dat_sidecars)
 set(_dat_bases)
+set(_dat_commands)
 foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_file "${_archive}" NAME)
     get_filename_component(_unit "${_archive}" NAME_WE)
     set(_target "target/${_unit}.o")
     set(_sidecar "target/${_unit}.samples")
+    set(_generated "gen/${_unit}.c")
     set(_source "src/${_unit}.c")
     set(_base "base/${_unit}.o")
 
@@ -76,11 +83,20 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_source}"
+        OUTPUT "${_generated}"
         COMMAND "${_dat_tool}" samples codegen "${_target}" --types types.bin
-            -o "${_source}"
+            -o "${_generated}"
         DEPENDS "${_target}" "${_sidecar}" types.bin "${_dat_tool}"
-        COMMENT "Generating ${_source}"
+        COMMENT "Generating ${_generated}"
+        VERBATIM
+    )
+    add_custom_command(
+        OUTPUT "${_source}"
+        COMMAND "${CMAKE_COMMAND}" -E copy "${_generated}" "${_source}"
+        COMMAND "${MELEE_CLANG_FORMAT}"
+            "--style=file:${CMAKE_SOURCE_DIR}/.clang-format" -i "${_source}"
+        DEPENDS "${_generated}" "${CMAKE_SOURCE_DIR}/.clang-format"
+        COMMENT "Formatting ${_source}"
         VERBATIM
     )
     add_custom_command(
@@ -94,7 +110,17 @@ foreach(_archive IN LISTS _dat_archives)
     )
     list(APPEND _dat_sidecars "${_sidecar}")
     list(APPEND _dat_bases "${_base}")
+    list(APPEND _dat_commands "  {
+    \"directory\": \"${CMAKE_CURRENT_BINARY_DIR}\",
+    \"file\": \"${CMAKE_CURRENT_BINARY_DIR}/${_source}\",
+    \"arguments\": [\"${CMAKE_C_COMPILER}\", \"@${_dat_flags}\", \"-c\", \"${_source}\", \"-o\", \"${_base}\"]
+  }")
 endforeach()
+
+# The same commands for clangd, which looks for the nearest
+# compile_commands.json above a source
+list(JOIN _dat_commands ",\n" _dat_commands)
+file(GENERATE OUTPUT compile_commands.json CONTENT "[\n${_dat_commands}\n]\n")
 
 # The only step that sees every unit
 add_custom_command(
