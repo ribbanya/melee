@@ -128,17 +128,9 @@
               inherit melee-dwarf;
             };
 
-            # melee-dtk with the .dat samples in its objdiff project and
-            # report
-            melee-dat-samples = melee-dtk.override {
-              inherit
-                melee-dat
-                melee-dwarf
-                dat-files
-                aurora-src
-                ;
-              clang = pkgs.llvmPackages_22.clang-unwrapped;
-              inherit (pkgs.pkgsCross.ppc-embedded) newlib;
+            # The DWARF build with samples of the .dat archives' types
+            melee-dat-samples = melee-dwarf.override {
+              inherit melee-dat dat-files;
             };
 
             melee-docs =
@@ -177,7 +169,7 @@
               pkgs.ninja
               pkgs.llvmPackages_22.clang-unwrapped
               pkgs.llvmPackages_22.bintools-unwrapped
-              # For tools/dat-cli and configure.py --dat-dwarf
+              # For tools/dat-cli and the dat CMake preset
               pkgs.cargo
               pkgs.rustc
               objdiff

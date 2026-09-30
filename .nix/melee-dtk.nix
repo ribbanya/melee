@@ -10,22 +10,7 @@
   wibo,
   main-dol,
   sjiswrap,
-  # Sample the .dat archives' types too (configure.py --dat-dwarf): the
-  # melee-dat tool, the DWARF build of the game, orig/GALE01/files, and
-  # what compiles the samples like the DWARF build
-  melee-dat ? null,
-  melee-dwarf ? null,
-  dat-files ? null,
-  clang ? null,
-  aurora-src ? null,
-  newlib ? null,
 }:
-let
-  withDat = melee-dat != null;
-in
-assert
-  withDat
-  -> melee-dwarf != null && dat-files != null && clang != null && aurora-src != null && newlib != null;
 stdenvNoCC.mkDerivation (finalAttrs: {
   name = "doldecomp-melee";
 
@@ -48,9 +33,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   postPatch = ''
     ln -sfT ${mwcc}/GC tools/mwcc_compiler
     ln -sfT ${main-dol} orig/GALE01/sys/main.dol
-  ''
-  + lib.optionalString withDat ''
-    ln -sfT ${dat-files} orig/GALE01/files
   '';
 
   nativeBuildInputs = [
@@ -59,13 +41,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ninja
     python3
     wibo
-  ]
-  ++ lib.optional withDat clang;
-
-  env = lib.optionalAttrs withDat {
-    AURORA_SRC = "${aurora-src}";
-    NEWLIB_INCLUDE = "${newlib}/powerpc-none-eabi/include";
-  };
+  ];
 
   configurePhase = ''
     runHook preConfigure
@@ -80,10 +56,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     "--binutils=${devkitppc}/bin"
     "--sjiswrap=${sjiswrap}"
     "--compilers=${mwcc}"
-  ]
-  ++ lib.optionals withDat [
-    "--melee-dat=${melee-dat}/bin/melee-dat"
-    "--dat-dwarf=${melee-dwarf}/melee.elf"
   ];
 
   installPhase = ''

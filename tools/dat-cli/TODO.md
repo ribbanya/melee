@@ -2,13 +2,7 @@
 
 ## Samples
 
-- Samples are built by clang, like the DWARF, so they don't check that
-  MWCC lays the types out the same way. The DWARF build's headers (aurora
-  in console mode) stand in for the game's. No difference is known: every
-  sample that compiled under MWCC matched there too, apart from unions C89
-  couldn't initialize. A direct check would compile a table of
-  `sizeof`/`offsetof` for every sampled type with both compilers and
-  compare.
+- `PlSs` `x352D8` (66.7%) and `PlGw` `x78F0` (85.7%) don't match.
 - Types declared in `.c` files can't be included, so they have no samples
   (the `*_YakumonoParam` structs, several loader tables). Move them to
   headers.

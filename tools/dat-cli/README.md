@@ -102,51 +102,46 @@ blobs in `config.yml`.
 
 ## Samples
 
-Archives are too large to diff whole, so each type the walk finds is
-sampled once per variant its tagged unions choose: the instance with no
-findings of its own that has the most pointers. It is an optional part of
-the build, in the dev shell (it needs `clang`, `AURORA_SRC` and
-`NEWLIB_INCLUDE`, like the CMake presets):
+Samples check that the types explain the archives' data. Each archive is a
+unit: its best-typed instance of each type (and of each variant its tagged
+unions choose) is sliced into a target object, and C generated from the
+current types must compile to the same bytes and relocations.
+
+They build in their own CMake preset, in the dev shell:
 
 ```sh
-./configure.py --dat-dwarf build/ppc-dwarf/melee.elf
-ninja
+cmake --preset dat
+cmake --build --preset dat
+melee-dat samples report build/GALE01/dat
 ```
 
-Ninja then generates both sides under `build/GALE01/dat` (not committed),
-one unit per archive that has a sample:
+`build/GALE01/dat` holds everything, and is an objdiff project:
 
-- `target/<archive>.o`: each instance's bytes from the archive, with its
-  pointers as relocations
-- `src/<archive>.c`: designated initializers generated from the current
-  types, compiled to `base/<archive>.o` with clang like the DWARF build
+- `melee.elf`: the DWARF build for that game version
+- `types.bin`: its types, deduplicated once for every step
+- `target/<archive>.o`: the sampled objects from the archive, named as the
+  archive names them (its public symbol, else `x<OFFSET>`), with pointers as
+  relocations; `target/<archive>.samples` says what each is
+- `src/<archive>.c`: designated initializers generated from the types
+- `base/<archive>.o`: that C, compiled with the DWARF build's flags
 
-Both sides name an object as the archive does: its public symbol, else
-`x<OFFSET>`. Units join the root objdiff project as `dat/<archive>`, next
-to the DOL's `main/` units.
+Each unit is three steps (`samples slice`, `samples codegen`, compile), and
+`samples project` writes `objdiff.json` from all of them. The archives come
+from `orig/GALE01/files` (`MELEE_DAT_FILES`); `MELEE_DAT` takes a prebuilt
+`melee-dat`, else the build compiles it with cargo.
 
 A pointer the type has as an integer is written as its raw value, so
 objdiff shows the missing relocation; so does data in padding, or a float
 that doesn't round-trip. A union is written through the member its tag
-chose. A union object is declared as that member (`typeof(((union U *)
-0)->member)`): the archive only holds that member's bytes. The base is
-built by the compiler the DWARF comes from, so this checks that the types
-explain the data, not MWCC's layout of them.
-
-```sh
-melee-dat samples report  # samples that don't match
-melee-dat samples list    # which instance stands for each type
-```
+chose; a union object is declared as that member (`typeof(((union U *)
+0)->member)`), since the archive only holds that member's bytes.
 
 Use `samples report` for the verdict: objdiff's own report measures data
-per section and misses relocation differences.
+per section and misses relocation differences. To check a type change, edit
+the header and rebuild the preset.
 
-To check a type change: edit the header, `cmake --build --preset
-ppc-dwarf`, then `ninja` and `samples report`.
-
-`--melee-dat` takes a prebuilt `melee-dat`; by default ninja builds it with
-cargo. In nix, `melee-dat-samples` is `melee-dtk` with the samples, given
-the game's files in the store:
+In nix, `melee-dat-samples` is the same build, given the game's files in the
+store:
 
 ```sh
 nix store add --name melee-GALE01-files orig/GALE01/files
