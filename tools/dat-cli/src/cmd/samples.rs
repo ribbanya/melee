@@ -376,11 +376,16 @@ fn slice(args: Slice) -> Result<()> {
     for info in &infos {
         script += &format!("        *(.data.{})\n", info.symbol);
     }
-    script += "        *(.data .data.*)\n    }\n";
-    // Constants from the headers, which the base object keeps with the
-    // samples' unreferenced `static`s; the target has none. A sample
-    // pointing into them fails to link
-    script += "    /DISCARD/ : { *(.rodata .rodata.*) }\n}\n";
+    script += "    }\n";
+    // Only the samples: the base object also keeps the headers' `static`
+    // variables with the samples' unreferenced ones, which the target has
+    // none of. A sample pointing into them fails to link
+    script += concat!(
+        "    /DISCARD/ : {\n",
+        "        *(.data .data.* .sdata .sdata.* .bss .bss.* .sbss .sbss.*)\n",
+        "        *(.rodata .rodata.* .sdata2 .sdata2.* .text .text.*)\n",
+        "    }\n}\n",
+    );
     fs::write(args.output.with_extension("ld"), script)?;
     let sidecar = Sidecar {
         archive: args.archive,
