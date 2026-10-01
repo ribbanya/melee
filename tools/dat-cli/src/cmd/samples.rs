@@ -406,15 +406,7 @@ fn slice(args: Slice) -> Result<()> {
     for info in &infos {
         script += &format!("        *(.data.{})\n", info.symbol);
     }
-    script += "    }\n";
-    // Only the samples, should the headers define anything; the target has
-    // nothing else. A sample pointing into the rest fails to link
-    script += concat!(
-        "    /DISCARD/ : {\n",
-        "        *(.data .data.* .sdata .sdata.* .bss .bss.* .sbss .sbss.*)\n",
-        "        *(.rodata .rodata.* .sdata2 .sdata2.* .text .text.*)\n",
-        "    }\n}\n",
-    );
+    script += "        *(.data .data.*)\n    }\n}\n";
     fs::write(args.output.with_extension("ld"), script)?;
     let sidecar = Sidecar {
         archive: args.archive,
