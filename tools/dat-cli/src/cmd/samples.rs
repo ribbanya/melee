@@ -376,17 +376,12 @@ fn slice(args: Slice) -> Result<()> {
     for info in &infos {
         script += &format!("        *(.data.{})\n", info.symbol);
     }
-    script += "        *(.data .data.*)\n    }\n}\n";
+    script += "        *(.data .data.*)\n    }\n";
+    // Constants from the headers, which the base object keeps with the
+    // samples' unreferenced `static`s; the target has none. A sample
+    // pointing into them fails to link
+    script += "    /DISCARD/ : { *(.rodata .rodata.*) }\n}\n";
     fs::write(args.output.with_extension("ld"), script)?;
-    // The symbols the linked base object keeps global, as in the target:
-    // the archive's names. C can't define the others as `static`, which
-    // clang drops when nothing in the unit points to them
-    let globals: String = infos
-        .iter()
-        .filter(|i| i.public)
-        .map(|i| format!("{}\n", i.symbol))
-        .collect();
-    fs::write(args.output.with_extension("globals"), globals)?;
     let sidecar = Sidecar {
         archive: args.archive,
         samples: infos,

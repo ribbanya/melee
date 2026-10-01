@@ -77,7 +77,8 @@ add_custom_command(
 )
 
 # How the base objects are compiled: the DWARF build's own flags, without
-# its debug information
+# its debug information. The data the archive doesn't name is `static`, and
+# kept where nothing in the unit points to it, as in the target
 set(_dat_flags "${CMAKE_CURRENT_BINARY_DIR}/clang.rsp")
 file(GENERATE OUTPUT "${_dat_flags}" CONTENT "\
 --target=${CMAKE_C_COMPILER_TARGET}
@@ -87,6 +88,7 @@ file(GENERATE OUTPUT "${_dat_flags}" CONTENT "\
 $<JOIN:$<FILTER:$<TARGET_PROPERTY:melee,COMPILE_OPTIONS>,EXCLUDE,^-g|^-fdebug-macro$|^-fno-eliminate-unused-debug-types$>,\n>
 -w
 -fno-zero-initialized-in-bss
+-fkeep-persistent-storage-variables
 ")
 
 file(GLOB _dat_archives CONFIGURE_DEPENDS "${MELEE_DAT_FILES}/*.dat")
@@ -100,7 +102,6 @@ foreach(_archive IN LISTS _dat_archives)
     set(_sidecar "target/${_unit}.samples")
     set(_types "metadata/${_unit}.types")
     set(_layout "target/${_unit}.ld")
-    set(_globals "target/${_unit}.globals")
     set(_object "obj/${_unit}.o")
     set(_source "src/${_unit}.c")
     set(_formatted "metadata/${_unit}.formatted")
@@ -125,7 +126,7 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_target}" "${_sidecar}" "${_layout}" "${_globals}"
+        OUTPUT "${_target}" "${_sidecar}" "${_layout}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
             --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
@@ -160,17 +161,13 @@ foreach(_archive IN LISTS _dat_archives)
         BYPRODUCTS "${_object}"
         # Each sample in its own section, then linked into .data in the
         # target's order: clang lays variables out where an initializer
-        # first points to them. Only the archive's names stay global, as
-        # in the target
+        # first points to them
         COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -fdata-sections
             -MD -MF "${_base}.d" -MT "${_base}"
             -c "${_source}" -o "${_object}"
         COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}"
             -o "${_base}"
-        COMMAND "${CMAKE_OBJCOPY}" "--keep-global-symbols=${_globals}"
-            "${_base}"
-        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_globals}"
-            "${_dat_flags}"
+        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_dat_flags}"
         DEPFILE "${_base}.d"
         COMMENT "Compiling ${_source}"
         VERBATIM
