@@ -153,8 +153,9 @@ Data is named as the archive names it (its public symbols, global in both
 objects). Everything else is `static`, local to the unit, named after the
 field the walk first reached it through, then its offset: `child_x1A0`,
 `x1C_4_x2818`.
-Data the samples point to that isn't written as C (elided, declared as
-`DatBlob` arrays) can't be local, so its name starts with its root, e.g.
+Data the samples point to that isn't written as C (elided: declared as its
+type where the walk typed it as one record, else as a `DatBlob` array)
+can't be local, so its name starts with its root, e.g.
 `ftDataMario_x0_common_attr_x3AC8`. Externs, other archives' symbols the
 loader links in, start with the unit's name (`GrFz_<extern>` in
 `GrFz.dat`).

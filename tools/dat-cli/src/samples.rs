@@ -145,6 +145,19 @@ pub struct Instance<'a> {
     pub relocs: BTreeMap<u32, String>,
 }
 
+/// An object's type as C declares it, from [`Picker::describe`].
+pub struct Typed {
+    /// The record's DIE, or the member's for a union object.
+    pub die: DieId,
+    pub type_name: String,
+    pub lookup: String,
+    pub member: Option<String>,
+    pub header: String,
+    pub size: u64,
+    /// The type and the union member, for telling samples apart.
+    pub key: String,
+}
+
 /// A sample's type and variant, and in [`Picker::all`] mode its archive
 /// and offset.
 type PickKey = (String, Vec<String>, Option<(usize, u32)>);
@@ -198,78 +211,28 @@ impl<'a> Picker<'a> {
             let [id] = types.iter().copied().collect::<Vec<_>>()[..] else {
                 continue;
             };
-            let die = self.canonical.get(id).rep;
-            let ty = &self.graph.types[&die];
-            if !matches!(ty.kind, TypeKind::Record { .. }) {
-                continue;
-            }
-            let mut type_name = self.renderer.declare(Some(die), "");
-            let mut lookup = ty
-                .name
-                .map(|n| self.graph.str(n).to_owned())
-                .unwrap_or_default();
-            let mut decl_file = ty.decl_file;
-            // An anonymous record is named by its typedef, e.g. `Vec2`
-            if ty.name.is_none() {
-                match self.typedef_of(id) {
-                    Some(typedef) => {
-                        let typedef = &self.graph.types[&typedef];
-                        type_name = typedef.name.map_or(type_name, |n| {
-                            self.graph.str(n).to_owned()
-                        });
-                        lookup = type_name.clone();
-                        decl_file = typedef.decl_file;
-                    }
-                    None => {
-                        self.skipped.insert(type_name, "anonymous");
-                        continue;
-                    }
-                }
-            }
-            let Some(header) =
-                decl_file.and_then(|f| header(self.graph.str(f)))
-            else {
-                self.skipped.insert(type_name, "not declared in a header");
-                continue;
-            };
-            // What each tagged union inside chose, by offset and type
-            let mut die = die;
-            let mut key_name = type_name.clone();
-            let mut member_name = None;
-            if let TypeKind::Record {
-                union: true,
-                members,
-                ..
-            } = &ty.kind
-            {
-                // A union object is the member its tag chose: the archive
-                // only holds that member's bytes, and other data follows
-                let member = walk
-                    .choices
-                    .get(&(offset, id))
-                    .and_then(|&i| members.get(i));
-                let Some((member, member_ty)) =
-                    member.and_then(|m| Some((m, m.ty?)))
-                else {
-                    self.skipped
-                        .entry(type_name)
-                        .or_insert("a union no tag chooses a member of");
+            let typed = match self.describe(id, offset, walk) {
+                Ok(typed) => typed,
+                Err(Some((type_name, reason))) => {
+                    self.skipped.entry(type_name).or_insert(reason);
                     continue;
-                };
-                let name = member.name.map_or("?", |n| self.graph.str(n));
-                key_name = format!("{type_name}.{name}");
-                type_name = format!("typeof((({type_name} *) 0)->{name})");
-                member_name = Some(name.to_owned());
-                die = member_ty;
-            }
+                }
+                Err(None) => continue,
+            };
+            let Typed {
+                die,
+                type_name,
+                lookup,
+                member: member_name,
+                header,
+                size,
+                key: key_name,
+            } = typed;
             if self.exclude.is_match(&key_name)
                 || self.exclude.is_match(&lookup)
             {
                 continue;
             }
-            let Some(size) = self.member_size(die) else {
-                continue;
-            };
             let end = offset as u64 + size;
             if size == 0 || end > archive.data.len() as u64 {
                 continue;
@@ -340,6 +303,83 @@ impl<'a> Picker<'a> {
                 self.best.insert(key, candidate);
             }
         }
+    }
+
+    /// How C declares an object the walk typed as `id`: a record declared
+    /// in a header, or the member a union object's tag chose. `Err` with
+    /// the type and why not, or `None` where it isn't a record.
+    pub fn describe(
+        &self,
+        id: CanonId,
+        offset: u32,
+        walk: &Walk,
+    ) -> Result<Typed, Option<(String, &'static str)>> {
+        let die = self.canonical.get(id).rep;
+        let ty = &self.graph.types[&die];
+        if !matches!(ty.kind, TypeKind::Record { .. }) {
+            return Err(None);
+        }
+        let mut type_name = self.renderer.declare(Some(die), "");
+        let mut lookup = ty
+            .name
+            .map(|n| self.graph.str(n).to_owned())
+            .unwrap_or_default();
+        let mut decl_file = ty.decl_file;
+        // An anonymous record is named by its typedef, e.g. `Vec2`
+        if ty.name.is_none() {
+            let Some(typedef) = self.typedef_of(id) else {
+                return Err(Some((type_name, "anonymous")));
+            };
+            let typedef = &self.graph.types[&typedef];
+            type_name = typedef
+                .name
+                .map_or(type_name, |n| self.graph.str(n).to_owned());
+            lookup = type_name.clone();
+            decl_file = typedef.decl_file;
+        }
+        let Some(header) = decl_file.and_then(|f| header(self.graph.str(f)))
+        else {
+            return Err(Some((type_name, "not declared in a header")));
+        };
+        let mut die = die;
+        let mut key = type_name.clone();
+        let mut member_name = None;
+        if let TypeKind::Record {
+            union: true,
+            members,
+            ..
+        } = &ty.kind
+        {
+            // A union object is the member its tag chose: the archive only
+            // holds that member's bytes, and other data follows
+            let member = walk
+                .choices
+                .get(&(offset, id))
+                .and_then(|&i| members.get(i));
+            let Some((member, member_ty)) =
+                member.and_then(|m| Some((m, m.ty?)))
+            else {
+                return Err(Some((
+                    type_name,
+                    "a union no tag chooses a member of",
+                )));
+            };
+            let name = member.name.map_or("?", |n| self.graph.str(n));
+            key = format!("{type_name}.{name}");
+            type_name = format!("typeof((({type_name} *) 0)->{name})");
+            member_name = Some(name.to_owned());
+            die = member_ty;
+        }
+        let size = self.member_size(die).ok_or(None)?;
+        Ok(Typed {
+            die,
+            type_name,
+            lookup,
+            member: member_name,
+            header,
+            size,
+            key,
+        })
     }
 
     /// What codegen needs to know about a sample, by name.
@@ -709,7 +749,8 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
     Ok(obj.write()?)
 }
 
-/// Data the samples point to that isn't written as C.
+/// Data the samples point to that isn't written as C: declared, as its type
+/// or as bytes.
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct Elided {
     /// The root it belongs to: its header declares it.
@@ -717,12 +758,23 @@ pub struct Elided {
     /// Its type's size where the walk typed it, else up to where the next
     /// object, public symbol or pointer target starts.
     pub size: u32,
+    /// Its type where the walk typed it as one record; else it's bytes.
+    pub ty: Option<ElidedType>,
+}
+
+/// An elided object's type, declared like a sample's.
+#[derive(serde::Serialize, serde::Deserialize)]
+pub struct ElidedType {
+    pub type_name: String,
+    pub lookup: String,
+    pub member: Option<String>,
+    pub header: String,
 }
 
 /// A root's samples, the archive externs it declares, and the elided data
 /// it declares.
 type RootParts<'i, 'n> =
-    (Vec<&'i Instance<'i>>, Vec<&'n str>, Vec<(&'n str, u32)>);
+    (Vec<&'i Instance<'i>>, Vec<&'n str>, Vec<(&'n str, &'n Elided)>);
 
 /// A root's generated C, named after it.
 pub struct RootFiles {
@@ -744,8 +796,8 @@ pub struct CWriter<'a> {
     graph: &'a TypeGraph,
     canonical: &'a Canonical,
     renderer: Renderer<'a>,
-    /// The unit's samples' types, by symbol, so pointers to them need no
-    /// cast.
+    /// The types of the unit's samples and typed elided data, by symbol,
+    /// so pointers to them need no cast.
     samples: std::cell::RefCell<BTreeMap<String, CanonId>>,
 }
 
@@ -787,10 +839,20 @@ impl<'a> CWriter<'a> {
             .chain(linked.iter().map(|(&n, &r)| (n, r)))
             .collect();
         let mut samples = BTreeMap::new();
-        for inst in instances {
-            let die = self.resolve(self.die_of(inst.info)?);
+        let typed = instances
+            .iter()
+            .map(|i| {
+                let info = i.info;
+                (&info.symbol, &info.lookup, &info.member)
+            })
+            .chain(elided.iter().filter_map(|(name, e)| {
+                let ty = e.ty.as_ref()?;
+                Some((name, &ty.lookup, &ty.member))
+            }));
+        for (symbol, lookup, member) in typed {
+            let die = self.resolve(self.die_of(symbol, lookup, member)?);
             if let Some(id) = self.canonical.of(die) {
-                samples.insert(inst.info.symbol.clone(), id);
+                samples.insert(symbol.clone(), id);
             }
         }
         *self.samples.borrow_mut() = samples;
@@ -807,7 +869,7 @@ impl<'a> CWriter<'a> {
                 .entry(e.root.as_str())
                 .or_default()
                 .2
-                .push((name.as_str(), e.size));
+                .push((name.as_str(), e));
         }
         for (&name, &root) in &linked {
             roots.entry(root).or_default().1.push(name);
@@ -837,7 +899,7 @@ impl<'a> CWriter<'a> {
         root: &str,
         instances: &[&Instance],
         linked: &[&str],
-        elided: &[(&str, u32)],
+        elided: &[(&str, &Elided)],
     ) -> Result<String> {
         let guard = format!("DAT_{}_H", file_name(root).to_uppercase());
         let mut out = format!(
@@ -857,8 +919,11 @@ impl<'a> CWriter<'a> {
             archive = archive,
             guard = guard,
         );
-        let headers: BTreeSet<&str> =
-            instances.iter().map(|i| i.info.header.as_str()).collect();
+        let headers: BTreeSet<&str> = instances
+            .iter()
+            .map(|i| i.info.header.as_str())
+            .chain(elided.iter().filter_map(|(_, e)| Some(&*e.ty.as_ref()?.header)))
+            .collect();
         for header in headers {
             writeln!(out, "#include <{header}>")?;
         }
@@ -900,7 +965,10 @@ impl<'a> CWriter<'a> {
             "Data in this archive the samples point to that isn't written as C.",
             elided
                 .iter()
-                .map(|(n, size)| format!("extern DatBlob {n}[{size:#X}];"))
+                .map(|(n, e)| match &e.ty {
+                    Some(ty) => format!("extern {} {n};", ty.type_name),
+                    None => format!("extern DatBlob {n}[{:#X}];", e.size),
+                })
                 .collect(),
         )?;
         writeln!(out, "\n#endif")?;
@@ -926,7 +994,8 @@ impl<'a> CWriter<'a> {
                     referenced.push(name.as_str());
                 }
             }
-            let die = self.die_of(inst.info)?;
+            let info = inst.info;
+            let die = self.die_of(&info.symbol, &info.lookup, &info.member)?;
             let mut init = String::new();
             self.value(&mut init, inst, die, 0, 0)?;
             let info = inst.info;
@@ -977,10 +1046,15 @@ impl<'a> CWriter<'a> {
 
     /// A sample's type, looked up by name; for a union object, the member
     /// its tag chose.
-    fn die_of(&self, info: &SampleInfo) -> Result<DieId> {
+    fn die_of(
+        &self,
+        symbol: &str,
+        lookup: &str,
+        member: &Option<String>,
+    ) -> Result<DieId> {
         let record = self
             .canonical
-            .lookup(self.graph, &info.lookup)
+            .lookup(self.graph, lookup)
             .into_iter()
             .map(|die| self.resolve(die))
             .find(|die| {
@@ -993,9 +1067,9 @@ impl<'a> CWriter<'a> {
                 )
             });
         let Some(record) = record else {
-            bail!("{}: no type `{}`", info.symbol, info.lookup);
+            bail!("{symbol}: no type `{lookup}`");
         };
-        let Some(member) = &info.member else {
+        let Some(member) = member else {
             return Ok(record);
         };
         let TypeKind::Record { members, .. } = &self.graph.types[&record].kind
@@ -1006,7 +1080,7 @@ impl<'a> CWriter<'a> {
             .iter()
             .find(|m| m.name.is_some_and(|n| self.graph.str(n) == member))
             .and_then(|m| m.ty)
-            .with_context(|| format!("{}: no member `{member}`", info.symbol))
+            .with_context(|| format!("{symbol}: no member `{member}`"))
     }
 
     /// Look through typedefs and qualifiers, and from declarations to

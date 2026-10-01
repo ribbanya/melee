@@ -19,7 +19,7 @@ use melee_dat::{
     },
     hsd::Archive,
     samples::{
-        CWriter, Elided, Instance, Picker, SampleInfo, Source, Unnamed,
+        CWriter, Elided, ElidedType, Instance, Picker, SampleInfo, Source, Unnamed,
         assign_names, root_of, target_object,
     },
 };
@@ -269,6 +269,7 @@ fn slice(args: Slice) -> Result<()> {
     // object it is in: the nearest one the walk reached at or before it
     let mut elided = BTreeMap::new();
     let mut externs = BTreeSet::new();
+    let describer = Picker::new(&project.graph, &project.canonical);
     // Where elided data ends, without a type: the next place something
     // starts
     let starts: BTreeMap<usize, BTreeSet<u32>> = archives
@@ -325,7 +326,24 @@ fn slice(args: Slice) -> Result<()> {
                 },
                 |size| size as u32,
             );
-            elided.entry((at, target)).or_insert(Elided { root, size });
+            // Declared as its type where the walk typed it as one record
+            let ty = walk
+                .objects
+                .get(&target)
+                .and_then(|types| match types.iter().collect::<Vec<_>>()[..] {
+                    [&id] => describer.describe(id, target, walk).ok(),
+                    _ => None,
+                })
+                .filter(|t| t.size == u64::from(size))
+                .map(|t| ElidedType {
+                    type_name: t.type_name,
+                    lookup: t.lookup,
+                    member: t.member,
+                    header: t.header,
+                });
+            elided
+                .entry((at, target))
+                .or_insert(Elided { root, size, ty });
         }
     }
     // Names for what the archive doesn't name
