@@ -5,6 +5,7 @@
 #include <sysdolphin/baselib/forward.h>
 
 #include <dat_macros.h>
+
 #include <dolphin/mtx.h>
 #include <dolphin/types.h>
 #include <melee/sc/types.h>

@@ -207,8 +207,9 @@ typedef u8 HSD_ImageData DAT_BLOB;
 
 struct HSD_ImageDesc {
     /// Levels 0 to #maxLOD when mipmapped.
-    HSD_ImageData* image_ptr DAT_COUNT(GXGetTexBufferSize(
-        width, height, format, mipmap, maxLOD + 1));
+    HSD_ImageData* image_ptr DAT_COUNT(GXGetTexBufferSize(width, height,
+                                                          format, mipmap,
+                                                          maxLOD + 1));
     u16 width;
     u16 height;
     GXTexFmt format;
