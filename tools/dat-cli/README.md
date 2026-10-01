@@ -150,12 +150,11 @@ melee-dat samples report build/GALE01/dat
 clang-tidy is off for `src/`.
 
 Data is named as the archive names it (its public symbols, global in both
-objects). Everything else is local to the unit, named after the walk path
-that first reached it, with only as much of the path as makes it unique:
-`child`, else `x8_child`, and so on, then the offset if the whole path
-isn't unique either. Data the samples point to that isn't written as C
-(elided, declared as `DatBlob` arrays) can't be local, so its name starts
-with its root, e.g. `ftDataMario_mtx`. Externs, other archives' symbols the
+objects). Everything else is local to the unit, named after the field the
+walk first reached it through, then its offset: `child_x1A0`, `x1C_4_x2818`.
+Data the samples point to that isn't written as C (elided, declared as
+`DatBlob` arrays) can't be local, so its name starts with its root, e.g.
+`ftDataMario_x0_common_attr_x3AC8`. Externs, other archives' symbols the
 loader links in, start with the unit's name (`GrFz_<extern>` in
 `GrFz.dat`).
 

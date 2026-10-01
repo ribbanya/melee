@@ -277,7 +277,7 @@ static inline void GXTexCoord1x16(const u16 index)
 /// A byte of archive data that generated C points to without defining: bulk
 /// data such as images, palettes, vertices and display lists, objects that
 /// aren't sampled, and the archive's externs. Declared as arrays of their
-/// size where it's known, e.g. @c extern DatBlob ftDataMario_mtx[0x10];
+/// size where it's known, e.g. @c extern DatBlob ftDataMario_xF9A0[0x40];
 typedef unsigned char DatBlob;
 
 #endif

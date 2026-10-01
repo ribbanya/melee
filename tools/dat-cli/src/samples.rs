@@ -4,8 +4,8 @@
 //! By default each type the walk finds is sampled once per variant its
 //! tagged unions choose; `--all` samples every typed object. Samples are
 //! grouped into one unit per archive. A sample is the instance's bytes under
-//! the name the archive gives it, or else one [`assign_names`] makes up from
-//! the walk path (local to the unit), with its relocated words pointing to
+//! the name the archive gives it, or else one [`name_of`] makes up from the
+//! walk path (local to the unit), with its relocated words pointing to
 //! symbols named the same way. The C side defines the same names with
 //! designated initializers, generated from the types, so objdiff compares
 //! data and pointers by name. A type whose
@@ -494,100 +494,40 @@ pub struct Unnamed<'r> {
     pub elided: Option<&'r str>,
 }
 
-/// Names the data its archive doesn't name, unique in the unit: the end of
-/// the walk path it was first reached by, only as much of it as that takes
-/// (`child`, else `x8_child`, ...). An elided object's name starts with its
-/// root. Where the whole path isn't unique either, the offset follows it.
+/// A name for data its archive doesn't name: the field the walk first
+/// reached it through, with any indices, then its offset (`child_x1A0`,
+/// `x1C_4_x2818`), or only the offset where no field reaches it. An elided
+/// object's name starts with its root (`ftDataFox_ad_x5F20`). Flat, however
+/// deep the data is, and unique by its offset.
+fn name_of(
+    path: Option<&str>,
+    elided: Option<&str>,
+    archive: usize,
+    offset: u32,
+) -> String {
+    let at = match archive {
+        0 => format!("x{offset:X}"),
+        archive => format!("x{archive:X}_{offset:X}"),
+    };
+    // The root itself isn't a field
+    let segments = path.map(segments).unwrap_or_default();
+    let name = match &segments[..] {
+        [_, .., field] => format!("{field}_{at}"),
+        _ => at,
+    };
+    match elided {
+        Some(root) => format!("{root}_{name}"),
+        None => name,
+    }
+}
+
+/// Names the data its archive doesn't name, with [`name_of`].
 pub fn assign_names(sources: &mut BTreeMap<usize, Source>, wanted: &[Unnamed]) {
-    struct Item {
-        segments: Vec<String>,
-        /// How many segments the name takes, less one.
-        level: usize,
-        offset_suffix: String,
-        root: Option<String>,
-        exhausted: bool,
-    }
-    impl Item {
-        fn name(&self) -> String {
-            let n = self.segments.len();
-            let mut name = match (n, &self.root) {
-                (0, Some(root)) => format!("{root}_{}", self.offset_suffix),
-                (0, None) => return self.offset_suffix.clone(),
-                (n, root) => {
-                    let tail = self.segments[n - 1 - self.level..].join("_");
-                    match root {
-                        Some(root) if self.level + 1 < n => {
-                            format!("{root}_{tail}")
-                        }
-                        _ => tail,
-                    }
-                }
-            };
-            if self.exhausted {
-                name = format!("{name}_{}", self.offset_suffix);
-            }
-            name
-        }
-    }
-    let taken: BTreeSet<String> = sources
-        .values()
-        .flat_map(|s| s.publics.values().chain(s.externs.values()))
-        .cloned()
-        .collect();
-    let mut items: Vec<Item> = wanted
-        .iter()
-        .map(|u| {
-            let source = &sources[&u.archive];
-            let segments =
-                source.paths.get(&u.offset).map_or_else(Vec::new, |p| {
-                    segments(p)
-                });
-            let root = u.elided.map(|r| {
-                segments.first().cloned().unwrap_or_else(|| r.to_owned())
-            });
-            Item {
-                exhausted: segments.is_empty(),
-                segments,
-                level: 0,
-                offset_suffix: match u.archive {
-                    0 => format!("x{:X}", u.offset),
-                    archive => format!("x{archive:X}_{:X}", u.offset),
-                },
-                root,
-            }
-        })
-        .collect();
-    // Every name that collides takes one more segment, until none do
-    loop {
-        let mut groups: BTreeMap<String, Vec<usize>> = BTreeMap::new();
-        for (i, item) in items.iter().enumerate() {
-            groups.entry(item.name()).or_default().push(i);
-        }
-        let mut changed = false;
-        for (name, group) in groups {
-            if group.len() < 2 && !taken.contains(&name) {
-                continue;
-            }
-            for i in group {
-                let item = &mut items[i];
-                if item.exhausted {
-                    continue;
-                }
-                if item.level + 1 < item.segments.len() {
-                    item.level += 1;
-                } else {
-                    item.exhausted = true;
-                }
-                changed = true;
-            }
-        }
-        if !changed {
-            break;
-        }
-    }
-    for (u, item) in wanted.iter().zip(&items) {
+    for u in wanted {
         if let Some(source) = sources.get_mut(&u.archive) {
-            source.names.insert(u.offset, item.name());
+            let path = source.paths.get(&u.offset).map(String::as_str);
+            let name = name_of(path, u.elided, u.archive, u.offset);
+            source.names.insert(u.offset, name);
         }
     }
 }
@@ -1372,5 +1312,19 @@ mod tests {
         );
         assert_eq!(segments("a->[1][3]"), ["a_1_3"]);
         assert_eq!(segments("a.script+0x1C->next->"), ["a", "script", "next"]);
+    }
+
+    #[test]
+    fn names() {
+        let path = Some("ftDataMario.x1C->[4].x8->child->");
+        assert_eq!(name_of(path, None, 0, 0x1A0), "child_x1A0");
+        assert_eq!(
+            name_of(path, Some("ftDataMario"), 0, 0x1A0),
+            "ftDataMario_child_x1A0"
+        );
+        assert_eq!(name_of(Some("itemdata->[3]"), None, 0, 0x10), "x10");
+        assert_eq!(name_of(Some("a.x1C->[4]"), None, 0, 0x10), "x1C_4_x10");
+        assert_eq!(name_of(None, Some("map_head"), 0, 0x10), "map_head_x10");
+        assert_eq!(name_of(path, None, 0x2000, 0x1A0), "child_x2000_1A0");
     }
 }

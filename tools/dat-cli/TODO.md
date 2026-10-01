@@ -2,8 +2,8 @@
 
 ## Samples
 
-- `PlSs` `x8_hurtbones` (66.7%) and `PlGw` `dyn_descs_0` (85.7%) don't
-  match. PlSs's
+- `PlSs` `x8_hurtbones_x352D8` (66.7%) and `PlGw` `dyn_descs_0_x78F0`
+  (85.7%) don't match. PlSs's
   cause: `ftData_Item` is `Article*` for every slot, but Samus's slot 4 is
   `UNK_SAMUS_S1` (the grapple beam accessory; `ftSs_Init_CreateThrowGrapple
   Beam`), so everything behind `ftDataSamus.x48_items->[4]` is mistyped (8
