@@ -55,8 +55,6 @@
   would type `Article.x4_special` for fighter items.
 - Fighters' part animations (`ftData_x1C.x8`) sit next to `HSD_AnimJoint`
   trees that nothing points to. Their relocations can't be explained.
-- `EffectDataTable` only has its two particle banks. The records after them
-  (an `f32` and four pointers each) aren't typed.
 
 Not errors:
 
