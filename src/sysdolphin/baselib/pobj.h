@@ -44,8 +44,8 @@ struct HSD_PObjDesc {
     union HSD_PObjDesc_u {
         HSD_Joint* joint DAT_IF((flags & 0x3000) == POBJ_SKIN);
         HSD_ShapeSetDesc* shape_set DAT_IF((flags & 0x3000) == POBJ_SHAPEANIM);
-        HSD_EnvelopeList* envelope_p DAT_TERMINATED(0) DAT_IF((flags & 0x3000) ==
-                                                         POBJ_ENVELOPE);
+        HSD_EnvelopeList* envelope_p DAT_TERMINATED(0)
+            DAT_IF((flags & 0x3000) == POBJ_ENVELOPE);
     } u;
 };
 
