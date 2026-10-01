@@ -142,6 +142,10 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
     explained when it, and everything it reaches before another of them
     or a sample, is typed data with no relocation the walk can't explain.
     Raw `u8` isn't typed: its format needs a `DAT_BLOB` typedef
+  - data no chain of relocations from a public symbol reaches, through any
+    word, is unused: the game can't reach it. Each contiguous run of it is
+    a local `unused_<offset>` symbol, defined in the base too, so it counts
+    as inferred
 
   Each symbol's offset in the archive is its virtual address in a
   `.note.split`, as decomp-toolkit writes for split code; objdiff shows it.

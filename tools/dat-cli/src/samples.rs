@@ -631,6 +631,11 @@ impl<'a> Source<'a> {
     }
 
     /// Whether the archive names the data at `offset`.
+    /// Name the unnamed data at `offset`.
+    pub fn rename(&mut self, offset: u32, name: String) {
+        self.names.insert(offset, name);
+    }
+
     pub fn is_public(&self, offset: u32) -> bool {
         self.publics.contains_key(&offset)
     }

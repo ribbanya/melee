@@ -29,6 +29,11 @@
   sliced. Sampling could become a choice rather than a necessity
   (`MELEE_DAT_SAMPLES_ALL` for every archive).
 
+- Unused data (0.7 MB in 426 archives, no relocation chain from a public
+  reaches it) is only in the objects, as `unused_<offset>`. Write it in
+  the C too, where it can be typed: `UNUSED` in place of `LOCAL` on its
+  definition.
+
 ## Walk findings
 
 - `SdIntro.dat`: `SIS_IntroData[0]` points to the end of the data.

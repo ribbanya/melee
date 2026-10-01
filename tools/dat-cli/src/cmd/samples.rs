@@ -397,6 +397,67 @@ fn slice(args: Slice) -> Result<()> {
         })
         .collect();
     assign_names(&mut sources, &wanted);
+    // Data no chain of relocations from a public symbol reaches, through any
+    // word: the game can't use it. Each contiguous run of it is one symbol,
+    // named as unused, which counts as inferred
+    let mut unused: BTreeMap<(usize, u32), u32> = BTreeMap::new();
+    for (at, archive) in &archives {
+        let source = &sources[at];
+        let end = archive.data.len() as u32;
+        // Where the archive itself says something starts: its public
+        // symbols and what its relocations point to, not objects the walk
+        // found inside others
+        let mut starts: BTreeSet<u32> =
+            archive.publics.iter().map(|p| p.offset).collect();
+        starts.extend(
+            source
+                .relocs(0, end.into())
+                .into_iter()
+                .map(|(_, target)| target),
+        );
+        let mut reached = BTreeSet::new();
+        let mut queue: Vec<u32> =
+            archive.publics.iter().map(|p| p.offset).collect();
+        while let Some(start) = queue.pop() {
+            if start >= end || !reached.insert(start) {
+                continue;
+            }
+            let to = starts
+                .range(start + 1..)
+                .next()
+                .map_or(end, |&e| e.min(end));
+            queue.extend(
+                source
+                    .relocs(start, (to - start).into())
+                    .into_iter()
+                    .map(|(_, target)| target),
+            );
+        }
+        let mut run: Option<(u32, u32)> = None;
+        for &(_, from, size) in rest.iter().filter(|r| r.0 == *at) {
+            let owner = starts.range(..=from).next_back();
+            if owner.is_some_and(|o| reached.contains(o)) {
+                continue;
+            }
+            match &mut run {
+                Some((start, len)) if *start + *len == from => *len += size,
+                _ => {
+                    if let Some((start, len)) = run {
+                        unused.insert((*at, start), len);
+                    }
+                    run = Some((from, size));
+                }
+            }
+        }
+        if let Some((start, len)) = run {
+            unused.insert((*at, start), len);
+        }
+    }
+    for &(at, offset) in unused.keys() {
+        let source = sources.get_mut(&at).expect("an archive's source");
+        let name = format!("unused_{}", source.name(offset));
+        source.rename(offset, name);
+    }
     let pointed: BTreeSet<(usize, u32)> = elided.keys().copied().collect();
     let elided: BTreeMap<String, Elided> = elided
         .into_iter()
@@ -492,8 +553,18 @@ fn slice(args: Slice) -> Result<()> {
     };
     let mut target_rest = Vec::new();
     let mut inferred = Vec::new();
+    for (&(at, offset), &size) in &unused {
+        let piece = Piece {
+            source: &sources[&at],
+            offset,
+            size: size.into(),
+            global: false,
+        };
+        inferred.push(piece.clone());
+        target_rest.push(piece);
+    }
     for (i, &(at, offset, size)) in rest.iter().enumerate() {
-        if !named(i) {
+        if !named(i) || unused.contains_key(&(at, offset)) {
             continue;
         }
         let source = &sources[&at];
