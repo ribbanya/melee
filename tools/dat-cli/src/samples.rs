@@ -684,6 +684,7 @@ pub const SAMPLED: &str = ".0.sampled";
 pub const INFERRED: &str = ".1.inferred";
 
 /// A span of archive data an object defines.
+#[derive(Clone)]
 pub struct Piece<'s, 'a> {
     pub source: &'s Source<'a>,
     pub offset: u32,
@@ -950,8 +951,8 @@ impl<'a> CWriter<'a> {
     /// samples, and its source, defining them.
     /// `elided` is the other data in the archive the samples point to, by
     /// name; `externs` are the archive's externs they point to, which the
-    /// first root pointing to each declares. Both are declared as
-    /// `DatBlob` arrays.
+    /// first root pointing to each declares. Both are declared as `UNK_T`
+    /// unless the walk typed them.
     pub fn unit(
         &self,
         archive: &str,
@@ -1049,6 +1050,7 @@ impl<'a> CWriter<'a> {
                 "#define {guard}\n\n",
                 "#include \"../../macros.h\"\n\n",
                 "#include <Runtime/platform.h>\n",
+                "#include <placeholder.h>\n",
             ),
             root = root,
             archive = archive,
@@ -1092,7 +1094,7 @@ impl<'a> CWriter<'a> {
             ),
             linked
                 .iter()
-                .map(|n| format!("extern DatBlob {n}[];"))
+                .map(|n| format!("extern UNK_T {n};"))
                 .collect(),
         )?;
         group(
@@ -1102,7 +1104,7 @@ impl<'a> CWriter<'a> {
                 .iter()
                 .map(|(n, e)| match &e.ty {
                     Some(ty) => format!("extern {} {n};", ty.type_name),
-                    None => format!("extern DatBlob {n}[{:#X}];", e.size),
+                    None => format!("extern UNK_T {n}; // {:#X} bytes", e.size),
                 })
                 .collect(),
         )?;

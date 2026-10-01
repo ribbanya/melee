@@ -79,11 +79,16 @@ Not errors:
 - `ftData.xC`/`x14` (actions), `x1C` (part animations) and their `x8`,
   and `ftData_x20.x0` use `DAT_EXTENT`. The counts are in DOL tables per
   fighter kind (`ftData_Table_Unk0`, `ftData_UnkIntPairs`), or only in code.
-- `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes` up
-  to -1, which needs a new annotation.
+- `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes`
+  (`DAT_TERMINATED(-1)`), which needs a new annotation.
 - `*_image` and `*_tlut` are `u8[]`/`u16[]` up to the next public or
   pointer target. Their exact sizes come from their `HSD_ImageDesc` and
   `HSD_TlutDesc`, which a real element type could use.
+- GX data is raw `u8`, so it's never inferred: textures (bits per texel by
+  format, rounded up to whole tiles, plus mipmaps), palettes, and display
+  lists (commands until the end). Each needs a `DAT_BLOB` typedef and a
+  size more involved than `DAT_COUNT` arithmetic can say (no ternaries in
+  expressions).
 
 ## Coverage
 

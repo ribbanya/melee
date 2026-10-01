@@ -323,16 +323,8 @@ fn slice(args: Slice) -> Result<()> {
                 .next_back()
                 .map_or("unknown", |(_, path)| root_of(path))
                 .to_owned();
-            // Its type's size where the walk typed it
-            let typed = walk.objects.get(&target).and_then(|types| {
-                types
-                    .iter()
-                    .filter_map(|&id| {
-                        let rep = project.canonical.get(id).rep;
-                        project.canonical.byte_size(&project.graph, rep)
-                    })
-                    .max()
-            });
+            // As far as the walk typed it
+            let typed = walk.extents.get(&target).map(|&end| end - target);
             let end = source.archive.data.len() as u32;
             let size = typed.map_or_else(
                 || {
@@ -342,7 +334,7 @@ fn slice(args: Slice) -> Result<()> {
                         .map_or(end, |&s| s.min(end))
                         - target
                 },
-                |size| size as u32,
+                |size| size,
             );
             // Declared as its type where the walk typed it as one record
             let ty = walk
@@ -364,8 +356,7 @@ fn slice(args: Slice) -> Result<()> {
                 .or_insert(Elided { root, size, ty });
         }
     }
-    // The rest of the archive, split where something starts: the target
-    // defines it and the C doesn't, so objdiff counts it as missing
+    // The rest of the archive, split where something starts
     let mut rest: Vec<(usize, u32, u32)> = Vec::new();
     for (at, archive) in &archives {
         let end = archive.data.len() as u32;
@@ -394,11 +385,6 @@ fn slice(args: Slice) -> Result<()> {
         .iter()
         .map(|&(archive, offset)| (archive, offset, None))
         .chain(
-            rest.iter()
-                .filter(|&&(archive, offset, _)| !elided.contains_key(&(archive, offset)))
-                .map(|&(archive, offset, _)| (archive, offset, None)),
-        )
-        .chain(
             elided
                 .iter()
                 .map(|(&(archive, offset), e)| (archive, offset, Some(&*e.root))),
@@ -411,8 +397,7 @@ fn slice(args: Slice) -> Result<()> {
         })
         .collect();
     assign_names(&mut sources, &wanted);
-    // Elided data is global: the C declares it extern
-    let global: BTreeSet<(usize, u32)> = elided.keys().copied().collect();
+    let pointed: BTreeSet<(usize, u32)> = elided.keys().copied().collect();
     let elided: BTreeMap<String, Elided> = elided
         .into_iter()
         .map(|((at, target), e)| (sources[&at].name(target), e))
@@ -446,9 +431,8 @@ fn slice(args: Slice) -> Result<()> {
             global: source.is_public(sample.location.offset),
         })
         .collect();
-    // The rest the walk explains: inside a typed object, with no
-    // relocation it can't explain. The base defines it too, by name and
-    // size, so that objdiff matches it; the rest stays missing
+    // The rest the walk explains: typed data, with no relocation it can't
+    // explain
     let coverages: BTreeMap<usize, _> = archives
         .iter()
         .map(|(at, archive)| {
@@ -459,16 +443,12 @@ fn slice(args: Slice) -> Result<()> {
         .iter()
         .map(|(at, walk)| {
             let mut extents: Vec<(u32, u32)> = Vec::new();
-            for (&offset, types) in &walk.objects {
-                let size = types
-                    .iter()
-                    .filter_map(|&id| {
-                        let rep = project.canonical.get(id).rep;
-                        project.canonical.byte_size(&project.graph, rep)
-                    })
-                    .max()
-                    .unwrap_or(0) as u32;
-                let end = offset + size;
+            let data = sources[at].archive.data;
+            for (&offset, &end) in &walk.extents {
+                // Objects start on words: zeros up to the next one are padding
+                let padded = end.next_multiple_of(4).min(data.len() as u32);
+                let zeros = data[end as usize..padded as usize].iter().all(|&b| b == 0);
+                let end = if zeros { padded } else { end };
                 match extents.last_mut() {
                     Some(last) if offset <= last.1 => last.1 = last.1.max(end),
                     _ => extents.push((offset, end)),
@@ -477,34 +457,75 @@ fn slice(args: Slice) -> Result<()> {
             (*at, extents)
         })
         .collect();
-    let mut inferred = Vec::new();
-    let rest: Vec<Piece> = rest
+    let explained: Vec<bool> = rest
         .iter()
         .map(|&(at, offset, size)| {
-            let source = &sources[&at];
             let end = offset + size;
-            let explained = typed[&at]
-                .iter()
-                .any(|&(from, to)| from <= offset && end <= to)
+            typed[&at].iter().any(|&(from, to)| from <= offset && end <= to)
                 && !coverages[&at]
                     .unexplained
                     .iter()
-                    .any(|u| (offset..end).contains(&u.at));
-            inferred.push(explained);
-            Piece {
-                source,
-                offset,
-                size: size.into(),
-                global: source.is_public(offset) || global.contains(&(at, offset)),
-            }
+                    .any(|u| (offset..end).contains(&u.at))
         })
         .collect();
-    fs::write(&args.output, target_object(&pieces, &rest, &args.archive)?)?;
-    let inferred: Vec<Piece> = rest
-        .into_iter()
-        .zip(inferred)
-        .filter_map(|(p, explained)| explained.then_some(p))
+    // Only what has a global name goes in the objects: the archive's public
+    // symbols and the data the samples point to. The rest is only reached
+    // through those, and the C never names it: a global is inferred when it
+    // and everything it reaches without passing another global or a sample
+    // are explained
+    let spans: BTreeMap<(usize, u32), usize> = rest
+        .iter()
+        .enumerate()
+        .map(|(i, &(at, offset, _))| ((at, offset), i))
         .collect();
+    let named = |i: usize| {
+        let (at, offset, _) = rest[i];
+        sources[&at].is_public(offset) || pointed.contains(&(at, offset))
+    };
+    let mut target_rest = Vec::new();
+    let mut inferred = Vec::new();
+    for (i, &(at, offset, size)) in rest.iter().enumerate() {
+        if !named(i) {
+            continue;
+        }
+        let source = &sources[&at];
+        let mut seen = BTreeSet::from([i]);
+        let mut stack = vec![i];
+        let mut all = true;
+        while let Some(i) = stack.pop() {
+            if !explained[i] {
+                all = false;
+                break;
+            }
+            let (_, from, size) = rest[i];
+            for (_, target) in source.relocs(from, size.into()) {
+                if let Some(&j) = spans.get(&(at, target))
+                    && !named(j)
+                    && seen.insert(j)
+                {
+                    stack.push(j);
+                }
+            }
+        }
+        let piece = Piece {
+            source,
+            offset,
+            size: size.into(),
+            // Public, or elided: the C declares it extern
+            global: true,
+        };
+        if all {
+            inferred.push(piece.clone());
+        }
+        target_rest.push(piece);
+    }
+    // The target defines all of it and the C doesn't, so objdiff counts it as
+    // missing; the base defines what is inferred, by name and size, so that
+    // objdiff matches it
+    fs::write(
+        &args.output,
+        target_object(&pieces, &target_rest, &args.archive)?,
+    )?;
     fs::write(args.output.with_extension("rest.o"), rest_object(&inferred)?)?;
     // The target's order, for linking the base object's samples the same:
     // clang lays variables out where an initializer first points to them
