@@ -10,4 +10,10 @@
 /// target object's symbol, and kept where nothing in the unit points to it.
 #define LOCAL static __attribute__((used))
 
+/// A byte of archive data no chain of relocations from a public symbol
+/// reaches, so the game can't use it. Written as arrays of its bytes, @c LOCAL
+/// so that they're kept, e.g.
+/// @c UNUSED LOCAL OrphanedData unused_x6A80[0x40] = { ... };
+typedef unsigned char OrphanedData;
+
 #endif

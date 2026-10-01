@@ -164,6 +164,9 @@ struct Sidecar {
     /// The archive's externs the samples point to: other archives'
     /// symbols, which the loader links in by name.
     externs: BTreeSet<String>,
+    /// Data no chain of relocations from a public symbol reaches, by name:
+    /// sampled whole, as bytes.
+    unused: Vec<String>,
     /// Whether the types explain the whole file: every relocation, every
     /// public symbol, and nothing the walk finds wrong. objdiff's
     /// `complete`, the analog of code that is linked into the game.
@@ -483,6 +486,7 @@ fn slice(args: Slice) -> Result<()> {
     if let Some(dir) = args.output.parent() {
         fs::create_dir_all(dir)?;
     }
+    // Then unused data, sampled whole: the C writes its bytes
     let pieces: Vec<Piece> = pairs
         .iter()
         .map(|(sample, source)| Piece {
@@ -491,6 +495,12 @@ fn slice(args: Slice) -> Result<()> {
             size: sample.size,
             global: source.is_public(sample.location.offset),
         })
+        .chain(unused.iter().map(|(&(at, offset), &size)| Piece {
+            source: &sources[&at],
+            offset,
+            size: size.into(),
+            global: false,
+        }))
         .collect();
     // The rest the walk explains: typed data, with no relocation it can't
     // explain
@@ -553,16 +563,10 @@ fn slice(args: Slice) -> Result<()> {
     };
     let mut target_rest = Vec::new();
     let mut inferred = Vec::new();
-    for (&(at, offset), &size) in &unused {
-        let piece = Piece {
-            source: &sources[&at],
-            offset,
-            size: size.into(),
-            global: false,
-        };
-        inferred.push(piece.clone());
-        target_rest.push(piece);
-    }
+    let unused_names: Vec<String> = unused
+        .keys()
+        .map(|&(at, offset)| sources[&at].name(offset))
+        .collect();
     for (i, &(at, offset, size)) in rest.iter().enumerate() {
         if !named(i) || unused.contains_key(&(at, offset)) {
             continue;
@@ -614,6 +618,9 @@ fn slice(args: Slice) -> Result<()> {
     for info in &infos {
         script += &format!("        *(.data.{})\n", info.symbol);
     }
+    for name in &unused_names {
+        script += &format!("        *(.data.{name})\n");
+    }
     // Then what the walk explains, under the target's names
     script += &format!(
         "        *(.data .data.*)\n    }}\n    {INFERRED} : {{ *({INFERRED}) }}\n}}\n"
@@ -624,6 +631,7 @@ fn slice(args: Slice) -> Result<()> {
         samples: infos,
         elided,
         externs,
+        unused: unused_names,
         complete: archives.iter().all(|(at, archive)| {
             let walk = &walks[at];
             walk.issues.is_empty()
@@ -722,6 +730,27 @@ fn codegen(args: Codegen) -> Result<()> {
         if let Some(source) = &root.source {
             fs::write(dir.join(format!("{}.c", root.name)), source)?;
             unit += &format!("#include \"{stem}/{}.c\"\n", root.name);
+        }
+    }
+    if !sidecar.unused.is_empty() {
+        unit += concat!(
+            "\n#include \"../macros.h\"\n\n",
+            "#include <Runtime/platform.h>\n\n",
+            "// Data no chain of relocations from a public symbol reaches\n",
+        );
+        for name in &sidecar.unused {
+            let &(at, size) = symbols
+                .get(name.as_str())
+                .with_context(|| format!("{name} isn't in the target"))?;
+            let data = &bytes[at as usize..(at + size) as usize];
+            unit += &format!("UNUSED LOCAL OrphanedData {name}[{size:#X}] = {{");
+            for (i, byte) in data.iter().enumerate() {
+                if i % 16 == 0 {
+                    unit += "\n   ";
+                }
+                unit += &format!(" 0x{byte:02X},");
+            }
+            unit += "\n};\n";
         }
     }
     fs::write(&args.output, unit)?;
