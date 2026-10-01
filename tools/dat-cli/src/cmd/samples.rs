@@ -4,6 +4,7 @@
 //! - `slice`: the archive → `target/<unit>.o`, its sampled objects under
 //!   their archive names, plus `target/<unit>.samples` saying what each is
 //! - `codegen`: the target object → `src/<unit>.c`, generated from the types
+//! - `macros`: `src/macros.h`, which every unit's C includes
 //! - (the build compiles `src/<unit>.c` to `base/<unit>.o`)
 //! - `project`: every unit's sidecar → `objdiff.json`
 //!
@@ -54,6 +55,9 @@ enum Command {
 
     /// Write the C for a target object's samples, from the types
     Codegen(Codegen),
+
+    /// Write the definitions the generated C includes (`macros.h`)
+    Macros(MacrosArgs),
 
     /// Write the objdiff project for the units' sidecars
     Project(ProjectArgs),
@@ -106,6 +110,13 @@ struct Codegen {
 }
 
 #[derive(clap::Args)]
+struct MacrosArgs {
+    /// Left alone when unchanged, so that its dependents are too
+    #[arg(short, long)]
+    output: PathBuf,
+}
+
+#[derive(clap::Args)]
 struct ProjectArgs {
     /// The units' sidecars (`target/<unit>.samples`)
     sidecars: Vec<PathBuf>,
@@ -129,6 +140,7 @@ pub fn run(Args { command }: Args) -> Result<()> {
         Command::Types(args) => types(args),
         Command::Slice(args) => slice(args),
         Command::Codegen(args) => codegen(args),
+        Command::Macros(args) => macros(args),
         Command::Project(args) => project(args),
         Command::Report(args) => report(args),
     }
@@ -395,9 +407,8 @@ fn slice(args: Slice) -> Result<()> {
         script += &format!("        *(.data.{})\n", info.symbol);
     }
     script += "    }\n";
-    // Only the samples: the base object also keeps the headers' `static`
-    // variables with the samples' unreferenced ones, which the target has
-    // none of. A sample pointing into them fails to link
+    // Only the samples, should the headers define anything; the target has
+    // nothing else. A sample pointing into the rest fails to link
     script += concat!(
         "    /DISCARD/ : {\n",
         "        *(.data .data.* .sdata .sdata.* .bss .bss.* .sbss .sbss.*)\n",
@@ -513,6 +524,17 @@ fn codegen(args: Codegen) -> Result<()> {
         }
     }
     fs::write(&args.output, unit)?;
+    Ok(())
+}
+
+fn macros(args: MacrosArgs) -> Result<()> {
+    const MACROS: &str = include_str!("../../assets/macros.h");
+    if fs::read_to_string(&args.output).ok().as_deref() != Some(MACROS) {
+        if let Some(dir) = args.output.parent() {
+            fs::create_dir_all(dir)?;
+        }
+        fs::write(&args.output, MACROS)?;
+    }
     Ok(())
 }
 

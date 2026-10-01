@@ -103,7 +103,7 @@ pub struct SampleInfo {
     /// Its symbol in the target object.
     pub symbol: String,
     /// The archive names it: a public symbol, global in both objects. The
-    /// others are local to the unit: `static` in C.
+    /// others are local to the unit: `LOCAL` (`static`, kept) in C.
     pub public: bool,
     /// Where it was in the archive.
     pub offset: u32,
@@ -912,8 +912,8 @@ impl<'a> CWriter<'a> {
                 " */\n\n",
                 "#ifndef {guard}\n",
                 "#define {guard}\n\n",
+                "#include \"../macros.h\"\n\n",
                 "#include <Runtime/platform.h>\n",
-                "#include <dat_macros.h>\n",
             ),
             root = root,
             archive = archive,
@@ -944,7 +944,7 @@ impl<'a> CWriter<'a> {
             instances
                 .iter()
                 .map(|i| {
-                    let storage = if i.info.public { "extern" } else { "static" };
+                    let storage = if i.info.public { "extern" } else { "LOCAL" };
                     format!("{storage} {} {};", i.info.type_name, i.info.symbol)
                 })
                 .collect(),
@@ -1012,7 +1012,7 @@ impl<'a> CWriter<'a> {
                 )?;
             }
             defs.push('\n');
-            let storage = if info.public { "" } else { "static " };
+            let storage = if info.public { "" } else { "LOCAL " };
             writeln!(
                 defs,
                 "{storage}{} {} = {init};\n",

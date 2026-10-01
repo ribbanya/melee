@@ -138,6 +138,8 @@ melee-dat samples report build/GALE01/dat
   symbol its samples were reached from), a header declaring its samples and
   the other data they point to, and designated initializers generated from
   the types; pointers into other roots include those roots' headers
+- `src/macros.h`: what the generated C includes (`LOCAL`, `DatBlob`), like
+  dtk's `macros.inc`; from `samples macros`
 - `src/<archive>.c`: the unit, which includes every root's source; all of
   it is formatted in place with the repository's `.clang-format`
 - `base/<archive>.o`: that C, compiled with the DWARF build's flags, one
@@ -150,10 +152,9 @@ melee-dat samples report build/GALE01/dat
 clang-tidy is off for `src/`.
 
 Data is named as the archive names it (its public symbols, global in both
-objects). Everything else is `static`, local to the unit, named after the
-field the walk first reached it through, then its offset: `child_x1A0`,
-`x1C_4_x2818`.
-Data the samples point to that isn't written as C (elided: declared as its
+objects). Everything else is `LOCAL` (`static`, kept where nothing points to
+it), named after the field the walk first reached it through, then its
+offset: `child_x1A0`, `x1C_4_x2818`. Data the samples point to that isn't written as C (elided: declared as its
 type where the walk typed it as one record, else as a `DatBlob` array)
 can't be local, so its name starts with its root, e.g.
 `ftDataMario_x0_common_attr_x3AC8`. Externs, other archives' symbols the
@@ -162,7 +163,7 @@ loader links in, start with the unit's name (`GrFz_<extern>` in
 
 Each unit is five steps (`samples types`, `samples slice`, `samples
 codegen`, format, compile), and `samples project` writes `objdiff.json`
-from all of them. The archives come
+from all of them; `samples macros` writes `src/macros.h`. The archives come
 from `orig/GALE01/files` (`MELEE_DAT_FILES`); `MELEE_DAT` takes a prebuilt
 `melee-dat`, else the build compiles it with cargo.
 
