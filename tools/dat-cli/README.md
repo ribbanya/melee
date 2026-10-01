@@ -132,10 +132,18 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
 
 - `melee.elf`: the DWARF build for that game version
 - `types.bin`: its types, deduplicated once for every step
-- `target/<unit>.o`: the archive, every symbol at its offset in it: the
-  sampled objects in `.data`, with pointers as relocations, and the rest in
-  `.bss`, which objdiff counts as missing without diffing;
-  `target/<unit>.samples` says what each sample is
+- `target/<unit>.o`: the whole archive, in two sections (objdiff lists
+  them by name):
+  - `.0.sampled`: the sampled objects, with pointers as relocations
+  - `.1.inferred`: the rest, as uninitialized data, which objdiff never
+    diffs bytes of. The base defines what the walk explains by its type
+    here too, so objdiff matches it by name and size; the rest shows as
+    missing
+
+  Each symbol's offset in the archive is its virtual address in a
+  `.note.split`, as decomp-toolkit writes for split code; objdiff shows it.
+  `target/<unit>.samples` says what each sample is; `target/<unit>.rest.o`
+  is the base's `.1.inferred`
 - `metadata/<unit>.types`: a hash of the types the archive's roots
   lead to, rewritten only when it changes, which the other steps depend on;
   `metadata/<unit>.formatted` records that the C is formatted
@@ -149,10 +157,9 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
   it is formatted in place with the repository's `.clang-format`
 - `base/<unit>.o`: that C, compiled with the DWARF build's flags, one
   section per variable (`obj/<unit>.o`), then linked with
-  `target/<unit>.ld` into one `.data` at the target's offsets (clang lays
-  variables out where they are first pointed to, not where they are
-  defined), so that objdiff's diff of the whole section only finds the
-  samples that differ
+  `target/<unit>.ld` and `target/<unit>.rest.o` into `.0.sampled` in the
+  target's order (clang lays variables out where they are first pointed
+  to, not where they are defined) and `.1.inferred`
 
 `compile_commands.json` there gives clangd the same flags as the build;
 clang-tidy is off for `src/`.

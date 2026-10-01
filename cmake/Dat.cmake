@@ -113,6 +113,7 @@ foreach(_archive IN LISTS _dat_archives)
     set(_sidecar "target/${_unit}.samples")
     set(_types "metadata/${_unit}.types")
     set(_layout "target/${_unit}.ld")
+    set(_rest "target/${_unit}.rest.o")
     set(_object "obj/${_unit}.o")
     set(_source "src/${_unit}.c")
     set(_formatted "metadata/${_unit}.formatted")
@@ -137,7 +138,7 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_target}" "${_sidecar}" "${_layout}"
+        OUTPUT "${_target}" "${_sidecar}" "${_layout}" "${_rest}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
             --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
@@ -176,9 +177,11 @@ foreach(_archive IN LISTS _dat_archives)
         COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -fdata-sections
             -MD -MF "${_base}.d" -MT "${_base}"
             -c "${_source}" -o "${_object}"
-        COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}"
+        # With the rest of the archive the walk explains, by name and size
+        COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}" "${_rest}"
             -o "${_base}"
-        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_dat_flags}"
+        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_rest}"
+            "${_dat_flags}"
             src/macros.h
         DEPFILE "${_base}.d"
         COMMENT "Compiling ${_source}"
