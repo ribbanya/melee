@@ -624,6 +624,12 @@ impl<'a> Source<'a> {
         }
     }
 
+    /// Where `offset` is in the file: inside a packed file, past the
+    /// archives before it.
+    pub fn file_offset(&self, offset: u32) -> u64 {
+        (self.archive_offset + offset as usize) as u64
+    }
+
     /// Whether the archive names the data at `offset`.
     pub fn is_public(&self, offset: u32) -> bool {
         self.publics.contains_key(&offset)
@@ -668,9 +674,24 @@ impl<'a> Source<'a> {
     }
 }
 
-/// A unit's target object: every sample's bytes under its name, with
-/// relocations to the names its words point to.
-pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
+/// A span of archive data the target object defines.
+pub struct Piece<'s, 'a> {
+    pub source: &'s Source<'a>,
+    pub offset: u32,
+    pub size: u64,
+    /// Where the object puts it: its offset in the archive (plus the
+    /// archive's offset inside a packed file), or past the sample before it
+    /// where that one's type runs into it.
+    pub at: u64,
+    /// Global with default visibility, else local.
+    pub global: bool,
+}
+
+/// A unit's target object, every piece at its [`Piece::at`]: the samples' bytes in
+/// `.data`, with relocations to the names their words point to, and the
+/// rest of the archive in `.bss`. objdiff counts the rest as missing
+/// without diffing its bytes, which it never does for `.bss`.
+pub fn target_object(pieces: &[Piece], rest: &[Piece]) -> Result<Vec<u8>> {
     let mut obj =
         Object::new(BinaryFormat::Elf, Architecture::PowerPc, Endianness::Big);
     let segment = obj.segment_name(StandardSegment::Data).to_vec();
@@ -689,44 +710,86 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
         section,
         flags: SymbolFlags::None,
     };
-    // Samples first, so that pointers between them use their symbols
+    // Every piece first, so that pointers between them use their symbols
     let mut symbols = BTreeMap::new();
     let mut placed = Vec::new();
-    for (sample, source) in samples {
-        let offset = sample.location.offset;
+    let mut section = Vec::new();
+    for piece in pieces {
+        let Piece {
+            source,
+            offset,
+            size,
+            at,
+            global,
+        } = *piece;
         // Relocated words hold their target in the relocation, as a
         // compiler writes them; the archive's value is only an offset
-        let mut bytes = source.bytes(offset, sample.size).to_vec();
+        let mut bytes = source.bytes(offset, size).to_vec();
         // So do the words the loader links to other archives' symbols
-        let externs = source.externs(offset, sample.size);
-        let words = source
-            .relocs(offset, sample.size)
-            .into_iter()
-            .map(|(w, _)| w);
+        let externs = source.externs(offset, size);
+        let words = source.relocs(offset, size).into_iter().map(|(w, _)| w);
         for word in words.chain(externs.iter().map(|&(w, _)| w)) {
             let at = (word - offset) as usize;
             bytes[at..at + 4].fill(0);
         }
-        let at = obj.append_section_data(data, &bytes, 4);
+        let range = at as usize..at as usize + bytes.len();
+        if section.len() < range.end {
+            section.resize(range.end, 0);
+        }
+        section[range].copy_from_slice(&bytes);
         let name = source.name(offset);
         let id = obj.add_symbol(symbol(
             name.clone(),
             SymbolSection::Section(data),
             at,
-            sample.size,
-            source.is_public(offset),
+            size,
+            global,
         ));
         symbols.insert(name, id);
         placed.push(at);
     }
-    for ((sample, source), at) in samples.iter().zip(placed) {
-        let offset = sample.location.offset;
+    obj.set_section_data(data, section, 4);
+    // The rest by name only, for what the samples point to
+    let segment = obj.segment_name(StandardSegment::Data).to_vec();
+    let bss =
+        obj.add_section(segment, b".bss".to_vec(), SectionKind::UninitializedData);
+    let mut end = 0;
+    for &Piece {
+        source,
+        offset,
+        size,
+        at,
+        global,
+    } in rest
+    {
+        if at > end {
+            obj.append_section_bss(bss, at - end, 1);
+        }
+        obj.append_section_bss(bss, size, 1);
+        end = at + size;
+        let name = source.name(offset);
+        let id = obj.add_symbol(symbol(
+            name.clone(),
+            SymbolSection::Section(bss),
+            at,
+            size,
+            global,
+        ));
+        symbols.insert(name, id);
+    }
+    for (piece, at) in pieces.iter().zip(placed) {
+        let Piece {
+            source,
+            offset,
+            size,
+            ..
+        } = *piece;
         let relocs = source
-            .relocs(offset, sample.size)
+            .relocs(offset, size)
             .into_iter()
             .map(|(word, target)| (word, source.name(target)));
         let externs = source
-            .externs(offset, sample.size)
+            .externs(offset, size)
             .into_iter()
             .map(|(word, name)| (word, name.to_owned()));
         for (word, name) in relocs.chain(externs) {

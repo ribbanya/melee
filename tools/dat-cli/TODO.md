@@ -109,6 +109,15 @@ Not errors:
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
 
+## Layout
+
+- A sample at an offset its C type can't align to (`tlut_x25F6` in
+  `TyMnInfo.dat`, 2-byte aligned) lands later in the base than in the
+  target, so the rest of that unit's `.data` is shifted.
+- A sample whose type runs into the next one (`coll_data` in `GrBb.dat`,
+  4 bytes into `stage_params_xC6B98`) pushes the next one along in both
+  objects, off its archive offset. The type is probably too long.
+
 ## Reporting (low priority)
 
 - decomp.dev ingests objdiff-format reports from workflow artifacts named

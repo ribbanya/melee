@@ -3,7 +3,9 @@
 //! One unit per archive file, `<module>/<archive>` (`Pl/PlMr`), each built
 //! in steps a build system runs:
 //! - `slice`: the archive → `target/<unit>.o`, its sampled objects under
-//!   their archive names, plus `target/<unit>.samples` saying what each is
+//!   their archive names in `.data` and the rest in `.bss`, at their
+//!   offsets, plus `target/<unit>.samples` saying what each sample is and
+//!   `target/<unit>.ld` placing the base's samples the same
 //! - `codegen`: the target object → `src/<unit>.c`, generated from the types
 //! - `macros`: `src/macros.h`, which every unit's C includes
 //! - (the build compiles `src/<unit>.c` to `base/<unit>.o`)
@@ -22,7 +24,7 @@ use melee_dat::{
     hsd::Archive,
     samples::{
         CWriter, Elided, ElidedType, Instance, Picker, SampleInfo, Source, Unnamed,
-        assign_names, root_of, target_object,
+        Piece, assign_names, root_of, target_object,
     },
 };
 use object::{
@@ -359,10 +361,40 @@ fn slice(args: Slice) -> Result<()> {
                 .or_insert(Elided { root, size, ty });
         }
     }
+    // The rest of the archive, split where something starts: the target
+    // defines it and the C doesn't, so objdiff counts it as missing
+    let mut rest: Vec<(usize, u32, u32)> = Vec::new();
+    for (at, archive) in &archives {
+        let end = archive.data.len() as u32;
+        let spans: BTreeMap<u32, u32> = samples
+            .iter()
+            .filter(|s| s.location.archive == *at)
+            .map(|s| (s.location.offset, s.location.offset + s.size as u32))
+            .collect();
+        let mut bounds: BTreeSet<u32> = starts[at].range(..end).copied().collect();
+        bounds.insert(0);
+        bounds.extend(spans.values().filter(|&&e| e < end));
+        let bounds: Vec<u32> = bounds.into_iter().collect();
+        for (i, &from) in bounds.iter().enumerate() {
+            let to = bounds.get(i + 1).copied().unwrap_or(end);
+            let covered = spans
+                .range(..=from)
+                .next_back()
+                .is_some_and(|(_, &e)| from < e);
+            if !covered && from < to {
+                rest.push((*at, from, to - from));
+            }
+        }
+    }
     // Names for what the archive doesn't name
     let wanted: Vec<Unnamed> = sampled
         .iter()
         .map(|&(archive, offset)| (archive, offset, None))
+        .chain(
+            rest.iter()
+                .filter(|&&(archive, offset, _)| !elided.contains_key(&(archive, offset)))
+                .map(|&(archive, offset, _)| (archive, offset, None)),
+        )
         .chain(
             elided
                 .iter()
@@ -376,6 +408,8 @@ fn slice(args: Slice) -> Result<()> {
         })
         .collect();
     assign_names(&mut sources, &wanted);
+    // Elided data is global: the C declares it extern
+    let global: BTreeSet<(usize, u32)> = elided.keys().copied().collect();
     let elided: BTreeMap<String, Elided> = elided
         .into_iter()
         .map(|((at, target), e)| (sources[&at].name(target), e))
@@ -400,14 +434,51 @@ fn slice(args: Slice) -> Result<()> {
     if let Some(dir) = args.output.parent() {
         fs::create_dir_all(dir)?;
     }
-    fs::write(&args.output, target_object(&pairs)?)?;
-    // The target's order, for linking the base object's `.data` the same:
-    // clang lays variables out where an initializer first points to them
+    // Each sample at its offset, unless the one before runs into it: then
+    // both objects push it along
+    let mut end = 0;
+    let pieces: Vec<Piece> = pairs
+        .iter()
+        .map(|(sample, source)| {
+            let offset = sample.location.offset;
+            let at = source.file_offset(offset).max(end);
+            end = at + sample.size;
+            Piece {
+                source,
+                offset,
+                size: sample.size,
+                at,
+                global: source.is_public(offset),
+            }
+        })
+        .collect();
+    let rest: Vec<Piece> = rest
+        .iter()
+        .map(|&(at, offset, size)| {
+            let source = &sources[&at];
+            Piece {
+                source,
+                offset,
+                size: size.into(),
+                at: source.file_offset(offset),
+                global: source.is_public(offset) || global.contains(&(at, offset)),
+            }
+        })
+        .collect();
+    fs::write(&args.output, target_object(&pieces, &rest)?)?;
+    // The target's offsets, for linking the base object's `.data` the same
+    // (clang lays variables out where an initializer first points to them),
+    // so that objdiff's diff of the whole section only finds the samples
+    // that differ
     let mut script = String::from("SECTIONS\n{\n    .data : {\n");
-    for info in &infos {
-        script += &format!("        *(.data.{})\n", info.symbol);
+    for (info, piece) in infos.iter().zip(&pieces) {
+        script += &format!(
+            "        . = {:#X};\n        *(.data.{})\n",
+            piece.at, info.symbol
+        );
     }
-    script += "        *(.data .data.*)\n    }\n}\n";
+    // Then `.bss`, as in the target
+    script += "        *(.data .data.*)\n    }\n    .bss : { *(.bss .bss.*) }\n}\n";
     fs::write(args.output.with_extension("ld"), script)?;
     let sidecar = Sidecar {
         archive: args.archive,

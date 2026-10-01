@@ -132,8 +132,10 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
 
 - `melee.elf`: the DWARF build for that game version
 - `types.bin`: its types, deduplicated once for every step
-- `target/<unit>.o`: the sampled objects from the archive, with
-  pointers as relocations; `target/<unit>.samples` says what each is
+- `target/<unit>.o`: the archive, every symbol at its offset in it: the
+  sampled objects in `.data`, with pointers as relocations, and the rest in
+  `.bss`, which objdiff counts as missing without diffing;
+  `target/<unit>.samples` says what each sample is
 - `metadata/<unit>.types`: a hash of the types the archive's roots
   lead to, rewritten only when it changes, which the other steps depend on;
   `metadata/<unit>.formatted` records that the C is formatted
@@ -147,9 +149,10 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
   it is formatted in place with the repository's `.clang-format`
 - `base/<unit>.o`: that C, compiled with the DWARF build's flags, one
   section per variable (`obj/<unit>.o`), then linked with
-  `target/<unit>.ld` into one `.data` in the target's order (clang lays
+  `target/<unit>.ld` into one `.data` at the target's offsets (clang lays
   variables out where they are first pointed to, not where they are
-  defined)
+  defined), so that objdiff's diff of the whole section only finds the
+  samples that differ
 
 `compile_commands.json` there gives clangd the same flags as the build;
 clang-tidy is off for `src/`.
