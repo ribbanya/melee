@@ -9,6 +9,8 @@
 #include <dat_macros.h>
 #include <sysdolphin/baselib/fobj.h>
 
+#include <sysdolphin/baselib/fobj.h>
+
 struct FigaTrack {
     u16 length;
     u16 startframe;
