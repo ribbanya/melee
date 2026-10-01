@@ -1,7 +1,8 @@
 # Samples of the .dat archives' data, typed by the DWARF build and compared
-# with objdiff (see tools/dat-cli). Each archive is a unit, built in four
-# steps: slice (archive → target/<unit>.o), codegen (→ src/<unit>.c, which
-# includes a header and source per root in src/<unit>/), format (in place)
+# with objdiff (see tools/dat-cli). Each archive is a unit, named by its
+# module and file (Pl/PlMr), built in four steps: slice (archive →
+# target/<unit>.o), codegen (→ src/<unit>.c, which includes a header and
+# source per root in src/<unit>/), format (in place)
 # and compile (→ base/<unit>.o). The build directory is also the objdiff
 # project.
 include_guard(GLOBAL)
@@ -104,7 +105,10 @@ set(_dat_bases)
 set(_dat_commands)
 foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_file "${_archive}" NAME)
-    get_filename_component(_unit "${_archive}" NAME_WE)
+    get_filename_component(_stem "${_archive}" NAME_WE)
+    # Grouped by module, the name's first two letters: Pl/PlMr, Gr/GrFs
+    string(SUBSTRING "${_stem}" 0 2 _module)
+    set(_unit "${_module}/${_stem}")
     set(_target "target/${_unit}.o")
     set(_sidecar "target/${_unit}.samples")
     set(_types "metadata/${_unit}.types")

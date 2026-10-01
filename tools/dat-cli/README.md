@@ -125,26 +125,29 @@ cmake --build --preset dat
 melee-dat samples report build/GALE01/dat
 ```
 
-`build/GALE01/dat` holds everything, and is an objdiff project:
+`build/GALE01/dat` holds everything, and is an objdiff project. Each
+archive is a unit `<module>/<archive>`, grouped by the two letters its name
+starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
+`main/`:
 
 - `melee.elf`: the DWARF build for that game version
 - `types.bin`: its types, deduplicated once for every step
-- `target/<archive>.o`: the sampled objects from the archive, with
-  pointers as relocations; `target/<archive>.samples` says what each is
-- `metadata/<archive>.types`: a hash of the types the archive's roots
+- `target/<unit>.o`: the sampled objects from the archive, with
+  pointers as relocations; `target/<unit>.samples` says what each is
+- `metadata/<unit>.types`: a hash of the types the archive's roots
   lead to, rewritten only when it changes, which the other steps depend on;
-  `metadata/<archive>.formatted` records that the C is formatted
-- `src/<archive>/<root>.{h,c}`: per root of the archive (the public
+  `metadata/<unit>.formatted` records that the C is formatted
+- `src/<unit>/<root>.{h,c}`: per root of the archive (the public
   symbol its samples were reached from), a header declaring its samples and
   the other data they point to, and designated initializers generated from
   the types; pointers into other roots include those roots' headers
 - `src/macros.h`: what the generated C includes (`LOCAL`, `DatBlob`), like
   dtk's `macros.inc`; from `samples macros`
-- `src/<archive>.c`: the unit, which includes every root's source; all of
+- `src/<unit>.c`: the unit, which includes every root's source; all of
   it is formatted in place with the repository's `.clang-format`
-- `base/<archive>.o`: that C, compiled with the DWARF build's flags, one
-  section per variable (`obj/<archive>.o`), then linked with
-  `target/<archive>.ld` into one `.data` in the target's order (clang lays
+- `base/<unit>.o`: that C, compiled with the DWARF build's flags, one
+  section per variable (`obj/<unit>.o`), then linked with
+  `target/<unit>.ld` into one `.data` in the target's order (clang lays
   variables out where they are first pointed to, not where they are
   defined)
 

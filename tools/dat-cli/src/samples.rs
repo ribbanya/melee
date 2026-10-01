@@ -912,7 +912,7 @@ impl<'a> CWriter<'a> {
                 " */\n\n",
                 "#ifndef {guard}\n",
                 "#define {guard}\n\n",
-                "#include \"../macros.h\"\n\n",
+                "#include \"../../macros.h\"\n\n",
                 "#include <Runtime/platform.h>\n",
             ),
             root = root,

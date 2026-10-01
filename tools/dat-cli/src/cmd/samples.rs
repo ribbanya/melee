@@ -1,6 +1,7 @@
 //! `samples`: archive data typed by the DWARF, compared with objdiff.
 //!
-//! One unit per archive file, each built in steps a build system runs:
+//! One unit per archive file, `<module>/<archive>` (`Pl/PlMr`), each built
+//! in steps a build system runs:
 //! - `slice`: the archive → `target/<unit>.o`, its sampled objects under
 //!   their archive names, plus `target/<unit>.samples` saying what each is
 //! - `codegen`: the target object → `src/<unit>.c`, generated from the types
@@ -14,7 +15,7 @@ use super::project::{Check, Project};
 use anyhow::{Context, Result, bail};
 use globset::{Glob, GlobSetBuilder};
 use melee_dat::{
-    coverage::coverage,
+    coverage::{coverage, family},
     dwarf::{
         TypeGraph, cache::TypesFile, canonical::Canonical, render::Renderer,
     },
@@ -530,6 +531,9 @@ fn macros(args: MacrosArgs) -> Result<()> {
     Ok(())
 }
 
+/// The units' top-level directory in objdiff, like the code's `main/`.
+const PROJECT_DIR: &str = "dat";
+
 fn project(args: ProjectArgs) -> Result<()> {
     let mut units = Vec::new();
     for path in &args.sidecars {
@@ -537,13 +541,14 @@ fn project(args: ProjectArgs) -> Result<()> {
         if sidecar.samples.is_empty() {
             continue;
         }
-        let unit = path
+        let stem = path
             .file_stem()
             .context("sidecar without a name")?
-            .to_string_lossy()
-            .into_owned();
+            .to_string_lossy();
+        // Grouped by module, as the build lays them out: `Pl/PlMr`
+        let unit = format!("{}/{stem}", family(&stem));
         units.push(json!({
-            "name": unit,
+            "name": format!("{PROJECT_DIR}/{unit}"),
             "target_path": format!("target/{unit}.o"),
             "base_path": format!("base/{unit}.o"),
             "metadata": {
@@ -716,7 +721,11 @@ fn report(args: Report) -> Result<()> {
         .as_array()
         .into_iter()
         .flatten()
-        .filter_map(|u| u["name"].as_str().map(str::to_owned))
+        .filter_map(|u| u["name"].as_str())
+        .map(|name| {
+            let unit = name.strip_prefix(PROJECT_DIR).unwrap_or(name);
+            unit.trim_start_matches('/').to_owned()
+        })
         .collect();
     let units: Vec<UnitMatch> = names
         .par_iter()
