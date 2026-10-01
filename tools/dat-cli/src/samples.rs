@@ -1,13 +1,14 @@
 //! Samples: one instance of each archive type, as a target object for
 //! objdiff and as C that should compile to the same bytes.
 //!
-//! Archives are too large to diff whole, so each type the walk finds is
-//! sampled once per variant its tagged unions choose. Samples are grouped
-//! into one unit per archive. A sample is the instance's bytes under the
-//! name the archive gives it (a public symbol's name, else `x<OFFSET>`),
-//! with its relocated words pointing to symbols named the same way. The C
-//! side defines the same names with designated initializers, generated from
-//! the types, so objdiff compares data and pointers by name. A type whose
+//! By default each type the walk finds is sampled once per variant its
+//! tagged unions choose; `--all` samples every typed object. Samples are
+//! grouped into one unit per archive. A sample is the instance's bytes under
+//! the name the archive gives it, or else one [`assign_names`] makes up from
+//! the walk path (local to the unit), with its relocated words pointing to
+//! symbols named the same way. The C side defines the same names with
+//! designated initializers, generated from the types, so objdiff compares
+//! data and pointers by name. A type whose
 //! sample matches is taken to match in every archive.
 
 use crate::{
@@ -101,6 +102,10 @@ pub struct Skipped {
 pub struct SampleInfo {
     /// Its symbol in the target object.
     pub symbol: String,
+    /// The archive names it: a public symbol, global in both objects. The
+    /// others are local to the unit (the base object's after linking, by
+    /// `<unit>.globals`).
+    pub public: bool,
     /// Where it was in the archive.
     pub offset: u32,
     /// Offset of the archive in its file; nonzero inside packed files.
@@ -339,10 +344,16 @@ impl<'a> Picker<'a> {
     }
 
     /// What codegen needs to know about a sample, by name.
-    pub fn info(&self, sample: &Sample, symbol: String) -> SampleInfo {
+    pub fn info(
+        &self,
+        sample: &Sample,
+        symbol: String,
+        public: bool,
+    ) -> SampleInfo {
         let base = sample.location.offset;
         SampleInfo {
             symbol,
+            public,
             offset: sample.location.offset,
             archive: sample.location.archive,
             size: sample.size,
@@ -438,6 +449,149 @@ fn is_identifier(name: &str) -> bool {
         && chars.all(|c| c.is_ascii_alphanumeric() || c == '_')
 }
 
+/// The fields of a walk path, each with the indices after it:
+/// `ftDataMario.x48_items->[4].x8->child->` is `ftDataMario`, `x48_items_4`,
+/// `x8`, `child`. Script offsets (`+0x1C`) are left out.
+fn segments(path: &str) -> Vec<String> {
+    let is_word = |c: char| c.is_ascii_alphanumeric() || c == '_';
+    let mut out: Vec<String> = Vec::new();
+    let mut rest = path;
+    while let Some(c) = rest.chars().next() {
+        let word = rest.find(|c| !is_word(c)).unwrap_or(rest.len());
+        if word > 0 {
+            out.push(rest[..word].to_owned());
+            rest = &rest[word..];
+            continue;
+        }
+        rest = &rest[c.len_utf8()..];
+        match c {
+            '[' => {
+                let end = rest.find(']').unwrap_or(rest.len());
+                let index = &rest[..end];
+                if let Some(last) = out.last_mut()
+                    && !index.is_empty()
+                    && index.chars().all(is_word)
+                {
+                    *last += &format!("_{index}");
+                }
+                rest = rest.get(end + 1..).unwrap_or("");
+            }
+            '+' => rest = &rest[rest.find(|c| !is_word(c)).unwrap_or(rest.len())..],
+            _ => {}
+        }
+    }
+    out
+}
+
+/// Data an archive doesn't name, for [`assign_names`].
+pub struct Unnamed<'r> {
+    /// Offset of its archive in the file.
+    pub archive: usize,
+    pub offset: u32,
+    /// For data the samples point to but that isn't written as C: the root
+    /// it belongs to. Its name is global, so it starts with that root,
+    /// which the archive names.
+    pub elided: Option<&'r str>,
+}
+
+/// Names the data its archive doesn't name, unique in the unit: the end of
+/// the walk path it was first reached by, only as much of it as that takes
+/// (`child`, else `x8_child`, ...). An elided object's name starts with its
+/// root. Where the whole path isn't unique either, the offset follows it.
+pub fn assign_names(sources: &mut BTreeMap<usize, Source>, wanted: &[Unnamed]) {
+    struct Item {
+        segments: Vec<String>,
+        /// How many segments the name takes, less one.
+        level: usize,
+        offset_suffix: String,
+        root: Option<String>,
+        exhausted: bool,
+    }
+    impl Item {
+        fn name(&self) -> String {
+            let n = self.segments.len();
+            let mut name = match (n, &self.root) {
+                (0, Some(root)) => format!("{root}_{}", self.offset_suffix),
+                (0, None) => return self.offset_suffix.clone(),
+                (n, root) => {
+                    let tail = self.segments[n - 1 - self.level..].join("_");
+                    match root {
+                        Some(root) if self.level + 1 < n => {
+                            format!("{root}_{tail}")
+                        }
+                        _ => tail,
+                    }
+                }
+            };
+            if self.exhausted {
+                name = format!("{name}_{}", self.offset_suffix);
+            }
+            name
+        }
+    }
+    let taken: BTreeSet<String> = sources
+        .values()
+        .flat_map(|s| s.publics.values().chain(s.externs.values()))
+        .cloned()
+        .collect();
+    let mut items: Vec<Item> = wanted
+        .iter()
+        .map(|u| {
+            let source = &sources[&u.archive];
+            let segments =
+                source.paths.get(&u.offset).map_or_else(Vec::new, |p| {
+                    segments(p)
+                });
+            let root = u.elided.map(|r| {
+                segments.first().cloned().unwrap_or_else(|| r.to_owned())
+            });
+            Item {
+                exhausted: segments.is_empty(),
+                segments,
+                level: 0,
+                offset_suffix: match u.archive {
+                    0 => format!("x{:X}", u.offset),
+                    archive => format!("x{archive:X}_{:X}", u.offset),
+                },
+                root,
+            }
+        })
+        .collect();
+    // Every name that collides takes one more segment, until none do
+    loop {
+        let mut groups: BTreeMap<String, Vec<usize>> = BTreeMap::new();
+        for (i, item) in items.iter().enumerate() {
+            groups.entry(item.name()).or_default().push(i);
+        }
+        let mut changed = false;
+        for (name, group) in groups {
+            if group.len() < 2 && !taken.contains(&name) {
+                continue;
+            }
+            for i in group {
+                let item = &mut items[i];
+                if item.exhausted {
+                    continue;
+                }
+                if item.level + 1 < item.segments.len() {
+                    item.level += 1;
+                } else {
+                    item.exhausted = true;
+                }
+                changed = true;
+            }
+        }
+        if !changed {
+            break;
+        }
+    }
+    for (u, item) in wanted.iter().zip(&items) {
+        if let Some(source) = sources.get_mut(&u.archive) {
+            source.names.insert(u.offset, item.name());
+        }
+    }
+}
+
 /// One archive's data, as samples read and name it.
 pub struct Source<'a> {
     pub archive: &'a Archive<'a>,
@@ -448,10 +602,21 @@ pub struct Source<'a> {
     externs: BTreeMap<u32, String>,
     /// Public symbols by offset.
     publics: BTreeMap<u32, String>,
+    /// The walk's first path to each object, by offset.
+    paths: BTreeMap<u32, String>,
+    /// Names [`assign_names`] gave the data the archive doesn't name.
+    names: BTreeMap<u32, String>,
 }
 
 impl<'a> Source<'a> {
-    pub fn new(archive: &'a Archive<'a>, archive_offset: usize) -> Self {
+    /// `paths` are the walk's: where each object was first reached from.
+    /// `unit` prefixes the externs' names.
+    pub fn new(
+        archive: &'a Archive<'a>,
+        archive_offset: usize,
+        unit: &str,
+        paths: &BTreeMap<u32, String>,
+    ) -> Self {
         let mut publics = BTreeMap::new();
         for (name, symbol) in archive.named_publics() {
             if let Ok(name) = std::str::from_utf8(name)
@@ -464,15 +629,25 @@ impl<'a> Source<'a> {
             archive,
             archive_offset,
             relocs: archive.relocs.iter().copied().collect(),
+            // Every unit pointing to an extern declares it again, without
+            // a type: prefixed so that the declarations don't collide in an
+            // index of the units' sources
             externs: archive
                 .extern_slots()
                 .into_iter()
                 .map(|(at, name)| {
-                    (at, String::from_utf8_lossy(name).into_owned())
+                    (at, format!("{unit}_{}", String::from_utf8_lossy(name)))
                 })
                 .collect(),
             publics,
+            paths: paths.clone(),
+            names: BTreeMap::new(),
         }
+    }
+
+    /// Whether the archive names the data at `offset`.
+    pub fn is_public(&self, offset: u32) -> bool {
+        self.publics.contains_key(&offset)
     }
 
     /// Extern slots in `offset..offset + size`, with the externs' names.
@@ -484,12 +659,16 @@ impl<'a> Source<'a> {
     }
 
     /// What the data at `offset` is called: its public symbol's name, else
-    /// `x<OFFSET>`, or `x<ARCHIVE>_<OFFSET>` inside a packed file.
+    /// the one [`assign_names`] gave it, else `x<OFFSET>` (`x<ARCHIVE>_<OFFSET>`
+    /// inside a packed file).
     pub fn name(&self, offset: u32) -> String {
-        match (self.publics.get(&offset), self.archive_offset) {
-            (Some(name), _) => name.clone(),
-            (None, 0) => format!("x{offset:X}"),
-            (None, archive) => format!("x{archive:X}_{offset:X}"),
+        if let Some(name) = self.publics.get(&offset).or(self.names.get(&offset))
+        {
+            return name.clone();
+        }
+        match self.archive_offset {
+            0 => format!("x{offset:X}"),
+            archive => format!("x{archive:X}_{offset:X}"),
         }
     }
 
@@ -517,13 +696,16 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
         Object::new(BinaryFormat::Elf, Architecture::PowerPc, Endianness::Big);
     let segment = obj.segment_name(StandardSegment::Data).to_vec();
     let data = obj.add_section(segment, b".data".to_vec(), SectionKind::Data);
-    let symbol = |name: String, section, value, size| Symbol {
+    let symbol = |name: String, section, value, size, global| Symbol {
         name: name.into_bytes(),
         value,
         size,
         kind: SymbolKind::Data,
-        // Global, with default visibility
-        scope: SymbolScope::Dynamic,
+        // Global with default visibility, or local
+        scope: match global {
+            true => SymbolScope::Dynamic,
+            false => SymbolScope::Compilation,
+        },
         weak: false,
         section,
         flags: SymbolFlags::None,
@@ -553,6 +735,7 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
             SymbolSection::Section(data),
             at,
             sample.size,
+            source.is_public(offset),
         ));
         symbols.insert(name, id);
         placed.push(at);
@@ -569,7 +752,7 @@ pub fn target_object(samples: &[(&Sample, &Source)]) -> Result<Vec<u8>> {
             .map(|(word, name)| (word, name.to_owned()));
         for (word, name) in relocs.chain(externs) {
             let id = *symbols.entry(name.clone()).or_insert_with(|| {
-                obj.add_symbol(symbol(name, SymbolSection::Undefined, 0, 0))
+                obj.add_symbol(symbol(name, SymbolSection::Undefined, 0, 0, true))
             });
             obj.add_relocation(
                 data,
@@ -1179,5 +1362,15 @@ mod tests {
         assert!(!is_identifier("1x"));
         assert!(!is_identifier("a-b"));
         assert!(!is_identifier(""));
+    }
+
+    #[test]
+    fn path_segments() {
+        assert_eq!(
+            segments("ftDataMario.x48_items->[4].x8->child->"),
+            ["ftDataMario", "x48_items_4", "x8", "child"]
+        );
+        assert_eq!(segments("a->[1][3]"), ["a_1_3"]);
+        assert_eq!(segments("a.script+0x1C->next->"), ["a", "script", "next"]);
     }
 }

@@ -64,6 +64,9 @@ else()
     )
 endif()
 
+# The generated C isn't the repository's to tidy
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/src/.clang-tidy" "Checks: '-*'\n")
+
 # The types, deduplicated once for every step
 add_custom_command(
     OUTPUT types.bin
@@ -95,11 +98,12 @@ foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_unit "${_archive}" NAME_WE)
     set(_target "target/${_unit}.o")
     set(_sidecar "target/${_unit}.samples")
-    set(_types "types/${_unit}.types")
+    set(_types "metadata/${_unit}.types")
     set(_layout "target/${_unit}.ld")
+    set(_globals "target/${_unit}.globals")
     set(_object "obj/${_unit}.o")
     set(_source "src/${_unit}.c")
-    set(_formatted "stamp/${_unit}.formatted")
+    set(_formatted "metadata/${_unit}.formatted")
     set(_base "base/${_unit}.o")
 
     set(_all)
@@ -121,7 +125,7 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_target}" "${_sidecar}" "${_layout}"
+        OUTPUT "${_target}" "${_sidecar}" "${_layout}" "${_globals}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
             --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
@@ -156,13 +160,17 @@ foreach(_archive IN LISTS _dat_archives)
         BYPRODUCTS "${_object}"
         # Each sample in its own section, then linked into .data in the
         # target's order: clang lays variables out where an initializer
-        # first points to them
+        # first points to them. Only the archive's names stay global, as
+        # in the target
         COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -fdata-sections
             -MD -MF "${_base}.d" -MT "${_base}"
             -c "${_source}" -o "${_object}"
         COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}"
             -o "${_base}"
-        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_dat_flags}"
+        COMMAND "${CMAKE_OBJCOPY}" "--keep-global-symbols=${_globals}"
+            "${_base}"
+        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_globals}"
+            "${_dat_flags}"
         DEPFILE "${_base}.d"
         COMMENT "Compiling ${_source}"
         VERBATIM

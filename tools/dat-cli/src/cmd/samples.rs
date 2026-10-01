@@ -19,8 +19,8 @@ use melee_dat::{
     },
     hsd::Archive,
     samples::{
-        CWriter, Elided, Instance, Picker, SampleInfo, Source, root_of,
-        target_object,
+        CWriter, Elided, Instance, Picker, SampleInfo, Source, Unnamed,
+        assign_names, root_of, target_object,
     },
 };
 use object::{
@@ -256,24 +256,15 @@ fn slice(args: Slice) -> Result<()> {
     let (mut samples, _) = picker.finish();
     samples.sort_by_key(|s| (s.location.archive, s.location.offset));
 
-    let sources: BTreeMap<usize, Source> = archives
+    let unit = args.archive.strip_suffix(".dat").unwrap_or(&args.archive);
+    let mut sources: BTreeMap<usize, Source> = archives
         .iter()
-        .map(|(at, a)| (*at, Source::new(a, *at)))
+        .map(|(at, a)| (*at, Source::new(a, *at, unit, &walks[at].paths)))
         .collect();
-    let pairs: Vec<_> = samples
+    let sampled: BTreeSet<(usize, u32)> = samples
         .iter()
-        .map(|s| (s, &sources[&s.location.archive]))
+        .map(|s| (s.location.archive, s.location.offset))
         .collect();
-    let picker = Picker::new(&project.graph, &project.canonical);
-    let mut infos = Vec::new();
-    let mut names = BTreeSet::new();
-    for (sample, source) in &pairs {
-        let name = source.name(sample.location.offset);
-        if !names.insert(name.clone()) {
-            bail!("{}: two samples named {name}", args.archive);
-        }
-        infos.push(picker.info(sample, name));
-    }
     // The other data the samples point to belongs to the root of the
     // object it is in: the nearest one the walk reached at or before it
     let mut elided = BTreeMap::new();
@@ -296,14 +287,15 @@ fn slice(args: Slice) -> Result<()> {
             (*at, starts)
         })
         .collect();
-    for (sample, source) in &pairs {
+    for sample in &samples {
+        let at = sample.location.archive;
+        let source = &sources[&at];
         for (_, name) in source.externs(sample.location.offset, sample.size) {
             externs.insert(name.to_owned());
         }
-        let walk = &walks[&sample.location.archive];
+        let walk = &walks[&at];
         for (_, target) in source.relocs(sample.location.offset, sample.size) {
-            let name = source.name(target);
-            if names.contains(&name) {
+            if sampled.contains(&(at, target)) {
                 continue;
             }
             let root = walk
@@ -325,7 +317,7 @@ fn slice(args: Slice) -> Result<()> {
             let end = source.archive.data.len() as u32;
             let size = typed.map_or_else(
                 || {
-                    starts[&sample.location.archive]
+                    starts[&at]
                         .range(target + 1..)
                         .next()
                         .map_or(end, |&s| s.min(end))
@@ -333,8 +325,45 @@ fn slice(args: Slice) -> Result<()> {
                 },
                 |size| size as u32,
             );
-            elided.entry(name).or_insert(Elided { root, size });
+            elided.entry((at, target)).or_insert(Elided { root, size });
         }
+    }
+    // Names for what the archive doesn't name
+    let wanted: Vec<Unnamed> = sampled
+        .iter()
+        .map(|&(archive, offset)| (archive, offset, None))
+        .chain(
+            elided
+                .iter()
+                .map(|(&(archive, offset), e)| (archive, offset, Some(&*e.root))),
+        )
+        .filter(|&(archive, offset, _)| !sources[&archive].is_public(offset))
+        .map(|(archive, offset, elided)| Unnamed {
+            archive,
+            offset,
+            elided,
+        })
+        .collect();
+    assign_names(&mut sources, &wanted);
+    let elided: BTreeMap<String, Elided> = elided
+        .into_iter()
+        .map(|((at, target), e)| (sources[&at].name(target), e))
+        .collect();
+
+    let pairs: Vec<_> = samples
+        .iter()
+        .map(|s| (s, &sources[&s.location.archive]))
+        .collect();
+    let picker = Picker::new(&project.graph, &project.canonical);
+    let mut infos = Vec::new();
+    let mut names = BTreeSet::new();
+    for (sample, source) in &pairs {
+        let name = source.name(sample.location.offset);
+        if !names.insert(name.clone()) {
+            bail!("{}: two samples named {name}", args.archive);
+        }
+        let public = source.is_public(sample.location.offset);
+        infos.push(picker.info(sample, name, public));
     }
 
     if let Some(dir) = args.output.parent() {
@@ -349,6 +378,15 @@ fn slice(args: Slice) -> Result<()> {
     }
     script += "        *(.data .data.*)\n    }\n}\n";
     fs::write(args.output.with_extension("ld"), script)?;
+    // The symbols the linked base object keeps global, as in the target:
+    // the archive's names. C can't define the others as `static`, which
+    // clang drops when nothing in the unit points to them
+    let globals: String = infos
+        .iter()
+        .filter(|i| i.public)
+        .map(|i| format!("{}\n", i.symbol))
+        .collect();
+    fs::write(args.output.with_extension("globals"), globals)?;
     let sidecar = Sidecar {
         archive: args.archive,
         samples: infos,

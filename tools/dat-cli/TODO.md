@@ -2,7 +2,8 @@
 
 ## Samples
 
-- `PlSs` `x352D8` (66.7%) and `PlGw` `x78F0` (85.7%) don't match. PlSs's
+- `PlSs` `x8_hurtbones` (66.7%) and `PlGw` `dyn_descs_0` (85.7%) don't
+  match. PlSs's
   cause: `ftData_Item` is `Article*` for every slot, but Samus's slot 4 is
   `UNK_SAMUS_S1` (the grapple beam accessory; `ftSs_Init_CreateThrowGrapple
   Beam`), so everything behind `ftDataSamus.x48_items->[4]` is mistyped (8
@@ -15,6 +16,14 @@
 - A union object whose tag chooses no member has no sample (`CmdUnion`,
   which is a script; item attributes of fighter items, whose kind isn't
   bound).
+
+- The generated C has some redundant parentheses (clang-tidy is off for
+  `src/` in the build directory, so nothing reports them). Find and drop
+  them in codegen.
+- objdiff can diff whole archives: the cost is the size of each symbol,
+  not of the object, and blob data is understood and typed data is
+  sliced. Sampling could become a choice rather than a necessity
+  (`MELEE_DAT_SAMPLES_ALL` for every archive).
 
 ## Walk findings
 
@@ -104,7 +113,6 @@ Not errors:
   report as REL-like units would lower `GALE01`'s data percentage:
   decomp.dev sums every unit and ignores `module_name`.
 - The report has to come from dat-cli: `objdiff-cli report` measures data
-  per combined section and misses relocation differences, and can't hold
-  whole archives. Units per archive, `matched_data` as the bytes of objects
+  per combined section and misses relocation differences. Units per archive, `matched_data` as the bytes of objects
   whose sample matches.
 - Unknown whether CI's `/orig` has `orig/GALE01/files`.
