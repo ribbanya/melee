@@ -13,6 +13,10 @@
 - `types unhoisted` lists dat types declared in `.c` files: none left. The
   stage `*_YakumonoParam` structs aren't reachable (`void*` in the stage
   info) and differ per stage.
+- `PlFx` `x0_common_attr_x4018` is an `ItemAttr` sample, but two other
+  samples point to it as `HSD_ShapeAnimJoint*` and `HSD_AnimJoint*` (casts
+  in `ftDataFox.c`). Likely a field that is a union of those, chosen by
+  something the walk doesn't bind.
 - A union object whose tag chooses no member has no sample (`CmdUnion`,
   which is a script; item attributes of fighter items, whose kind isn't
   bound).
