@@ -10,7 +10,9 @@
  * table.
  *
  * Union members are tested in declaration order; the first match is valid.
- * If every member has a condition and none holds, the union is unused.
+ * A condition that can't be evaluated stops the search, so a last member
+ * marked @c DAT_IF(1) is a catch-all for the others. If every member has a
+ * condition and none holds, the union is unused.
  */
 #ifndef DOLDECOMP_DAT_MACROS_H
 #define DOLDECOMP_DAT_MACROS_H

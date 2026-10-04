@@ -1196,7 +1196,10 @@ impl<'a> Walker<'a> {
     /// The first union member whose `dat:if` condition holds. Conditions
     /// read the fields of the record containing the union, or else those of
     /// the union's own record members, for a union whose members share a
-    /// common initial sequence. A lone member needs no condition.
+    /// common initial sequence. A lone member needs no condition. A
+    /// condition that can't be evaluated makes the choice ambiguous rather
+    /// than falling through to a later member, such as a `dat:if(1)`
+    /// catch-all.
     fn choose<'m>(
         &self,
         members: &'m [Member],
@@ -1214,6 +1217,7 @@ impl<'a> Walker<'a> {
                     _ => None,
                 }
             });
+            let conditioned = condition.is_some();
             let holds = condition.and_then(|cond| {
                 eval_expr(self.macros, &cond, &|name| {
                     if let Some((record, at)) = parent
@@ -1229,10 +1233,13 @@ impl<'a> Walker<'a> {
                         .or_else(|| lookup(&self.env, name))
                 })
             });
-            match holds {
-                Some(0) => {}
-                Some(_) => return Choice::Member(member),
-                None => decided = false,
+            match (conditioned, holds) {
+                (_, Some(0)) => {}
+                (_, Some(_)) => return Choice::Member(member),
+                // A condition that can't be evaluated might hold: a later
+                // member, which may be a catch-all, can't be chosen over it
+                (true, None) => return Choice::Ambiguous,
+                (false, None) => decided = false,
             }
         }
         if decided {
