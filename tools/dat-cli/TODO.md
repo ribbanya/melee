@@ -77,11 +77,31 @@ Not errors:
   fighter kind (`ftData_Table_Unk0`, `ftData_UnkIntPairs`), or only in code.
 - `FigaTree.tracks` uses `DAT_EXTENT`. Its length is the sum of `nodes`
   (`DAT_TERMINATED(-1)`), which needs a new annotation.
-- `*_image` and `*_tlut` are typed `u8[]`/`u16[]` up to the next public or
-  pointer target, for the ones no reached `HSD_ImageDesc` or
+- `*_image` and `*_tlut` are `type:u8 extent`/`type:u16 extent`, up to the
+  next public or pointer target, for the ones no reached `HSD_ImageDesc` or
   `HSD_TlutDesc` sizes (e.g. GrIz and GrPu, whose descs nothing reached
-  points to). Vertex arrays (`HSD_VtxDescList.vertex`) are still raw: their
-  count is the largest index the display lists use.
+  points to).
+- Vertex arrays (`HSD_VtxDescList.vertex`, an `HSD_VertexArray` blob) run
+  to the next object. Their length is (the largest index the display lists
+  use + 1) × `stride`. Plan:
+  - The evaluator gets a byte-slice value besides integers: a pointer
+    field whose own annotation gives its length (`DAT_COUNT`,
+    `DAT_TERMINATED`) evaluates to the data it points to. `DAT_BIND` scopes
+    and `call` take such values; functions stay pure over fixed bytes.
+  - `HSD_PObjDesc.verts` binds `DAT_BIND(dl, display) DAT_BIND(descs,
+    verts)`; `vertex` gets `DAT_COUNT((GXMaxIndex(dl, descs, attr) + 1) *
+    stride)`.
+  - `GXMaxIndex` is a tool-side helper, not a port: it decodes the display
+    list as the GameCube lays it out (opcode byte, `u16` vertex count, then
+    per vertex an entry per attribute in `verts` order: `GX_INDEX8` 1 byte,
+    `GX_INDEX16` 2, `GX_DIRECT` inline by `comp_cnt`/`comp_type`; up to the
+    0 opcode) and returns the largest index for `attr`.
+  - Arrays shared between PObjs already take the largest extent. Shape
+    animations (`HSD_ShapeSetDesc.vertex_idx_list`) index them too.
+- The particle banks (`EffectDataTable.cmd_bank`/`tex_bank`, `map_ptcl`,
+  `map_texg`) use `DAT_EXTENT`/`extent`. Their headers give their sizes, as
+  `psInitDataBankLocate` reads them: a header struct with counted members,
+  or a sizer like `DAT_SCRIPT`'s.
 
 ## Coverage
 
