@@ -243,6 +243,41 @@ impl<'a> Walker<'a> {
     /// Walk `count` consecutive elements of type `element` at `offset`, or
     /// if `count` is `None`, as many as fit before the next public symbol or
     /// pointer target.
+    /// How many `element`s a list at `offset` holds up to and including
+    /// the first whose first word (or whole value, if smaller) is
+    /// `terminator` and not a relocated pointer, as `DAT_TERMINATED`
+    /// counts them; the elements that fit if none is.
+    pub fn terminated_count(
+        &self,
+        offset: u32,
+        element: DieId,
+        terminator: u64,
+    ) -> Option<u64> {
+        let element = self.resolve(Some(element))?;
+        let size = self.canonical.byte_size(self.graph, element)?;
+        if size == 0 {
+            return None;
+        }
+        let width = size.min(4) as usize;
+        let mask = u64::MAX >> (64 - 8 * width);
+        let mut n = 0;
+        loop {
+            let at = offset as usize + (n * size) as usize;
+            if at + size as usize > self.data.len() {
+                break;
+            }
+            n += 1;
+            let first = self.data[at..at + width]
+                .iter()
+                .fold(0, |v, &b| v << 8 | u64::from(b));
+            if first == terminator & mask && !self.relocs.contains(&(at as u32))
+            {
+                break;
+            }
+        }
+        Some(n)
+    }
+
     pub fn root_array(
         &mut self,
         offset: u32,

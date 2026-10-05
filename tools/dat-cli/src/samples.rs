@@ -690,7 +690,7 @@ impl<'a> Picker<'a> {
         let inner = match count {
             Count::One => "{}".to_owned(),
             Count::Exactly(n) => format!("{{}}[{n}]"),
-            Count::Unbounded => "{}[]".to_owned(),
+            Count::Unbounded | Count::Terminated(_) => "{}[]".to_owned(),
         };
         Some(ElidedType {
             declaration: self.renderer.declare(Some(die), &inner),

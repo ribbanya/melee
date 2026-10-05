@@ -41,6 +41,10 @@ pub enum Count {
     Exactly(u64),
     /// As many as fit before the next symbol.
     Unbounded,
+    /// Up to and including the first element whose first word (or whole
+    /// value, if smaller) is this and not a relocated pointer, like
+    /// `DAT_TERMINATED`.
+    Terminated(u64),
 }
 
 /// `name = dat:address; // attrs`, like decomp-toolkit's `symbols.txt`
@@ -272,6 +276,8 @@ fn attr<'i>(input: &mut &'i str) -> ModalResult<Attr<'i>> {
         preceded("type:", cut_err(type_name)).map(Attr::Type),
         preceded("count:", cut_err(integer))
             .map(|n| Attr::Count(Count::Exactly(n))),
+        preceded("terminated:", cut_err(integer))
+            .map(|v| Attr::Count(Count::Terminated(v))),
         take_till(1.., char::is_whitespace).map(|word| match word {
             "extent" => Attr::Count(Count::Unbounded),
             word => Attr::Other(word),
@@ -321,6 +327,7 @@ impl fmt::Display for Entry {
                 Count::One => "count:1".to_owned(),
                 Count::Exactly(n) => format!("count:{n}"),
                 Count::Unbounded => "extent".to_owned(),
+                Count::Terminated(v) => format!("terminated:{v:#X}"),
             }))
             .chain(self.other.iter().cloned())
             .collect();
@@ -342,6 +349,7 @@ grGroundParam = *:*; // type:grGroundParam count:2 data:4byte
 itemdata = GrI2.dat:*;
 map_plit = *:*; // extent
 ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat:*; // count:10
+itemdata = GrOp.dat:*; // terminated:0x0
 ";
 
     #[test]
@@ -354,6 +362,7 @@ ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat:*; // count:10
         assert_eq!(file.entries[2].other, ["data:4byte"]);
         assert_eq!(file.entries[4].count, Some(Count::Unbounded));
         assert_eq!(file.entries[5].count, Some(Count::Exactly(10)));
+        assert_eq!(file.entries[6].count, Some(Count::Terminated(0)));
     }
 
     #[test]

@@ -210,6 +210,13 @@ impl Project {
                 Count::Unbounded => {
                     walker.root_array(symbol.offset, ty, None, &name, bindings)
                 }
+                Count::Terminated(value) => walker.root_array(
+                    symbol.offset,
+                    ty,
+                    walker.terminated_count(symbol.offset, ty, value),
+                    &name,
+                    bindings,
+                ),
             }
             rooted = true;
         }
@@ -225,6 +232,13 @@ impl Project {
                 Count::Unbounded => {
                     walker.root_array(address, ty, None, &entry.name, &[])
                 }
+                Count::Terminated(value) => walker.root_array(
+                    address,
+                    ty,
+                    walker.terminated_count(address, ty, value),
+                    &entry.name,
+                    &[],
+                ),
             }
             rooted = true;
         }

@@ -188,6 +188,9 @@ typedef enum DatCount {
     DAT_COUNT_EXACTLY,
     /// As many as fit before the next public symbol or pointer target.
     DAT_COUNT_EXTENT,
+    /// Up to and including the first element whose first word (or whole
+    /// value, if smaller) is `n` and not a relocated pointer.
+    DAT_COUNT_TERMINATED,
 } DatCount;
 
 /// A value a root's loader binds, for `DAT_IF` and `DAT_BIND` names.

@@ -51,7 +51,7 @@ ftDemo*MotionFile* = *:*; // type:u8 extent
 
 // Scenes whose loaders aren't typed or decompiled
 *_scene_data = *:*; // type:SceneDesc
-*_scene_lights = *:*; // type:LightList* extent
+*_scene_lights = *:*; // type:LightList* terminated:0
 visual*Scene = Vi*.dat:*; // type:SceneDesc
 cut3Bg*Scene = GmRgEBG*.dat:*; // type:SceneDesc
 
@@ -89,16 +89,16 @@ ftDataKirbyCopyFalco = PlKbCpFc.dat:*; // type:ftKbCopyParts_Items
 ftDataKirbyCopyGamewatch = PlKbCpGw.dat:*; // type:ftKbCopyParts_GameWatch
 
 // Pointer tables whose loaders declare only the first element's type: how
-// many elements there are. `extent` lists end in a null pointer, then the
-// next object.
-map_plit = *:*; // extent
-itemdata = *:*; // extent
-ScMenMain_scene_lights = *:*; // extent
-ScMenFigure_scene_lights = *:*; // extent
-ScMenDisplay_scene_lights = *:*; // extent
-ScTitle_scene_lights = *:*; // extent
-ScInfCnt_scene_models = *:*; // extent
-Stc_scemdls = *:*; // extent
+// many elements there are. Lists end in a null pointer; `extent` tables run
+// to the next object.
+map_plit = *:*; // terminated:0
+itemdata = *:*; // terminated:0
+ScMenMain_scene_lights = *:*; // terminated:0
+ScMenFigure_scene_lights = *:*; // terminated:0
+ScMenDisplay_scene_lights = *:*; // terminated:0
+ScTitle_scene_lights = *:*; // terminated:0
+ScInfCnt_scene_models = *:*; // terminated:0
+Stc_scemdls = *:*; // terminated:0
 sqEventInitDataLevelTbl = GmEvent.dat:*; // extent
 tournament_box?_array = TmBox.dat:*; // extent
 ty*Tbl = TyData?.dat:*; // extent

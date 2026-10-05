@@ -1079,6 +1079,7 @@ fn count_row(count: Count) -> (u8, u64) {
         Count::One => (0, 0),
         Count::Exactly(n) => (1, n),
         Count::Unbounded => (2, 0),
+        Count::Terminated(value) => (3, value),
     }
 }
 

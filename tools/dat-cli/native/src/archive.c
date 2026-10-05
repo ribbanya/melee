@@ -2149,6 +2149,30 @@ static void* walk_root_array(DatArchive* a, uint32_t offset, int32_t element,
     return block;
 }
 
+/// How many elements of `type` a list at `offset` holds, up to and
+/// including the first whose first word is `term` and not relocated.
+static uint64_t terminated_count(const DatArchive* a, uint32_t offset,
+                                 int32_t type, uint64_t term)
+{
+    int32_t e = resolve(a, type);
+    if (e == DAT_NONE || T(a, e)->size == 0) {
+        return 0;
+    }
+    uint32_t size = T(a, e)->size;
+    uint32_t width = size < 4 ? size : 4;
+    uint64_t mask = (1ull << (8 * width)) - 1;
+    uint64_t n = 0;
+    for (uint64_t at = offset; at + size <= a->size; at += size) {
+        n++;
+        if (bytes_at(a, at, width) == (term & mask) &&
+            !bits_has(&a->reloc, at, a->size))
+        {
+            break;
+        }
+    }
+    return n;
+}
+
 static void* walk(DatArchive* a, uint32_t offset, const DatRoot* root,
                   int32_t type, DatCount count, uint64_t n)
 {
@@ -2160,6 +2184,9 @@ static void* walk(DatArchive* a, uint32_t offset, const DatRoot* root,
         return walk_root_array(a, offset, type, true, n, env);
     case DAT_COUNT_EXTENT:
         return walk_root_array(a, offset, type, false, 0, env);
+    case DAT_COUNT_TERMINATED:
+        return walk_root_array(a, offset, type, true,
+                               terminated_count(a, offset, type, n), env);
     }
     return NULL;
 }
