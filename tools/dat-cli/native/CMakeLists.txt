@@ -124,3 +124,14 @@ set_target_properties(dat_e2e PROPERTIES C_STANDARD 11 C_EXTENSIONS ON)
 add_test(NAME e2e
     COMMAND dat_e2e "${CMAKE_CURRENT_BINARY_DIR}/expect.txt"
         "${MELEE_DAT_FILES}")
+
+# The game's own types, read through C's member access
+add_executable(dat_types tests/types.c)
+target_link_libraries(dat_types PRIVATE dat_melee melee_game_headers)
+target_compile_definitions(dat_types PRIVATE
+    VERSION_${MELEE_VERSION}
+    BUILD_VERSION=${MELEE_VERSION_NUM}
+)
+set_target_properties(dat_types PROPERTIES C_STANDARD 23 C_EXTENSIONS ON)
+target_compile_options(dat_types PRIVATE -w)
+add_test(NAME types COMMAND dat_types "${MELEE_DAT_FILES}")
