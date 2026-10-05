@@ -110,7 +110,7 @@ Not errors:
   can be `union CmdUnion*` without an ambiguous union.
 
 - Loaded into untyped destinations, types unknown:
-  `sqEventInitDataLevelTbl`, `tournament_box*_array`, `mnNameDefaultName*`
+  `tournament_box*_array`, `mnNameDefaultName*`
   (and `mnNameAutoName*`), `MemCardIconData`, `MemSnapIconData`.
 - `toy.c` loads trophy symbols through `symbol_name` fields of its tables;
   those are covered by name patterns instead.

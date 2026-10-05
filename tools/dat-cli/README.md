@@ -92,7 +92,8 @@ The loaders record what they load in the DWARF build:
   `HSD_ArchiveGetPublicAddress`.
 
 They record them with `DAT_ROOTS` (in `dat_macros.h`), which declares a
-witness of each destination's type, annotated with the name. A root is
+witness of each destination's type, annotated with the name. An array
+destination is loaded into its first element. A root is
 untyped if its destination is `void*`, and skipped if its name isn't a
 string literal or a global string.
 
