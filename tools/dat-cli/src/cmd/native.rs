@@ -154,6 +154,7 @@ struct RootRow {
     ty: i32,
     count_kind: u8,
     count: u64,
+    script: i32,
     binds: usize,
     nbinds: usize,
 }
@@ -1048,6 +1049,7 @@ fn file_roots(
                     ty: generator.type_index(die),
                     count_kind,
                     count,
+                    script: NONE,
                     binds,
                     nbinds: root_binds.len() - binds,
                 });
@@ -1056,6 +1058,9 @@ fn file_roots(
                 let Some(ty) = &entry.ty else { continue };
                 let (count_kind, count) =
                     count_row(entry.count.unwrap_or(Count::One));
+                let script = entry
+                    .script()
+                    .map_or(NONE, |script| generator.script(&script));
                 roots.push(RootRow {
                     name: entry.name.clone(),
                     alias: true,
@@ -1063,6 +1068,7 @@ fn file_roots(
                     ty: generator.type_index(project.symbol_types[ty]),
                     count_kind,
                     count,
+                    script,
                     binds: root_binds.len(),
                     nbinds: 0,
                 });
@@ -1248,13 +1254,14 @@ fn codegen(args: Codegen) -> Result<()> {
     for r in &roots {
         writeln!(
             c,
-            "    {{{}, {}, 0x{:X}, {}, {}, {}ull, {}, {}}},",
+            "    {{{}, {}, 0x{:X}, {}, {}, {}ull, {}, {}, {}}},",
             literal(&r.name),
             u8::from(r.alias),
             r.address,
             r.ty,
             r.count_kind,
             r.count,
+            r.script,
             r.binds,
             r.nbinds,
         )?;

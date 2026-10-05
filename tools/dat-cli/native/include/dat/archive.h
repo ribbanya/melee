@@ -213,6 +213,9 @@ typedef struct DatRoot {
     int32_t type;
     uint8_t count_kind;
     uint64_t count;
+    /// A command script nothing points to: an index into
+    /// DatSchema::scripts, or `DAT_NONE`.
+    int32_t script;
     /// A range of DatSchema::root_binds.
     uint32_t binds, nbinds;
 } DatRoot;

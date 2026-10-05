@@ -108,11 +108,9 @@ Not errors:
 ## Coverage
 
 - `ALDYakuAll` (`StageInfo.ald_yaku_all`) is a null-terminated table of
-  item scripts, loaded as `void*`. Walking them needs a script attribute
-  for `dat_symbols.txt` roots, mirroring `DAT_SCRIPT`, so that its entries
-  can be `union CmdUnion*` without an ambiguous union. The same attribute
-  would type `PlSb.dat` 0x75C-0x1444: subaction scripts after Sandbag's
-  `FtSFX` that nothing points to.
+  item scripts, loaded as `void*`. `dat_symbols.txt` roots can be scripts
+  now (`script:`), but not a list of pointers to them: that needs a pointer
+  typedef with `DAT_SCRIPT`, or `script:` on a list root.
 
 - Loaded into untyped destinations, types unknown:
   `mnNameDefaultName*`

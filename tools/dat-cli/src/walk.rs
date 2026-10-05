@@ -1023,8 +1023,31 @@ impl<'a> Walker<'a> {
             return self.unrelocated(offset, value, path);
         }
         self.walk.pointers.insert(offset);
+        self.script_at(value, target, script, format!("{path}->"));
+    }
+
+    /// Walk a command script nothing points to at `offset`, as `element`.
+    pub fn root_script(
+        &mut self,
+        offset: u32,
+        element: DieId,
+        script: &Script,
+        name: &str,
+    ) {
+        self.env = root_env(&[]);
+        self.script_at(offset, Some(element), script, name.to_owned());
+    }
+
+    /// Walk the script at `value`, and every script its commands point to.
+    fn script_at(
+        &mut self,
+        value: u32,
+        target: Option<DieId>,
+        script: &Script,
+        path: String,
+    ) {
         let id = self.pointee(target).and_then(|t| self.canonical.of(t));
-        let mut queue = vec![(value, format!("{path}->"))];
+        let mut queue = vec![(value, path)];
         while let Some((start, path)) = queue.pop() {
             if !self.scripts.insert(start) {
                 continue;

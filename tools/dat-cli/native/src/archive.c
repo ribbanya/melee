@@ -1715,6 +1715,9 @@ static bool command_length(const DatArchive* a, const DatScript* s,
 /// Follow a `DAT_SCRIPT` pointer, and every script its commands point to.
 /// Scripts stay as they are in the data: big-endian words, their pointers
 /// offsets.
+static void script_at(DatArchive* a, uint32_t value, int32_t id,
+                      const DatScript* s);
+
 static void script(DatArchive* a, uint32_t offset, int32_t pointer,
                    const DatScript* s, void* slot)
 {
@@ -1735,7 +1738,13 @@ static void script(DatArchive* a, uint32_t offset, int32_t pointer,
     }
     bits_set(&a->pointer, offset, a->size);
     store_pointer(slot, a->data + value);
-    int32_t id = pointee(a, T(a, p)->target);
+    script_at(a, value, pointee(a, T(a, p)->target), s);
+}
+
+/// Walk the script at `value`, and every script its commands point to.
+static void script_at(DatArchive* a, uint32_t value, int32_t id,
+                      const DatScript* s)
+{
     VEC(uint32_t) queue = { 0 };
     VEC_PUSH(queue, value);
     while (queue.len > 0) {
@@ -2250,7 +2259,13 @@ int dat_load_roots(DatArchive* a, const char* file, uint32_t index)
     }
     for (uint32_t j = 0; j < f->nroots; j++) {
         const DatRoot* root = &a->s->roots[f->roots + j];
-        if (root->alias) {
+        if (root->alias && root->script != DAT_NONE) {
+            a->env = root_env(a, root);
+            script_at(a, root->address, pointee(a, root->type),
+                      &a->s->scripts[root->script]);
+            finish(a);
+            found++;
+        } else if (root->alias) {
             walk(a, root->address, root, root->type,
                  (DatCount) root->count_kind, root->count);
             found++;
