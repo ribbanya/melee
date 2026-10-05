@@ -100,6 +100,11 @@ ScTitle_scene_lights = *:*; // extent
 ScInfCnt_scene_models = *:*; // extent
 Stc_scemdls = *:*; // extent
 
+// Every effect archive's table, as efAsync_DatEntries loads them; this also
+// types those no loader names, such as Kirby's unused copy of Pichu's
+// effects (EfKbPc.dat)
+eff*DataTable = Ef*.dat:*; // type:EffectDataTable
+
 // Particle banks, loaded as `int` for psInitDataBankLocate: words, and
 // offsets into themselves, as far as the data runs.
 map_ptcl = *:*; // extent
