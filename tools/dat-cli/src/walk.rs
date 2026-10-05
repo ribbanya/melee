@@ -975,6 +975,8 @@ impl<'a> Walker<'a> {
             }
             self.walk.paths.entry(start).or_insert_with(|| path.clone());
             let mut at = start;
+            // Typed data up to its end command, if it gets there
+            let mut ended = None;
             loop {
                 let Some(&first) = self.data.get(at as usize) else {
                     self.issue(Issue::OutOfBounds {
@@ -1010,9 +1012,14 @@ impl<'a> Walker<'a> {
                     }
                 }
                 if opcode == 0 {
+                    ended = Some(end);
                     break;
                 }
                 at = end;
+            }
+            if let Some(end) = ended {
+                let furthest = self.walk.extents.entry(start).or_insert(end);
+                *furthest = end.max(*furthest);
             }
         }
     }

@@ -165,14 +165,15 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
 - `target/<unit>.o`: the whole archive, in two sections (objdiff lists
   them by name):
   - `.0.sampled`: the sampled objects, with pointers as relocations
-  - `.1.inferred`: the archive's public symbols and the data the samples
-    point to, as uninitialized data, which objdiff never diffs bytes of.
-    The base defines the ones the walk explains here too, so objdiff
-    matches them by name and size; the rest show as missing. One is
-    explained when it, and everything it reaches before another of them
-    or a sample, is typed data with no relocation the walk can't explain.
-    Bytes a pointer says are bytes (`u8` texels, strings, keyframes) are
-    explained up to the next object
+  - `.1.inferred`: the rest of the archive, as uninitialized data, which
+    objdiff never diffs bytes of: one symbol per piece, split wherever an
+    object, public symbol or pointer target starts. The base defines the
+    pieces the walk explains here too, so objdiff matches them by name and
+    size; the rest show as missing. A piece is explained when it's typed
+    data (an object up to its type's end, a script up to its end command)
+    with no relocation the walk can't explain. Bytes a pointer says are
+    bytes (`u8` texels, strings, keyframes) are explained up to the next
+    object
 
   Each symbol's offset in the archive is its virtual address in a
   `.note.split`, as decomp-toolkit writes for split code; objdiff shows it.

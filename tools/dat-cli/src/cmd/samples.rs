@@ -507,7 +507,8 @@ fn slice(args: Slice) -> Result<()> {
             }
         }
     }
-    // Names for what the archive doesn't name
+    // Names for what the archive doesn't name: the samples, the data they
+    // point to, and every other piece of the archive
     let wanted: Vec<Unnamed> = sampled
         .iter()
         .map(|&(archive, offset)| (archive, offset, None))
@@ -515,6 +516,13 @@ fn slice(args: Slice) -> Result<()> {
             elided
                 .iter()
                 .map(|(&(archive, offset), e)| (archive, offset, Some(&*e.root))),
+        )
+        .chain(
+            rest.iter()
+                .filter(|&&(archive, offset, _)| {
+                    !elided.contains_key(&(archive, offset))
+                })
+                .map(|&(archive, offset, _)| (archive, offset, None)),
         )
         .filter(|&(archive, offset, _)| !sources[&archive].is_public(offset))
         .map(|(archive, offset, elided)| Unnamed {
@@ -524,7 +532,6 @@ fn slice(args: Slice) -> Result<()> {
         })
         .collect();
     assign_names(&mut sources, &wanted);
-    let pointed: BTreeSet<(usize, u32)> = elided.keys().copied().collect();
     let elided: BTreeMap<String, Elided> = elided
         .into_iter()
         .map(|((at, target), e)| (sources[&at].name(target), e))
@@ -623,45 +630,12 @@ fn slice(args: Slice) -> Result<()> {
                     .any(|u| (offset..end).contains(&u.at))
         })
         .collect();
-    // Only what has a global name goes in the objects: the archive's public
-    // symbols and the data the samples point to. The rest is only reached
-    // through those, and the C never names it: a global is inferred when it
-    // and everything it reaches without passing another global or a sample
-    // are explained
-    let spans: BTreeMap<(usize, u32), usize> = rest
-        .iter()
-        .enumerate()
-        .map(|(i, &(at, offset, _))| ((at, offset), i))
-        .collect();
-    let named = |i: usize| {
-        let (at, offset, _) = rest[i];
-        sources[&at].is_public(offset) || pointed.contains(&(at, offset))
-    };
+    // Every piece of the archive outside the samples is in the objects, as
+    // its own symbol: the base infers each the walk explains
     let mut target_rest = Vec::new();
     let mut inferred = Vec::new();
     for (i, &(at, offset, size)) in rest.iter().enumerate() {
-        if !named(i) {
-            continue;
-        }
         let source = &sources[&at];
-        let mut seen = BTreeSet::from([i]);
-        let mut stack = vec![i];
-        let mut all = true;
-        while let Some(i) = stack.pop() {
-            if !explained[i] {
-                all = false;
-                break;
-            }
-            let (_, from, size) = rest[i];
-            for (_, target) in source.relocs(from, size.into()) {
-                if let Some(&j) = spans.get(&(at, target))
-                    && !named(j)
-                    && seen.insert(j)
-                {
-                    stack.push(j);
-                }
-            }
-        }
         let piece = Piece {
             source,
             offset,
@@ -671,7 +645,7 @@ fn slice(args: Slice) -> Result<()> {
             // bind: objdiff compares relocations to undefined symbols by name
             global: source.is_public(offset),
         };
-        if all {
+        if explained[i] {
             inferred.push(piece.clone());
         }
         target_rest.push(piece);
