@@ -253,13 +253,12 @@ fn types(args: TypesArgs) -> Result<()> {
                     renderer.declare(Some(ty), "")
                 );
                 roots.push(ty);
-            } else if let Some(spec) = project
-                .symbols
-                .lookup(&name, &args.archive)
-                .and_then(|e| e.ty.as_ref())
+            } else if let Some(entry) =
+                project.symbols.lookup(&name, &args.archive)
+                && let Some(ty) = &entry.ty
             {
-                text += &format!("symbol {name}: {spec}\n");
-                roots.push(project.symbol_types[&spec.name]);
+                text += &format!("symbol {name}: {ty} {:?}\n", entry.count);
+                roots.push(project.symbol_types[ty]);
             }
         }
     }

@@ -38,19 +38,15 @@ pub enum Count {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TypeSpec {
-    pub name: String,
-    pub count: Count,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Entry {
     pub name: String,
     pub location: Location,
-    pub ty: Option<TypeSpec>,
-    /// How many of the root's type there are, for a root whose loader gives
-    /// its type (a `type:` has its own): `count:N`, or `extent` for as many
-    /// as fit before the next symbol or pointer target.
+    /// `type:T`, like `DAT_TYPE(T)`: the type a root no loader types is.
+    pub ty: Option<String>,
+    /// How many of the root's type there are, whether its loader or `type:`
+    /// gives it: `count:N`, like `DAT_COUNT(N)`, or `extent`, like
+    /// `DAT_EXTENT`, for as many as fit before the next symbol or pointer
+    /// target.
     pub count: Option<Count>,
     /// Attributes other than `type` and `count`, kept verbatim and in order.
     pub other: Vec<String>,
@@ -179,7 +175,7 @@ struct RawEntry<'i> {
 }
 
 enum Attr<'i> {
-    Type(TypeSpec),
+    Type(String),
     Count(Count),
     Other(&'i str),
 }
@@ -209,7 +205,7 @@ fn entry<'i>(input: &mut &'i str) -> ModalResult<RawEntry<'i>> {
 
 fn attr<'i>(input: &mut &'i str) -> ModalResult<Attr<'i>> {
     alt((
-        preceded("type:", cut_err(type_spec)).map(Attr::Type),
+        preceded("type:", cut_err(type_name)).map(Attr::Type),
         preceded("count:", cut_err(integer))
             .map(|n| Attr::Count(Count::Exactly(n))),
         take_till(1.., char::is_whitespace).map(|word| match word {
@@ -226,20 +222,12 @@ fn word<'i>(input: &mut &'i str) -> ModalResult<&'i str> {
         .parse_next(input)
 }
 
-/// `T`, `T[N]` or `T[]`.
-fn type_spec(input: &mut &str) -> ModalResult<TypeSpec> {
-    let name = take_till(1.., |c: char| c.is_whitespace() || c == '[')
-        .parse_next(input)?;
-    let count =
-        opt(delimited('[', opt(integer), cut_err(']'))).parse_next(input)?;
-    Ok(TypeSpec {
-        name: name.to_owned(),
-        count: match count {
-            None => Count::One,
-            Some(None) => Count::Unbounded,
-            Some(Some(n)) => Count::Exactly(n),
-        },
-    })
+/// A type name, as `DAT_TYPE` takes it: `HSD_Joint`, `u8*`. A count is
+/// its own attribute, so `[` isn't part of one.
+fn type_name(input: &mut &str) -> ModalResult<String> {
+    take_till(1.., |c: char| c.is_whitespace() || c == '[')
+        .map(str::to_owned)
+        .parse_next(input)
 }
 
 fn integer(input: &mut &str) -> ModalResult<u64> {
@@ -275,32 +263,14 @@ impl fmt::Display for Entry {
     }
 }
 
-impl FromStr for TypeSpec {
-    type Err = anyhow::Error;
-
-    fn from_str(spec: &str) -> Result<Self> {
-        type_spec.parse(spec).map_err(|e| anyhow!("\n{e}"))
-    }
-}
-
-impl fmt::Display for TypeSpec {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.count {
-            Count::One => write!(f, "{}", self.name),
-            Count::Exactly(n) => write!(f, "{}[{n}]", self.name),
-            Count::Unbounded => write!(f, "{}[]", self.name),
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     const TEXT: &str = "\
 ftDataMars = PlMs.dat; // type:ftData
-map_head = *; // type:MapHead[]
-grGroundParam = *; // type:grGroundParam[2] data:4byte
+map_head = *; // type:MapHead extent
+grGroundParam = *; // type:grGroundParam count:2 data:4byte
 itemdata = GrI2.dat;
 map_plit = *; // extent
 ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat; // count:10
@@ -310,13 +280,9 @@ ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat; // count:10
     fn round_trip() {
         let file = SymbolFile::parse(TEXT).unwrap();
         assert_eq!(file.to_string(), TEXT);
-        assert_eq!(
-            file.entries[1].ty,
-            Some(TypeSpec {
-                name: "MapHead".into(),
-                count: Count::Unbounded
-            })
-        );
+        assert_eq!(file.entries[1].ty.as_deref(), Some("MapHead"));
+        assert_eq!(file.entries[1].count, Some(Count::Unbounded));
+        assert_eq!(file.entries[2].count, Some(Count::Exactly(2)));
         assert_eq!(file.entries[2].other, ["data:4byte"]);
         assert_eq!(file.entries[4].count, Some(Count::Unbounded));
         assert_eq!(file.entries[5].count, Some(Count::Exactly(10)));
@@ -329,8 +295,8 @@ ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat; // count:10
         )
         .unwrap();
         let ty = |archive| file.lookup("map_head", archive)?.ty.clone();
-        assert_eq!(ty("GrNLa.dat").unwrap().name, "B");
-        assert_eq!(ty("GrMc.dat").unwrap().name, "A");
+        assert_eq!(ty("GrNLa.dat").as_deref(), Some("B"));
+        assert_eq!(ty("GrMc.dat").as_deref(), Some("A"));
     }
 
     #[test]
@@ -340,8 +306,7 @@ ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat; // count:10
              *_joint = *; // type:HSD_JObjDesc\n",
         )
         .unwrap();
-        let ty =
-            |name, archive| Some(file.lookup(name, archive)?.ty.clone()?.name);
+        let ty = |name, archive| file.lookup(name, archive)?.ty.clone();
         assert_eq!(
             ty("PlyCaptain5K_Share_ACTION_Wait1_figatree", "PlCaAJ.dat")
                 .as_deref(),

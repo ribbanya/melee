@@ -102,13 +102,14 @@ used for publics no loader types:
 ```
 
 Names and archives take `*` and `?`. The first line with a matching archive
-wins, then the first `*` line. When the loader already gives a root's type,
-a line can still give its count: `count:N`, or `extent` for as many as
-fit, e.g. `map_plit = *; // extent` for a null-terminated list of
-`LightList*`. Types can be `T`, `T*`, `T[N]`, or `T[]` for
-as many as fit before the next public symbol or pointer target. Raw data
-(textures, palettes) is typed as `u8[]` or `u16[]`, like the extracted
-blobs in `config.yml`.
+wins, then the first `*` line. The attributes mirror the annotations:
+`type:T` like `DAT_TYPE(T)` (`T` or `T*`), and a count like `DAT_COUNT` and
+`DAT_EXTENT`: `count:N`, or `extent` for as many as fit before the next
+public symbol or pointer target. A count also applies where the loader
+already gives the type, e.g. `map_plit = *; // extent` for a
+null-terminated list of `LightList*`. Raw data (textures, palettes) is
+`type:u8 extent` or `type:u16 extent`, like the extracted blobs in
+`config.yml`.
 
 When a loader names roots through a global table, `DAT_BIND` on its name
 field carries the table's context into each root's walk. For example, the

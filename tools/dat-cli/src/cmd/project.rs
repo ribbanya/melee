@@ -13,7 +13,7 @@ use melee_dat::{
         roots::{RootName, roots},
     },
     hsd::Archive,
-    symbols::{Count, SymbolFile, TypeSpec},
+    symbols::{Count, SymbolFile},
     walk::{Walk, Walker, macros},
 };
 use std::{
@@ -106,15 +106,13 @@ impl Project {
                 .with_context(|| format!("{}", symbols_path.display()))?;
         let mut symbol_types = BTreeMap::new();
         for entry in &symbols.entries {
-            let Some(spec) = &entry.ty else { continue };
+            let Some(ty) = &entry.ty else { continue };
             let die = canonical
-                .lookup(&graph, &spec.name)
+                .lookup(&graph, ty)
                 .first()
                 .copied()
-                .with_context(|| {
-                    format!("{entry}: no type `{}`", spec.name)
-                })?;
-            symbol_types.insert(spec.name.clone(), die);
+                .with_context(|| format!("{entry}: no type `{ty}`"))?;
+            symbol_types.insert(ty.clone(), die);
         }
         Ok(Project {
             base: args
@@ -174,13 +172,14 @@ impl Project {
     /// its loader, or else from `dat_symbols.txt`.
     pub fn root(&self, name: &str, file: &str) -> Option<(DieId, Count)> {
         let entry = self.symbols.lookup(name, file);
+        let count = entry.and_then(|e| e.count).unwrap_or(Count::One);
+        // The loader gives the type; the symbol entry may add a count
+        // without repeating that type
         if let Some(&ty) = self.root_types.get(name) {
-            // The loader gives the type; the symbol entry may add a count
-            // without repeating that type.
-            return Some((ty, entry.and_then(|e| e.count).unwrap_or(Count::One)));
+            return Some((ty, count));
         }
-        let TypeSpec { name: ty, count } = entry.and_then(|e| e.ty.as_ref())?;
-        Some((self.symbol_types[ty], *count))
+        let ty = entry?.ty.as_ref()?;
+        Some((self.symbol_types[ty], count))
     }
 
     pub fn walk(&self, file: &str, archive: &Archive) -> (bool, Walk) {
@@ -318,10 +317,7 @@ mod tests {
                     .find(|e| e.name == "ftDataSamus")
                     .unwrap();
                 entry.count = Some(count);
-                entry.ty = Some(TypeSpec {
-                    name: "ftData".into(),
-                    count,
-                });
+                entry.ty = Some("ftData".into());
                 let (rooted, walk) = project.walk("PlSs.dat", &archive);
                 assert!(rooted);
                 assert!(walk.objects[&grapple].contains(&grapple_type));
