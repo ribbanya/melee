@@ -1218,7 +1218,7 @@ impl<'a> Walker<'a> {
     /// the union's own record members, for a union whose members share a
     /// common initial sequence. A lone member needs no condition. A
     /// condition that can't be evaluated makes the choice ambiguous rather
-    /// than falling through to a later member, such as a `dat:if(1)`
+    /// than falling through to a later member, such as a `dat:if(true)`
     /// catch-all.
     fn choose<'m>(
         &self,

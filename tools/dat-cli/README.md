@@ -262,7 +262,7 @@ type instead.
 | Annotation | Meaning |
 | --- | --- |
 | `DAT_COUNT(n)` | Pointer to `n` elements. |
-| `DAT_IF(cond)` | Union member is valid when `cond` holds; the first match wins, so a last `DAT_IF(1)` is a catch-all. |
+| `DAT_IF(cond)` | Union member is valid when `cond` holds; the first match wins, so a last `DAT_IF(true)` is a catch-all. |
 | `DAT_TYPE(T)` | `void*` points to a `T`. Also on a `void*` typedef, for arrays of them. |
 | `DAT_EXTENT` | Array, or pointer to elements, that runs as far as the data does. Stopgap for lengths only the code knows. |
 | `DAT_BIND(T::f, value)` | `T::f` is `value` for everything reached through this member. |

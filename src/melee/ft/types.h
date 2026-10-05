@@ -719,7 +719,7 @@ typedef struct ftData_x34 {
 union ftData_Item {
     struct UNK_SAMUS_S1* samus_grapple DAT_IF(fighter_kind == Ft_Kind_Samus &&
                                               item_index == 4);
-    Article* article DAT_IF(1);
+    Article* article DAT_IF(true);
     HSD_Joint* joint;
     HSD_Joint** joints;
     FtPartsVisLookup* visibility;
