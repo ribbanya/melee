@@ -67,6 +67,9 @@ set(_dat_config
     "${MELEE_ROOT}/config/${MELEE_VERSION}/dat.yml"
     "${MELEE_ROOT}/config/${MELEE_VERSION}/dat_symbols.txt")
 
+# The generated C isn't the repository's to tidy
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/.clang-tidy" "Checks: '-*'\n")
+
 add_custom_command(
     OUTPUT tables.c tables.h
     COMMAND "${_dat_tool}" native codegen

@@ -5,23 +5,24 @@
  * `DAT_IF`, and malformed archives refused.
  */
 
-#include <dat/archive.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include <dat/archive.h>
+
 static int failures;
 
-#define CHECK(cond)                                                            \
-    do {                                                                       \
-        if (!(cond)) {                                                         \
-            printf("%s:%d: failed: %s\n", __FILE__, __LINE__, #cond);          \
-            failures++;                                                        \
-        }                                                                      \
+#define CHECK(cond)                                                           \
+    do {                                                                      \
+        if (!(cond)) {                                                        \
+            printf("%s:%d: failed: %s\n", __FILE__, __LINE__, #cond);         \
+            failures++;                                                       \
+        }                                                                     \
     } while (0)
 
-/* --- The native types ----------------------------------------------------- */
+/* --- The native types -----------------------------------------------------
+ */
 
 typedef struct Leaf {
     int8_t a;
@@ -67,7 +68,8 @@ static uint64_t get_other(const void* o)
     return ((const Node*) o)->other;
 }
 
-/* --- Their tables, as the archive lays them out --------------------------- */
+/* --- Their tables, as the archive lays them out ---------------------------
+ */
 
 enum {
     T_S8,
@@ -85,51 +87,56 @@ enum {
     T_UINT,
 };
 
-#define SCALAR(name, kind, sign, raw, size, native, self)                      \
-    {name, self, kind, sign, raw, 0, 0, 0, size, native, DAT_NONE, self, 0, 0, \
-     0, DAT_NONE, DAT_NONE}
-#define POINTER(name, target, self)                                            \
-    {name,     self, DAT_KIND_POINTER, 0, 0, 0, 1, 0, 4, sizeof(void*),        \
-     target,   self, 0,                0, 0, DAT_NONE, DAT_NONE}
+#define SCALAR(name, kind, sign, raw, size, native, self)                     \
+    { name,   self,     kind, sign, raw, 0, 0,        0,       size,          \
+      native, DAT_NONE, self, 0,    0,   0, DAT_NONE, DAT_NONE }
+#define POINTER(name, target, self)                                           \
+    { name, self,     DAT_KIND_POINTER, 0,      0,    0, 1,                   \
+      0,    4,        sizeof(void*),    target, self, 0, 0,                   \
+      0,    DAT_NONE, DAT_NONE }
 
 static const DatType types[] = {
     SCALAR("s8", DAT_KIND_INT, 1, 0, 1, 1, T_S8),
     SCALAR("s16", DAT_KIND_INT, 1, 0, 2, 2, T_S16),
     SCALAR("s32", DAT_KIND_INT, 1, 0, 4, 4, T_S32),
     SCALAR("f32", DAT_KIND_FLOAT, 0, 0, 4, 4, T_F32),
-    {"Leaf", T_LEAF, DAT_KIND_STRUCT, 0, 0, 0, 0, 0, 12, sizeof(Leaf),
-     DAT_NONE, T_LEAF, 0, 0, 4, DAT_NONE, DAT_NONE},
+    { "Leaf", T_LEAF, DAT_KIND_STRUCT, 0, 0, 0, 0, 0, 12, sizeof(Leaf),
+      DAT_NONE, T_LEAF, 0, 0, 4, DAT_NONE, DAT_NONE },
     POINTER("Leaf*", T_LEAF, T_LEAF_P),
-    {"Node", T_NODE, DAT_KIND_STRUCT, 0, 0, 0, 1, 0, 0x20, sizeof(Node),
-     DAT_NONE, T_NODE, 0, 4, 9, DAT_NONE, DAT_NONE},
+    { "Node", T_NODE, DAT_KIND_STRUCT, 0, 0, 0, 1, 0, 0x20, sizeof(Node),
+      DAT_NONE, T_NODE, 0, 4, 9, DAT_NONE, DAT_NONE },
     POINTER("Node*", T_NODE, T_NODE_P),
     SCALAR("u32", DAT_KIND_INT, 0, 0, 4, 4, T_U32),
     SCALAR("u8", DAT_KIND_INT, 0, 1, 1, 1, T_U8),
     POINTER("u8*", T_U8, T_U8_P),
-    {"Choice", T_CHOICE, DAT_KIND_UNION, 0, 0, 0, 1, 0, 4,
-     sizeof(union Choice), DAT_NONE, T_CHOICE, 0, 13, 2, DAT_NONE, DAT_NONE},
+    { "Choice", T_CHOICE, DAT_KIND_UNION, 0, 0, 0, 1, 0, 4,
+      sizeof(union Choice), DAT_NONE, T_CHOICE, 0, 13, 2, DAT_NONE, DAT_NONE },
     SCALAR("unsigned int", DAT_KIND_INT, 0, 0, 4, sizeof(unsigned), T_UINT),
 };
 
-enum { N_N, N_KIND };
+enum {
+    N_N,
+    N_KIND
+};
 
-static const char* const names[] = {"n", "kind", NULL};
+static const char* const names[] = { "n", "kind", NULL };
 
 static const DatExpr exprs[] = {
     /* 0: n */
-    {DAT_OP_NAME, N_N, DAT_NONE, 0},
+    { DAT_OP_NAME, N_N, DAT_NONE, 0 },
     /* 1: kind, 2: 0, 3: kind == 0 */
-    {DAT_OP_NAME, N_KIND, DAT_NONE, 0},
-    {DAT_OP_INT, DAT_NONE, DAT_NONE, 0},
-    {DAT_OP_EQ, 1, 2, 0},
+    { DAT_OP_NAME, N_KIND, DAT_NONE, 0 },
+    { DAT_OP_INT, DAT_NONE, DAT_NONE, 0 },
+    { DAT_OP_EQ, 1, 2, 0 },
     /* 4: 1, 5: kind == 1 */
-    {DAT_OP_INT, DAT_NONE, DAT_NONE, 1},
-    {DAT_OP_EQ, 1, 4, 0},
+    { DAT_OP_INT, DAT_NONE, DAT_NONE, 1 },
+    { DAT_OP_EQ, 1, 4, 0 },
 };
 
-#define FIELD(name, type, offset, native, nsize)                               \
-    {name,     type,     offset,   0,        0, 1, 0, native, nsize, NULL,     \
-     NULL,     DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0}
+#define FIELD(name, type, offset, native, nsize)                              \
+    { name,     type,     offset,   0,        0,    1,                        \
+      0,        native,   nsize,    NULL,     NULL, DAT_NONE,                 \
+      DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0,    0 }
 
 static const DatMember members[] = {
     /* Leaf */
@@ -141,30 +148,35 @@ static const DatMember members[] = {
     FIELD(DAT_NONE, T_NODE_P, 0, offsetof(Node, next), sizeof(void*)),
     FIELD(DAT_NONE, T_LEAF_P, 4, offsetof(Node, leaf), sizeof(void*)),
     /* DAT_COUNT(n) */
-    {DAT_NONE, T_LEAF_P, 8, 0, 0, 1, 0, offsetof(Node, many), sizeof(void*),
-     NULL, NULL, 0, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0},
+    { DAT_NONE, T_LEAF_P, 8, 0, 0, 1, 0, offsetof(Node, many), sizeof(void*),
+      NULL, NULL, 0, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0 },
     FIELD(N_N, T_U32, 0xC, offsetof(Node, n), 4),
     FIELD(DAT_NONE, T_U8_P, 0x10, offsetof(Node, raw), sizeof(void*)),
     FIELD(N_KIND, T_S32, 0x14, offsetof(Node, kind), 4),
     FIELD(DAT_NONE, T_CHOICE, 0x18, offsetof(Node, u), sizeof(union Choice)),
-    {DAT_NONE, T_UINT, 0, 0x1C * 8, 3, 0, 0, 0, 0, set_flag, get_flag,
-     DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0},
-    {DAT_NONE, T_UINT, 0, 0x1C * 8 + 3, 5, 0, 0, 0, 0, set_other, get_other,
-     DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0},
+    { DAT_NONE, T_UINT, 0, 0x1C * 8, 3, 0, 0, 0, 0, set_flag, get_flag,
+      DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0 },
+    { DAT_NONE, T_UINT, 0, 0x1C * 8 + 3, 5, 0, 0, 0, 0, set_other, get_other,
+      DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, DAT_NONE, 0, 0 },
     /* Choice: DAT_IF(kind == 0), DAT_IF(kind == 1) */
-    {DAT_NONE, T_LEAF_P, 0, 0, 0, 1, 0, 0, sizeof(void*), NULL, NULL,
-     DAT_NONE, DAT_NONE, 3, DAT_NONE, DAT_NONE, 0, 0},
-    {DAT_NONE, T_NODE_P, 0, 0, 0, 1, 0, 0, sizeof(void*), NULL, NULL,
-     DAT_NONE, DAT_NONE, 5, DAT_NONE, DAT_NONE, 0, 0},
+    { DAT_NONE, T_LEAF_P, 0, 0, 0, 1, 0, 0, sizeof(void*), NULL, NULL,
+      DAT_NONE, DAT_NONE, 3, DAT_NONE, DAT_NONE, 0, 0 },
+    { DAT_NONE, T_NODE_P, 0, 0, 0, 1, 0, 0, sizeof(void*), NULL, NULL,
+      DAT_NONE, DAT_NONE, 5, DAT_NONE, DAT_NONE, 0, 0 },
 };
 
 static const DatSchema schema = {
-    types,     sizeof types / sizeof *types, members, exprs, NULL, NULL,
-    NULL,      names,                        2,       NULL,  NULL, NULL,
+    types,   sizeof types / sizeof *types,
+    members, exprs,
+    NULL,    NULL,
+    NULL,    names,
+    2,       NULL,
+    NULL,    NULL,
     0,
 };
 
-/* --- An archive ----------------------------------------------------------- */
+/* --- An archive -----------------------------------------------------------
+ */
 
 static void put32(unsigned char* p, uint32_t v)
 {
@@ -180,9 +192,11 @@ static void put16(unsigned char* p, uint16_t v)
     p[1] = (unsigned char) v;
 }
 
-enum { DATA = 0x80 };
+enum {
+    DATA = 0x80
+};
 
-static const uint32_t relocs[] = {0x00, 0x04, 0x08, 0x10, 0x18, 0x20, 0x38};
+static const uint32_t relocs[] = { 0x00, 0x04, 0x08, 0x10, 0x18, 0x20, 0x38 };
 
 /// Node A at 0 (kind 0, its union a leaf), node B at 0x20 (kind 1, its
 /// union node A), two leaves at 0x40, raw bytes at 0x70. B's raw pointer is
@@ -338,8 +352,8 @@ static void test_packed(void)
     memcpy(two + padded, file, size);
     DatArchive* out[4];
     size_t offsets[4];
-    int n = dat_open_packed(&schema, two, padded + size, out, offsets, 4,
-                            NULL);
+    int n =
+        dat_open_packed(&schema, two, padded + size, out, offsets, 4, NULL);
     CHECK(n == 2);
     if (n == 2) {
         CHECK(offsets[0] == 0 && offsets[1] == padded);
@@ -358,6 +372,6 @@ int main(void)
     test_packed();
     printf("%s (%zu-bit %s-endian)\n", failures ? "FAILED" : "ok",
            sizeof(void*) * 8,
-           *(const unsigned char*) &(const uint16_t) {1} ? "little" : "big");
+           *(const unsigned char*) &(const uint16_t){ 1 } ? "little" : "big");
     return failures ? 1 : 0;
 }

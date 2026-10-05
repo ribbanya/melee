@@ -7,25 +7,24 @@
  * Usage: types <files dir>
  */
 
-#include "tables.h"
-
-#include <dat/archive.h>
-#include <melee/ft/types.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "tables.h"
+#include <dat/archive.h>
+#include <melee/ft/types.h>
+
 static int failures;
 
-#define CHECK(cond, ...)                                                       \
-    do {                                                                       \
-        if (!(cond)) {                                                         \
-            printf("%s:%d: failed: %s: ", __FILE__, __LINE__, #cond);          \
-            printf(__VA_ARGS__);                                               \
-            printf("\n");                                                      \
-            failures++;                                                        \
-        }                                                                      \
+#define CHECK(cond, ...)                                                      \
+    do {                                                                      \
+        if (!(cond)) {                                                        \
+            printf("%s:%d: failed: %s: ", __FILE__, __LINE__, #cond);         \
+            printf(__VA_ARGS__);                                              \
+            printf("\n");                                                     \
+            failures++;                                                       \
+        }                                                                     \
     } while (0)
 
 static uint32_t be32(const uint8_t* p)
@@ -46,20 +45,20 @@ static const struct {
     const char* file;
     const char* name;
 } fighters[] = {
-    {"PlMr.dat", "ftDataMario"},   {"PlFx.dat", "ftDataFox"},
-    {"PlCa.dat", "ftDataCaptain"}, {"PlDk.dat", "ftDataDonkey"},
-    {"PlKb.dat", "ftDataKirby"},   {"PlKp.dat", "ftDataKoopa"},
-    {"PlLk.dat", "ftDataLink"},    {"PlSk.dat", "ftDataSeak"},
-    {"PlNs.dat", "ftDataNess"},    {"PlPe.dat", "ftDataPeach"},
-    {"PlPp.dat", "ftDataPopo"},    {"PlNn.dat", "ftDataNana"},
-    {"PlPk.dat", "ftDataPikachu"}, {"PlSs.dat", "ftDataSamus"},
-    {"PlYs.dat", "ftDataYoshi"},   {"PlPr.dat", "ftDataPurin"},
-    {"PlMt.dat", "ftDataMewtwo"},  {"PlLg.dat", "ftDataLuigi"},
-    {"PlMs.dat", "ftDataMars"},    {"PlZd.dat", "ftDataZelda"},
-    {"PlCl.dat", "ftDataClink"},   {"PlDr.dat", "ftDataDrmario"},
-    {"PlFc.dat", "ftDataFalco"},   {"PlPc.dat", "ftDataPichu"},
-    {"PlGw.dat", "ftDataGamewatch"}, {"PlGn.dat", "ftDataGanon"},
-    {"PlFe.dat", "ftDataEmblem"},
+    { "PlMr.dat", "ftDataMario" },     { "PlFx.dat", "ftDataFox" },
+    { "PlCa.dat", "ftDataCaptain" },   { "PlDk.dat", "ftDataDonkey" },
+    { "PlKb.dat", "ftDataKirby" },     { "PlKp.dat", "ftDataKoopa" },
+    { "PlLk.dat", "ftDataLink" },      { "PlSk.dat", "ftDataSeak" },
+    { "PlNs.dat", "ftDataNess" },      { "PlPe.dat", "ftDataPeach" },
+    { "PlPp.dat", "ftDataPopo" },      { "PlNn.dat", "ftDataNana" },
+    { "PlPk.dat", "ftDataPikachu" },   { "PlSs.dat", "ftDataSamus" },
+    { "PlYs.dat", "ftDataYoshi" },     { "PlPr.dat", "ftDataPurin" },
+    { "PlMt.dat", "ftDataMewtwo" },    { "PlLg.dat", "ftDataLuigi" },
+    { "PlMs.dat", "ftDataMars" },      { "PlZd.dat", "ftDataZelda" },
+    { "PlCl.dat", "ftDataClink" },     { "PlDr.dat", "ftDataDrmario" },
+    { "PlFc.dat", "ftDataFalco" },     { "PlPc.dat", "ftDataPichu" },
+    { "PlGw.dat", "ftDataGamewatch" }, { "PlGn.dat", "ftDataGanon" },
+    { "PlFe.dat", "ftDataEmblem" },
 };
 
 static unsigned char* read_file(const char* path, size_t* size)
@@ -122,8 +121,8 @@ int main(int argc, char** argv)
         const char* error = NULL;
         DatArchive* a = dat_open(&melee_dat_schema, bytes, size, &error);
         CHECK(a != NULL, "%s: %s", path, error);
-        ftData* fd = a ? dat_public(a, fighters[i].name, DAT_TYPE_ftData)
-                       : NULL;
+        ftData* fd =
+            a ? dat_public(a, fighters[i].name, DAT_TYPE_ftData) : NULL;
         CHECK(fd != NULL && fd->x0 != NULL, "%s", fighters[i].name);
         if (fd != NULL && fd->x0 != NULL) {
             /* ftData::x0 at +0 points to the attributes, whose walk
@@ -134,11 +133,11 @@ int main(int argc, char** argv)
                   fighters[i].name);
             CHECK(fd->x0->ground_friction == befloat(attrs + 0x18), "%s",
                   fighters[i].name);
-            CHECK(fd->x0->dash_initial_velocity == befloat(attrs + 0x1C),
-                  "%s", fighters[i].name);
+            CHECK(fd->x0->dash_initial_velocity == befloat(attrs + 0x1C), "%s",
+                  fighters[i].name);
             /* The same native object however it's reached */
-            CHECK(dat_public(a, fighters[i].name, DAT_TYPE_ftData) == fd,
-                  "%s", fighters[i].name);
+            CHECK(dat_public(a, fighters[i].name, DAT_TYPE_ftData) == fd, "%s",
+                  fighters[i].name);
             checked++;
         }
         dat_close(a);
@@ -146,6 +145,6 @@ int main(int argc, char** argv)
     }
     printf("%s: %zu fighters (%zu-bit %s-endian)\n",
            failures ? "FAILED" : "ok", checked, sizeof(void*) * 8,
-           *(const unsigned char*) &(const uint16_t) {1} ? "little" : "big");
+           *(const unsigned char*) &(const uint16_t){ 1 } ? "little" : "big");
     return failures ? 1 : 0;
 }

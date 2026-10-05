@@ -8,13 +8,12 @@
  * Usage: e2e <expect.txt> <files dir> [max mismatches to print]
  */
 
-#include "tables.h"
-
-#include <dat/archive.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "tables.h"
+#include <dat/archive.h>
 
 #define MAX_ARCHIVES 256
 
@@ -129,7 +128,7 @@ static void check(Totals* t, const char* name, const Lines* want,
         FILE* out = tmpfile();
         dat_trace(archives[i], out, DAT_TRACE_ALL);
         rewind(out);
-        Lines got = {0};
+        Lines got = { 0 };
         char* buf = NULL;
         size_t cap = 0;
         for (char* line; (line = read_line(out, &buf, &cap)) != NULL;) {
@@ -141,7 +140,7 @@ static void check(Totals* t, const char* name, const Lines* want,
         size_t w = 0, g = 0;
         bool differs = false;
         while (w < want->len || g < got.len) {
-            int cmp = w == want->len  ? 1
+            int cmp = w == want->len ? 1
                       : g == got.len ? -1
                                      : strcmp(want->items[w], got.items[g]);
             if (cmp == 0) {
@@ -179,8 +178,7 @@ static void check(Totals* t, const char* name, const Lines* want,
 int main(int argc, char** argv)
 {
     if (argc < 3) {
-        fprintf(stderr, "usage: %s <expect.txt> <files dir> [max]\n",
-                argv[0]);
+        fprintf(stderr, "usage: %s <expect.txt> <files dir> [max]\n", argv[0]);
         return 2;
     }
     FILE* expect = fopen(argv[1], "r");
@@ -188,9 +186,9 @@ int main(int argc, char** argv)
         perror(argv[1]);
         return 2;
     }
-    Totals t = {0};
+    Totals t = { 0 };
     t.budget = argc > 3 ? atol(argv[3]) : 50;
-    Lines want = {0};
+    Lines want = { 0 };
     char name[1024] = "";
     char* buf = NULL;
     size_t cap = 0;
@@ -214,6 +212,6 @@ int main(int argc, char** argv)
            "%zu failed to open, %zu missing (%zu-bit %s-endian)\n",
            t.archives, t.mismatched, t.unverified, t.failed, t.missing,
            sizeof(void*) * 8,
-           *(const unsigned char*) &(const uint16_t) {1} ? "little" : "big");
+           *(const unsigned char*) &(const uint16_t){ 1 } ? "little" : "big");
     return t.mismatched || t.unverified || t.failed || t.missing ? 1 : 0;
 }

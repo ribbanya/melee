@@ -2,9 +2,9 @@
 #define GALE01_1F6868
 
 #include <melee/gr/forward.h>
-#include <melee/gr/types.h>
 
 #include <dolphin/mtx.h>
+#include <melee/gr/types.h>
 
 /* 1FA6D8 */ void grIceMt_801FA6D8(void);
 /* 1FA728 */ void grIceMt_801FA728(Vec3*);

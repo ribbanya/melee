@@ -2,8 +2,6 @@
 
 #include <melee/mp/forward.h>
 
-#include <placeholder.h>
-
 #include "granime.h"
 #include "ground.h"
 #include "grzakogenerator.h"

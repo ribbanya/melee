@@ -8,14 +8,15 @@
  * the data, this also writes the native object it describes.
  */
 
-#include <dat/archive.h>
-
 #include <limits.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* --- Memory --------------------------------------------------------------- */
+#include <dat/archive.h>
+
+/* --- Memory ---------------------------------------------------------------
+ */
 
 typedef struct Chunk {
     struct Chunk* next;
@@ -62,22 +63,22 @@ static void arena_free(Arena* arena)
 }
 
 /// A growable array of `T`.
-#define VEC(T)                                                                 \
-    struct {                                                                   \
-        T* items;                                                              \
-        size_t len, cap;                                                       \
+#define VEC(T)                                                                \
+    struct {                                                                  \
+        T* items;                                                             \
+        size_t len, cap;                                                      \
     }
 
-#define VEC_PUSH(v, item)                                                      \
-    do {                                                                       \
-        if ((v).len == (v).cap) {                                              \
-            (v).cap = (v).cap ? (v).cap * 2 : 16;                              \
-            (v).items = realloc((v).items, (v).cap * sizeof(*(v).items));      \
-            if ((v).items == NULL) {                                           \
-                abort();                                                       \
-            }                                                                  \
-        }                                                                      \
-        (v).items[(v).len++] = (item);                                         \
+#define VEC_PUSH(v, item)                                                     \
+    do {                                                                      \
+        if ((v).len == (v).cap) {                                             \
+            (v).cap = (v).cap ? (v).cap * 2 : 16;                             \
+            (v).items = realloc((v).items, (v).cap * sizeof(*(v).items));     \
+            if ((v).items == NULL) {                                          \
+                abort();                                                      \
+            }                                                                 \
+        }                                                                     \
+        (v).items[(v).len++] = (item);                                        \
     } while (0)
 
 /// A set of offsets in the data.
@@ -192,7 +193,8 @@ static uint64_t key2(uint32_t offset, uint32_t id)
     return (uint64_t) offset << 32 | id;
 }
 
-/* --- The archive ---------------------------------------------------------- */
+/* --- The archive ----------------------------------------------------------
+ */
 
 typedef enum IssueKind {
     ISSUE_UNRELOCATED_POINTER,
@@ -368,15 +370,13 @@ DatArchive* dat_open(const DatSchema* schema, const void* bytes, size_t size,
     a->nexterns = nexterns;
     for (uint32_t i = 0; i < npublics; i++) {
         a->publics[i].offset = be32(publics + 8 * i);
-        a->publics[i].name =
-            symbol_at((const uint8_t*) a->names, names_size,
-                      be32(publics + 8 * i + 4));
+        a->publics[i].name = symbol_at((const uint8_t*) a->names, names_size,
+                                       be32(publics + 8 * i + 4));
     }
     for (uint32_t i = 0; i < nexterns; i++) {
         a->externs[i].offset = be32(externs + 8 * i);
-        a->externs[i].name =
-            symbol_at((const uint8_t*) a->names, names_size,
-                      be32(externs + 8 * i + 4));
+        a->externs[i].name = symbol_at((const uint8_t*) a->names, names_size,
+                                       be32(externs + 8 * i + 4));
     }
     /* What Archive::parse refuses */
     for (uint32_t i = 0; i < nrelocs && why == NULL; i++) {
@@ -536,7 +536,8 @@ int32_t dat_type_by_id(const DatSchema* s, uint32_t id)
     return DAT_NONE;
 }
 
-/* --- Types ---------------------------------------------------------------- */
+/* --- Types ----------------------------------------------------------------
+ */
 
 static const DatType* T(const DatArchive* a, int32_t type)
 {
@@ -605,7 +606,8 @@ static uint32_t native_size(const DatArchive* a, int32_t type)
     return r == DAT_NONE ? 0 : T(a, r)->native_size;
 }
 
-/* --- Native values -------------------------------------------------------- */
+/* --- Native values --------------------------------------------------------
+ */
 
 static void store_uint(void* dst, uint32_t size, uint64_t v)
 {
@@ -774,8 +776,7 @@ static const DatMember* largest(const DatArchive* a, const DatType* u)
 }
 
 /// Convert plain data, which has no pointers to follow.
-static void convert(DatArchive* a, uint32_t offset, int32_t type,
-                    void* native)
+static void convert(DatArchive* a, uint32_t offset, int32_t type, void* native)
 {
     int32_t r = resolve(a, type);
     if (native == NULL || r == DAT_NONE) {
@@ -821,7 +822,8 @@ static void convert(DatArchive* a, uint32_t offset, int32_t type,
     }
 }
 
-/* --- Expressions ---------------------------------------------------------- */
+/* --- Expressions ----------------------------------------------------------
+ */
 
 typedef enum Mode {
     /// `DAT_COUNT`: the record's fields, then bindings.
@@ -991,23 +993,45 @@ static bool gx_get_tex_buffer_size(uint16_t width, uint16_t height,
 {
     uint32_t sx, sy;
     switch (format) {
-    case 0x0: case 0x8: case 0xE: case 0x20: case 0x30:
+    case 0x0:
+    case 0x8:
+    case 0xE:
+    case 0x20:
+    case 0x30:
         sx = 3, sy = 3;
         break;
-    case 0x1: case 0x2: case 0x9: case 0x11: case 0x22: case 0x27:
-    case 0x28: case 0x29: case 0x2A: case 0x39: case 0x3A:
+    case 0x1:
+    case 0x2:
+    case 0x9:
+    case 0x11:
+    case 0x22:
+    case 0x27:
+    case 0x28:
+    case 0x29:
+    case 0x2A:
+    case 0x39:
+    case 0x3A:
         sx = 3, sy = 2;
         break;
-    case 0x3: case 0x4: case 0x5: case 0x6: case 0xA: case 0x13:
-    case 0x16: case 0x23: case 0x2B: case 0x2C: case 0x3C:
+    case 0x3:
+    case 0x4:
+    case 0x5:
+    case 0x6:
+    case 0xA:
+    case 0x13:
+    case 0x16:
+    case 0x23:
+    case 0x2B:
+    case 0x2C:
+    case 0x3C:
         sx = 2, sy = 2;
         break;
     default:
         return false;
     }
     uint32_t tile = (format == 0x6 || format == 0x16) ? 64 : 32;
-#define TILES(w, h)                                                            \
-    (tile * (((uint32_t) (w) + (1u << sx) - 1) >> sx) *                        \
+#define TILES(w, h)                                                           \
+    (tile * (((uint32_t) (w) + (1u << sx) - 1) >> sx) *                       \
      (((uint32_t) (h) + (1u << sy) - 1) >> sy))
     if (mipmap != 1) {
         *out = TILES(width, height);
@@ -1057,11 +1081,10 @@ static bool eval(const DatArchive* a, const Context* c, int32_t node,
         case DAT_FN_IT_COMMAND_LENGTH:
             return e->value == 1 && it_command_length(args[0], out);
         case DAT_FN_GX_GET_TEX_BUFFER_SIZE:
-            return e->value == 5 &&
-                   gx_get_tex_buffer_size(
-                       (uint16_t) args[0], (uint16_t) args[1],
-                       (uint32_t) args[2], (uint8_t) args[3],
-                       (uint8_t) args[4], out);
+            return e->value == 5 && gx_get_tex_buffer_size(
+                                        (uint16_t) args[0], (uint16_t) args[1],
+                                        (uint32_t) args[2], (uint8_t) args[3],
+                                        (uint8_t) args[4], out);
         default:
             return false;
         }
@@ -1099,15 +1122,33 @@ static bool eval(const DatArchive* a, const Context* c, int32_t node,
     case DAT_OP_AND:
         *out = y != 0;
         return true;
-    case DAT_OP_BITOR: *out = x | y; return true;
-    case DAT_OP_BITXOR: *out = x ^ y; return true;
-    case DAT_OP_BITAND: *out = x & y; return true;
-    case DAT_OP_EQ: *out = x == y; return true;
-    case DAT_OP_NE: *out = x != y; return true;
-    case DAT_OP_LT: *out = x < y; return true;
-    case DAT_OP_GT: *out = x > y; return true;
-    case DAT_OP_LE: *out = x <= y; return true;
-    case DAT_OP_GE: *out = x >= y; return true;
+    case DAT_OP_BITOR:
+        *out = x | y;
+        return true;
+    case DAT_OP_BITXOR:
+        *out = x ^ y;
+        return true;
+    case DAT_OP_BITAND:
+        *out = x & y;
+        return true;
+    case DAT_OP_EQ:
+        *out = x == y;
+        return true;
+    case DAT_OP_NE:
+        *out = x != y;
+        return true;
+    case DAT_OP_LT:
+        *out = x < y;
+        return true;
+    case DAT_OP_GT:
+        *out = x > y;
+        return true;
+    case DAT_OP_LE:
+        *out = x <= y;
+        return true;
+    case DAT_OP_GE:
+        *out = x >= y;
+        return true;
     case DAT_OP_SHL:
         if (y >= 64) {
             return false;
@@ -1120,9 +1161,15 @@ static bool eval(const DatArchive* a, const Context* c, int32_t node,
         }
         *out = x >> y;
         return true;
-    case DAT_OP_ADD: *out = x + y; return true;
-    case DAT_OP_SUB: *out = x - y; return true;
-    case DAT_OP_MUL: *out = x * y; return true;
+    case DAT_OP_ADD:
+        *out = x + y;
+        return true;
+    case DAT_OP_SUB:
+        *out = x - y;
+        return true;
+    case DAT_OP_MUL:
+        *out = x * y;
+        return true;
     case DAT_OP_DIV:
         if (y == 0) {
             return false;
@@ -1140,22 +1187,22 @@ static bool eval(const DatArchive* a, const Context* c, int32_t node,
     }
 }
 
-/* --- The walk ------------------------------------------------------------- */
+/* --- The walk -------------------------------------------------------------
+ */
 
 static void issue(DatArchive* a, IssueKind kind, uint32_t at, uint32_t value)
 {
-    Issue i = {(uint8_t) kind, at, value};
+    Issue i = { (uint8_t) kind, at, value };
     VEC_PUSH(a->issues, i);
 }
 
 static void reached(DatArchive* a, uint32_t offset, int32_t r)
 {
-    uint64_t* seen = map_slot(&a->visited, key2(offset, T(a, r)->id) ^
-                                               0x8000000000000000ull,
-                              true);
+    uint64_t* seen = map_slot(
+        &a->visited, key2(offset, T(a, r)->id) ^ 0x8000000000000000ull, true);
     if (*seen == 0) {
         *seen = 1;
-        Reached x = {offset, T(a, r)->id};
+        Reached x = { offset, T(a, r)->id };
         VEC_PUSH(a->reached, x);
     }
     bits_set(&a->object, offset, a->size);
@@ -1182,8 +1229,7 @@ static void* native_of(const DatArchive* a, uint32_t offset, int32_t r)
     return (void*) (uintptr_t) v;
 }
 
-static void set_native(DatArchive* a, uint32_t offset, int32_t r,
-                       void* native)
+static void set_native(DatArchive* a, uint32_t offset, int32_t r, void* native)
 {
     if (native == NULL) {
         return;
@@ -1204,7 +1250,7 @@ static void copy_of(DatArchive* a, uint32_t offset, int32_t r, void* native)
     if (native == NULL || existing == NULL) {
         return;
     }
-    Copy copy = {native, existing, T(a, r)->native_size};
+    Copy copy = { native, existing, T(a, r)->native_size };
     VEC_PUSH(a->copies, copy);
     *map_slot(&a->offsets, (uint64_t) (uintptr_t) native, true) =
         key2(offset, T(a, r)->id);
@@ -1251,7 +1297,7 @@ static void unrelocated(DatArchive* a, uint32_t offset, uint32_t value)
 static void push(DatArchive* a, uint32_t offset, int32_t type,
                  const Scope* env, void* native, void** slot)
 {
-    Task t = {offset, type, env, native, slot};
+    Task t = { offset, type, env, native, slot };
     VEC_PUSH(a->queue, t);
 }
 
@@ -1262,8 +1308,10 @@ static const Scope* bound(DatArchive* a, const Scope* outer,
     const Scope* env = outer;
     for (uint32_t i = 0; i < m->nbinds; i++) {
         const DatBind* b = &a->s->binds[m->binds + i];
-        Context c = {MODE_BIND, has_record ? record : DAT_NONE, base,
-                     DAT_NONE,  0,      outer,       index,    0};
+        Context c = { MODE_BIND, has_record ? record : DAT_NONE,
+                      base,      DAT_NONE,
+                      0,         outer,
+                      index,     0 };
         uint64_t value;
         if (eval(a, &c, b->value, &value)) {
             Scope* s = arena_alloc(&a->arena, sizeof(Scope));
@@ -1283,8 +1331,8 @@ typedef struct Parent {
     bool some;
 } Parent;
 
-static void layout(DatArchive* a, uint32_t offset, int32_t type,
-                   void* native, Parent parent);
+static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
+                   Parent parent);
 
 static bool fits(const DatArchive* a, uint32_t offset, int32_t type)
 {
@@ -1353,8 +1401,7 @@ static void* plain_array(DatArchive* a, uint32_t offset, int32_t raw,
     uint32_t ns = T(a, r)->native_size;
     char* block = arena_alloc(&a->arena, (size_t) ns * count);
     for (uint64_t i = 0; i < count; i++) {
-        convert(a, (uint32_t) (offset + i * T(a, r)->size), r,
-                block + i * ns);
+        convert(a, (uint32_t) (offset + i * T(a, r)->size), r, block + i * ns);
     }
     return block;
 }
@@ -1372,7 +1419,7 @@ static void counted(DatArchive* a, uint32_t offset, int32_t pointer,
     if (T(a, p)->kind == DAT_KIND_POINTER) {
         target = T(a, p)->target;
     } else if (element == DAT_NONE) {
-        Parent none = {DAT_NONE, 0, false};
+        Parent none = { DAT_NONE, 0, false };
         layout(a, offset, pointer, slot, none);
         return;
     }
@@ -1425,8 +1472,7 @@ static void counted(DatArchive* a, uint32_t offset, int32_t pointer,
         const Scope* env =
             m ? bound(a, outer, m, parent.record, parent.base, parent.some, i)
               : outer;
-        push(a, (uint32_t) (value + i * size), raw, env, block + i * ns,
-             NULL);
+        push(a, (uint32_t) (value + i * size), raw, env, block + i * ns, NULL);
     }
 }
 
@@ -1440,7 +1486,7 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
         return;
     }
     if (T(a, p)->kind != DAT_KIND_POINTER) {
-        Parent none = {DAT_NONE, 0, false};
+        Parent none = { DAT_NONE, 0, false };
         layout(a, offset, pointer, slot, none);
         return;
     }
@@ -1463,7 +1509,7 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
         return;
     }
     reached(a, value, e);
-    Context c = {MODE_TERMINATOR, DAT_NONE, 0, DAT_NONE, 0, a->env, 0, 0};
+    Context c = { MODE_TERMINATOR, DAT_NONE, 0, DAT_NONE, 0, a->env, 0, 0 };
     uint64_t term;
     if (!eval(a, &c, terminator, &term)) {
         store_pointer(slot, a->data + value);
@@ -1503,7 +1549,7 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
         if (visit(a, at, e)) {
             set_native(a, at, e, native);
             typed_extent(a, at, ty, 1);
-            Parent none = {DAT_NONE, 0, false};
+            Parent none = { DAT_NONE, 0, false };
             layout(a, at, ty, native, none);
         } else {
             copy_of(a, at, e, native);
@@ -1576,8 +1622,8 @@ static void extent(DatArchive* a, uint32_t offset, int32_t array,
             store_pointer(native, a->data + value);
         } else {
             uint64_t n = extent_bound(a, value, size);
-            base = arena_alloc(&a->arena,
-                               (size_t) T(a, target)->native_size * (n ? n : 1));
+            base = arena_alloc(&a->arena, (size_t) T(a, target)->native_size *
+                                              (n ? n : 1));
             store_pointer(native, base);
         }
         set_native(a, value, target, base);
@@ -1604,9 +1650,9 @@ static void extent(DatArchive* a, uint32_t offset, int32_t array,
         if (i > 0 && (boundary || !fits(a, (uint32_t) at, e))) {
             break;
         }
-        a->env = m ? bound(a, outer, m, parent.record, parent.base,
-                           parent.some, i)
-                   : outer;
+        a->env =
+            m ? bound(a, outer, m, parent.record, parent.base, parent.some, i)
+              : outer;
         int32_t ty = element != DAT_NONE ? element : e;
         typed_extent(a, (uint32_t) at, ty, 1);
         layout(a, (uint32_t) at, ty, base ? base + i * ns : NULL, parent);
@@ -1615,8 +1661,8 @@ static void extent(DatArchive* a, uint32_t offset, int32_t array,
 }
 
 /// A `DAT_TYPE` field: followed as a pointer to `target` when relocated.
-static void typed(DatArchive* a, uint32_t offset, int32_t target,
-                  void* native, uint32_t native_field)
+static void typed(DatArchive* a, uint32_t offset, int32_t target, void* native,
+                  uint32_t native_field)
 {
     if (bits_has(&a->reloc, offset, a->size)) {
         bits_set(&a->pointer, offset, a->size);
@@ -1655,7 +1701,7 @@ static bool command_length(const DatArchive* a, const DatScript* s,
         *out = s->table[index];
         return true;
     }
-    Context c = {MODE_SCRIPT, DAT_NONE, 0, DAT_NONE, 0, NULL, 0, command};
+    Context c = { MODE_SCRIPT, DAT_NONE, 0, DAT_NONE, 0, NULL, 0, command };
     return eval(a, &c, s->length, out);
 }
 
@@ -1670,7 +1716,7 @@ static void script(DatArchive* a, uint32_t offset, int32_t pointer,
         return;
     }
     if (T(a, p)->kind != DAT_KIND_POINTER) {
-        Parent none = {DAT_NONE, 0, false};
+        Parent none = { DAT_NONE, 0, false };
         layout(a, offset, pointer, slot, none);
         return;
     }
@@ -1683,7 +1729,7 @@ static void script(DatArchive* a, uint32_t offset, int32_t pointer,
     bits_set(&a->pointer, offset, a->size);
     store_pointer(slot, a->data + value);
     int32_t id = pointee(a, T(a, p)->target);
-    VEC(uint32_t) queue = {0};
+    VEC(uint32_t) queue = { 0 };
     VEC_PUSH(queue, value);
     while (queue.len > 0) {
         uint32_t start = queue.items[--queue.len];
@@ -1753,8 +1799,10 @@ static ChoiceKind choose(const DatArchive* a, int32_t u, uint32_t base,
     for (uint32_t i = 0; i < t->nmembers; i++) {
         const DatMember* m = &a->s->members[t->members + i];
         bool conditioned = m->cond != DAT_NONE;
-        Context c = {MODE_IF, parent.some ? parent.record : DAT_NONE,
-                     parent.base, u, base, a->env, 0, 0};
+        Context c = { MODE_IF,     parent.some ? parent.record : DAT_NONE,
+                      parent.base, u,
+                      base,        a->env,
+                      0,           0 };
         uint64_t holds;
         bool known = conditioned && eval(a, &c, m->cond, &holds);
         if (known && holds == 0) {
@@ -1772,8 +1820,8 @@ static ChoiceKind choose(const DatArchive* a, int32_t u, uint32_t base,
     return decided ? CHOICE_UNUSED : CHOICE_AMBIGUOUS;
 }
 
-static void layout(DatArchive* a, uint32_t offset, int32_t type,
-                   void* native, Parent parent)
+static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
+                   Parent parent)
 {
     if (type == DAT_NONE) {
         return;
@@ -1813,11 +1861,11 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type,
             }
             uint32_t at = offset + m->offset;
             char* mnative = native ? (char*) native + m->native_offset : NULL;
-            Parent here = {r, offset, true};
+            Parent here = { r, offset, true };
             const Scope* outer = a->env;
             a->env = bound(a, outer, m, r, offset, true, 0);
             uint64_t count;
-            Context c = {MODE_COUNT, r, offset, DAT_NONE, 0, a->env, 0, 0};
+            Context c = { MODE_COUNT, r, offset, DAT_NONE, 0, a->env, 0, 0 };
             if (m->count != DAT_NONE && eval(a, &c, m->count, &count)) {
                 counted(a, at, m->type, m->type_tag, count, m, here, mnative);
             } else if (m->type_tag != DAT_NONE) {
@@ -1837,8 +1885,8 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type,
                     for (uint32_t j = 0; j < arr->count; j++) {
                         a->env = bound(a, outer, m, r, offset, true, j);
                         layout(a, at + j * T(a, e)->size, e,
-                               mnative ? mnative + (size_t) j *
-                                                       T(a, e)->native_size
+                               mnative ? mnative +
+                                             (size_t) j * T(a, e)->native_size
                                        : NULL,
                                here);
                     }
@@ -1859,7 +1907,7 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type,
         uint32_t index;
         switch (choose(a, r, offset, parent, &index)) {
         case CHOICE_MEMBER: {
-            Choice ch = {offset, t->id, index};
+            Choice ch = { offset, t->id, index };
             uint64_t* seen = map_slot(&a->choices, key2(offset, t->id), true);
             if (*seen == 0) {
                 VEC_PUSH(a->chosen, ch);
@@ -1894,8 +1942,7 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type,
         }
         for (uint32_t i = 0; i < t->count; i++) {
             layout(a, offset + i * T(a, e)->size, e,
-                   native ? (char*) native +
-                                (size_t) i * T(a, e)->native_size
+                   native ? (char*) native + (size_t) i * T(a, e)->native_size
                           : NULL,
                    parent);
         }
@@ -1976,8 +2023,8 @@ static void object(DatArchive* a, Task task)
         if (opaque(a, task.type)) {
             native = a->data + task.offset;
         } else {
-            native = arena_alloc(&a->arena,
-                                 extent_native_size(a, task.offset, r));
+            native =
+                arena_alloc(&a->arena, extent_native_size(a, task.offset, r));
         }
         store_pointer(task.slot, native);
     }
@@ -1986,7 +2033,7 @@ static void object(DatArchive* a, Task task)
     }
     typed_extent(a, task.offset, task.type, 1);
     reached(a, task.offset, r);
-    Parent none = {DAT_NONE, 0, false};
+    Parent none = { DAT_NONE, 0, false };
     layout(a, task.offset, task.type,
            native == a->data + task.offset ? NULL : native, none);
 }
@@ -2094,7 +2141,7 @@ static void* walk_root_array(DatArchive* a, uint32_t offset, int32_t element,
         if (i > 0) {
             set_native(a, at, e, block + i * ns);
         }
-        Parent none = {DAT_NONE, 0, false};
+        Parent none = { DAT_NONE, 0, false };
         layout(a, at, e, block + i * ns, none);
         drain(a);
     }
@@ -2175,7 +2222,8 @@ int dat_load_roots(DatArchive* a, const char* file, uint32_t index)
     return found;
 }
 
-/* --- Traces --------------------------------------------------------------- */
+/* --- Traces ---------------------------------------------------------------
+ */
 
 static int compare_pair(const void* x, const void* y)
 {
@@ -2289,7 +2337,8 @@ void dat_trace(const DatArchive* a, FILE* out, unsigned what)
     }
 }
 
-/* --- Verification --------------------------------------------------------- */
+/* --- Verification ---------------------------------------------------------
+ */
 
 typedef struct Verify {
     const DatArchive* a;
@@ -2326,8 +2375,8 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
     switch (t->kind) {
     case DAT_KIND_INT: {
         uint32_t ns = t->native_size ? t->native_size : t->size;
-        uint64_t want = extend(bytes_at(a, offset, t->size), 8 * t->size,
-                               t->is_signed);
+        uint64_t want =
+            extend(bytes_at(a, offset, t->size), 8 * t->size, t->is_signed);
         if (ns < 8) {
             want &= (1ull << (8 * ns)) - 1;
         }
@@ -2365,8 +2414,8 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
                 mismatch(v, offset,
                          pe != DAT_NONE ? T(a, pe)->name : "pointer", value,
                          (uint64_t) (uintptr_t) p);
-                if (v->out != NULL && map_get(&a->offsets,
-                                              (uint64_t) (uintptr_t) p, &key))
+                if (v->out != NULL &&
+                    map_get(&a->offsets, (uint64_t) (uintptr_t) p, &key))
                 {
                     int32_t e = pointee(a, t->target);
                     fprintf(v->out, "  (to %s, which is 0x%X as %s)\n",
@@ -2387,13 +2436,12 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
             if (m->bit_size) {
                 if (m->get_bits != NULL) {
                     int32_t mr = resolve(a, m->type);
-                    uint64_t want =
-                        extend(bits_at(a, offset, m->bit_offset, m->bit_size),
-                               m->bit_size, mr != DAT_NONE &&
-                                                T(a, mr)->is_signed);
-                    uint64_t got = extend(m->get_bits(native), m->bit_size,
-                                          mr != DAT_NONE &&
-                                              T(a, mr)->is_signed);
+                    uint64_t want = extend(
+                        bits_at(a, offset, m->bit_offset, m->bit_size),
+                        m->bit_size, mr != DAT_NONE && T(a, mr)->is_signed);
+                    uint64_t got =
+                        extend(m->get_bits(native), m->bit_size,
+                               mr != DAT_NONE && T(a, mr)->is_signed);
                     if (want != got) {
                         mismatch(v, offset, "bitfield", want, got);
                     }
@@ -2403,8 +2451,7 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
             /* Counted, typed and scripted members are checked as the
                objects they point to */
             if (!m->has_offset || m->type == DAT_NONE ||
-                m->type_tag != DAT_NONE || m->script != DAT_NONE ||
-                m->extent)
+                m->type_tag != DAT_NONE || m->script != DAT_NONE || m->extent)
             {
                 continue;
             }
@@ -2432,8 +2479,7 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
         }
         for (uint32_t i = 0; i < t->count; i++) {
             verify(v, offset + i * T(a, e)->size, e,
-                   (const char*) native +
-                       (size_t) i * T(a, e)->native_size,
+                   (const char*) native + (size_t) i * T(a, e)->native_size,
                    depth + 1);
         }
         break;
@@ -2445,7 +2491,7 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
 
 size_t dat_verify(const DatArchive* a, FILE* out)
 {
-    Verify v = {a, out, 0};
+    Verify v = { a, out, 0 };
     for (size_t i = 0; i < a->natives.cap; i++) {
         if (a->natives.keys[i] == UINT64_MAX) {
             continue;
