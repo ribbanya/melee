@@ -71,6 +71,11 @@ Not errors:
   including the `ItemSpecialAttributes` whose kinds aren't bound, or a
   `dat_symbols.txt` attribute for a copy of a range.
 
+- 18 more orphan `{DynamicModelDesc, {desc, 0}}` pairs (ItCo, TyStand and
+  some fighters, e.g. `PlPp.dat` 0xE928) reach objects already typed
+  otherwise when typed by address: their anim lists may not line up with
+  the joint, or the pair is something else. Untyped for now.
+
 ## Stopgaps
 
 - `ItemStateArray` uses `DAT_EXTENT`. Its length is the largest `anim_id` in
