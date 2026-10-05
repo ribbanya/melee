@@ -100,6 +100,7 @@ ScTitle_scene_lights = *:*; // extent
 ScInfCnt_scene_models = *:*; // extent
 Stc_scemdls = *:*; // extent
 sqEventInitDataLevelTbl = GmEvent.dat:*; // extent
+tournament_box?_array = TmBox.dat:*; // extent
 
 // Every effect archive's table, as efAsync_DatEntries loads them; this also
 // types those no loader names, such as Kirby's unused copy of Pichu's

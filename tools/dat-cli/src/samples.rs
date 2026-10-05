@@ -14,6 +14,7 @@
 use crate::{
     dwarf::{
         DieId, Member, TypeGraph, TypeKind,
+        annotation::DatTag,
         canonical::{CanonId, Canonical},
         render::Renderer,
     },
@@ -1829,6 +1830,19 @@ impl<'a> CWriter<'a> {
                         continue;
                     }
                     let at = offset + member.offset.unwrap_or(0) as u32;
+                    // A `DAT_TYPE` integer holds the address of its target
+                    let integer = !matches!(
+                        self.graph.types[&self.resolve(ty)].kind,
+                        TypeKind::Pointer { .. }
+                    );
+                    if let Some(target) = inst.relocs.get(&at)
+                        && integer
+                        && self.typed(member)
+                    {
+                        let cast = self.renderer.declare(Some(ty), "");
+                        write!(out, "({cast}) &{target}")?;
+                        continue;
+                    }
                     self.value(out, inst, ty, at, depth + 1)?;
                 }
                 // A trailing comma lays the sample's members out one per
@@ -1977,6 +1991,15 @@ impl<'a> CWriter<'a> {
             _ => out.push('0'),
         }
         Ok(())
+    }
+
+    /// Whether the member is a `DAT_TYPE` field.
+    fn typed(&self, member: &Member) -> bool {
+        member.annotations.iter().any(|a| {
+            a.value.is_some_and(|v| {
+                matches!(DatTag::parse(self.graph.str(v)), Some(DatTag::Type(_)))
+            })
+        })
     }
 
     fn signed(&self, die: DieId) -> bool {
