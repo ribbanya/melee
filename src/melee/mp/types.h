@@ -1,11 +1,12 @@
 #ifndef MELEE_MP_TYPES_H
 #define MELEE_MP_TYPES_H
 
-#include <dat_macros.h>
 #include <Runtime/platform.h>
 
 #include <melee/gr/forward.h>
 #include <melee/mp/forward.h> // IWYU pragma: export
+
+#include <dat_macros.h>
 
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/mtx.h>

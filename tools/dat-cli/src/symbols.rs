@@ -358,10 +358,10 @@ ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat:*; // count:10
 
     #[test]
     fn aliases() {
-        let file = SymbolFile::parse(
-            "ftDataEmblem_unused_joint = PlFe.dat:0x3AD70; // type:HSD_Joint\n\
-             ftDataEmblem = PlFe.dat:*; // type:ftData\n",
-        )
+        let file = SymbolFile::parse(concat!(
+            "ftDataEmblem_unused_joint = PlFe.dat:0x3AD70; // type:HSD_Joint\n",
+            "ftDataEmblem = PlFe.dat:*; // type:ftData\n",
+        ))
         .unwrap();
         assert_eq!(file.to_string().lines().next(), Some(
             "ftDataEmblem_unused_joint = PlFe.dat:0x3AD70; // type:HSD_Joint"
