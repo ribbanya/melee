@@ -2017,7 +2017,7 @@ struct UnkStageDat_x8_t {
     /* +14 */ UNK_T x14;
     /* +18 */ LightList** x18 DAT_TERMINATED(0);
     /* +1C */ HSD_FogDesc* x1C;
-    /* +20 */ GrJoint* unk20;
+    /* +20 */ GrJoint* unk20 DAT_COUNT(unk24);
     /* +24 */ s32 unk24; // size of unk20 array
     /* +28 */ UNK_T x28;
     /* +2C */ s16* x2C;
