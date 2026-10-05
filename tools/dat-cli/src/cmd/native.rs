@@ -888,6 +888,7 @@ impl<'a> Generator<'a> {
                 let function = match function.as_str() {
                     "itCommandLength" => 0,
                     "GXGetTexBufferSize" => 1,
+                    "colAnimCommandLength" => 2,
                     _ => return self.node(OP_FAIL, NONE, NONE, 0),
                 };
                 let nodes: Vec<i32> =

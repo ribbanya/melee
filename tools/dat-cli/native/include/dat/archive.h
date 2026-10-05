@@ -163,6 +163,7 @@ typedef enum DatOp {
 typedef enum DatFunction {
     DAT_FN_IT_COMMAND_LENGTH,
     DAT_FN_GX_GET_TEX_BUFFER_SIZE,
+    DAT_FN_COL_ANIM_COMMAND_LENGTH,
 } DatFunction;
 
 /// An expression node: operands `a` and `b` are other nodes' indices.

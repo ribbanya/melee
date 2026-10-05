@@ -965,6 +965,30 @@ static bool resolve_name(const DatArchive* a, const Context* c, int32_t name,
     return false;
 }
 
+/// See `col_anim_command_length` in `expr.rs`.
+static bool col_anim_command_length(uint64_t command, uint64_t* out)
+{
+    static const uint8_t own[11] = { 0, 1, 1, 2, 2, 2, 1, 1, 2, 2, 1 };
+    uint64_t opcode = (command >> 26) & 0x3F;
+    if (opcode >= 10 && opcode <= 20) {
+        *out = own[opcode - 10];
+        return true;
+    }
+    switch (opcode) {
+    case 21:
+        *out = 5;
+        return true;
+    case 22:
+        *out = 3;
+        return true;
+    case 23:
+        *out = 1;
+        return true;
+    default:
+        return false;
+    }
+}
+
 static bool it_command_length(uint64_t command, uint64_t* out)
 {
     uint64_t opcode = (command >> 26) & 0x3F;
@@ -1082,6 +1106,8 @@ static bool eval(const DatArchive* a, const Context* c, int32_t node,
         switch (e->a) {
         case DAT_FN_IT_COMMAND_LENGTH:
             return e->value == 1 && it_command_length(args[0], out);
+        case DAT_FN_COL_ANIM_COMMAND_LENGTH:
+            return e->value == 1 && col_anim_command_length(args[0], out);
         case DAT_FN_GX_GET_TEX_BUFFER_SIZE:
             return e->value == 5 && gx_get_tex_buffer_size(
                                         (uint16_t) args[0], (uint16_t) args[1],
@@ -1780,7 +1806,9 @@ static void script_at(DatArchive* a, uint32_t value, int32_t id,
                     VEC_PUSH(queue, word(a, w));
                 }
             }
-            if (opcode == 0) {
+            /* A length expression ends the script with a command of 0
+             * words */
+            if (opcode == 0 || (length == 0 && s->table == NULL)) {
                 ended = true;
                 break;
             }

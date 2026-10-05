@@ -1094,7 +1094,10 @@ impl<'a> Walker<'a> {
                         ));
                     }
                 }
-                if opcode == 0 {
+                // A length expression ends the script with a command of 0 words
+                if opcode == 0
+                    || (length == 0 && matches!(script, Script::Length(_)))
+                {
                     ended = Some(end);
                     break;
                 }

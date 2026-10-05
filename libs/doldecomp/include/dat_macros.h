@@ -70,7 +70,9 @@
 /// - @c table, an array in the code of their lengths, from opcode 10:
 ///   @c DAT_SCRIPT(ftAction_803C0870); or
 /// - an expression in @c _command, the command's first word, such as a call
-///   to a tool-side helper: @c DAT_SCRIPT(itCommandLength(_command)).
+///   to a tool-side helper: @c DAT_SCRIPT(itCommandLength(_command)). A
+///   length of 0 ends the script there, for scripts that stop at a command
+///   of their own (a color animation's opcode 10).
 #define DAT_SCRIPT(...) DAT_TAG("script(" #__VA_ARGS__ ")")
 
 /// On a typedef of @c u8: the bytes are data of one format the archive
