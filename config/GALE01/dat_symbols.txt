@@ -99,6 +99,11 @@ ScMenDisplay_scene_lights = *; // count:*
 ScTitle_scene_lights = *; // count:*
 ScInfCnt_scene_models = *; // count:*
 Stc_scemdls = *; // count:*
+
+// Particle banks, loaded as `int` for psInitDataBankLocate: words, and
+// offsets into themselves, as far as the data runs.
+map_ptcl = *; // count:*
+map_texg = *; // count:*
 MemCardIconData = *; // count:*
 ScGamRegStaffrollNames_scene_modelset = *; // count:10
 mnNameAutoName = *; // count:684
