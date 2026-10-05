@@ -43,6 +43,8 @@ yakumono_param = GrSt.dat:*; // type:grStory_YakumonoParam
 yakumono_param = GrTFc.dat:*; // type:grTFalco_YakumonoParam
 yakumono_param = GrTFx.dat:*; // type:grTFox_YakumonoParam
 yakumono_param = GrTGn.dat:*; // type:grTGn_YakumonoParam
+yakumono_param = GrTMt.dat:*; // type:grTMewtwo_UnkStruct
+yakumono_param = GrTPr.dat:*; // type:grTPrSpecialParams
 yakumono_param = GrVe.dat:*; // type:grVenom_YakumonoParam
 yakumono_param = GrZe.dat:*; // type:grZe_YakumonoParam
 
@@ -4436,7 +4438,7 @@ GrMc_unused_x301BC = GrMc.dat:0x301BC; // type:HSD_AnimJoint
 PlGnRe_unused_x5D74C = PlGnRe.dat:0x5D74C; // type:HSD_MatAnimJoint
 PlGnLa_unused_x5D74C = PlGnLa.dat:0x5D74C; // type:HSD_MatAnimJoint
 PlGnGr_unused_x5D74C = PlGnGr.dat:0x5D74C; // type:HSD_MatAnimJoint
-PlGnBu_unused_x5D74C = PlGnBu.dat:0x5D74C; // type:HSD_MatAnimJoint
+PlGnBu_unused_x5D740 = PlGnBu.dat:0x5D740; // type:HSD_MatAnimJoint
 PlSs_unused_x17D88 = PlSs.dat:0x17D88; // type:HSD_Joint
 PlSs_unused_x19AC8 = PlSs.dat:0x19AC8; // type:HSD_Joint
 PlSs_unused_x196E8 = PlSs.dat:0x196E8; // type:HSD_Joint
