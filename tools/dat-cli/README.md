@@ -112,7 +112,7 @@ wins, then the first `*` line. The attributes mirror the annotations:
 `type:T` like `DAT_TYPE(T)` (`T` or `T*`), and a count like `DAT_COUNT` and
 `DAT_EXTENT`: `count:N`, or `extent` for as many as fit before the next
 public symbol or pointer target. A count also applies where the loader
-already gives the type, e.g. `map_plit = *; // extent` for a
+already gives the type, e.g. `map_plit = *:*; // extent` for a
 null-terminated list of `LightList*`. Raw data (textures, palettes) is
 `type:u8 extent` or `type:u16 extent`, like the extracted blobs in
 `config.yml`.
