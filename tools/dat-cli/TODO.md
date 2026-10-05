@@ -129,6 +129,13 @@ Not errors:
 
 ## Tool
 
+- `Archive::parse_packed` splits `Pl??AJ.dat` by each archive's size,
+  rounded up to 32 bytes; the padding between them is leftover bytes, not
+  zeros. The game finds each through the offsets and sizes in `ftData`'s
+  motion tables instead: split, or at least check the split, by those.
+- One relocation is at a halfword (`TyMnInfo.dat` 0x25F6): the walk assumes
+  pointers on words, so it's unexplained.
+
 - Only pointers are checked against relocations. Wrong scalar types go
   unnoticed.
 - The DWARF build compiles against aurora's console headers, not
