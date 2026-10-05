@@ -111,6 +111,9 @@ Not errors:
   item scripts, loaded as `void*`. `dat_symbols.txt` roots can be scripts
   now (`script:`), but not a list of pointers to them: that needs a pointer
   typedef with `DAT_SCRIPT`, or `script:` on a list root.
+- `PlSb.dat` 0x75C-0x1444, after Sandbag's `FtSFX`, parses as subaction
+  commands but has no end command before the next object: not standalone
+  scripts. Nothing points into it.
 
 - Loaded into untyped destinations, types unknown:
   `mnNameDefaultName*`
