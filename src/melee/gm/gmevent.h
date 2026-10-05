@@ -4,9 +4,9 @@
 #include <melee/ft/forward.h>
 #include <melee/it/forward.h>
 
-#include <melee/gm/types.h>
-
 #include <dat_macros.h>
+
+#include <melee/gm/types.h>
 
 /// @todo ::PlayerInitData
 typedef struct gm_801BAB40_src {

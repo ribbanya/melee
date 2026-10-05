@@ -1,9 +1,9 @@
 #ifndef SYSDOLPHIN_BASELIB_SPLINE_H
 #define SYSDOLPHIN_BASELIB_SPLINE_H
 
-#include <dolphin/mtx.h>
-
 #include <dat_macros.h>
+
+#include <dolphin/mtx.h>
 
 typedef struct HSD_Spline {
     /*  +0 */ u8 type;

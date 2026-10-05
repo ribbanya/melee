@@ -1925,7 +1925,9 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
     }
     const DatExpr* count_tag = typedef_count(a, type);
     if (count_tag != NULL) {
-        Context c = { MODE_TERMINATOR, DAT_NONE, 0, DAT_NONE, 0, a->env, 0, 0 };
+        Context c = {
+            MODE_TERMINATOR, DAT_NONE, 0, DAT_NONE, 0, a->env, 0, 0
+        };
         uint64_t count;
         if (eval(a, &c, count_tag, &count)) {
             Parent none = { DAT_NONE, 0, false };

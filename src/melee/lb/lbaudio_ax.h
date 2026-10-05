@@ -7,9 +7,9 @@
 #include <melee/gr/forward.h>
 #include <sysdolphin/baselib/forward.h>
 
-#include <sysdolphin/baselib/gobj.h>
-
 #include <dat_macros.h>
+
+#include <sysdolphin/baselib/gobj.h>
 
 /// @todo Create an @c enum for SFX IDs.
 #define SFX_NONE -1

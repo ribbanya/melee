@@ -4,8 +4,6 @@
 #include <melee/gr/forward.h>
 #include <melee/lb/forward.h>
 
-#include <placeholder.h>
-
 /* 3E8974 */ extern StageData grTFc_StageData;
 
 struct grTFalco_YakumonoParam {

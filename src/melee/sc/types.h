@@ -1,12 +1,11 @@
 #ifndef MELEE_SC_TYPES_H
 #define MELEE_SC_TYPES_H
 
-#include <placeholder.h>
-
 #include <melee/sc/forward.h> // IWYU pragma: export
 #include <sysdolphin/baselib/forward.h>
 
 #include <dat_macros.h>
+#include <placeholder.h>
 
 /// Model with a single animation or no animation
 struct StaticModelDesc {

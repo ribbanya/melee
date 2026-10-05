@@ -2012,8 +2012,8 @@ struct ftDynamics {
     /*  +C */ AbsorbDesc* x8;
     /// Per animation, the set of each dynamic bone.
     /// @todo Count: the fighter's animations.
-    /* +10 */ ftDynamicsBoneSet* x10 DAT_EXTENT
-        DAT_BIND(ftDynamics::bones, x0.dynamicsNum);
+    /* +10 */ ftDynamicsBoneSet* x10 DAT_EXTENT DAT_BIND(ftDynamics::bones,
+                                                         x0.dynamicsNum);
 };
 
 struct KirbyHatStruct {
