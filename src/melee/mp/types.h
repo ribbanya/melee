@@ -1,6 +1,7 @@
 #ifndef MELEE_MP_TYPES_H
 #define MELEE_MP_TYPES_H
 
+#include <dat_macros.h>
 #include <Runtime/platform.h>
 
 #include <melee/gr/forward.h>
@@ -108,12 +109,12 @@ struct CollJoint {
 ASSERT_SIZE(struct CollJoint, 0x34);
 
 struct MapCollData {
-    /*  +0 */ Vec2* verts;
+    /*  +0 */ Vec2* verts DAT_COUNT(vert_count);
     /*  +4 */ int vert_count;
-    /*  +8 */ MapLine* lines;
+    /*  +8 */ MapLine* lines DAT_COUNT(line_count);
     /*  +C */ int line_count;
     /* +10 */ struct MapLineRange ranges[MapLineGroup_Count];
-    /* +24 */ MapJoint* joints;
+    /* +24 */ MapJoint* joints DAT_COUNT(joint_count);
     /* +28 */ int joint_count;
     /* +2C */ int x2C; /* inferred */
 };
