@@ -658,7 +658,7 @@ struct ftCommonData {
 
 typedef struct _FtSFXArr {
     int num;
-    s32* sfx_ids;
+    s32* sfx_ids DAT_COUNT(num);
 } FtSFXArr;
 
 struct FtSFX {

@@ -64,6 +64,13 @@ Not errors:
   typedef-level `DAT_EXTENT`, or a terminator that also takes its repeats,
   would cover them.
 
+- `ItCo.dat` 0x50A0-0x7DDC (11.5 KB, right after `itPublicData.x8`) is a
+  byte-for-byte copy of 0x2FC-0x303C: the common `ItemCommonData` and the
+  170 objects after it. Its pointers point to the originals, so nothing in
+  it is reached. Typing it means each object by address at +0x4DA4,
+  including the `ItemSpecialAttributes` whose kinds aren't bound, or a
+  `dat_symbols.txt` attribute for a copy of a range.
+
 ## Stopgaps
 
 - `ItemStateArray` uses `DAT_EXTENT`. Its length is the largest `anim_id` in
@@ -114,7 +121,9 @@ Not errors:
 - `ALDYakuAll` (`StageInfo.ald_yaku_all`) is a null-terminated table of
   item scripts, loaded as `void*`. Walking them needs a script attribute
   for `dat_symbols.txt` roots, mirroring `DAT_SCRIPT`, so that its entries
-  can be `union CmdUnion*` without an ambiguous union.
+  can be `union CmdUnion*` without an ambiguous union. The same attribute
+  would type `PlSb.dat` 0x75C-0x1444: subaction scripts after Sandbag's
+  `FtSFX` that nothing points to.
 
 - Loaded into untyped destinations, types unknown:
   `mnNameDefaultName*`
