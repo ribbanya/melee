@@ -118,12 +118,6 @@ Not errors:
   relocated by `ftData` at runtime. They could be read as nested archives.
 - About 15,000 `void*` fields aren't followed. Use `DAT_TYPE` where the type
   is known.
-- `UnkStageDat.unk18` (map_head +0x18, count `unk1C`): entries are
-  `{ HSD_LightDesc*, word }`, where the word is flags in some stages (GrGr:
-  0 or 0xE0000000, as `ground.c` reads it through `LightOverrideEntry`) and
-  a relocated `HSD_LightAnim**` in others (GrNBa, GrPu, GrGd, GrIm: the
-  entries are the stage's `LightList`s). Left `void*`: a struct can't be
-  both, and no annotation chooses by relocation.
 
 ## Tool
 

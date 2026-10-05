@@ -2051,7 +2051,9 @@ struct UnkStageDat {
     HSD_Spline** unk10 DAT_COUNT(unk14);
     s32 unk14;
 
-    void* unk18 DAT_COUNT(unk1C);
+    /// The game searches \c unk1C entries, but the archives' counts run
+    /// past the table into the data after it.
+    struct LightOverrideEntry* unk18 DAT_EXTENT;
     s32 unk1C;
 
     struct GroundShadowEntry* unk20 DAT_COUNT(unk24);
