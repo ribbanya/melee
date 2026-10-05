@@ -198,6 +198,10 @@ struct Sidecar {
     /// wrong. Every target symbol outside the samples must be inferred in
     /// the base. objdiff's `complete`, the analog of code linked into the game.
     complete: bool,
+    /// The archive's size, every packed archive in the file together.
+    bytes: u64,
+    /// Of those, the bytes the base infers.
+    inferred_bytes: u64,
 }
 
 fn sidecar_path(target: &Path) -> PathBuf {
@@ -691,7 +695,10 @@ fn slice(args: Slice) -> Result<()> {
             })
         })
         .collect();
+    let inferred_bytes = inferred.iter().map(|p| p.size).sum();
     let sidecar = Sidecar {
+        bytes: archives.iter().map(|(_, a)| a.data.len() as u64).sum(),
+        inferred_bytes,
         publics,
         archive: args.archive,
         samples: infos,
@@ -868,6 +875,11 @@ struct MatchMeasures {
     /// Bytes, weighted by each sample's match.
     matched_data: f64,
     matched_data_percent: f64,
+    /// Every byte of the archives.
+    total_bytes: u64,
+    /// Matched sample bytes, weighted as above, and inferred bytes.
+    covered_bytes: f64,
+    covered_bytes_percent: f64,
 }
 
 impl MatchMeasures {
@@ -876,6 +888,7 @@ impl MatchMeasures {
         self.matched_samples += u64::from(sample.match_percent >= 100.0);
         self.total_data += sample.size;
         self.matched_data += sample.size as f64 * sample.match_percent / 100.0;
+        self.covered_bytes += sample.size as f64 * sample.match_percent / 100.0;
         self.finish();
     }
 
@@ -884,6 +897,8 @@ impl MatchMeasures {
         self.matched_samples += other.matched_samples;
         self.total_data += other.total_data;
         self.matched_data += other.matched_data;
+        self.total_bytes += other.total_bytes;
+        self.covered_bytes += other.covered_bytes;
         self.finish();
     }
 
@@ -894,6 +909,8 @@ impl MatchMeasures {
             percent(self.matched_samples as f64, self.total_samples as f64);
         self.matched_data_percent =
             percent(self.matched_data, self.total_data as f64);
+        self.covered_bytes_percent =
+            percent(self.covered_bytes, self.total_bytes as f64);
     }
 }
 
@@ -937,7 +954,7 @@ fn extra_sections(dir: &Path, unit: &str) -> Result<Vec<String>> {
 
 /// objdiff's diff of one unit's target and base objects: each sample's
 /// match.
-fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
+fn diff_unit(dir: &Path, unit: &str) -> Result<(Sidecar, Vec<SampleMatch>)> {
     let target = dir.join("target").join(format!("{unit}.o"));
     let sidecar = read_sidecar(&sidecar_path(&target))?;
     let samples: BTreeSet<&str> =
@@ -962,7 +979,7 @@ fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
         .as_array()
         .cloned()
         .unwrap_or_default();
-    Ok(symbols
+    let matches = symbols
         .iter()
         .filter_map(|s| {
             let name = s["name"].as_str()?;
@@ -979,7 +996,8 @@ fn diff_unit(dir: &Path, unit: &str) -> Result<Vec<SampleMatch>> {
                 match_percent,
             })
         })
-        .collect())
+        .collect();
+    Ok((sidecar, matches))
 }
 
 fn report(args: Report) -> Result<()> {
@@ -1006,8 +1024,12 @@ fn report(args: Report) -> Result<()> {
     let units: Vec<UnitMatch> = names
         .par_iter()
         .map(|name| {
-            let samples = diff_unit(&args.dir, name)?;
-            let mut measures = MatchMeasures::default();
+            let (sidecar, samples) = diff_unit(&args.dir, name)?;
+            let mut measures = MatchMeasures {
+                total_bytes: sidecar.bytes,
+                covered_bytes: sidecar.inferred_bytes as f64,
+                ..Default::default()
+            };
             for sample in &samples {
                 measures.add(sample);
             }
@@ -1058,6 +1080,16 @@ fn report(args: Report) -> Result<()> {
         total.total_samples,
         units.len(),
         total.matched_data_percent
+    )?;
+    writeln!(
+        out,
+        concat!(
+            "{:.0}/{} archive bytes covered by matching samples and ",
+            "inferred data, {:.2}%",
+        ),
+        total.covered_bytes,
+        total.total_bytes,
+        total.covered_bytes_percent
     )?;
     Ok(())
 }
