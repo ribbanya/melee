@@ -1995,7 +1995,7 @@ struct GroundParam {
      * One row per #StKind this ground serves, looked up by
      * #StageParam::stkind.
      */
-    StageParam* stage_params;
+    StageParam* stage_params DAT_COUNT(stage_param_count);
     s32 stage_param_count;
     GXColor xB8;
     GXColor xBC;
