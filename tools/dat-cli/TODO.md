@@ -49,7 +49,8 @@
   6, Kirby 4 and Yoshi 3, and otherwise `Article`, to choose these layouts.
   The same bindings can type `Article.x4_special` for fighter items.
 - Fighters' part animations (`ftData_x1C.x8`) sit next to `HSD_AnimJoint`
-  trees that nothing points to. Their relocations can't be explained.
+  trees that nothing points to, whose subtrees the part animations reach.
+  `dat_symbols.txt` types their heads by address.
 
 Not errors:
 
