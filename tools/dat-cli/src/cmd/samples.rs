@@ -164,6 +164,13 @@ struct Report {
     dir: PathBuf,
     #[arg(long)]
     json: bool,
+    /// List the data the base doesn't infer, by the field that reaches it,
+    /// largest first
+    #[arg(long)]
+    missing: bool,
+    /// Rows for `--missing` (0 for all)
+    #[arg(long, default_value_t = 30)]
+    top: usize,
 }
 
 pub fn run(Args { command }: Args) -> Result<()> {
@@ -925,6 +932,55 @@ struct UnitMatch {
     extra: Vec<String>,
 }
 
+/// The target's symbols outside its samples that the base doesn't infer,
+/// with their sizes.
+fn missing_symbols(dir: &Path, unit: &str) -> Result<Vec<(String, u64)>> {
+    let read = |kind: &str| -> Result<Vec<u8>> {
+        let path = dir.join(format!("{kind}/{unit}.o"));
+        fs::read(&path).with_context(|| format!("{}", path.display()))
+    };
+    let (target, base) = (read("target")?, read("base")?);
+    let base = object::File::parse(&*base)?;
+    let inferred: BTreeSet<&str> = base
+        .symbols()
+        .filter(|s| s.is_definition())
+        .filter_map(|s| s.name().ok())
+        .collect();
+    let target = object::File::parse(&*target)?;
+    let Some(section) = target.section_by_name(INFERRED) else {
+        return Ok(Vec::new());
+    };
+    Ok(target
+        .symbols()
+        .filter(|s| s.section_index() == Some(section.index()))
+        .filter_map(|s| Some((s.name().ok()?, s.size())))
+        .filter(|(name, _)| !inferred.contains(name))
+        .map(|(name, size)| (name.to_owned(), size))
+        .collect())
+}
+
+/// The field a piece's name says reached it, without its offset:
+/// `child_x1A0` and `child_x1_1A0` are `child`; a bare offset is a piece
+/// the walk never reached.
+fn field_of(name: &str) -> &str {
+    let is_hex = |s: &str| !s.is_empty() && s.bytes().all(|b| b.is_ascii_hexdigit());
+    let offset = |s: &str| s.strip_prefix('x').is_some_and(is_hex);
+    let mut end = name.len();
+    // `x<archive>_<offset>` in a packed file, else `x<offset>`
+    if let Some((rest, last)) = name.rsplit_once('_')
+        && is_hex(last)
+        && rest.rsplit('_').next().is_some_and(offset)
+    {
+        end = rest.len() - rest.rsplit('_').next().map_or(0, str::len);
+    } else if name.rsplit('_').next().is_some_and(offset) {
+        end = name.len() - name.rsplit('_').next().map_or(0, str::len);
+    }
+    match name[..end].trim_end_matches('_') {
+        "" => "(unreached)",
+        field => field,
+    }
+}
+
 /// Allocated sections of a unit's base object other than its samples and
 /// inferred data, with their sizes.
 fn extra_sections(dir: &Path, unit: &str) -> Result<Vec<String>> {
@@ -1021,6 +1077,41 @@ fn report(args: Report) -> Result<()> {
             unit.trim_start_matches('/').to_owned()
         })
         .collect();
+    if args.missing {
+        let mut out = io::stdout().lock();
+        let missing: Vec<(String, Vec<(String, u64)>)> = names
+            .par_iter()
+            .map(|name| Ok((name.clone(), missing_symbols(&args.dir, name)?)))
+            .collect::<Result<_>>()?;
+        // By field: bytes, pieces, and the unit with the most of it
+        let mut fields: BTreeMap<&str, (u64, usize, BTreeMap<&str, u64>)> =
+            BTreeMap::new();
+        for (unit, symbols) in &missing {
+            for (name, size) in symbols {
+                let entry = fields.entry(field_of(name)).or_default();
+                entry.0 += size;
+                entry.1 += 1;
+                *entry.2.entry(unit.as_str()).or_default() += size;
+            }
+        }
+        let mut rows: Vec<_> = fields.into_iter().collect();
+        rows.sort_by_key(|(_, (bytes, _, _))| std::cmp::Reverse(*bytes));
+        let top = if args.top == 0 { rows.len() } else { args.top };
+        writeln!(out, "{:>10} {:>7}  field (largest in)", "bytes", "pieces")?;
+        for (field, (bytes, pieces, units)) in rows.iter().take(top) {
+            let (unit, most) = units
+                .iter()
+                .max_by_key(|&(_, b)| *b)
+                .map_or(("", 0), |(u, b)| (*u, *b));
+            writeln!(
+                out,
+                "{bytes:>10} {pieces:>7}  {field} ({unit}: {most})"
+            )?;
+        }
+        let total: u64 = rows.iter().map(|(_, (b, _, _))| b).sum();
+        writeln!(out, "{total} bytes in {} fields", rows.len())?;
+        return Ok(());
+    }
     let units: Vec<UnitMatch> = names
         .par_iter()
         .map(|name| {
