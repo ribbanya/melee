@@ -88,6 +88,8 @@ typedef struct DatType {
     /// elements the terminator takes.
     int32_t terminator;
     uint32_t terminator_length;
+    /// Pointer typedefs: `DAT_COUNT`, an expression in the bindings.
+    int32_t count_tag;
     /// Typedefs: `DAT_TYPE`'s type.
     int32_t type_tag;
 } DatType;

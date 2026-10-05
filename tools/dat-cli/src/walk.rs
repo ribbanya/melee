@@ -404,6 +404,14 @@ impl<'a> Walker<'a> {
         if let Some((value, length)) = self.typedef_terminator(die) {
             return self.terminated(offset, die, path, &value, length);
         }
+        if let Some(count) = self.typedef_count(die) {
+            let count = eval_expr(self.macros, &count, &|name| {
+                lookup(&self.env, name)
+            });
+            if let Some(count) = count {
+                return self.counted(offset, die, None, count, path, &[], None);
+            }
+        }
         if let Some(target) = self.typedef_type(die) {
             return self.typed(offset, target, path);
         }
@@ -940,6 +948,31 @@ impl<'a> Walker<'a> {
         })
     }
 
+    /// A `DAT_COUNT` on a pointer typedef, or one it names: an expression
+    /// in the bindings, for lists of counted lists.
+    fn typedef_count(&self, mut die: DieId) -> Option<Expr> {
+        while let Some(ty) = self.graph.types.get(&die) {
+            let TypeKind::Typedef {
+                target: Some(target),
+            } = ty.kind
+            else {
+                return None;
+            };
+            let count =
+                ty.annotations.iter().find_map(|a| {
+                    match DatTag::parse(self.graph.str(a.value?))? {
+                        DatTag::Count(count) => Some(count),
+                        _ => None,
+                    }
+                });
+            if count.is_some() {
+                return count;
+            }
+            die = target;
+        }
+        None
+    }
+
     /// A `DAT_TERMINATED` value and length on a typedef, or one it names.
     fn typedef_terminator(&self, mut die: DieId) -> Option<(Expr, u64)> {
         while let Some(ty) = self.graph.types.get(&die) {
@@ -1372,6 +1405,14 @@ impl<'a> Walker<'a> {
         else {
             return None;
         };
+        // A member of a nested record, `x0.count`
+        if let Some((head, rest)) = name.split_once('.') {
+            let member = members
+                .iter()
+                .find(|m| m.name.map(|n| self.graph.str(n)) == Some(head))?;
+            let inner = self.resolve(member.ty)?;
+            return self.field_value(inner, base + member.offset? as u32, rest);
+        }
         let member = members
             .iter()
             .find(|m| m.name.map(|n| self.graph.str(n)) == Some(name))?;

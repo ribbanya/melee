@@ -1999,6 +1999,9 @@ struct ftData_80085FD4_ret {
     /* +14 */ uintptr_t x14;
 };
 
+/// A dynamic bone set: one per dynamic bone (0x100 for none).
+typedef s32* ftDynamicsBoneSet DAT_COUNT(ftDynamics::bones);
+
 struct ftDynamics {
     /// @todo Very similar to #ItemDynamics.
     struct ftDynamics_x0 {
@@ -2007,8 +2010,10 @@ struct ftDynamics {
     } x0;
     /*  +8 */ int x4;
     /*  +C */ AbsorbDesc* x8;
-    /// Per animation, the set of each dynamic bone (0x100 for none).
-    /* +10 */ s32** x10;
+    /// Per animation, the set of each dynamic bone.
+    /// @todo Count: the fighter's animations.
+    /* +10 */ ftDynamicsBoneSet* x10 DAT_EXTENT
+        DAT_BIND(ftDynamics::bones, x0.dynamicsNum);
 };
 
 struct KirbyHatStruct {

@@ -11,7 +11,7 @@ use winnow::{
     ascii::{digit1, hex_digit1, multispace0, oct_digit1},
     combinator::{
         Infix, Prefix, alt, cut_err, delimited, dispatch, expression, fail,
-        opt, peek, preceded, separated,
+        opt, peek, preceded, repeat, separated,
     },
     token::{any, one_of, take_while},
 };
@@ -214,7 +214,7 @@ fn operand(input: &mut &str) -> ModalResult<Expr> {
     dispatch! {peek(any);
         '(' => delimited('(', parser(0), cut_err(preceded(multispace0, ')'))),
         '0'..='9' => integer.map(Expr::Int),
-        _ => (identifier, opt(preceded(multispace0, arguments))).map(
+        _ => (name, opt(preceded(multispace0, arguments))).map(
             |(name, args): (&str, _)| match (name, args) {
                 (_, Some(args)) => Expr::Call(name.to_owned(), args),
                 // Keywords as of C23
@@ -351,6 +351,14 @@ pub fn identifier<'i>(input: &mut &'i str) -> ModalResult<&'i str> {
         .parse_next(input)
 }
 
+/// An expression's name: an identifier, or a member of a nested record,
+/// `x0.count`.
+fn name<'i>(input: &mut &'i str) -> ModalResult<&'i str> {
+    (identifier, repeat(0.., ('.', word)).map(|()| ()))
+        .take()
+        .parse_next(input)
+}
+
 fn word<'i>(input: &mut &'i str) -> ModalResult<&'i str> {
     (
         one_of(|c: char| c.is_ascii_alphabetic() || c == '_'),
@@ -426,6 +434,10 @@ mod tests {
             ))
         );
         assert!(Expr::parse("A::b::c").is_none());
+        assert_eq!(
+            Expr::parse("x0.dynamicsNum"),
+            Some(Expr::Name("x0.dynamicsNum".into()))
+        );
     }
 
     #[test]

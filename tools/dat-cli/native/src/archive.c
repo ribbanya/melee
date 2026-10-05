@@ -574,6 +574,18 @@ static int32_t typedef_terminator(const DatArchive* a, int32_t type,
     return DAT_NONE;
 }
 
+/// A `DAT_COUNT` on a pointer typedef, or one it names.
+static int32_t typedef_count(const DatArchive* a, int32_t type)
+{
+    while (type != DAT_NONE && T(a, type)->kind == DAT_KIND_TYPEDEF) {
+        if (T(a, type)->count_tag != DAT_NONE) {
+            return T(a, type)->count_tag;
+        }
+        type = T(a, type)->target;
+    }
+    return DAT_NONE;
+}
+
 /// The type a `DAT_TYPE` typedef on the way to the type refers to.
 static int32_t typedef_type(const DatArchive* a, int32_t type)
 {
@@ -877,6 +889,34 @@ static bool field_value(const DatArchive* a, int32_t record, uint32_t base,
         return false;
     }
     const DatMember* m = NULL;
+    /* A member of a nested record, `x0.count`: by the name's text */
+    const char* full = a->s->names[name];
+    const char* dot = strchr(full, '.');
+    if (dot != NULL) {
+        size_t len = (size_t) (dot - full);
+        for (uint32_t i = 0; i < t->nmembers; i++) {
+            const DatMember* c = &a->s->members[t->members + i];
+            if (c->name != DAT_NONE &&
+                strncmp(a->s->names[c->name], full, len) == 0 &&
+                a->s->names[c->name][len] == '\0')
+            {
+                m = c;
+                break;
+            }
+        }
+        if (m == NULL || !m->has_offset || m->type == DAT_NONE) {
+            return false;
+        }
+        int32_t rest = DAT_NONE;
+        for (int32_t i = 0; a->s->names[i] != NULL; i++) {
+            if (strcmp(a->s->names[i], dot + 1) == 0) {
+                rest = i;
+                break;
+            }
+        }
+        return rest != DAT_NONE &&
+               field_value(a, resolve(a, m->type), base + m->offset, rest, out);
+    }
     for (uint32_t i = 0; i < t->nmembers; i++) {
         if (a->s->members[t->members + i].name == name) {
             m = &a->s->members[t->members + i];
@@ -1875,6 +1915,16 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
     if (term != DAT_NONE) {
         terminated(a, offset, type, native, term, term_length);
         return;
+    }
+    int32_t count_tag = typedef_count(a, type);
+    if (count_tag != DAT_NONE) {
+        Context c = { MODE_TERMINATOR, DAT_NONE, 0, DAT_NONE, 0, a->env, 0, 0 };
+        uint64_t count;
+        if (eval(a, &c, count_tag, &count)) {
+            Parent none = { DAT_NONE, 0, false };
+            counted(a, offset, type, DAT_NONE, count, NULL, none, native);
+            return;
+        }
     }
     int32_t declared = typedef_type(a, type);
     if (declared != DAT_NONE) {

@@ -116,6 +116,7 @@ struct TypeRow {
     nmembers: usize,
     terminator: i32,
     terminator_length: u64,
+    count_tag: i32,
     type_tag: i32,
 }
 
@@ -524,6 +525,7 @@ impl<'a> Generator<'a> {
             resolved: NONE,
             terminator: NONE,
             terminator_length: 1,
+            count_tag: NONE,
             type_tag: NONE,
             ..TypeRow::default()
         };
@@ -566,6 +568,9 @@ impl<'a> Generator<'a> {
                         {
                             row.terminator = self.expr(value, 0);
                             row.terminator_length = *length;
+                        }
+                        DatTag::Count(count) if row.count_tag == NONE => {
+                            row.count_tag = self.expr(count, 0);
                         }
                         DatTag::Type(name) if row.type_tag == NONE => {
                             // As the walker's `typedef_type`: the type as
@@ -880,6 +885,10 @@ impl<'a> Generator<'a> {
         match expr {
             Expr::Int(value) => self.node(OP_INT, NONE, NONE, *value),
             Expr::Name(name) => {
+                // A nested member's path: the walk looks up each remainder
+                for (i, _) in name.match_indices('.') {
+                    self.name_id(&name[i + 1..]);
+                }
                 let id = self.name_id(name);
                 let fallback = self.macro_node(name, depth + 1);
                 self.node(OP_NAME, id, fallback, 0)
@@ -1161,7 +1170,7 @@ fn codegen(args: Codegen) -> Result<()> {
     for t in &generator.types {
         writeln!(
             c,
-            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}}},",
+            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}}},",
             literal(&t.name),
             t.id,
             t.kind,
@@ -1179,6 +1188,7 @@ fn codegen(args: Codegen) -> Result<()> {
             t.nmembers,
             t.terminator,
             t.terminator_length,
+            t.count_tag,
             t.type_tag,
         )?;
     }
