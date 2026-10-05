@@ -56,23 +56,10 @@ Not errors:
   typedef-level `DAT_EXTENT`, or a terminator that also takes its repeats,
   would cover them.
 
-- `ItCo.dat` 0x50A0-0x7DDC (11.5 KB, right after `itPublicData.x8`) is a
-  byte-for-byte copy of 0x2FC-0x303C: the common `ItemCommonData` and the
-  170 objects after it. Its pointers point to the originals, so nothing in
-  it is reached. Typing it means each object by address at +0x4DA4,
-  including the `ItemSpecialAttributes` whose kinds aren't bound, or a
-  `dat_symbols.txt` attribute for a copy of a range.
-
-- 18 more orphan `{DynamicModelDesc, {desc, 0}}` pairs (ItCo, TyStand and
-  some fighters, e.g. `PlPp.dat` 0xE928) reach objects already typed
-  otherwise when typed by address: their anim lists may not line up with
-  the joint, or the pair is something else. Untyped for now.
-
-- `ftDynamics.x10` (per animation, a set of each dynamic bone) is walked
-  as one `s32*`: it's a table of pointers, one per animation (count only in
-  code), each to `x0.dynamicsNum` words. Typing it needs `DAT_COUNT` on a
-  pointer typedef and member access (`x0.dynamicsNum`) in expressions, or a
-  binding of it. About 4 KB (PlPe, PlZd, ...).
+- `ItCo.dat` 0x50A0-0x7DDC (right after `itPublicData.x8`) is a
+  byte-for-byte copy of 0x2FC-0x303C whose pointers point to the
+  originals. `dat_symbols.txt` types its structs by address; its 67 scripts
+  and 43 `ItemSpecialAttributes` (kinds unbound) remain.
 
 ## Stopgaps
 
