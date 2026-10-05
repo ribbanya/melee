@@ -149,6 +149,27 @@ typedef struct itGShell_Attrs {
     Vec x34;
 } itGShell_Attrs;
 
+typedef struct itHassamAttributes {
+    /* +00 */ f32 x0;
+    /* +04 */ f32 x4;
+    /* +08 */ f32 x8;
+    /* +0C */ f32 xC;
+    /* +10 */ f32 x10;
+    /* +14 */ f32 x14;
+    /* +18 */ s32 x18;
+    /* +1C */ s32 x1C;
+    /* +20 */ s32 x20;
+    /* +24 */ f32 x24;
+    /* +28 */ f32 x28;
+    /* +2C */ f32 x2C;
+    /* +30 */ f32 x30;
+    /* +34 */ f32 x34;
+    /* +38 */ f32 x38;
+    /* +3C */ s32 x3C;
+    /* +40 */ s32 x40;
+    /* +44 */ s32 x44;
+} itHassamAttributes;
+
 typedef struct itHammerData {
     u32 x0;
     u32 x4;
@@ -244,130 +265,152 @@ union ItemSpecialAttributes {
     itKusudamaAttributes kusudama DAT_IF(Article::kind == It_Kind_Kusudama);
     itTaruCann_DatAttrs tarucann DAT_IF(Article::kind == It_Kind_TaruCann);
     itBombHeiAttributes bombhei DAT_IF(Article::kind == It_Kind_BombHei);
+    itDoseiAttributes dosei DAT_IF(Article::kind == It_Kind_Dosei);
     HeartContainerAttr heart DAT_IF(Article::kind == It_Kind_Heart);
     MaximTomatoSpecialAttr tomato DAT_IF(Article::kind == It_Kind_Tomato);
     itStar_ItemVars star DAT_IF(Article::kind == It_Kind_Star);
     itBatAttributes bat DAT_IF(Article::kind == It_Kind_Bat);
+    itParasolAttributes parasol DAT_IF(Article::kind == It_Kind_Parasol);
+    itGShell_Attrs g_shell DAT_IF(Article::kind == It_Kind_G_Shell);
+    itRShell_Attrs r_shell DAT_IF(Article::kind == It_Kind_R_Shell);
+    itSwordAttributes sword DAT_IF(Article::kind == It_Kind_Sword);
     ItLGunAttr l_gun DAT_IF(Article::kind == It_Kind_L_Gun);
     itFreezeAttributes freeze DAT_IF(Article::kind == It_Kind_Freeze);
+    itFoodsAttributes foods DAT_IF(Article::kind == It_Kind_Foods);
+    itMsBomb_Attrs ms_bomb DAT_IF(Article::kind == It_Kind_MSBomb);
     itFlipper_DatAttrs flipper DAT_IF(Article::kind == It_Kind_Flipper);
     itSScopeAttributes s_scope DAT_IF(Article::kind == It_Kind_S_Scope);
+    StarRodAttributes star_rod DAT_IF(Article::kind == It_Kind_StarRod);
     itLipstickAttributes lipstick DAT_IF(Article::kind == It_Kind_LipStick);
     itHarisen_DatAttrs harisen DAT_IF(Article::kind == It_Kind_Harisen);
     FFlowerAttr f_flower DAT_IF(Article::kind == It_Kind_F_Flower);
+    KinokoAttrs kinoko DAT_IF(Article::kind == It_Kind_Kinoko ||
+                              Article::kind == It_Kind_DKinoko);
+    itHammerData hammer_data DAT_IF(Article::kind == It_Kind_Hammer);
     itWstarAttributes wstar DAT_IF(Article::kind == It_Kind_WStar);
+    itRabbitCAttributes rabbit_c DAT_IF(Article::kind == It_Kind_RabbitC);
+    itMetalBAttributes metal_b DAT_IF(Article::kind == It_Kind_MetalB);
     itMBallAttributes m_ball DAT_IF(Article::kind == It_Kind_M_Ball);
     ItLGunRayAttr l_gun_ray DAT_IF(Article::kind == It_Kind_L_Gun_Ray);
+    StarRodStarAttrs star_rod_star DAT_IF(Article::kind ==
+                                          It_Kind_StarRod_Star);
+    itLipstickSporeAttributes lipstick_spore DAT_IF(Article::kind ==
+                                                    It_Kind_LipStick_Spore);
     ScopeBeamAttrs s_scope_beam DAT_IF(Article::kind == It_Kind_S_Scope_Beam);
     ItLGunBeamAttr l_gun_beam DAT_IF(Article::kind == It_Kind_L_Gun_Beam);
     itHammerheadAttributes hammer_head DAT_IF(Article::kind ==
                                               It_Kind_Hammer_Head);
+    itFFlowerFlameAttributes f_flower_flame DAT_IF(Article::kind ==
+                                                   It_Kind_F_Flower_Flame);
     itEvYoshiEgg_DatAttrs evyoshiegg DAT_IF(Article::kind ==
                                             It_Kind_EvYoshiEgg);
+    itLeadeadAttributes leadead DAT_IF(Article::kind == It_Kind_Leadead);
+    itOctarockAttributes octarock DAT_IF(Article::kind == It_Kind_Octarock);
+    itCoinAttributes coin DAT_IF(Article::kind == It_Kind_Coin);
+    itTosakinto_Attrs tosakinto DAT_IF(Article::kind == It_PKind_Tosakinto);
+    itChicoritaAttr chicorita DAT_IF(Article::kind == It_PKind_Chicorita);
+    itKabigonAttributes kabigon DAT_IF(Article::kind == It_PKind_Kabigon);
+    itKamexAttributes kamex DAT_IF(Article::kind == It_PKind_Kamex);
+    itMatadogasAttributes
+        matadogas DAT_IF(Article::kind == It_PKind_Matadogas ||
+                         Article::kind == It_Kind_Matadogas_Gas1 ||
+                         Article::kind == It_Kind_Matadogas_Gas2);
+    itLizardonAttributes lizardon DAT_IF(Article::kind == It_PKind_Lizardon);
+    itFireAttributes fire DAT_IF(Article::kind == It_PKind_Fire);
+    itThunderPokemonAttributes thunder_pokemon DAT_IF(Article::kind ==
+                                                      It_PKind_Thunder);
+    itFreezerAttributes freezer DAT_IF(Article::kind == It_PKind_Freezer);
+    itsonansAttributes sonans DAT_IF(Article::kind == It_PKind_Sonans);
+    itHassamAttributes hassam DAT_IF(Article::kind == It_PKind_Hassam);
+    itUnknownAttributes unknown DAT_IF(Article::kind == It_PKind_Unknown);
+    itSanseijuuAttributes sanseijuu DAT_IF(Article::kind == It_PKind_Entei ||
+                                           Article::kind == It_PKind_Raikou ||
+                                           Article::kind == It_PKind_Suikun);
+    itkireihanaAttributes kireihana DAT_IF(Article::kind ==
+                                           It_PKind_Kireihana);
+    itMarumineAttributes marumine DAT_IF(Article::kind == It_PKind_Marumine);
+    itLugiaAttributes lugia DAT_IF(Article::kind == It_PKind_Lugia);
+    itHououAttr houou DAT_IF(Article::kind == It_PKind_Houou ||
+                             Article::kind == It_Kind_Houou_SacredFire);
+    ItMetamonVars metamon DAT_IF(Article::kind == It_PKind_Metamon);
+    itPippiAttributes pippi DAT_IF(Article::kind == It_PKind_Pippi);
+    itTogepyAttributes togepy DAT_IF(Article::kind == It_PKind_Togepy);
+    MewVars mew DAT_IF(Article::kind == It_PKind_Mew);
+    itCerebiAttributes cerebi DAT_IF(Article::kind == It_PKind_Cerebi);
+    itHitodemanAttributes
+        hitodeman DAT_IF(Article::kind == It_PKind_Hitodeman ||
+                         Article::kind == It_Kind_Hitodeman_Star);
+    itLuckyAttributes lucky DAT_IF(Article::kind == It_PKind_Lucky);
+    itHinoarashiAttributes
+        hinoarashi DAT_IF(Article::kind == It_PKind_Hinoarashi ||
+                          Article::kind == It_Kind_Hinoarashi_Flame);
+    itMarilAttributes maril DAT_IF(Article::kind == It_PKind_Maril);
+    itFushigibanaAttributes fushigibana DAT_IF(Article::kind ==
+                                               It_PKind_Fushigibana);
+    itChicoritaLeafAttr chicorita_leaf DAT_IF(Article::kind ==
+                                              It_Kind_Chicorita_Leaf);
+    itKamexHydroPumpAttributes
+        kamex_hydro_pump DAT_IF(Article::kind == It_Kind_Kamex_HydroPump);
+    itLugiaAeroblastAttributes
+        lugia_aeroblast DAT_IF(Article::kind == It_Kind_Lugia_Aeroblast ||
+                               Article::kind == It_Kind_Lugia_Aeroblast2 ||
+                               Article::kind == It_Kind_Lugia_Aeroblast3);
+    itLuckyEggAttributes lucky_egg DAT_IF(Article::kind == It_Kind_Lucky_Egg);
 
     // Other layouts and shared views used by item callers.
     ArwingLaserAttr arwing_laser;
-    itCerebiAttributes cerebi;
     struct itChainSegment chain_segment;
-    itChicoritaAttr chicorita;
-    itChicoritaLeafAttr chicorita_leaf;
     itClimbersBlizzardAttributes climbers_blizzard;
     itClimbersIceAttributes climbers_ice;
     itClimbersStringAttributes climbers_string;
-    itCoinAttributes coin;
     itCrazyHandBombAttributes crazy_hand_bomb;
-    itDoseiAttributes dosei;
     itDrMarioPillAttributes dr_mario_pill;
-    itFFlowerFlameAttributes f_flower_flame;
-    itFireAttributes fire;
     itFlashAttributes flash;
     itFlashExplAttributes flash_expl;
-    itFoodsAttributes foods;
     FoxIllusionAttr fox_illusion;
     FoxLaserAttr fox_laser;
-    itFreezerAttributes freezer;
-    itFushigibanaAttributes fushigibana;
-    itGShell_Attrs g_shell;
     itGamewatchAttributes gamewatch;
     itGamewatchchefAttributes gamewatchchef;
     itGreatFoxLaser_Attrs great_fox_laser;
-    itHammerData hammer_data;
-    itHassam_ItemVars hassam;
     itHeihoAttributes heiho;
-    itHinoarashiAttributes hinoarashi;
-    itHitodemanAttributes hitodeman;
-    itHououAttr houou;
-    itKabigonAttributes kabigon;
-    itKamexAttributes kamex;
-    itKamexHydroPumpAttributes kamex_hydro_pump;
-    KinokoAttrs kinoko;
     itKirbyCutterBeamAttributes kirby_cutter_beam;
-    itkireihanaAttributes kireihana;
     itKoopaFlame_Attributes koopa_flame;
     itKyasarinAttributes kyasarin;
     itKyasarinEggAttributes kyasarin_egg;
-    itLeadeadAttributes leadead;
     itLikelikeAttributes likelike;
     itLinkArrowAttributes link_arrow;
     itLinkBombAttributes link_bomb;
     itLinkBoomerangAttributes link_boomerang;
     itLinkHookshotAttributes link_hookshot;
-    itLipstickSporeAttributes lipstick_spore;
-    itLizardonAttributes lizardon;
-    itLuckyAttributes lucky;
-    itLuckyEggAttributes lucky_egg;
-    itLugiaAttributes lugia;
-    itLugiaAeroblastAttributes lugia_aeroblast;
     itLuigiFireballAttributes luigi_fireball;
     itMDisableAttributes m_disable;
-    itMarilAttributes maril;
-    itMarumineAttributes marumine;
     itMarioFireballAttributes mario_fireball;
     itMasterHandBulletAttributes master_hand_bullet;
     itMasterHandLaserAttributes master_hand_laser;
-    itMetalBAttributes metal_b;
-    itMatadogasAttributes matadogas;
-    ItMetamonVars metamon;
-    MewVars mew;
     itMewtwoShadowball_DatAttrs mewtwo_shadowball;
-    itMsBomb_Attrs ms_bomb;
     itNessPKFirepillarAttributes ness_pk_firepillar;
     itNokoNoko_DatAttrs noko_noko;
-    itOctarockAttributes octarock;
     itOldkuriAttributes oldkuri;
     itOldottoseaAttributes oldottosea;
-    itParasolAttributes parasol;
     itPatapataAttributes patapata;
     itPeachToadSporeAttributes peach_toad_spore;
     itPeachTurnipAttributes peach_turnip;
     itPikachutJoltGroundAttributes pikachut_jolt_ground;
     itPikachuthunderAttributes pikachuthunder;
     itPKThunderAttributes pk_thunder;
-    itPippiAttributes pippi;
     itPokemonSpawn_DatAttrs pokemon_spawn;
-    itRabbitCAttributes rabbit_c;
-    itRShell_Attrs r_shell;
     itSamusBombAttributes samus_bomb;
     itSamusChargeShot_Attributes samus_charge_shot;
     itSamusGrappleAttributes samus_grapple;
     itSamusMissileAttributes samus_missile;
-    itSanseijuuAttributes sanseijuu;
     itSeakChain_Attrs seak_chain;
     itSeakNeedleThrownAttributes seak_needle_thrown;
-    itsonansAttributes sonans;
-    StarRodAttributes star_rod;
-    StarRodStarAttrs star_rod_star;
-    itSwordAttributes sword;
     struct TetherAttributes tether;
-    itThunderPokemonAttributes thunder_pokemon;
     itTincleAttributes tincle;
-    itTogepyAttributes togepy;
     itToolsAttributes tools;
-    itTosakinto_Attrs tosakinto;
     itUnkAttributes unk1;
     it_2728_DatAttrs unk_2728;
     it_2E5A_Attrs unk_2e5a;
-    itUnknownAttributes unknown;
     itWhispyAppleAttributes whispy_apple;
     itWhiteBeaAttributes white_bea;
     itYoshiEggThrowAttributes yoshi_egg_throw;

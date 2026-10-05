@@ -64,11 +64,12 @@ Not errors:
   the item kind's `ItemStateTable`, plus one. Replace with a `DAT_COUNT`
   based on `Article::kind` once the counts are available (item state enums,
   or reading the tables from the ELF).
-- `ItemSpecialAttributes` declares the layouts and shared views used by
-  item callers, but only 25 variants have `DAT_IF` conditions. Bind and
-  annotate the remaining common items, character items, and Pokémon,
-  and disambiguate shared views (R_Shell, Kinoko). ScBall and Spycloak
-  still lack layouts.
+- `ItemSpecialAttributes` selects common and related items, monsters and
+  Pokémon, except ScBall and Spycloak (no layouts), Kuriboh and Ottosea,
+  `It_Kind_Unk4`, and `Lizardon_Flame4`, `Unknown_Swarm` and
+  `Pokemon_Unk`, whose code doesn't read their attributes. Bind and
+  annotate the character items (their kinds aren't bound in `ftData`) and
+  the stage items.
 - `ftData.xC`/`x14` (actions), `x1C` (part animations) and their `x8`,
   and `ftData_x20.x0` use `DAT_EXTENT`. The counts are in DOL tables per
   fighter kind (`ftData_Table_Unk0`, `ftData_UnkIntPairs`), or only in code.
