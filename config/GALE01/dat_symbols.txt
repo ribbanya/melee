@@ -5897,6 +5897,25 @@ TyZkPair_unused_x1F1A0 = TyZkPair.dat:0x1F1A0; // type:DynamicModelDesc* termina
 TyZkWmen_unused_xFC00 = TyZkWmen.dat:0xFC00; // type:DynamicModelDesc* terminated:0
 Tyandold_unused_x24B8 = Tyandold.dat:0x24B8; // type:DynamicModelDesc* terminated:0
 
+GrBb_unused_xC0338 = GrBb.dat:0xC0338; // type:DynamicModelDesc* terminated:0
+GrCs_unused_x80404 = GrCs.dat:0x80404; // type:DynamicModelDesc* terminated:0
+GrGb_unused_x6B25C = GrGb.dat:0x6B25C; // type:DynamicModelDesc* terminated:0
+GrI2_unused_x131D4 = GrI2.dat:0x131D4; // type:DynamicModelDesc* terminated:0
+GrKg_unused_x381D4 = GrKg.dat:0x381D4; // type:DynamicModelDesc* terminated:0
+GrKg_unused_x3B6B8 = GrKg.dat:0x3B6B8; // type:DynamicModelDesc* terminated:0
+GrMc_unused_x35AD8 = GrMc.dat:0x35AD8; // type:DynamicModelDesc* terminated:0
+GrMc_unused_x4AD18 = GrMc.dat:0x4AD18; // type:DynamicModelDesc* terminated:0
+GrNBr_unused_x75558 = GrNBr.dat:0x75558; // type:DynamicModelDesc* terminated:0
+GrNLa_unused_x4DF2C = GrNLa.dat:0x4DF2C; // type:DynamicModelDesc* terminated:0
+GrZe_unused_x446B8 = GrZe.dat:0x446B8; // type:DynamicModelDesc* terminated:0
+ItCo_unused_x17AB78 = ItCo.dat:0x17AB78; // type:DynamicModelDesc* terminated:0
+ItCo_unused_xAFB10 = ItCo.dat:0xAFB10; // type:DynamicModelDesc* terminated:0
+PlDr_unused_x24D00 = PlDr.dat:0x24D00; // type:DynamicModelDesc* terminated:0
+PlKbCpYs_unused_x1AB90 = PlKbCpYs.dat:0x1AB90; // type:DynamicModelDesc* terminated:0
+PlYs_unused_x1E1D0 = PlYs.dat:0x1E1D0; // type:DynamicModelDesc* terminated:0
+TyMnFigp_unused_x33C14 = TyMnFigp.dat:0x33C14; // type:DynamicModelDesc* terminated:0
+TyMnView_unused_x12934 = TyMnView.dat:0x12934; // type:DynamicModelDesc* terminated:0
+
 // Orphan scene parts, by address: camera and fog wrappers right after their
 // descs, and null-terminated lists of LightLists, each right after its
 // LightDesc. Nothing points to them.
