@@ -741,7 +741,7 @@ typedef struct ftData_x1C {
 
 typedef struct ftData_x30 {
     /* +0 */ int count;
-    /* +4 */ ftHurtboxInit* inits;
+    /* +4 */ ftHurtboxInit* inits DAT_COUNT(count);
 } ftData_x30;
 
 typedef struct _ThrowFlags {
