@@ -44,7 +44,7 @@ struct grPushOn_Lookup {
 };
 
 struct grPushon_YakumonoParam {
-    s32 x0;
+    void* x0;
     lbColl_80008D30_arg1* x4;
     lbColl_80008D30_arg1* x8;
     lbColl_80008D30_arg1* xC;

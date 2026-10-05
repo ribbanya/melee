@@ -671,7 +671,7 @@ s32 fn_802192A4(void* arg0, HSD_GObj* gobj, s32* result)
             (scale * (-50.0f + grPushOn_803E7CCC[i * 3 + 2]) < sp14.y) &&
             (scale * grPushOn_803E7CCC[i * 3 + 2] > sp14.y))
         {
-            *result = yakumono_param->x0;
+            *result = (s32) yakumono_param->x0;
             return 1;
         }
     }

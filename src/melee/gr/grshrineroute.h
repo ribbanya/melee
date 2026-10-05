@@ -11,7 +11,7 @@ struct grShrineRoute_YakumonoParam {
     void* x4;
     void* x8;
     void* xC;
-    int x10;
+    void* x10;
     f32 x14;
     f32 x18;
     f32 x1C;

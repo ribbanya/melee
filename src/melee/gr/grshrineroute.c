@@ -1465,7 +1465,7 @@ s32 grShrineRoute_8020AE08(HSD_GObj* gobj, HSD_GObj* player_gobj, s32* out)
 
     if (pos.y < lo.y) {
         if (lo.x < pos.x && pos.x < hi.x) {
-            *out = yakumono_param->x10;
+            *out = (s32) yakumono_param->x10;
             return 1;
         }
     }

@@ -38,7 +38,8 @@ typedef struct grZe_YakumonoParam {
     /* 0x08 */ f32 x08;
     /* 0x0C */ f32 x0C;
     /* 0x10 */ s32 x10;
-    /* 0x14 */ u8 pad_14[0x30 - 0x14];
+    /* 0x14 */ u8 pad_14[0x2C - 0x14];
+    /* 0x2C */ void* x2C;
     /* 0x30 */ f32 x30;
     /* 0x34 */ f32 x34;
     /* 0x38 */ f32 x38;
