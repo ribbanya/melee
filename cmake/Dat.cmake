@@ -1,10 +1,10 @@
 # Samples of the .dat archives' data, typed by the DWARF build and compared
 # with objdiff (see tools/dat-cli). Each archive is a unit, named by its
-# module and file (Pl/PlMr), built in four steps: slice (archive →
-# target/<unit>.o), codegen (→ src/<unit>.c, which includes a header and
-# source per root in src/<unit>/), format (in place)
-# and compile (→ base/<unit>.o). The build directory is also the objdiff
-# project.
+# module and file (Pl/PlMr). One step chooses the samples across every
+# archive (→ metadata/pick/); then each unit is built in four: slice
+# (archive → target/<unit>.o), codegen (→ src/<unit>.h, and src/<unit>.c
+# if it has samples), format (in place) and compile (→ base/<unit>.o). The
+# build directory is also the objdiff project.
 include_guard(GLOBAL)
 
 # Configured through a symlink, the build names the same files by two paths
@@ -153,6 +153,7 @@ foreach(_archive IN LISTS _dat_archives)
     set(_rest "target/${_unit}.rest.o")
     set(_object "obj/${_unit}.o")
     set(_source "src/${_unit}.c")
+    set(_header "src/${_unit}.h")
     set(_formatted "metadata/${_unit}.formatted")
     set(_base "base/${_unit}.o")
 
@@ -186,11 +187,13 @@ foreach(_archive IN LISTS _dat_archives)
         VERBATIM
     )
     add_custom_command(
-        OUTPUT "${_source}"
+        # The header always; the source only with samples, so ninja isn't
+        # told of it, or it would rebuild the units without
+        OUTPUT "${_header}"
         COMMAND "${_dat_tool}" samples codegen "${_target}" --types types.bin
             -o "${_source}"
         DEPENDS "${_target}" "${_sidecar}" "${_types}" "${_dat_tool}"
-        COMMENT "Generating ${_source}"
+        COMMENT "Generating src/${_unit}"
         VERBATIM
     )
     add_custom_command(
@@ -198,31 +201,36 @@ foreach(_archive IN LISTS _dat_archives)
         COMMAND "${CMAKE_COMMAND}"
             "-DCLANG_FORMAT=${MELEE_CLANG_FORMAT}"
             "-DSTYLE=${CMAKE_SOURCE_DIR}/.clang-format"
-            "-DSOURCE=${CMAKE_CURRENT_BINARY_DIR}/${_source}"
+            "-DUNIT=${CMAKE_CURRENT_BINARY_DIR}/src/${_unit}"
             "-DSTAMP=${CMAKE_CURRENT_BINARY_DIR}/${_formatted}"
             -P "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
-        DEPENDS "${_source}" "${CMAKE_SOURCE_DIR}/.clang-format"
+        DEPENDS "${_header}" "${CMAKE_SOURCE_DIR}/.clang-format"
             "${CMAKE_SOURCE_DIR}/cmake/DatFormat.cmake"
-        COMMENT "Formatting ${_source}"
+        COMMENT "Formatting src/${_unit}"
         VERBATIM
     )
     add_custom_command(
         OUTPUT "${_base}"
-        BYPRODUCTS "${_object}"
-        # Each sample in its own section, then linked into .data in the
-        # target's order: clang lays variables out where an initializer
-        # first points to them
-        COMMAND "${CMAKE_C_COMPILER}" "@${_dat_flags}" -fdata-sections
-            -MD -MF "${_base}.d" -MT "${_base}"
-            -c "${_source}" -o "${_object}"
-        # With the rest of the archive the walk explains, by name and size
-        COMMAND "${CMAKE_LINKER}" -r -T "${_layout}" "${_object}" "${_rest}"
-            -o "${_base}"
-        DEPENDS "${_source}" "${_formatted}" "${_layout}" "${_rest}"
-            "${_dat_flags}"
-            src/macros.h
+        # The samples, if any (in obj/<unit>.o, which units without have
+        # none of), with the rest of the archive the walk
+        # explains, by name and size
+        COMMAND "${CMAKE_COMMAND}"
+            "-DC_COMPILER=${CMAKE_C_COMPILER}"
+            "-DFLAGS=${_dat_flags}"
+            "-DLINKER=${CMAKE_LINKER}"
+            "-DSOURCE=${CMAKE_CURRENT_BINARY_DIR}/${_source}"
+            "-DHEADER=${_header}"
+            "-DOBJECT=${_object}"
+            "-DLAYOUT=${_layout}"
+            "-DREST=${_rest}"
+            "-DBASE=${_base}"
+            "-DDEPFILE=${_base}.d"
+            -P "${CMAKE_SOURCE_DIR}/cmake/DatCompile.cmake"
+        DEPENDS "${_header}" "${_formatted}" "${_layout}" "${_rest}"
+            "${_dat_flags}" src/macros.h
+            "${CMAKE_SOURCE_DIR}/cmake/DatCompile.cmake"
         DEPFILE "${_base}.d"
-        COMMENT "Compiling ${_source}"
+        COMMENT "Compiling src/${_unit}"
         VERBATIM
     )
     list(APPEND _dat_sidecars "${_sidecar}")

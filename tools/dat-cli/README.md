@@ -182,14 +182,14 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
 - `metadata/<unit>.types`: a hash of the types the archive's roots
   lead to, rewritten only when it changes, which the other steps depend on;
   `metadata/<unit>.formatted` records that the C is formatted
-- `src/<unit>/<root>.{h,c}`: per root of the archive (the public
-  symbol its samples were reached from), a header declaring its samples and
-  the other data they point to, and designated initializers generated from
-  the types; pointers into other roots include those roots' headers
+- `src/<unit>.h`: declares the archive's public symbols, typed by their
+  roots, then its samples, the archive's externs and the other data they
+  point to
+- `src/<unit>.c`: only for a unit with samples: their designated
+  initializers, generated from the types. Both are formatted in place with
+  the repository's `.clang-format`
 - `src/macros.h`: what the generated C includes (`LOCAL`), like
   dtk's `macros.inc`; from `samples macros`
-- `src/<unit>.c`: the unit, which includes every root's source; all of
-  it is formatted in place with the repository's `.clang-format`
 - `base/<unit>.o`: that C, compiled with the DWARF build's flags, one
   section per variable (`obj/<unit>.o`), then linked with
   `target/<unit>.ld` and `target/<unit>.rest.o` into `.0.sampled` in the
