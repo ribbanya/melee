@@ -117,3 +117,47 @@ SIS_GrHomerunData = *:*; // count:4
 // Roots no public symbol or pointer reaches, by address: export leftovers
 // the game can't use, typed by hand so that their bytes are explained.
 ftDataEmblem_unused_joint = PlFe.dat:0x3AD70; // type:HSD_Joint
+ToyDspMycharaCm_unused_joint = TyMcCmDs.dat:0x140C8; // type:HSD_Joint
+
+// HSD_AnimJoint trees nothing points to, found by build/propose_joints.py:
+// unpointed, with every child, next, AObjDesc, FObjDesc and RObjAnimJoint
+// animation-shaped.
+PlGk_unused_xF338 = PlGk.dat:0xF338; // type:HSD_AnimJoint
+PlGk_unused_xE08C = PlGk.dat:0xE08C; // type:HSD_AnimJoint
+PlDr_unused_x131E0 = PlDr.dat:0x131E0; // type:HSD_AnimJoint
+PlDr_unused_x11F38 = PlDr.dat:0x11F38; // type:HSD_AnimJoint
+PlKp_unused_xF1E0 = PlKp.dat:0xF1E0; // type:HSD_AnimJoint
+PlKp_unused_xDF50 = PlKp.dat:0xDF50; // type:HSD_AnimJoint
+PlKp_unused_xCCC0 = PlKp.dat:0xCCC0; // type:HSD_AnimJoint
+PlKp_unused_xBA78 = PlKp.dat:0xBA78; // type:HSD_AnimJoint
+PlGk_unused_xCDE0 = PlGk.dat:0xCDE0; // type:HSD_AnimJoint
+PlGk_unused_xBB98 = PlGk.dat:0xBB98; // type:HSD_AnimJoint
+PlDr_unused_xE8D0 = PlDr.dat:0xE8D0; // type:HSD_AnimJoint
+PlDr_unused_xD68C = PlDr.dat:0xD68C; // type:HSD_AnimJoint
+PlDr_unused_x10C90 = PlDr.dat:0x10C90; // type:HSD_AnimJoint
+PlDr_unused_xFAB0 = PlDr.dat:0xFAB0; // type:HSD_AnimJoint
+PlDr_unused_xC448 = PlDr.dat:0xC448; // type:HSD_AnimJoint
+PlDr_unused_xB268 = PlDr.dat:0xB268; // type:HSD_AnimJoint
+PlKp_unused_x171B8 = PlKp.dat:0x171B8; // type:HSD_AnimJoint
+PlKp_unused_x16038 = PlKp.dat:0x16038; // type:HSD_AnimJoint
+PlKp_unused_x14EB8 = PlKp.dat:0x14EB8; // type:HSD_AnimJoint
+PlGk_unused_x17230 = PlGk.dat:0x17230; // type:HSD_AnimJoint
+PlGk_unused_x160B0 = PlGk.dat:0x160B0; // type:HSD_AnimJoint
+PlGk_unused_x14F30 = PlGk.dat:0x14F30; // type:HSD_AnimJoint
+PlDr_unused_x164EC = PlDr.dat:0x164EC; // type:HSD_AnimJoint
+PlDr_unused_x153E8 = PlDr.dat:0x153E8; // type:HSD_AnimJoint
+PlDr_unused_x142E4 = PlDr.dat:0x142E4; // type:HSD_AnimJoint
+PlPr_unused_xBCD8 = PlPr.dat:0xBCD8; // type:HSD_AnimJoint
+PlPr_unused_xB440 = PlPr.dat:0xB440; // type:HSD_AnimJoint
+PlPr_unused_xABA8 = PlPr.dat:0xABA8; // type:HSD_AnimJoint
+PlMr_unused_x149F8 = PlMr.dat:0x149F8; // type:HSD_AnimJoint
+PlPr_unused_xA310 = PlPr.dat:0xA310; // type:HSD_AnimJoint
+PlPr_unused_x9EC4 = PlPr.dat:0x9EC4; // type:HSD_AnimJoint
+PlGk_unused_x14188 = PlGk.dat:0x14188; // type:HSD_AnimJoint
+PlGk_unused_x12E94 = PlGk.dat:0x12E94; // type:HSD_AnimJoint
+PlGk_unused_x11BA0 = PlGk.dat:0x11BA0; // type:HSD_AnimJoint
+PlGk_unused_x10958 = PlGk.dat:0x10958; // type:HSD_AnimJoint
+PlGk_unused_xF710 = PlGk.dat:0xF710; // type:HSD_AnimJoint
+PlGk_unused_xE464 = PlGk.dat:0xE464; // type:HSD_AnimJoint
+PlGk_unused_xD1B8 = PlGk.dat:0xD1B8; // type:HSD_AnimJoint
+PlGk_unused_xBF70 = PlGk.dat:0xBF70; // type:HSD_AnimJoint
