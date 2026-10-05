@@ -95,13 +95,19 @@ untyped if its destination is `void*`, and skipped if its name isn't a
 string literal or a global string.
 
 Names the code builds at runtime go in `config/GALE01/dat_symbols.txt`,
-used for publics no loader types:
+used for publics no loader types. Lines are `name = dat:address;`, like
+decomp-toolkit's `symbols.txt` with the dat in the section's place:
 
 ```text
-*_figatree = Pl??AJ.dat; // type:FigaTree
+*_figatree = Pl??AJ.dat:*; // type:FigaTree
+ftDataEmblem_unused_joint = PlFe.dat:0x3AD70; // type:HSD_Joint
 ```
 
-Names and archives take `*` and `?`. The first line with a matching archive
+An address of `*` matches a public symbol by name. An address instead
+gives a C alias for data no public symbol names, such as the root of data
+nothing points to: it needs a dat (in a packed file, the first archive) and
+a `type:`, and the walk starts there after the public symbols. Names and
+dats take `*` and `?`. The first line with a matching archive
 wins, then the first `*` line. The attributes mirror the annotations:
 `type:T` like `DAT_TYPE(T)` (`T` or `T*`), and a count like `DAT_COUNT` and
 `DAT_EXTENT`: `count:N`, or `extent` for as many as fit before the next

@@ -13,7 +13,7 @@ use melee_dat::{
         roots::{RootName, roots},
     },
     hsd::Archive,
-    symbols::{Count, SymbolFile},
+    symbols::{Count, Entry, SymbolFile},
     walk::{Walk, Walker, macros},
 };
 use std::{
@@ -155,7 +155,7 @@ impl Project {
                     0 => file.clone(),
                     _ => format!("{file}@{at:#X}"),
                 };
-                let (rooted, result) = self.walk(&file, archive);
+                let (rooted, result) = self.walk(&file, *at, archive);
                 each(Walked {
                     file: &file,
                     name,
@@ -182,7 +182,9 @@ impl Project {
         Some((self.symbol_types[ty], count))
     }
 
-    pub fn walk(&self, file: &str, archive: &Archive) -> (bool, Walk) {
+    /// Walk the archive at `at` in `file` from its public symbols, then from
+    /// the aliases `dat_symbols.txt` gives at addresses in it.
+    pub fn walk(&self, file: &str, at: usize, archive: &Archive) -> (bool, Walk) {
         let mut walker =
             Walker::new(&self.graph, &self.canonical, &self.macros, archive);
         let mut rooted = false;
@@ -211,7 +213,30 @@ impl Project {
             }
             rooted = true;
         }
+        // In a file packing several archives, aliases are in the first
+        for (address, entry) in self.aliases(file, at) {
+            let Some(ty) = &entry.ty else { continue };
+            let ty = self.symbol_types[ty];
+            match entry.count.unwrap_or(Count::One) {
+                Count::One => walker.root(address, ty, &entry.name, &[]),
+                Count::Exactly(n) => {
+                    walker.root_array(address, ty, Some(n), &entry.name, &[])
+                }
+                Count::Unbounded => {
+                    walker.root_array(address, ty, None, &entry.name, &[])
+                }
+            }
+            rooted = true;
+        }
         (rooted, walker.finish())
+    }
+
+    /// The aliases at addresses in the archive at `at` in `file`.
+    pub fn aliases(&self, file: &str, at: usize) -> Vec<(u32, &Entry)> {
+        match at {
+            0 => self.symbols.aliases(file),
+            _ => Vec::new(),
+        }
     }
 
     /// The type of the object at `offset`, for display.
@@ -300,7 +325,7 @@ mod tests {
         let ty = project.root_types["ftDataSamus"];
         project.symbol_types.insert("ftData".into(), ty);
         project.symbols.entries.extend(
-            SymbolFile::parse("ftDataSamus = *; // type:ftData")
+            SymbolFile::parse("ftDataSamus = *:*; // type:ftData")
                 .unwrap()
                 .entries,
         );
@@ -318,7 +343,7 @@ mod tests {
                     .unwrap();
                 entry.count = Some(count);
                 entry.ty = Some("ftData".into());
-                let (rooted, walk) = project.walk("PlSs.dat", &archive);
+                let (rooted, walk) = project.walk("PlSs.dat", 0, &archive);
                 assert!(rooted);
                 assert!(walk.objects[&grapple].contains(&grapple_type));
                 assert_eq!(

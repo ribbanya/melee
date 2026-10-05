@@ -236,7 +236,13 @@ fn types(args: TypesArgs) -> Result<()> {
 
     let mut text = String::new();
     let mut roots = Vec::new();
-    for (_, archive) in &archives {
+    for (at, archive) in &archives {
+        for (_, entry) in project.aliases(&args.archive, *at) {
+            text += &format!("alias {entry}\n");
+            if let Some(ty) = &entry.ty {
+                roots.push(project.symbol_types[ty]);
+            }
+        }
         for (name, _) in archive.named_publics() {
             let name = String::from_utf8_lossy(name);
             if let Some(bindings) = project.root_bindings.get(name.as_ref()) {
@@ -332,7 +338,7 @@ fn pick(args: PickArgs) -> Result<()> {
             let mut picker = Picker::new(&project.graph, &project.canonical)
                 .select(false, exclude.clone());
             for (at, archive) in &archives {
-                let (_, walk) = project.walk(file, archive);
+                let (_, walk) = project.walk(file, *at, archive);
                 picker.add(file, *at, archive, &walk);
             }
             Ok(picker)
@@ -405,7 +411,7 @@ fn slice(args: Slice) -> Result<()> {
         .select(args.all || picked.is_some(), exclude.build()?);
     let mut walks = BTreeMap::new();
     for (at, archive) in &archives {
-        let (_, walk) = project.walk(&args.archive, archive);
+        let (_, walk) = project.walk(&args.archive, *at, archive);
         picker.add(&args.archive, *at, archive, &walk);
         walks.insert(*at, walk);
     }
@@ -542,6 +548,12 @@ fn slice(args: Slice) -> Result<()> {
         })
         .collect();
     assign_names(&mut sources, &wanted);
+    // An alias names its root
+    for (&at, source) in &mut sources {
+        for (address, entry) in project.aliases(&args.archive, at) {
+            source.alias(address, &entry.name);
+        }
+    }
     let elided: BTreeMap<String, Elided> = elided
         .into_iter()
         .map(|((at, target), e)| (sources[&at].name(target), e))
