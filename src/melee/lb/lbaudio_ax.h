@@ -90,8 +90,9 @@ int lbAudioAx_80028B4C(void);
 void lbAudioAx_80028B6C(void);
 void lbAudioAx_80028B90(void);
 
-/// Sound IDs, up to 0x83D60.
-typedef int* lbAudioLoadList DAT_TERMINATED(0x83D60);
+/// Sound IDs, up to 0x83D60. The archive ends each list with it twice; the
+/// game stops at the first.
+typedef int* lbAudioLoadList DAT_TERMINATED(0x83D60, 2);
 
 /// 30 lists for each pairing of the console's and the saved language, as
 /// #lbAudioAx_80023968 picks them.

@@ -560,11 +560,13 @@ static int32_t pointee(const DatArchive* a, int32_t target)
     return r;
 }
 
-/// A `DAT_TERMINATED` value on a typedef, or one it names.
-static int32_t typedef_terminator(const DatArchive* a, int32_t type)
+/// A `DAT_TERMINATED` value on a typedef, or one it names, and its length.
+static int32_t typedef_terminator(const DatArchive* a, int32_t type,
+                                  uint32_t* length)
 {
     while (type != DAT_NONE && T(a, type)->kind == DAT_KIND_TYPEDEF) {
         if (T(a, type)->terminator != DAT_NONE) {
+            *length = T(a, type)->terminator_length;
             return T(a, type)->terminator;
         }
         type = T(a, type)->target;
@@ -1477,9 +1479,10 @@ static void counted(DatArchive* a, uint32_t offset, int32_t pointer,
 }
 
 /// Follow a `DAT_TERMINATED` pointer: elements up to one whose first word
-/// is the terminator value, which is walked too.
+/// is the terminator value, which is walked too, with the `length - 1`
+/// after it.
 static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
-                       void* slot, int32_t terminator)
+                       void* slot, int32_t terminator, uint32_t length)
 {
     int32_t p = resolve(a, pointer);
     if (p == DAT_NONE) {
@@ -1519,6 +1522,7 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
     uint32_t width = size < 4 ? size : 4;
     uint64_t mask = width >= 8 ? ~0ull : (1ull << (8 * width)) - 1;
     uint64_t n = 0;
+    uint32_t ended = 0;
     bool past = false;
     for (uint64_t i = 0;; i++) {
         uint64_t at = value + i * size;
@@ -1527,9 +1531,12 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
             break;
         }
         n = i + 1;
-        if (bytes_at(a, at, width) == (term & mask) &&
-            !bits_has(&a->reloc, at, a->size))
+        if (ended > 0 || (bytes_at(a, at, width) == (term & mask) &&
+                          !bits_has(&a->reloc, at, a->size)))
         {
+            ended++;
+        }
+        if (ended >= (length ? length : 1)) {
             break;
         }
     }
@@ -1826,9 +1833,10 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
     if (type == DAT_NONE) {
         return;
     }
-    int32_t term = typedef_terminator(a, type);
+    uint32_t term_length = 1;
+    int32_t term = typedef_terminator(a, type, &term_length);
     if (term != DAT_NONE) {
-        terminated(a, offset, type, native, term);
+        terminated(a, offset, type, native, term, term_length);
         return;
     }
     int32_t declared = typedef_type(a, type);
@@ -1875,7 +1883,8 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
             } else if (m->extent) {
                 extent(a, at, m->type, m, here, mnative);
             } else if (m->terminator != DAT_NONE) {
-                terminated(a, at, m->type, mnative, m->terminator);
+                terminated(a, at, m->type, mnative, m->terminator,
+                           m->terminator_length);
             } else if (m->nbinds > 0 &&
                        T(a, resolve(a, m->type))->kind == DAT_KIND_ARRAY)
             {
@@ -1920,7 +1929,8 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
             if (m->script != DAT_NONE) {
                 script(a, offset, m->type, &a->s->scripts[m->script], native);
             } else if (m->terminator != DAT_NONE) {
-                terminated(a, offset, m->type, native, m->terminator);
+                terminated(a, offset, m->type, native, m->terminator,
+                           m->terminator_length);
             } else {
                 layout(a, offset, m->type, native, parent);
             }

@@ -30,8 +30,11 @@
 
 /// The pointer refers to elements up to and including a terminator: the
 /// first element whose first word is @p value and not a relocated pointer,
-/// e.g. @c DAT_TERMINATED(GX_VA_NULL) for a vertex descriptor list.
-#define DAT_TERMINATED(value) DAT_TAG("terminated(" #value ")")
+/// e.g. @c DAT_TERMINATED(GX_VA_NULL) for a vertex descriptor list. An
+/// optional second argument, a number, is how many elements the terminator
+/// takes, for lists that end in it more than once:
+/// @c DAT_TERMINATED(0x83D60, 2).
+#define DAT_TERMINATED(...) DAT_TAG("terminated(" #__VA_ARGS__ ")")
 
 /// The array holds as many elements as the data does: they continue until
 /// the next symbol, the next address a pointer refers to, or an element that

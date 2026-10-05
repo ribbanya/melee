@@ -50,12 +50,6 @@ Not errors:
   exporter reuses identical bytes. The walker could recognize this.
 - `-1` in pointer fields means none. Counted, not reported.
 
-- `LbAd.dat`'s sound load lists (`lbAudioLoadList`) end in 0x83D60 twice;
-  the game stops at the first. The second word of each is unexplained
-  (13 KB of inferred data, since each list's piece runs to the next one). A
-  typedef-level `DAT_EXTENT`, or a terminator that also takes its repeats,
-  would cover them.
-
 - `ItCo.dat` 0x50A0-0x7DDC (right after `itPublicData.x8`) is a
   byte-for-byte copy of 0x2FC-0x303C whose pointers point to the
   originals. `dat_symbols.txt` types its structs by address; its 67 scripts

@@ -115,6 +115,7 @@ struct TypeRow {
     members: usize,
     nmembers: usize,
     terminator: i32,
+    terminator_length: u64,
     type_tag: i32,
 }
 
@@ -131,6 +132,7 @@ struct MemberRow {
     accessors: Option<usize>,
     count: i32,
     terminator: i32,
+    terminator_length: u64,
     cond: i32,
     type_tag: i32,
     script: i32,
@@ -520,6 +522,7 @@ impl<'a> Generator<'a> {
             target: NONE,
             resolved: NONE,
             terminator: NONE,
+            terminator_length: 1,
             type_tag: NONE,
             ..TypeRow::default()
         };
@@ -557,10 +560,11 @@ impl<'a> Generator<'a> {
                 row.target = target.map_or(NONE, |t| self.type_index(t));
                 for tag in &tags {
                     match tag {
-                        DatTag::Terminated(value)
+                        DatTag::Terminated(value, length)
                             if row.terminator == NONE =>
                         {
                             row.terminator = self.expr(value, 0);
+                            row.terminator_length = *length;
                         }
                         DatTag::Type(name) if row.type_tag == NONE => {
                             // As the walker's `typedef_type`: the type as
@@ -722,6 +726,7 @@ impl<'a> Generator<'a> {
             accessors: None,
             count: NONE,
             terminator: NONE,
+            terminator_length: 1,
             cond: NONE,
             type_tag: NONE,
             script: NONE,
@@ -783,8 +788,9 @@ impl<'a> Generator<'a> {
                 DatTag::Count(value) if row.count == NONE => {
                     row.count = self.expr(&value, 0);
                 }
-                DatTag::Terminated(value) if row.terminator == NONE => {
+                DatTag::Terminated(value, length) if row.terminator == NONE => {
                     row.terminator = self.expr(&value, 0);
+                    row.terminator_length = length;
                 }
                 DatTag::If(value) if row.cond == NONE => {
                     row.cond = self.expr(&value, 0);
@@ -1148,7 +1154,7 @@ fn codegen(args: Codegen) -> Result<()> {
     for t in &generator.types {
         writeln!(
             c,
-            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}}},",
+            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}}},",
             literal(&t.name),
             t.id,
             t.kind,
@@ -1165,6 +1171,7 @@ fn codegen(args: Codegen) -> Result<()> {
             t.members,
             t.nmembers,
             t.terminator,
+            t.terminator_length,
             t.type_tag,
         )?;
     }
@@ -1176,7 +1183,7 @@ fn codegen(args: Codegen) -> Result<()> {
         };
         writeln!(
             c,
-            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {set}, {get}, {}, {}, {}, {}, {}, {}, {}}},",
+            "    {{{}, {}, {}, {}, {}, {}, {}, {}, {}, {set}, {get}, {}, {}, {}, {}, {}, {}, {}, {}}},",
             m.name,
             m.ty,
             m.offset,
@@ -1188,6 +1195,7 @@ fn codegen(args: Codegen) -> Result<()> {
             m.native_size,
             m.count,
             m.terminator,
+            m.terminator_length,
             m.cond,
             m.type_tag,
             m.script,

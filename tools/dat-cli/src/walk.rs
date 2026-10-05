@@ -401,8 +401,8 @@ impl<'a> Walker<'a> {
         path: &str,
         parent: Option<(DieId, u32)>,
     ) {
-        if let Some(value) = self.typedef_terminator(die) {
-            return self.terminated(offset, die, path, &value);
+        if let Some((value, length)) = self.typedef_terminator(die) {
+            return self.terminated(offset, die, path, &value, length);
         }
         if let Some(target) = self.typedef_type(die) {
             return self.typed(offset, target, path);
@@ -454,8 +454,8 @@ impl<'a> Walker<'a> {
                         self.script(at, ty, &script, &path);
                     } else if self.is_extent(member) {
                         self.extent(at, ty, &path, &binds, parent);
-                    } else if let Some(value) = self.terminator(member) {
-                        self.terminated(at, ty, &path, &value);
+                    } else if let Some((value, length)) = self.terminator(member) {
+                        self.terminated(at, ty, &path, &value, length);
                     } else if !binds.is_empty()
                         && let Some((element, size, count)) = self.array(ty)
                     {
@@ -510,8 +510,8 @@ impl<'a> Walker<'a> {
                     let path = field(path, member.name.map(|n| graph.str(n)));
                     if let Some(script) = self.script_tag(member) {
                         self.script(offset, ty, &script, &path);
-                    } else if let Some(value) = self.terminator(member) {
-                        self.terminated(offset, ty, &path, &value);
+                    } else if let Some((value, length)) = self.terminator(member) {
+                        self.terminated(offset, ty, &path, &value, length);
                     } else {
                         self.layout(offset, ty, &path, parent);
                     }
@@ -930,18 +930,18 @@ impl<'a> Walker<'a> {
         })
     }
 
-    /// A member's `DAT_TERMINATED` value.
-    fn terminator(&self, member: &Member) -> Option<Expr> {
+    /// A member's `DAT_TERMINATED` value and length.
+    fn terminator(&self, member: &Member) -> Option<(Expr, u64)> {
         member.annotations.iter().find_map(|a| {
             match DatTag::parse(self.graph.str(a.value?))? {
-                DatTag::Terminated(value) => Some(value),
+                DatTag::Terminated(value, length) => Some((value, length)),
                 _ => None,
             }
         })
     }
 
-    /// A `DAT_TERMINATED` value on a typedef, or one it names.
-    fn typedef_terminator(&self, mut die: DieId) -> Option<Expr> {
+    /// A `DAT_TERMINATED` value and length on a typedef, or one it names.
+    fn typedef_terminator(&self, mut die: DieId) -> Option<(Expr, u64)> {
         while let Some(ty) = self.graph.types.get(&die) {
             let TypeKind::Typedef {
                 target: Some(target),
@@ -952,7 +952,9 @@ impl<'a> Walker<'a> {
             let value =
                 ty.annotations.iter().find_map(|a| {
                     match DatTag::parse(self.graph.str(a.value?))? {
-                        DatTag::Terminated(value) => Some(value),
+                        DatTag::Terminated(value, length) => {
+                            Some((value, length))
+                        }
                         _ => None,
                     }
                 });
@@ -1154,13 +1156,15 @@ impl<'a> Walker<'a> {
     }
 
     /// Follow a `DAT_TERMINATED` pointer: elements up to one whose first
-    /// word is the terminator value, which is walked too.
+    /// word is the terminator value, which is walked too, with the
+    /// `length - 1` after it.
     fn terminated(
         &mut self,
         offset: u32,
         pointer: DieId,
         path: &str,
         terminator: &Expr,
+        length: u64,
     ) {
         let Some(pointer) = self.resolve(Some(pointer)) else {
             return;
@@ -1200,6 +1204,7 @@ impl<'a> Walker<'a> {
             return;
         };
         let env = self.env.clone();
+        let mut ended = 0;
         for i in 0.. {
             let at = value + (i * size) as u32;
             if at as usize + size as usize > self.data.len() {
@@ -1224,7 +1229,10 @@ impl<'a> Walker<'a> {
                 self.layout(at, ty, &format!("{path}->[{i}]"), None);
             }
             self.env = env.clone();
-            if end {
+            if end || ended > 0 {
+                ended += 1;
+            }
+            if ended >= length.max(1) {
                 break;
             }
         }

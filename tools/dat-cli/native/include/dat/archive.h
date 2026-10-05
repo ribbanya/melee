@@ -84,8 +84,10 @@ typedef struct DatType {
     uint32_t count;
     /// Structs and unions: their members, a range of DatSchema::members.
     uint32_t members, nmembers;
-    /// Typedefs: `DAT_TERMINATED`'s value, an expression.
+    /// Typedefs: `DAT_TERMINATED`'s value, an expression, and how many
+    /// elements the terminator takes.
     int32_t terminator;
+    uint32_t terminator_length;
     /// Typedefs: `DAT_TYPE`'s type.
     int32_t type_tag;
 } DatType;
@@ -113,6 +115,8 @@ typedef struct DatMember {
     /// Expressions: `DAT_COUNT`, `DAT_TERMINATED` and `DAT_IF`.
     int32_t count;
     int32_t terminator;
+    /// How many elements `DAT_TERMINATED`'s terminator takes.
+    uint32_t terminator_length;
     int32_t cond;
     /// `DAT_TYPE`.
     int32_t type_tag;
