@@ -698,7 +698,9 @@ struct ftData_x8_x8 {
 
 struct FtPartsDesc {
     /*  +0 */ u32 model_num;
-    /*  +4 */ void* (*vis_table)[4];
+    /// A row per costume, the default's (0) where an entry is NULL
+    /// (#ftParts_8007487C).
+    /*  +4 */ FtPartsVisLookup* (*vis_table)[4];
 };
 
 typedef struct ftData_x20 {
