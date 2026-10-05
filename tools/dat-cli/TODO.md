@@ -52,8 +52,8 @@ Not errors:
 
 - `ItCo.dat` 0x50A0-0x7DDC (right after `itPublicData.x8`) is a
   byte-for-byte copy of 0x2FC-0x303C whose pointers point to the
-  originals. `dat_symbols.txt` types its structs by address; its 67 scripts
-  and 43 `ItemSpecialAttributes` (kinds unbound) remain.
+  originals. `dat_symbols.txt` types its structs and scripts by address; its
+  43 `ItemSpecialAttributes` (kinds unbound) remain.
 
 ## Stopgaps
 
