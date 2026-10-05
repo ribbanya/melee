@@ -6285,3 +6285,7 @@ GrZe_unused_xC8750 = GrZe.dat:0xC8750; // type:LightList* terminated:0
 GrZe_unused_xC8770 = GrZe.dat:0xC8770; // type:SceneFogDesc
 TyMnFigp_unused_x33DDC = TyMnFigp.dat:0x33DDC; // type:SceneFogDesc
 TyMnView_unused_x12AFC = TyMnView.dat:0x12AFC; // type:SceneFogDesc
+GrCn_unused_x5F784 = GrCn.dat:0x5F784; // type:SceneCameraDesc
+GrKr_unused_x4D818 = GrKr.dat:0x4D818; // type:SceneCameraDesc
+GrKr_unused_x4D8A0 = GrKr.dat:0x4D8A0; // type:SceneFogDesc
+GrVe_unused_x110660 = GrVe.dat:0x110660; // type:SceneCameraDesc

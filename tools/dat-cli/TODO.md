@@ -68,6 +68,12 @@ Not errors:
   otherwise when typed by address: their anim lists may not line up with
   the joint, or the pair is something else. Untyped for now.
 
+- `ftDynamics.x10` (per animation, a set of each dynamic bone) is walked
+  as one `s32*`: it's a table of pointers, one per animation (count only in
+  code), each to `x0.dynamicsNum` words. Typing it needs `DAT_COUNT` on a
+  pointer typedef and member access (`x0.dynamicsNum`) in expressions, or a
+  binding of it. About 4 KB (PlPe, PlZd, ...).
+
 ## Stopgaps
 
 - `FtPartsDesc.vis_table` uses `DAT_EXTENT` for its costume rows. Each
