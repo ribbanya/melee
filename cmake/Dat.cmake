@@ -140,6 +140,7 @@ endif()
 set(_dat_sidecars)
 set(_dat_bases)
 set(_dat_commands)
+set(_dat_optional)
 foreach(_archive IN LISTS _dat_archives)
     get_filename_component(_file "${_archive}" NAME)
     get_filename_component(_stem "${_archive}" NAME_WE)
@@ -233,6 +234,7 @@ foreach(_archive IN LISTS _dat_archives)
         COMMENT "Compiling src/${_unit}"
         VERBATIM
     )
+    list(APPEND _dat_optional "${_source}" "${_object}")
     list(APPEND _dat_sidecars "${_sidecar}")
     list(APPEND _dat_bases "${_base}")
     list(APPEND _dat_commands "{\
@@ -240,6 +242,11 @@ foreach(_archive IN LISTS _dat_archives)
 \"file\": \"${CMAKE_CURRENT_BINARY_DIR}/${_source}\", \
 \"arguments\": [\"${CMAKE_C_COMPILER}\", \"@${_dat_flags}\", \"-c\", \"${_source}\", \"-o\", \"${_base}\"]}")
 endforeach()
+
+# The sources and objects only units with samples have: ninja isn't told of
+# them as outputs, since it would rebuild the units without, so the clean
+# target removes them instead
+set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES ${_dat_optional})
 
 # The same commands for clangd, which looks for the nearest
 # compile_commands.json above a source
