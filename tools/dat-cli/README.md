@@ -153,7 +153,8 @@ relocated; a bitfield zero or not; and nonzero padding. Instances the walk
 found nothing wrong in come first. The rest of each archive is matched as
 inferred data.
 
-They build in their own CMake preset, in the dev shell:
+They build in their own CMake preset, in the native dev shell
+(`nix develop .#native`):
 
 ```sh
 cmake --preset dat
