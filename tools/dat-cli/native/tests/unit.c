@@ -49,7 +49,7 @@ typedef struct Node {
 
 static void set_flag(void* o, uint64_t v)
 {
-    ((Node*) o)->flag = (unsigned) v;
+    ((Node*) o)->flag = (unsigned) v & 7;
 }
 
 static uint64_t get_flag(const void* o)
@@ -59,7 +59,7 @@ static uint64_t get_flag(const void* o)
 
 static void set_other(void* o, uint64_t v)
 {
-    ((Node*) o)->other = (unsigned) v;
+    ((Node*) o)->other = (unsigned) v & 31;
 }
 
 static uint64_t get_other(const void* o)

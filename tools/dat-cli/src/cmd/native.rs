@@ -247,7 +247,10 @@ impl<'a> Generator<'a> {
         }
     }
 
-    fn tags(&self, annotations: &[melee_dat::dwarf::Annotation]) -> Vec<DatTag> {
+    fn tags(
+        &self,
+        annotations: &[melee_dat::dwarf::Annotation],
+    ) -> Vec<DatTag> {
         annotations
             .iter()
             .filter_map(|a| DatTag::parse(self.str(a.value?)))
@@ -275,14 +278,17 @@ impl<'a> Generator<'a> {
                 && let Some(id) = canonical.of(*t)
                 && self.is_anonymous(*t)
             {
-                self.owners.entry(id).or_insert_with(|| graph.str(name).to_owned());
+                self.owners
+                    .entry(id)
+                    .or_insert_with(|| graph.str(name).to_owned());
             }
         }
         let mut changed = true;
         while changed {
             changed = false;
             for canon in &canonical.types {
-                let TypeKind::Record { members, .. } = &graph.types[&canon.rep].kind
+                let TypeKind::Record { members, .. } =
+                    &graph.types[&canon.rep].kind
                 else {
                     continue;
                 };
@@ -290,10 +296,12 @@ impl<'a> Generator<'a> {
                     continue;
                 };
                 for member in members {
-                    let (Some(name), Some(mut ty)) = (member.name, member.ty) else {
+                    let (Some(name), Some(mut ty)) = (member.name, member.ty)
+                    else {
                         continue;
                     };
-                    let mut access = format!("((({parent}*)0)->{})", graph.str(name));
+                    let mut access =
+                        format!("((({parent}*)0)->{})", graph.str(name));
                     // Through arrays and pointers to the anonymous type
                     loop {
                         match &graph.types[&ty].kind {
@@ -311,7 +319,9 @@ impl<'a> Generator<'a> {
                                 ty = *t;
                             }
                             TypeKind::Const { target: Some(t) }
-                            | TypeKind::Volatile { target: Some(t) } => ty = *t,
+                            | TypeKind::Volatile { target: Some(t) } => {
+                                ty = *t
+                            }
                             _ => break,
                         }
                     }
@@ -319,7 +329,9 @@ impl<'a> Generator<'a> {
                         continue;
                     }
                     let Some(id) = canonical.of(ty) else { continue };
-                    if let std::collections::hash_map::Entry::Vacant(e) = self.owners.entry(id) {
+                    if let std::collections::hash_map::Entry::Vacant(e) =
+                        self.owners.entry(id)
+                    {
                         e.insert(format!("__typeof__({access})"));
                         changed = true;
                     }
@@ -331,7 +343,10 @@ impl<'a> Generator<'a> {
     fn is_anonymous(&self, die: DieId) -> bool {
         let ty = self.ty(die);
         ty.name.is_none()
-            && matches!(ty.kind, TypeKind::Record { .. } | TypeKind::Enum { .. })
+            && matches!(
+                ty.kind,
+                TypeKind::Record { .. } | TypeKind::Enum { .. }
+            )
     }
 
     /// The C spelling of a type, where C can name it.
@@ -339,12 +354,14 @@ impl<'a> Generator<'a> {
         let ty = self.ty(die);
         match &ty.kind {
             TypeKind::Base { .. } => Some(self.str(ty.name?).to_owned()),
-            TypeKind::Typedef { target } if ty.scope.is_none() => match self.includable(die) {
-                true => Some(self.str(ty.name?).to_owned()),
-                // The toolchain's own, e.g. newlib's `__uintptr_t`: the host
-                // has its own, which may differ, so by what it names
-                false => self.spell((*target)?),
-            },
+            TypeKind::Typedef { target } if ty.scope.is_none() => {
+                match self.includable(die) {
+                    true => Some(self.str(ty.name?).to_owned()),
+                    // The toolchain's own, e.g. newlib's `__uintptr_t`: the host
+                    // has its own, which may differ, so by what it names
+                    false => self.spell((*target)?),
+                }
+            }
             TypeKind::Record { union, .. } => match ty.name {
                 Some(name) if ty.scope.is_none() => Some(format!(
                     "{} {}",
@@ -352,12 +369,18 @@ impl<'a> Generator<'a> {
                     self.str(name)
                 )),
                 Some(_) => None,
-                None => self.owners.get(&self.project.canonical.of(die)?).cloned(),
+                None => {
+                    self.owners.get(&self.project.canonical.of(die)?).cloned()
+                }
             },
             TypeKind::Enum { .. } => match ty.name {
-                Some(name) if ty.scope.is_none() => Some(format!("enum {}", self.str(name))),
+                Some(name) if ty.scope.is_none() => {
+                    Some(format!("enum {}", self.str(name)))
+                }
                 Some(_) => None,
-                None => self.owners.get(&self.project.canonical.of(die)?).cloned(),
+                None => {
+                    self.owners.get(&self.project.canonical.of(die)?).cloned()
+                }
             },
             TypeKind::Const { target } | TypeKind::Volatile { target } => {
                 self.spell((*target)?)
@@ -383,7 +406,9 @@ impl<'a> Generator<'a> {
                 TypeKind::Typedef { target: Some(t) }
                 | TypeKind::Const { target: Some(t) }
                 | TypeKind::Volatile { target: Some(t) } => die = *t,
-                TypeKind::Array { dims, .. } => return dims.iter().any(Option::is_none),
+                TypeKind::Array { dims, .. } => {
+                    return dims.iter().any(Option::is_none);
+                }
                 _ => return false,
             }
         }
@@ -403,8 +428,10 @@ impl<'a> Generator<'a> {
                 self.headers.insert(header);
             }
             None if file.ends_with(".c") => {
-                self.unhoisted
-                    .insert(format!("{} ({file})", self.str(ty.name.unwrap())));
+                self.unhoisted.insert(format!(
+                    "{} ({file})",
+                    self.str(ty.name.unwrap())
+                ));
             }
             None => {}
         }
@@ -483,7 +510,11 @@ impl<'a> Generator<'a> {
         self.types.push(TypeRow::default());
         let ty = self.ty(die);
         let mut row = TypeRow {
-            name: canonical.get(id).display.clone().unwrap_or_else(|| "?".into()),
+            name: canonical
+                .get(id)
+                .display
+                .clone()
+                .unwrap_or_else(|| "?".into()),
             id: id.0,
             size: canonical.byte_size(graph, die).unwrap_or(0),
             target: NONE,
@@ -526,7 +557,9 @@ impl<'a> Generator<'a> {
                 row.target = target.map_or(NONE, |t| self.type_index(t));
                 for tag in &tags {
                     match tag {
-                        DatTag::Terminated(value) if row.terminator == NONE => {
+                        DatTag::Terminated(value)
+                            if row.terminator == NONE =>
+                        {
                             row.terminator = self.expr(value, 0);
                         }
                         DatTag::Type(name) if row.type_tag == NONE => {
@@ -536,7 +569,8 @@ impl<'a> Generator<'a> {
                                 .lookup(graph, name)
                                 .into_iter()
                                 .find(|&d| self.resolve(d).is_some());
-                            row.type_tag = found.map_or(NONE, |d| self.type_index(d));
+                            row.type_tag =
+                                found.map_or(NONE, |d| self.type_index(d));
                         }
                         _ => {}
                     }
@@ -561,7 +595,9 @@ impl<'a> Generator<'a> {
                 row.kind = if *union { KIND_UNION } else { KIND_STRUCT };
                 self.pending.push((index, die));
             }
-            TypeKind::Record { .. } | TypeKind::Unspecified | TypeKind::Subroutine { .. } => {
+            TypeKind::Record { .. }
+            | TypeKind::Unspecified
+            | TypeKind::Subroutine { .. } => {
                 row.kind = KIND_VOID;
             }
         }
@@ -600,7 +636,9 @@ impl<'a> Generator<'a> {
             | TypeKind::Array {
                 element: target, ..
             } => target.is_some_and(|t| self.is_raw(t)),
-            TypeKind::Base { encoding } => encoding == gimli::DW_ATE_unsigned_char.0,
+            TypeKind::Base { encoding } => {
+                encoding == gimli::DW_ATE_unsigned_char.0
+            }
             _ => false,
         }
     }
@@ -615,7 +653,9 @@ impl<'a> Generator<'a> {
             TypeKind::Record { members, .. } => members
                 .iter()
                 .any(|m| m.ty.is_some_and(|ty| self.has_pointers(ty))),
-            TypeKind::Array { element, .. } => element.is_some_and(|e| self.has_pointers(e)),
+            TypeKind::Array { element, .. } => {
+                element.is_some_and(|e| self.has_pointers(e))
+            }
             _ => false,
         }
     }
@@ -623,9 +663,11 @@ impl<'a> Generator<'a> {
     /// The walker's `has_extent`.
     fn has_extent(&self, die: DieId) -> bool {
         match &self.ty(die).kind {
-            TypeKind::Record { members, .. } => members.last().is_some_and(|m| {
-                self.tags(&m.annotations).contains(&DatTag::Extent)
-            }),
+            TypeKind::Record { members, .. } => {
+                members.last().is_some_and(|m| {
+                    self.tags(&m.annotations).contains(&DatTag::Extent)
+                })
+            }
             _ => false,
         }
     }
@@ -642,7 +684,12 @@ impl<'a> Generator<'a> {
             }
             let mut rows = Vec::new();
             for (position, member) in members.iter().enumerate() {
-                rows.push(self.member(die, parent.as_deref(), position, member));
+                rows.push(self.member(
+                    die,
+                    parent.as_deref(),
+                    position,
+                    member,
+                ));
             }
             let start = self.members.len();
             self.members.extend(rows);
@@ -683,9 +730,8 @@ impl<'a> Generator<'a> {
         };
         if let Some(bits) = member.bit_size {
             row.bit_size = bits;
-            row.bit_offset = member
-                .bit_offset
-                .unwrap_or(member.offset.unwrap_or(0) * 8);
+            row.bit_offset =
+                member.bit_offset.unwrap_or(member.offset.unwrap_or(0) * 8);
             match (parent, name) {
                 (Some(parent), Some(name)) => {
                     row.accessors = Some(self.accessors.len());
@@ -708,12 +754,15 @@ impl<'a> Generator<'a> {
             match (parent, path) {
                 (Some(parent), Some(path)) => {
                     row.native_offset = format!("offsetof({parent}, {path})");
-                    let unbounded = member.ty.is_some_and(|t| self.unbounded(t));
+                    let unbounded =
+                        member.ty.is_some_and(|t| self.unbounded(t));
                     row.native_size = match name {
                         Some(name) if !unbounded => {
                             format!("sizeof((({parent}*)0)->{name})")
                         }
-                        _ => member.ty.map_or("0".into(), |t| self.native_size(t)),
+                        _ => member
+                            .ty
+                            .map_or("0".into(), |t| self.native_size(t)),
                     };
                 }
                 _ => {
@@ -721,7 +770,10 @@ impl<'a> Generator<'a> {
                     let record = self.types[record as usize].name.clone();
                     self.unplaced.insert(format!(
                         "{record}::{}",
-                        name.map_or_else(|| format!("@{position}"), str::to_owned)
+                        name.map_or_else(
+                            || format!("@{position}"),
+                            str::to_owned
+                        )
                     ));
                 }
             }
@@ -791,9 +843,9 @@ impl<'a> Generator<'a> {
                     .get(table)
                     .and_then(|name| graph.globals.get(&name))
                     .and_then(|global| {
-                        let size = global
-                            .ty
-                            .and_then(|ty| self.project.canonical.byte_size(graph, ty))?;
+                        let size = global.ty.and_then(|ty| {
+                            self.project.canonical.byte_size(graph, ty)
+                        })?;
                         graph.bytes(global.address, size as usize)
                     })
                     .map(<[u8]>::to_vec)
@@ -831,7 +883,8 @@ impl<'a> Generator<'a> {
                     "GXGetTexBufferSize" => 1,
                     _ => return self.node(OP_FAIL, NONE, NONE, 0),
                 };
-                let nodes: Vec<i32> = args.iter().map(|a| self.expr(a, depth)).collect();
+                let nodes: Vec<i32> =
+                    args.iter().map(|a| self.expr(a, depth)).collect();
                 let start = self.args.len() as i32;
                 self.args.extend(&nodes);
                 self.node(OP_CALL, function, start, nodes.len() as u64)
@@ -908,7 +961,10 @@ fn binary_op(op: BinaryOp) -> u8 {
 /// `/.../src/melee/ft/types.h` to `melee/ft/types.h`; `None` for the
 /// toolchain's own (newlib's, the compiler's), which the host has its own of.
 fn header(path: &str) -> Option<String> {
-    if !path.ends_with(".h") || path.contains("newlib") || path.contains("/lib/clang/") {
+    if !path.ends_with(".h")
+        || path.contains("newlib")
+        || path.contains("/lib/clang/")
+    {
         return None;
     }
     let at = ["/src/", "/include/"]
@@ -951,10 +1007,13 @@ fn file_roots(
     let mut paths = gather_files(&project.base, &project.include)?;
     paths.sort();
     for path in paths {
-        let file = path.strip_prefix(&project.base)?.to_string_lossy().into_owned();
+        let file = path
+            .strip_prefix(&project.base)?
+            .to_string_lossy()
+            .into_owned();
         let bytes = fs::read(&path)?;
-        let archives =
-            Archive::parse_packed(&bytes).with_context(|| format!("{}", path.display()))?;
+        let archives = Archive::parse_packed(&bytes)
+            .with_context(|| format!("{}", path.display()))?;
         for (index, (at, archive)) in archives.iter().enumerate() {
             let start = roots.len();
             let mut seen = BTreeSet::new();
@@ -989,7 +1048,8 @@ fn file_roots(
             }
             for (address, entry) in project.aliases(&file, *at) {
                 let Some(ty) = &entry.ty else { continue };
-                let (count_kind, count) = count_row(entry.count.unwrap_or(Count::One));
+                let (count_kind, count) =
+                    count_row(entry.count.unwrap_or(Count::One));
                 roots.push(RootRow {
                     name: entry.name.clone(),
                     alias: true,
@@ -1026,9 +1086,16 @@ fn count_row(count: Count) -> (u8, u64) {
 fn identifier(name: &str) -> Option<String> {
     let id: String = name
         .chars()
-        .map(|c| if c.is_ascii_alphanumeric() || c == '_' { c } else { '_' })
+        .map(|c| {
+            if c.is_ascii_alphanumeric() || c == '_' {
+                c
+            } else {
+                '_'
+            }
+        })
         .collect();
-    (!id.is_empty() && !id.starts_with(|c: char| c.is_ascii_digit())).then_some(id)
+    (!id.is_empty() && !id.starts_with(|c: char| c.is_ascii_digit()))
+        .then_some(id)
 }
 
 fn codegen(args: Codegen) -> Result<()> {
@@ -1158,7 +1225,9 @@ fn codegen(args: Codegen) -> Result<()> {
     c.push_str("\nstatic const DatScript scripts[] = {\n");
     for (i, (table, length)) in generator.scripts.iter().enumerate() {
         match table {
-            Some(table) => writeln!(c, "    {{script_{i}, {}, -1}},", table.len())?,
+            Some(table) => {
+                writeln!(c, "    {{script_{i}, {}, -1}},", table.len())?
+            }
             None => writeln!(c, "    {{NULL, 0, {length}}},")?,
         }
     }
@@ -1258,7 +1327,11 @@ fn codegen(args: Codegen) -> Result<()> {
 }
 
 /// What a walk reached, as `dat_trace` prints it.
-pub fn trace(out: &mut impl Write, walk: &Walk, name_of: &dyn Fn(CanonId) -> String) -> io::Result<()> {
+pub fn trace(
+    out: &mut impl Write,
+    walk: &Walk,
+    name_of: &dyn Fn(CanonId) -> String,
+) -> io::Result<()> {
     for (offset, ids) in &walk.objects {
         for id in ids {
             writeln!(out, "object 0x{offset:X} {} {}", id.0, name_of(*id))?;
@@ -1283,7 +1356,9 @@ pub fn trace(out: &mut impl Write, walk: &Walk, name_of: &dyn Fn(CanonId) -> Str
             Issue::RelocatedScalar { at, .. } => (1, at, 0),
             Issue::OutOfBounds { at, .. } => (2, at, 0),
             Issue::AmbiguousUnion { at, .. } => (3, at, 0),
-            Issue::UnknownCommand { at, opcode, .. } => (4, at, u32::from(opcode)),
+            Issue::UnknownCommand { at, opcode, .. } => {
+                (4, at, u32::from(opcode))
+            }
         })
         .collect();
     const KINDS: [&str; 5] = [
@@ -1313,9 +1388,15 @@ fn expect(args: Expect) -> Result<()> {
         .types
         .iter()
         .enumerate()
-        .map(|(i, t)| (CanonId(i as u32), t.display.clone().unwrap_or_else(|| "?".into())))
+        .map(|(i, t)| {
+            (
+                CanonId(i as u32),
+                t.display.clone().unwrap_or_else(|| "?".into()),
+            )
+        })
         .collect();
-    let name_of = |id: CanonId| names.get(&id).cloned().unwrap_or_else(|| "?".into());
+    let name_of =
+        |id: CanonId| names.get(&id).cloned().unwrap_or_else(|| "?".into());
     let mut out = io::BufWriter::new(io::stdout().lock());
     project.walk_all(&only, |walked| {
         if !walked.rooted {

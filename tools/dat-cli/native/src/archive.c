@@ -2177,12 +2177,6 @@ int dat_load_roots(DatArchive* a, const char* file, uint32_t index)
 
 /* --- Traces --------------------------------------------------------------- */
 
-static int compare_u32(const void* x, const void* y)
-{
-    uint32_t a = *(const uint32_t*) x, b = *(const uint32_t*) y;
-    return (a > b) - (a < b);
-}
-
 static int compare_pair(const void* x, const void* y)
 {
     const uint32_t* a = x;
@@ -2293,7 +2287,6 @@ void dat_trace(const DatArchive* a, FILE* out, unsigned what)
         fprintf(out, "untyped-pointers %zu\nsentinels %zu\n",
                 a->untyped_pointers, a->sentinels);
     }
-    (void) compare_u32;
 }
 
 /* --- Verification --------------------------------------------------------- */
