@@ -98,6 +98,10 @@ pub struct Walk {
     pub objects: BTreeMap<u32, BTreeSet<CanonId>>,
     /// The first path each object was reached by.
     pub paths: BTreeMap<u32, String>,
+    /// Each object's type as the code first spelled it, by its start and
+    /// canonical type: through typedefs, e.g. `Mtx` rather than
+    /// `float[3][4]`, for declaring it.
+    pub spelled: BTreeMap<(u32, CanonId), DieId>,
     /// Typed data the walk laid out: from each object or element, the
     /// furthest it reaches. Raw bytes (`u8` not named by a `DAT_BLOB`
     /// typedef) say nothing of what the data is, and aren't included.
@@ -248,7 +252,7 @@ impl<'a> Walker<'a> {
         if size == 0 || !self.visited.insert((offset, id)) {
             return;
         }
-        self.walk.objects.entry(offset).or_default().insert(id);
+        self.reached(offset, id, Some(raw));
         self.walk
             .paths
             .entry(offset)
@@ -308,6 +312,15 @@ impl<'a> Walker<'a> {
         self.walk
     }
 
+    /// Record an object of type `id` at `offset`, which the code spells as
+    /// `spelled`.
+    fn reached(&mut self, offset: u32, id: CanonId, spelled: Option<DieId>) {
+        self.walk.objects.entry(offset).or_default().insert(id);
+        if let Some(spelled) = spelled {
+            self.walk.spelled.entry((offset, id)).or_insert(spelled);
+        }
+    }
+
     fn object(&mut self, offset: u32, die: DieId, path: String) {
         let raw = die;
         let Some(die) = self.resolve(Some(die)) else {
@@ -320,7 +333,7 @@ impl<'a> Walker<'a> {
             return;
         }
         self.typed_extent(offset, raw, 1);
-        self.walk.objects.entry(offset).or_default().insert(id);
+        self.reached(offset, id, Some(raw));
         self.walk
             .paths
             .entry(offset)
@@ -539,7 +552,7 @@ impl<'a> Walker<'a> {
                 if !self.visited.insert((value, id)) {
                     return;
                 }
-                self.walk.objects.entry(value).or_default().insert(id);
+                self.reached(value, id, raw);
                 self.walk
                     .paths
                     .entry(value)
@@ -689,7 +702,7 @@ impl<'a> Walker<'a> {
             if !self.visited.insert((value, id)) {
                 return;
             }
-            self.walk.objects.entry(value).or_default().insert(id);
+            self.reached(value, id, Some(raw));
             self.walk
                 .paths
                 .entry(value)
@@ -958,7 +971,7 @@ impl<'a> Walker<'a> {
                 continue;
             }
             if let Some(id) = id {
-                self.walk.objects.entry(start).or_default().insert(id);
+                self.reached(start, id, target);
             }
             self.walk.paths.entry(start).or_insert_with(|| path.clone());
             let mut at = start;
@@ -1005,7 +1018,7 @@ impl<'a> Walker<'a> {
     }
 
     /// The type a `DAT_TYPE` typedef on the way from `die` to its underlying
-    /// type refers to.
+    /// type refers to, as named: through its own typedefs, e.g. `Mtx`.
     fn typedef_type(&self, mut die: DieId) -> Option<DieId> {
         while let Some(ty) = self.graph.types.get(&die) {
             let TypeKind::Typedef {
@@ -1026,7 +1039,7 @@ impl<'a> Walker<'a> {
                     .canonical
                     .lookup(self.graph, &name)
                     .into_iter()
-                    .find_map(|die| self.resolve(Some(die)));
+                    .find(|&die| self.resolve(Some(die)).is_some());
             }
             die = target;
         }
@@ -1108,7 +1121,7 @@ impl<'a> Walker<'a> {
         if size == 0 {
             return;
         }
-        self.walk.objects.entry(value).or_default().insert(id);
+        self.reached(value, id, target);
         self.walk
             .paths
             .entry(value)

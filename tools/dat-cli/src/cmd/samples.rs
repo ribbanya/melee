@@ -21,11 +21,11 @@ use globset::{Glob, GlobSetBuilder};
 use melee_dat::{
     coverage::{coverage, family},
     dwarf::{
-        TypeGraph, cache::TypesFile, canonical::Canonical, render::Renderer,
+        DieId, TypeGraph, TypeKind, cache::TypesFile, canonical::Canonical, render::Renderer,
     },
     hsd::Archive,
     samples::{
-        CWriter, Elided, ElidedType, Instance, Picker, SampleInfo, Source, Unnamed,
+        CWriter, Elided, Instance, Picker, SampleInfo, Source, Unnamed,
         Piece, SAMPLED, INFERRED, assign_names, rest_object, root_of,
         target_object,
     },
@@ -55,6 +55,11 @@ enum Command {
     /// Write a hash of the types an archive's roots lead to, if it changed:
     /// the unit's other steps depend on it instead of every type
     Types(TypesArgs),
+
+    /// Choose the samples across every archive: instances of each type
+    /// that together show every case it does. Writes each archive's choice
+    /// for `slice --pick`, if it changed
+    Pick(PickArgs),
 
     /// Write an archive's samples as a target object, with a sidecar
     Slice(Slice),
@@ -97,6 +102,26 @@ struct Slice {
     all: bool,
     /// Types never to sample, as globs on their names (e.g.
     /// `HSD_VtxDescList`); data they point to stays bytes
+    #[arg(long)]
+    exclude: Vec<String>,
+    /// The instances `pick` chose in this archive, instead of choosing
+    /// from it alone
+    #[arg(long, conflicts_with = "all")]
+    pick: Option<PathBuf>,
+}
+
+#[derive(clap::Args)]
+struct PickArgs {
+    /// The archives to choose from, relative to the archives' directory
+    #[arg(required = true)]
+    archives: Vec<String>,
+    #[command(flatten)]
+    check: Check,
+    /// The directory for each archive's choice, `<archive>.pick`; each is
+    /// left alone when unchanged, so that its dependents are too
+    #[arg(short, long)]
+    output: PathBuf,
+    /// Types never to sample, as for `slice`
     #[arg(long)]
     exclude: Vec<String>,
 }
@@ -144,6 +169,7 @@ struct Report {
 pub fn run(Args { command }: Args) -> Result<()> {
     match command {
         Command::Types(args) => types(args),
+        Command::Pick(args) => pick(args),
         Command::Slice(args) => slice(args),
         Command::Codegen(args) => codegen(args),
         Command::Macros(args) => macros(args),
@@ -254,6 +280,99 @@ fn types(args: TypesArgs) -> Result<()> {
     Ok(())
 }
 
+/// An archive's choice from `pick`: `<archive offset> <offset>` per line,
+/// in hex.
+fn read_pick(path: &Path) -> Result<BTreeSet<(usize, u32)>> {
+    let text = fs::read_to_string(path)
+        .with_context(|| format!("{}", path.display()))?;
+    text.lines()
+        .map(|line| {
+            let parse = |word: Option<&str>| -> Result<u64> {
+                let word = word.context("short line")?;
+                Ok(u64::from_str_radix(word.trim_start_matches("0x"), 16)?)
+            };
+            let mut words = line.split_whitespace();
+            Ok((parse(words.next())? as usize, parse(words.next())? as u32))
+        })
+        .collect::<Result<_>>()
+        .with_context(|| format!("{}", path.display()))
+}
+
+fn pick(args: PickArgs) -> Result<()> {
+    let project = Project::load(&args.check)?;
+    let mut exclude = GlobSetBuilder::new();
+    for glob in &args.exclude {
+        exclude.add(Glob::new(glob)?);
+    }
+    let exclude = exclude.build()?;
+    // Each archive's candidates in parallel, then together in the order
+    // given, so that the choice doesn't depend on scheduling
+    let pickers = args
+        .archives
+        .par_iter()
+        .map(|file| {
+            let path = project.base.join(file);
+            let bytes = fs::read(&path)
+                .with_context(|| format!("{}", path.display()))?;
+            let archives = Archive::parse_packed(&bytes)
+                .with_context(|| format!("{}", path.display()))?;
+            let mut picker = Picker::new(&project.graph, &project.canonical)
+                .select(false, exclude.clone());
+            for (at, archive) in &archives {
+                let (_, walk) = project.walk(file, archive);
+                picker.add(file, *at, archive, &walk);
+            }
+            Ok(picker)
+        })
+        .collect::<Result<Vec<_>>>()?;
+    let mut pickers = pickers.into_iter();
+    let mut picker = pickers.next().context("no archives")?;
+    for other in pickers {
+        picker.merge(other);
+    }
+    let (samples, _) = picker.finish();
+
+    let mut chosen: BTreeMap<&str, BTreeSet<(usize, u32)>> = args
+        .archives
+        .iter()
+        .map(|file| (file.as_str(), BTreeSet::new()))
+        .collect();
+    for sample in &samples {
+        if let Some(set) = chosen.get_mut(sample.location.file.as_str()) {
+            set.insert((sample.location.archive, sample.location.offset));
+        }
+    }
+    fs::create_dir_all(&args.output)?;
+    for (file, set) in chosen {
+        let text: String = set
+            .iter()
+            .map(|(at, offset)| format!("{at:#X} {offset:#X}\n"))
+            .collect();
+        let path = args.output.join(format!("{file}.pick"));
+        if fs::read_to_string(&path).ok().as_deref() != Some(&text) {
+            fs::write(&path, text)?;
+        }
+    }
+    Ok(())
+}
+
+/// Whether `die` is bytes: a one-byte integer or arrays of them.
+fn is_bytes(graph: &TypeGraph, mut die: DieId) -> bool {
+    loop {
+        let ty = &graph.types[&die];
+        match ty.kind {
+            TypeKind::Typedef { target: Some(t) }
+            | TypeKind::Const { target: Some(t) }
+            | TypeKind::Volatile { target: Some(t) }
+            | TypeKind::Array {
+                element: Some(t), ..
+            } => die = t,
+            TypeKind::Base { .. } => return ty.byte_size == Some(1),
+            _ => return false,
+        }
+    }
+}
+
 fn slice(args: Slice) -> Result<()> {
     let project = Project::load(&args.check)?;
     let path = project.base.join(&args.archive);
@@ -267,8 +386,10 @@ fn slice(args: Slice) -> Result<()> {
     for glob in &args.exclude {
         exclude.add(Glob::new(glob)?);
     }
+    // With `pick`'s choice, every instance, to keep the chosen ones
+    let picked = args.pick.as_deref().map(read_pick).transpose()?;
     let mut picker = Picker::new(&project.graph, &project.canonical)
-        .select(args.all, exclude.build()?);
+        .select(args.all || picked.is_some(), exclude.build()?);
     let mut walks = BTreeMap::new();
     for (at, archive) in &archives {
         let (_, walk) = project.walk(&args.archive, archive);
@@ -276,6 +397,11 @@ fn slice(args: Slice) -> Result<()> {
         walks.insert(*at, walk);
     }
     let (mut samples, _) = picker.finish();
+    if let Some(picked) = &picked {
+        samples.retain(|s| {
+            picked.contains(&(s.location.archive, s.location.offset))
+        });
+    }
     samples.sort_by_key(|s| (s.location.archive, s.location.offset));
 
     let unit = args.archive.strip_suffix(".dat").unwrap_or(&args.archive);
@@ -340,21 +466,18 @@ fn slice(args: Slice) -> Result<()> {
                 },
                 |size| size,
             );
-            // Declared as its type where the walk typed it as one record
-            let ty = walk
-                .objects
-                .get(&target)
-                .and_then(|types| match types.iter().collect::<Vec<_>>()[..] {
-                    [&id] => describer.describe(id, target, walk).ok(),
+            // Declared as the type the walk reached it as, if just one
+            let ty = walk.objects.get(&target).and_then(|types| {
+                match types.iter().collect::<Vec<_>>()[..] {
+                    [&id] => describer.elided_type(
+                        id,
+                        target,
+                        walk,
+                        u64::from(size),
+                    ),
                     _ => None,
-                })
-                .filter(|t| t.size == u64::from(size))
-                .map(|t| ElidedType {
-                    type_name: t.type_name,
-                    lookup: t.lookup,
-                    member: t.member,
-                    header: t.header,
-                });
+                }
+            });
             elided
                 .entry((at, target))
                 .or_insert(Elided { root, size, ty });
@@ -469,11 +592,31 @@ fn slice(args: Slice) -> Result<()> {
             (*at, extents)
         })
         .collect();
+    // Bytes a pointer says are bytes (texels, strings, keyframes): the walk
+    // leaves them out of its extents, but a piece of them is explained
+    // from where the pointer reaches it up to the next object
+    let raw_starts: BTreeMap<usize, BTreeSet<u32>> = walks
+        .iter()
+        .map(|(at, walk)| {
+            let starts = walk
+                .objects
+                .iter()
+                .filter(|(_, types)| {
+                    types.iter().all(|&id| {
+                        is_bytes(&project.graph, project.canonical.get(id).rep)
+                    })
+                })
+                .map(|(&offset, _)| offset)
+                .collect();
+            (*at, starts)
+        })
+        .collect();
     let explained: Vec<bool> = rest
         .iter()
         .map(|&(at, offset, size)| {
             let end = offset + size;
-            typed[&at].iter().any(|&(from, to)| from <= offset && end <= to)
+            (typed[&at].iter().any(|&(from, to)| from <= offset && end <= to)
+                || raw_starts[&at].contains(&offset))
                 && !coverages[&at]
                     .unexplained
                     .iter()
@@ -684,10 +827,8 @@ const PROJECT_DIR: &str = "dat";
 fn project(args: ProjectArgs) -> Result<()> {
     let mut units = Vec::new();
     for path in &args.sidecars {
+        // Every unit, samples or not: its other data is matched too
         let sidecar = read_sidecar(path)?;
-        if sidecar.samples.is_empty() {
-            continue;
-        }
         let stem = path
             .file_stem()
             .context("sidecar without a name")?

@@ -134,9 +134,16 @@ pointer union selects Samus's grapple-beam accessory in slot 4 and an
 ## Samples
 
 Samples check that the types explain the archives' data. Each archive is a
-unit: its best-typed instance of each type (and of each variant its tagged
-unions choose) is sliced into a target object, and C generated from the
-current types must compile to the same bytes and relocations.
+unit, sliced into a target object, and C generated from the current types
+must compile its samples to the same bytes and relocations. The samples are
+chosen across every archive: for each type (and each variant its tagged
+unions choose), the fewest instances that together show every case its
+fields take anywhere in the game. Cases are per field: a pointer null,
+relocated, unrelocated or -1; a float zero, negative zero, positive,
+negative, subnormal, infinite or NaN; an integer zero, positive, negative or
+relocated; a bitfield zero or not; and nonzero padding. Instances the walk
+found nothing wrong in come first. The rest of each archive is matched as
+inferred data.
 
 They build in their own CMake preset, in the dev shell:
 
@@ -153,6 +160,8 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
 
 - `melee.elf`: the DWARF build for that game version
 - `types.bin`: its types, deduplicated once for every step
+- `metadata/pick/<archive>.pick`: the instances chosen in each archive,
+  rewritten only when they change
 - `target/<unit>.o`: the whole archive, in two sections (objdiff lists
   them by name):
   - `.0.sampled`: the sampled objects, with pointers as relocations
@@ -162,7 +171,8 @@ starts with (`Pl/PlMr`, `Gr/GrFs`), under `dat/` in objdiff like the code's
     matches them by name and size; the rest show as missing. One is
     explained when it, and everything it reaches before another of them
     or a sample, is typed data with no relocation the walk can't explain.
-    Raw `u8` isn't typed: its format needs a `DAT_BLOB` typedef
+    Bytes a pointer says are bytes (`u8` texels, strings, keyframes) are
+    explained up to the next object
 
   Each symbol's offset in the archive is its virtual address in a
   `.note.split`, as decomp-toolkit writes for split code; objdiff shows it.
@@ -197,8 +207,10 @@ Data is named as the archive names it (its public symbols, global in both
 objects). Everything else is `LOCAL` (`static`, kept where nothing points to
 it), named after the field the walk first reached it through, then its
 offset: `child_x1A0`, `x1C_4_x2818`. Data the samples point to that isn't
-written as C (elided: declared as its type where the walk typed it as one
-record, else as `UNK_T`) is local in both objects too, but the C declares
+written as C (elided: declared as the type the walk reached it as, spelled
+as the pointers to it spell it, e.g. `Mtx`, `HSD_Joint x[2]`, `u16 x[256]`;
+`UNK_T` where nothing typed reaches it or it was reached as several types)
+is local in both objects too, but the C declares
 it `extern`, so its name starts with its root to stay unique, e.g.
 `ftDataMario_x0_common_attr_x3AC8`. The base's references to it stay
 undefined; objdiff compares them by name. Externs, other archives' symbols the
@@ -221,8 +233,8 @@ that doesn't round-trip. A union is written through the member its tag
 chose; a union object is declared as that member (`typeof(((union U *)
 0)->member)`), since the archive only holds that member's bytes.
 
-What to sample is up to you, in the build's cache: by default each archive
-gives its best instance of each type. `MELEE_DAT_SAMPLES_ALL` takes archive
+What to sample is up to you, in the build's cache: by default the chosen
+instances above. `MELEE_DAT_SAMPLES_ALL` takes archive
 globs whose every typed object becomes a sample, e.g.
 `cmake --preset dat -DMELEE_DAT_SAMPLES_ALL="PlFx.dat;Gr*.dat"`, and
 `MELEE_DAT_SAMPLES_EXCLUDE` type globs never to sample (data they point to

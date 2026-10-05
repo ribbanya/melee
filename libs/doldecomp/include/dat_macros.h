@@ -284,4 +284,18 @@ static inline void GXTexCoord1x16(const u16 index)
 /// @}
 #endif
 
+/** @name SDK types
+ * The SDK's typedefs, declared again with annotations: its headers aren't
+ * the decomp's to annotate, and C23 allows the same typedef twice. Only for
+ * the DWARF build, whose clang reads them.
+ * @{
+ */
+#if defined(__clang__) && defined(DAT_ANNOTATIONS)
+/// Each points to its first row, but to a whole matrix.
+typedef float (*MtxPtr)[4] DAT_TYPE(Mtx);
+typedef float (*Mtx44Ptr)[4] DAT_TYPE(Mtx44);
+typedef float (*ROMtxPtr)[3] DAT_TYPE(ROMtx);
+#endif
+/// @}
+
 #endif

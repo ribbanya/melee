@@ -30,7 +30,7 @@ if(NOT _dat_archives)
 endif()
 # What to sample is the user's choice, not the project's
 set(MELEE_DAT_SAMPLES_ALL "" CACHE STRING
-    "Archives (globs, e.g. PlFx.dat;Gr*.dat) to sample every typed object of, not one instance per type")
+    "Archives (globs, e.g. PlFx.dat;Gr*.dat) to sample every typed object of, not just the instances chosen to cover each type")
 set(MELEE_DAT_SAMPLES_EXCLUDE "" CACHE STRING
     "Types (globs on their names) never to sample, e.g. bulky vertex or image records")
 
@@ -105,6 +105,38 @@ add_custom_command(
     VERBATIM
 )
 
+# Which archives sample every object; the others sample instances that
+# `pick` chooses across all of them
+set(_dat_picked)
+set(_dat_picks)
+foreach(_archive IN LISTS _dat_archives)
+    get_filename_component(_file "${_archive}" NAME)
+    set(_all FALSE)
+    foreach(_regex IN LISTS _dat_all_regexes)
+        if(_file MATCHES "${_regex}")
+            set(_all TRUE)
+        endif()
+    endforeach()
+    if(NOT _all)
+        list(APPEND _dat_picked "${_file}")
+        list(APPEND _dat_picks "metadata/pick/${_file}.pick")
+    endif()
+endforeach()
+if(_dat_picked)
+    # Each archive's choice is rewritten only when it changes: the other
+    # steps depend on it, not on every archive
+    add_custom_command(
+        OUTPUT ${_dat_picks}
+        COMMAND "${_dat_tool}" samples pick ${_dat_picked} "${_dat_config}"
+            -p "${CMAKE_SOURCE_DIR}" --types types.bin
+            --files "${MELEE_DAT_FILES}" -o metadata/pick ${_dat_exclude}
+        DEPENDS ${_dat_archives} types.bin "${_dat_tool}" "${_dat_config}"
+            "${_dat_symbols}"
+        COMMENT "Choosing samples"
+        VERBATIM
+    )
+endif()
+
 set(_dat_sidecars)
 set(_dat_bases)
 set(_dat_commands)
@@ -124,12 +156,12 @@ foreach(_archive IN LISTS _dat_archives)
     set(_formatted "metadata/${_unit}.formatted")
     set(_base "base/${_unit}.o")
 
-    set(_all)
-    foreach(_regex IN LISTS _dat_all_regexes)
-        if(_file MATCHES "${_regex}")
-            set(_all --all)
-        endif()
-    endforeach()
+    set(_select --all)
+    set(_pick)
+    if("${_file}" IN_LIST _dat_picked)
+        set(_pick "metadata/pick/${_file}.pick")
+        set(_select --pick "${_pick}")
+    endif()
     # A hash of the types this archive leads to, rewritten only when it
     # changes: the other steps depend on it, not on every type
     add_custom_command(
@@ -146,9 +178,10 @@ foreach(_archive IN LISTS _dat_archives)
         OUTPUT "${_target}" "${_sidecar}" "${_layout}" "${_rest}"
         COMMAND "${_dat_tool}" samples slice "${_file}" "${_dat_config}"
             -p "${CMAKE_SOURCE_DIR}" --types types.bin
-            --files "${MELEE_DAT_FILES}" -o "${_target}" ${_all} ${_dat_exclude}
+            --files "${MELEE_DAT_FILES}" -o "${_target}" ${_select}
+            ${_dat_exclude}
         DEPENDS "${_archive}" "${_types}" "${_dat_tool}" "${_dat_config}"
-            "${_dat_symbols}"
+            "${_dat_symbols}" ${_pick}
         COMMENT "Slicing ${_file}"
         VERBATIM
     )
