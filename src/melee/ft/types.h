@@ -876,7 +876,7 @@ typedef struct Fighter_WaitAnimData {
     s32 x4;
     s32 x8;
     /// Generic commands (#Command_Execute), then #ftAction_803C0870.
-    CmdUnion* xC DAT_SCRIPT(ftAction_803C0870, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1);
+    CmdUnion* xC DAT_SCRIPT(ftAction_803C0870);
     s32 x10_animCurrFlags;
     uintptr_t x14;
 } Fighter_WaitAnimData;

@@ -105,6 +105,11 @@ Not errors:
 
 ## Coverage
 
+- `ALDYakuAll` (`StageInfo.ald_yaku_all`) is a null-terminated table of
+  item scripts, loaded as `void*`. Walking them needs a script attribute
+  for `dat_symbols.txt` roots, mirroring `DAT_SCRIPT`, so that its entries
+  can be `union CmdUnion*` without an ambiguous union.
+
 - Loaded into untyped destinations, types unknown:
   `sqEventInitDataLevelTbl`, `tournament_box*_array`, `mnNameDefaultName*`
   (and `mnNameAutoName*`), `MemCardIconData`, `MemSnapIconData`,
