@@ -339,9 +339,12 @@ impl<'a> Generator<'a> {
         let ty = self.ty(die);
         match &ty.kind {
             TypeKind::Base { .. } => Some(self.str(ty.name?).to_owned()),
-            TypeKind::Typedef { .. } if ty.scope.is_none() => {
-                Some(self.str(ty.name?).to_owned())
-            }
+            TypeKind::Typedef { target } if ty.scope.is_none() => match self.includable(die) {
+                true => Some(self.str(ty.name?).to_owned()),
+                // The toolchain's own, e.g. newlib's `__uintptr_t`: the host
+                // has its own, which may differ, so by what it names
+                false => self.spell((*target)?),
+            },
             TypeKind::Record { union, .. } => match ty.name {
                 Some(name) if ty.scope.is_none() => Some(format!(
                     "{} {}",
@@ -362,6 +365,14 @@ impl<'a> Generator<'a> {
             TypeKind::Pointer { .. } => Some("void*".to_owned()),
             _ => None,
         }
+    }
+
+    /// Whether the tables can include what declares a named type: a header
+    /// of the game's, not the toolchain's or a source file.
+    fn includable(&self, die: DieId) -> bool {
+        self.ty(die)
+            .decl_file
+            .is_some_and(|f| header(self.str(f)).is_some())
     }
 
     /// The header declaring a named type, which the tables include.
@@ -390,7 +401,9 @@ impl<'a> Generator<'a> {
     fn native_size(&mut self, die: DieId) -> String {
         let ty = self.ty(die);
         match &ty.kind {
-            TypeKind::Typedef { target } if ty.scope.is_some() || ty.name.is_none() => {
+            TypeKind::Typedef { target }
+                if ty.scope.is_some() || ty.name.is_none() || !self.includable(die) =>
+            {
                 match target {
                     Some(t) => self.native_size(*t),
                     None => "0".into(),

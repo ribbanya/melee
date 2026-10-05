@@ -75,13 +75,6 @@ StageData grTFc_StageData = {
     0,
 };
 
-struct grTFalco_YakumonoParam {
-    UNK_T unk_0;
-    UNK_T unk_4;
-    UNK_T unk_8;
-    UNK_T unk_C;
-};
-
 static struct grTFalco_YakumonoParam* yakumono_param;
 
 void grTFalco_802207F0(bool arg0) {}

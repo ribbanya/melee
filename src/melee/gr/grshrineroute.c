@@ -28,20 +28,6 @@
 #include <sysdolphin/baselib/lobj.h>
 #include <sysdolphin/baselib/random.h>
 
-struct grShrineRoute_YakumonoParam {
-    void* x0;
-    void* x4;
-    void* x8;
-    void* xC;
-    int x10;
-    f32 x14;
-    f32 x18;
-    f32 x1C;
-    f32 x20;
-    int x24;
-    grZakoGenerator_SpawnDesc spawn_desc;
-};
-
 struct grSh_Route_LightConfig {
     /* 0x00 */ GXColor color;
     /* 0x04 */ Vec3 pos;
