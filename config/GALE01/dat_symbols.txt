@@ -89,22 +89,22 @@ ftDataKirbyCopyFalco = PlKbCpFc.dat; // type:ftKbCopyParts_Items
 ftDataKirbyCopyGamewatch = PlKbCpGw.dat; // type:ftKbCopyParts_GameWatch
 
 // Pointer tables whose loaders declare only the first element's type: how
-// many elements there are. `count:*` lists end in a null pointer, then the
+// many elements there are. `extent` lists end in a null pointer, then the
 // next object.
-map_plit = *; // count:*
-itemdata = *; // count:*
-ScMenMain_scene_lights = *; // count:*
-ScMenFigure_scene_lights = *; // count:*
-ScMenDisplay_scene_lights = *; // count:*
-ScTitle_scene_lights = *; // count:*
-ScInfCnt_scene_models = *; // count:*
-Stc_scemdls = *; // count:*
+map_plit = *; // extent
+itemdata = *; // extent
+ScMenMain_scene_lights = *; // extent
+ScMenFigure_scene_lights = *; // extent
+ScMenDisplay_scene_lights = *; // extent
+ScTitle_scene_lights = *; // extent
+ScInfCnt_scene_models = *; // extent
+Stc_scemdls = *; // extent
 
 // Particle banks, loaded as `int` for psInitDataBankLocate: words, and
 // offsets into themselves, as far as the data runs.
-map_ptcl = *; // count:*
-map_texg = *; // count:*
-MemCardIconData = *; // count:*
+map_ptcl = *; // extent
+map_texg = *; // extent
+MemCardIconData = *; // extent
 ScGamRegStaffrollNames_scene_modelset = *; // count:10
 mnNameAutoName = *; // count:684
 mnNameAutoNameUs = *; // count:168

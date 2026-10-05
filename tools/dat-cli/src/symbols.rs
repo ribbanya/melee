@@ -49,8 +49,8 @@ pub struct Entry {
     pub location: Location,
     pub ty: Option<TypeSpec>,
     /// How many of the root's type there are, for a root whose loader gives
-    /// its type (a `type:` has its own): `count:N`, or `count:*` for as
-    /// many as fit before the next symbol or pointer target.
+    /// its type (a `type:` has its own): `count:N`, or `extent` for as many
+    /// as fit before the next symbol or pointer target.
     pub count: Option<Count>,
     /// Attributes other than `type` and `count`, kept verbatim and in order.
     pub other: Vec<String>,
@@ -210,15 +210,12 @@ fn entry<'i>(input: &mut &'i str) -> ModalResult<RawEntry<'i>> {
 fn attr<'i>(input: &mut &'i str) -> ModalResult<Attr<'i>> {
     alt((
         preceded("type:", cut_err(type_spec)).map(Attr::Type),
-        preceded(
-            "count:",
-            cut_err(alt((
-                "*".value(Count::Unbounded),
-                integer.map(Count::Exactly),
-            ))),
-        )
-        .map(Attr::Count),
-        take_till(1.., char::is_whitespace).map(Attr::Other),
+        preceded("count:", cut_err(integer))
+            .map(|n| Attr::Count(Count::Exactly(n))),
+        take_till(1.., char::is_whitespace).map(|word| match word {
+            "extent" => Attr::Count(Count::Unbounded),
+            word => Attr::Other(word),
+        }),
     ))
     .parse_next(input)
 }
@@ -267,7 +264,7 @@ impl fmt::Display for Entry {
             .chain(self.count.map(|count| match count {
                 Count::One => "count:1".to_owned(),
                 Count::Exactly(n) => format!("count:{n}"),
-                Count::Unbounded => "count:*".to_owned(),
+                Count::Unbounded => "extent".to_owned(),
             }))
             .chain(self.other.iter().cloned())
             .collect();
@@ -305,7 +302,7 @@ ftDataMars = PlMs.dat; // type:ftData
 map_head = *; // type:MapHead[]
 grGroundParam = *; // type:grGroundParam[2] data:4byte
 itemdata = GrI2.dat;
-map_plit = *; // count:*
+map_plit = *; // extent
 ScGamRegStaffrollNames_scene_modelset = GmStRoll.dat; // count:10
 ";
 
