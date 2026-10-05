@@ -190,7 +190,12 @@
               pkgs.clippy
               objdiff
               pkgs.qemu-user
-              pkgs.pkgsCross.ppc32.stdenv.cc
+              # Only its binaries: as a package, its setup hook would make it
+              # the shell's CC
+              (pkgs.runCommand "powerpc-linux-gcc" { } ''
+                mkdir -p $out/bin
+                ln -s ${pkgs.pkgsCross.ppc32.stdenv.cc}/bin/powerpc-* $out/bin/
+              '')
             ];
             env = old.env // {
               NEWLIB_INCLUDE = "${pkgs.pkgsCross.ppc-embedded.newlib}/powerpc-none-eabi/include";

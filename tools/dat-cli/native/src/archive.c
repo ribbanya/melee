@@ -1196,6 +1196,20 @@ static void set_native(DatArchive* a, uint32_t offset, int32_t r,
         key2(offset, T(a, r)->id);
 }
 
+/// An element already walked as another object: a copy of it, made once
+/// every pointer is stored, which is the same object at `offset`.
+static void copy_of(DatArchive* a, uint32_t offset, int32_t r, void* native)
+{
+    void* existing = native_of(a, offset, r);
+    if (native == NULL || existing == NULL) {
+        return;
+    }
+    Copy copy = {native, existing, T(a, r)->native_size};
+    VEC_PUSH(a->copies, copy);
+    *map_slot(&a->offsets, (uint64_t) (uintptr_t) native, true) =
+        key2(offset, T(a, r)->id);
+}
+
 static void typed_extent(DatArchive* a, uint32_t offset, int32_t type,
                          uint64_t count)
 {
@@ -1398,6 +1412,11 @@ static void counted(DatArchive* a, uint32_t offset, int32_t pointer,
         relocated_words(a, value, value + count * size);
         return;
     }
+    /* None: where it points, which nothing reads */
+    if (count == 0) {
+        store_pointer(slot, a->data + value);
+        return;
+    }
     uint32_t ns = native_size(a, raw);
     char* block = arena_alloc(&a->arena, (size_t) ns * count);
     store_pointer(slot, block);
@@ -1486,9 +1505,8 @@ static void terminated(DatArchive* a, uint32_t offset, int32_t pointer,
             typed_extent(a, at, ty, 1);
             Parent none = {DAT_NONE, 0, false};
             layout(a, at, ty, native, none);
-        } else if (native != NULL) {
-            Copy copy = {native, native_of(a, at, e), ns};
-            VEC_PUSH(a->copies, copy);
+        } else {
+            copy_of(a, at, e, native);
         }
         a->env = env;
     }
@@ -1947,14 +1965,14 @@ static void object(DatArchive* a, Task task)
         if (task.slot != NULL) {
             store_pointer(task.slot, existing);
         }
-        if (task.native != NULL && existing != NULL) {
-            Copy copy = {task.native, existing, T(a, r)->native_size};
-            VEC_PUSH(a->copies, copy);
-        }
+        copy_of(a, task.offset, r, task.native);
         return;
     }
+    /* Every object is made natively, even one reached through a field that
+       can't point to it (DAT_TYPE on a narrow integer), so that pointers
+       reaching it later can */
     void* native = task.native;
-    if (native == NULL && task.slot != NULL) {
+    if (native == NULL) {
         if (opaque(a, task.type)) {
             native = a->data + task.offset;
         } else {
@@ -2350,8 +2368,19 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
                 ok = e != DAT_NONE && native_of(a, value, e) == p;
             }
             if (!ok && p != NULL) {
-                mismatch(v, offset, "pointer", value,
+                int32_t pe = pointee(a, t->target);
+                mismatch(v, offset,
+                         pe != DAT_NONE ? T(a, pe)->name : "pointer", value,
                          (uint64_t) (uintptr_t) p);
+                if (v->out != NULL && map_get(&a->offsets,
+                                              (uint64_t) (uintptr_t) p, &key))
+                {
+                    int32_t e = pointee(a, t->target);
+                    fprintf(v->out, "  (to %s, which is 0x%X as %s)\n",
+                            e != DAT_NONE ? T(a, e)->name : "?",
+                            (uint32_t) (key >> 32),
+                            type_name(a, (uint32_t) key));
+                }
             }
         } else if (p != unrelocated_value(a, offset, value)) {
             mismatch(v, offset, "unrelocated pointer", value,

@@ -164,6 +164,7 @@ static void check(Totals* t, const char* name, const Lines* want,
         }
         size_t bad = dat_verify(archives[i], t->budget > 0 ? stdout : NULL);
         if (bad > 0) {
+            printf("%s: %zu don't read back\n", name, bad);
             t->unverified++;
             t->budget -= (long) bad;
         }

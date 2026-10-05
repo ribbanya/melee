@@ -375,6 +375,20 @@ impl<'a> Generator<'a> {
             .is_some_and(|f| header(self.str(f)).is_some())
     }
 
+    /// Whether a type is an array with a dimension without a bound.
+    fn unbounded(&self, die: DieId) -> bool {
+        let mut die = die;
+        loop {
+            match &self.ty(die).kind {
+                TypeKind::Typedef { target: Some(t) }
+                | TypeKind::Const { target: Some(t) }
+                | TypeKind::Volatile { target: Some(t) } => die = *t,
+                TypeKind::Array { dims, .. } => return dims.iter().any(Option::is_none),
+                _ => return false,
+            }
+        }
+    }
+
     /// The header declaring a named type, which the tables include.
     fn note_header(&mut self, die: DieId) {
         let ty = self.ty(die);
@@ -401,8 +415,13 @@ impl<'a> Generator<'a> {
     fn native_size(&mut self, die: DieId) -> String {
         let ty = self.ty(die);
         match &ty.kind {
+            // An array without a bound has no `sizeof`: one element, as the
+            // walker counts it
             TypeKind::Typedef { target }
-                if ty.scope.is_some() || ty.name.is_none() || !self.includable(die) =>
+                if ty.scope.is_some()
+                    || ty.name.is_none()
+                    || !self.includable(die)
+                    || self.unbounded(die) =>
             {
                 match target {
                     Some(t) => self.native_size(*t),
@@ -689,9 +708,12 @@ impl<'a> Generator<'a> {
             match (parent, path) {
                 (Some(parent), Some(path)) => {
                     row.native_offset = format!("offsetof({parent}, {path})");
+                    let unbounded = member.ty.is_some_and(|t| self.unbounded(t));
                     row.native_size = match name {
-                        Some(name) => format!("sizeof((({parent}*)0)->{name})"),
-                        None => member.ty.map_or("0".into(), |t| self.native_size(t)),
+                        Some(name) if !unbounded => {
+                            format!("sizeof((({parent}*)0)->{name})")
+                        }
+                        _ => member.ty.map_or("0".into(), |t| self.native_size(t)),
                     };
                 }
                 _ => {
