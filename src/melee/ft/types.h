@@ -716,15 +716,19 @@ typedef struct ftData_x34 {
 /// An entry of #ftData::x48_items: mostly an #Article, but some fighters
 /// keep joints or their own structs in certain slots. Those slots come
 /// first; #article is the catch-all for the rest.
-/// @todo Annotate the other slots per fighter (Link 6, Kirby 4, Yoshi 3,
-///       Sheik 4/5, Game & Watch 10, Jigglypuff 1).
+/// @todo Annotate the other slots per fighter (Sheik 4/5, Game & Watch 10,
+///       Jigglypuff 1).
 union ftData_Item {
     struct UNK_SAMUS_S1* samus_grapple DAT_IF(fighter_kind == Ft_Kind_Samus &&
                                               item_index == 4);
-    Article* article DAT_IF(true);
-    HSD_Joint* joint;
+    HSD_Joint* joint DAT_IF(
+        ((fighter_kind == Ft_Kind_Link || fighter_kind == Ft_Kind_CLink) &&
+         item_index == 6) ||
+        (fighter_kind == Ft_Kind_Kirby && item_index == 4) ||
+        (fighter_kind == Ft_Kind_Yoshi && item_index == 3));
     HSD_Joint** joints;
     FtPartsVisLookup* visibility;
+    Article* article DAT_IF(true);
 };
 
 typedef struct ftData_x1C {
@@ -1567,7 +1571,7 @@ struct Fighter {
     /* fp+197C */ HSD_GObj* x197C;  ///< bunny hood
     /* fp+1980 */ HSD_GObj* x1980;
     /* fp+1984 */ Item_GObj* x1984_heldItemSpec;
-    /* fp+1988 */ enum_t x1988;
+    /* fp+1988 */ enum_t x1988; // possibly HurtCapsuleState?
     /* fp+198C */ s32 x198C;
     /* fp+1990 */ s32 x1990;
     /* fp+1994 */ int x1994;
