@@ -557,7 +557,7 @@ struct MatchPlayerData {
     u16 self_destructs;
     u16 percent;
     u16 xE;
-    u16 kills[6];
+    u16 kills[GM_MAX_PLAYERS];
     s32 x1C;
     u32 x20;
     int x24;
@@ -996,14 +996,14 @@ typedef struct CssSubStruct {
 typedef struct TrainingModeState {
     /* 0x000 */ s32 count;
     /* 0x004 */ s32 mode;
-    /* 0x008 */ s32 char_data[27];
-    /* 0x074 */ PlayerInitData players[4];
-    /* 0x104 */ s32 result_cache[4];
+    /* 0x008 */ s32 char_data[CKind_Playable_Count + 1];
+    /* 0x074 */ PlayerInitData players[PAD_MAX_CONTROLLERS];
+    /* 0x104 */ s32 result_cache[PAD_MAX_CONTROLLERS];
 } TrainingModeState;
 
 struct gm_8049E548_t {
-    /* 0x00 */ u8 c_kind[4];
-    /* 0x04 */ u8 x4[4];
+    /* 0x00 */ u8 c_kind[PAD_MAX_CONTROLLERS];
+    /* 0x04 */ u8 x4[PAD_MAX_CONTROLLERS];
     /* 0x08 */ u8 unk_8;
     /* 0x09 */ u8 unk_9;
     /* 0x0A */ u8 unk_A;
