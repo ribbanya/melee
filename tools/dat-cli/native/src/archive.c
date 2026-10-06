@@ -1172,6 +1172,11 @@ static bool eval_at(const DatArchive* a, const Context* c, const DatExpr* e,
                : e->op == DAT_OP_BITNOT ? ~x
                                         : (uint64_t) 0 - x;
         return true;
+    case DAT_OP_COND:
+        if (!eval_at(a, c, e->cond, depth, &x)) {
+            return false;
+        }
+        return eval_at(a, c, x != 0 ? e->a : e->b, depth, out);
     default:
         break;
     }
@@ -2071,6 +2076,9 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
             if (m->type == DAT_NONE) {
                 break;
             }
+            const Scope* outer = a->env;
+            a->env = bound(a, outer, m, parent.record, parent.base,
+                           parent.some, 0);
             if (m->script != NULL) {
                 script(a, offset, m->type, m->script, native);
             } else if (m->terminator != NULL) {
@@ -2079,6 +2087,7 @@ static void layout(DatArchive* a, uint32_t offset, int32_t type, void* native,
             } else {
                 layout(a, offset, m->type, native, parent);
             }
+            a->env = outer;
             break;
         }
         case CHOICE_UNUSED:
@@ -2197,9 +2206,9 @@ static void object(DatArchive* a, Task task)
         }
         store_pointer(task.slot, native);
     }
-    if (native != NULL && native != a->data + task.offset) {
-        set_native(a, task.offset, r, native);
-    }
+    /* Opaque objects also need an identity for subsequent references. They
+       remain archive bytes: layout and verification must not convert them. */
+    set_native(a, task.offset, r, native);
     typed_extent(a, task.offset, task.type, 1);
     reached(a, task.offset, r);
     Parent none = { DAT_NONE, 0, false };
@@ -2613,11 +2622,13 @@ static void verify(Verify* v, uint32_t offset, int32_t type,
                 int32_t e = pointee(a, t->target);
                 ok = e != DAT_NONE && native_of(a, value, e) == p;
             }
-            if (!ok && p != NULL) {
+            if (!ok) {
                 int32_t pe = pointee(a, t->target);
                 mismatch(v, offset,
-                         pe != DAT_NONE ? T(a, pe)->name : "pointer", value,
-                         (uint64_t) (uintptr_t) p);
+                         p == NULL        ? "missing relocated pointer"
+                         : pe != DAT_NONE ? T(a, pe)->name
+                                          : "pointer",
+                         value, (uint64_t) (uintptr_t) p);
                 if (v->out != NULL &&
                     map_get(&a->offsets, (uint64_t) (uintptr_t) p, &key))
                 {
