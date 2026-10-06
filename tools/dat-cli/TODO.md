@@ -70,13 +70,14 @@ Not errors:
   or reading the tables from the ELF).
 - `ItemSpecialAttributes` selects a variant by `Article::kind`, bound in
   `itPublicData`, stage items (`gr_itkind`), fighters' items
-  (`ftData_ItemKind`) and Kirby's copies (`ftKbCopy_ItemKind`). Left
-  ambiguous: ScBall and Spycloak (no layouts), `It_Kind_Unk4`,
-  `Lizardon_Flame4`, `Unknown_Swarm`, `Pokemon_Unk`, and fighter items
-  whose code reads no attributes (bows, blasters, capes, Peach's parasol
-  and Toad, Thunder Jolt in the air, Sheik's held needle, PK Thunder's
-  last trail, Ness's bat, Kirby's `It_Kind_Unk1`). Master Hand's third and
-  Young Link's sixth item slots aren't registered with a kind.
+  (`ftData_ItemKind`) and Kirby's copies (`ftKbCopy_ItemKind`). Items
+  whose code reads none of their attributes (ScBall, Spycloak, bows,
+  blasters, capes, Peach's parasol and Toad, Thunder Jolt in the air,
+  Sheik's held needle, PK Thunder's last trail, Ness's bat, Kirby's
+  `It_Kind_Unk1`, `Pokemon_Unk`), and Master Hand's third and Young Link's
+  sixth item slots, which aren't registered with a kind, are
+  `itUnreadAttributes`: `DAT_EXTENT` words. Their sizes are only where the
+  next object starts.
 - `itSpecialAttrsHead`, the record monsters' and stage items' attributes
   start with, has duplicates: `itNokoNoko_DatAttrs2`, `itPatapataDatAttrs`,
   `itOldkuriAttributes_x0`, `itOldottoseaAttributes_x0`,
