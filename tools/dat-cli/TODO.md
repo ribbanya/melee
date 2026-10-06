@@ -107,9 +107,12 @@ Not errors:
 
 ## Coverage
 
-- `PlSb.dat` 0x75C-0x1444, after Sandbag's `FtSFX`, parses as subaction
-  commands but has no end command before the next object: not standalone
-  scripts. Nothing points into it.
+- `PlSb.dat` 0x75C-0x1444, after Sandbag's `FtSFX`, is 33 subaction
+  subroutines back to back, each ending in a return (opcode 6) with no end
+  command, and nothing points into them. Address roots would need a return
+  to end a script; ending every script there loses about 10 KB of fighters'
+  `xC` scripts that only fall-through after a return reaches now (unpointed
+  subroutines after pointed ones), so those would need roots too.
 
 - Loaded into untyped destinations, types unknown: `mnNameDefaultName*`
   (and `mnNameAutoName*`) and `MemSnapIconData`. `MemCardIconData` is
