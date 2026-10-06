@@ -1048,7 +1048,7 @@ typedef struct Fighter_WaitAnimData {
 
 struct ftData {
     /*  +0 */ ftCo_DatAttrs* x0;
-    /*  +4 */ void* ext_attr;
+    /*  +4 */ union ftData_ExtAttr* ext_attr;
     /*  +8 */ struct ftData_x8 {
         /*  +0 */ FtPartsDesc x0;
         /*  +8 */ ftData_x8_x8 x8;
@@ -1066,8 +1066,8 @@ struct ftData {
     /* +18 */ u8 (*x18)[2];
     /* +1C */ ftData_x1C** x1C DAT_EXTENT; ///< Up to one per #Fighter::x8B0
     /* +20 */ ftData_x20* x20;
-    /* +24 */ UNK_T x24;
-    /* +28 */ WaitStruct* x28;
+    /* +24 */ WaitStruct* x24 DAT_TERMINATED(-1);
+    /* +28 */ WaitStruct* x28 DAT_TERMINATED(-1);
     /* +2C */ struct ftDynamics* x2C;
     /* +30 */ ftData_x30* x30;
     /* +34 */ ftData_x34* x34;
