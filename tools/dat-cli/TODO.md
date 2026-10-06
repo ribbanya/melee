@@ -23,9 +23,14 @@
   `ftDevice_Callback0`'s `Vec3*` out parameter. That callback type is shared
   by two device tables with different outputs. `grZe_YakumonoParam` hides a
   pointer at 0x2C in `pad_14`.
-- `yakumono_param` has no type in 28 stages: every `GrT*` target test,
-  `GrTe`, the `GrEF*` trophy scenes, `GrHr`, `GrPu` and `GrSh`. Each is
-  one zero word, and their code reads none of it.
+- Some earlier by-address roots are misaligned inside data now reached
+  from its real root, e.g. `GrGb_unused_x8E4C8` (`HSD_MatAnimJoint`) in
+  the shapeanim list of the model desc at GrGb 0x8E4F0, and
+  `EfDkData_unused_x9B9C`. Leftover `HSD_ShapeAnimJoint` trees (8-byte
+  `_HSD_ShapeAnim`s that `HSD_MatAnimJoint` misreads) in `EfCoData`,
+  `EfDkData` and `EfMrData` have no root yet. The orphan model desc lists
+  in `PlCl`, `PlLk` and `PlSs` are left out: their animation trees have
+  the `FObjDesc`s noted below.
 - `GrMc.dat`'s `RObjAnimJoint`s at 0x301A4 and 0x301F4 have a third word
   pointing to an `HSD_AObjDesc` nothing else reaches; the code reads only
   two.
@@ -119,9 +124,9 @@ Not errors:
   commands but has no end command before the next object: not standalone
   scripts. Nothing points into it.
 
-- Loaded into untyped destinations, types unknown: `mnNameDefaultName*`
-  (and `mnNameAutoName*`) and `MemSnapIconData`. `MemCardIconData` is
-  bytes (`extent`).
+- The name entry lists (`mnNameAutoName*`, `mnNameRefuseName*`) are
+  counted in `dat_symbols.txt`: they end in a pointer to an empty string,
+  which `DAT_TERMINATED` can't express.
 - `toy.c` loads trophy symbols through `symbol_name` fields of its tables;
   those are covered by name patterns instead.
 - `ftDemo*MotionFile*` are `u8[]`: packed archives like `Pl??AJ.dat`,
