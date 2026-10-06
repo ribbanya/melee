@@ -143,7 +143,11 @@ other roots. `ftData.x48_items` binds `item_index` to `_index`, so its C
 pointer union selects Samus's grapple-beam accessory in slot 4, joints in
 Link/Young Link slot 6, Kirby slot 4, Yoshi slot 3 and Sheik slots 4/5,
 Game & Watch's visibility table in slot 10, Jigglypuff's costume parts in
-slot 1, and an `Article` in the other slots.
+slot 1, and an `Article` in the other slots, whose `Article::kind` is
+bound from `ftData_ItemKind`; `ftData.ext_attr` selects the fighter's own
+attributes the same way, by `fighter_kind`. Untyped roots keep their bindings for the type
+`dat_symbols.txt` gives them: Kirby's copies bind `fighter_kind` the same
+way. A union member's `DAT_BIND` applies to the member when it's chosen.
 
 ## Samples
 
@@ -360,12 +364,24 @@ type instead.
 | `DAT_TERMINATED(value)` | Pointer to elements up to one whose first word (or whole value, if smaller) is `value` and not a relocated pointer: `0` for null-terminated lists, `GX_VA_NULL` for vertex descriptors, `-1` for `s8` lists. On a member, or on a pointer typedef for nested lists. `DAT_TERMINATED(value, n)`: the terminator is `n` elements long, for lists that end in it more than once. |
 | `DAT_BLOB` | On a `u8` typedef: one format of bytes the archive doesn't break down: keyframe streams (`HSD_FObjData`), texels (`HSD_ImageData`), display lists (`HSD_DisplayList`). The size comes from the pointer, e.g. `DAT_COUNT(length)`. Raw `u8` data stays unexplained. |
 
-Expressions are C. Names resolve to fields of the enclosing record, then
-bindings, then macros and enum constants. `_index` is the element index
+Expressions are C integer expressions, including `?:`. Names resolve to
+fields of the enclosing record, then bindings, then macros and enum
+constants; a macro can hold a table as a chain of `?:`, like
+`ftData_ItemKind`. `_index` is the element index
 inside arrays and counted pointers. Float fields convert to integers as C
 would. Calls are to functions of the code that the tool ports
 (`interop/dwarf/expr.rs`), so an annotation can say what the game itself
-computes: `GXGetTexBufferSize`.
+computes: `GXGetTexBufferSize`. A pointer field whose own `DAT_COUNT` or
+`DAT_TERMINATED` gives its length evaluates to the bytes it points to;
+only calls and bindings take such values. `GXMaxIndex(dl, descs, attr)` is
+a tool-side helper over them: the largest index a display list gives a
+vertex attribute, decoded as the GameCube reads it (`GX_INDEX8`/`16` and
+inline `GX_DIRECT` entries per vertex in attribute order, up to a 0
+opcode). `HSD_PObjDesc` binds its display lists and descriptors, so each
+vertex array is as long as its largest index, and a vertex array shapes
+share is as long as the longest. A list element walked already (a
+descriptor list shapes share) recounts the plain data its counted pointers
+point to under the new bindings.
 
 ```c
 void* unk0 DAT_COUNT(unk4);
@@ -375,6 +391,10 @@ HSD_Spline* spline DAT_IF((flags & JOBJ_SPLINE) != 0);
 
 HSD_ImageData* image_ptr DAT_COUNT(GXGetTexBufferSize(
     width, height, format, mipmap, maxLOD + 1));
+
+HSD_VtxDescList* verts DAT_TERMINATED(GX_VA_NULL) DAT_BIND(dl, display)
+    DAT_BIND(descs, verts);
+HSD_VertexArray* vertex DAT_COUNT((GXMaxIndex(dl, descs, attr) + 1) * stride);
 
 Article** x4 DAT_COUNT(It_Kind_Section_Common_Extended_End) DAT_BIND(Article::kind, _index);
 ItCapsuleAttr capsule DAT_IF(Article::kind == It_Kind_Capsule);

@@ -11,7 +11,6 @@
 #include <sysdolphin/baselib/forward.h>
 
 #include <dat_macros.h>
-#include <placeholder.h>
 
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXStruct.h>
@@ -56,6 +55,11 @@ typedef struct StageCameraInfo {
     f32 fixed_cam_horz_angle;  // 0x70
 } StageCameraInfo;
 
+/// An item script, as #StageInfo::ald_yaku_all lists them.
+typedef struct GroundItemScript {
+    union CmdUnion* script DAT_SCRIPT(itCommandLength(_command));
+} GroundItemScript;
+
 struct StageInfo {
     StageCameraInfo cam_info;  // 0x00 - 0x70
     StageBlastZone blast_zone; // 0x74 - 0x80
@@ -90,18 +94,16 @@ struct StageInfo {
     void* x6A4;
     /* +6A8 */ struct GroundItemData {
         ItemKind gr_itkind;
+        /// Stored in it_804A0F60 by it_8026B40C (Ground_801C0800), unlike
+        /// the other items' data (see it_804D6D20_t). @c gr_itkind is the
+        /// whole kind, not an index into its section.
         Article* article_data DAT_BIND(Article::kind, gr_itkind);
-        // This data is stored in it_804A0F60, gets loaded in by calls to
-        // it_8026B40C in Ground_801C0800, which is different than the other
-        // item data (see it_804D6D20_t) With that in mind, should this instead
-        // be DAT_BIND(Article::kind, It_Kind_Section_Stage_Extended_Start +
-        // gr_itkind) ?
     }** itemdata;
     /* +6AC */ MapCollData* coll_data;
     /* +6B0 */ GroundParam* param;
     /// Item scripts for the stage's objects (#ItemStateDesc::xC_script),
     /// from index 1, up to NULL.
-    /* +6B4 */ UNK_T* ald_yaku_all;
+    /* +6B4 */ GroundItemScript* ald_yaku_all;
     /* +6B8 */ void* map_ptcl;
     /* +6BC */ void* map_texg;
     /* +6C0 */ void* yakumono_param;
@@ -2014,13 +2016,14 @@ struct UnkStageDat_x8_t {
     /*  +8 */ HSD_MatAnimJoint** matanims DAT_TERMINATED(0);
     /*  +C */ HSD_ShapeAnimJoint** shapeanims DAT_TERMINATED(0);
     /* +10 */ HSD_CameraDescPerspective* x10;
-    /* +14 */ UNK_T x14;
+    /* +14 */ HSD_CameraAnim* camera_anim;
     /* +18 */ LightList** x18 DAT_TERMINATED(0);
     /* +1C */ HSD_FogDesc* x1C;
     /* +20 */ GrJoint* unk20 DAT_COUNT(unk24);
     /* +24 */ s32 unk24; // size of unk20 array
-    /* +28 */ UNK_T x28;
-    /* +2C */ s16* x2C;
+    /// Per animation index: nonzero to loop that animation.
+    /* +28 */ u8* anim_loops DAT_EXTENT;
+    /* +2C */ s16* x2C DAT_COUNT(x30);
     /* +30 */ int x30;
 };
 

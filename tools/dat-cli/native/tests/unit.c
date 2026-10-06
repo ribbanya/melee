@@ -48,6 +48,29 @@ typedef struct Node {
     unsigned other : 5;
 } Node;
 
+typedef struct CountedLists {
+    uint32_t n;
+    Leaf* (*rows)[2];
+} CountedLists;
+
+typedef struct InlineLists {
+    uint32_t n;
+    Leaf* rows[2];
+} InlineLists;
+
+/// A vertex descriptor, laid out as `GXMaxIndex` reads it, and a shape
+/// whose display list indexes the vertex arrays its descriptors point to.
+typedef struct Desc {
+    uint32_t attr, attr_type, comp_cnt, comp_type, stride;
+    uint8_t* vertex;
+} Desc;
+
+typedef struct Shape {
+    Desc* descs;
+    uint8_t* list;
+    uint32_t n;
+} Shape;
+
 static void set_flag(void* o, uint64_t v)
 {
     ((Node*) o)->flag = (unsigned) v & 7;
@@ -91,18 +114,42 @@ enum {
     T_LEAF_ARRAY,
     T_POINTER_ARRAY,
     T_FIXED_ARRAY,
+    T_COUNTED_LEAF_P,
+    T_COUNTED_ROW,
+    T_COUNTED_ROW_P,
+    T_COUNTED_LISTS,
+    T_INLINE_LISTS,
+    T_BLOB,
+    T_BLOB_P,
+    T_DESC,
+    T_DESC_P,
+    T_SHAPE,
     T_COUNT,
 };
 
 enum {
     DAT_NAME_n = 1,
     DAT_NAME_kind,
+    DAT_NAME_lists_count,
+    DAT_NAME_rows,
+    DAT_NAME_dl,
+    DAT_NAME_descs,
+    DAT_NAME_list,
+    DAT_NAME_attr,
+    DAT_NAME_stride,
     DAT_NAME_COUNT,
 };
 
 static const char* const names[DAT_NAME_COUNT] = {
     [DAT_NAME_n] = "n",
     [DAT_NAME_kind] = "kind",
+    [DAT_NAME_lists_count] = "Lists::count",
+    [DAT_NAME_rows] = "rows",
+    [DAT_NAME_dl] = "dl",
+    [DAT_NAME_descs] = "descs",
+    [DAT_NAME_list] = "list",
+    [DAT_NAME_attr] = "attr",
+    [DAT_NAME_stride] = "stride",
 };
 
 #define SCALAR(self, type_name, type_kind, sign, bytes, native)               \
@@ -295,6 +342,99 @@ static const DatType type_T_FIXED_ARRAY = {
     .count = 2,
 };
 
+static const DatType type_T_COUNTED_LEAF_P = {
+    .name = "CountedLeafPtr",
+    .id = T_COUNTED_LEAF_P,
+    .kind = DAT_KIND_TYPEDEF,
+    .has_pointers = 1,
+    .size = 4,
+    .native_size = sizeof(Leaf*),
+    .target = T_LEAF_P,
+    .resolved = T_LEAF_P,
+    .count_tag = DAT_NAME(lists_count),
+};
+
+static const DatType type_T_COUNTED_ROW = {
+    .name = "CountedLeafPtr[2]",
+    .id = T_COUNTED_ROW,
+    .kind = DAT_KIND_ARRAY,
+    .has_pointers = 1,
+    .size = 8,
+    .native_size = 2 * sizeof(Leaf*),
+    .target = T_COUNTED_LEAF_P,
+    .resolved = T_COUNTED_ROW,
+    .count = 2,
+};
+
+POINTER(T_COUNTED_ROW_P, "CountedLeafPtr(*)[2]", T_COUNTED_ROW);
+
+static const DatMember counted_lists_members[] = {
+    { DAT_MEMBER(CountedLists, n, 0, T_U32) },
+    { DAT_MEMBER(CountedLists, rows, 4, T_COUNTED_ROW_P), .extent = 1,
+      DAT_BINDS({ DAT_NAME_lists_count, DAT_NAME(n) }) },
+};
+
+static const DatMember inline_lists_members[] = {
+    { DAT_MEMBER(InlineLists, n, 0, T_U32) },
+    { DAT_MEMBER(InlineLists, rows, 4, T_COUNTED_ROW),
+      DAT_BINDS({ DAT_NAME_lists_count, DAT_NAME(n) }) },
+};
+
+INLINE_TYPE(T_COUNTED_LISTS, CountedLists, 8, counted_lists_members);
+INLINE_TYPE(T_INLINE_LISTS, InlineLists, 12, inline_lists_members);
+
+static const DatType type_T_BLOB = {
+    .name = "Blob",
+    .id = T_BLOB,
+    .kind = DAT_KIND_TYPEDEF,
+    .blob = 1,
+    .size = 1,
+    .native_size = 1,
+    .target = T_U8,
+    .resolved = T_U8,
+};
+
+POINTER(T_BLOB_P, "Blob*", T_BLOB);
+POINTER(T_DESC_P, "Desc*", T_DESC);
+
+static const DatMember desc_members[] = {
+    { DAT_MEMBER(Desc, attr, 0, T_U32) },
+    { .type = T_U32, DAT_AT(4), DAT_FIELD(Desc, attr_type) },
+    { .type = T_U32, DAT_AT(8), DAT_FIELD(Desc, comp_cnt) },
+    { .type = T_U32, DAT_AT(0xC), DAT_FIELD(Desc, comp_type) },
+    { DAT_MEMBER(Desc, stride, 0x10, T_U32) },
+    { .type = T_BLOB_P,
+      DAT_AT(0x14),
+      DAT_FIELD(Desc, vertex),
+      .count = DAT_BINARY(MUL,
+                          DAT_BINARY(ADD,
+                                     DAT_CALL(GX_MAX_INDEX, DAT_NAME(dl),
+                                              DAT_NAME(descs), DAT_NAME(attr)),
+                                     DAT_INT(1)),
+                          DAT_NAME(stride)) },
+};
+
+static const DatMember shape_members[] = {
+    { DAT_MEMBER(Shape, descs, 0, T_DESC_P), .terminator = DAT_INT(0xFF),
+      DAT_BINDS({ DAT_NAME_dl, DAT_NAME(list) },
+                { DAT_NAME_descs, DAT_NAME(descs) }) },
+    { DAT_MEMBER(Shape, list, 4, T_BLOB_P), .count = DAT_NAME(n) },
+    { DAT_MEMBER(Shape, n, 8, T_U32) },
+};
+
+static const DatType type_T_DESC = {
+    .name = "Desc",
+    .id = T_DESC,
+    .kind = DAT_KIND_STRUCT,
+    .has_pointers = 1,
+    .size = 0x18,
+    .native_size = sizeof(Desc),
+    .resolved = T_DESC,
+    DAT_MEMBERS(desc_members),
+};
+
+INLINE_TYPE(T_SHAPE, Shape, 0xC, shape_members);
+
 static const DatType* const types[T_COUNT] = {
     [T_S8] = &type_T_S8,
     [T_S16] = &type_T_S16,
@@ -315,6 +455,16 @@ static const DatType* const types[T_COUNT] = {
     [T_LEAF_ARRAY] = &type_T_LEAF_ARRAY,
     [T_POINTER_ARRAY] = &type_T_POINTER_ARRAY,
     [T_FIXED_ARRAY] = &type_T_FIXED_ARRAY,
+    [T_COUNTED_LEAF_P] = &type_T_COUNTED_LEAF_P,
+    [T_COUNTED_ROW] = &type_T_COUNTED_ROW,
+    [T_COUNTED_ROW_P] = &type_T_COUNTED_ROW_P,
+    [T_COUNTED_LISTS] = &type_T_COUNTED_LISTS,
+    [T_INLINE_LISTS] = &type_T_INLINE_LISTS,
+    [T_BLOB] = &type_T_BLOB,
+    [T_BLOB_P] = &type_T_BLOB_P,
+    [T_DESC] = &type_T_DESC,
+    [T_DESC_P] = &type_T_DESC_P,
+    [T_SHAPE] = &type_T_SHAPE,
 };
 
 static const DatSchema schema = {
@@ -449,6 +599,12 @@ static void test_walk(void)
     CHECK(root->flag == 5 && root->other == 17);
     CHECK(b->flag == 0 && b->other == 0);
     CHECK(dat_verify(a, stdout) == 0);
+    /* A relocated pointer to a converted object cannot become NULL. */
+    Leaf* saved_leaf = root->leaf;
+    root->leaf = NULL;
+    CHECK(dat_verify(a, NULL) == 1);
+    root->leaf = saved_leaf;
+    CHECK(dat_verify(a, NULL) == 0);
 
     FILE* out = tmpfile();
     dat_trace(a, out, DAT_TRACE_ALL);
@@ -579,6 +735,161 @@ static void test_inline_counts(void)
     }
 }
 
+static void test_array_typedef_counts(void)
+{
+    for (unsigned i = 0; i < 4; i++) {
+        unsigned char file[0x200];
+        uint32_t count = i < 2 ? 2 : 0;
+        bool inline_row = i % 2 != 0;
+        size_t size = build_inline(file, count, true);
+        unsigned char* d = file + 0x20;
+        /* Two lists of two leaves; the last leaf of each must be read. */
+        memcpy(d + 0x58, d + 0x40, 24);
+        put32(d + 0x5C, 111);
+        put32(d + 0x68, 222);
+        if (!inline_row) {
+            put32(d + 4, 16);
+            put32(d + 8, 0);
+            put32(d + 12, 0);
+            put32(d + 16, 0x40);
+            put32(d + 20, 0x58);
+            put32(d + DATA + 4, 16);
+            put32(d + DATA + 8, 20);
+        } else {
+            put32(d + 8, 0x58);
+        }
+        DatArchive* a = dat_open(&schema, file, size, NULL);
+        CHECK(a != NULL);
+        Leaf** row = NULL;
+        if (!inline_row) {
+            CountedLists* lists = dat_public(a, "root", T_COUNTED_LISTS);
+            CHECK(lists != NULL && lists->rows != NULL);
+            if (lists != NULL && lists->rows != NULL) {
+                row = lists->rows[0];
+            }
+        } else {
+            InlineLists* lists = dat_public(a, "root", T_INLINE_LISTS);
+            CHECK(lists != NULL);
+            if (lists != NULL) {
+                row = lists->rows;
+            }
+        }
+        CHECK(row != NULL && row[0] != NULL && row[1] != NULL);
+        char* text = trace(a);
+        CHECK(!contains(text, "issue"));
+        CHECK(contains(text, "extent 0x40 0x58") == (count > 0));
+        CHECK(contains(text, "extent 0x58 0x70") == (count > 0));
+        if (count > 0 && row != NULL && row[0] != NULL && row[1] != NULL) {
+            /* An incomplete list should fail without an out-of-bounds
+               access, so guard its last element with the traced extent. */
+            if (contains(text, "extent 0x40 0x58") &&
+                contains(text, "extent 0x58 0x70"))
+            {
+                CHECK(row[0][1].c == 456);
+                CHECK(row[1][1].c == 222);
+            }
+        }
+        CHECK(dat_verify(a, NULL) == 0);
+        free(text);
+        dat_close(a);
+    }
+}
+
+/// Shapes at 0, 0x10 and 0xA0, with descriptor lists at 0x20 (the first and
+/// third's) and 0x50 pointing to one vertex array at 0xC0 of 4-byte
+/// positions, indexed by their display lists (0x80, 0x88, 0x90) up to 2, 5
+/// and 7. The first `publics` of them are public, as "a", "b" and "c".
+static size_t build_shapes(unsigned char* f, size_t publics)
+{
+    static const uint32_t shape_relocs[] = { 0x00, 0x04, 0x10, 0x14,
+                                             0x34, 0x64, 0xA0, 0xA4 };
+    static const uint32_t shapes[3][3] = {
+        { 0x00, 0x20, 0x80 },
+        { 0x10, 0x50, 0x88 },
+        { 0xA0, 0x20, 0x90 },
+    };
+    static const unsigned char lists[24] = {
+        0x90, 0, 3, 0, 1,    2, 0, 0, 0x98, 0, 2, 5,
+        1,    0, 0, 0, 0x98, 0, 1, 7, 0,    0, 0, 0,
+    };
+    memset(f, 0, 0x200);
+    unsigned char* d = f + 0x20;
+    for (size_t i = 0; i < 3; i++) {
+        unsigned char* shape = d + shapes[i][0];
+        put32(shape, shapes[i][1]);
+        put32(shape + 4, shapes[i][2]);
+        put32(shape + 8, 8);
+    }
+    for (uint32_t i = 0; i < 2; i++) {
+        unsigned char* desc = d + 0x20 + i * 0x30;
+        /* GX_VA_POS, GX_INDEX8, then GX_VA_NULL */
+        put32(desc, 9);
+        put32(desc + 4, 2);
+        put32(desc + 0x10, 4);
+        put32(desc + 0x14, 0xC0);
+        put32(desc + 0x18, 0xFF);
+    }
+    memcpy(d + 0x80, lists, sizeof lists);
+    enum {
+        SHAPE_DATA = 0x100
+    };
+    unsigned char* at = d + SHAPE_DATA;
+    for (size_t i = 0; i < 8; i++, at += 4) {
+        put32(at, shape_relocs[i]);
+    }
+    for (uint32_t i = 0; i < publics; i++, at += 8) {
+        put32(at, shapes[i][0]);
+        put32(at + 4, i * 2);
+    }
+    memcpy(at, "a\0b\0c\0", 6);
+    at += 6;
+    size_t size = (size_t) (at - f);
+    put32(f, (uint32_t) size);
+    put32(f + 4, SHAPE_DATA);
+    put32(f + 8, 8);
+    put32(f + 12, (uint32_t) publics);
+    return size;
+}
+
+static void test_vertex_arrays(void)
+{
+    /* Each shape's list reaches further than the last's; the third shares
+       the first's descriptor list, walked already */
+    static const struct {
+        size_t publics;
+        const char* extent;
+    } cases[] = {
+        { 1, "extent 0xC0 0xCC\n" },
+        { 2, "extent 0xC0 0xD8\n" },
+        { 3, "extent 0xC0 0xE0\n" },
+    };
+    for (size_t i = 0; i < 3; i++) {
+        unsigned char file[0x200];
+        size_t size = build_shapes(file, cases[i].publics);
+        DatArchive* a = dat_open(&schema, file, size, NULL);
+        CHECK(a != NULL);
+        if (a == NULL) {
+            continue;
+        }
+        for (size_t j = 0; j < cases[i].publics; j++) {
+            Shape* shape =
+                dat_public(a, (const char[]){ 'a' + j, 0 }, T_SHAPE);
+            CHECK(shape != NULL);
+            if (shape != NULL) {
+                CHECK(shape->descs[0].vertex == dat_raw(a, 0xC0));
+                CHECK(shape->descs[1].attr == 0xFF);
+            }
+        }
+        char* text = trace(a);
+        CHECK(!contains(text, "issue"));
+        CHECK(contains(text, "pointer 0x34\n"));
+        CHECK(contains(text, cases[i].extent));
+        CHECK(dat_verify(a, NULL) == 0);
+        free(text);
+        dat_close(a);
+    }
+}
+
 static void test_refuses(void)
 {
     unsigned char file[0x200];
@@ -624,6 +935,8 @@ int main(void)
 {
     test_walk();
     test_inline_counts();
+    test_array_typedef_counts();
+    test_vertex_arrays();
     test_refuses();
     test_packed();
     printf("%s (%zu-bit %s-endian)\n", failures ? "FAILED" : "ok",

@@ -75,6 +75,8 @@ typedef enum DatOp {
     DAT_OP_MUL,
     DAT_OP_DIV,
     DAT_OP_REM,
+    /// `cond ? a : b`.
+    DAT_OP_COND,
     /// Always fails: a call to a function the library doesn't port.
     DAT_OP_FAIL,
 } DatOp;
@@ -83,10 +85,14 @@ typedef enum DatFunction {
     DAT_FN_IT_COMMAND_LENGTH,
     DAT_FN_GX_GET_TEX_BUFFER_SIZE,
     DAT_FN_COL_ANIM_COMMAND_LENGTH,
+    /// Takes bytes: names of pointer members whose `DAT_COUNT` or
+    /// `DAT_TERMINATED` says how much they point to.
+    DAT_FN_GX_MAX_INDEX,
 } DatFunction;
 
 /// An expression node. Arithmetic is unsigned 64-bit, as `melee-dat`
-/// evaluates it.
+/// evaluates it; a name can also be the bytes a pointer member points to,
+/// which only calls take.
 typedef struct DatExpr {
     uint8_t op;
     /// DAT_OP_NAME: an index into DatSchema::names.
@@ -98,6 +104,8 @@ typedef struct DatExpr {
     /// Operands; for DAT_OP_NAME, `b` is the name's macro.
     const struct DatExpr* a;
     const struct DatExpr* b;
+    /// DAT_OP_COND: the condition.
+    const struct DatExpr* cond;
     uint64_t value;
 } DatExpr;
 
@@ -303,6 +311,8 @@ typedef struct DatSchema {
              .args = (const DatExpr* const[]) { __VA_ARGS__ },                \
              .nargs =                                                         \
                  DAT_COUNTOF(((const DatExpr* const[]) { __VA_ARGS__ })))
+#define DAT_COND(c, x, y)                                                     \
+    DAT_EXPR(.op = DAT_OP_COND, .cond = (c), .a = (x), .b = (y))
 #define DAT_FAIL DAT_EXPR(.op = DAT_OP_FAIL)
 
 #ifdef __cplusplus
